@@ -1,0 +1,169 @@
+[gd_scene load_steps=20 format=3 uid="uid://blgfsj2jbixh6"]
+
+[ext_resource type="Script" uid="uid://d3fin4411ww46" path="res://Scripts/Combat/ProjectileWeapons/ProjectileWeapon.gd" id="1_63dh1"]
+[ext_resource type="PackedScene" uid="uid://bkek13p5hgc0u" path="res://Scenes/Weapons/Magic Gun/magic_gun_projectile.tscn" id="2_lasbx"]
+[ext_resource type="Texture2D" uid="uid://d6l6rk5tkago" path="res://Placeholders/Icons/Icon.3_33.png" id="3_cm30y"]
+[ext_resource type="Texture2D" uid="uid://xbdysyrr4hoo" path="res://Sprites/Weapons/Magic Gun/Gun.png" id="3_x2ecd"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="4_85fsj"]
+[ext_resource type="Script" uid="uid://cmdw2c71721x0" path="res://Scripts/Combat/Animation/AttackAnimation.gd" id="4_uhvcd"]
+[ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="4_x6n5n"]
+[ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="5_07ylq"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="5_uhvcd"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="6_kap1h"]
+[ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="8_kap1h"]
+[ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="9_rsk5c"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="9_rtkd0"]
+[ext_resource type="PackedScene" uid="uid://3ruase02hrhv" path="res://Scenes/Abilities/ToggleAbilities/Laser/ability_laser.tscn" id="13_07ylq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtkd0"]
+atlas = ExtResource("3_x2ecd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsk5c"]
+atlas = ExtResource("3_x2ecd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pac74"]
+atlas = ExtResource("3_x2ecd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6n5n"]
+atlas = ExtResource("3_x2ecd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uhvcd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtkd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsk5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pac74")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6n5n")
+}],
+"loop": false,
+"name": &"windup",
+"speed": 12.0
+}]
+
+[node name="WeaponMagicGun" type="Node2D" node_paths=PackedStringArray("spawn_node", "attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener")]
+script = ExtResource("1_63dh1")
+projectile = ExtResource("2_lasbx")
+speed = 1200.0
+spawn_node = NodePath("Marker2D")
+max_distance = 1000.0
+attack_damage = NodePath("Damage")
+attack_speed_stat = NodePath("AttackSpeed")
+attack_windup_time = 0.1
+weapon_ability = NodePath("AbilityLaser")
+hit_listener = NodePath("HitListener")
+equipment_name = "Magic Gun"
+equipment_icon = ExtResource("3_cm30y")
+metadata/_custom_type_script = "uid://d3fin4411ww46"
+
+[node name="Damage" type="Node" parent="."]
+script = ExtResource("6_kap1h")
+stat_value = 5.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatMult" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("4_x6n5n")
+stat = NodePath("..")
+scale_with_stat_id = "magic_damage_mult"
+metadata/_custom_type_script = "uid://c4n03mihb0axg"
+
+[node name="GetActorStatAdder" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("5_07ylq")
+stat = NodePath("..")
+scale_with_stat_id = "magic_damage"
+metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+
+[node name="AttackSpeed" type="Node" parent="."]
+script = ExtResource("6_kap1h")
+stat_value = 2.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatMult" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]
+script = ExtResource("4_x6n5n")
+stat = NodePath("..")
+scale_with_stat_id = "attack_speed_mult"
+metadata/_custom_type_script = "uid://c4n03mihb0axg"
+
+[node name="GetActorStatAdder" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]
+script = ExtResource("5_07ylq")
+stat = NodePath("..")
+scale_with_stat_id = "attack_speed"
+metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(21, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("weapon")]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_uhvcd")
+animation = &"attack"
+frame = 2
+frame_progress = 1.0
+script = ExtResource("4_uhvcd")
+weapon = NodePath("..")
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("4_85fsj")
+metadata/_custom_type_script = "uid://dm3uuggj1g47y"
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat", "penetration_stat", "crit_chance_stat")]
+script = ExtResource("5_uhvcd")
+damage_stat = NodePath("../../Damage")
+penetration_stat = NodePath("../../ActorArmorPen")
+crit_chance_stat = NodePath("../../ActorCrit")
+metadata/_custom_type_script = "uid://c8sj8b1npavnd"
+
+[node name="OnHitEffect" type="Node" parent="HitListener"]
+script = ExtResource("8_kap1h")
+on_hit_chance = 0.6
+metadata/_custom_type_script = "uid://ckgh7mgba1eo4"
+
+[node name="Knockback" type="Node" parent="HitListener"]
+script = ExtResource("9_rsk5c")
+force = 75.0
+metadata/_custom_type_script = "uid://dmjo067f80ntw"
+
+[node name="ActorArmorPen" type="Node" parent="."]
+script = ExtResource("6_kap1h")
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatScaler" type="Node" parent="ActorArmorPen" node_paths=PackedStringArray("stat")]
+script = ExtResource("9_rtkd0")
+stat = NodePath("..")
+scale_with_stat_id = "armor_pen"
+metadata/_custom_type_script = "uid://2vlwp08ancca"
+
+[node name="ActorCrit" type="Node" parent="."]
+script = ExtResource("6_kap1h")
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatScaler" type="Node" parent="ActorCrit" node_paths=PackedStringArray("stat")]
+script = ExtResource("9_rtkd0")
+stat = NodePath("..")
+scale_with_stat_id = "crit_chance"
+metadata/_custom_type_script = "uid://2vlwp08ancca"
+
+[node name="AbilityLaser" parent="." instance=ExtResource("13_07ylq")]

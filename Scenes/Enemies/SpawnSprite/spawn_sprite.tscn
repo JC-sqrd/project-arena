@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqm4fbhm3ik7d"]
+
+[ext_resource type="Texture2D" uid="uid://c35vvralpy2oe" path="res://Placeholders/Sprites/Skill Circle Visual.png" id="1_2xg5x"]
+
+[node name="SpawnSprite" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_2xg5x")

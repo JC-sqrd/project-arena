@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8v5pw5002yu7"]
+
+[ext_resource type="Script" uid="uid://ddqk3yrjgrqa1" path="res://Scripts/ManaBar.gd" id="1_1jpye"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_dwfp7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8ldhe"]
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_6mxjh"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_nuqt4"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_s8683"]
+
+[node name="ManaBar" type="TextureProgressBar" node_paths=PackedStringArray("mana_label", "under_manabar")]
+custom_minimum_size = Vector2(50, 10)
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00744, 1.55291)
+value = 50.0
+rounded = true
+nine_patch_stretch = true
+texture_progress = SubResource("CanvasTexture_dwfp7")
+tint_progress = Color(0.250194, 0.748522, 0.931044, 1)
+script = ExtResource("1_1jpye")
+mana_label = NodePath("ManaLabel")
+under_manabar = NodePath("UnderManaBar")
+
+[node name="ManaLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -11.5
+offset_right = 26.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mana"
+label_settings = SubResource("LabelSettings_8ldhe")
+horizontal_alignment = 1
+
+[node name="ShieldProgressBar" type="TextureProgressBar" parent="."]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 110.0
+value = 110.0
+nine_patch_stretch = true
+texture_progress = SubResource("CanvasTexture_6mxjh")
+tint_progress = Color(0.145098, 0.670588, 1, 1)
+
+[node name="UnderManaBar" type="TextureProgressBar" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 110.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = SubResource("CanvasTexture_nuqt4")
+texture_progress = SubResource("CanvasTexture_s8683")
+tint_under = Color(0.273873, 0.273873, 0.273873, 1)
+tint_progress = Color(0.823, 1, 0.41, 1)

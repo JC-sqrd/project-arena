@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdbihdl1o28gy"]
+
+[ext_resource type="Script" uid="uid://bl2o23slc2p4w" path="res://Scripts/Pickupable/CommonItemPickerPickupable.gd" id="1_defkl"]
+[ext_resource type="Texture2D" uid="uid://cvn3sfp3gmlj0" path="res://Placeholders/Icons/Icon.5_76.png" id="2_2ux3a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6f4nm"]
+radius = 20.0
+
+[node name="ItemPickerPickup" type="Node2D"]
+script = ExtResource("1_defkl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_2ux3a")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(0.993191, 1)
+shape = SubResource("CircleShape2D_6f4nm")

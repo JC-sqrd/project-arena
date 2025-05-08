@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxwshug5qnf5u"]
+
+[ext_resource type="Script" uid="uid://n10tqp6fvmi4" path="res://Scripts/Timer/game_timer.gd" id="1_f4rv8"]
+
+[node name="GameTimer" type="Panel"]
+offset_right = 1.0
+offset_bottom = 23.0
+script = ExtResource("1_f4rv8")
+
+[node name="Minutes" type="Label" parent="."]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 23.0
+text = "00"
+horizontal_alignment = 2
+
+[node name="Seconds" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 47.0
+offset_bottom = 23.0
+text = "00
+"
+horizontal_alignment = 2
+
+[node name="Milliseconds" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_right = 82.0
+offset_bottom = 23.0
+text = "00"
+horizontal_alignment = 2

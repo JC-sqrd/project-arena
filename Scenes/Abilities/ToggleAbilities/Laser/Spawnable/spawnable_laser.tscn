@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://bd4oql7xepr1h"]
+
+[ext_resource type="Script" uid="uid://blbwnmv676w3j" path="res://Scripts/Ability System/Spawnables/AreaHitOverTime.gd" id="1_pyyhs"]
+[ext_resource type="Texture2D" uid="uid://b1btj33f6x5b" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/spark_07.png" id="2_uqkdg"]
+[ext_resource type="Script" uid="uid://k8720880rt6c" path="res://Scripts/Ability System/Spawnables/SpawnableEnterFilter/SpawnableRayFilter.gd" id="2_y1myx"]
+[ext_resource type="Script" uid="uid://drlnvc80gycmv" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/LookAtMouseLerp.gd" id="4_20qhv"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_w667a"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="6_fmow2"]
+
+[sub_resource type="Resource" id="Resource_notte"]
+script = ExtResource("2_y1myx")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1agi"]
+size = Vector2(359, 20)
+
+[node name="SpawnableLaser" type="Area2D" node_paths=PackedStringArray("hit_speed")]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_pyyhs")
+hit_speed = NodePath("HitSpeed")
+windup_time = 0.05
+free_on_lifetime_end = false
+filter = SubResource("Resource_notte")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(195, 0)
+shape = SubResource("RectangleShape2D_p1agi")
+
+[node name="Spark07" type="Sprite2D" parent="."]
+position = Vector2(193, 1)
+scale = Vector2(0.68, 0.56)
+texture = ExtResource("2_uqkdg")
+
+[node name="LookAtMouseLerp" type="Node" parent="."]
+script = ExtResource("4_20qhv")
+weight = 10.0
+
+[node name="HitSpeed" type="Node" parent="."]
+script = ExtResource("5_w667a")
+stat_value = 5.0
+
+[node name="GetActorStatScaler" type="Node" parent="HitSpeed" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_fmow2")
+stat = NodePath("..")
+scale_with_stat_id = "attack_speed"

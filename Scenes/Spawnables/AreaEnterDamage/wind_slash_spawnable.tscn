@@ -1,0 +1,159 @@
+[gd_scene load_steps=18 format=3 uid="uid://b7gtk6x7ks7m8"]
+
+[ext_resource type="Script" uid="uid://d1xavjy2kbus2" path="res://Scripts/Ability System/Spawnables/AreaEnterHit.gd" id="1_ehqur"]
+[ext_resource type="Script" uid="uid://bg43jxy7gyts0" path="res://Scripts/Ability System/Spawnables/SpawnableEnterFilter/SpawnableEnterFilter.gd" id="2_6fy42"]
+[ext_resource type="Texture2D" uid="uid://3rh4ggx66ij4" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/slash_02.png" id="2_skkfv"]
+[ext_resource type="Script" uid="uid://u7t3n45rwjb2" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/SpawnableAccelerateBehavior.gd" id="3_ucyyd"]
+[ext_resource type="Texture2D" uid="uid://b2n7cvdfs21c1" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/trace_01.png" id="4_n07sc"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="4_qfgpb"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="5_0igtg"]
+[ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="7_dtidv"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="8_aalpp"]
+[ext_resource type="Script" uid="uid://y1c1hiwxwmkf" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/SpawnableHitCounterBehavior.gd" id="9_aa0d8"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="9_un7m4"]
+
+[sub_resource type="Resource" id="Resource_oy5ih"]
+script = ExtResource("2_6fy42")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e3vix"]
+radius = 45.0
+
+[sub_resource type="Curve" id="Curve_bqexf"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.264151, 0.50312), 2.06708, 2.06708, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_p05io"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trace01:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.75, 0.75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Trace01:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-108, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cq6aj"]
+resource_name = "ready"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trace01:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 2),
+"update": 0,
+"values": [Vector2(0.75, 0.75), Vector2(0.1, 0.1), Vector2(0.75, 0.75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Trace01:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0221227, 0.0328571, 0.5),
+"transitions": PackedFloat32Array(1, 1, 2),
+"update": 0,
+"values": [Vector2(-108, 0), Vector2(0, 0), Vector2(-108, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e2yqx"]
+_data = {
+&"RESET": SubResource("Animation_p05io"),
+&"ready": SubResource("Animation_cq6aj")
+}
+
+[node name="WindSlashSpawnable" type="Area2D" groups=["Projectile"]]
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_ehqur")
+filter = SubResource("Resource_oy5ih")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_e3vix")
+
+[node name="Slash02" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0.92549, 0.172549, 1)
+position = Vector2(-3, 0)
+rotation = 4.71239
+scale = Vector2(0.351, 0.351)
+texture = ExtResource("2_skkfv")
+
+[node name="Slash03" type="Sprite2D" parent="."]
+self_modulate = Color(0.211765, 0.607843, 0.435294, 1)
+position = Vector2(-16, -3.75167e-12)
+rotation = 4.71239
+scale = Vector2(0.249, 0.249)
+texture = ExtResource("2_skkfv")
+
+[node name="Trace01" type="Sprite2D" parent="."]
+modulate = Color(0.309804, 0.592157, 0.341176, 1)
+position = Vector2(-108, 0)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_n07sc")
+
+[node name="SpawnableAccelerateBehavior" type="Node" parent="." node_paths=PackedStringArray("spawnable")]
+script = ExtResource("3_ucyyd")
+move_speed = 900.0
+acceleration = 800.0
+curve = SubResource("Curve_bqexf")
+spawnable = NodePath("..")
+
+[node name="SpawnableHitCounterBehavior" type="Node" parent="." node_paths=PackedStringArray("hit_times", "spawnable")]
+script = ExtResource("9_aa0d8")
+hit_times = NodePath("MaxHitCount")
+spawnable = NodePath("..")
+
+[node name="MaxHitCount" type="Node" parent="SpawnableHitCounterBehavior"]
+script = ExtResource("8_aalpp")
+stat_value = 5.0
+
+[node name="WindSlashHitListener" type="Node" parent="."]
+script = ExtResource("4_qfgpb")
+
+[node name="Damage" type="Node" parent="WindSlashHitListener"]
+script = ExtResource("8_aalpp")
+stat_name = "wind_slash_damage"
+stat_value = 20.0
+
+[node name="DuckStatScaler" type="Node" parent="WindSlashHitListener/Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("9_un7m4")
+stat = NodePath("..")
+scale_with_stat_id = "magic_damage"
+scale_ratio = 1.2
+
+[node name="DamageEffect" type="Node" parent="WindSlashHitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("5_0igtg")
+damage_stat = NodePath("../Damage")
+damage_type = 1
+
+[node name="OnHitEffect" type="Node" parent="WindSlashHitListener"]
+script = ExtResource("7_dtidv")
+on_hit_chance = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_e2yqx")
+}
+autoplay = "ready"

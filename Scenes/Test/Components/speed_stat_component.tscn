@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuu2y6s4urf8o"]
+
+[ext_resource type="Script" uid="uid://c4syd20r302l5" path="res://Scripts/StatSystem/Stats/SpeedStat.gd" id="1_mg18t"]
+
+[node name="SpeedStat" type="Node"]
+script = ExtResource("1_mg18t")
+stat_name = "speed_stat"
+stat_value = 350.0

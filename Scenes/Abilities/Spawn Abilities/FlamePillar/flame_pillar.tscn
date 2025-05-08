@@ -1,0 +1,78 @@
+[gd_scene load_steps=15 format=3 uid="uid://bkjwb31l88d7n"]
+
+[ext_resource type="Script" uid="uid://df7s4oatxu4hr" path="res://Scripts/Ability System/SpawnAbility.gd" id="1_4wuys"]
+[ext_resource type="PackedScene" uid="uid://ctnpun8q0arbq" path="res://Scenes/Abilities/Spawn Abilities/FlamePillar/Spawnable/spawnable_flame_pillar.tscn" id="2_8o0h4"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="3_23gar"]
+[ext_resource type="Script" uid="uid://yd87aj2hybru" path="res://Scripts/Ability System/SpawnAbilitySpawnBehavior/PointSpawn.gd" id="3_73dnj"]
+[ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_pyqdg"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="4_rbl2w"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_jekm4"]
+[ext_resource type="Script" uid="uid://88st3pdi1hky" path="res://Scripts/Combat/CombatEffects/ApplyStatusEffect.gd" id="6_bjqqw"]
+[ext_resource type="Script" uid="uid://clr8tbibqclow" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="6_yx72m"]
+[ext_resource type="PackedScene" uid="uid://d2mjy2iqk7hmw" path="res://Scenes/StatusEffects/Burn.tscn" id="8_2ion8"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="8_t6syp"]
+[ext_resource type="Script" uid="uid://wxlytnemh2wh" path="res://Scripts/Ability System/AbilityBehavior/SlowOnCast.gd" id="11_pyqdg"]
+
+[sub_resource type="Resource" id="Resource_d1mt1"]
+script = ExtResource("3_73dnj")
+metadata/_custom_type_script = "uid://yd87aj2hybru"
+
+[sub_resource type="Resource" id="Resource_73dnj"]
+script = ExtResource("3_pyqdg")
+stat_name = "current_mana"
+required_value = 15.0
+metadata/_custom_type_script = "uid://tuvjl40jf0pm"
+
+[node name="FlamePillar" type="Node2D" node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("1_4wuys")
+max_range = 225.0
+spawn = ExtResource("2_8o0h4")
+spawn_behavior = SubResource("Resource_d1mt1")
+required_stat = SubResource("Resource_73dnj")
+hit_listener = NodePath("HitListener")
+cooldown = 5.0
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("3_23gar")
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat", "penetration_stat")]
+script = ExtResource("4_rbl2w")
+damage_stat = NodePath("Damage")
+penetration_stat = NodePath("../../ActorMagicPen")
+damage_type = 1
+
+[node name="Damage" type="Node" parent="HitListener/DamageEffect"]
+script = ExtResource("5_jekm4")
+stat_value = 15.0
+
+[node name="StatScaler" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("6_yx72m")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../../../ActorMagic")
+scale_ratio = 0.25
+
+[node name="ApplyStatusEffect" type="Node" parent="HitListener"]
+script = ExtResource("6_bjqqw")
+status_effect_scene = ExtResource("8_2ion8")
+
+[node name="ActorMagic" type="Node" parent="."]
+script = ExtResource("5_jekm4")
+
+[node name="GetActorStatScaler" type="Node" parent="ActorMagic" node_paths=PackedStringArray("stat")]
+script = ExtResource("8_t6syp")
+stat = NodePath("..")
+scale_with_stat_id = "magic"
+
+[node name="ActorMagicPen" type="Node" parent="."]
+script = ExtResource("5_jekm4")
+
+[node name="GetActorStatScaler" type="Node" parent="ActorMagicPen" node_paths=PackedStringArray("stat")]
+script = ExtResource("8_t6syp")
+stat = NodePath("..")
+scale_with_stat_id = "magic_pen"
+
+[node name="SlowOnCast" type="Node" parent="."]
+script = ExtResource("11_pyqdg")
+slow_time = 0.2
+slow_multiplier = 0.3
+metadata/_custom_type_script = "uid://wxlytnemh2wh"

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl0ros7k1ndhs"]
+
+[ext_resource type="Script" uid="uid://ciytyppl8qii6" path="res://Scripts/Item/ItemPicker/ItemPicker.gd" id="1_4aiws"]
+[ext_resource type="PackedScene" uid="uid://d7yj30eknl1n" path="res://Scenes/UI/item_pick_card_ui.tscn" id="1_d8nup"]
+
+[node name="ItemPicker" type="Control" node_paths=PackedStringArray("item_card_container")]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4aiws")
+item_card_scene = ExtResource("1_d8nup")
+item_card_container = NodePath("HBoxContainer")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1

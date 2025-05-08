@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvfsmjmaolpet"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_85oim"]
+[ext_resource type="Texture2D" uid="uid://7y2c54rmgy4s" path="res://Placeholders/Sprites/Test Character/enemy_placeholder.png" id="2_blicq"]
+[ext_resource type="Script" path="res://Scripts/Enemy/AI/FollowPlayer.gd" id="3_ptc11"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/Stat.gd" id="4_j785v"]
+[ext_resource type="Script" path="res://Scripts/Enemy/Loot/LootDropManager.gd" id="5_51nyo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t3xsy"]
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+platform_floor_layers = 4294901760
+script = ExtResource("1_85oim")
+stats = {
+"current_health": NodePath("Stats/Health"),
+"max_health": NodePath("Stats/MaxHealth"),
+"move_speed": NodePath("Stats/MoveSpeed")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 3)
+scale = Vector2(1.10133, 1.10133)
+texture = ExtResource("2_blicq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.44399, 2.44399)
+shape = SubResource("CircleShape2D_t3xsy")
+debug_color = Color(0, 0.6, 0.701961, 0.215686)
+
+[node name="FollowPlayer" type="Node" parent="." node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_ptc11")
+enemy = NodePath("..")
+
+[node name="Stats" type="Node" parent="."]
+
+[node name="MoveSpeed" type="Node" parent="Stats"]
+script = ExtResource("4_j785v")
+stat_name = "move_speed"
+stat_value = 200.0
+
+[node name="Health" type="Node" parent="Stats"]
+script = ExtResource("4_j785v")
+stat_name = "current_health"
+
+[node name="MaxHealth" type="Node" parent="Stats"]
+script = ExtResource("4_j785v")
+stat_name = "max_health"
+stat_value = 100.0
+
+[node name="LootDropManager" type="Node" parent="."]
+script = ExtResource("5_51nyo")

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="StatRef" load_steps=2 format=3 uid="uid://ccnxy4t6d30q1"]
+
+[ext_resource type="Script" uid="uid://gi3hrrh4w8qf" path="res://Scripts/Resources/StatRef.gd" id="1_wh0ef"]
+
+[resource]
+script = ExtResource("1_wh0ef")
+multiplier = 0.0

@@ -1,0 +1,67 @@
+[gd_scene load_steps=12 format=3 uid="uid://dhn271q16a0kf"]
+
+[ext_resource type="Script" uid="uid://42qvy4m6xprb" path="res://Scripts/Ability System/EmitAbility.gd" id="1_ylwpv"]
+[ext_resource type="PackedScene" uid="uid://djrqhm2kh445a" path="res://Scenes/Abilities/Emit Abilities/RayBurst/spawnable_ray_burst.tscn" id="2_bj6if"]
+[ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_4770m"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="4_1pgsn"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="5_yviv1"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="6_qf7kb"]
+[ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="7_4ikhn"]
+[ext_resource type="Script" uid="uid://clr8tbibqclow" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="7_yviv1"]
+[ext_resource type="Script" uid="uid://cj3muc43jf2gx" path="res://Scripts/Ability System/AbilityBehavior/StopOnCast.gd" id="8_4770m"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="10_qf7kb"]
+
+[sub_resource type="Resource" id="Resource_lxkwx"]
+script = ExtResource("3_4770m")
+stat_name = "current_mana"
+required_value = 10.0
+metadata/_custom_type_script = "uid://tuvjl40jf0pm"
+
+[node name="AbilityRayBurst" type="Node2D" node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("1_ylwpv")
+emited_object = ExtResource("2_bj6if")
+required_stat = SubResource("Resource_lxkwx")
+cast_time = 0.15
+hit_listener = NodePath("HitListener")
+metadata/_custom_type_script = "uid://42qvy4m6xprb"
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("4_1pgsn")
+metadata/_custom_type_script = "uid://dm3uuggj1g47y"
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("5_yviv1")
+damage_stat = NodePath("Damage")
+metadata/_custom_type_script = "uid://c8sj8b1npavnd"
+
+[node name="Damage" type="Node" parent="HitListener/DamageEffect"]
+script = ExtResource("6_qf7kb")
+stat_value = 20.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="StatScaler" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_yviv1")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../../../ActorMagic")
+metadata/_custom_type_script = "uid://clr8tbibqclow"
+
+[node name="OnHitEffect" type="Node" parent="HitListener"]
+script = ExtResource("7_4ikhn")
+metadata/_custom_type_script = "uid://ckgh7mgba1eo4"
+
+[node name="StopOnCast" type="Node" parent="."]
+script = ExtResource("8_4770m")
+stop_time = 0.2
+stop_on = 1
+metadata/_custom_type_script = "uid://cj3muc43jf2gx"
+
+[node name="ActorMagic" type="Node" parent="."]
+script = ExtResource("6_qf7kb")
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatScaler" type="Node" parent="ActorMagic" node_paths=PackedStringArray("stat")]
+script = ExtResource("10_qf7kb")
+stat = NodePath("..")
+scale_with_stat_id = "magic"
+scale_ratio = 0.2
+metadata/_custom_type_script = "uid://2vlwp08ancca"

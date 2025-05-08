@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://cvfsmjmaolpet"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_85oim"]
+[ext_resource type="Texture2D" uid="uid://7y2c54rmgy4s" path="res://Placeholders/Sprites/Test Character/enemy_placeholder.png" id="2_blicq"]
+[ext_resource type="Script" path="res://Scripts/Enemy/AI/FollowPlayer.gd" id="3_ptc11"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/StatManager.gd" id="4_5ijs6"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/Stat.gd" id="4_j785v"]
+[ext_resource type="Script" path="res://Scripts/Enemy/Loot/LootDropManager.gd" id="5_51nyo"]
+[ext_resource type="PackedScene" uid="uid://cj01qxw0g7t0" path="res://Scenes/Test/exp_orb.tscn" id="6_ra8b0"]
+[ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="8_ypdwx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t3xsy"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_6iw7p"]
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("stats")]
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+platform_floor_layers = 4294901760
+script = ExtResource("1_85oim")
+stats = NodePath("Stats")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 3)
+scale = Vector2(1.10133, 1.10133)
+texture = ExtResource("2_blicq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.44399, 2.44399)
+shape = SubResource("CircleShape2D_t3xsy")
+debug_color = Color(0, 0.6, 0.701961, 0.215686)
+
+[node name="FollowPlayer" type="Node" parent="." node_paths=PackedStringArray("enemy", "speed")]
+script = ExtResource("3_ptc11")
+enemy = NodePath("..")
+speed = NodePath("../Stats/MoveSpeed")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("4_5ijs6")
+
+[node name="MoveSpeed" type="Node" parent="Stats"]
+script = ExtResource("4_j785v")
+stat_name = "move_speed"
+stat_value = 200.0
+
+[node name="Health" type="Node" parent="Stats"]
+script = ExtResource("4_j785v")
+stat_name = "current_health"
+
+[node name="MaxHealth" type="Node" parent="Stats"]
+script = ExtResource("4_j785v")
+stat_name = "max_health"
+stat_value = 100.0
+
+[node name="LootDropManager" type="Node2D" parent="." node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_51nyo")
+enemy = NodePath("..")
+
+[node name="ExpOrb" parent="LootDropManager" instance=ExtResource("6_ra8b0")]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -44.0
+offset_top = 28.0
+offset_right = 216.0
+offset_bottom = 60.0
+scale = Vector2(0.350405, 0.452601)
+value = 100.0
+rounded = true
+nine_patch_stretch = true
+texture_progress = SubResource("CanvasTexture_6iw7p")
+tint_over = Color(0.733033, 0.400648, 0.905197, 1)
+tint_progress = Color(0.159463, 0.705347, 0.338148, 1)
+script = ExtResource("8_ypdwx")
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -25.0
+offset_top = 23.0
+offset_right = 27.0
+offset_bottom = 46.0
+text = "Health
+"

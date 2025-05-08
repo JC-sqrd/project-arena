@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://2r2w7448yaau"]
+
+[ext_resource type="Script" uid="uid://dqsm34bpqqb52" path="res://Scripts/Item/Items/Item.gd" id="1_7ns6k"]
+[ext_resource type="Script" uid="uid://bf3pgksjjh1i0" path="res://Scripts/Item/ItemBonusStat.gd" id="2_q7cc2"]
+[ext_resource type="Texture2D" uid="uid://bs2vtrd6wnypu" path="res://Placeholders/Icons/Icon.2_24.png" id="3_ndmdd"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="4_ecrlb"]
+[ext_resource type="Script" uid="uid://tw1mwca5s05v" path="res://Scripts/StatSystem/ItemStackStatAdder.gd" id="4_uuy7n"]
+[ext_resource type="Script" uid="uid://d35h5o2rfotvj" path="res://Scripts/StatSystem/Stats/StatMultiplier.gd" id="6_1qmi6"]
+
+[node name="ItemStrength" type="Node"]
+script = ExtResource("1_7ns6k")
+item_name = "Iron Vambrace"
+item_icon = ExtResource("3_ndmdd")
+item_id = 3
+string_id = "gain_damage"
+item_detail = "Gain [color=green]1[/color] [color=crimson]attack damage[/color](+1 for each stack)"
+
+[node name="Stack" type="Node" parent="."]
+script = ExtResource("4_ecrlb")
+
+[node name="ItemStackStatAdder" type="Node" parent="Stack" node_paths=PackedStringArray("item", "stat_to_scale")]
+script = ExtResource("4_uuy7n")
+item = NodePath("../..")
+stat_to_scale = NodePath("..")
+
+[node name="ItemBonusStat" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
+script = ExtResource("2_q7cc2")
+stat_name = "attack_damage"
+bonus_value = NodePath("../Stackx1")
+
+[node name="Stackx1" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("6_1qmi6")
+a_stat = NodePath("../Stack")
+b_stat = NodePath("1")
+
+[node name="1" type="Node" parent="Stackx1"]
+script = ExtResource("4_ecrlb")
+stat_value = 1.0

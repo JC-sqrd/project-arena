@@ -1,0 +1,126 @@
+[gd_scene load_steps=17 format=3 uid="uid://b7m4p0pqdiomo"]
+
+[ext_resource type="Script" uid="uid://d1xavjy2kbus2" path="res://Scripts/Ability System/Spawnables/AreaEnterHit.gd" id="1_fee64"]
+[ext_resource type="Texture2D" uid="uid://cxv5oqik1e1dg" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/trace_06.png" id="2_pnoaw"]
+[ext_resource type="Texture2D" uid="uid://dc2gxyigpp2l1" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/muzzle_04.png" id="3_xgeks"]
+[ext_resource type="Texture2D" uid="uid://8hb1i8ctot36" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/muzzle_05.png" id="3_yim1n"]
+[ext_resource type="Texture2D" uid="uid://b2xmteevnu3dh" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/muzzle_02.png" id="5_wkatw"]
+[ext_resource type="Texture2D" uid="uid://cj5e1qaqqwca7" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/muzzle_03.png" id="6_br4v5"]
+[ext_resource type="Texture2D" uid="uid://bop4pblqlh382" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/muzzle_01.png" id="7_fynym"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="8_pmd3d"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="9_cb4df"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="10_qt7yp"]
+[ext_resource type="Script" uid="uid://cfltv6h1swg76" path="res://Scripts/StatSystem/AbilityStatScaler.gd" id="11_l2xkn"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="12_dltbv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e54lc"]
+radius = 65.0
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_goatd"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y01ew"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 50.0
+angle_min = 90.0
+angle_max = 90.0
+directional_velocity_min = 0.0
+directional_velocity_max = 0.0
+directional_velocity_curve = SubResource("CurveXYZTexture_goatd")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.1
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_juv14"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_yim1n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xgeks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wkatw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_br4v5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fynym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yim1n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_br4v5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wkatw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fynym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_br4v5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_br4v5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fynym")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="ChargeDamageSpawnable" type="Area2D" node_paths=PackedStringArray("hit_listener")]
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_fee64")
+windup_time = 0.1
+lifetime = 3.0
+hit_listener = NodePath("HitListener")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(14, 0)
+shape = SubResource("CircleShape2D_e54lc")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 20
+texture = ExtResource("2_pnoaw")
+lifetime = 0.5
+explosiveness = 0.1
+process_material = SubResource("ParticleProcessMaterial_y01ew")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-104, 23)
+rotation = -1.76616
+scale = Vector2(0.413619, 0.413619)
+sprite_frames = SubResource("SpriteFrames_juv14")
+autoplay = "default"
+frame = 5
+frame_progress = 0.466666
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("8_pmd3d")
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("9_cb4df")
+damage_stat = NodePath("../../Damage")
+
+[node name="Damage" type="Node" parent="."]
+script = ExtResource("10_qt7yp")
+stat_value = 20.0
+
+[node name="AbilityStatScaler" type="Node" parent="Damage"]
+script = ExtResource("11_l2xkn")
+stat_to_scale = "attack_damage"
+scale_ratio = 0.1
+
+[node name="GetActorStatScaler" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("12_dltbv")
+stat = NodePath("..")
+scale_with_stat_id = "attack_damage"
+scale_ratio = 0.1

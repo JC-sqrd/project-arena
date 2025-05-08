@@ -1,0 +1,1166 @@
+[gd_scene load_steps=122 format=3 uid="uid://bwbyc8vywa6vd"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerCharacter.gd" id="1_emetf"]
+[ext_resource type="Texture2D" uid="uid://b4g0w5c1mi8tv" path="res://Placeholders/Sprites/Test Character/Character Placeholder.png" id="2_0swb2"]
+[ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="2_1k063"]
+[ext_resource type="Texture2D" uid="uid://b8ofws0w4jebc" path="res://Placeholders/Sprites/Test Character/Yasuo transparent.png" id="2_3bp1d"]
+[ext_resource type="Script" path="res://Scripts/Entity/HealthManager.gd" id="2_btby1"]
+[ext_resource type="Script" path="res://Scripts/Item/ItemInventory.gd" id="2_stva5"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/StatManager.gd" id="3_3j7ot"]
+[ext_resource type="PackedScene" uid="uid://dfopknahmh8ed" path="res://Scenes/Test/Components/movement_controller_component.tscn" id="3_vhpeq"]
+[ext_resource type="PackedScene" uid="uid://c0i8ypdefjyja" path="res://Scenes/Test/Components/movement_input_component.tscn" id="4_fjo2p"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/Stats/AttackSpeedStat.gd" id="4_jr810"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/StatModManager.gd" id="4_jyghi"]
+[ext_resource type="PackedScene" uid="uid://cuu2y6s4urf8o" path="res://Scenes/Test/Components/speed_stat_component.tscn" id="4_tj8qx"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/StatMod.gd" id="5_7kd1i"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/Stat.gd" id="5_j5r3u"]
+[ext_resource type="Script" path="res://Scripts/Combat/DamageListener.gd" id="6_ljh7r"]
+[ext_resource type="PackedScene" uid="uid://ixbtc2tcs32u" path="res://Scenes/Test/Components/dash_ability_component.tscn" id="6_r18b2"]
+[ext_resource type="PackedScene" uid="uid://dk87ltl8o4wft" path="res://Scenes/Test/Components/ability_container_component.tscn" id="6_tx7qf"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="7_84ide"]
+[ext_resource type="PackedScene" uid="uid://bfj82byd1mhr6" path="res://Scenes/UI/test_player_character_ui.tscn" id="7_akyod"]
+[ext_resource type="Script" path="res://Scripts/Combat/MitigationEffect.gd" id="7_amhb1"]
+[ext_resource type="PackedScene" uid="uid://de6joq2hs2b4l" path="res://Scenes/Test/Components/attack_container_component.tscn" id="8_00ai3"]
+[ext_resource type="PackedScene" uid="uid://dcnhw5on07snr" path="res://Scenes/Items/item_magic.tscn" id="8_ppdko"]
+[ext_resource type="PackedScene" uid="uid://daek28vfovdn5" path="res://Scenes/UI/player_character_ui.tscn" id="8_welpq"]
+[ext_resource type="PackedScene" uid="uid://c5ynpo7p54mt" path="res://Scenes/UI/health_bar.tscn" id="9_jldnw"]
+[ext_resource type="PackedScene" uid="uid://iljwlfv37rg0" path="res://Scenes/Test/Components/melee_attack_component.tscn" id="9_kyw8k"]
+[ext_resource type="Script" path="res://Scripts/Combat/HitListener.gd" id="12_mt6ew"]
+[ext_resource type="Script" path="res://Scenes/Test/PickupArea.gd" id="13_1bnos"]
+[ext_resource type="Script" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="13_3xl3f"]
+[ext_resource type="Script" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="14_2xjn1"]
+[ext_resource type="Script" path="res://Scripts/Combat/CombatEffects/BonusValueChecks/DistanceCheck.gd" id="15_t6avr"]
+[ext_resource type="Script" path="res://Scripts/Combat/ProjectileAttack.gd" id="16_2cbj0"]
+[ext_resource type="Script" path="res://Scripts/Combat/CombatEffects/BonusValueChecks/HealthCheck.gd" id="16_3pcks"]
+[ext_resource type="Texture2D" uid="uid://dm2lvupr7njgx" path="res://Placeholders/Sprites/Animation/Attack/Placeholder Melee Attack.png" id="16_uabnj"]
+[ext_resource type="Texture2D" uid="uid://c6ketbi82ebfa" path="res://Placeholders/Sprites/Animation/Attack/Placeholder Melee Attack 2.png" id="17_cfutf"]
+[ext_resource type="Script" path="res://Scripts/Combat/AttackAnimation.gd" id="17_cviga"]
+[ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Test/long_range_melee_attack.tscn" id="17_jyxej"]
+[ext_resource type="PackedScene" uid="uid://dfh3qc3n36tdr" path="res://Scenes/Test/test_projectile.tscn" id="17_pkkxh"]
+[ext_resource type="Script" path="res://Scripts/Ability System/AbilityBranch.gd" id="19_essi4"]
+[ext_resource type="Script" path="res://Scripts/Ability System/AbilityTree.gd" id="19_vuikq"]
+[ext_resource type="Script" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="20_cxhuw"]
+[ext_resource type="Script" path="res://Scenes/Test/Aura.gd" id="21_ynvlo"]
+[ext_resource type="Texture2D" uid="uid://bitahu686g43w" path="res://Placeholders/Sprites/Animation/Aura/Aura placeholder.png" id="23_8n3br"]
+[ext_resource type="Script" path="res://Scripts/LevelManager.gd" id="24_q8a3q"]
+[ext_resource type="PackedScene" uid="uid://duf5uedwdw45s" path="res://Scenes/Spawn Abilities/hollow_purple_ability.tscn" id="27_0fpop"]
+[ext_resource type="PackedScene" uid="uid://dgol2kmhx5l8y" path="res://Scenes/Emit Abilities/dash_slash.tscn" id="29_3sae3"]
+[ext_resource type="PackedScene" uid="uid://qig4bnksvojg" path="res://Scenes/Spawn Abilities/slash_field_ability.tscn" id="29_j784a"]
+[ext_resource type="Script" path="res://Scripts/Ability System/Audio/AbilityAudioListener.gd" id="29_o7ewu"]
+[ext_resource type="AudioStream" uid="uid://dld1jb8mvu4w8" path="res://Placeholders/Audio/slimeball.wav" id="30_g6dq7"]
+[ext_resource type="Script" path="res://Scripts/Combat/CombatEffects/BonusValueChecks/PercentMaxHealthCheck.gd" id="31_cu8fw"]
+[ext_resource type="AudioStream" uid="uid://casve0s5rdu5y" path="res://Placeholders/Audio/zap7a.ogg" id="31_gxnkb"]
+[ext_resource type="Script" path="res://Scripts/Combat/CombatEffects/LifestealEffect.gd" id="31_r8cpt"]
+[ext_resource type="PackedScene" uid="uid://od3lf463dx1c" path="res://Scenes/Emit Abilities/sword_slash_emit.tscn" id="32_shwul"]
+[ext_resource type="PackedScene" uid="uid://b8brf4citipil" path="res://Scenes/UI/AbilityIcons/WindSwordsman/dash_slash_icon.tscn" id="35_k8byr"]
+[ext_resource type="PackedScene" uid="uid://c322tkntieeqb" path="res://Scenes/Spawn Abilities/wind_slash_ability.tscn" id="35_l2wms"]
+[ext_resource type="AudioStream" uid="uid://07ksf24di71h" path="res://Placeholders/Audio/freeze2.ogg" id="37_dcqpd"]
+[ext_resource type="Script" path="res://Scripts/Ability System/ChargeAbility.gd" id="37_iea0x"]
+[ext_resource type="AudioStream" uid="uid://d2licoes7yfue" path="res://Placeholders/Audio/magicfail2.ogg" id="37_vxxw4"]
+[ext_resource type="Script" path="res://Scripts/Pickupable/PickupManager.gd" id="38_a2xrh"]
+[ext_resource type="PackedScene" uid="uid://bpfy0x2g1v41y" path="res://Scenes/Emit Abilities/charge_damage_ability.tscn" id="38_gc4gi"]
+[ext_resource type="PackedScene" uid="uid://du2r3qg36q32c" path="res://Scenes/Spawn Abilities/ground_burst_ability.tscn" id="39_5uke8"]
+[ext_resource type="PackedScene" uid="uid://dub5sb7kwl6lg" path="res://Scenes/Emit Abilities/emit_ability_test.tscn" id="42_4l2h6"]
+[ext_resource type="PackedScene" uid="uid://ba15sro8pn53w" path="res://Scenes/UI/AbilityIcons/WindSwordsman/sword_slash_icon.tscn" id="42_p4vi1"]
+[ext_resource type="PackedScene" uid="uid://rmgnrteu5vlq" path="res://Scenes/UI/AbilityIcons/WindSwordsman/wind_slash_icon.tscn" id="45_e62dv"]
+[ext_resource type="Script" path="res://Scripts/Audio/PickupableStreamPlayer2D.gd" id="45_upu1f"]
+[ext_resource type="PackedScene" uid="uid://3bmgc6f713ai" path="res://Scenes/Items/item.tscn" id="50_44vy2"]
+[ext_resource type="PackedScene" uid="uid://eddfc1bfe1yq" path="res://Scenes/UI/AbilityIcons/WindSwordsman/slash_field_icon.tscn" id="53_4dm21"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6il8"]
+size = Vector2(20, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fdg0"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(0, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muvpq"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(200, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh54t"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(400, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk6be"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(600, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sy7bi"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(800, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n60ia"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(1000, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bv8w"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(1200, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yk05i"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(1400, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reuur"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(1600, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsrae"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(1800, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhokn"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(2000, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4r5e"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(2200, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp1p4"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(0, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0bn0"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(200, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ti70"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(400, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggmwn"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(600, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbsh2"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(800, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tupqb"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(1000, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kvjm"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(1200, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnd2p"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(1400, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gij5n"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(1600, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_470kl"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(1800, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66qv2"]
+atlas = ExtResource("17_cfutf")
+region = Rect2(2000, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50mmf"]
+atlas = ExtResource("16_uabnj")
+region = Rect2(0, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1uxeg"]
+atlas = ExtResource("16_uabnj")
+region = Rect2(200, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp5qr"]
+atlas = ExtResource("16_uabnj")
+region = Rect2(400, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eogx4"]
+atlas = ExtResource("16_uabnj")
+region = Rect2(600, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bn7bq"]
+atlas = ExtResource("16_uabnj")
+region = Rect2(800, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3a7xw"]
+atlas = ExtResource("16_uabnj")
+region = Rect2(1000, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr17p"]
+atlas = ExtResource("16_uabnj")
+region = Rect2(1200, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inuje"]
+atlas = ExtResource("16_uabnj")
+region = Rect2(1400, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nux25"]
+atlas = ExtResource("16_uabnj")
+region = Rect2(1600, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf8g1"]
+atlas = ExtResource("16_uabnj")
+region = Rect2(1800, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7nos"]
+atlas = ExtResource("16_uabnj")
+region = Rect2(2000, 0, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7syv"]
+atlas = ExtResource("16_uabnj")
+region = Rect2(2200, 0, 200, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kjb20"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fdg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muvpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muvpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muvpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh54t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh54t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh54t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk6be")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk6be")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk6be")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy7bi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy7bi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy7bi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n60ia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n60ia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n60ia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bv8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bv8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bv8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk05i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk05i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk05i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reuur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reuur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reuur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsrae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsrae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsrae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhokn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhokn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhokn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4r5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4r5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4r5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fdg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fdg0")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 36.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp1p4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0bn0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ti70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggmwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbsh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tupqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kvjm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnd2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gij5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_470kl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66qv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp1p4")
+}],
+"loop": false,
+"name": &"attack2",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50mmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1uxeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1uxeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp5qr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp5qr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eogx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eogx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bn7bq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bn7bq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3a7xw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3a7xw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr17p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr17p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inuje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inuje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nux25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nux25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf8g1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf8g1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7nos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7nos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7syv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7syv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50mmf")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ya1wi"]
+size = Vector2(150, 200)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4yy27"]
+radius = 150.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b25gd"]
+radius = 200.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ow1f"]
+atlas = ExtResource("23_8n3br")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dh86"]
+atlas = ExtResource("23_8n3br")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvsy6"]
+atlas = ExtResource("23_8n3br")
+region = Rect2(400, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k2ha"]
+atlas = ExtResource("23_8n3br")
+region = Rect2(600, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb8kv"]
+atlas = ExtResource("23_8n3br")
+region = Rect2(800, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jt28"]
+atlas = ExtResource("23_8n3br")
+region = Rect2(1000, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp318"]
+atlas = ExtResource("23_8n3br")
+region = Rect2(1200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yksky"]
+atlas = ExtResource("23_8n3br")
+region = Rect2(1400, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipkf8"]
+atlas = ExtResource("23_8n3br")
+region = Rect2(1600, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u16xm"]
+atlas = ExtResource("23_8n3br")
+region = Rect2(1800, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2n06"]
+atlas = ExtResource("23_8n3br")
+region = Rect2(2000, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfhoi"]
+atlas = ExtResource("23_8n3br")
+region = Rect2(2200, 0, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x35hx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ow1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dh86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvsy6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k2ha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wb8kv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jt28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp318")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yksky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipkf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u16xm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2n06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfhoi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kr7mf"]
+radius = 50.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ud4xq"]
+bg_color = Color(0.111197, 0.111197, 0.111197, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("stat_manager", "level_manager", "health_manager", "stat_mods", "damage_listener", "item_iventory") groups=["Hittable"]]
+y_sort_enabled = true
+motion_mode = 1
+platform_floor_layers = 4294901760
+script = ExtResource("1_emetf")
+stat_manager = NodePath("Stats")
+level_manager = NodePath("LevelManager")
+health_manager = NodePath("HealthManager")
+stat_mods = NodePath("StatModManager")
+damage_listener = NodePath("DamageListener")
+item_iventory = NodePath("ItemInventory")
+
+[node name="HealthManager" type="Node" parent="." node_paths=PackedStringArray("entity", "stat_manager", "max_health", "current_health")]
+script = ExtResource("2_btby1")
+entity = NodePath("..")
+stat_manager = NodePath("../Stats")
+max_health = NodePath("../Stats/MaxHealth")
+current_health = NodePath("../Stats/Health")
+
+[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("level_stat")]
+script = ExtResource("24_q8a3q")
+level_stat = NodePath("../Stats/Level")
+
+[node name="DamageListener" type="Node" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("6_ljh7r")
+health = NodePath("../Stats/Health")
+
+[node name="ArmorMitigationEffect" type="Node" parent="DamageListener" node_paths=PackedStringArray("mitigate_stat")]
+script = ExtResource("7_amhb1")
+mitigate_stat = NodePath("../../Stats/Armor")
+
+[node name="ItemInventory" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_stva5")
+actor = NodePath("..")
+
+[node name="OnHitItem" parent="ItemInventory" instance=ExtResource("50_44vy2")]
+
+[node name="ItemOnHitPassiveEffect" parent="ItemInventory/OnHitItem" index="0"]
+trigger_chance = 0.5
+
+[node name="SpawnEffect" parent="ItemInventory/OnHitItem/ItemOnHitPassiveEffect" index="0"]
+add_as_child = true
+
+[node name="ItemStatScaler" parent="ItemInventory/OnHitItem/Damage" index="1"]
+scale_ratio = 0.0
+
+[node name="ItemStackStatScaler" parent="ItemInventory/OnHitItem/Damage" index="2"]
+percent_per_stack = 0.1
+
+[node name="ItemBonusStat" parent="ItemInventory/OnHitItem" index="2"]
+stat_name = "max_health"
+
+[node name="StrengthBonusStat" parent="ItemInventory/OnHitItem" index="4"]
+bonus_value = 5.0
+
+[node name="ItemMagic" parent="ItemInventory" instance=ExtResource("8_ppdko")]
+stack = 250
+
+[node name="YasuoTransparent" type="Sprite2D" parent="."]
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("2_3bp1d")
+
+[node name="CharacterPlaceholder" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -10)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_0swb2")
+
+[node name="Icon" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.5, 1)
+texture = ExtResource("2_1k063")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.7, -0.500002)
+scale = Vector2(2.96, 2.96)
+shape = SubResource("RectangleShape2D_g6il8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" node_paths=PackedStringArray("player_character", "stats_manager") instance=ExtResource("7_akyod")]
+player_character = NodePath("../..")
+stats_manager = NodePath("../../Stats")
+
+[node name="PlayerUI" parent="CanvasLayer" node_paths=PackedStringArray("player_character") instance=ExtResource("8_welpq")]
+player_character = NodePath("../..")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.8, 0.8)
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="StatModManager" type="Node" parent="."]
+script = ExtResource("4_jyghi")
+
+[node name="StatMod" type="Node" parent="StatModManager" node_paths=PackedStringArray("stat_to_modify")]
+script = ExtResource("5_7kd1i")
+stat_to_modify = NodePath("../../Stats/AttackSpeed")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("3_3j7ot")
+
+[node name="Health" type="Node" parent="Stats"]
+script = ExtResource("5_j5r3u")
+stat_name = "current_health"
+
+[node name="MaxHealth" type="Node" parent="Stats"]
+script = ExtResource("5_j5r3u")
+stat_name = "max_health"
+stat_value = 20.0
+
+[node name="LevelStatScaler" type="Node" parent="Stats/MaxHealth" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Level")
+scale_ratio = 5.0
+
+[node name="MoveSpeed" parent="Stats" instance=ExtResource("4_tj8qx")]
+stat_name = "move_speed"
+stat_value = 300.0
+
+[node name="AttackSpeed" type="Node" parent="Stats"]
+script = ExtResource("4_jr810")
+stat_name = "attack_speed"
+stat_value = 1.0
+
+[node name="AgilityScaler" type="Node" parent="Stats/AttackSpeed" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Agility")
+scale_ratio = 0.01
+
+[node name="AttackDamage" type="Node" parent="Stats"]
+script = ExtResource("5_j5r3u")
+stat_name = "attack_damage"
+stat_value = 1.0
+
+[node name="StrengthScaler" type="Node" parent="Stats/AttackDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Strength")
+scale_ratio = 0.75
+
+[node name="AgilityScaler" type="Node" parent="Stats/AttackDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Agility")
+scale_ratio = 0.1
+
+[node name="MagicScaler" type="Node" parent="Stats/AttackDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Magic")
+scale_ratio = 0.1
+
+[node name="MagicDamage" type="Node" parent="Stats"]
+script = ExtResource("5_j5r3u")
+stat_name = "magic_damage"
+stat_value = 15.0
+
+[node name="MagicScaler" type="Node" parent="Stats/MagicDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Magic")
+scale_ratio = 0.75
+
+[node name="AgilityScaler" type="Node" parent="Stats/MagicDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Agility")
+scale_ratio = 0.1
+
+[node name="StrengthScaler" type="Node" parent="Stats/MagicDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Strength")
+scale_ratio = 0.1
+
+[node name="Strength" type="Node" parent="Stats"]
+script = ExtResource("5_j5r3u")
+stat_name = "strength"
+stat_value = 5.0
+
+[node name="LevelScaler" type="Node" parent="Stats/Strength" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Level")
+scale_ratio = 5.0
+scale_base_value = true
+
+[node name="Agility" type="Node" parent="Stats"]
+script = ExtResource("5_j5r3u")
+stat_name = "agility"
+stat_value = 5.0
+
+[node name="LevelScaler" type="Node" parent="Stats/Agility" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Level")
+scale_ratio = 5.0
+scale_base_value = true
+
+[node name="Magic" type="Node" parent="Stats"]
+script = ExtResource("5_j5r3u")
+stat_name = "magic"
+stat_value = 5.0
+
+[node name="LevelScaler" type="Node" parent="Stats/Magic" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Level")
+scale_ratio = 5.0
+scale_base_value = true
+
+[node name="Level" type="Node" parent="Stats"]
+script = ExtResource("5_j5r3u")
+stat_name = "level"
+stat_value = 1.0
+
+[node name="AreaSize" type="Node" parent="Stats"]
+script = ExtResource("5_j5r3u")
+stat_name = "area_size"
+stat_value = 1.0
+
+[node name="Armor" type="Node" parent="Stats"]
+script = ExtResource("5_j5r3u")
+stat_name = "armor"
+stat_value = 300.0
+
+[node name="Lifesteal" type="Node" parent="Stats"]
+script = ExtResource("5_j5r3u")
+stat_name = "lifesteal"
+stat_value = 0.1
+
+[node name="MovementSystem" type="Node" parent="."]
+
+[node name="MovementController" parent="MovementSystem" node_paths=PackedStringArray("character", "movement_input", "speed") instance=ExtResource("3_vhpeq")]
+character = NodePath("../..")
+movement_input = NodePath("../MovementInput")
+speed = NodePath("../../Stats/MoveSpeed")
+
+[node name="MovementInput" parent="MovementSystem" instance=ExtResource("4_fjo2p")]
+
+[node name="AttackContainer" parent="." node_paths=PackedStringArray("player", "attack", "attack_speed", "attack_damage") instance=ExtResource("8_00ai3")]
+player = NodePath("..")
+attack = NodePath("LongRangeMeleeAttack")
+attack_speed = NodePath("../Stats/AttackSpeed")
+attack_damage = NodePath("../Stats/AttackDamage")
+
+[node name="LongRangeMeleeAttack" parent="AttackContainer" node_paths=PackedStringArray("hit_listener") instance=ExtResource("17_jyxej")]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+attack_windup_time = 0.1
+offset = 125.0
+piercing = true
+hit_listener = NodePath("LongMeleeHitListener")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="AttackContainer/LongRangeMeleeAttack" node_paths=PackedStringArray("attack")]
+rotation = 1.5708
+scale = Vector2(1, 1.5)
+sprite_frames = SubResource("SpriteFrames_kjb20")
+animation = &"attack2"
+script = ExtResource("17_cviga")
+attack = NodePath("..")
+
+[node name="LongMeleeHitListener" type="Node" parent="AttackContainer/LongRangeMeleeAttack"]
+script = ExtResource("12_mt6ew")
+listener_id = "melee"
+
+[node name="DamageEffect" type="Node" parent="AttackContainer/LongRangeMeleeAttack/LongMeleeHitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("13_3xl3f")
+damage_stat = NodePath("../../../CharacterMeleeAttack/MeleeDamage")
+
+[node name="OnHitEffect" type="Node" parent="AttackContainer/LongRangeMeleeAttack/LongMeleeHitListener"]
+script = ExtResource("20_cxhuw")
+
+[node name="Knockback" type="Node" parent="AttackContainer/LongRangeMeleeAttack/LongMeleeHitListener"]
+script = ExtResource("14_2xjn1")
+
+[node name="LifestealEffect" type="Node" parent="AttackContainer/LongRangeMeleeAttack/LongMeleeHitListener" node_paths=PackedStringArray("heal_stat", "lifesteal_stat")]
+script = ExtResource("31_r8cpt")
+heal_stat = NodePath("../../../CharacterMeleeAttack/MeleeDamage")
+lifesteal_stat = NodePath("../../../../Stats/Lifesteal")
+
+[node name="CharacterMeleeAttack" parent="AttackContainer" node_paths=PackedStringArray("hit_listener") instance=ExtResource("9_kyw8k")]
+visible = false
+attack_windup_time = 0.1
+offset = 110.0
+piercing = true
+hit_listener = NodePath("AttackHitListener")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackContainer/CharacterMeleeAttack"]
+shape = SubResource("RectangleShape2D_ya1wi")
+
+[node name="MeleeDamage" type="Node" parent="AttackContainer/CharacterMeleeAttack"]
+script = ExtResource("5_j5r3u")
+stat_name = "melee_damage"
+
+[node name="AttackDamageScaler" type="Node" parent="AttackContainer/CharacterMeleeAttack/MeleeDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../../../Stats/AttackDamage")
+scale_ratio = 1.0
+
+[node name="AttackHitListener" type="Node" parent="AttackContainer/CharacterMeleeAttack"]
+script = ExtResource("12_mt6ew")
+listener_id = "melee"
+
+[node name="DamageEffect" type="Node" parent="AttackContainer/CharacterMeleeAttack/AttackHitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("13_3xl3f")
+damage_stat = NodePath("../../MeleeDamage")
+
+[node name="DistanceBonusDamage" type="Node" parent="AttackContainer/CharacterMeleeAttack/AttackHitListener/DamageEffect" node_paths=PackedStringArray("stat")]
+script = ExtResource("15_t6avr")
+stat = NodePath("../../../../../Stats/AttackDamage")
+scaling_ratio = 0.25
+distance = 300.0
+greater_than = true
+
+[node name="HealthCheck" type="Node" parent="AttackContainer/CharacterMeleeAttack/AttackHitListener/DamageEffect" node_paths=PackedStringArray("stat")]
+script = ExtResource("16_3pcks")
+stat = NodePath("../../../MeleeDamage")
+required_health = 0.95
+
+[node name="Knockback" type="Node" parent="AttackContainer/CharacterMeleeAttack/AttackHitListener"]
+script = ExtResource("14_2xjn1")
+force = 250.0
+
+[node name="OnHitEffect" type="Node" parent="AttackContainer/CharacterMeleeAttack/AttackHitListener"]
+script = ExtResource("20_cxhuw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AttackContainer/CharacterMeleeAttack" node_paths=PackedStringArray("attack")]
+rotation = 1.5708
+scale = Vector2(1, 1.5)
+sprite_frames = SubResource("SpriteFrames_kjb20")
+script = ExtResource("17_cviga")
+attack = NodePath("..")
+
+[node name="CharacterProjectileAttack" type="Node2D" parent="AttackContainer" node_paths=PackedStringArray("hit_listener")]
+y_sort_enabled = true
+script = ExtResource("16_2cbj0")
+projectile = ExtResource("17_pkkxh")
+attack_windup_time = 0.1
+speed = 1500.0
+offset = 45.0
+max_distance = 1000.0
+hit_listener = NodePath("AttackHitListener")
+
+[node name="AttackHitListener" type="Node" parent="AttackContainer/CharacterProjectileAttack"]
+script = ExtResource("12_mt6ew")
+listener_id = "projectile"
+
+[node name="DamageEffect" type="Node" parent="AttackContainer/CharacterProjectileAttack/AttackHitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("13_3xl3f")
+damage_stat = NodePath("../../../../Stats/AttackDamage")
+
+[node name="DistanceBonusDamage" type="Node" parent="AttackContainer/CharacterProjectileAttack/AttackHitListener/DamageEffect" node_paths=PackedStringArray("stat")]
+script = ExtResource("15_t6avr")
+stat = NodePath("../../../../../Stats/AttackDamage")
+scaling_ratio = 2.0
+distance = 500.0
+greater_than = true
+
+[node name="PercentMaxHealthCheck" type="Node" parent="AttackContainer/CharacterProjectileAttack/AttackHitListener/DamageEffect" node_paths=PackedStringArray("stat")]
+script = ExtResource("31_cu8fw")
+stat = NodePath("../../../MaxHealthDamage")
+
+[node name="MaxHealthDamage" type="Node" parent="AttackContainer/CharacterProjectileAttack"]
+script = ExtResource("5_j5r3u")
+stat_value = 0.1
+
+[node name="ProjectileAttack2" type="Node2D" parent="AttackContainer"]
+script = ExtResource("16_2cbj0")
+
+[node name="PrimaryAbility" parent="." node_paths=PackedStringArray("actor", "ability") instance=ExtResource("6_tx7qf")]
+ability_action_trigger = "primary_ability"
+actor = NodePath("..")
+ability = NodePath("SwordSlashEmit")
+ability_icon = ExtResource("42_p4vi1")
+
+[node name="GroundBurstAbility" parent="PrimaryAbility" instance=ExtResource("39_5uke8")]
+
+[node name="SwordSlashEmit" parent="PrimaryAbility" instance=ExtResource("32_shwul")]
+cast_mode = 1
+
+[node name="Damage" parent="PrimaryAbility/SwordSlashEmit" index="0"]
+stat_value = 20.0
+
+[node name="DamageEffect" parent="PrimaryAbility/SwordSlashEmit/HitListener" index="0"]
+damage_type = 0
+
+[node name="LifestealEffect" type="Node" parent="PrimaryAbility/SwordSlashEmit/HitListener" index="3" node_paths=PackedStringArray("heal_stat", "lifesteal_stat")]
+script = ExtResource("31_r8cpt")
+heal_stat = NodePath("../../Damage")
+lifesteal_stat = NodePath("../../../../Stats/Lifesteal")
+heal_type = 2
+
+[node name="SecondaryAbility" parent="." node_paths=PackedStringArray("actor", "ability") instance=ExtResource("6_tx7qf")]
+ability_action_trigger = "m_right"
+actor = NodePath("..")
+ability = NodePath("WindSlash")
+ability_cooldown = 6.0
+ability_icon = ExtResource("45_e62dv")
+
+[node name="AbilityAudioListener" type="AudioStreamPlayer2D" parent="SecondaryAbility" node_paths=PackedStringArray("ability")]
+stream = ExtResource("37_dcqpd")
+script = ExtResource("29_o7ewu")
+ability = NodePath("../WindSlash")
+start_stream = ExtResource("37_vxxw4")
+
+[node name="WindSlash" parent="SecondaryAbility" instance=ExtResource("35_l2wms")]
+
+[node name="HollowPurple" parent="SecondaryAbility" instance=ExtResource("27_0fpop")]
+max_range = 50.0
+cast_mode = 1
+
+[node name="AbilityAudioListener" type="AudioStreamPlayer2D" parent="SecondaryAbility/HollowPurple" node_paths=PackedStringArray("ability")]
+volume_db = -10.0
+script = ExtResource("29_o7ewu")
+ability = NodePath("..")
+start_stream = ExtResource("30_g6dq7")
+
+[node name="AbilityAudioListener2" type="AudioStreamPlayer2D" parent="SecondaryAbility/HollowPurple" node_paths=PackedStringArray("ability")]
+volume_db = -10.0
+script = ExtResource("29_o7ewu")
+ability = NodePath("..")
+hit_stream = ExtResource("31_gxnkb")
+
+[node name="UtilityAbility" parent="." node_paths=PackedStringArray("actor", "ability") instance=ExtResource("6_tx7qf")]
+ability_action_trigger = "utility_ability"
+actor = NodePath("..")
+ability = NodePath("AbilityTree")
+ability_cooldown = 7.0
+ability_icon = ExtResource("35_k8byr")
+
+[node name="AbilityTree" type="Node" parent="UtilityAbility" node_paths=PackedStringArray("head_branch")]
+script = ExtResource("19_vuikq")
+head_branch = NodePath("AbilityBranch")
+
+[node name="AbilityBranch" type="Node" parent="UtilityAbility/AbilityTree" node_paths=PackedStringArray("ability", "next_ability")]
+script = ExtResource("19_essi4")
+ability = NodePath("DashAbility")
+next_ability = NodePath("DashSlash")
+
+[node name="DashAbility" parent="UtilityAbility/AbilityTree/AbilityBranch" instance=ExtResource("6_r18b2")]
+dash_distance = 350.0
+dash_speed = 2000.0
+direction_input = 1
+debug_visual = true
+cast_mode = 1
+
+[node name="DashSlash" parent="UtilityAbility/AbilityTree/AbilityBranch" instance=ExtResource("29_3sae3")]
+
+[node name="ChargeDamage" type="Node" parent="UtilityAbility" node_paths=PackedStringArray("head_branch")]
+script = ExtResource("19_vuikq")
+head_branch = NodePath("HeadBranch")
+
+[node name="HeadBranch" type="Node" parent="UtilityAbility/ChargeDamage" node_paths=PackedStringArray("ability", "next_ability")]
+script = ExtResource("19_essi4")
+ability = NodePath("ChargeAbility")
+next_ability = NodePath("ChargeDamageAbility")
+
+[node name="ChargeAbility" type="Node" parent="UtilityAbility/ChargeDamage/HeadBranch"]
+script = ExtResource("37_iea0x")
+dash_distance = 2500.0
+dash_speed = 900.0
+dash_acceleration = 25.0
+direction_input = 1
+can_cast_while_dashing = true
+cast_mode = 1
+
+[node name="ChargeDamageAbility" parent="UtilityAbility/ChargeDamage/HeadBranch" instance=ExtResource("38_gc4gi")]
+
+[node name="UltimateAbility" parent="." node_paths=PackedStringArray("actor", "ability") instance=ExtResource("6_tx7qf")]
+ability_action_trigger = "secondary_ability"
+actor = NodePath("..")
+ability = NodePath("AbilityTree")
+ability_cooldown = 45.0
+ability_icon = ExtResource("53_4dm21")
+
+[node name="AbilityTree" type="Node" parent="UltimateAbility" node_paths=PackedStringArray("head_branch")]
+script = ExtResource("19_vuikq")
+head_branch = NodePath("AbilityBranch")
+
+[node name="AbilityBranch" type="Node" parent="UltimateAbility/AbilityTree" node_paths=PackedStringArray("ability", "next_ability")]
+script = ExtResource("19_essi4")
+ability = NodePath("../../EmitAbility")
+next_ability = NodePath("../../SlashField")
+invoke_next_on = 3
+
+[node name="EmitAbility" parent="UltimateAbility" instance=ExtResource("42_4l2h6")]
+
+[node name="SlashField" parent="UltimateAbility" instance=ExtResource("29_j784a")]
+max_range = 0.0
+cast_mode = 1
+
+[node name="PickupArea" type="Area2D" parent="."]
+process_priority = -1
+process_physics_priority = -1
+collision_layer = 0
+monitorable = false
+script = ExtResource("13_1bnos")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_4yy27")
+debug_color = Color(0.442251, 0.580471, 0.415384, 0.42)
+
+[node name="AreaDamage" type="Area2D" parent="." node_paths=PackedStringArray("magic_damage", "hit_listener")]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("21_ynvlo")
+base_damage = 100.0
+magic_damage = NodePath("AuraBaseDamage")
+hit_listener = NodePath("AuraHitListener")
+
+[node name="AuraBaseDamage" type="Node" parent="AreaDamage"]
+script = ExtResource("5_j5r3u")
+stat_name = "aura_base_damage"
+stat_value = 20.0
+
+[node name="AuraMagicDamageScaler" type="Node" parent="AreaDamage/AuraBaseDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../../Stats/MagicDamage")
+scale_ratio = 0.25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDamage"]
+shape = SubResource("CircleShape2D_b25gd")
+debug_color = Color(0.682353, 0.152941, 0.745098, 0.0980392)
+
+[node name="Timer" type="Timer" parent="AreaDamage"]
+
+[node name="AuraAnim" type="AnimatedSprite2D" parent="AreaDamage"]
+z_index = -10
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_x35hx")
+
+[node name="AuraHitListener" type="Node" parent="AreaDamage"]
+script = ExtResource("12_mt6ew")
+
+[node name="ApplyDamage" type="Node" parent="AreaDamage/AuraHitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("13_3xl3f")
+damage_stat = NodePath("../../AuraBaseDamage")
+damage_type = 1
+
+[node name="HealthCheck" type="Node" parent="AreaDamage/AuraHitListener/ApplyDamage" node_paths=PackedStringArray("stat")]
+script = ExtResource("16_3pcks")
+stat = NodePath("../../../../Stats/MagicDamage")
+required_health = 0.95
+scaling_ratio = 1.25
+
+[node name="DistanceCheck" type="Node" parent="AreaDamage/AuraHitListener/ApplyDamage" node_paths=PackedStringArray("stat")]
+script = ExtResource("15_t6avr")
+stat = NodePath("../../../../Stats/MagicDamage")
+scaling_ratio = 1.25
+greater_than = true
+
+[node name="ApplyKnockback" type="Node" parent="AreaDamage/AuraHitListener"]
+script = ExtResource("14_2xjn1")
+force = 1500.0
+
+[node name="PickupManager" type="Area2D" parent="." node_paths=PackedStringArray("actor")]
+monitorable = false
+script = ExtResource("38_a2xrh")
+actor = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupManager"]
+shape = SubResource("CircleShape2D_kr7mf")
+debug_color = Color(0.270791, 0.49712, 8.66354e-07, 0.42)
+
+[node name="PickupableStreamPlayer2D" type="AudioStreamPlayer2D" parent="PickupManager" node_paths=PackedStringArray("pickup_manager")]
+script = ExtResource("45_upu1f")
+pickup_manager = NodePath("..")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = 5
+offset_left = -63.0
+offset_top = -82.0
+offset_right = 70.0
+offset_bottom = -66.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ud4xq")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+custom_minimum_size = Vector2(125, 6)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -3.0
+offset_right = 25.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" parent="Panel/MarginContainer" node_paths=PackedStringArray("health_manager") instance=ExtResource("9_jldnw")]
+layout_mode = 2
+health_manager = NodePath("../../../HealthManager")
+
+[editable path="ItemInventory/OnHitItem"]
+[editable path="ItemInventory/ItemMagic"]
+[editable path="CanvasLayer/PlayerUI"]
+[editable path="PrimaryAbility/SwordSlashEmit"]
+[editable path="SecondaryAbility/WindSlash"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://cktf4rpw44nwi"]
+
+[ext_resource type="PackedScene" uid="uid://babmiqnjapjdm" path="res://Scenes/UI/EquipmentShop/equipment_shop_card.tscn" id="1_q777v"]
+
+[node name="EquipmentShop" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -318.0
+offset_top = -166.0
+offset_right = 318.0
+offset_bottom = 166.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 20
+
+[node name="EquipmentShopCard" parent="Panel/HBoxContainer" instance=ExtResource("1_q777v")]
+layout_mode = 2
+
+[node name="EquipmentShopCard2" parent="Panel/HBoxContainer" instance=ExtResource("1_q777v")]
+layout_mode = 2
+
+[node name="EquipmentShopCard3" parent="Panel/HBoxContainer" instance=ExtResource("1_q777v")]
+layout_mode = 2

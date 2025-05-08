@@ -1,0 +1,124 @@
+[gd_scene load_steps=17 format=3 uid="uid://bkxscpm8t76o2"]
+
+[ext_resource type="Script" uid="uid://c2nhbp4pxbtij" path="res://Scripts/Ability System/Spawnables/AreaHit.gd" id="1_onmp5"]
+[ext_resource type="Texture2D" uid="uid://duxlunvkvntd7" path="res://Sprites/AbilitySprites/Fireball/Fireball Explosion.png" id="2_n41sr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eryme"]
+radius = 150.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok3ws"]
+atlas = ExtResource("2_n41sr")
+region = Rect2(0, 0, 140, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdjkk"]
+atlas = ExtResource("2_n41sr")
+region = Rect2(140, 0, 140, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ge8kb"]
+atlas = ExtResource("2_n41sr")
+region = Rect2(280, 0, 140, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kx87"]
+atlas = ExtResource("2_n41sr")
+region = Rect2(420, 0, 140, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlyfi"]
+atlas = ExtResource("2_n41sr")
+region = Rect2(560, 0, 140, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ra7e2"]
+atlas = ExtResource("2_n41sr")
+region = Rect2(700, 0, 140, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bonl1"]
+atlas = ExtResource("2_n41sr")
+region = Rect2(840, 0, 140, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnxrc"]
+atlas = ExtResource("2_n41sr")
+region = Rect2(980, 0, 140, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7g4p"]
+atlas = ExtResource("2_n41sr")
+region = Rect2(1120, 0, 140, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkla3"]
+atlas = ExtResource("2_n41sr")
+region = Rect2(1260, 0, 140, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6augr"]
+atlas = ExtResource("2_n41sr")
+region = Rect2(1400, 0, 140, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx434"]
+atlas = ExtResource("2_n41sr")
+region = Rect2(1540, 0, 140, 140)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ry8ew"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ok3ws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdjkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ge8kb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kx87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlyfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ra7e2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bonl1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnxrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7g4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkla3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6augr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx434")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 12.0
+}]
+
+[node name="SpawnableFireballExplosion" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_onmp5")
+windup_time = 0.1
+lifetime = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_eryme")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ry8ew")
+animation = &"explode"
+autoplay = "explode"
+frame = 11
+frame_progress = 1.0

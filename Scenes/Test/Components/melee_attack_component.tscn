@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://iljwlfv37rg0"]
+
+[ext_resource type="Script" uid="uid://df3mwd5sdgedk" path="res://Scripts/Combat/MeleeWeapons/MeleeWeapon.gd" id="1_nexm2"]
+
+[node name="MeleeAttack" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_nexm2")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="CollisionEnabledTimer" type="Timer" parent="."]
+wait_time = 0.15

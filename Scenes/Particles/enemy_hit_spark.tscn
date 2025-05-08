@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://biw3mtbedejgd"]
+
+[ext_resource type="Texture2D" uid="uid://cyyyqpyxycrxh" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/star_06.png" id="1_rokjp"]
+
+[sub_resource type="Gradient" id="Gradient_tqiav"]
+offsets = PackedFloat32Array(0, 0.569697, 1)
+colors = PackedColorArray(0.964706, 0.882353, 0, 1, 0.869086, 0.557025, 0.232742, 1, 0.751955, 0.289757, 0.134221, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0od1i"]
+gradient = SubResource("Gradient_tqiav")
+
+[sub_resource type="Curve" id="Curve_yn5uy"]
+_limits = [0.0, 1.5, 0.0, 1.0]
+_data = [Vector2(0, 1.19209e-07), 0.0, 0.0, 0, 0, Vector2(0.3, 0.95), 4.94712, 4.94712, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+metadata/_snap_count = 30
+
+[sub_resource type="CurveTexture" id="CurveTexture_oqch0"]
+curve = SubResource("Curve_yn5uy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i6bur"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_oqch0")
+color_ramp = SubResource("GradientTexture1D_0od1i")
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+emitting = false
+amount = 1
+texture = ExtResource("1_rokjp")
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_i6bur")

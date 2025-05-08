@@ -1,0 +1,85 @@
+[gd_scene load_steps=14 format=3 uid="uid://cggb2x36mslpl"]
+
+[ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/test_character.tscn" id="1_n43wd"]
+[ext_resource type="PackedScene" uid="uid://od3lf463dx1c" path="res://Scenes/Abilities/Emit Abilities/sword_slash_emit.tscn" id="2_qau1h"]
+[ext_resource type="PackedScene" uid="uid://cacqqobo0qx73" path="res://Scenes/Abilities/AbilityTrees/LungeStrike/ability_lunge_strike.tscn" id="2_qi0ur"]
+[ext_resource type="PackedScene" uid="uid://c322tkntieeqb" path="res://Scenes/Abilities/Spawn Abilities/wind_slash_ability.tscn" id="4_n83j8"]
+[ext_resource type="Script" uid="uid://yd87aj2hybru" path="res://Scripts/Ability System/SpawnAbilitySpawnBehavior/PointSpawn.gd" id="4_wfw53"]
+[ext_resource type="PackedScene" uid="uid://dengtpj68hcix" path="res://Scenes/Equipments/Head Gears/headgear_iron_helmet.tscn" id="5_0v31t"]
+[ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="5_a3qyk"]
+[ext_resource type="PackedScene" uid="uid://ba77g51rg80ak" path="res://Scenes/Weapons/Shuriken/weapon_shuriken.tscn" id="6_52u7q"]
+[ext_resource type="PackedScene" uid="uid://df35xeepp7qfx" path="res://Scenes/Weapons/Fire Grimoire/weapon_fire_grimoire.tscn" id="6_epo7i"]
+[ext_resource type="PackedScene" uid="uid://bkmw1nqw6gp4q" path="res://Scenes/Weapons/Hammer/weapon_hammer.tscn" id="6_vsorn"]
+[ext_resource type="PackedScene" uid="uid://dq2ilob20a4t5" path="res://Scenes/Weapons/Bow/weapon_bow.tscn" id="6_wfw53"]
+[ext_resource type="PackedScene" uid="uid://br6km26u30bs6" path="res://Scenes/Weapons/Chakram/weapon_chakram.tscn" id="8_2feh8"]
+
+[sub_resource type="Resource" id="Resource_52u7q"]
+script = ExtResource("4_wfw53")
+metadata/_custom_type_script = "uid://yd87aj2hybru"
+
+[node name="SwordCharacter" instance=ExtResource("1_n43wd")]
+
+[node name="Hammer" parent="EquipmentInventory" index="0" instance=ExtResource("6_vsorn")]
+position = Vector2(17, 9)
+scale = Vector2(0.999999, 0.999999)
+
+[node name="WeaponShuriken" parent="EquipmentInventory" index="1" instance=ExtResource("6_52u7q")]
+visible = false
+position = Vector2(17, 9)
+scale = Vector2(0.999999, 0.999999)
+
+[node name="WeaponChakram" parent="EquipmentInventory" index="2" instance=ExtResource("8_2feh8")]
+visible = false
+
+[node name="FireGrimoire" parent="EquipmentInventory" index="3" instance=ExtResource("6_epo7i")]
+visible = false
+
+[node name="SwiftSword" parent="EquipmentInventory" index="4" instance=ExtResource("5_a3qyk")]
+visible = false
+
+[node name="InnateActiveAbility" parent="." index="2" node_paths=PackedStringArray("ability")]
+ability = NodePath("SwordSlashEmit")
+
+[node name="SwordSlashEmit" parent="InnateActiveAbility" index="1" instance=ExtResource("2_qau1h")]
+start_cooldown_on = 1
+
+[node name="InnateUtilityAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
+ability = NodePath("WindSlashAbility")
+
+[node name="WindSlashAbility" parent="InnateUtilityAbility" index="1" instance=ExtResource("4_n83j8")]
+spawn_behavior = SubResource("Resource_52u7q")
+cooldown = 3.0
+
+[node name="UtilityAbilityContainer" parent="." index="4" node_paths=PackedStringArray("ability")]
+ability = NodePath("AbilityLungeStrike")
+
+[node name="AbilityLungeStrike" parent="UtilityAbilityContainer" index="2" instance=ExtResource("2_qi0ur")]
+
+[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("weapon_position", "equipment")]
+position = Vector2(-1.07288e-06, 9)
+weapon_position = NodePath("WeaponPosition")
+equipment = NodePath("WeaponPosition/WeaponBow")
+action_trigger = "secondary_ability"
+
+[node name="WeaponPosition" parent="WeaponSlot" index="1"]
+position = Vector2(17, 0)
+
+[node name="WeaponBow" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("6_wfw53")]
+visible = false
+position = Vector2(-17, -9.00001)
+
+[node name="OffhandWeaponSlot" parent="." index="7"]
+position = Vector2(0, 9)
+
+[node name="WeaponPosition" parent="OffhandWeaponSlot" index="0"]
+position = Vector2(17, 0)
+
+[node name="HeadGearSlot" parent="." index="8" node_paths=PackedStringArray("equipment")]
+equipment = NodePath("IronHelmet")
+
+[node name="IronHelmet" parent="HeadGearSlot" index="0" instance=ExtResource("5_0v31t")]
+
+[node name="MaxHealth" parent="Stats" index="7"]
+stat_value = 50.0
+
+[editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]

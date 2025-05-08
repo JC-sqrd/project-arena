@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://upkphqac5gql"]
+
+[ext_resource type="Script" uid="uid://dy5y7hbsepscr" path="res://Scripts/Combat/ProjectileWeapons/Projectile/ProjectileChakram.gd" id="1_7b383"]
+[ext_resource type="Texture2D" uid="uid://cyngo5gkj10dd" path="res://Sprites/Weapons/Shuriken/Shuriken.png" id="2_bd1kf"]
+
+[sub_resource type="Curve" id="Curve_bd1kf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), -2.25065, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_7b383"]
+_data = [Vector2(0, 1), 0.0, 18.5303, 0, 0, Vector2(0.525346, 1), -1.65798, -1.65798, 0, 0, Vector2(1, 0.674157), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ycax0"]
+radius = 35.0
+
+[node name="ChakramProjectile" type="Area2D"]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_7b383")
+return_curve = SubResource("Curve_bd1kf")
+speed_curve = SubResource("Curve_7b383")
+max_distance = 500.0
+metadata/_custom_type_script = "uid://dy5y7hbsepscr"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ycax0")
+
+[node name="Shuriken" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_bd1kf")

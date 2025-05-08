@@ -1,0 +1,94 @@
+[gd_scene load_steps=15 format=3 uid="uid://ck0wk5jnbtrqk"]
+
+[ext_resource type="Script" uid="uid://fxpig16cesb0" path="res://Scenes/Items/chain_lightning/Scripts/Spawnable/ChainSpawnable.gd" id="1_p7d7g"]
+[ext_resource type="Texture2D" uid="uid://b1btj33f6x5b" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/spark_07.png" id="2_yrg67"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="3_21676"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="4_h5dqr"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_ea61t"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="6_rv07b"]
+[ext_resource type="Texture2D" uid="uid://df8wxrk1dlhxa" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/spark_06.png" id="7_2uedm"]
+[ext_resource type="Texture2D" uid="uid://d2v4eqepl2n5f" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/circle_01.png" id="8_cfynk"]
+[ext_resource type="Script" uid="uid://dh7s35t1333xw" path="res://Scenes/Items/chain_lightning/Scripts/Spawnable/LightningTrail.gd" id="8_i6w14"]
+
+[sub_resource type="Gradient" id="Gradient_uj1ff"]
+colors = PackedColorArray(1, 1, 1, 1, 0.0701452, 0.307947, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_anw3x"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ppuo"]
+radius = 300.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cixy0"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bg5ys"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[node name="LightningSpawnable" type="Area2D" node_paths=PackedStringArray("chain_area")]
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_p7d7g")
+chain_area = NodePath("ChainArea")
+windup_time = 0.05
+
+[node name="LightningTrail" type="Line2D" parent="."]
+top_level = true
+position = Vector2(1, 0)
+width = 250.0
+default_color = Color(0.202037, 0.680727, 0.999999, 1)
+gradient = SubResource("Gradient_uj1ff")
+texture = ExtResource("2_yrg67")
+texture_mode = 1
+script = ExtResource("8_i6w14")
+max_points = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_anw3x")
+
+[node name="ChainArea" type="Area2D" parent="."]
+collision_mask = 3
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChainArea"]
+shape = SubResource("CircleShape2D_3ppuo")
+debug_color = Color(0.986492, 0, 0.323033, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_yrg67")
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("3_21676")
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("4_h5dqr")
+damage_stat = NodePath("Damage")
+damage_type = 1
+
+[node name="Damage" type="Node" parent="HitListener/DamageEffect"]
+script = ExtResource("5_ea61t")
+stat_value = 20.0
+
+[node name="GetActorStatScaler" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_rv07b")
+stat = NodePath("..")
+scale_with_stat_id = "magic_damage"
+scale_ratio = 0.2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+amount = 1
+sub_emitter = NodePath("GPUParticles2D")
+process_material = SubResource("ParticleProcessMaterial_cixy0")
+texture = ExtResource("8_cfynk")
+explosiveness = 1.0
+local_coords = true
+trail_enabled = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="GPUParticles2D"]
+process_material = SubResource("ParticleProcessMaterial_bg5ys")
+texture = ExtResource("7_2uedm")
+explosiveness = 1.0

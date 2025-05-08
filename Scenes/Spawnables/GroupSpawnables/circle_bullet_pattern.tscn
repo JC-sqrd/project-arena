@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://polhightjk7e"]
+
+[ext_resource type="Script" uid="uid://bipbqocucm4eg" path="res://Scripts/Ability System/Spawnables/GroupSpawnable.gd" id="1_7a3yu"]
+[ext_resource type="Texture2D" uid="uid://c35vvralpy2oe" path="res://Placeholders/Sprites/Skill Circle Visual.png" id="2_4lb6e"]
+[ext_resource type="PackedScene" uid="uid://lfx3luq3d34y" path="res://Scenes/Spawnables/AreaEnterDamage/enemy_projectile_spawnable.tscn" id="3_c2egy"]
+
+[node name="BulletPattern" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitoring = false
+monitorable = false
+script = ExtResource("1_7a3yu")
+lifetime = 5.0
+
+[node name="SkillCircleVisual" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_4lb6e")
+
+[node name="EnemyProjectileSpawnable" parent="." instance=ExtResource("3_c2egy")]
+
+[node name="EnemyProjectileSpawnable2" parent="." instance=ExtResource("3_c2egy")]
+rotation = 0.785398
+
+[node name="EnemyProjectileSpawnable3" parent="." instance=ExtResource("3_c2egy")]
+rotation = 1.5708
+
+[node name="EnemyProjectileSpawnable4" parent="." instance=ExtResource("3_c2egy")]
+rotation = 2.35619
+
+[node name="EnemyProjectileSpawnable5" parent="." instance=ExtResource("3_c2egy")]
+rotation = 3.14159
+
+[node name="EnemyProjectileSpawnable6" parent="." instance=ExtResource("3_c2egy")]
+rotation = 3.92699
+
+[node name="EnemyProjectileSpawnable7" parent="." instance=ExtResource("3_c2egy")]
+rotation = 4.71239
+
+[node name="EnemyProjectileSpawnable8" parent="." instance=ExtResource("3_c2egy")]
+rotation = 5.49779
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

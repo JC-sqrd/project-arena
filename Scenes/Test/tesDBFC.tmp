@@ -1,0 +1,223 @@
+[gd_scene load_steps=7 format=3 uid="uid://cu8fhpggbxh6d"]
+
+[ext_resource type="Texture2D" uid="uid://cbwdmsdvh7q6b" path="res://Placeholders/Sprites/Test Character/Character Placeholder Sprite.png" id="2_eyxx2"]
+[ext_resource type="PackedScene" uid="uid://cvfsmjmaolpet" path="res://Scenes/Test/test_enemy.tscn" id="3_g57ev"]
+[ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="4_d3glx"]
+[ext_resource type="Script" path="res://Scripts/EnemySpawner.gd" id="5_a4ok0"]
+[ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Test/test_character.tscn" id="5_t3os5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70841"]
+size = Vector2(141, 1308)
+
+[node name="test_scene" type="Node2D"]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("5_t3os5")]
+position = Vector2(576, 308)
+
+[node name="CharacterPlaceholderSprite" type="Sprite2D" parent="."]
+position = Vector2(284, 337)
+texture = ExtResource("2_eyxx2")
+
+[node name="Bob" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(1471, 609)
+player = NodePath("../PlayerCharacter")
+
+[node name="Gob" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(262, -180)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Hob" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(292, -475)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Fob" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(-67, 795)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Sob" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(780, -505)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Wob" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(1560, -269)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Tob" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(1009, 806)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Nob" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(659, -290)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Zob" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(948, -373)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Zob2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(-162, 1154)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Zob3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(1662, 206)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Zob4" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(1153, -297)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Zob5" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(573, 1100)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Zob6" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(313, 911)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Zob7" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(966, 976)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Zob8" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(1439, 924)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Zob9" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(1417, -34)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Zob10" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(465, -195)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Qob" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(398, 1211)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Qob2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(-134, -178)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Qob3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(1370, 341)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Qob4" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(97, -569)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Qob5" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(75, 747)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Qob6" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(140, 1069)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Qob7" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(644, 868)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="Qob8" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g57ev")]
+process_mode = 4
+visible = false
+position = Vector2(841, 916)
+player = NodePath("../PlayerCharacter")
+speed = 260.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-219, 224)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-35.5, 30)
+shape = SubResource("RectangleShape2D_70841")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-35, 2)
+scale = Vector2(1.02612, 9.66734)
+texture = ExtResource("4_d3glx")
+
+[node name="EnemySpawner" type="Node2D" parent="." node_paths=PackedStringArray("player", "enemy_nodes")]
+script = ExtResource("5_a4ok0")
+enemies = Array[PackedScene]([ExtResource("3_g57ev")])
+player = NodePath("../PlayerCharacter")
+spawn_zone = Vector2(1000, 500)
+draw_spawn_zone = true
+spawn_rate_range = 5
+enemy_nodes = [null]
+
+[node name="Timer" type="Timer" parent="EnemySpawner"]

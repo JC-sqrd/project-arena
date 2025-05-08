@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://dt6gspye6us13"]
+
+[ext_resource type="Script" uid="uid://bqpnpgrcx04b1" path="res://Scripts/Ability System/ToggleAbility.gd" id="1_ue7lt"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="2_4ranx"]
+[ext_resource type="Script" uid="uid://bnv5yw2hmwk5b" path="res://Scripts/Ability System/ToggleAbilityBehaviors/HitOverTimeToggle.gd" id="2_mnf6u"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="3_msp5w"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="3_wiift"]
+[ext_resource type="Script" uid="uid://je1qr4xnkb2s" path="res://Scripts/Combat/CombatEffects/SpawnEffectDirection/SpawnMouseDirection.gd" id="5_ico34"]
+[ext_resource type="Script" uid="uid://6ygen6bqklti" path="res://Scripts/Combat/CombatEffects/SpawnEffect.gd" id="5_ne1fx"]
+[ext_resource type="PackedScene" uid="uid://d4lbmkevurfyl" path="res://Scenes/Abilities/Spawn Abilities/Flare/Spawnable/spawnable_flare.tscn" id="6_jdahv"]
+[ext_resource type="Script" uid="uid://cvqhsu5xil87b" path="res://Scripts/Ability System/ToggleAbilityBehaviors/HitOnToggleOn.gd" id="6_knv00"]
+[ext_resource type="Script" uid="uid://dnx64oqp7k6ae" path="res://Scripts/Ability System/ToggleAbilityBehaviors/ConsumeManaToggled.gd" id="10_yb4ko"]
+
+[node name="AbilityToggleBuff" type="Node2D" node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("1_ue7lt")
+hit_listener = NodePath("HitListener")
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("2_4ranx")
+
+[node name="SpawnEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("source", "spawn_direction", "hit_listener")]
+script = ExtResource("5_ne1fx")
+spawn_scene = ExtResource("6_jdahv")
+source = NodePath("../..")
+spawn_direction = NodePath("SpawnMouseDirection")
+hit_listener = NodePath("SpawnHitListener")
+
+[node name="SpawnMouseDirection" type="Node" parent="HitListener/SpawnEffect"]
+script = ExtResource("5_ico34")
+
+[node name="SpawnHitListener" type="Node" parent="HitListener/SpawnEffect"]
+script = ExtResource("2_4ranx")
+
+[node name="DamageEffect" type="Node" parent="HitListener/SpawnEffect/SpawnHitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("3_wiift")
+damage_stat = NodePath("Stat")
+
+[node name="Stat" type="Node" parent="HitListener/SpawnEffect/SpawnHitListener/DamageEffect"]
+script = ExtResource("3_msp5w")
+stat_value = 10.0
+
+[node name="HitOverTimeToggle" type="Node" parent="." node_paths=PackedStringArray("hit_rate")]
+script = ExtResource("2_mnf6u")
+hit_rate = NodePath("HitRate")
+
+[node name="HitRate" type="Node" parent="HitOverTimeToggle"]
+script = ExtResource("3_msp5w")
+stat_value = 0.5
+
+[node name="HitOnToggleOn" type="Node" parent="." node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("6_knv00")
+hit_listener = NodePath("../HitListener")
+
+[node name="ConsumeManaToggle" type="Node" parent="." node_paths=PackedStringArray("mana_consumption")]
+script = ExtResource("10_yb4ko")
+mana_consumption = NodePath("ManaConsumption")
+
+[node name="ManaConsumption" type="Node" parent="ConsumeManaToggle"]
+script = ExtResource("3_msp5w")
+stat_value = 2.0

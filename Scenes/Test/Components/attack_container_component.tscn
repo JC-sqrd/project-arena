@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://de6joq2hs2b4l"]
+
+[ext_resource type="Script" uid="uid://cp6gornqssw7b" path="res://Scripts/Combat/Equipment/Weapon/WeaponSlot.gd" id="1_ejsa2"]
+
+[node name="AttackContainer" type="Node2D"]
+script = ExtResource("1_ejsa2")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05

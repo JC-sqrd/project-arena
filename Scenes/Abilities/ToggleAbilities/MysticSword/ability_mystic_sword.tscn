@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://xuubp51ci4mo"]
+
+[ext_resource type="Script" uid="uid://bqpnpgrcx04b1" path="res://Scripts/Ability System/ToggleAbility.gd" id="1_1xkf3"]
+[ext_resource type="Script" uid="uid://dnx64oqp7k6ae" path="res://Scripts/Ability System/ToggleAbilityBehaviors/ConsumeManaToggled.gd" id="2_fv0ee"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="3_va7va"]
+[ext_resource type="Script" uid="uid://cvqhsu5xil87b" path="res://Scripts/Ability System/ToggleAbilityBehaviors/HitOnToggleOn.gd" id="4_205ls"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="5_rhgow"]
+[ext_resource type="Script" uid="uid://88st3pdi1hky" path="res://Scripts/Combat/CombatEffects/ApplyStatusEffect.gd" id="6_xuewl"]
+[ext_resource type="PackedScene" uid="uid://c1osp5vjwcvq7" path="res://Scenes/StatusEffects/SpawnOnAttack.tscn" id="7_gud0i"]
+[ext_resource type="Script" uid="uid://b0rbrpqsereti" path="res://Scripts/Ability System/ToggleAbilityBehaviors/HitOnToggleOff.gd" id="8_atiyp"]
+[ext_resource type="Script" uid="uid://bo4en7hlhhhp4" path="res://Scripts/Combat/CombatEffects/RemoveStatusEffect.gd" id="9_cuq71"]
+
+[node name="AbilityMysitcSword" type="Node2D"]
+script = ExtResource("1_1xkf3")
+
+[node name="ConsumeManaToggle" type="Node" parent="." node_paths=PackedStringArray("mana_consumption")]
+script = ExtResource("2_fv0ee")
+mana_consumption = NodePath("ManaConsumption")
+
+[node name="ManaConsumption" type="Node" parent="ConsumeManaToggle"]
+script = ExtResource("3_va7va")
+stat_value = 2.0
+
+[node name="HitOnToggleOn" type="Node" parent="." node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("4_205ls")
+hit_listener = NodePath("HitListener")
+
+[node name="HitListener" type="Node" parent="HitOnToggleOn"]
+script = ExtResource("5_rhgow")
+
+[node name="ApplyStatusEffect" type="Node" parent="HitOnToggleOn/HitListener"]
+script = ExtResource("6_xuewl")
+status_effect_scene = ExtResource("7_gud0i")
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("5_rhgow")
+
+[node name="HitOnToggleOff" type="Node" parent="." node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("8_atiyp")
+hit_listener = NodePath("HitListener")
+
+[node name="HitListener" type="Node" parent="HitOnToggleOff"]
+script = ExtResource("5_rhgow")
+
+[node name="RemoveStatusEffect" type="Node" parent="HitOnToggleOff/HitListener"]
+script = ExtResource("9_cuq71")
+status_effect_scene = ExtResource("7_gud0i")

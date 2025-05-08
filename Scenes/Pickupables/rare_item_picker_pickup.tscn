@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b74ro0m7sh4l0"]
+
+[ext_resource type="PackedScene" uid="uid://bdbihdl1o28gy" path="res://Scenes/Pickupables/common_item_picker_pickup.tscn" id="1_40as1"]
+[ext_resource type="Script" uid="uid://cmlj1a620t1f6" path="res://Scripts/Pickupable/RareItemPickerPickupable.gd" id="2_xdomf"]
+
+[node name="ItemPickerPickup" instance=ExtResource("1_40as1")]
+script = ExtResource("2_xdomf")
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.211765, 1, 0.0823529, 1)

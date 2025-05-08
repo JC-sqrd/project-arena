@@ -1,0 +1,192 @@
+[gd_scene load_steps=28 format=3 uid="uid://cx8tgb7k8cwbk"]
+
+[ext_resource type="Script" uid="uid://42qvy4m6xprb" path="res://Scripts/Ability System/EmitAbility.gd" id="1_ooi45"]
+[ext_resource type="PackedScene" uid="uid://cgfrvfbxilhqf" path="res://Scenes/Abilities/Emit Abilities/FlameBreath/Spawnable/spawnable_flame_breath.tscn" id="2_cgcej"]
+[ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_s50ku"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="4_iybga"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="5_u5ecf"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="6_eridb"]
+[ext_resource type="Script" uid="uid://clr8tbibqclow" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="7_8jg6a"]
+[ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="7_v4c78"]
+[ext_resource type="Script" uid="uid://b41oadkxkerfk" path="res://Scripts/Combat/CombatEffects/BonusValueChecks/DistanceCheck.gd" id="8_cgcej"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="8_w471h"]
+[ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="8_xb1eg"]
+[ext_resource type="Script" uid="uid://88st3pdi1hky" path="res://Scripts/Combat/CombatEffects/ApplyStatusEffect.gd" id="9_u5ecf"]
+[ext_resource type="PackedScene" uid="uid://d2mjy2iqk7hmw" path="res://Scenes/StatusEffects/Burn.tscn" id="10_eridb"]
+[ext_resource type="Script" uid="uid://cogh8iqclt3ew" path="res://Scripts/Ability System/AbilityBehavior/SlowOnActive.gd" id="10_s50ku"]
+[ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="11_eridb"]
+[ext_resource type="Texture2D" uid="uid://dmdepcdgdeep6" path="res://Placeholders/Sprites/Animation/FireballWindup/FireballWindup.png" id="14_w471h"]
+[ext_resource type="Script" uid="uid://divbdk4dvxyga" path="res://Scripts/Ability System/AbilityAnimation/AbilityAnimatedSprite2D.gd" id="15_ijl0h"]
+[ext_resource type="Script" uid="uid://dsmtvuccs0v2m" path="res://Scripts/Ability System/AbilityBehavior/AllowCastWhileActive.gd" id="16_ijl0h"]
+
+[sub_resource type="Resource" id="Resource_vq3b8"]
+script = ExtResource("3_s50ku")
+stat_name = "current_mana"
+required_value = 20.0
+metadata/_custom_type_script = "uid://tuvjl40jf0pm"
+
+[sub_resource type="Curve" id="Curve_w471h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 1, Vector2(0.253394, 1), 0.0, -1.33939, 0, 1, Vector2(1, 0), -1.33939, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8naak"]
+atlas = ExtResource("14_w471h")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kum5h"]
+atlas = ExtResource("14_w471h")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0eelo"]
+atlas = ExtResource("14_w471h")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvgxo"]
+atlas = ExtResource("14_w471h")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ugsg"]
+atlas = ExtResource("14_w471h")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_se8l3"]
+atlas = ExtResource("14_w471h")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_alx3g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8naak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kum5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0eelo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvgxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ugsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_se8l3")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"ability_windup",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="AbilityFlameBreath" type="Node2D" node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("1_ooi45")
+emited_object = ExtResource("2_cgcej")
+required_stat = SubResource("Resource_vq3b8")
+cast_mode = 1
+start_cooldown_on = 2
+cast_time = 0.25
+hit_listener = NodePath("HitListener")
+ability_name = "Flame Breath"
+cooldown = 3.0
+metadata/_custom_type_script = "uid://42qvy4m6xprb"
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("4_iybga")
+metadata/_custom_type_script = "uid://dm3uuggj1g47y"
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("5_u5ecf")
+damage_stat = NodePath("ScaledDamage")
+damage_type = 1
+metadata/_custom_type_script = "uid://c8sj8b1npavnd"
+
+[node name="ScaledDamage" type="Node" parent="HitListener/DamageEffect"]
+script = ExtResource("6_eridb")
+stat_value = 2.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatMult" type="Node" parent="HitListener/DamageEffect/ScaledDamage" node_paths=PackedStringArray("stat")]
+script = ExtResource("7_v4c78")
+stat = NodePath("..")
+scale_with_stat_id = "magic_damage_mult"
+metadata/_custom_type_script = "uid://c4n03mihb0axg"
+
+[node name="GetActorStatAdder" type="Node" parent="HitListener/DamageEffect/ScaledDamage" node_paths=PackedStringArray("stat")]
+script = ExtResource("8_xb1eg")
+stat = NodePath("..")
+scale_with_stat_id = "magic_damage"
+metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+
+[node name="Damage" type="Node" parent="HitListener/DamageEffect"]
+script = ExtResource("6_eridb")
+stat_value = 2.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="StatScaler" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_8jg6a")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../../../ActorMagic")
+scale_ratio = 0.1
+metadata/_custom_type_script = "uid://clr8tbibqclow"
+
+[node name="DistanceCheck" type="Node" parent="HitListener/DamageEffect" node_paths=PackedStringArray("stat")]
+script = ExtResource("8_cgcej")
+stat = NodePath("Stat")
+damage_curve = SubResource("Curve_w471h")
+distance = 300.0
+is_percentage = true
+metadata/_custom_type_script = "uid://b41oadkxkerfk"
+
+[node name="Stat" type="Node" parent="HitListener/DamageEffect/DistanceCheck"]
+script = ExtResource("6_eridb")
+stat_value = 1.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="ApplyStatusEffect" type="Node" parent="HitListener"]
+script = ExtResource("9_u5ecf")
+status_effect_scene = ExtResource("10_eridb")
+chance = 0.5
+metadata/_custom_type_script = "uid://88st3pdi1hky"
+
+[node name="Knockback" type="Node" parent="HitListener"]
+script = ExtResource("11_eridb")
+force = 150.0
+metadata/_custom_type_script = "uid://dmjo067f80ntw"
+
+[node name="ActorMagic" type="Node" parent="."]
+script = ExtResource("6_eridb")
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatScaler" type="Node" parent="ActorMagic" node_paths=PackedStringArray("stat")]
+script = ExtResource("8_w471h")
+stat = NodePath("..")
+scale_with_stat_id = "magic"
+scale_ratio = 0.25
+metadata/_custom_type_script = "uid://2vlwp08ancca"
+
+[node name="SlowOnActive" type="Node" parent="."]
+script = ExtResource("10_s50ku")
+slow_multiplier = 0.8
+metadata/_custom_type_script = "uid://cogh8iqclt3ew"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4.5, 4.5)
+sprite_frames = SubResource("SpriteFrames_alx3g")
+script = ExtResource("15_ijl0h")
+
+[node name="AllowCastWhileActive" type="Node" parent="."]
+script = ExtResource("16_ijl0h")
+metadata/_custom_type_script = "uid://dsmtvuccs0v2m"

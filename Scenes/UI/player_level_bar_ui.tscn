@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqr55gwrmkxh0"]
+
+[ext_resource type="Script" uid="uid://clcp0sf2g2ril" path="res://Scripts/UI/PlayerLevelBar.gd" id="1_vqfbv"]
+[ext_resource type="Texture2D" uid="uid://da4sd0ss238r3" path="res://Placeholders/Sprites/Test Character/Exp orb palceholder 3.png" id="1_y60c5"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xyog8"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7fwn5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_655wq"]
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="LevelBar" type="TextureProgressBar" node_paths=PackedStringArray("level_label")]
+custom_minimum_size = Vector2(50, 10)
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+nine_patch_stretch = true
+texture_under = SubResource("CanvasTexture_xyog8")
+texture_progress = SubResource("CanvasTexture_7fwn5")
+tint_under = Color(0.27451, 0.27451, 0.27451, 1)
+tint_progress = Color(0.606707, 0.155933, 0.901938, 1)
+script = ExtResource("1_vqfbv")
+level_label = NodePath("HBoxContainer/LevelLabel")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -22.5
+offset_right = 33.5
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelTexture" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("1_y60c5")
+expand_mode = 3
+
+[node name="LevelLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "LEVEL
+"
+label_settings = SubResource("LabelSettings_655wq")

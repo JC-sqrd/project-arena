@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://bwbyc8vywa6vd"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerCharacter.gd" id="1_emetf"]
+[ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="2_1k063"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/StatManager.gd" id="3_5mc4g"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/Stat.gd" id="4_mcomc"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/StatModManager.gd" id="5_i5ukp"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/StatMod.gd" id="6_3xaqx"]
+[ext_resource type="Script" path="res://Scripts/Ability System/Ability.gd" id="7_1krbv"]
+[ext_resource type="Script" path="res://Scripts/Ability System/Ability Behavior/TestAbilityBehavior.gd" id="8_6nvsr"]
+[ext_resource type="Script" path="res://Scripts/Ability System/Ability Behavior/ProjectileTeleport.gd" id="9_n564l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m63ty"]
+
+[node name="PlayerCharacter" type="CharacterBody2D"]
+script = ExtResource("1_emetf")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_1k063")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.96, 2.96)
+shape = SubResource("CircleShape2D_m63ty")
+
+[node name="StatManager" type="Node" parent="." groups=["stat_system"]]
+script = ExtResource("3_5mc4g")
+
+[node name="MoveSpeed" type="Node" parent="StatManager"]
+script = ExtResource("4_mcomc")
+stat_name = "move_speed"
+stat_value = 350.0
+
+[node name="GroundAcceleration" type="Node" parent="StatManager"]
+script = ExtResource("4_mcomc")
+stat_name = "ground_acceleration"
+stat_value = 6000.0
+
+[node name="Node" type="Node" parent="."]
+
+[node name="StatModManager" type="Node" parent="." groups=["stat_system"]]
+script = ExtResource("5_i5ukp")
+
+[node name="AddSpeed" type="Node" parent="StatModManager"]
+script = ExtResource("6_3xaqx")
+mod_name = "add_move_speed"
+mod_value = 50.0
+stat_to_modify = "move_speed"
+
+[node name="Ability" type="Node" parent="."]
+script = ExtResource("7_1krbv")
+action = "primary_ability"
+
+[node name="Dash" type="Node2D" parent="Ability"]
+script = ExtResource("8_6nvsr")
+dash_distance = 400.0
+dash_step = 0.255
+debug_lines = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="Ability2" type="Node" parent="."]
+script = ExtResource("7_1krbv")
+action = "utility_ability"
+
+[node name="ProjectileTeleport" type="Node2D" parent="Ability2"]
+script = ExtResource("9_n564l")

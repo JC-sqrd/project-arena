@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmxpepyjc2llt"]
+
+[ext_resource type="Script" uid="uid://d1xavjy2kbus2" path="res://Scripts/Ability System/Spawnables/AreaEnterHit.gd" id="1_eax2f"]
+[ext_resource type="Script" uid="uid://c6hdo0rjgde2q" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/MoveSpawnable.gd" id="2_ges5e"]
+[ext_resource type="PackedScene" uid="uid://b5k6bb1xtfc5w" path="res://Scenes/hollow_purple_visuals.tscn" id="4_t5bks"]
+
+[sub_resource type="Curve" id="Curve_kqn51"]
+_data = [Vector2(0, 1), 0.0, -0.365778, 0, 0, Vector2(0.274678, 0.802198), -9.38828, -9.38828, 0, 0, Vector2(0.360515, 0.285714), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_at8p7"]
+radius = 53.2353
+
+[node name="SpawnableProjectile" type="Area2D"]
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_eax2f")
+lifetime = 4.0
+
+[node name="Move" type="Node2D" parent="." node_paths=PackedStringArray("spawnable")]
+script = ExtResource("2_ges5e")
+move_speed = 500.0
+curve = SubResource("Curve_kqn51")
+spawnable = NodePath("..")
+
+[node name="HollowPurpleVisuals" parent="." instance=ExtResource("4_t5bks")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_at8p7")

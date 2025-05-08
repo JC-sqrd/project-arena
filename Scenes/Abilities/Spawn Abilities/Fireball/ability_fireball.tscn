@@ -1,0 +1,161 @@
+[gd_scene load_steps=29 format=3 uid="uid://bsyjglycqybnf"]
+
+[ext_resource type="Script" uid="uid://df7s4oatxu4hr" path="res://Scripts/Ability System/SpawnAbility.gd" id="1_0hkgi"]
+[ext_resource type="PackedScene" uid="uid://cl7l8ffhkgv1k" path="res://Scenes/Abilities/Spawn Abilities/Fireball/Spawnable/spawnable_fireball.tscn" id="2_xc2w6"]
+[ext_resource type="Script" uid="uid://yd87aj2hybru" path="res://Scripts/Ability System/SpawnAbilitySpawnBehavior/PointSpawn.gd" id="3_3sgpq"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="3_871q2"]
+[ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_rxpk5"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="4_ft4p5"]
+[ext_resource type="Texture2D" uid="uid://c0jkehu8oyamg" path="res://Ability Icons/Fireball/FireballIcon.png" id="4_i632a"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="4_v8m6f"]
+[ext_resource type="Script" uid="uid://88st3pdi1hky" path="res://Scripts/Combat/CombatEffects/ApplyStatusEffect.gd" id="5_elnet"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_yw3j4"]
+[ext_resource type="PackedScene" uid="uid://d2mjy2iqk7hmw" path="res://Scenes/StatusEffects/Burn.tscn" id="6_sixx5"]
+[ext_resource type="Script" uid="uid://clr8tbibqclow" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="7_3taaa"]
+[ext_resource type="Script" uid="uid://6ygen6bqklti" path="res://Scripts/Combat/CombatEffects/SpawnEffect.gd" id="7_n3t4k"]
+[ext_resource type="PackedScene" uid="uid://bkxscpm8t76o2" path="res://Scenes/Abilities/Spawn Abilities/Fireball/Spawnable/spawnable_fireball_explosion.tscn" id="8_5py51"]
+[ext_resource type="Script" uid="uid://whgjrqeo3rir" path="res://Scripts/Socket/AbilitySocket.gd" id="11_qi74n"]
+[ext_resource type="PackedScene" uid="uid://g5ag3dw5tl13" path="res://Scenes/Socketables/AbilitySocketables/socketable_ability_on_hit.tscn" id="12_fhr1v"]
+[ext_resource type="Texture2D" uid="uid://dmdepcdgdeep6" path="res://Placeholders/Sprites/Animation/FireballWindup/FireballWindup.png" id="16_3lpts"]
+[ext_resource type="Script" uid="uid://divbdk4dvxyga" path="res://Scripts/Ability System/AbilityAnimation/AbilityAnimatedSprite2D.gd" id="17_xyeuh"]
+[ext_resource type="Script" uid="uid://wxlytnemh2wh" path="res://Scripts/Ability System/AbilityBehavior/SlowOnCast.gd" id="18_xrvdm"]
+
+[sub_resource type="Resource" id="Resource_3sgpq"]
+script = ExtResource("3_3sgpq")
+metadata/_custom_type_script = "uid://yd87aj2hybru"
+
+[sub_resource type="Resource" id="Resource_xknc8"]
+script = ExtResource("3_rxpk5")
+stat_name = "current_mana"
+required_value = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8naak"]
+atlas = ExtResource("16_3lpts")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kum5h"]
+atlas = ExtResource("16_3lpts")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0eelo"]
+atlas = ExtResource("16_3lpts")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvgxo"]
+atlas = ExtResource("16_3lpts")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ugsg"]
+atlas = ExtResource("16_3lpts")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_se8l3"]
+atlas = ExtResource("16_3lpts")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y3yp4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8naak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kum5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0eelo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvgxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ugsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_se8l3")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"ability_windup",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="AbilityFireball" type="Node2D" node_paths=PackedStringArray("hit_listener", "sockets")]
+script = ExtResource("1_0hkgi")
+max_range = 0.0
+spawn = ExtResource("2_xc2w6")
+spawn_behavior = SubResource("Resource_3sgpq")
+required_stat = SubResource("Resource_xknc8")
+cast_time = 0.35
+hit_listener = NodePath("HitListener")
+cooldown = 1.5
+ability_icon_texture = ExtResource("4_i632a")
+sockets = [NodePath("AbilitySocket")]
+
+[node name="ActorMagic" type="Node" parent="."]
+script = ExtResource("5_yw3j4")
+
+[node name="GetActorStatScaler" type="Node" parent="ActorMagic" node_paths=PackedStringArray("stat")]
+script = ExtResource("4_v8m6f")
+stat = NodePath("..")
+scale_with_stat_id = "magic"
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("3_871q2")
+
+[node name="SpawnEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("source", "hit_listener")]
+script = ExtResource("7_n3t4k")
+spawn_scene = ExtResource("8_5py51")
+source = NodePath("../..")
+hit_listener = NodePath("../../SpawnHitListener")
+
+[node name="AbilitySocket" type="Node" parent="." node_paths=PackedStringArray("socketable")]
+script = ExtResource("11_qi74n")
+socketable = NodePath("SocketableAbilityOnHit")
+
+[node name="SocketableAbilityOnHit" parent="AbilitySocket" instance=ExtResource("12_fhr1v")]
+
+[node name="SpawnHitListener" type="Node" parent="."]
+script = ExtResource("3_871q2")
+
+[node name="DamageEffect" type="Node" parent="SpawnHitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("4_ft4p5")
+damage_stat = NodePath("ExplosionDamage")
+damage_type = 1
+
+[node name="ExplosionDamage" type="Node" parent="SpawnHitListener/DamageEffect"]
+script = ExtResource("5_yw3j4")
+stat_value = 30.0
+
+[node name="StatScaler" type="Node" parent="SpawnHitListener/DamageEffect/ExplosionDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_3taaa")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../../../ActorMagic")
+scale_ratio = 0.4
+
+[node name="ApplyStatusEffect" type="Node" parent="SpawnHitListener"]
+script = ExtResource("5_elnet")
+status_effect_scene = ExtResource("6_sixx5")
+stack = 5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4.5, 4.5)
+sprite_frames = SubResource("SpriteFrames_y3yp4")
+script = ExtResource("17_xyeuh")
+
+[node name="SlowOnCast" type="Node" parent="."]
+script = ExtResource("18_xrvdm")
+slow_time = 0.35
+slow_multiplier = 0.7
+metadata/_custom_type_script = "uid://wxlytnemh2wh"

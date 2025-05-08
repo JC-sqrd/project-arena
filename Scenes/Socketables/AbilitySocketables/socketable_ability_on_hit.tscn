@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://g5ag3dw5tl13"]
+
+[ext_resource type="Script" uid="uid://n56xkb4u25hj" path="res://Scripts/Socket/AbilitySocketable.gd" id="1_84xgt"]
+[ext_resource type="Script" uid="uid://bljfuywhilpld" path="res://Scripts/Socket/SocketableEffects/AbilityStockableEffects/AbilityOnHitASE.gd" id="2_ypcfo"]
+
+[node name="SocketableAbilityOnHit" type="Node"]
+script = ExtResource("1_84xgt")
+
+[node name="AbilityOnHitASE" type="Node" parent="."]
+script = ExtResource("2_ypcfo")
+trigger_chance = 1.0

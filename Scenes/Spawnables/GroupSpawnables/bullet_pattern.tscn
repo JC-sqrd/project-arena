@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwl80mahfwd12"]
+
+[ext_resource type="Script" uid="uid://bipbqocucm4eg" path="res://Scripts/Ability System/Spawnables/GroupSpawnable.gd" id="1_11ond"]
+[ext_resource type="PackedScene" uid="uid://lfx3luq3d34y" path="res://Scenes/Spawnables/AreaEnterDamage/enemy_projectile_spawnable.tscn" id="2_jeac2"]
+[ext_resource type="Texture2D" uid="uid://c35vvralpy2oe" path="res://Placeholders/Sprites/Skill Circle Visual.png" id="3_kuba3"]
+[ext_resource type="Script" uid="uid://cethrvy8latdu" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/RotateSpawnableBehavior.gd" id="3_w878i"]
+
+[sub_resource type="Curve" id="Curve_ydibg"]
+_data = [Vector2(0, 1), 0.0, -0.5, 0, 1]
+point_count = 1
+
+[node name="BulletPattern" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitoring = false
+monitorable = false
+script = ExtResource("1_11ond")
+lifetime = 5.0
+
+[node name="SkillCircleVisual" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_kuba3")
+
+[node name="EnemyProjectileSpawnable" parent="." instance=ExtResource("2_jeac2")]
+position = Vector2(0, -27)
+
+[node name="RotateSpawnableBehavior2" type="Node" parent="EnemyProjectileSpawnable" node_paths=PackedStringArray("spawnable")]
+script = ExtResource("3_w878i")
+degree = -45.0
+curve = SubResource("Curve_ydibg")
+spawnable = NodePath("..")
+
+[node name="EnemyProjectileSpawnable2" parent="." instance=ExtResource("2_jeac2")]
+position = Vector2(0, -8)
+
+[node name="RotateSpawnableBehavior2" type="Node" parent="EnemyProjectileSpawnable2" node_paths=PackedStringArray("spawnable")]
+script = ExtResource("3_w878i")
+degree = -30.0
+curve = SubResource("Curve_ydibg")
+spawnable = NodePath("..")
+
+[node name="EnemyProjectileSpawnable3" parent="." instance=ExtResource("2_jeac2")]
+position = Vector2(0, 9)
+
+[node name="RotateSpawnableBehavior2" type="Node" parent="EnemyProjectileSpawnable3" node_paths=PackedStringArray("spawnable")]
+script = ExtResource("3_w878i")
+degree = 30.0
+curve = SubResource("Curve_ydibg")
+spawnable = NodePath("..")
+
+[node name="EnemyProjectileSpawnable4" parent="." instance=ExtResource("2_jeac2")]
+position = Vector2(0, 30)
+
+[node name="RotateSpawnableBehavior2" type="Node" parent="EnemyProjectileSpawnable4" node_paths=PackedStringArray("spawnable")]
+script = ExtResource("3_w878i")
+degree = 45.0
+curve = SubResource("Curve_ydibg")
+spawnable = NodePath("..")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2mjy2iqk7hmw"]
+
+[ext_resource type="Script" uid="uid://pswh7xith1wj" path="res://Scripts/Combat/StatusEffects/Burn.gd" id="1_gxy0b"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="2_dom82"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="3_0amb2"]
+[ext_resource type="Script" uid="uid://d35h5o2rfotvj" path="res://Scripts/StatSystem/Stats/StatMultiplier.gd" id="3_0aysk"]
+
+[node name="Burn" type="Node" node_paths=PackedStringArray("damage_effect", "stack_stat") groups=["dot", "dot_burn", "negative_status_effect"]]
+script = ExtResource("1_gxy0b")
+damage_effect = NodePath("DamageEffect")
+duration = 5.0
+stackable = true
+stack_stat = NodePath("StackStat")
+max_stack = 10
+restart_on_stack_add = true
+
+[node name="DamageEffect" type="Node" parent="." node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("2_dom82")
+damage_stat = NodePath("StatMultiplier")
+damage_type = 2
+
+[node name="StatMultiplier" type="Node" parent="DamageEffect" node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("3_0aysk")
+a_stat = NodePath("../Damage")
+b_stat = NodePath("../../StackStat")
+
+[node name="Damage" type="Node" parent="DamageEffect"]
+script = ExtResource("3_0amb2")
+stat_value = 1.0
+
+[node name="StackStat" type="Node" parent="."]
+script = ExtResource("3_0amb2")

@@ -1,0 +1,72 @@
+[gd_scene load_steps=13 format=3 uid="uid://c54utx7ghqari"]
+
+[ext_resource type="Script" uid="uid://42qvy4m6xprb" path="res://Scripts/Ability System/EmitAbility.gd" id="1_3ryqs"]
+[ext_resource type="PackedScene" uid="uid://btg1w1mh22vlt" path="res://Scenes/Abilities/Emit Abilities/Aura/Spawnable/spawnable_aura.tscn" id="2_hb4dy"]
+[ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_01ssw"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="3_6a6sm"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="4_wpoe5"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_qmd3w"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="6_146i6"]
+[ext_resource type="Script" uid="uid://clr8tbibqclow" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="6_elj3f"]
+[ext_resource type="Script" uid="uid://whgjrqeo3rir" path="res://Scripts/Socket/AbilitySocket.gd" id="9_ock0m"]
+[ext_resource type="Script" uid="uid://dsmtvuccs0v2m" path="res://Scripts/Ability System/AbilityBehavior/AllowCastWhileActive.gd" id="10_mcphr"]
+[ext_resource type="Script" uid="uid://10mik3j8w4cp" path="res://Scripts/Ability System/AbilityBehavior/AllowAttackWhileActive.gd" id="11_8krci"]
+
+[sub_resource type="Resource" id="Resource_b38oi"]
+script = ExtResource("3_01ssw")
+stat_name = "current_mana"
+required_value = 15.0
+metadata/_custom_type_script = "uid://tuvjl40jf0pm"
+
+[node name="AbilityAura" type="Node2D" node_paths=PackedStringArray("hit_listener", "sockets")]
+script = ExtResource("1_3ryqs")
+emited_object = ExtResource("2_hb4dy")
+required_stat = SubResource("Resource_b38oi")
+cast_mode = 1
+cast_time = 0.25
+hit_listener = NodePath("HitListener")
+cooldown = 8.0
+sockets = [NodePath("AbilitySocket"), NodePath("AbilitySocket2"), NodePath("AbilitySocket3")]
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("3_6a6sm")
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("4_wpoe5")
+damage_stat = NodePath("Damage")
+damage_type = 1
+
+[node name="Damage" type="Node" parent="HitListener/DamageEffect"]
+script = ExtResource("5_qmd3w")
+stat_value = 5.0
+
+[node name="StatScaler" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("6_elj3f")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../../../ActorMagicDamage")
+scale_ratio = 0.05
+
+[node name="ActorMagicDamage" type="Node" parent="."]
+script = ExtResource("5_qmd3w")
+
+[node name="GetActorStatScaler" type="Node" parent="ActorMagicDamage" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_146i6")
+stat = NodePath("..")
+scale_with_stat_id = "magic"
+
+[node name="AbilitySocket" type="Node" parent="."]
+script = ExtResource("9_ock0m")
+
+[node name="AbilitySocket2" type="Node" parent="."]
+script = ExtResource("9_ock0m")
+
+[node name="AbilitySocket3" type="Node" parent="."]
+script = ExtResource("9_ock0m")
+
+[node name="AllowAttackWhileActive" type="Node" parent="."]
+script = ExtResource("11_8krci")
+metadata/_custom_type_script = "uid://10mik3j8w4cp"
+
+[node name="AllowCastWhileActive" type="Node" parent="."]
+script = ExtResource("10_mcphr")
+metadata/_custom_type_script = "uid://dsmtvuccs0v2m"

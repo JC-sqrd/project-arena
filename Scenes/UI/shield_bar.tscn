@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbn6ece20fltg"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jcgtl"]
+
+[node name="ShieldBar" type="TextureProgressBar"]
+custom_minimum_size = Vector2(50, 10)
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShieldProgressBar" type="TextureProgressBar" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 110.0
+value = 110.0
+nine_patch_stretch = true
+texture_progress = SubResource("CanvasTexture_jcgtl")
+tint_progress = Color(0.145098, 0.670588, 1, 1)

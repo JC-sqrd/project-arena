@@ -1,0 +1,47 @@
+[gd_scene load_steps=11 format=3 uid="uid://5n6ipq2tdyuy"]
+
+[ext_resource type="Script" uid="uid://b0cvxp4ijp378" path="res://Scripts/Ability System/Spawnables/TriggerSpawnable.gd" id="1_us62p"]
+[ext_resource type="Texture2D" uid="uid://v8hbf0iqrc6j" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/star_09.png" id="2_tlmg5"]
+[ext_resource type="PackedScene" uid="uid://dndkgxqahawqw" path="res://Scenes/Spawnables/AreaDamage/spawnable_area_damage.tscn" id="2_wru4d"]
+[ext_resource type="Script" uid="uid://c4dlcyh3hodco" path="res://Scripts/Ability System/Spawnables/SpawnableTriggerListener.gd" id="3_e7biv"]
+[ext_resource type="Script" uid="uid://cf7e0e50itc1y" path="res://Scripts/Ability System/Spawnables/STriggerSpawnEffect.gd" id="4_hhkoh"]
+[ext_resource type="PackedScene" uid="uid://ct34ut1k53nac" path="res://Scenes/Spawnables/AreaDamageOverTime/slash_field_spawnable.tscn" id="5_x6yfh"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="6_bket6"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="7_mnoqq"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="8_ivsti"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_totf7"]
+radius = 100.0
+
+[node name="Area2D" type="Area2D" node_paths=PackedStringArray("trigger_listener")]
+collision_layer = 3
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_us62p")
+spawnable = ExtResource("2_wru4d")
+trigger_listener = NodePath("SpawnableTriggerListener")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_totf7")
+
+[node name="Star09" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_tlmg5")
+
+[node name="SpawnableTriggerListener" type="Node" parent="."]
+script = ExtResource("3_e7biv")
+
+[node name="STriggerSpawnEffect" type="Node" parent="SpawnableTriggerListener"]
+script = ExtResource("4_hhkoh")
+spawn_scene = ExtResource("5_x6yfh")
+
+[node name="HitListener" type="Node" parent="SpawnableTriggerListener/STriggerSpawnEffect"]
+script = ExtResource("6_bket6")
+
+[node name="DamageEffect" type="Node" parent="SpawnableTriggerListener/STriggerSpawnEffect/HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("7_mnoqq")
+damage_stat = NodePath("../Stat")
+
+[node name="Stat" type="Node" parent="SpawnableTriggerListener/STriggerSpawnEffect/HitListener"]
+script = ExtResource("8_ivsti")
+stat_value = 10.0

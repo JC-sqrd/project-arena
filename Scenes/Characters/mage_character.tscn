@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://bgy7pdawvoiwa"]
+
+[ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/test_character.tscn" id="1_mooh8"]
+[ext_resource type="PackedScene" uid="uid://bsyjglycqybnf" path="res://Scenes/Abilities/Spawn Abilities/Fireball/ability_fireball.tscn" id="2_2tih5"]
+[ext_resource type="PackedScene" uid="uid://bkmw1nqw6gp4q" path="res://Scenes/Weapons/Hammer/weapon_hammer.tscn" id="2_efl5i"]
+[ext_resource type="PackedScene" uid="uid://df35xeepp7qfx" path="res://Scenes/Weapons/Fire Grimoire/weapon_fire_grimoire.tscn" id="3_a5sja"]
+[ext_resource type="PackedScene" uid="uid://br6km26u30bs6" path="res://Scenes/Weapons/Chakram/weapon_chakram.tscn" id="3_judwm"]
+[ext_resource type="PackedScene" uid="uid://ba77g51rg80ak" path="res://Scenes/Weapons/Shuriken/weapon_shuriken.tscn" id="4_du287"]
+[ext_resource type="PackedScene" uid="uid://c7f3i2m7h07jc" path="res://Scenes/Items/charge_move_speed/item_charge_move_speed.tscn" id="4_rpc63"]
+[ext_resource type="PackedScene" uid="uid://blgfsj2jbixh6" path="res://Scenes/Weapons/Magic Gun/weapon_magic_gun.tscn" id="5_cylll"]
+[ext_resource type="PackedScene" uid="uid://bkjwb31l88d7n" path="res://Scenes/Abilities/Spawn Abilities/FlamePillar/flame_pillar.tscn" id="10_w6ej0"]
+[ext_resource type="PackedScene" uid="uid://cx8tgb7k8cwbk" path="res://Scenes/Abilities/Emit Abilities/FlameBreath/ability_flame_breath.tscn" id="12_rpc63"]
+
+[node name="MageCharacter" instance=ExtResource("1_mooh8")]
+
+[node name="Hammer" parent="EquipmentInventory" index="0" instance=ExtResource("2_efl5i")]
+
+[node name="WeaponChakram" parent="EquipmentInventory" index="1" instance=ExtResource("3_judwm")]
+
+[node name="WeaponShuriken" parent="EquipmentInventory" index="2" instance=ExtResource("4_du287")]
+
+[node name="WeaponMagicGun" parent="EquipmentInventory" index="3" instance=ExtResource("5_cylll")]
+
+[node name="InnateActiveAbility" parent="." index="2" node_paths=PackedStringArray("ability")]
+ability = NodePath("AbilityFireball")
+
+[node name="AbilityFireball" parent="InnateActiveAbility" index="1" instance=ExtResource("2_2tih5")]
+
+[node name="InnateUtilityAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
+ability = NodePath("AbilityFlameBreath")
+ability_cooldown = 5.0
+
+[node name="AbilityFlameBreath" parent="InnateUtilityAbility" index="1" instance=ExtResource("12_rpc63")]
+
+[node name="UtilityAbilityContainer" parent="." index="4" node_paths=PackedStringArray("ability")]
+ability = NodePath("DashAbility")
+
+[node name="DashAbility" parent="UtilityAbilityContainer" index="1"]
+dash_distance = 300.0
+direction_input = 1
+cast_mode = 1
+
+[node name="FlamePillar" parent="UtilityAbilityContainer" index="2" instance=ExtResource("10_w6ej0")]
+
+[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("weapon_position", "equipment")]
+position = Vector2(0, 10)
+weapon_position = NodePath("WeaponPosition")
+equipment = NodePath("WeaponPosition/FireGrimoire")
+
+[node name="WeaponPosition" parent="WeaponSlot" index="1"]
+position = Vector2(20, 0)
+
+[node name="FireGrimoire" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("3_a5sja")]
+
+[node name="ItemChargeMoveSpeed" parent="ItemInventory" index="0" instance=ExtResource("4_rpc63")]
+
+[node name="MaxMana" parent="Stats" index="4"]
+stat_value = 150.0
+
+[node name="ManaRegen" parent="Stats" index="5"]
+stat_value = 5.0
+
+[node name="MaxHealth" parent="Stats" index="7"]
+stat_value = 30.0
+
+[editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]

@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=3 uid="uid://3ruase02hrhv"]
+
+[ext_resource type="Script" uid="uid://bqpnpgrcx04b1" path="res://Scripts/Ability System/ToggleAbility.gd" id="1_a3yvu"]
+[ext_resource type="Texture2D" uid="uid://bq16p5sexviys" path="res://Ability Icons/Laser/LaserIcon.png" id="2_lri3y"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="2_ymfan"]
+[ext_resource type="PackedScene" uid="uid://bd4oql7xepr1h" path="res://Scenes/Abilities/ToggleAbilities/Laser/Spawnable/spawnable_laser.tscn" id="4_dmak6"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="6_q6mei"]
+[ext_resource type="Script" uid="uid://clr8tbibqclow" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="7_6cw81"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="7_do6da"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="7_hd4ka"]
+[ext_resource type="Script" uid="uid://2a7hlhdhr70n" path="res://Scripts/Ability System/ToggleAbilityBehaviors/EmitOnToggle.gd" id="9_0wjed"]
+[ext_resource type="Script" uid="uid://dnx64oqp7k6ae" path="res://Scripts/Ability System/ToggleAbilityBehaviors/ConsumeManaToggled.gd" id="9_xy7fx"]
+
+[node name="AbilityLaser" type="Node2D"]
+script = ExtResource("1_a3yvu")
+ability_icon_texture = ExtResource("2_lri3y")
+
+[node name="EmitOnToggle" type="Node" parent="." node_paths=PackedStringArray("hit_listener", "emit_position")]
+script = ExtResource("9_0wjed")
+spawnable = ExtResource("4_dmak6")
+hit_listener = NodePath("SpawnHitListener")
+emit_position = NodePath("..")
+look_at_mouse = true
+
+[node name="SpawnHitListener" type="Node" parent="EmitOnToggle"]
+script = ExtResource("2_ymfan")
+
+[node name="DamageEffect" type="Node" parent="EmitOnToggle/SpawnHitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("6_q6mei")
+damage_stat = NodePath("Damage")
+damage_type = 1
+
+[node name="Damage" type="Node" parent="EmitOnToggle/SpawnHitListener/DamageEffect"]
+script = ExtResource("7_do6da")
+stat_value = 5.0
+
+[node name="StatScaler" type="Node" parent="EmitOnToggle/SpawnHitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_6cw81")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../../../../ActorMagic")
+scale_ratio = 0.15
+
+[node name="ActorMagic" type="Node" parent="."]
+script = ExtResource("7_do6da")
+
+[node name="GetActorStatScaler" type="Node" parent="ActorMagic" node_paths=PackedStringArray("stat")]
+script = ExtResource("7_hd4ka")
+stat = NodePath("..")
+scale_with_stat_id = "magic"
+
+[node name="ConsumeManaToggle" type="Node" parent="." node_paths=PackedStringArray("mana_consumption")]
+script = ExtResource("9_xy7fx")
+mana_consumption = NodePath("ManaConsumption")
+
+[node name="ManaConsumption" type="Node" parent="ConsumeManaToggle"]
+script = ExtResource("7_do6da")
+stat_value = 2.0

@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://bwbyc8vywa6vd"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerCharacter.gd" id="1_emetf"]
+[ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="2_1k063"]
+[ext_resource type="PackedScene" uid="uid://dfopknahmh8ed" path="res://Scenes/Test/Components/movement_controller_component.tscn" id="3_vhpeq"]
+[ext_resource type="PackedScene" uid="uid://c0i8ypdefjyja" path="res://Scenes/Test/Components/movement_input_component.tscn" id="4_fjo2p"]
+[ext_resource type="PackedScene" uid="uid://cuu2y6s4urf8o" path="res://Scenes/Test/Components/speed_stat_component.tscn" id="4_tj8qx"]
+[ext_resource type="PackedScene" uid="uid://ixbtc2tcs32u" path="res://Scenes/Test/Components/dash_ability_component.tscn" id="6_r18b2"]
+[ext_resource type="PackedScene" uid="uid://dk87ltl8o4wft" path="res://Scenes/Test/Components/ability_container_component.tscn" id="6_tx7qf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m63ty"]
+
+[node name="PlayerCharacter" type="CharacterBody2D"]
+platform_floor_layers = 4294901760
+script = ExtResource("1_emetf")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_1k063")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.96, 2.96)
+shape = SubResource("CircleShape2D_m63ty")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="MovementSystem" type="Node" parent="."]
+
+[node name="MovementController" parent="MovementSystem" node_paths=PackedStringArray("character", "movement_input", "speed") instance=ExtResource("3_vhpeq")]
+character = NodePath("../..")
+movement_input = NodePath("../MovementInput")
+speed = NodePath("../SpeedStat")
+
+[node name="SpeedStat" parent="MovementSystem" instance=ExtResource("4_tj8qx")]
+
+[node name="MovementInput" parent="MovementSystem" instance=ExtResource("4_fjo2p")]
+
+[node name="AbilityContainer" parent="." node_paths=PackedStringArray("ability") instance=ExtResource("6_tx7qf")]
+ability_action_trigger = "utility_ability"
+ability = NodePath("DashAbility")
+
+[node name="DashAbility" parent="AbilityContainer" node_paths=PackedStringArray("character") instance=ExtResource("6_r18b2")]
+character = NodePath("../..")
+dash_distance = 500.0
+dash_step = 0.25
+debug_visual = true
+
+[node name="AbilityContainer2" parent="." node_paths=PackedStringArray("ability") instance=ExtResource("6_tx7qf")]
+ability_action_trigger = "primary_ability"
+ability = NodePath("DashAbility")
+
+[node name="DashAbility" parent="AbilityContainer2" node_paths=PackedStringArray("character") instance=ExtResource("6_r18b2")]
+character = NodePath("../..")
+dash_distance = 1000.0
+dash_step = 0.1
+debug_visual = true

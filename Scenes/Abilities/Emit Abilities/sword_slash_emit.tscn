@@ -1,0 +1,97 @@
+[gd_scene load_steps=17 format=3 uid="uid://od3lf463dx1c"]
+
+[ext_resource type="Script" uid="uid://42qvy4m6xprb" path="res://Scripts/Ability System/EmitAbility.gd" id="1_ellgo"]
+[ext_resource type="PackedScene" uid="uid://67ivgv6bxove" path="res://Scenes/Spawnables/AreaDamage/sword_slash_area_damage.tscn" id="2_224we"]
+[ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_d1onx"]
+[ext_resource type="Texture2D" uid="uid://dsa3jttn1hoty" path="res://Placeholders/Sprites/WindSlashAbilityIcon.png" id="3_qlkjh"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="3_ry3wr"]
+[ext_resource type="Script" uid="uid://cfltv6h1swg76" path="res://Scripts/StatSystem/AbilityStatScaler.gd" id="4_m0it6"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="5_quxq8"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="6_kwjg4"]
+[ext_resource type="Script" uid="uid://b41oadkxkerfk" path="res://Scripts/Combat/CombatEffects/BonusValueChecks/DistanceCheck.gd" id="7_uehmt"]
+[ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="8_jbedx"]
+[ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="9_1s2pk"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="10_l6kdd"]
+[ext_resource type="Script" uid="uid://cj3muc43jf2gx" path="res://Scripts/Ability System/AbilityBehavior/StopOnCast.gd" id="13_hbelh"]
+[ext_resource type="Script" uid="uid://dsmtvuccs0v2m" path="res://Scripts/Ability System/AbilityBehavior/AllowCastWhileActive.gd" id="14_tdlmx"]
+
+[sub_resource type="Resource" id="Resource_nt1cn"]
+script = ExtResource("3_d1onx")
+stat_name = "current_mana"
+required_value = 15.0
+
+[sub_resource type="Curve" id="Curve_hagdi"]
+_limits = [0.0, 1.5, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
+point_count = 1
+metadata/_snap_enabled = true
+metadata/_snap_count = 30
+
+[node name="SwordSlashEmit" type="Node2D" node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("1_ellgo")
+emited_object = ExtResource("2_224we")
+required_stat = SubResource("Resource_nt1cn")
+cast_time = 0.25
+hit_listener = NodePath("HitListener")
+cooldown = 5.0
+ability_icon_texture = ExtResource("3_qlkjh")
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("5_quxq8")
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("6_kwjg4")
+damage_stat = NodePath("Damage")
+damage_type = 2
+
+[node name="Damage" type="Node" parent="HitListener/DamageEffect"]
+script = ExtResource("3_ry3wr")
+stat_name = "sword_slash_damage"
+stat_value = 35.0
+
+[node name="AbilityStatScaler" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("ability", "stat")]
+script = ExtResource("4_m0it6")
+ability = NodePath("../../../..")
+stat_to_scale = "attack_damage"
+stat = NodePath("..")
+scale_ratio = 0.15
+
+[node name="AbilityStatScaler2" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("ability", "stat")]
+script = ExtResource("4_m0it6")
+ability = NodePath("../../../..")
+stat_to_scale = "magic_damage"
+stat = NodePath("..")
+scale_ratio = 0.3
+
+[node name="DistanceCheck" type="Node" parent="HitListener/DamageEffect" node_paths=PackedStringArray("stat")]
+script = ExtResource("7_uehmt")
+stat = NodePath("../Damage")
+damage_curve = SubResource("Curve_hagdi")
+scaling_ratio = -0.5
+distance = 400.0
+
+[node name="Knockback" type="Node" parent="HitListener"]
+script = ExtResource("8_jbedx")
+force = 800.0
+
+[node name="OnHitEffect" type="Node" parent="HitListener"]
+script = ExtResource("9_1s2pk")
+on_hit_chance = 0.8
+
+[node name="Lifesteal" type="Node" parent="."]
+script = ExtResource("3_ry3wr")
+
+[node name="GetActorStatScaler" type="Node" parent="Lifesteal" node_paths=PackedStringArray("stat")]
+script = ExtResource("10_l6kdd")
+stat = NodePath("..")
+scale_with_stat_id = "lifesteal"
+scale_ratio = 0.5
+
+[node name="StopOnCast" type="Node" parent="."]
+script = ExtResource("13_hbelh")
+stop_time = 0.25
+stop_on = 1
+
+[node name="AllowCastWhileActive" type="Node" parent="."]
+script = ExtResource("14_tdlmx")
+metadata/_custom_type_script = "uid://dsmtvuccs0v2m"

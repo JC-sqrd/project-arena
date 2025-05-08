@@ -1,0 +1,82 @@
+[gd_scene load_steps=13 format=3 uid="uid://is31srwsdfbx"]
+
+[ext_resource type="Script" uid="uid://d1xavjy2kbus2" path="res://Scripts/Ability System/Spawnables/AreaEnterHit.gd" id="1_6hmef"]
+[ext_resource type="Script" uid="uid://b0sql1qoy8kyo" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/SpawnableTeleportBehavior.gd" id="2_3jt23"]
+[ext_resource type="Texture2D" uid="uid://dndh7hkp0udah" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/dirt_02.png" id="3_oavdx"]
+[ext_resource type="Texture2D" uid="uid://dc2gxyigpp2l1" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/muzzle_04.png" id="4_pf8t7"]
+[ext_resource type="Texture2D" uid="uid://d2v4eqepl2n5f" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/circle_01.png" id="5_xbnyb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t1e7f"]
+radius = 100.0
+
+[sub_resource type="Curve" id="Curve_b1bi8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.010989), -2.46561, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nd2hk"]
+curve = SubResource("Curve_b1bi8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q5pv3"]
+particle_flag_disable_z = true
+spread = 90.0
+initial_velocity_min = 400.0
+initial_velocity_max = 400.0
+radial_velocity_min = 80.0
+radial_velocity_max = 1000.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.25
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_nd2hk")
+
+[sub_resource type="Curve" id="Curve_s2gqo"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.343348, 0.560439), 4.51125, 4.51125, 0, 0, Vector2(0.523605, 1), 1.60027, 1.60027, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_iwcel"]
+curve = SubResource("Curve_s2gqo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4fvrs"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.6
+scale_max = 0.6
+scale_curve = SubResource("CurveTexture_iwcel")
+
+[node name="GroundBurstsSpawnable" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_6hmef")
+windup_time = 0.05
+lifetime = 0.45
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t1e7f")
+
+[node name="SpawnableTeleportBehavior" type="Node" parent="." node_paths=PackedStringArray("spawnable")]
+script = ExtResource("2_3jt23")
+teleport_step = 3
+teleport_delay = 0.2
+teleport_distance = 130.0
+teleport_on_ready = true
+spawnable = NodePath("..")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture = ExtResource("3_oavdx")
+lifetime = 0.2
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_q5pv3")
+
+[node name="Muzzle04" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(95, 0)
+rotation = 1.57174
+scale = Vector2(0.444686, 0.444686)
+texture = ExtResource("4_pf8t7")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+amount = 1
+texture = ExtResource("5_xbnyb")
+lifetime = 0.2
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_4fvrs")

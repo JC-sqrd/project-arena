@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://bkek13p5hgc0u"]
+
+[ext_resource type="Script" uid="uid://csk81q2x4j06s" path="res://Scripts/Combat/ProjectileWeapons/Projectile/Projectile.gd" id="1_xdqu5"]
+[ext_resource type="Texture2D" uid="uid://4c36fgu2ugmo" path="res://Sprites/Weapons/Magic Gun/Gun Projectile.png" id="2_hmu0i"]
+[ext_resource type="Script" uid="uid://bg43jxy7gyts0" path="res://Scripts/Ability System/Spawnables/SpawnableEnterFilter/SpawnableEnterFilter.gd" id="2_u5dho"]
+[ext_resource type="Script" uid="uid://y1c1hiwxwmkf" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/SpawnableHitCounterBehavior.gd" id="4_udod4"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_714ik"]
+
+[sub_resource type="Curve" id="Curve_eh0um"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.497738, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.247191), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_udod4"]
+script = ExtResource("2_u5dho")
+metadata/_custom_type_script = "uid://bg43jxy7gyts0"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xdqu5"]
+radius = 20.0
+
+[node name="MagicGunProjectile" type="Area2D"]
+script = ExtResource("1_xdqu5")
+speed_curve = SubResource("Curve_eh0um")
+filter = SubResource("Resource_udod4")
+metadata/_custom_type_script = "uid://csk81q2x4j06s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xdqu5")
+
+[node name="GunProjectile" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -1)
+scale = Vector2(3, 3)
+texture = ExtResource("2_hmu0i")
+
+[node name="SpawnableHitCounterBehavior" type="Node" parent="." node_paths=PackedStringArray("hit_times", "spawnable")]
+script = ExtResource("4_udod4")
+hit_times = NodePath("Stat")
+spawnable = NodePath("..")
+metadata/_custom_type_script = "uid://y1c1hiwxwmkf"
+
+[node name="Stat" type="Node" parent="SpawnableHitCounterBehavior"]
+script = ExtResource("5_714ik")
+stat_value = 1.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"

@@ -1,0 +1,105 @@
+[gd_scene load_steps=12 format=3 uid="uid://dq2ilob20a4t5"]
+
+[ext_resource type="Script" uid="uid://dnnl681s4yejk" path="res://Scripts/Combat/ProjectileWeapons/Bow.gd" id="1_dscfw"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="2_7hck8"]
+[ext_resource type="PackedScene" uid="uid://dfh3qc3n36tdr" path="res://Scenes/Weapons/Fire Grimoire/grimoire_projectile.tscn" id="2_esbd8"]
+[ext_resource type="Texture2D" uid="uid://brnjjbr66u1vv" path="res://Placeholders/Icons/Icon.4_60.png" id="3_1500e"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="3_esbd8"]
+[ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="4_1500e"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="4_cwckh"]
+[ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="5_1500e"]
+[ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="5_ibmun"]
+[ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="6_ibmun"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="8_p5e7d"]
+
+[node name="WeaponBow" type="Node2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "hit_listener")]
+script = ExtResource("1_dscfw")
+projectile = ExtResource("2_esbd8")
+speed = 880.0
+max_distance = 1000.0
+attack_damage = NodePath("Damage")
+attack_speed_stat = NodePath("AttackSpeed")
+attack_windup_time = 0.1
+hit_listener = NodePath("HitListener")
+equipment_name = "Bow"
+equipment_icon = ExtResource("3_1500e")
+metadata/_custom_type_script = "uid://d3fin4411ww46"
+
+[node name="Damage" type="Node" parent="."]
+script = ExtResource("4_cwckh")
+stat_value = 10.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatMult" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("4_1500e")
+stat = NodePath("..")
+scale_with_stat_id = "attack_damage_mult"
+metadata/_custom_type_script = "uid://c4n03mihb0axg"
+
+[node name="GetActorStatAdder" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("5_ibmun")
+stat = NodePath("..")
+scale_with_stat_id = "attack_damage"
+metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+
+[node name="AttackSpeed" type="Node" parent="."]
+script = ExtResource("4_cwckh")
+stat_value = 1.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatMult" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]
+script = ExtResource("4_1500e")
+stat = NodePath("..")
+scale_with_stat_id = "attack_speed_mult"
+metadata/_custom_type_script = "uid://c4n03mihb0axg"
+
+[node name="GetActorStatAdder" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]
+script = ExtResource("5_ibmun")
+stat = NodePath("..")
+scale_with_stat_id = "attack_speed"
+metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("2_7hck8")
+metadata/_custom_type_script = "uid://dm3uuggj1g47y"
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat", "penetration_stat", "crit_chance_stat")]
+script = ExtResource("3_esbd8")
+damage_stat = NodePath("../../Damage")
+penetration_stat = NodePath("../../ActorArmorPen")
+crit_chance_stat = NodePath("../../ActorCrit")
+metadata/_custom_type_script = "uid://c8sj8b1npavnd"
+
+[node name="OnHitEffect" type="Node" parent="HitListener"]
+script = ExtResource("5_1500e")
+on_hit_chance = 0.3
+metadata/_custom_type_script = "uid://ckgh7mgba1eo4"
+
+[node name="Knockback" type="Node" parent="HitListener"]
+script = ExtResource("6_ibmun")
+force = 75.0
+metadata/_custom_type_script = "uid://dmjo067f80ntw"
+
+[node name="ActorArmorPen" type="Node" parent="."]
+script = ExtResource("4_cwckh")
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatScaler" type="Node" parent="ActorArmorPen" node_paths=PackedStringArray("stat")]
+script = ExtResource("8_p5e7d")
+stat = NodePath("..")
+scale_with_stat_id = "armor_pen"
+metadata/_custom_type_script = "uid://2vlwp08ancca"
+
+[node name="ActorCrit" type="Node" parent="."]
+script = ExtResource("4_cwckh")
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatScaler" type="Node" parent="ActorCrit" node_paths=PackedStringArray("stat")]
+script = ExtResource("8_p5e7d")
+stat = NodePath("..")
+scale_with_stat_id = "crit_chance"
+metadata/_custom_type_script = "uid://2vlwp08ancca"

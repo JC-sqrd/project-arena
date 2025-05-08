@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://bba116t3m1ua7"]
+
+[ext_resource type="Script" uid="uid://w55biq6u1q0c" path="res://Scripts/UI/EquipmentInventory/EquipmentInventoryManager.gd" id="1_ondaa"]
+[ext_resource type="PackedScene" uid="uid://cjyf0inyj3qd6" path="res://Scenes/UI/EquipmentInventory/equipment_equip_slot.tscn" id="2_ondaa"]
+
+[node name="EquipmentInventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ondaa")
+
+[node name="EquipmentInventory" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="EquipmentInventory"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="InventoryGrid" type="GridContainer" parent="EquipmentInventory/MarginContainer"]
+layout_mode = 2
+columns = 10
+
+[node name="EquippedSlots" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -168.0
+offset_right = -218.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="EquippedSlots"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EquippedSlots/MarginContainer"]
+layout_mode = 2
+
+[node name="WeaponEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
+layout_mode = 2
+
+[node name="HeadgearEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
+layout_mode = 2
+equip_type = 1
+
+[node name="TorsoEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
+layout_mode = 2
+equip_type = 2
+
+[node name="ArmgearEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
+layout_mode = 2
+equip_type = 1
+
+[node name="ShoesEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
+layout_mode = 2
+equip_type = 4
+
+[node name="OffhandEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
+layout_mode = 2

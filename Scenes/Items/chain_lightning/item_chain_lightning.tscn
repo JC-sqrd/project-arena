@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://7evpmhu4mrpd"]
+
+[ext_resource type="Script" uid="uid://c66fokv40244b" path="res://Scenes/Items/chain_lightning/Scripts/Item/ChainLightning.gd" id="1_scjyd"]
+[ext_resource type="PackedScene" uid="uid://ck0wk5jnbtrqk" path="res://Scenes/Items/chain_lightning/Spawnable/lightning_spawnable.tscn" id="2_lp1sq"]
+[ext_resource type="Texture2D" uid="uid://bw4ccmwvvoxs2" path="res://Placeholders/Icons/Icon.5_07.png" id="3_4bi4e"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="3_wnp5t"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="4_ssynv"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_bjs8l"]
+[ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="7_aqf64"]
+[ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="8_mrsbo"]
+
+[node name="ItemChainLightning" type="Node" node_paths=PackedStringArray("chain_count", "hit_listener")]
+script = ExtResource("1_scjyd")
+trigger_chance = 0.2
+chain_count = NodePath("ChainCount")
+lightning_scene = ExtResource("2_lp1sq")
+hit_listener = NodePath("HitListener")
+item_name = "Bjolnir"
+item_icon = ExtResource("3_4bi4e")
+item_id = 5
+string_id = "chain_lightning"
+item_detail = "On Hit: 20% chance to hit target with lightning that can bounce to nearby enemies 2(+1 each stack) times, dealing 10 + 20% magic damage."
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("3_wnp5t")
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("4_ssynv")
+damage_stat = NodePath("Damage")
+damage_type = 1
+
+[node name="Damage" type="Node" parent="HitListener/DamageEffect"]
+script = ExtResource("5_bjs8l")
+stat_value = 5.0
+
+[node name="GetActorStatAdder" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("7_aqf64")
+stat = NodePath("..")
+scale_with_stat_id = "attack_damage"
+metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+
+[node name="GetActorStatMult" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("8_mrsbo")
+stat = NodePath("..")
+scale_with_stat_id = "attack_damage_mult"
+metadata/_custom_type_script = "uid://c4n03mihb0axg"
+
+[node name="ChainCount" type="Node" parent="."]
+script = ExtResource("5_bjs8l")
+stat_value = 2.0

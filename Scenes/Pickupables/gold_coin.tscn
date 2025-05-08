@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqnisx62mit3n"]
+
+[ext_resource type="Script" uid="uid://c1xgamudv0uev" path="res://Scripts/Pickupable/GoldCoin.gd" id="1_yra64"]
+[ext_resource type="Texture2D" uid="uid://cjcm2o6qlcxp1" path="res://Sprites/GoldCoin/Gold Coin.png" id="2_1yicd"]
+[ext_resource type="PackedScene" uid="uid://b4o2xvjop33yq" path="res://Scenes/LabelPopups/gold_popup.tscn" id="2_6byxe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w1ffm"]
+radius = 15.0
+
+[node name="GoldCoin" type="Node2D"]
+script = ExtResource("1_yra64")
+gold_add = 10.0
+gold_number_scene = ExtResource("2_6byxe")
+
+[node name="GoldCoin" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_1yicd")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_w1ffm")

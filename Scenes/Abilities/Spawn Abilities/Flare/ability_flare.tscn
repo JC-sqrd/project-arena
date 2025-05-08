@@ -1,0 +1,50 @@
+[gd_scene load_steps=11 format=3 uid="uid://cudqoqqqk8thc"]
+
+[ext_resource type="Script" uid="uid://df7s4oatxu4hr" path="res://Scripts/Ability System/SpawnAbility.gd" id="1_fdit1"]
+[ext_resource type="PackedScene" uid="uid://d4lbmkevurfyl" path="res://Scenes/Abilities/Spawn Abilities/Flare/Spawnable/spawnable_flare.tscn" id="2_bowcm"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="2_wkgv1"]
+[ext_resource type="Texture2D" uid="uid://djenbj0smykns" path="res://Ability Icons/Flare/FlareIcon.png" id="3_2lwwa"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="3_8tl8g"]
+[ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_smya0"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="4_cihd3"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="6_usboo"]
+[ext_resource type="Script" uid="uid://wxlytnemh2wh" path="res://Scripts/Ability System/AbilityBehavior/SlowOnCast.gd" id="11_sivmk"]
+
+[sub_resource type="Resource" id="Resource_d6piy"]
+script = ExtResource("3_smya0")
+stat_name = "current_mana"
+required_value = 15.0
+
+[node name="AbilityFlare" type="Node2D" node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("1_fdit1")
+max_range = 20.0
+spawn = ExtResource("2_bowcm")
+required_stat = SubResource("Resource_d6piy")
+cast_time = 0.15
+hit_listener = NodePath("HitListener")
+cooldown = 4.0
+ability_icon_texture = ExtResource("3_2lwwa")
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("2_wkgv1")
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("3_8tl8g")
+damage_stat = NodePath("Damage")
+damage_type = 1
+
+[node name="Damage" type="Node" parent="HitListener/DamageEffect"]
+script = ExtResource("4_cihd3")
+stat_value = 5.0
+
+[node name="GetActorStatScaler" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_usboo")
+stat = NodePath("..")
+scale_with_stat_id = "magic"
+scale_ratio = 0.2
+
+[node name="SlowOnCast" type="Node" parent="."]
+script = ExtResource("11_sivmk")
+slow_time = 0.14
+slow_multiplier = 0.6
+metadata/_custom_type_script = "uid://wxlytnemh2wh"

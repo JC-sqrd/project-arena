@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctnpun8q0arbq"]
+
+[ext_resource type="Script" uid="uid://c2nhbp4pxbtij" path="res://Scripts/Ability System/Spawnables/AreaHit.gd" id="1_qoulq"]
+[ext_resource type="Texture2D" uid="uid://c35vvralpy2oe" path="res://Placeholders/Sprites/Skill Circle Visual.png" id="2_qb3l4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w3ror"]
+radius = 150.0
+
+[node name="SpawnableFlamePillar" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_qoulq")
+windup_time = 0.5
+lifetime = 0.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_w3ror")
+
+[node name="SkillCircleVisual" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("2_qb3l4")

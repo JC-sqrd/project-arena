@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cn58gfvdnfpqs"
+path="res://.godot/imported/You're Gonna Need a Bigger Ukulele.mp3-6b4121a62fa6a0944da61ab9ef5b12b5.mp3str"
+
+[deps]
+
+source_file="res://Placeholders/Audio/You're Gonna Need a Bigger Ukulele.mp3"
+dest_files=["res://.godot/imported/You're Gonna Need a Bigger Ukulele.mp3-6b4121a62fa6a0944da61ab9ef5b12b5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

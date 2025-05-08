@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://br6ggnxalsnyd"]
+
+[ext_resource type="Script" uid="uid://d4gvq3ikb2jvw" path="res://Scripts/UI/StatUpgradeUI.gd" id="1_jmhhl"]
+[ext_resource type="Texture2D" uid="uid://bckho4r5trpmx" path="res://Placeholders/Icons/Icon.3_10.png" id="2_rcw1b"]
+[ext_resource type="Script" uid="uid://1djbwfvpvpne" path="res://Scripts/UI/StatUpgradeControl.gd" id="3_ft84y"]
+[ext_resource type="Texture2D" uid="uid://bb4cu6lgswreo" path="res://Placeholders/Icons/Icon.6_83.png" id="4_rcvn5"]
+[ext_resource type="Texture2D" uid="uid://c1qdywl86c0v3" path="res://Placeholders/Icons/Icon.2_75.png" id="5_larqa"]
+
+[node name="StatUpgradeContainer" type="PanelContainer" node_paths=PackedStringArray("stat_upgrades")]
+custom_minimum_size = Vector2(50, 50)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_jmhhl")
+stat_upgrades = [NodePath("StatUpgradeBar/HBoxContainer/TextureRect"), NodePath("StatUpgradeBar/HBoxContainer/TextureRect2"), NodePath("StatUpgradeBar/HBoxContainer/TextureRect3")]
+
+[node name="StatUpgradeBar" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatUpgradeBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="StatUpgradeBar/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("2_rcw1b")
+expand_mode = 3
+script = ExtResource("3_ft84y")
+stat_to_upgrade = "strength"
+
+[node name="TextureRect2" type="TextureRect" parent="StatUpgradeBar/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("4_rcvn5")
+expand_mode = 3
+script = ExtResource("3_ft84y")
+stat_to_upgrade = "vitality"
+
+[node name="TextureRect3" type="TextureRect" parent="StatUpgradeBar/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("5_larqa")
+expand_mode = 3
+script = ExtResource("3_ft84y")
+stat_to_upgrade = "magic"

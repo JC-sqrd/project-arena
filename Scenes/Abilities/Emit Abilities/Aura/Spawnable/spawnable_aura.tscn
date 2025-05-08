@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://btg1w1mh22vlt"]
+
+[ext_resource type="Script" uid="uid://blbwnmv676w3j" path="res://Scripts/Ability System/Spawnables/AreaHitOverTime.gd" id="1_s57me"]
+[ext_resource type="Texture2D" uid="uid://x0m4i2gl5oyt" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/scorch_01.png" id="2_2aonq"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="3_xhpau"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vmfiw"]
+radius = 250.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5d5c0"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(2, 2, 1)
+emission_shape = 2
+emission_sphere_radius = 128.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.1
+
+[node name="SpawnableAura" type="Area2D" node_paths=PackedStringArray("hit_speed")]
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_s57me")
+hit_speed = NodePath("HitSpeed")
+windup_time = 0.5
+lifetime = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vmfiw")
+debug_color = Color(0.671686, 0.508404, 0, 0.42)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_5d5c0")
+texture = ExtResource("2_2aonq")
+
+[node name="HitSpeed" type="Node" parent="."]
+script = ExtResource("3_xhpau")
+stat_value = 2.0

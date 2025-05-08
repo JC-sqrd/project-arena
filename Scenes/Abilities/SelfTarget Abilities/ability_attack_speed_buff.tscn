@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://clkcie6ubo5gr"]
+
+[ext_resource type="Script" uid="uid://ib8i24wttd56" path="res://Scripts/Ability System/SelfTargetAbility.gd" id="1_ckod6"]
+[ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="2_q77ge"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="3_l8mj8"]
+[ext_resource type="Script" uid="uid://88st3pdi1hky" path="res://Scripts/Combat/CombatEffects/ApplyStatusEffect.gd" id="4_l8mj8"]
+[ext_resource type="PackedScene" uid="uid://bp6fxq8xo0l3m" path="res://Scenes/StatusEffects/AttackSpeedBuff.tscn" id="5_sigyp"]
+
+[sub_resource type="Resource" id="Resource_sigyp"]
+script = ExtResource("2_q77ge")
+stat_name = "current_mana"
+required_value = 10.0
+metadata/_custom_type_script = "uid://tuvjl40jf0pm"
+
+[node name="AbilityAttackSpeedBuff" type="Node2D" node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("1_ckod6")
+required_stat = SubResource("Resource_sigyp")
+hit_listener = NodePath("HitListener")
+metadata/_custom_type_script = "uid://ib8i24wttd56"
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("3_l8mj8")
+metadata/_custom_type_script = "uid://dm3uuggj1g47y"
+
+[node name="ApplyStatusEffect" type="Node" parent="HitListener"]
+script = ExtResource("4_l8mj8")
+status_effect_scene = ExtResource("5_sigyp")
+metadata/_custom_type_script = "uid://88st3pdi1hky"

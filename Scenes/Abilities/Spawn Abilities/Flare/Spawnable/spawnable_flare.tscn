@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://d4lbmkevurfyl"]
+
+[ext_resource type="Script" uid="uid://d1xavjy2kbus2" path="res://Scripts/Ability System/Spawnables/AreaEnterHit.gd" id="1_pxbam"]
+[ext_resource type="Texture2D" uid="uid://bfniy65wdcaje" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/circle_03.png" id="3_i42vc"]
+[ext_resource type="Script" uid="uid://c6hdo0rjgde2q" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/MoveSpawnable.gd" id="4_esk7p"]
+[ext_resource type="Script" uid="uid://y1c1hiwxwmkf" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/SpawnableHitCounterBehavior.gd" id="4_tfciv"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_uf86t"]
+[ext_resource type="Script" uid="uid://cxb0fnogq5cnc" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/HitOverTime.gd" id="6_ry8f4"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="7_yt33b"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="8_fxc2c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3mtg6"]
+radius = 125.0
+
+[sub_resource type="Curve" id="Curve_un7cu"]
+_limits = [0.0, 1.5, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 6.56112, 0, 0, Vector2(0.107296, 1.5), 0.0, 0.0, 0, 0, Vector2(0.141631, 0.516483), -4.95019, -4.95019, 0, 0, Vector2(0.27897, 0.285714), -1.68258, 0.0, 0, 0]
+point_count = 4
+
+[node name="SpawnableFlare" type="Area2D"]
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_pxbam")
+windup_time = 0.05
+lifetime = 6.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3mtg6")
+debug_color = Color(0.811765, 0.529412, 0.4, 0.419608)
+
+[node name="Circle03" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_i42vc")
+
+[node name="SpawnableMoveBehavior" type="Node" parent="."]
+script = ExtResource("4_esk7p")
+move_speed = 250.0
+curve = SubResource("Curve_un7cu")
+
+[node name="SpawnableHitCounterBehavior" type="Node" parent="." node_paths=PackedStringArray("hit_times", "spawnable")]
+script = ExtResource("4_tfciv")
+hit_times = NodePath("HitCount")
+spawnable = NodePath("..")
+
+[node name="HitCount" type="Node" parent="SpawnableHitCounterBehavior"]
+script = ExtResource("5_uf86t")
+stat_value = 50.0
+
+[node name="HitOverTime" type="Node" parent="." node_paths=PackedStringArray("hit_speed", "hit_listener", "spawnable")]
+script = ExtResource("6_ry8f4")
+hit_speed = NodePath("HitSpeed")
+hit_listener = NodePath("HitListener")
+spawnable = NodePath("..")
+
+[node name="HitSpeed" type="Node" parent="HitOverTime"]
+script = ExtResource("5_uf86t")
+stat_value = 3.0
+
+[node name="HitListener" type="Node" parent="HitOverTime"]
+script = ExtResource("7_yt33b")
+
+[node name="DamageEffect" type="Node" parent="HitOverTime/HitListener" node_paths=PackedStringArray("damage_stat", "penetration_stat")]
+script = ExtResource("8_fxc2c")
+damage_stat = NodePath("Damage")
+penetration_stat = NodePath("MagicPen")
+damage_type = 1
+metadata/_custom_type_script = "uid://c8sj8b1npavnd"
+
+[node name="Damage" type="Node" parent="HitOverTime/HitListener/DamageEffect"]
+script = ExtResource("5_uf86t")
+stat_value = 1.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="MagicPen" type="Node" parent="HitOverTime/HitListener/DamageEffect"]
+script = ExtResource("5_uf86t")
+stat_value = 1.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"

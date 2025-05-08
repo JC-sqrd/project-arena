@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://da5bio18egfg6"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/CombatEffects/StatusEffects/DamageDelayStatusEffect.gd" id="1_l1ftv"]
+[ext_resource type="Script" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="2_r7ayv"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/Stat.gd" id="4_7qxum"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/DuckStatScaler.gd" id="4_lblk8"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="4_tg50c"]
+
+[node name="DamageDelayStatusEffect" type="Node" node_paths=PackedStringArray("damage_effect", "stack_stat")]
+script = ExtResource("1_l1ftv")
+damage_effect = NodePath("DamageEffect")
+stack_stat = NodePath("StackStat")
+duration = 5.0
+stackable = true
+id = "damage_delay"
+
+[node name="DamageEffect" type="Node" parent="." node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("2_r7ayv")
+damage_stat = NodePath("Damage")
+damage_type = 1
+
+[node name="Damage" type="Node" parent="DamageEffect"]
+script = ExtResource("4_7qxum")
+stat_value = 50.0
+
+[node name="StatScaler" type="Node" parent="DamageEffect/Damage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("4_tg50c")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../../StackStat")
+scale_ratio = 1.0
+
+[node name="StackStat" type="Node" parent="."]
+script = ExtResource("4_7qxum")
+stat_value = 1.0
+
+[node name="DuckStatScaler" type="Node" parent="StackStat" node_paths=PackedStringArray("stat")]
+script = ExtResource("4_lblk8")
+stat = NodePath("..")
+scale_with_stat_id = "magic"
+scale_ratio = 1.0

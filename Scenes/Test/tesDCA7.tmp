@@ -1,0 +1,225 @@
+[gd_scene load_steps=25 format=3 uid="uid://bwbyc8vywa6vd"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerCharacter.gd" id="1_emetf"]
+[ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="2_1k063"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/StatManager.gd" id="3_3j7ot"]
+[ext_resource type="PackedScene" uid="uid://dfopknahmh8ed" path="res://Scenes/Test/Components/movement_controller_component.tscn" id="3_vhpeq"]
+[ext_resource type="PackedScene" uid="uid://c0i8ypdefjyja" path="res://Scenes/Test/Components/movement_input_component.tscn" id="4_fjo2p"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/Stats/AttackSpeedStat.gd" id="4_jr810"]
+[ext_resource type="PackedScene" uid="uid://cuu2y6s4urf8o" path="res://Scenes/Test/Components/speed_stat_component.tscn" id="4_tj8qx"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/Stat.gd" id="5_j5r3u"]
+[ext_resource type="PackedScene" uid="uid://ixbtc2tcs32u" path="res://Scenes/Test/Components/dash_ability_component.tscn" id="6_r18b2"]
+[ext_resource type="PackedScene" uid="uid://dk87ltl8o4wft" path="res://Scenes/Test/Components/ability_container_component.tscn" id="6_tx7qf"]
+[ext_resource type="Script" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="7_84ide"]
+[ext_resource type="PackedScene" uid="uid://de6joq2hs2b4l" path="res://Scenes/Test/Components/attack_container_component.tscn" id="8_00ai3"]
+[ext_resource type="PackedScene" uid="uid://iljwlfv37rg0" path="res://Scenes/Test/Components/melee_attack_component.tscn" id="9_kyw8k"]
+[ext_resource type="Script" path="res://Scripts/Combat/AttackHitListener.gd" id="12_mt6ew"]
+[ext_resource type="Script" path="res://Scenes/Test/PickupArea.gd" id="13_1bnos"]
+[ext_resource type="Script" path="res://Scripts/Combat/DamageEffect.gd" id="13_3xl3f"]
+[ext_resource type="Script" path="res://Scripts/Combat/KnockbackEffect.gd" id="14_2xjn1"]
+[ext_resource type="Script" path="res://Scripts/Ability System/AOEAbility.gd" id="14_ohtd7"]
+[ext_resource type="Script" path="res://Scripts/Ability System/AbilityBranch.gd" id="19_essi4"]
+[ext_resource type="Script" path="res://Scripts/Ability System/AbilityTree.gd" id="19_vuikq"]
+[ext_resource type="Script" path="res://Scenes/Test/Aura.gd" id="21_ynvlo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m63ty"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4yy27"]
+radius = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b25gd"]
+radius = 200.0
+
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("stat_manager")]
+motion_mode = 1
+platform_floor_layers = 4294901760
+script = ExtResource("1_emetf")
+stat_manager = NodePath("Stats")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_1k063")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.96, 2.96)
+shape = SubResource("CircleShape2D_m63ty")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.8, 0.8)
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("3_3j7ot")
+
+[node name="MoveSpeed" parent="Stats" instance=ExtResource("4_tj8qx")]
+stat_name = "move_speed"
+stat_value = 300.0
+
+[node name="AttackSpeed" type="Node" parent="Stats"]
+script = ExtResource("4_jr810")
+stat_name = "attack_speed"
+stat_value = 1.0
+
+[node name="AttackDamage" type="Node" parent="Stats"]
+script = ExtResource("5_j5r3u")
+stat_name = "attack_damage"
+stat_value = 100.0
+
+[node name="StrengthScaler" type="Node" parent="Stats/AttackDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Strength")
+scale_ratio = 0.75
+
+[node name="AgilityScaler" type="Node" parent="Stats/AttackDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Agility")
+scale_ratio = 0.25
+
+[node name="MagicScaler" type="Node" parent="Stats/AttackDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Magic")
+scale_ratio = 0.1
+
+[node name="MagicDamage" type="Node" parent="Stats"]
+script = ExtResource("5_j5r3u")
+stat_name = "magic_damage"
+stat_value = 50.0
+
+[node name="MagicScaler" type="Node" parent="Stats/MagicDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Magic")
+scale_ratio = 0.75
+
+[node name="AgilityScaler" type="Node" parent="Stats/MagicDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Agility")
+scale_ratio = 0.25
+
+[node name="StrengthScaler" type="Node" parent="Stats/MagicDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("7_84ide")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Strength")
+scale_ratio = 0.1
+
+[node name="Strength" type="Node" parent="Stats"]
+script = ExtResource("5_j5r3u")
+stat_name = "strength"
+stat_value = 30.0
+
+[node name="Agility" type="Node" parent="Stats"]
+script = ExtResource("5_j5r3u")
+stat_name = "agility"
+stat_value = 15.0
+
+[node name="Magic" type="Node" parent="Stats"]
+script = ExtResource("5_j5r3u")
+stat_name = "magic"
+stat_value = 50.0
+
+[node name="MovementSystem" type="Node" parent="."]
+
+[node name="MovementController" parent="MovementSystem" node_paths=PackedStringArray("character", "movement_input", "speed") instance=ExtResource("3_vhpeq")]
+character = NodePath("../..")
+movement_input = NodePath("../MovementInput")
+speed = NodePath("../../Stats/MoveSpeed")
+
+[node name="MovementInput" parent="MovementSystem" instance=ExtResource("4_fjo2p")]
+
+[node name="AttackContainer" parent="." node_paths=PackedStringArray("player", "attack", "attack_speed", "attack_damage") instance=ExtResource("8_00ai3")]
+player = NodePath("..")
+attack = NodePath("MeleeAttack")
+attack_speed = NodePath("../Stats/AttackSpeed")
+attack_damage = NodePath("../Stats/AttackDamage")
+
+[node name="MeleeAttack" parent="AttackContainer" instance=ExtResource("9_kyw8k")]
+attack_windup_time = 0.1
+offset = 45.0
+hitbox_size = Vector2(100, 200)
+piercing = true
+debug_visual = true
+
+[node name="AttackHitListener" type="Node" parent="AttackContainer/MeleeAttack" node_paths=PackedStringArray("attack")]
+script = ExtResource("12_mt6ew")
+attack = NodePath("..")
+
+[node name="ApplyDamage" type="Node" parent="AttackContainer/MeleeAttack/AttackHitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("13_3xl3f")
+damage_stat = NodePath("../../../../Stats/AttackDamage")
+
+[node name="Knockback" type="Node" parent="AttackContainer/MeleeAttack/AttackHitListener"]
+script = ExtResource("14_2xjn1")
+
+[node name="AbilityContainer" parent="." node_paths=PackedStringArray("caster", "ability") instance=ExtResource("6_tx7qf")]
+ability_action_trigger = "utility_ability"
+caster = NodePath("..")
+ability = NodePath("DashAbility")
+
+[node name="DashAbility" parent="AbilityContainer" instance=ExtResource("6_r18b2")]
+dash_speed = 2000.0
+debug_visual = true
+
+[node name="AbilityContainer2" parent="." node_paths=PackedStringArray("caster", "ability") instance=ExtResource("6_tx7qf")]
+ability_action_trigger = "primary_ability"
+caster = NodePath("..")
+ability = NodePath("AOEAbility")
+
+[node name="AOEAbility" type="Node" parent="AbilityContainer2" node_paths=PackedStringArray("magic_damage")]
+script = ExtResource("14_ohtd7")
+area_size = 100.0
+max_range = 300.0
+magic_damage = NodePath("../../Stats/MagicDamage")
+
+[node name="Duration" type="Timer" parent="AbilityContainer2/AOEAbility"]
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="AbilityContainer2/AOEAbility"]
+target_position = Vector2(0, 0)
+
+[node name="AbilityContainer3" parent="." node_paths=PackedStringArray("caster", "ability") instance=ExtResource("6_tx7qf")]
+ability_action_trigger = "secondary_ability"
+caster = NodePath("..")
+ability = NodePath("AbilityTree")
+ability_cooldown = 3.0
+
+[node name="AbilityTree" type="Node" parent="AbilityContainer3" node_paths=PackedStringArray("head_branch")]
+script = ExtResource("19_vuikq")
+head_branch = NodePath("HeadBranch")
+
+[node name="HeadBranch" type="Node" parent="AbilityContainer3/AbilityTree" node_paths=PackedStringArray("ability", "next_ability")]
+script = ExtResource("19_essi4")
+ability = NodePath("DashAbility")
+next_ability = NodePath("SecondDashAbility")
+invoke_on = 3
+
+[node name="DashAbility" parent="AbilityContainer3/AbilityTree/HeadBranch" instance=ExtResource("6_r18b2")]
+dash_distance = 450.0
+debug_visual = true
+
+[node name="SecondDashAbility" parent="AbilityContainer3/AbilityTree/HeadBranch" instance=ExtResource("6_r18b2")]
+debug_visual = true
+
+[node name="PickupArea" type="Area2D" parent="."]
+monitoring = false
+script = ExtResource("13_1bnos")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_4yy27")
+debug_color = Color(0.442251, 0.580471, 0.415384, 0.42)
+
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("damage")]
+collision_mask = 2
+monitorable = false
+script = ExtResource("21_ynvlo")
+damage = NodePath("../Stats/MagicDamage")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_b25gd")
+debug_color = Color(0.682353, 0.152941, 0.745098, 0.0980392)
+
+[node name="Timer" type="Timer" parent="Area2D"]
+wait_time = 0.8

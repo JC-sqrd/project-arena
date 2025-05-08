@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://tf1p0u6lp568"]
+
+[ext_resource type="Script" uid="uid://f5gsr2dnxbae" path="res://Scripts/Ability System/Spawnables/AOESpawnable.gd" id="1_osig6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dj4ji"]
+
+[node name="AOE" type="Area2D"]
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_osig6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dj4ji")
+debug_color = Color(0.769354, 0.155236, 0.588379, 0.42)

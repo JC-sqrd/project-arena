@@ -1,0 +1,71 @@
+[gd_scene load_steps=13 format=3 uid="uid://dndkgxqahawqw"]
+
+[ext_resource type="Script" uid="uid://c2nhbp4pxbtij" path="res://Scripts/Ability System/Spawnables/AreaHit.gd" id="1_jn52q"]
+[ext_resource type="Texture2D" uid="uid://cb4ue5r31sk4t" path="res://Resources/Curves/spawnable_area_damage_particle_curve.tres" id="2_myqi1"]
+[ext_resource type="Script" uid="uid://bg43jxy7gyts0" path="res://Scripts/Ability System/Spawnables/SpawnableEnterFilter/SpawnableEnterFilter.gd" id="2_yhc0x"]
+[ext_resource type="Texture2D" uid="uid://bfniy65wdcaje" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/circle_03.png" id="4_3rr1u"]
+
+[sub_resource type="Resource" id="Resource_h0tsx"]
+script = ExtResource("2_yhc0x")
+metadata/_custom_type_script = "uid://bg43jxy7gyts0"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2r4yq"]
+radius = 300.0
+
+[sub_resource type="Curve" id="Curve_jd858"]
+_limits = [0.0, 180.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.328889, 0), 0.0, 0.0, 0, 0, Vector2(0.431111, 92.967), 400.55, 400.55, 0, 0, Vector2(0.635556, 90.989), 606.893, 606.893, 0, 0, Vector2(0.76, 180), 0.0, 0.0, 0, 0, Vector2(1, 180), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_3wktm"]
+curve = SubResource("Curve_jd858")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3elnv"]
+particle_flag_disable_z = true
+angle_max = 360.0
+angle_curve = SubResource("CurveTexture_3wktm")
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+scale_curve = ExtResource("2_myqi1")
+
+[sub_resource type="Gradient" id="Gradient_jn8eh"]
+offsets = PackedFloat32Array(0, 0.497462, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_s712j"]
+gradient = SubResource("Gradient_jn8eh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2mh1h"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_curve = ExtResource("2_myqi1")
+color_initial_ramp = SubResource("GradientTexture1D_s712j")
+
+[node name="AreaDamage" type="Area2D"]
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_jn52q")
+lifetime = 0.05
+filter = SubResource("Resource_h0tsx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2r4yq")
+debug_color = Color(0.805444, 0.0373096, 0.319314, 0.42)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+scale = Vector2(0.8, 0.8)
+amount = 1
+texture = ExtResource("4_3rr1u")
+preprocess = 1.0
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_3elnv")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="GPUParticles2D2"]
+amount = 1
+texture = ExtResource("4_3rr1u")
+preprocess = 1.0
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_2mh1h")

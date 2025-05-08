@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cegtgo0ykur7n"]
+
+[ext_resource type="Script" uid="uid://dqsm34bpqqb52" path="res://Scripts/Item/Items/Item.gd" id="1_yfrt0"]
+[ext_resource type="Texture2D" uid="uid://bp7nbmefl7jqo" path="res://Placeholders/Icons/Icon.1_20.png" id="2_a55ql"]
+[ext_resource type="Script" uid="uid://lilccxxmc35r" path="res://Scripts/Item/ItemEffects/GainStatOnKillIPE.gd" id="2_gyvdu"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="3_61ebx"]
+[ext_resource type="Script" uid="uid://d35h5o2rfotvj" path="res://Scripts/StatSystem/Stats/StatMultiplier.gd" id="3_pvelm"]
+[ext_resource type="Script" uid="uid://tw1mwca5s05v" path="res://Scripts/StatSystem/ItemStackStatAdder.gd" id="4_3icdh"]
+
+[node name="ItemManaOnKill" type="Node"]
+script = ExtResource("1_yfrt0")
+item_icon = ExtResource("2_a55ql")
+item_id = 12
+string_id = "mana_on_kill"
+item_detail = "Gives 1(+1 each stack) mana upon killing an enemy"
+
+[node name="GiveStatOnKillIPE" type="Node" parent="." node_paths=PackedStringArray("gain_value")]
+script = ExtResource("2_gyvdu")
+stat_to_give = "current_mana"
+gain_value = NodePath("1xStack")
+
+[node name="1xStack" type="Node" parent="GiveStatOnKillIPE" node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("3_pvelm")
+a_stat = NodePath("../1")
+b_stat = NodePath("../../Stack")
+
+[node name="1" type="Node" parent="GiveStatOnKillIPE"]
+script = ExtResource("3_61ebx")
+stat_value = 1.0
+
+[node name="Stack" type="Node" parent="."]
+script = ExtResource("3_61ebx")
+
+[node name="ItemStackStat" type="Node" parent="Stack" node_paths=PackedStringArray("item", "stat_to_scale")]
+script = ExtResource("4_3icdh")
+item = NodePath("../..")
+stat_to_scale = NodePath("..")

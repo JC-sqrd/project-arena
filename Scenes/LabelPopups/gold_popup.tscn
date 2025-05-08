@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4o2xvjop33yq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ueu1p"]
+font_color = Color(1, 0.843137, 0, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="GoldPopup" type="Label"]
+offset_right = 50.0
+offset_bottom = 25.0
+pivot_offset = Vector2(25, 12.5)
+text = "+gold "
+label_settings = SubResource("LabelSettings_ueu1p")

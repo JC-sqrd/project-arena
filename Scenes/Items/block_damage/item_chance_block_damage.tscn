@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://3tleitsb6xke"]
+
+[ext_resource type="Script" uid="uid://2776fa2foktx" path="res://Scenes/Items/block_damage/Scripts/ChanceBlockDamage.gd" id="1_lvdnd"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="2_h1xh3"]
+[ext_resource type="Texture2D" uid="uid://d25igrrvtuwn8" path="res://Placeholders/Icons/Icons8_87.png" id="2_plu0p"]
+[ext_resource type="Script" uid="uid://dglnl0xy27e5u" path="res://Scripts/StatSystem/Stats/StatDivider.gd" id="4_kemv5"]
+[ext_resource type="Script" uid="uid://d35h5o2rfotvj" path="res://Scripts/StatSystem/Stats/StatMultiplier.gd" id="5_5ygj7"]
+[ext_resource type="Script" uid="uid://tw1mwca5s05v" path="res://Scripts/StatSystem/ItemStackStatAdder.gd" id="5_u2h75"]
+[ext_resource type="Script" uid="uid://dqjgy52bq0foh" path="res://Scripts/StatSystem/Stats/StatAdder.gd" id="6_bxewi"]
+[ext_resource type="Script" uid="uid://bswgoovv7k1x" path="res://Scripts/StatSystem/Stats/StatSubtractor.gd" id="7_lgk6i"]
+
+[node name="ItemChanceBlockDamage" type="Node" node_paths=PackedStringArray("block_chance")]
+script = ExtResource("1_lvdnd")
+block_chance = NodePath("1-1|0_15xStack+1")
+item_name = "Blocky Block"
+item_icon = ExtResource("2_plu0p")
+item_id = 10
+string_id = "block_chance"
+item_detail = "Gain 15% (+15% each stack) to block incoming damage"
+
+[node name="0_15" type="Node" parent="."]
+script = ExtResource("2_h1xh3")
+stat_value = 0.15
+
+[node name="0_15xStack" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("5_5ygj7")
+a_stat = NodePath("../0_15")
+b_stat = NodePath("../ItemStack")
+
+[node name="0_15xStack+1" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("6_bxewi")
+a_stat = NodePath("../0_15xStack")
+b_stat = NodePath("1")
+
+[node name="1" type="Node" parent="0_15xStack+1"]
+script = ExtResource("2_h1xh3")
+stat_value = 1.0
+
+[node name="1|0_15xStack+1" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("4_kemv5")
+a_stat = NodePath("../0_15xStack+1/1")
+b_stat = NodePath("../0_15xStack+1")
+
+[node name="1-1|0_15xStack+1" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("7_lgk6i")
+a_stat = NodePath("../0_15xStack+1/1")
+b_stat = NodePath("../1|0_15xStack+1")
+
+[node name="ItemStack" type="Node" parent="."]
+script = ExtResource("2_h1xh3")
+
+[node name="ItemStackStat" type="Node" parent="ItemStack" node_paths=PackedStringArray("item", "stat_to_scale")]
+script = ExtResource("5_u2h75")
+item = NodePath("../..")
+stat_to_scale = NodePath("..")

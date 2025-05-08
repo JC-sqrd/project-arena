@@ -1,0 +1,907 @@
+[gd_scene load_steps=85 format=3 uid="uid://cu8fhpggbxh6d"]
+
+[ext_resource type="Script" uid="uid://bj6bpkhscp2un" path="res://Scripts/Stage/Stage.gd" id="1_4g24u"]
+[ext_resource type="Script" uid="uid://bgc72bvmdqnok" path="res://Scripts/Audio/StageAudioPlayer.gd" id="1_aliv6"]
+[ext_resource type="Script" uid="uid://dl25s0283xs7c" path="res://Scripts/LineTrail2D.gd" id="1_v4vyo"]
+[ext_resource type="Texture2D" uid="uid://b1btj33f6x5b" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/spark_07.png" id="1_whsjw"]
+[ext_resource type="AudioStream" uid="uid://g0xroqlbng6s" path="res://Placeholders/Audio/Soliloquy.mp3" id="2_aln3g"]
+[ext_resource type="PackedScene" uid="uid://k8xc7t7x4e6j" path="res://Scenes/Enemies/dummy_enemy.tscn" id="2_awsut"]
+[ext_resource type="Script" uid="uid://oyowq3ae4fkf" path="res://Scripts/Enemy/EnemySpawner/EnemyWave/WaveSpawner.gd" id="2_bg8bh"]
+[ext_resource type="Texture2D" uid="uid://cbwdmsdvh7q6b" path="res://Placeholders/Sprites/Test Character/Character Placeholder Sprite.png" id="2_eyxx2"]
+[ext_resource type="Script" uid="uid://ba1mnuv3bxi1k" path="res://Scenes/Test/EnemyWaveUI.gd" id="2_fuaum"]
+[ext_resource type="PackedScene" uid="uid://dxwshug5qnf5u" path="res://Scenes/Timer/game_timer.tscn" id="2_ome0m"]
+[ext_resource type="AudioStream" uid="uid://c3qto05j6g5p4" path="res://Placeholders/Audio/The Rain Formerly Known as Purple.mp3" id="2_ukeqt"]
+[ext_resource type="PackedScene" uid="uid://cvfsmjmaolpet" path="res://Scenes/Enemies/tank_enemy.tscn" id="3_g57ev"]
+[ext_resource type="Script" uid="uid://balv8nrfgo4ds" path="res://Scripts/Enemy/EnemySpawner/EnemyWave/EnemyWave.gd" id="3_l3e4g"]
+[ext_resource type="AudioStream" uid="uid://bjdd0ti8t76rc" path="res://Placeholders/Audio/…con lentitud poderosa.mp3" id="3_u5ev3"]
+[ext_resource type="AudioStream" uid="uid://0v3gvdke2m6u" path="res://Placeholders/Audio/Hero Immortal.mp3" id="3_wtiud"]
+[ext_resource type="PackedScene" uid="uid://bgy7pdawvoiwa" path="res://Scenes/Characters/mage_character.tscn" id="3_yafh7"]
+[ext_resource type="PackedScene" uid="uid://7dmxfiismoas" path="res://Scenes/UI/GameOverUI/game_over_ui.tscn" id="4_050cx"]
+[ext_resource type="AudioStream" uid="uid://cn58gfvdnfpqs" path="res://Placeholders/Audio/You're Gonna Need a Bigger Ukulele.mp3" id="4_b707s"]
+[ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="4_d3glx"]
+[ext_resource type="Script" uid="uid://c00l8xisrxclc" path="res://Scripts/Enemy/EnemySpawner/EnemySpawner.gd" id="5_a4ok0"]
+[ext_resource type="PackedScene" uid="uid://dqm4fbhm3ik7d" path="res://Scenes/Enemies/SpawnSprite/spawn_sprite.tscn" id="6_hej2c"]
+[ext_resource type="Script" uid="uid://cvoh1qyqwtosh" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveEnemySpawn.gd" id="7_7wka2"]
+[ext_resource type="Texture2D" uid="uid://c35vvralpy2oe" path="res://Placeholders/Sprites/Skill Circle Visual.png" id="7_mwf75"]
+[ext_resource type="Script" uid="uid://bm6en5pumq560" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WeightedEnemySpawn.gd" id="8_edhef"]
+[ext_resource type="PackedScene" uid="uid://cj01qxw0g7t0" path="res://Scenes/Pickupables/exp_orb.tscn" id="8_m7ixn"]
+[ext_resource type="Script" uid="uid://b3fq26t52vw2o" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnTiming.gd" id="8_yy25j"]
+[ext_resource type="Script" uid="uid://dqunvl8tgfqvj" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnEverySecond.gd" id="9_0lwa2"]
+[ext_resource type="Script" uid="uid://cmhw0pu66me2e" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnAtXSecond.gd" id="9_x1f3b"]
+[ext_resource type="PackedScene" uid="uid://1p285me36gqp" path="res://Scenes/Enemies/ranged_enemy.tscn" id="10_wiifm"]
+[ext_resource type="PackedScene" uid="uid://b5atlsgxuwett" path="res://Scenes/Enemies/fast_enemy.tscn" id="13_oqogj"]
+[ext_resource type="PackedScene" uid="uid://cyrnk80mwy1j1" path="res://Scenes/Enemies/small_enemy.tscn" id="13_yafh7"]
+[ext_resource type="Script" uid="uid://d4jcbfrhfsuyc" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnEverySecondChance.gd" id="14_nf4wj"]
+[ext_resource type="PackedScene" uid="uid://bhfxmtkiocwvt" path="res://Scenes/Test/test_mini_boss.tscn" id="22_fbpa4"]
+[ext_resource type="PackedScene" uid="uid://bdc1qoow3anrr" path="res://Scenes/Test/test_mini_boss2.tscn" id="26_lqybr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f5ccp"]
+
+[sub_resource type="Resource" id="Resource_bdr8d"]
+script = ExtResource("9_0lwa2")
+
+[sub_resource type="Resource" id="Resource_y8jrt"]
+script = ExtResource("14_nf4wj")
+spawn_chance = 0.8
+
+[sub_resource type="Resource" id="Resource_j4ase"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 5.0
+
+[sub_resource type="Resource" id="Resource_dx1qv"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 6.0
+
+[sub_resource type="Resource" id="Resource_v2wlw"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 7.0
+
+[sub_resource type="Resource" id="Resource_kncsg"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 8.0
+
+[sub_resource type="Resource" id="Resource_v0v87"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 9.0
+
+[sub_resource type="Resource" id="Resource_8iteb"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 10.0
+
+[sub_resource type="Resource" id="Resource_jdqob"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 11.0
+
+[sub_resource type="Resource" id="Resource_2hqos"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 8.0
+
+[sub_resource type="Resource" id="Resource_8gsw1"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 12.0
+
+[sub_resource type="Resource" id="Resource_37avk"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 13.0
+
+[sub_resource type="Resource" id="Resource_pr4yt"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 14.0
+
+[sub_resource type="Resource" id="Resource_7bmvy"]
+script = ExtResource("14_nf4wj")
+spawn_chance = 0.2
+
+[sub_resource type="Resource" id="Resource_dcwql"]
+script = ExtResource("14_nf4wj")
+spawn_chance = 0.6
+
+[sub_resource type="Resource" id="Resource_yafh7"]
+script = ExtResource("14_nf4wj")
+spawn_chance = 0.5
+metadata/_custom_type_script = "uid://d4jcbfrhfsuyc"
+
+[sub_resource type="Resource" id="Resource_2d4qq"]
+script = ExtResource("14_nf4wj")
+spawn_chance = 0.4
+
+[sub_resource type="Resource" id="Resource_awsut"]
+script = ExtResource("9_0lwa2")
+
+[sub_resource type="Resource" id="Resource_2j236"]
+script = ExtResource("14_nf4wj")
+spawn_chance = 0.6
+
+[sub_resource type="Resource" id="Resource_kq1h7"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 5.0
+
+[sub_resource type="Resource" id="Resource_n2ri5"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 6.0
+
+[sub_resource type="Resource" id="Resource_seqji"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 7.0
+
+[sub_resource type="Resource" id="Resource_g28ox"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 8.0
+
+[sub_resource type="Resource" id="Resource_g3h2x"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 9.0
+
+[sub_resource type="Resource" id="Resource_xfmko"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 10.0
+
+[sub_resource type="Resource" id="Resource_gjvfb"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 11.0
+
+[sub_resource type="Resource" id="Resource_meh5b"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 12.0
+
+[sub_resource type="Resource" id="Resource_bhu0i"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 13.0
+
+[sub_resource type="Resource" id="Resource_v8xnb"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 14.0
+
+[sub_resource type="Resource" id="Resource_647wd"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 15.0
+metadata/_custom_type_script = "uid://cmhw0pu66me2e"
+
+[sub_resource type="Resource" id="Resource_m07wo"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 16.0
+metadata/_custom_type_script = "uid://cmhw0pu66me2e"
+
+[sub_resource type="Resource" id="Resource_8wuhs"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 17.0
+metadata/_custom_type_script = "uid://cmhw0pu66me2e"
+
+[sub_resource type="Resource" id="Resource_qd7c6"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 18.0
+metadata/_custom_type_script = "uid://cmhw0pu66me2e"
+
+[sub_resource type="Resource" id="Resource_v0fod"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 19.0
+metadata/_custom_type_script = "uid://cmhw0pu66me2e"
+
+[sub_resource type="Resource" id="Resource_ax2b3"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 20.0
+metadata/_custom_type_script = "uid://cmhw0pu66me2e"
+
+[sub_resource type="Resource" id="Resource_ktfrk"]
+script = ExtResource("9_0lwa2")
+metadata/_custom_type_script = "uid://dqunvl8tgfqvj"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70841"]
+size = Vector2(141, 1308)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yfehh"]
+load_path = "res://.godot/imported/star_08.png-653f383077f5195655e4d9dfd01947ba.ctex"
+
+[sub_resource type="Gradient" id="Gradient_h50d3"]
+offsets = PackedFloat32Array(0, 0.446701, 0.588832, 1)
+colors = PackedColorArray(0.784314, 0.0980392, 0.843137, 1, 0.991127, 0.990493, 0.901763, 1, 1, 1, 1, 1, 0.784314, 0.0980392, 0.843137, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0nld6"]
+gradient = SubResource("Gradient_h50d3")
+
+[sub_resource type="Curve" id="Curve_54tiy"]
+_limits = [0.0, 0.5, 0.0, 1.0]
+_data = [Vector2(0, 0.5), 0.0, -0.544794, 0, 1, Vector2(0.262222, 0.357143), 0.0, 0.0, 0, 0, Vector2(0.493333, 0.5), 0.0, 0.0, 0, 0, Vector2(0.76, 0.357143), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.595238, 0.0, 1, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_phwbn"]
+curve = SubResource("Curve_54tiy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4y0ic"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_phwbn")
+color_ramp = SubResource("GradientTexture1D_0nld6")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aimkb"]
+load_path = "res://.godot/imported/circle_03.png-7378df3d0ee329f71a78a6dc01784dc1.ctex"
+
+[sub_resource type="Gradient" id="Gradient_hxl4g"]
+offsets = PackedFloat32Array(0, 0.390863, 0.639594, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.921569, 0.0823529, 0.156863, 1, 0.921569, 0.0823529, 0.156863, 1, 0.818502, 0.974208, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jbfx5"]
+gradient = SubResource("Gradient_hxl4g")
+
+[sub_resource type="Curve" id="Curve_2ye1i"]
+_limits = [0.0, 0.5, 0.0, 1.0]
+_data = [Vector2(0, 0.203297), 0.0, -0.154533, 0, 1, Vector2(0.248889, 0.164835), 0.0, 0.0, 0, 0, Vector2(0.484444, 0.230769), 0.0, 0.0, 0, 0, Vector2(0.76, 0.164835), 0.0, 0.0, 0, 0, Vector2(1, 0.197802), 0.137363, 0.0, 1, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_wv8vm"]
+curve = SubResource("Curve_2ye1i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t8bln"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_wv8vm")
+color_ramp = SubResource("GradientTexture1D_jbfx5")
+
+[node name="test_scene" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_4g24u")
+
+[node name="Enemy" parent="." instance=ExtResource("2_awsut")]
+position = Vector2(1652, 876)
+follow_player = false
+
+[node name="MageCharacter" parent="." instance=ExtResource("3_yafh7")]
+position = Vector2(544, 1080)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="WaveSpawnerUI" type="MarginContainer" parent="CanvasLayer/Control" node_paths=PackedStringArray("wave_spawner", "start_wave_button", "wave_timer_label", "current_wave_label")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -205.0
+offset_top = -131.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+script = ExtResource("2_fuaum")
+wave_spawner = NodePath("../../../WaveSpawner")
+start_wave_button = NodePath("HBoxContainer/Button")
+wave_timer_label = NodePath("HBoxContainer/WaveDuration")
+current_wave_label = NodePath("HBoxContainer/CurrentWave")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/WaveSpawnerUI"]
+layout_mode = 2
+
+[node name="CurrentWave" type="Label" parent="CanvasLayer/Control/WaveSpawnerUI/HBoxContainer"]
+layout_mode = 2
+text = "WAVE 0"
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/WaveSpawnerUI/HBoxContainer"]
+layout_mode = 2
+text = "START WAVE"
+
+[node name="WaveDuration" type="Label" parent="CanvasLayer/Control/WaveSpawnerUI/HBoxContainer"]
+layout_mode = 2
+text = "WAVE TIMER"
+label_settings = SubResource("LabelSettings_f5ccp")
+
+[node name="Control2" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="GameTimer" parent="CanvasLayer/Control2" instance=ExtResource("2_ome0m")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -0.5
+offset_right = 0.5
+grow_horizontal = 2
+
+[node name="GameOverUI" parent="CanvasLayer/Control2" instance=ExtResource("4_050cx")]
+process_mode = 3
+layout_mode = 1
+offset_left = -49.5
+offset_top = -43.0
+offset_right = 49.5
+offset_bottom = 43.0
+
+[node name="WaveSpawner" type="Node2D" parent="." node_paths=PackedStringArray("root_wave")]
+position = Vector2(1500, 750)
+script = ExtResource("2_bg8bh")
+spawn_zone = Vector2(2500, 1500)
+min_x = 1200.0
+root_wave = NodePath("Wave1")
+draw_spawn_zone = true
+
+[node name="SkillCircleVisual" type="Sprite2D" parent="WaveSpawner"]
+visible = false
+texture = ExtResource("7_mwf75")
+
+[node name="Wave1" type="Node" parent="WaveSpawner" node_paths=PackedStringArray("next_wave")]
+script = ExtResource("3_l3e4g")
+wave_duration = 20.0
+next_wave = NodePath("../Wave2")
+
+[node name="SmallEnemySpawn" type="Node" parent="WaveSpawner/Wave1"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_yafh7")
+spawn_sprite = ExtResource("6_hej2c")
+
+[node name="SmallEnemySpawn2" type="Node" parent="WaveSpawner/Wave1"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_yafh7")
+spawn_sprite = ExtResource("6_hej2c")
+
+[node name="SmallEnemySpawn3" type="Node" parent="WaveSpawner/Wave1"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_yafh7")
+spawn_sprite = ExtResource("6_hej2c")
+
+[node name="Wave2" type="Node" parent="WaveSpawner" node_paths=PackedStringArray("next_wave")]
+script = ExtResource("3_l3e4g")
+wave_duration = 20.0
+next_wave = NodePath("../Wave3")
+
+[node name="SmallEnemySpawn" type="Node" parent="WaveSpawner/Wave2"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_yafh7")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 2
+
+[node name="SmallEnemySpawn2" type="Node" parent="WaveSpawner/Wave2"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_yafh7")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 2
+
+[node name="SmallEnemySpawn3" type="Node" parent="WaveSpawner/Wave2"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_yafh7")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 2
+
+[node name="SmallEnemySpawn4" type="Node" parent="WaveSpawner/Wave2"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_yafh7")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 2
+
+[node name="Wave3" type="Node" parent="WaveSpawner" node_paths=PackedStringArray("next_wave")]
+script = ExtResource("3_l3e4g")
+wave_duration = 20.0
+next_wave = NodePath("../Wave4")
+
+[node name="SmallEnemySpawn" type="Node" parent="WaveSpawner/Wave3"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_yafh7")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 3
+
+[node name="SmallEnemySpawn2" type="Node" parent="WaveSpawner/Wave3"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_yafh7")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 3
+
+[node name="SmallEnemySpawn3" type="Node" parent="WaveSpawner/Wave3"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_yafh7")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 3
+
+[node name="FastEnemySpawn4" type="Node" parent="WaveSpawner/Wave3"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 3
+
+[node name="FastEnemySpawn5" type="Node" parent="WaveSpawner/Wave3"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 3
+
+[node name="Wave4" type="Node" parent="WaveSpawner" node_paths=PackedStringArray("next_wave")]
+script = ExtResource("3_l3e4g")
+wave_duration = 25.0
+next_wave = NodePath("../Wave5")
+
+[node name="FastEnemySpawn" type="Node" parent="WaveSpawner/Wave4"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 4
+
+[node name="RangedEnemySpawn" type="Node" parent="WaveSpawner/Wave4"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_y8jrt")])
+enemy_scene = ExtResource("10_wiifm")
+spawn_sprite = ExtResource("6_hej2c")
+
+[node name="FastEnemySpawn2" type="Node" parent="WaveSpawner/Wave4"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 4
+
+[node name="FastEnemySpawn3" type="Node" parent="WaveSpawner/Wave4"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 4
+
+[node name="FastEnemySpawn4" type="Node" parent="WaveSpawner/Wave4"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 4
+
+[node name="Wave5" type="Node" parent="WaveSpawner" node_paths=PackedStringArray("next_wave")]
+script = ExtResource("3_l3e4g")
+wave_duration = 30.0
+next_wave = NodePath("../Wave6")
+
+[node name="FastEnemySpawn" type="Node" parent="WaveSpawner/Wave5"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 5
+
+[node name="RangedEnemySpawn" type="Node" parent="WaveSpawner/Wave5"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_y8jrt")])
+enemy_scene = ExtResource("10_wiifm")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 2
+
+[node name="WaveEnemySpawn3" type="Node" parent="WaveSpawner/Wave5"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_y8jrt")])
+enemy_scene = ExtResource("3_g57ev")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 4
+
+[node name="FastEnemySpawn2" type="Node" parent="WaveSpawner/Wave5"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 5
+
+[node name="FastEnemySpawn3" type="Node" parent="WaveSpawner/Wave5"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 5
+
+[node name="Wave6" type="Node" parent="WaveSpawner" node_paths=PackedStringArray("next_wave")]
+script = ExtResource("3_l3e4g")
+wave_duration = 40.0
+next_wave = NodePath("../Wave7")
+
+[node name="FastEnemySpawn" type="Node" parent="WaveSpawner/Wave6"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 6
+
+[node name="FastEnemySpawn2" type="Node" parent="WaveSpawner/Wave6"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 6
+
+[node name="RangedEnemySpawn" type="Node" parent="WaveSpawner/Wave6"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_y8jrt")])
+enemy_scene = ExtResource("10_wiifm")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 3
+
+[node name="TankkyEnemySpawn" type="Node" parent="WaveSpawner/Wave6"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_y8jrt")])
+enemy_scene = ExtResource("3_g57ev")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 5
+
+[node name="TankyEnemySpawn2" type="Node" parent="WaveSpawner/Wave6"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_j4ase"), SubResource("Resource_dx1qv"), SubResource("Resource_v2wlw"), SubResource("Resource_kncsg"), SubResource("Resource_v0v87"), SubResource("Resource_8iteb"), SubResource("Resource_jdqob"), SubResource("Resource_2hqos"), SubResource("Resource_8gsw1"), SubResource("Resource_37avk"), SubResource("Resource_pr4yt")])
+enemy_scene = ExtResource("3_g57ev")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 5
+
+[node name="Wave7" type="Node" parent="WaveSpawner" node_paths=PackedStringArray("next_wave")]
+script = ExtResource("3_l3e4g")
+wave_duration = 40.0
+next_wave = NodePath("../Wave8")
+
+[node name="FastEnemySpawn" type="Node" parent="WaveSpawner/Wave7"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 7
+
+[node name="FastEnemySpawn2" type="Node" parent="WaveSpawner/Wave7"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 7
+
+[node name="FastEnemySpawn3" type="Node" parent="WaveSpawner/Wave7"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 7
+
+[node name="RangedEnemySpawn" type="Node" parent="WaveSpawner/Wave7"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_7bmvy")])
+enemy_scene = ExtResource("10_wiifm")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 4
+
+[node name="WaveEnemySpawn3" type="Node" parent="WaveSpawner/Wave7"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_dcwql")])
+enemy_scene = ExtResource("3_g57ev")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 6
+
+[node name="WaveEnemySpawn2" type="Node" parent="WaveSpawner/Wave7"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_j4ase"), SubResource("Resource_dx1qv"), SubResource("Resource_v2wlw"), SubResource("Resource_kncsg"), SubResource("Resource_v0v87"), SubResource("Resource_8iteb"), SubResource("Resource_jdqob"), SubResource("Resource_2hqos"), SubResource("Resource_8gsw1"), SubResource("Resource_37avk"), SubResource("Resource_pr4yt")])
+enemy_scene = ExtResource("3_g57ev")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 6
+
+[node name="Wave8" type="Node" parent="WaveSpawner" node_paths=PackedStringArray("next_wave")]
+script = ExtResource("3_l3e4g")
+wave_duration = 30.0
+next_wave = NodePath("../Wave9")
+
+[node name="FastEnemySpawn" type="Node" parent="WaveSpawner/Wave8"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 8
+
+[node name="FastEnemySpawn2" type="Node" parent="WaveSpawner/Wave8"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_yafh7")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 8
+
+[node name="FastEnemySpawn3" type="Node" parent="WaveSpawner/Wave8"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_yafh7")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 8
+
+[node name="RangedEnemySpawn" type="Node" parent="WaveSpawner/Wave8"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_2d4qq")])
+enemy_scene = ExtResource("10_wiifm")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 5
+
+[node name="WaveEnemySpawn3" type="Node" parent="WaveSpawner/Wave8"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_y8jrt")])
+enemy_scene = ExtResource("3_g57ev")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 7
+
+[node name="WaveEnemySpawn2" type="Node" parent="WaveSpawner/Wave8"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_j4ase"), SubResource("Resource_dx1qv"), SubResource("Resource_v2wlw"), SubResource("Resource_kncsg"), SubResource("Resource_v0v87"), SubResource("Resource_8iteb"), SubResource("Resource_jdqob"), SubResource("Resource_2hqos"), SubResource("Resource_8gsw1"), SubResource("Resource_37avk"), SubResource("Resource_pr4yt")])
+enemy_scene = ExtResource("3_g57ev")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 7
+
+[node name="Wave9" type="Node" parent="WaveSpawner" node_paths=PackedStringArray("next_wave")]
+script = ExtResource("3_l3e4g")
+wave_duration = 50.0
+next_wave = NodePath("../Wave10")
+
+[node name="FastEnemySpawn" type="Node" parent="WaveSpawner/Wave9"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 9
+
+[node name="FastEnemySpawn2" type="Node" parent="WaveSpawner/Wave9"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_awsut")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 9
+
+[node name="FastEnemySpawn3" type="Node" parent="WaveSpawner/Wave9"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_awsut")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 9
+
+[node name="FastEnemySpawn4" type="Node" parent="WaveSpawner/Wave9"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_awsut")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 9
+
+[node name="RangedEnemySpawn" type="Node" parent="WaveSpawner/Wave9"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_2j236")])
+enemy_scene = ExtResource("10_wiifm")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 6
+
+[node name="WaveEnemySpawn3" type="Node" parent="WaveSpawner/Wave9"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_y8jrt")])
+enemy_scene = ExtResource("3_g57ev")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 8
+
+[node name="WaveEnemySpawn2" type="Node" parent="WaveSpawner/Wave9"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_kq1h7"), SubResource("Resource_n2ri5"), SubResource("Resource_seqji"), SubResource("Resource_g28ox"), SubResource("Resource_g3h2x"), SubResource("Resource_xfmko"), SubResource("Resource_gjvfb"), SubResource("Resource_2hqos"), SubResource("Resource_meh5b"), SubResource("Resource_bhu0i"), SubResource("Resource_v8xnb"), SubResource("Resource_647wd"), SubResource("Resource_m07wo"), SubResource("Resource_8wuhs"), SubResource("Resource_qd7c6"), SubResource("Resource_v0fod"), SubResource("Resource_ax2b3")])
+enemy_scene = ExtResource("3_g57ev")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 8
+
+[node name="Wave10" type="Node" parent="WaveSpawner"]
+script = ExtResource("3_l3e4g")
+wave_duration = 50.0
+
+[node name="FastEnemySpawn" type="Node" parent="WaveSpawner/Wave10"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 12
+
+[node name="FastEnemySpawn2" type="Node" parent="WaveSpawner/Wave10"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 12
+
+[node name="FastEnemySpawn3" type="Node" parent="WaveSpawner/Wave10"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_bdr8d")])
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 12
+
+[node name="RangedEnemySpawn" type="Node" parent="WaveSpawner/Wave10"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_y8jrt")])
+enemy_scene = ExtResource("10_wiifm")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 8
+
+[node name="WaveEnemySpawn3" type="Node" parent="WaveSpawner/Wave10"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_ktfrk")])
+enemy_scene = ExtResource("3_g57ev")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 10
+
+[node name="WaveEnemySpawn4" type="Node" parent="WaveSpawner/Wave10"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_y8jrt")])
+enemy_scene = ExtResource("3_g57ev")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 10
+
+[node name="WaveEnemySpawn2" type="Node" parent="WaveSpawner/Wave10"]
+script = ExtResource("7_7wka2")
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_j4ase"), SubResource("Resource_dx1qv"), SubResource("Resource_v2wlw"), SubResource("Resource_kncsg"), SubResource("Resource_v0v87"), SubResource("Resource_8iteb"), SubResource("Resource_jdqob"), SubResource("Resource_2hqos"), SubResource("Resource_8gsw1"), SubResource("Resource_37avk"), SubResource("Resource_pr4yt")])
+enemy_scene = ExtResource("3_g57ev")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 10
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+top_level = true
+position = Vector2(998, 901)
+points = PackedVector2Array(0, 0)
+width = 250.0
+texture = ExtResource("1_whsjw")
+texture_mode = 1
+script = ExtResource("1_v4vyo")
+
+[node name="EnemySpawner" type="Node2D" parent="." node_paths=PackedStringArray("enemy_spawns")]
+script = ExtResource("5_a4ok0")
+enemy_spawns = [NodePath("EnemySpawn"), NodePath("FastEnemySpawn"), NodePath("RangedEnemySpawn")]
+mini_boss_scene = ExtResource("22_fbpa4")
+mini_boss_2_scene = ExtResource("26_lqybr")
+spawn_time = 1.5
+spawn_sprite_scene = ExtResource("6_hej2c")
+spawn_zone = Vector2(3000, 1500)
+auto_spawn = false
+
+[node name="EnemySpawn" type="Node" parent="EnemySpawner"]
+script = ExtResource("8_edhef")
+weight = 1.25
+enemy_scene = ExtResource("3_g57ev")
+spawn_sprite = ExtResource("6_hej2c")
+
+[node name="FastEnemySpawn" type="Node" parent="EnemySpawner"]
+script = ExtResource("8_edhef")
+weight = 5.0
+enemy_scene = ExtResource("13_oqogj")
+spawn_sprite = ExtResource("6_hej2c")
+
+[node name="RangedEnemySpawn" type="Node" parent="EnemySpawner"]
+script = ExtResource("8_edhef")
+weight = 3.0
+enemy_scene = ExtResource("10_wiifm")
+spawn_sprite = ExtResource("6_hej2c")
+
+[node name="Timer" type="Timer" parent="EnemySpawner"]
+process_callback = 0
+wait_time = 0.5
+
+[node name="StageAudioPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
+script = ExtResource("1_aliv6")
+audio_streams = Array[AudioStream]([ExtResource("2_ukeqt"), ExtResource("3_u5ev3"), ExtResource("4_b707s"), ExtResource("3_wtiud"), ExtResource("2_aln3g")])
+
+[node name="CharacterPlaceholderSprite" type="Sprite2D" parent="."]
+position = Vector2(284, 337)
+texture = ExtResource("2_eyxx2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(263, 720)
+scale = Vector2(1, 1.16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-35.5, 30)
+shape = SubResource("RectangleShape2D_70841")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-35, 28.6451)
+scale = Vector2(1.02612, 10.0837)
+texture = ExtResource("4_d3glx")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(2812, 712)
+scale = Vector2(1, 1.16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-35.5, 30)
+shape = SubResource("RectangleShape2D_70841")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+position = Vector2(-35, 28.6451)
+scale = Vector2(1.02612, 10.0837)
+texture = ExtResource("4_d3glx")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(1432, 1544)
+rotation = -1.5708
+scale = Vector2(1, 2.32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-35.5, 30)
+shape = SubResource("RectangleShape2D_70841")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+position = Vector2(-35, 28.6451)
+scale = Vector2(1.02612, 10.0837)
+texture = ExtResource("4_d3glx")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(1432, -112)
+rotation = -1.5708
+scale = Vector2(1, 2.32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(-35.5, 30)
+shape = SubResource("RectangleShape2D_70841")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4"]
+position = Vector2(-35, 28.6451)
+scale = Vector2(1.02612, 10.0837)
+texture = ExtResource("4_d3glx")
+
+[node name="ExpOrb2" parent="." instance=ExtResource("8_m7ixn")]
+position = Vector2(918, 199)
+exp = 20.0
+
+[node name="ExpOrb3" parent="." instance=ExtResource("8_m7ixn")]
+position = Vector2(662, 451)
+exp = 20.0
+
+[node name="ExpOrb4" parent="." instance=ExtResource("8_m7ixn")]
+position = Vector2(942, 631)
+exp = 20.0
+
+[node name="ExpOrb5" parent="." instance=ExtResource("8_m7ixn")]
+position = Vector2(990, 366)
+exp = 20.0
+
+[node name="ExpOrb6" parent="." instance=ExtResource("8_m7ixn")]
+position = Vector2(510, 679)
+exp = 20.0
+
+[node name="ExpOrb7" parent="." instance=ExtResource("8_m7ixn")]
+position = Vector2(754, 739)
+exp = 20.0
+
+[node name="ExpOrb8" parent="." instance=ExtResource("8_m7ixn")]
+position = Vector2(670, 215)
+exp = 20.0
+
+[node name="ExpOrb" parent="." instance=ExtResource("8_m7ixn")]
+position = Vector2(-629, 231)
+exp = 50000.0
+
+[node name="Star06" parent="ExpOrb/Node2D" index="1"]
+modulate = Color(0.921569, 0.0823529, 0.156863, 1)
+
+[node name="GPUParticles2D" parent="ExpOrb/Node2D" index="2"]
+texture = SubResource("CompressedTexture2D_yfehh")
+process_material = SubResource("ParticleProcessMaterial_4y0ic")
+
+[node name="GPUParticles2D2" parent="ExpOrb/Node2D" index="3"]
+texture = SubResource("CompressedTexture2D_aimkb")
+process_material = SubResource("ParticleProcessMaterial_t8bln")
+
+[node name="PointLight2D" parent="ExpOrb" index="2"]
+color = Color(0, 0.560693, 0.531956, 1)
+
+[editable path="ExpOrb"]

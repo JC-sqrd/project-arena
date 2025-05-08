@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=3 uid="uid://c1osp5vjwcvq7"]
+
+[ext_resource type="Script" uid="uid://dd6s5h0dnl1fv" path="res://Scripts/Combat/StatusEffects/SpawnOnAttack.gd" id="1_0ca48"]
+[ext_resource type="Script" uid="uid://6ygen6bqklti" path="res://Scripts/Combat/CombatEffects/SpawnEffect.gd" id="2_txlkf"]
+[ext_resource type="PackedScene" uid="uid://bqhautyy3og7f" path="res://Scenes/Abilities/ToggleAbilities/MysticSword/Spawnable/spawnable_mystic_sword.tscn" id="3_jcp7p"]
+[ext_resource type="Script" uid="uid://je1qr4xnkb2s" path="res://Scripts/Combat/CombatEffects/SpawnEffectDirection/SpawnMouseDirection.gd" id="3_rkgkc"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="5_dfayw"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="6_ane7e"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="7_mkuag"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="8_8wv7e"]
+
+[node name="SpawnOnAttack" type="Node" node_paths=PackedStringArray("spawn_effect")]
+script = ExtResource("1_0ca48")
+spawn_effect = NodePath("SpawnEffect")
+
+[node name="SpawnEffect" type="Node" parent="." node_paths=PackedStringArray("source", "spawn_direction", "hit_listener")]
+script = ExtResource("2_txlkf")
+spawn_scene = ExtResource("3_jcp7p")
+source = NodePath("..")
+spawn_direction = NodePath("SpawnMouseDirection")
+hit_listener = NodePath("HitListener")
+
+[node name="SpawnMouseDirection" type="Node" parent="SpawnEffect"]
+script = ExtResource("3_rkgkc")
+
+[node name="HitListener" type="Node" parent="SpawnEffect"]
+script = ExtResource("5_dfayw")
+
+[node name="DamageEffect" type="Node" parent="SpawnEffect/HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("6_ane7e")
+damage_stat = NodePath("Damage")
+
+[node name="Damage" type="Node" parent="SpawnEffect/HitListener/DamageEffect"]
+script = ExtResource("7_mkuag")
+stat_value = 10.0
+
+[node name="GetActorStatScaler" type="Node" parent="SpawnEffect/HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("8_8wv7e")
+stat = NodePath("..")
+scale_with_stat_id = "strength"
+scale_ratio = 0.1

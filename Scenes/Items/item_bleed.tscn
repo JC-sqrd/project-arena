@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgm4kt6iwceuv"]
+
+[ext_resource type="Script" uid="uid://dqsm34bpqqb52" path="res://Scripts/Item/Items/Item.gd" id="1_e4754"]
+[ext_resource type="Script" uid="uid://dixjgthxdjdlp" path="res://Scripts/Item/ItemEffects/OnHitIPE.gd" id="2_2wtx7"]
+[ext_resource type="Script" uid="uid://88st3pdi1hky" path="res://Scripts/Combat/CombatEffects/ApplyStatusEffect.gd" id="3_pejr3"]
+[ext_resource type="PackedScene" uid="uid://wn65qvhghkpr" path="res://Scenes/StatusEffects/Bleed.tscn" id="4_vwcny"]
+
+[node name="Item" type="Node"]
+script = ExtResource("1_e4754")
+item_name = "Serrated Dagger"
+item_id = 1
+string_id = "bleed"
+
+[node name="ItemOnHitPassiveEffect" type="Node" parent="."]
+script = ExtResource("2_2wtx7")
+
+[node name="ApplyStatusEffect" type="Node" parent="ItemOnHitPassiveEffect"]
+script = ExtResource("3_pejr3")
+status_effect_scene = ExtResource("4_vwcny")

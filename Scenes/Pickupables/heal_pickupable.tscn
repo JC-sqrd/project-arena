@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://e1v3gxd3patv"]
+
+[ext_resource type="Script" uid="uid://bi7o7hfteuvcu" path="res://Scripts/Pickupable/HealPickupable.gd" id="1_dvqum"]
+[ext_resource type="Texture2D" uid="uid://bb5g7rwvbvvkr" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/symbol_01.png" id="2_wdc0f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_22xfe"]
+radius = 25.0
+
+[node name="HealPickupable" type="Node2D"]
+script = ExtResource("1_dvqum")
+heal_value = 20.0
+
+[node name="Symbol01" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0.0166667, 1)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_wdc0f")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Symbol01"]
+position = Vector2(8.58307e-06, -11.4286)
+scale = Vector2(9.14286, 8)
+enable_node_path = NodePath("../..")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_22xfe")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq7g3hf24qwdv"]
+
+[ext_resource type="PackedScene" uid="uid://cakw04hn5qvyv" path="res://Scenes/Pickupables/test_item.tscn" id="1_m151g"]
+[ext_resource type="PackedScene" uid="uid://c11kdiu2c6vx" path="res://Scenes/Items/item_vitality.tscn" id="2_w80pa"]
+
+[node name="Pickupable" instance=ExtResource("1_m151g")]
+item = ExtResource("2_w80pa")
+
+[node name="Sprite2D" parent="." index="0"]
+self_modulate = Color(0.352941, 0.670588, 0.2, 1)

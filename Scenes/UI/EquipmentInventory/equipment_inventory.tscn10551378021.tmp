@@ -1,0 +1,98 @@
+[gd_scene load_steps=3 format=3 uid="uid://bba116t3m1ua7"]
+
+[ext_resource type="PackedScene" uid="uid://d0y6us1o18tkr" path="res://Scenes/UI/EquipmentInventory/equipment_inventory_slot.tscn" id="1_18obn"]
+[ext_resource type="Script" uid="uid://w55biq6u1q0c" path="res://Scripts/UI/EquipmentInventory/EquipmentInventoryManager.gd" id="1_ondaa"]
+
+[node name="EquipmentInventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ondaa")
+
+[node name="EquipmentInventory" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = -35.0
+offset_right = 170.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="EquipmentInventory"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="EquipmentInventory/MarginContainer"]
+layout_mode = 2
+columns = 10
+
+[node name="EquipmentInventorySlot" parent="EquipmentInventory/MarginContainer/GridContainer" instance=ExtResource("1_18obn")]
+layout_mode = 2
+
+[node name="EquipmentInventorySlot2" parent="EquipmentInventory/MarginContainer/GridContainer" instance=ExtResource("1_18obn")]
+layout_mode = 2
+
+[node name="EquipmentInventorySlot3" parent="EquipmentInventory/MarginContainer/GridContainer" instance=ExtResource("1_18obn")]
+layout_mode = 2
+
+[node name="EquipmentInventorySlot4" parent="EquipmentInventory/MarginContainer/GridContainer" instance=ExtResource("1_18obn")]
+layout_mode = 2
+
+[node name="EquipmentInventorySlot5" parent="EquipmentInventory/MarginContainer/GridContainer" instance=ExtResource("1_18obn")]
+layout_mode = 2
+
+[node name="EquipmentInventorySlot6" parent="EquipmentInventory/MarginContainer/GridContainer" instance=ExtResource("1_18obn")]
+layout_mode = 2
+
+[node name="EquippedSlots" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -168.0
+offset_right = -218.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="EquippedSlots"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EquippedSlots/MarginContainer"]
+layout_mode = 2
+
+[node name="WeaponEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("1_18obn")]
+layout_mode = 2
+
+[node name="HeadgearEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("1_18obn")]
+layout_mode = 2
+
+[node name="TorsoEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("1_18obn")]
+layout_mode = 2
+
+[node name="ArmgearEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("1_18obn")]
+layout_mode = 2
+
+[node name="ShoesEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("1_18obn")]
+layout_mode = 2
+
+[node name="EquipmentInventorySlot6" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("1_18obn")]
+layout_mode = 2

@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://bau78s0ws2us8"]
+
+[ext_resource type="Script" uid="uid://c0hgfeu5xb7mq" path="res://Scripts/Combat/CombatEffects/EffectReceivers/HitReceiver.gd" id="1_64oyb"]
+[ext_resource type="Script" uid="uid://bah4lg44ubj3o" path="res://Scripts/Combat/CombatEffects/EffectReceivers/DamageReceiver.gd" id="2_wb60a"]
+[ext_resource type="Script" uid="uid://cfexk56bbwq34" path="res://Scripts/Combat/CombatEffects/EffectReceivers/KnockbackReceiver.gd" id="3_oiep0"]
+[ext_resource type="Script" uid="uid://i77moci7cqsx" path="res://Scripts/Combat/CombatEffects/EffectReceivers/ConsumeStatusEffectReceiver.gd" id="4_j2tcp"]
+[ext_resource type="Script" uid="uid://co480h7xp8aw3" path="res://Scripts/Combat/CombatEffects/EffectReceivers/ApplyStatusEffectReceiver.gd" id="5_vkw1b"]
+[ext_resource type="Script" uid="uid://cu25tpgedpr6b" path="res://Scripts/Combat/CombatEffects/EffectReceivers/RemoveStatusEffectReceiver.gd" id="6_lmf7l"]
+[ext_resource type="Script" uid="uid://ctylxbmu30pqx" path="res://Scripts/Combat/CombatEffects/EffectReceivers/HealReceiver.gd" id="7_2ol7v"]
+
+[node name="HitReceiver" type="Node"]
+script = ExtResource("1_64oyb")
+
+[node name="ConsumeStatusEffectReceiver" type="Node" parent="."]
+script = ExtResource("4_j2tcp")
+
+[node name="ApplyStatusEffectReceiver" type="Node" parent="."]
+script = ExtResource("5_vkw1b")
+
+[node name="KnockbackReceiver" type="Node" parent="."]
+script = ExtResource("3_oiep0")
+
+[node name="DamageReceiver" type="Node" parent="."]
+script = ExtResource("2_wb60a")
+
+[node name="RemoveStatusEffectReceiver" type="Node" parent="."]
+script = ExtResource("6_lmf7l")
+
+[node name="HealReceiver" type="Node" parent="."]
+script = ExtResource("7_2ol7v")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd0i804536smw"]
+
+[ext_resource type="Script" uid="uid://dwdu66fpfxj53" path="res://Scripts/SpawnableProjectile.gd" id="1_nvhew"]
+[ext_resource type="PackedScene" uid="uid://dfh3qc3n36tdr" path="res://Scenes/Weapons/Fire Grimoire/grimoire_projectile.tscn" id="2_8erog"]
+
+[node name="SpawnableProjectile" type="Node2D" node_paths=PackedStringArray("projectile")]
+script = ExtResource("1_nvhew")
+projectile = NodePath("Projectile")
+
+[node name="Projectile" parent="." instance=ExtResource("2_8erog")]

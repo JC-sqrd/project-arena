@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=3 uid="uid://c7f3i2m7h07jc"]
+
+[ext_resource type="Script" uid="uid://c6k26psfd72pt" path="res://Scenes/Items/charge_move_speed/Sripts/ChargeMoveSpeed.gd" id="1_ri3rj"]
+[ext_resource type="Texture2D" uid="uid://dspi68bbn3y2u" path="res://Placeholders/Icons/Icon.5_50.png" id="2_rdjvl"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="4_33agv"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="5_2iwjw"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="5_lba6y"]
+[ext_resource type="Texture2D" uid="uid://b5ydp7fsxrr15" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="6_uxcx5"]
+[ext_resource type="Script" uid="uid://tw1mwca5s05v" path="res://Scripts/StatSystem/ItemStackStatAdder.gd" id="7_ckk5i"]
+[ext_resource type="Script" uid="uid://d35h5o2rfotvj" path="res://Scripts/StatSystem/Stats/StatMultiplier.gd" id="8_p1d8e"]
+[ext_resource type="Script" uid="uid://dqjgy52bq0foh" path="res://Scripts/StatSystem/Stats/StatAdder.gd" id="9_odli0"]
+
+[sub_resource type="Curve" id="Curve_vkq3h"]
+_data = [Vector2(0, 0.483516), 0.0, 0.0, 0, 0, Vector2(1, 0.296703), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2i274"]
+curve = SubResource("Curve_vkq3h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3hu6m"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(50, 10, 1)
+linear_accel_min = 14.43
+linear_accel_max = 57.73
+scale_curve = SubResource("CurveTexture_2i274")
+
+[node name="ItemChargeMoveSpeed" type="Node" node_paths=PackedStringArray("bonus_damage", "hit_listener", "charge_particle_system")]
+script = ExtResource("1_ri3rj")
+charge_threshold = 2500.0
+bonus_damage = NodePath("ActorMoveSpeed20Plus5Percent")
+hit_listener = NodePath("HitListener")
+charge_particle_system = NodePath("GPUParticles2D")
+item_name = "Energized Gem"
+item_icon = ExtResource("2_rdjvl")
+item_id = 11
+string_id = "charge_move_speed"
+item_detail = "Moving generates charge. When fully charged, your next source of damage will deal extra damage (5% (+5% each stack) of base movement speed)"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+visibility_layer = 2
+amount = 16
+texture = ExtResource("6_uxcx5")
+lifetime = 3.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_3hu6m")
+
+[node name="BonusDamage" type="Node" parent="."]
+script = ExtResource("4_33agv")
+
+[node name="GetActorStatScaler" type="Node" parent="BonusDamage" node_paths=PackedStringArray("stat")]
+script = ExtResource("5_2iwjw")
+stat = NodePath("..")
+scale_with_stat_id = "strength"
+scale_ratio = 0.25
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("5_lba6y")
+
+[node name="Stack" type="Node" parent="."]
+script = ExtResource("4_33agv")
+
+[node name="ItemStackStat" type="Node" parent="Stack" node_paths=PackedStringArray("item", "stat_to_scale")]
+script = ExtResource("7_ckk5i")
+item = NodePath("../..")
+stat_to_scale = NodePath("..")
+
+[node name="ActorMoveSpeed" type="Node" parent="."]
+script = ExtResource("4_33agv")
+
+[node name="GetActorStatScaler" type="Node" parent="ActorMoveSpeed" node_paths=PackedStringArray("stat")]
+script = ExtResource("5_2iwjw")
+stat = NodePath("..")
+scale_with_stat_id = "move_speed"
+scale_ratio = 0.05
+scale_base_value = true
+
+[node name="ActorMoveSpeed20Plus5Percent" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("8_p1d8e")
+a_stat = NodePath("../ActorMoveSpeed")
+b_stat = NodePath("5PercentStackPlus5Percent")
+
+[node name="5PercentStackPlus5Percent" type="Node" parent="ActorMoveSpeed20Plus5Percent" node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("9_odli0")
+a_stat = NodePath("../../5PercentStack/5Percent")
+b_stat = NodePath("../../5PercentStack")
+
+[node name="5PercentStack" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("8_p1d8e")
+a_stat = NodePath("../Stack")
+b_stat = NodePath("5Percent")
+
+[node name="5Percent" type="Node" parent="5PercentStack"]
+script = ExtResource("4_33agv")
+stat_value = 0.05

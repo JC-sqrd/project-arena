@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmr5ju5lmf0cu"]
+
+[ext_resource type="Script" uid="uid://cswoqtgykpsjc" path="res://Scripts/Combat/StatusEffects/DamageOverTimeStatusEffect.gd" id="1_lcq7a"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="2_7psad"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="3_nauev"]
+
+[node name="DamageOverTimeStatusEffect" type="Node" node_paths=PackedStringArray("damage_effect") groups=["dot", "negative_status_effect"]]
+script = ExtResource("1_lcq7a")
+damage_effect = NodePath("DamageEffect")
+duration = 10.0
+id = "dot"
+
+[node name="DamageEffect" type="Node" parent="." node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("2_7psad")
+damage_stat = NodePath("Stat")
+damage_type = 2
+
+[node name="Stat" type="Node" parent="DamageEffect"]
+script = ExtResource("3_nauev")
+stat_value = 10.0

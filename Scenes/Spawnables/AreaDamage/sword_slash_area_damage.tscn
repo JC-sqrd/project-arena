@@ -1,0 +1,198 @@
+[gd_scene load_steps=29 format=3 uid="uid://67ivgv6bxove"]
+
+[ext_resource type="Script" uid="uid://c2nhbp4pxbtij" path="res://Scripts/Ability System/Spawnables/AreaHit.gd" id="1_hdcvy"]
+[ext_resource type="Script" uid="uid://b7arbvb75or7o" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/EmitBasicAttackSignal.gd" id="2_007nw"]
+[ext_resource type="Texture2D" uid="uid://du4rwmp4lo1cd" path="res://Placeholders/Sprites/Animation/SwordSlashAnimation/SwordSlash.png" id="2_86oje"]
+[ext_resource type="Texture2D" uid="uid://crvopmh21v1mx" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/slash_04.png" id="2_exrus"]
+[ext_resource type="Script" uid="uid://cur1850rvrtr1" path="res://Scripts/Skill Particles/SpawnableParticle.gd" id="3_ismrg"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="3_t6sa4"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="4_8t2sh"]
+[ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="5_l0kv6"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="6_x0vbp"]
+[ext_resource type="Script" uid="uid://b73thhg57675i" path="res://Scripts/StatSystem/SpawnableStatScaler.gd" id="7_diy04"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="10_0n2fx"]
+[ext_resource type="Script" uid="uid://b41oadkxkerfk" path="res://Scripts/Combat/CombatEffects/BonusValueChecks/DistanceCheck.gd" id="11_egd4v"]
+[ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="12_betbb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_007nw"]
+atlas = ExtResource("2_86oje")
+region = Rect2(0, 0, 236, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfjkp"]
+atlas = ExtResource("2_86oje")
+region = Rect2(236, 0, 236, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx42x"]
+atlas = ExtResource("2_86oje")
+region = Rect2(472, 0, 236, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hd6cq"]
+atlas = ExtResource("2_86oje")
+region = Rect2(708, 0, 236, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbhu5"]
+atlas = ExtResource("2_86oje")
+region = Rect2(944, 0, 236, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4r86"]
+atlas = ExtResource("2_86oje")
+region = Rect2(1180, 0, 236, 87)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_poiem"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_007nw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfjkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx42x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hd6cq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbhu5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4r86")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_cjr0k"]
+offsets = PackedFloat32Array(0, 0.319797, 0.791878, 1)
+colors = PackedColorArray(0.186462, 0.514865, 1.92523e-07, 1, 0.0941176, 0.960784, 0.556863, 1, 0.360784, 0.988235, 0.870588, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wcxjk"]
+gradient = SubResource("Gradient_cjr0k")
+
+[sub_resource type="Curve" id="Curve_5jpvk"]
+_limits = [-200.0, 1024.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.8, 15.2089), 0.0, 0.0, 0, 0, Vector2(1, 1024), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_mdbot"]
+curve = SubResource("Curve_5jpvk")
+
+[sub_resource type="Curve" id="Curve_tb8m4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.502222, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_713wv"]
+curve = SubResource("Curve_tb8m4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bv0gc"]
+particle_flag_disable_z = true
+angle_min = -90.0
+angle_max = -90.0
+gravity = Vector3(3000, 0, 0)
+linear_accel_min = 3000.0
+linear_accel_max = 3000.0
+linear_accel_curve = SubResource("CurveTexture_mdbot")
+scale_curve = SubResource("CurveTexture_713wv")
+color_ramp = SubResource("GradientTexture1D_wcxjk")
+
+[sub_resource type="Curve" id="Curve_h5h18"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[node name="sword_slash_area_damage" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_hdcvy")
+windup_time = 0.35
+lifetime = 0.1
+
+[node name="EmitBasicAttackSignal" type="Node" parent="." node_paths=PackedStringArray("spawnable")]
+script = ExtResource("2_007nw")
+spawnable = NodePath("..")
+metadata/_custom_type_script = "uid://b7arbvb75or7o"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(355, 0)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_poiem")
+autoplay = "default"
+frame = 7
+frame_progress = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 64, 0, -64, 640, -128, 640, 128)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." node_paths=PackedStringArray("spawnable")]
+visible = false
+amount = 1
+texture = ExtResource("2_exrus")
+lifetime = 0.35
+explosiveness = 1.0
+local_coords = true
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_bv0gc")
+script = ExtResource("3_ismrg")
+spawnable = NodePath("..")
+
+[node name="Damage" type="Node" parent="."]
+script = ExtResource("6_x0vbp")
+stat_value = 10.0
+
+[node name="SpawnableStatScaler" type="Node" parent="Damage" node_paths=PackedStringArray("spawnable", "stat")]
+script = ExtResource("7_diy04")
+spawnable = NodePath("../..")
+stat_to_scale = "attack_damage"
+stat = NodePath("..")
+scale_ratio = 0.45
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("3_t6sa4")
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("4_8t2sh")
+damage_stat = NodePath("Damage")
+damage_type = 2
+
+[node name="Damage" type="Node" parent="HitListener/DamageEffect"]
+script = ExtResource("6_x0vbp")
+stat_name = "sword_slash_damage"
+stat_value = 25.0
+
+[node name="GetActorStatScaler" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("10_0n2fx")
+stat = NodePath("..")
+scale_with_stat_id = "attack_damage"
+scale_ratio = 0.35
+
+[node name="GetActorStatScaler2" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("10_0n2fx")
+stat = NodePath("..")
+scale_with_stat_id = "magic_damage"
+scale_ratio = 0.6
+
+[node name="DistanceCheck" type="Node" parent="HitListener/DamageEffect" node_paths=PackedStringArray("stat")]
+script = ExtResource("11_egd4v")
+stat = NodePath("../Damage")
+damage_curve = SubResource("Curve_h5h18")
+scaling_ratio = -0.1
+distance = 400.0
+greater_than = true
+
+[node name="Knockback" type="Node" parent="HitListener"]
+script = ExtResource("5_l0kv6")
+force = 800.0
+
+[node name="OnHitEffect" type="Node" parent="HitListener"]
+script = ExtResource("12_betbb")
+on_hit_chance = 0.8

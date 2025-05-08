@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dengtpj68hcix"]
+
+[ext_resource type="Script" uid="uid://dnjhdyhsrd60y" path="res://Scripts/Combat/Equipment/HeadGear/HeadGear.gd" id="1_kg8ex"]
+[ext_resource type="Texture2D" uid="uid://3ckkqiqcpgt" path="res://Placeholders/Icons/Icon.1_05.png" id="2_vhy2a"]
+[ext_resource type="Script" uid="uid://bjpxplndvkee" path="res://Scripts/StatSystem/Stats/EquipmentBonusStat.gd" id="3_4dvfp"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="3_r62ra"]
+
+[node name="IronHelmet" type="Node2D"]
+script = ExtResource("1_kg8ex")
+equipment_name = "Iron Helmet"
+type = 1
+equipment_icon = ExtResource("2_vhy2a")
+metadata/_custom_type_script = "uid://dnjhdyhsrd60y"
+
+[node name="BonusStat" type="Node" parent="." node_paths=PackedStringArray("equipment", "bonus_value")]
+script = ExtResource("3_4dvfp")
+equipment = NodePath("..")
+stat_name = "armor"
+bonus_value = NodePath("Stat")
+metadata/_custom_type_script = "uid://bjpxplndvkee"
+
+[node name="Stat" type="Node" parent="BonusStat"]
+script = ExtResource("3_r62ra")
+stat_value = 10.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="BonusStat2" type="Node" parent="." node_paths=PackedStringArray("equipment", "bonus_value")]
+script = ExtResource("3_4dvfp")
+equipment = NodePath("..")
+stat_name = "move_speed"
+bonus_value = NodePath("Stat")
+metadata/_custom_type_script = "uid://bjpxplndvkee"
+
+[node name="Stat" type="Node" parent="BonusStat2"]
+script = ExtResource("3_r62ra")
+stat_value = -20.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"

@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://lknrbxfm7tv1"]
+
+[ext_resource type="Script" uid="uid://df7s4oatxu4hr" path="res://Scripts/Ability System/SpawnAbility.gd" id="1_16q40"]
+[ext_resource type="PackedScene" uid="uid://lfx3luq3d34y" path="res://Scenes/Spawnables/AreaEnterDamage/enemy_projectile_spawnable.tscn" id="2_t6wnu"]
+[ext_resource type="Script" uid="uid://yd87aj2hybru" path="res://Scripts/Ability System/SpawnAbilitySpawnBehavior/PointSpawn.gd" id="3_fk38f"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="3_t0aip"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="4_y80en"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_eoqgj"]
+[ext_resource type="Script" uid="uid://clr8tbibqclow" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="6_8n52x"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="7_8uloy"]
+
+[sub_resource type="Resource" id="Resource_23k1a"]
+script = ExtResource("3_fk38f")
+metadata/_custom_type_script = "uid://yd87aj2hybru"
+
+[node name="EnemyProjectile" type="Node2D" node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("1_16q40")
+spawn = ExtResource("2_t6wnu")
+spawn_behavior = SubResource("Resource_23k1a")
+cast_time = 0.5
+hit_listener = NodePath("HitListener")
+cooldown = 5.0
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("3_t0aip")
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("4_y80en")
+damage_stat = NodePath("Damage")
+
+[node name="Damage" type="Node" parent="HitListener/DamageEffect"]
+script = ExtResource("5_eoqgj")
+stat_value = 4.0
+
+[node name="StatScaler" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("6_8n52x")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../../../ActorMagicDamage")
+scale_ratio = 0.5
+
+[node name="ActorMagicDamage" type="Node" parent="."]
+script = ExtResource("5_eoqgj")
+
+[node name="GetActorStatScaler" type="Node" parent="ActorMagicDamage" node_paths=PackedStringArray("stat")]
+script = ExtResource("7_8uloy")
+stat = NodePath("..")
+scale_with_stat_id = "magic"

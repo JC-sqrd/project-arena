@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqhautyy3og7f"]
+
+[ext_resource type="Script" uid="uid://d1xavjy2kbus2" path="res://Scripts/Ability System/Spawnables/AreaEnterHit.gd" id="1_uyjcn"]
+[ext_resource type="Texture2D" uid="uid://vt22ahal7s0b" path="res://Placeholders/Sprites/Mystic_Sword_Projectile.png" id="2_unrxt"]
+[ext_resource type="Script" uid="uid://u7t3n45rwjb2" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/SpawnableAccelerateBehavior.gd" id="3_kn742"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pt6iv"]
+radius = 15.0
+
+[sub_resource type="Curve" id="Curve_gbp04"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.499287), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="SpawnableMysticSword" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_uyjcn")
+windup_time = 0.05
+lifetime = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pt6iv")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+texture_filter = 1
+rotation = 1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("2_unrxt")
+
+[node name="SpawnableAccelerateBehavior" type="Node" parent="." node_paths=PackedStringArray("spawnable")]
+script = ExtResource("3_kn742")
+move_speed = 2000.0
+acceleration = 500.0
+curve = SubResource("Curve_gbp04")
+spawnable = NodePath("..")

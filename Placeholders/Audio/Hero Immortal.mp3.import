@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://0v3gvdke2m6u"
+path="res://.godot/imported/Hero Immortal.mp3-3763b3462ea2cdfc523e89e87a569769.mp3str"
+
+[deps]
+
+source_file="res://Placeholders/Audio/Hero Immortal.mp3"
+dest_files=["res://.godot/imported/Hero Immortal.mp3-3763b3462ea2cdfc523e89e87a569769.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

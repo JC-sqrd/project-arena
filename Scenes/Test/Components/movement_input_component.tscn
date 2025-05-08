@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0i8ypdefjyja"]
+
+[ext_resource type="Script" uid="uid://b71v17veme0pm" path="res://Scripts/Movement/MovementInput.gd" id="1_besma"]
+
+[node name="MovementInput" type="Node"]
+script = ExtResource("1_besma")

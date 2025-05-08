@@ -1,0 +1,582 @@
+[gd_scene load_steps=77 format=3 uid="uid://cyrnk80mwy1j1"]
+
+[ext_resource type="Script" uid="uid://c82id00axlli8" path="res://Scripts/Enemy/Enemy.gd" id="1_824wj"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="6_1bo30"]
+[ext_resource type="Script" uid="uid://i2thtk66tgpr" path="res://Scripts/Enemy/AI/FollowPlayer.gd" id="7_6wyj7"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="7_iay8g"]
+[ext_resource type="Script" uid="uid://cdiu1n82272s0" path="res://Scripts/Enemy/AddGoldOnSlain.gd" id="8_y34hv"]
+[ext_resource type="Script" uid="uid://bmcifytwc82pu" path="res://Scripts/Enemy/AddExpOnSlain.gd" id="9_hgf7s"]
+[ext_resource type="Script" uid="uid://sc7t52uxqk2w" path="res://Scripts/Entity/ManaManager.gd" id="10_eteh1"]
+[ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Test/Components/hit_receiver.tscn" id="12_rbffg"]
+[ext_resource type="Script" uid="uid://ctjia3ovr0cyg" path="res://Scripts/Combat/DamageListener/DamageListener.gd" id="13_ave0o"]
+[ext_resource type="Script" uid="uid://mgrw0is6pnqq" path="res://Scripts/Combat/DamageListener/Mitigation/MitigationEffect.gd" id="14_710be"]
+[ext_resource type="Script" uid="uid://5fujd5ybwb45" path="res://Scripts/Combat/StatusEffects/StatusEffectManager.gd" id="15_clhf8"]
+[ext_resource type="Script" uid="uid://dkp8llu1e5ymh" path="res://Scripts/Item/ItemInventory.gd" id="16_v6tve"]
+[ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="17_2lqtb"]
+[ext_resource type="Texture2D" uid="uid://q77vaalj1c7g" path="res://Sprites/Enemy/Small Enemy.png" id="18_824wj"]
+[ext_resource type="Script" uid="uid://b7ufh45hbdc8e" path="res://Scripts/EntitySprite.gd" id="19_6mrp6"]
+[ext_resource type="Texture2D" uid="uid://cpg7kaa2t85md" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Attack hit marker.png" id="20_vh7hc"]
+[ext_resource type="Texture2D" uid="uid://c7iewtsox23sg" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0000.png" id="21_24i8h"]
+[ext_resource type="Texture2D" uid="uid://bvt0giighv5ax" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0001.png" id="22_bbcik"]
+[ext_resource type="Texture2D" uid="uid://c16sn36nfwj76" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0002.png" id="23_72rv0"]
+[ext_resource type="Texture2D" uid="uid://b4stxohqkxe4y" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0003.png" id="24_17phw"]
+[ext_resource type="Texture2D" uid="uid://evkgstx1vrgd" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0004.png" id="25_582ek"]
+[ext_resource type="Texture2D" uid="uid://f8ukp48mceff" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0005.png" id="26_bt3w7"]
+[ext_resource type="Texture2D" uid="uid://rg8khxkgr6i0" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0006.png" id="27_wv7cp"]
+[ext_resource type="Texture2D" uid="uid://mty87lri11va" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0007.png" id="28_8twh1"]
+[ext_resource type="Texture2D" uid="uid://ddh16dnwj061n" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0008.png" id="29_7d32y"]
+[ext_resource type="Texture2D" uid="uid://boh7l2hia0nyn" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0009.png" id="30_6ysvl"]
+[ext_resource type="Texture2D" uid="uid://cvxbuwbv1di3m" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0010.png" id="31_xkgdi"]
+[ext_resource type="Texture2D" uid="uid://dtl6ibq8dvo85" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0011.png" id="32_c5nhf"]
+[ext_resource type="Texture2D" uid="uid://5yxrvlqcu88u" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0012.png" id="33_gjb14"]
+[ext_resource type="Texture2D" uid="uid://cyumnmi1ktoef" path="res://Placeholders/Sprites/Animation/HitSpark/frame0000.png" id="34_ll03j"]
+[ext_resource type="Texture2D" uid="uid://dwbsgb3v246ym" path="res://Placeholders/Sprites/Animation/HitSpark/frame0001.png" id="35_20c42"]
+[ext_resource type="Texture2D" uid="uid://bnpokfuasf7cx" path="res://Placeholders/Sprites/Animation/HitSpark/frame0002.png" id="36_dq066"]
+[ext_resource type="Texture2D" uid="uid://c0dl6sa2a5jt3" path="res://Placeholders/Sprites/Animation/HitSpark/frame0003.png" id="37_0oa0v"]
+[ext_resource type="Texture2D" uid="uid://ba5b4cq4h3xw2" path="res://Placeholders/Sprites/Animation/HitSpark/frame0004.png" id="38_nd3hc"]
+[ext_resource type="Texture2D" uid="uid://dpr3kqaphvdqu" path="res://Placeholders/Sprites/Animation/HitSpark/frame0005.png" id="39_w5gf5"]
+[ext_resource type="Texture2D" uid="uid://c7d6srnstq8dw" path="res://Placeholders/Sprites/Animation/HitSpark/frame0006.png" id="40_pnnqv"]
+[ext_resource type="Texture2D" uid="uid://6ydfd8td374p" path="res://Placeholders/Sprites/Animation/HitSpark/frame0007.png" id="41_vgsde"]
+[ext_resource type="Texture2D" uid="uid://bvb8wdfxk0srf" path="res://Placeholders/Sprites/Animation/HitSpark/frame0008.png" id="42_8sxxu"]
+[ext_resource type="Texture2D" uid="uid://camqocmr4fo0j" path="res://Placeholders/Sprites/Animation/HitSpark/frame0009.png" id="43_na65r"]
+[ext_resource type="Script" uid="uid://xabwgpydpxaf" path="res://Scripts/Combat/HitSpriteAnimation.gd" id="44_riibb"]
+[ext_resource type="Script" uid="uid://ca00kjhgjanwc" path="res://Scripts/EntityCollisionShape2D.gd" id="45_b4mai"]
+[ext_resource type="Script" uid="uid://c2c43sih3sxp0" path="res://Scripts/Entity/LevelManager.gd" id="46_w8020"]
+[ext_resource type="Script" uid="uid://cdn8b5gg8mfb8" path="res://Scripts/Entity/HealthManager.gd" id="47_76ltv"]
+[ext_resource type="Script" uid="uid://cmnd4g4du2b0u" path="res://Scripts/StatSystem/StatManager.gd" id="48_i2ntd"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="49_n853f"]
+[ext_resource type="Script" uid="uid://clr8tbibqclow" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="50_phhd3"]
+[ext_resource type="Script" uid="uid://cxjykw6uf7uti" path="res://Scripts/Loot/EntityLootDropManager.gd" id="51_mwlfa"]
+[ext_resource type="PackedScene" uid="uid://cj01qxw0g7t0" path="res://Scenes/Pickupables/exp_orb.tscn" id="52_g47vu"]
+[ext_resource type="Script" uid="uid://cwvji5ut5gepk" path="res://Scripts/Loot/RandomLootDropper.gd" id="53_cl8po"]
+[ext_resource type="Script" uid="uid://dxpbdqwawfhk5" path="res://Scripts/Loot/LootDropper.gd" id="54_vkv4a"]
+[ext_resource type="PackedScene" uid="uid://b74ro0m7sh4l0" path="res://Scenes/Pickupables/rare_item_picker_pickup.tscn" id="55_fd1t8"]
+[ext_resource type="PackedScene" uid="uid://bdbihdl1o28gy" path="res://Scenes/Pickupables/common_item_picker_pickup.tscn" id="56_408jf"]
+[ext_resource type="PackedScene" uid="uid://e1v3gxd3patv" path="res://Scenes/Pickupables/heal_pickupable.tscn" id="57_yxlmo"]
+[ext_resource type="Script" uid="uid://4aq4lbc1j01f" path="res://Scripts/Loot/GoldDropper.gd" id="58_8pyf5"]
+[ext_resource type="PackedScene" uid="uid://cqnisx62mit3n" path="res://Scenes/Pickupables/gold_coin.tscn" id="59_aj1s5"]
+[ext_resource type="PackedScene" uid="uid://c5ynpo7p54mt" path="res://Scenes/UI/health_bar.tscn" id="60_rjf1v"]
+[ext_resource type="Script" uid="uid://bowwp5s7jndt1" path="res://Scripts/Combat/UI/DamageNumber.gd" id="61_if4j2"]
+[ext_resource type="AudioStream" uid="uid://qwxiqx2wt0qp" path="res://Placeholders/Audio/qubodupImpactMeat02.ogg" id="62_qued1"]
+[ext_resource type="Script" uid="uid://cyct4fbw7k0sb" path="res://Scripts/Audio/EntityHitStreamPlayer2D.gd" id="63_nf2gf"]
+[ext_resource type="Script" uid="uid://botqhhrbfbmcw" path="res://Scripts/Enemy/EntityHitParticle.gd" id="64_cxxtg"]
+[ext_resource type="PackedScene" uid="uid://bpntae4f4ajb7" path="res://Scenes/Particles/enemy_hit_spark_particle.tscn" id="65_ygoih"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5k4g"]
+resource_local_to_scene = true
+shader = ExtResource("17_2lqtb")
+shader_parameter/hit_opacity = 0.0
+shader_parameter/modulate = Color(1, 1, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pwdm6"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_824wj")
+}],
+"loop": true,
+"name": &"front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_824wj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_824wj")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyoix"]
+atlas = ExtResource("20_vh7hc")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vqdy"]
+atlas = ExtResource("20_vh7hc")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddg7u"]
+atlas = ExtResource("20_vh7hc")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arnim"]
+atlas = ExtResource("20_vh7hc")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1utq"]
+atlas = ExtResource("20_vh7hc")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_toxha"]
+atlas = ExtResource("20_vh7hc")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agecp"]
+atlas = ExtResource("20_vh7hc")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gq4qn"]
+atlas = ExtResource("20_vh7hc")
+region = Rect2(600, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiwsu"]
+atlas = ExtResource("20_vh7hc")
+region = Rect2(700, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iav3h"]
+atlas = ExtResource("20_vh7hc")
+region = Rect2(800, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_srgw6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyoix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vqdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddg7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arnim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1utq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_toxha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agecp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gq4qn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiwsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iav3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyoix")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_24i8h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_bbcik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_72rv0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_17phw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_582ek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_bt3w7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_wv7cp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_8twh1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_7d32y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_6ysvl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_xkgdi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_c5nhf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_gjb14")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("34_ll03j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_20c42")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_dq066")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_0oa0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_nd3hc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_w5gf5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_pnnqv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_vgsde")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_8sxxu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_na65r")
+}],
+"loop": false,
+"name": &"hit_spark",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e4waj"]
+radius = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6r22"]
+bg_color = Color(0.111197, 0.111197, 0.111197, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hit_listener", "hit_receiver", "stat_manager", "level_manager", "health_manager", "status_effect_manager", "damage_listener") groups=["Enemy", "Hittable"]]
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+platform_floor_layers = 4294901760
+script = ExtResource("1_824wj")
+hit_listener = NodePath("HitListener")
+hit_receiver = NodePath("HitReceiver")
+stat_manager = NodePath("Stats")
+level_manager = NodePath("LevelManager")
+health_manager = NodePath("HealthManager")
+status_effect_manager = NodePath("StatusEffectManager")
+damage_listener = NodePath("DamageListener")
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("6_1bo30")
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("7_iay8g")
+damage_stat = NodePath("../../Stats/AttackDamage")
+
+[node name="AddGoldOnSlain" type="Node" parent="."]
+script = ExtResource("8_y34hv")
+gold_add = 20.0
+active = false
+
+[node name="AddExpOnSlain" type="Node" parent="."]
+script = ExtResource("9_hgf7s")
+exp_add = 1.0
+exp_label_color = Color(0.917647, 0, 0.941176, 1)
+
+[node name="ManaManager" type="Node" parent="." node_paths=PackedStringArray("stat_manager", "max_mana", "current_mana", "mana_regen")]
+script = ExtResource("10_eteh1")
+stat_manager = NodePath("../Stats")
+max_mana = NodePath("../Stats/MaxMana")
+current_mana = NodePath("../Stats/Mana")
+mana_regen = NodePath("../Stats/ManaRegen")
+
+[node name="FollowPlayer" type="Node" parent="." node_paths=PackedStringArray("enemy", "speed")]
+script = ExtResource("7_6wyj7")
+enemy = NodePath("..")
+speed = NodePath("../Stats/MoveSpeed")
+metadata/_custom_type_script = "uid://i2thtk66tgpr"
+
+[node name="HitReceiver" parent="." instance=ExtResource("12_rbffg")]
+
+[node name="DamageListener" type="Node" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("13_ave0o")
+health = NodePath("../Stats/Health")
+
+[node name="MagicResistMitigation" type="Node" parent="DamageListener" node_paths=PackedStringArray("mitigate_stat")]
+script = ExtResource("14_710be")
+mitigate_stat = NodePath("../../Stats/MagicResist")
+mitigation_type = 1
+
+[node name="ArmorMitigation" type="Node" parent="DamageListener" node_paths=PackedStringArray("mitigate_stat")]
+script = ExtResource("14_710be")
+mitigate_stat = NodePath("../../Stats/Armor")
+
+[node name="StatusEffectManager" type="Node" parent="." node_paths=PackedStringArray("entity")]
+script = ExtResource("15_clhf8")
+entity = NodePath("..")
+
+[node name="ItemInventory" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("16_v6tve")
+actor = NodePath("..")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("entity")]
+texture_filter = 1
+material = SubResource("ShaderMaterial_w5k4g")
+position = Vector2(0, -17)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_pwdm6")
+animation = &"front"
+script = ExtResource("19_6mrp6")
+entity = NodePath("..")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="AnimatedSprite2D"]
+position = Vector2(-6, 2.66667)
+scale = Vector2(0.122428, 0.133333)
+rect = Rect2(0, 0, 100, 100)
+enable_node_path = NodePath("")
+
+[node name="HitSpriteAnimation" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("entity")]
+visible = false
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_srgw6")
+animation = &"hit_spark"
+frame = 9
+frame_progress = 1.0
+script = ExtResource("44_riibb")
+entity = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("CircleShape2D_e4waj")
+debug_color = Color(0, 0.6, 0.701961, 0.215686)
+script = ExtResource("45_b4mai")
+
+[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("level_stat")]
+script = ExtResource("46_w8020")
+level_stat = NodePath("../Stats/Level")
+
+[node name="HealthManager" type="Node" parent="." node_paths=PackedStringArray("stat_manager", "max_health", "current_health", "health_regen", "max_shield", "current_shield", "shield_regen")]
+script = ExtResource("47_76ltv")
+stat_manager = NodePath("../Stats")
+max_health = NodePath("../Stats/MaxHealth")
+current_health = NodePath("../Stats/Health")
+health_regen = NodePath("../Stats/HealthRegen")
+max_shield = NodePath("../Stats/MaxShield")
+current_shield = NodePath("../Stats/Shield")
+shield_regen = NodePath("../Stats/ShieldRegen")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("48_i2ntd")
+
+[node name="MoveSpeed" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "move_speed"
+stat_value = 200.0
+
+[node name="Health" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "current_health"
+
+[node name="MaxHealth" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "max_health"
+stat_value = 5.0
+
+[node name="LevelStatScaler" type="Node" parent="Stats/MaxHealth" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("50_phhd3")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Level")
+scale_ratio = 5.0
+
+[node name="HealthRegen" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "health_regen"
+
+[node name="Armor" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "armor"
+
+[node name="LevelStatScaler" type="Node" parent="Stats/Armor" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("50_phhd3")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Level")
+
+[node name="MagicResist" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "magic_resist"
+
+[node name="LevelStatScaler" type="Node" parent="Stats/MagicResist" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("50_phhd3")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Level")
+
+[node name="Level" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "level"
+
+[node name="AttackSpeed" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "attack_speed"
+stat_value = 1.0
+
+[node name="AttackDamage" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "attack_damage"
+stat_value = 1.0
+
+[node name="StatScaler" type="Node" parent="Stats/AttackDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("50_phhd3")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Level")
+scale_ratio = 0.5
+
+[node name="MagicDamage" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "magic_damage"
+stat_value = 10.0
+
+[node name="Strength" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "strength"
+stat_value = 5.0
+
+[node name="LevelScaler" type="Node" parent="Stats/Strength" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("50_phhd3")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Level")
+
+[node name="Vitality" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "vitality"
+stat_value = 5.0
+
+[node name="LevelScaler" type="Node" parent="Stats/Vitality" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("50_phhd3")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Level")
+scale_base_value = true
+
+[node name="Magic" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "magic"
+stat_value = 2.0
+
+[node name="LevelScaler" type="Node" parent="Stats/Magic" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("50_phhd3")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Level")
+scale_ratio = 3.0
+scale_base_value = true
+
+[node name="Mana" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "current_mana"
+
+[node name="MaxMana" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "max_mana"
+stat_value = 100.0
+
+[node name="ManaRegen" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "mana_regen"
+stat_value = 1.0
+
+[node name="Shield" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+
+[node name="MaxShield" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+
+[node name="ShieldRegen" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+
+[node name="LootDropManager" type="Node2D" parent="." node_paths=PackedStringArray("enemy")]
+script = ExtResource("51_mwlfa")
+enemy = NodePath("..")
+drops = Array[PackedScene]([ExtResource("52_g47vu")])
+
+[node name="RandomLootDropper" type="Node" parent="LootDropManager"]
+script = ExtResource("53_cl8po")
+active = false
+
+[node name="RareDropper" type="Node" parent="LootDropManager/RandomLootDropper"]
+script = ExtResource("54_vkv4a")
+loot = ExtResource("55_fd1t8")
+drop_chance = 2.0
+
+[node name="CommonDropper" type="Node" parent="LootDropManager/RandomLootDropper"]
+script = ExtResource("54_vkv4a")
+loot = ExtResource("56_408jf")
+drop_chance = 5.0
+
+[node name="LootDropper" type="Node" parent="LootDropManager/RandomLootDropper"]
+script = ExtResource("54_vkv4a")
+drop_chance = 60.0
+
+[node name="HealDropper" type="Node" parent="LootDropManager" node_paths=PackedStringArray("dropper")]
+script = ExtResource("54_vkv4a")
+dropper = NodePath("..")
+loot = ExtResource("57_yxlmo")
+drop_chance = 0.05
+
+[node name="GoldDropper" type="Node" parent="LootDropManager" node_paths=PackedStringArray("dropper")]
+script = ExtResource("58_8pyf5")
+gold_add = 5.0
+dropper = NodePath("..")
+loot = ExtResource("59_aj1s5")
+metadata/_custom_type_script = "uid://4aq4lbc1j01f"
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -62.0
+offset_top = -86.0
+offset_right = 71.0
+offset_bottom = -70.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u6r22")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+custom_minimum_size = Vector2(125, 6)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -3.0
+offset_right = 25.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" parent="Panel/MarginContainer" node_paths=PackedStringArray("health_manager") instance=ExtResource("60_rjf1v")]
+layout_mode = 2
+health_manager = NodePath("../../../HealthManager")
+
+[node name="DamageNumber" type="Node" parent="."]
+script = ExtResource("61_if4j2")
+
+[node name="EntityHitStreamPlayer2D" type="AudioStreamPlayer2D" parent="." node_paths=PackedStringArray("entity")]
+stream = ExtResource("62_qued1")
+script = ExtResource("63_nf2gf")
+entity = NodePath("..")
+
+[node name="EntityHitParticle" type="Node" parent="." node_paths=PackedStringArray("entity")]
+script = ExtResource("64_cxxtg")
+entity = NodePath("..")
+particle_scene = ExtResource("65_ygoih")
+
+[editable path="Panel/MarginContainer/TextureProgressBar"]

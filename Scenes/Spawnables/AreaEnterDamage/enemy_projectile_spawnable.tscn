@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://lfx3luq3d34y"]
+
+[ext_resource type="Script" uid="uid://d1xavjy2kbus2" path="res://Scripts/Ability System/Spawnables/AreaEnterHit.gd" id="1_ve0fq"]
+[ext_resource type="Texture2D" uid="uid://bi1odk3seaols" path="res://Placeholders/Sprites/Placeholder Projectile.png" id="2_13swo"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="3_rtivc"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="4_ngy8u"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="4_r0cke"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="5_buwrl"]
+[ext_resource type="Script" uid="uid://clr8tbibqclow" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="6_qekjj"]
+[ext_resource type="Script" uid="uid://y1c1hiwxwmkf" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/SpawnableHitCounterBehavior.gd" id="9_6d7b8"]
+[ext_resource type="Script" uid="uid://c6hdo0rjgde2q" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/MoveSpawnable.gd" id="9_57igw"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dtcrb"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2xv3i"]
+radius = 15.0
+
+[sub_resource type="Curve" id="Curve_a16rj"]
+_limits = [0.0, 1.25, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1.25), 0.074799, 0.074799, 0, 0, Vector2(1, 0.75), -4.10547, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[node name="EnemyProjectileSpawnable" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_ve0fq")
+windup_time = 0.5
+lifetime = 5.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(4.01176, 0, 0, 1)
+texture_filter = 1
+position = Vector2(-11, 0)
+scale = Vector2(2.12, 1.35111)
+texture = ExtResource("2_13swo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(100, 100, 52.973, 1)
+material = SubResource("CanvasItemMaterial_dtcrb")
+position = Vector2(-4, 0)
+scale = Vector2(1.2, 1)
+texture = ExtResource("2_13swo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2xv3i")
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("3_rtivc")
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("4_r0cke")
+damage_stat = NodePath("Damage")
+
+[node name="Damage" type="Node" parent="HitListener/DamageEffect"]
+script = ExtResource("4_ngy8u")
+stat_value = 10.0
+
+[node name="StatScaler" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("6_qekjj")
+stat = NodePath("..")
+scale_with_stat = NodePath("../MagicDamage")
+scale_ratio = 1.2
+
+[node name="MagicDamage" type="Node" parent="HitListener/DamageEffect/Damage"]
+script = ExtResource("4_ngy8u")
+
+[node name="GetActorStatScaler" type="Node" parent="HitListener/DamageEffect/Damage/MagicDamage" node_paths=PackedStringArray("stat")]
+script = ExtResource("5_buwrl")
+stat = NodePath("..")
+scale_with_stat_id = "magic_damage"
+
+[node name="SpawnableMoveBehavior" type="Node" parent="." node_paths=PackedStringArray("spawnable")]
+script = ExtResource("9_57igw")
+move_speed = 700.0
+curve = SubResource("Curve_a16rj")
+spawnable = NodePath("..")
+
+[node name="SpawnableHitCounterBehavior" type="Node" parent="." node_paths=PackedStringArray("hit_times", "spawnable")]
+script = ExtResource("9_6d7b8")
+hit_times = NodePath("Stat")
+spawnable = NodePath("..")
+metadata/_custom_type_script = "uid://y1c1hiwxwmkf"
+
+[node name="Stat" type="Node" parent="SpawnableHitCounterBehavior"]
+script = ExtResource("4_ngy8u")
+stat_value = 1.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
