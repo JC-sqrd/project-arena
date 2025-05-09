@@ -12,7 +12,7 @@ enum CastMode {
 
 ## Determines the cast mode of the ability
 @export var required_stat : AbilityRequiredStat = AbilityRequiredStat.create("current_mana", 1)
-@export var cast_mode : CastMode = CastMode.AIM
+@export var cast_mode : CastMode = CastMode.AUTO
 @export var start_cooldown_on : CoolDownOn = CoolDownOn.CAST
 @export var cast_time : float = 0
 

@@ -55,9 +55,8 @@ ability = NodePath("AbilityLungeStrike")
 
 [node name="AbilityLungeStrike" parent="UtilityAbilityContainer" index="2" instance=ExtResource("2_qi0ur")]
 
-[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("weapon_position", "equipment")]
+[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
 position = Vector2(-1.07288e-06, 9)
-weapon_position = NodePath("WeaponPosition")
 equipment = NodePath("WeaponPosition/WeaponBow")
 action_trigger = "secondary_ability"
 

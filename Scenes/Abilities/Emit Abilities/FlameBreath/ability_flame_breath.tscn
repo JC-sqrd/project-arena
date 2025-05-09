@@ -94,7 +94,6 @@ animations = [{
 script = ExtResource("1_ooi45")
 emited_object = ExtResource("2_cgcej")
 required_stat = SubResource("Resource_vq3b8")
-cast_mode = 1
 start_cooldown_on = 2
 cast_time = 0.25
 hit_listener = NodePath("HitListener")
@@ -114,7 +113,7 @@ metadata/_custom_type_script = "uid://c8sj8b1npavnd"
 
 [node name="ScaledDamage" type="Node" parent="HitListener/DamageEffect"]
 script = ExtResource("6_eridb")
-stat_value = 2.0
+stat_value = 4.0
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="HitListener/DamageEffect/ScaledDamage" node_paths=PackedStringArray("stat")]

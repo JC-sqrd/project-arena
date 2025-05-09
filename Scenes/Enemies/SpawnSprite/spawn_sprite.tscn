@@ -1,7 +1,102 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqm4fbhm3ik7d"]
+[gd_scene load_steps=15 format=3 uid="uid://dqm4fbhm3ik7d"]
 
-[ext_resource type="Texture2D" uid="uid://c35vvralpy2oe" path="res://Placeholders/Sprites/Skill Circle Visual.png" id="1_2xg5x"]
+[ext_resource type="Texture2D" uid="uid://cshudxc8pkc4w" path="res://Sprites/Summon Circle/Summon Circle.png" id="1_p1awk"]
 
-[node name="SpawnSprite" type="Sprite2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lypfp"]
+atlas = ExtResource("1_p1awk")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uxit"]
+atlas = ExtResource("1_p1awk")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfvwt"]
+atlas = ExtResource("1_p1awk")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ci46l"]
+atlas = ExtResource("1_p1awk")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coqb4"]
+atlas = ExtResource("1_p1awk")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atso8"]
+atlas = ExtResource("1_p1awk")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6do4g"]
+atlas = ExtResource("1_p1awk")
+region = Rect2(600, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71q40"]
+atlas = ExtResource("1_p1awk")
+region = Rect2(700, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3n4f"]
+atlas = ExtResource("1_p1awk")
+region = Rect2(800, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhv8u"]
+atlas = ExtResource("1_p1awk")
+region = Rect2(900, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1uyki"]
+atlas = ExtResource("1_p1awk")
+region = Rect2(1000, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5wnt"]
+atlas = ExtResource("1_p1awk")
+region = Rect2(1100, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jn2en"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lypfp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uxit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfvwt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ci46l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_coqb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atso8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6do4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71q40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3n4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhv8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1uyki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5wnt")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="SpawnSprite" type="AnimatedSprite2D"]
 texture_filter = 1
-texture = ExtResource("1_2xg5x")
+sprite_frames = SubResource("SpriteFrames_jn2en")
+autoplay = "default"
+frame = 11
+frame_progress = 1.0

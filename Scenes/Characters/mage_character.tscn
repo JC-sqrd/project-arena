@@ -38,13 +38,11 @@ ability = NodePath("DashAbility")
 [node name="DashAbility" parent="UtilityAbilityContainer" index="1"]
 dash_distance = 300.0
 direction_input = 1
-cast_mode = 1
 
 [node name="FlamePillar" parent="UtilityAbilityContainer" index="2" instance=ExtResource("10_w6ej0")]
 
-[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("weapon_position", "equipment")]
+[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
 position = Vector2(0, 10)
-weapon_position = NodePath("WeaponPosition")
 equipment = NodePath("WeaponPosition/FireGrimoire")
 
 [node name="WeaponPosition" parent="WeaponSlot" index="1"]
@@ -62,5 +60,8 @@ stat_value = 5.0
 
 [node name="MaxHealth" parent="Stats" index="7"]
 stat_value = 30.0
+
+[node name="MoveSpeed" parent="Stats" index="9"]
+stat_value = 300.0
 
 [editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]

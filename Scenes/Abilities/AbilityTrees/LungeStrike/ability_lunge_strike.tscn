@@ -35,7 +35,6 @@ metadata/_custom_type_script = "uid://tuvjl40jf0pm"
 script = ExtResource("1_r2qjf")
 head_branch = NodePath("AbilityBranch")
 required_stat = SubResource("Resource_wp3vh")
-cast_mode = 1
 cooldown = 5.0
 
 [node name="AbilityBranch" type="Node" parent="." node_paths=PackedStringArray("ability", "next_ability")]
@@ -49,14 +48,12 @@ script = ExtResource("3_xvkg1")
 dash_distance = 250.0
 direction_input = 1
 required_stat = SubResource("Resource_37thu")
-cast_mode = 1
 metadata/_custom_type_script = "uid://46rajp5yxkq6"
 
 [node name="EmitAbility" type="Node2D" parent="AbilityBranch" node_paths=PackedStringArray("hit_listener")]
 script = ExtResource("4_g7opt")
 emited_object = ExtResource("5_qwgi4")
 required_stat = SubResource("Resource_e0o8v")
-cast_mode = 1
 hit_listener = NodePath("HitListener")
 metadata/_custom_type_script = "uid://42qvy4m6xprb"
 
