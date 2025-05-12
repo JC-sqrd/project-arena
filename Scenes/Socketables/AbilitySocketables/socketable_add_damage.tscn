@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://8jclo11v0m1v"]
 
 [ext_resource type="Script" uid="uid://n56xkb4u25hj" path="res://Scripts/Socket/AbilitySocketable.gd" id="1_oh004"]
-[ext_resource type="Script" uid="uid://dr0vq2cfvub34" path="res://Scripts/Socket/SocketableEffects/AbilityStockableEffects/AddDamageASE.gd" id="2_ypyg2"]
+[ext_resource type="Script" uid="uid://dr0vq2cfvub34" path="res://Scripts/Socket/SocketableEffects/AbilitySocketableEffects/AddDamageASE.gd" id="2_ypyg2"]
 
 [node name="SocketableAddDamage" type="Node"]
 script = ExtResource("1_oh004")

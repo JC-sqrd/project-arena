@@ -58,7 +58,6 @@ ability = NodePath("AbilityLungeStrike")
 [node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
 position = Vector2(-1.07288e-06, 9)
 equipment = NodePath("WeaponPosition/WeaponBow")
-action_trigger = "secondary_ability"
 
 [node name="WeaponPosition" parent="WeaponSlot" index="1"]
 position = Vector2(17, 0)

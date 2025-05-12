@@ -164,6 +164,7 @@ scale = Vector2(0.999999, 0.999999)
 attack_speed = NodePath("../Stats/AttackSpeedMultiplier")
 weapon_position = NodePath("WeaponPosition")
 actor = NodePath("..")
+action_trigger = "secondary_ability"
 
 [node name="WeaponPosition" type="Marker2D" parent="WeaponSlot"]
 

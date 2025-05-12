@@ -6,6 +6,8 @@ extends Weapon
 @export var spawn_node : Node2D
 @export var max_distance : float = 100
 @export var look_at_mouse : bool = false
+@export var sockets : Array[WeaponSocket]
+
 
 var start_windup : bool = false
 var winding_up : bool = false
@@ -20,6 +22,11 @@ var attacking : bool = false
 
 func _ready():
 	super()
+	for socket in sockets:
+		socket.weapon = self
+		if socket.socketable != null:
+			#socket.socketable.apply_effects_to_ability(self)
+			socket.activate_socketable()
 	pass
 
 func _process(delta):

@@ -22,7 +22,6 @@ metadata/_custom_type_script = "uid://tuvjl40jf0pm"
 script = ExtResource("1_3ryqs")
 emited_object = ExtResource("2_hb4dy")
 required_stat = SubResource("Resource_b38oi")
-cast_mode = 1
 cast_time = 0.25
 hit_listener = NodePath("HitListener")
 cooldown = 8.0

@@ -24,7 +24,8 @@ func on_gui_input(event : InputEvent):
 	pass
 
 func on_mouse_entered():
-	slot_border.modulate = Color.GREEN
+	if !is_selected:
+		slot_border.modulate = Color.GREEN
 	pass
 
 func on_mouse_exited():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgy7pdawvoiwa"]
+[gd_scene load_steps=12 format=3 uid="uid://bgy7pdawvoiwa"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/test_character.tscn" id="1_mooh8"]
 [ext_resource type="PackedScene" uid="uid://bsyjglycqybnf" path="res://Scenes/Abilities/Spawn Abilities/Fireball/ability_fireball.tscn" id="2_2tih5"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ba77g51rg80ak" path="res://Scenes/Weapons/Shuriken/weapon_shuriken.tscn" id="4_du287"]
 [ext_resource type="PackedScene" uid="uid://c7f3i2m7h07jc" path="res://Scenes/Items/charge_move_speed/item_charge_move_speed.tscn" id="4_rpc63"]
 [ext_resource type="PackedScene" uid="uid://blgfsj2jbixh6" path="res://Scenes/Weapons/Magic Gun/weapon_magic_gun.tscn" id="5_cylll"]
+[ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="6_judwm"]
 [ext_resource type="PackedScene" uid="uid://bkjwb31l88d7n" path="res://Scenes/Abilities/Spawn Abilities/FlamePillar/flame_pillar.tscn" id="10_w6ej0"]
 [ext_resource type="PackedScene" uid="uid://cx8tgb7k8cwbk" path="res://Scenes/Abilities/Emit Abilities/FlameBreath/ability_flame_breath.tscn" id="12_rpc63"]
 
@@ -20,6 +21,8 @@
 [node name="WeaponShuriken" parent="EquipmentInventory" index="2" instance=ExtResource("4_du287")]
 
 [node name="WeaponMagicGun" parent="EquipmentInventory" index="3" instance=ExtResource("5_cylll")]
+
+[node name="SwiftSword" parent="EquipmentInventory" index="4" instance=ExtResource("6_judwm")]
 
 [node name="InnateActiveAbility" parent="." index="2" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityFireball")

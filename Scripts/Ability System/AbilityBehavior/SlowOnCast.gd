@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func on_ability_casted():
 	old_actor_move_speed = ability.actor.stat_manager.stats["move_speed"].stat_derived_value
-	ability.actor.stat_manager.stats["move_speed"].stat_derived_value = ability.actor.stat_manager.stats["move_speed"].stat_value * slow_multiplier 
+	ability.actor.stat_manager.stats["move_speed"].stat_derived_value = ability.actor.stat_manager.stats["move_speed"].stat_derived_value * slow_multiplier 
 	await get_tree().create_timer(slow_time, false, true, false).timeout
 	ability.actor.stat_manager.stats["move_speed"].stat_derived_value = old_actor_move_speed
 	pass

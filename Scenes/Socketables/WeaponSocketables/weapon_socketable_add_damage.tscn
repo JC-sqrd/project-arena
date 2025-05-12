@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl4txqi2sf005"]
+
+[ext_resource type="Script" uid="uid://buqs60om77r50" path="res://Scripts/Socket/WeaponSocketable.gd" id="1_o5xbm"]
+[ext_resource type="Script" uid="uid://bt4d7ghht4tst" path="res://Scripts/Socket/SocketableEffects/WeaponSocketableEffects/AddDamageWSE.gd" id="2_8658a"]
+
+[node name="WeaponSocketableAddDamage" type="Node"]
+script = ExtResource("1_o5xbm")
+metadata/_custom_type_script = "uid://buqs60om77r50"
+
+[node name="AddDamageWSE" type="Node" parent="."]
+script = ExtResource("2_8658a")
+damage_add = 20.0
+metadata/_custom_type_script = "uid://bt4d7ghht4tst"

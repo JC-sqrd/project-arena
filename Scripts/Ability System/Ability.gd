@@ -67,8 +67,10 @@ func _ready():
 	elif owner.has_method("get_actor"):
 		actor = owner.get_actor()
 	for socket in sockets:
+		socket.ability = self
 		if socket.socketable != null:
-			socket.socketable.apply_effects_to_ability(self)
+			#socket.socketable.apply_effects_to_ability(self)
+			socket.activate_socketable()
 
 func initialize_ability():
 	pass

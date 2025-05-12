@@ -1,35 +1,45 @@
-[gd_scene load_steps=7 format=3 uid="uid://dophsrqv8y3sh"]
+[gd_scene load_steps=10 format=3 uid="uid://dophsrqv8y3sh"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/test_character.tscn" id="1_5hmdl"]
+[ext_resource type="PackedScene" uid="uid://br6km26u30bs6" path="res://Scenes/Weapons/Chakram/weapon_chakram.tscn" id="2_t2lar"]
 [ext_resource type="PackedScene" uid="uid://du2r3qg36q32c" path="res://Scenes/Abilities/Spawn Abilities/ground_burst_ability.tscn" id="2_v11n0"]
+[ext_resource type="PackedScene" uid="uid://df35xeepp7qfx" path="res://Scenes/Weapons/Fire Grimoire/weapon_fire_grimoire.tscn" id="3_e1acb"]
 [ext_resource type="PackedScene" uid="uid://c54utx7ghqari" path="res://Scenes/Abilities/Emit Abilities/Aura/ability_aura.tscn" id="3_hynws"]
-[ext_resource type="Script" uid="uid://clr8tbibqclow" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="4_7trqo"]
+[ext_resource type="PackedScene" uid="uid://ba77g51rg80ak" path="res://Scenes/Weapons/Shuriken/weapon_shuriken.tscn" id="4_7raj0"]
 [ext_resource type="PackedScene" uid="uid://bkmw1nqw6gp4q" path="res://Scenes/Weapons/Hammer/weapon_hammer.tscn" id="4_325pn"]
+[ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="5_7fhwv"]
 [ext_resource type="PackedScene" uid="uid://dpxeo3vfdhsen" path="res://Scenes/Items/burst_damage/item_burst_damage.tscn" id="5_tujq1"]
 
 [node name="HammerCharacter" instance=ExtResource("1_5hmdl")]
 
-[node name="InnateActiveAbility" parent="." index="1" node_paths=PackedStringArray("ability")]
+[node name="WeaponChakram" parent="EquipmentInventory" index="0" instance=ExtResource("2_t2lar")]
+
+[node name="FireGrimoire" parent="EquipmentInventory" index="1" instance=ExtResource("3_e1acb")]
+
+[node name="WeaponShuriken" parent="EquipmentInventory" index="2" instance=ExtResource("4_7raj0")]
+
+[node name="SwiftSword" parent="EquipmentInventory/WeaponShuriken" index="7" instance=ExtResource("5_7fhwv")]
+
+[node name="InnateActiveAbility" parent="." index="2" node_paths=PackedStringArray("ability")]
 ability = NodePath("GroundBurstAbility")
 
 [node name="GroundBurstAbility" parent="InnateActiveAbility" index="1" instance=ExtResource("2_v11n0")]
 
-[node name="InnateUtilityAbility" parent="." index="2" node_paths=PackedStringArray("ability")]
+[node name="InnateUtilityAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityAura")
 
 [node name="AbilityAura" parent="InnateUtilityAbility" index="1" instance=ExtResource("3_hynws")]
 
-[node name="UtilityAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
+[node name="UtilityAbilityContainer" parent="." index="4" node_paths=PackedStringArray("ability")]
 ability = NodePath("DashAbility")
 
 [node name="DashAbility" parent="UtilityAbilityContainer" index="1"]
 dash_distance = 300.0
 direction_input = 1
-cast_mode = 1
 
-[node name="WeaponSlot" parent="." index="4" node_paths=PackedStringArray("weapon")]
+[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
 position = Vector2(-1.07288e-06, 14)
-weapon = NodePath("WeaponPosition/Hammer")
+equipment = NodePath("WeaponPosition/Hammer")
 
 [node name="WeaponPosition" parent="WeaponSlot" index="1"]
 position = Vector2(12, 0)
@@ -42,23 +52,7 @@ cooldown_time = 3.5
 [node name="MaxHealth" parent="Stats" index="7"]
 stat_value = 50.0
 
-[node name="VitalityStatScaler" parent="Stats/MaxHealth" index="0"]
-scale_ratio = 1.0
-
 [node name="MoveSpeed" parent="Stats" index="9"]
 stat_value = 240.0
-
-[node name="AttackSpeed" parent="Stats" index="10"]
-stat_value = 0.8
-
-[node name="StatScaler" type="Node" parent="Stats/AttackDamage" index="1" node_paths=PackedStringArray("stat", "scale_with_stat")]
-script = ExtResource("4_7trqo")
-stat = NodePath("..")
-scale_with_stat = NodePath("../../Vitality")
-scale_ratio = 0.2
-metadata/_custom_type_script = "uid://clr8tbibqclow"
-
-[node name="Vitality" parent="Stats" index="14"]
-stat_value = 20.0
 
 [editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]
