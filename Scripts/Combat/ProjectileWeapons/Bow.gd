@@ -92,7 +92,7 @@ func spawn_arrow(charge : float):
 				var effect_data : Dictionary = hit_listener.generate_effect_data()
 				new_projectile.hit_data = effect_data
 				if effect_data.has("damage_effect"):
-					effect_data["damage_effect"]["damage"] *= max(0.5, 2 * (charge/charge_time))
+					effect_data["damage_effect"].damage *= max(0.5, 2 * (charge/charge_time))
 				
 			new_projectile.max_distance_reached.connect(func() : attack_end.emit())
 			new_projectile.source = self

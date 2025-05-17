@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cggb2x36mslpl"]
+[gd_scene load_steps=18 format=3 uid="uid://cggb2x36mslpl"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/test_character.tscn" id="1_n43wd"]
 [ext_resource type="PackedScene" uid="uid://od3lf463dx1c" path="res://Scenes/Abilities/Emit Abilities/sword_slash_emit.tscn" id="2_qau1h"]
@@ -12,6 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://bkmw1nqw6gp4q" path="res://Scenes/Weapons/Hammer/weapon_hammer.tscn" id="6_vsorn"]
 [ext_resource type="PackedScene" uid="uid://dq2ilob20a4t5" path="res://Scenes/Weapons/Bow/weapon_bow.tscn" id="6_wfw53"]
 [ext_resource type="PackedScene" uid="uid://br6km26u30bs6" path="res://Scenes/Weapons/Chakram/weapon_chakram.tscn" id="8_2feh8"]
+[ext_resource type="PackedScene" uid="uid://c11kdiu2c6vx" path="res://Scenes/Items/item_vitality.tscn" id="14_a3qyk"]
+[ext_resource type="PackedScene" uid="uid://3tleitsb6xke" path="res://Scenes/Items/block_damage/item_chance_block_damage.tscn" id="15_epo7i"]
+[ext_resource type="PackedScene" uid="uid://c7f3i2m7h07jc" path="res://Scenes/Items/charge_move_speed/item_charge_move_speed.tscn" id="17_usktj"]
+[ext_resource type="PackedScene" uid="uid://c6gvfaa8b8jnj" path="res://Scenes/Items/gain_move_speed/item_move_speed.tscn" id="18_8km3p"]
 
 [sub_resource type="Resource" id="Resource_52u7q"]
 script = ExtResource("4_wfw53")
@@ -76,6 +80,17 @@ position = Vector2(17, 0)
 equipment = NodePath("IronHelmet")
 
 [node name="IronHelmet" parent="HeadGearSlot" index="0" instance=ExtResource("5_0v31t")]
+
+[node name="ItemVitality" parent="ItemInventory" index="0" instance=ExtResource("14_a3qyk")]
+stack = 500
+
+[node name="ItemChanceBlockDamage" parent="ItemInventory" index="1" instance=ExtResource("15_epo7i")]
+stack = 500
+
+[node name="ItemChargeMoveSpeed" parent="ItemInventory" index="2" instance=ExtResource("17_usktj")]
+
+[node name="ItemMoveSpeed" parent="ItemInventory" index="3" instance=ExtResource("18_8km3p")]
+stack = 50
 
 [node name="MaxHealth" parent="Stats" index="7"]
 stat_value = 50.0

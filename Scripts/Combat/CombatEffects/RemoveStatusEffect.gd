@@ -18,12 +18,13 @@ func get_effect_key() -> Variant:
 	return "remove_status_effect"
 
 func get_effect_value() -> StatusEffectData:
-	return StatusEffectData.new(status_effect_scene, stack)
+	#status_effect : StatusEffect, stack : int, chance : float, tags : Array[StringName]
+	return StatusEffectData.new(status_effect_scene.instantiate(), stack, 1, [])
 
-class StatusEffectData:
-	var status_effect_scene : PackedScene
-	var stack : int = 1
-	
-	func _init(status_effect_scene : PackedScene, stack : int):
-		self.status_effect_scene = status_effect_scene
-		self.stack = stack
+#class StatusEffectData:
+	#var status_effect_scene : PackedScene
+	#var stack : int = 1
+	#
+	#func _init(status_effect_scene : PackedScene, stack : int):
+		#self.status_effect_scene = status_effect_scene
+		#self.stack = stack

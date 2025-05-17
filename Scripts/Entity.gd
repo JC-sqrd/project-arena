@@ -20,8 +20,8 @@ var can_cast : bool = true
 
 signal took_damage (damage_taken : float)
 signal took_damage_with_type (damage_taken : float, type : Enums.DamageType) 
-signal took_damage_with_data (damage_data : Dictionary)
-signal damage_data_created (damage_data : Dictionary)
+signal took_damage_with_data (damage_data : DamageEffectData)
+signal damage_data_created (damage_data : DamageEffectData)
 signal applied_damage (damage_applied : float)
 signal applied_damage_with_data (damage_data : Dictionary)
 signal critical_striked(data : Dictionary)
@@ -40,9 +40,9 @@ func _ready():
 	on_hit.connect(on_hit_received)
 	pass
 
-func take_damage(damage_data : Dictionary):
-	took_damage.emit(damage_data["total_damage"])
-	took_damage_with_type.emit(damage_data["total_damage"], damage_data["type"])
+func take_damage(damage_data : DamageEffectData):
+	took_damage.emit(damage_data.total_damage)
+	took_damage_with_type.emit(damage_data.total_damage, damage_data.damage_type)
 	took_damage_with_data.emit(damage_data)
 	pass
 

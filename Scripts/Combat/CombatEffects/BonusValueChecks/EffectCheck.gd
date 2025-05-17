@@ -11,4 +11,3 @@ func generate_bonus_value_condition() -> BonusValueCondition:
 func get_bonus_value() -> float:
 	return 0
 	pass
-

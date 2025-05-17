@@ -2,7 +2,6 @@ class_name Enemy
 extends Entity
 
 
-
 @export var player : PlayerCharacter
 @export var speed : float
 @export var follow_player : bool = true

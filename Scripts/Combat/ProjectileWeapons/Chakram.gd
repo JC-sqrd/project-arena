@@ -91,11 +91,11 @@ func end_attack():
 func _spawn_projectile():
 	if projectile != null:
 		var new_projectile = projectile.instantiate()
-		
 		if new_projectile is ProjectileChakram:
 			new_projectile.on_hit.connect(_on_attack_hit)
 			if hit_listener != null:
 				new_projectile.hit_data = hit_listener.generate_effect_data()
+				print("CHAKRAM PROJECTILE SPAWN")
 				if return_hit_listener != null:
 					new_projectile.return_hit_data = return_hit_listener.generate_effect_data()
 				else:

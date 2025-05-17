@@ -37,9 +37,9 @@ func condition_met(hit_data : Dictionary) -> bool:
 func get_bonus_value() -> float:
 	return bonus_value * damage_curve.sample(target_distance/distance)
 
-func calculate_bonus_value(damage_data : Dictionary) -> float:
+func calculate_bonus_value(damage_data : DamageEffectData) -> float:
 	if is_percentage:
-		return (damage_data["damage"] as float) * bonus_value * damage_curve.sample(target_distance/distance)
+		return damage_data.damage * bonus_value * damage_curve.sample(target_distance/distance)
 	return bonus_value * damage_curve.sample(target_distance/distance)
 
 func _to_string():

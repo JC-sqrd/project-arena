@@ -3,7 +3,7 @@ extends EffectReceiver
 
 func receive_effect(hit_data : Dictionary):
 	if hit_data.has("apply_status_effect"):
-		var effect_data : ApplyStatusEffect.StatusEffectData = hit_data["apply_status_effect"]
+		var effect_data : StatusEffectData = hit_data["apply_status_effect"]
 		var status_effect : StatusEffect = effect_data.status_effect.duplicate()
 		var target : Entity = hit_data["target"]
 		status_effect.actor = hit_data["actor"]

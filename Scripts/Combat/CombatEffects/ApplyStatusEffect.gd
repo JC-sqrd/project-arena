@@ -21,15 +21,15 @@ func get_effect_value() -> StatusEffectData:
 	var status_effect : StatusEffect = status_effect_scene.instantiate() as StatusEffect 
 	return StatusEffectData.new(status_effect, stack, chance, status_effect.get_groups())
 
-class StatusEffectData:
-	var status_effect : StatusEffect
-	var stack : int = 1
-	var chance : float = 1
-	
-	var tags : Array[StringName]
-	
-	func _init(status_effect : StatusEffect, stack : int, chance : float, tags : Array[StringName]):
-		self.status_effect = status_effect
-		self.stack = stack
-		self.chance = chance
-		self.tags = tags
+#class StatusEffectData:
+	#var status_effect : StatusEffect
+	#var stack : int = 1
+	#var chance : float = 1
+	#
+	#var tags : Array[StringName]
+	#
+	#func _init(status_effect : StatusEffect, stack : int, chance : float, tags : Array[StringName]):
+		#self.status_effect = status_effect
+		#self.stack = stack
+		#self.chance = chance
+		#self.tags = tags

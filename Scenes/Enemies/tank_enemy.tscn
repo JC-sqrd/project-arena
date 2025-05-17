@@ -297,9 +297,8 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hit_listener", "hit_receiver", "stat_manager", "level_manager", "health_manager", "status_effect_manager", "damage_listener") groups=["Enemy", "Hittable"]]
+[node name="TankEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hit_listener", "hit_receiver", "stat_manager", "level_manager", "health_manager", "status_effect_manager", "damage_listener") groups=["Enemy", "Hittable"]]
 collision_layer = 2
-collision_mask = 3
 motion_mode = 1
 platform_floor_layers = 4294901760
 script = ExtResource("1_85oim")
@@ -414,7 +413,7 @@ script = ExtResource("4_5ijs6")
 [node name="MoveSpeed" type="Node" parent="Stats"]
 script = ExtResource("27_js4va")
 stat_name = "move_speed"
-stat_value = 150.0
+stat_value = 180.0
 
 [node name="Health" type="Node" parent="Stats"]
 script = ExtResource("27_js4va")
@@ -478,38 +477,6 @@ scale_ratio = 5.0
 script = ExtResource("27_js4va")
 stat_name = "magic_damage"
 stat_value = 10.0
-
-[node name="Strength" type="Node" parent="Stats"]
-script = ExtResource("27_js4va")
-stat_name = "strength"
-stat_value = 5.0
-
-[node name="LevelScaler" type="Node" parent="Stats/Strength" node_paths=PackedStringArray("stat", "scale_with_stat")]
-script = ExtResource("27_k265g")
-stat = NodePath("..")
-scale_with_stat = NodePath("../../Level")
-
-[node name="Vitality" type="Node" parent="Stats"]
-script = ExtResource("27_js4va")
-stat_name = "vitality"
-stat_value = 5.0
-
-[node name="LevelScaler" type="Node" parent="Stats/Vitality" node_paths=PackedStringArray("stat", "scale_with_stat")]
-script = ExtResource("27_k265g")
-stat = NodePath("..")
-scale_with_stat = NodePath("../../Level")
-scale_base_value = true
-
-[node name="Magic" type="Node" parent="Stats"]
-script = ExtResource("27_js4va")
-stat_name = "magic"
-stat_value = 5.0
-
-[node name="LevelScaler" type="Node" parent="Stats/Magic" node_paths=PackedStringArray("stat", "scale_with_stat")]
-script = ExtResource("27_k265g")
-stat = NodePath("..")
-scale_with_stat = NodePath("../../Level")
-scale_base_value = true
 
 [node name="Mana" type="Node" parent="Stats"]
 script = ExtResource("27_js4va")

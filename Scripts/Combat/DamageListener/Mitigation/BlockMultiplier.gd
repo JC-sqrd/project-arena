@@ -4,7 +4,12 @@ extends MitigationModifier
 
 @export var block_chance : float = 0
 
-func apply_modifier(damage_data : Dictionary):
+func apply_modifier(damage_data : DamageEffectData):
 	if block_chance >= randf_range(0, 1):
-		damage_data["blocked"] = true
+		damage_data.blocked = true
 	pass
+
+#func apply_modifier(damage_data : Dictionary):
+	#if block_chance >= randf_range(0, 1):
+		#damage_data["blocked"] = true
+	#pass

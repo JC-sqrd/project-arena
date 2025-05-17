@@ -17,7 +17,7 @@ func condition_met(hit_data : Dictionary) -> bool:
 func get_bonus_value() -> float:
 	return percentage * _target_max_health
 
-func calculate_bonus_value(damage_data : Dictionary) -> float:
+func calculate_bonus_value(damage_data : DamageEffectData) -> float:
 	return percentage * _target_max_health
 
 func _to_string():

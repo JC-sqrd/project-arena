@@ -293,7 +293,6 @@ corner_radius_bottom_left = 10
 
 [node name="FastEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hit_listener", "hit_receiver", "stat_manager", "level_manager", "health_manager", "status_effect_manager", "damage_listener") groups=["Enemy", "Hittable"]]
 collision_layer = 2
-collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_8wxgr")
 hit_listener = NodePath("HitListener")
@@ -402,7 +401,7 @@ script = ExtResource("2_ntwkw")
 [node name="MoveSpeed" type="Node" parent="Stats"]
 script = ExtResource("27_8hbk4")
 stat_name = "move_speed"
-stat_value = 260.0
+stat_value = 210.0
 
 [node name="Health" type="Node" parent="Stats"]
 script = ExtResource("27_8hbk4")
@@ -467,38 +466,6 @@ script = ExtResource("28_xylax")
 stat = NodePath("..")
 scale_with_stat = NodePath("../../Level")
 scale_ratio = 0.5
-
-[node name="Strength" type="Node" parent="Stats"]
-script = ExtResource("27_8hbk4")
-stat_name = "strength"
-stat_value = 5.0
-
-[node name="LevelScaler" type="Node" parent="Stats/Strength" node_paths=PackedStringArray("stat", "scale_with_stat")]
-script = ExtResource("28_xylax")
-stat = NodePath("..")
-scale_with_stat = NodePath("../../Level")
-
-[node name="Vitality" type="Node" parent="Stats"]
-script = ExtResource("27_8hbk4")
-stat_name = "vitality"
-stat_value = 5.0
-
-[node name="LevelScaler" type="Node" parent="Stats/Vitality" node_paths=PackedStringArray("stat", "scale_with_stat")]
-script = ExtResource("28_xylax")
-stat = NodePath("..")
-scale_with_stat = NodePath("../../Level")
-scale_base_value = true
-
-[node name="Magic" type="Node" parent="Stats"]
-script = ExtResource("27_8hbk4")
-stat_name = "magic"
-stat_value = 5.0
-
-[node name="LevelScaler" type="Node" parent="Stats/Magic" node_paths=PackedStringArray("stat", "scale_with_stat")]
-script = ExtResource("28_xylax")
-stat = NodePath("..")
-scale_with_stat = NodePath("../../Level")
-scale_base_value = true
 
 [node name="Mana" type="Node" parent="Stats"]
 script = ExtResource("27_8hbk4")

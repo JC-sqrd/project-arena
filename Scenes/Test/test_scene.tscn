@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://balv8nrfgo4ds" path="res://Scripts/Enemy/EnemySpawner/EnemyWave/EnemyWave.gd" id="3_l3e4g"]
 [ext_resource type="AudioStream" uid="uid://bjdd0ti8t76rc" path="res://Placeholders/Audio/…con lentitud poderosa.mp3" id="3_u5ev3"]
 [ext_resource type="AudioStream" uid="uid://0v3gvdke2m6u" path="res://Placeholders/Audio/Hero Immortal.mp3" id="3_wtiud"]
-[ext_resource type="PackedScene" uid="uid://dophsrqv8y3sh" path="res://Scenes/Characters/hammer_character.tscn" id="3_yafh7"]
+[ext_resource type="PackedScene" uid="uid://bgy7pdawvoiwa" path="res://Scenes/Characters/mage_character.tscn" id="3_yafh7"]
 [ext_resource type="PackedScene" uid="uid://7dmxfiismoas" path="res://Scenes/UI/GameOverUI/game_over_ui.tscn" id="4_050cx"]
 [ext_resource type="AudioStream" uid="uid://cn58gfvdnfpqs" path="res://Placeholders/Audio/You're Gonna Need a Bigger Ukulele.mp3" id="4_b707s"]
 [ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="4_d3glx"]
@@ -29,7 +29,7 @@
 [ext_resource type="Script" uid="uid://dqunvl8tgfqvj" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnEverySecond.gd" id="9_0lwa2"]
 [ext_resource type="Script" uid="uid://cmhw0pu66me2e" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnAtXSecond.gd" id="9_x1f3b"]
 [ext_resource type="PackedScene" uid="uid://1p285me36gqp" path="res://Scenes/Enemies/ranged_enemy.tscn" id="10_wiifm"]
-[ext_resource type="PackedScene" uid="uid://b5atlsgxuwett" path="res://Scenes/Enemies/fast_enemy.tscn" id="13_oqogj"]
+[ext_resource type="PackedScene" uid="uid://b5atlsgxuwett" path="res://Scenes/Enemies/normal_enemy.tscn" id="13_oqogj"]
 [ext_resource type="PackedScene" uid="uid://cyrnk80mwy1j1" path="res://Scenes/Enemies/small_enemy.tscn" id="13_yafh7"]
 [ext_resource type="Script" uid="uid://d4jcbfrhfsuyc" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnEverySecondChance.gd" id="14_nf4wj"]
 [ext_resource type="PackedScene" uid="uid://bhfxmtkiocwvt" path="res://Scenes/Test/test_mini_boss.tscn" id="22_fbpa4"]
@@ -245,7 +245,7 @@ script = ExtResource("1_4g24u")
 position = Vector2(1652, 876)
 follow_player = false
 
-[node name="HammerCharacter" parent="." instance=ExtResource("3_yafh7")]
+[node name="MageCharacter" parent="." instance=ExtResource("3_yafh7")]
 position = Vector2(544, 1080)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

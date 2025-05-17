@@ -10,7 +10,6 @@ enum AttackState {START,ACTIVE, DORMANT}
 @export var weapon_ability : Ability
 @export var hit_listener : HitListener
 
-var offhand : bool = false
 var action_trigger : String 
 var action_held : bool = false
 var auto_fire : bool = false
@@ -40,6 +39,10 @@ func _ready():
 
 func _unhandled_input(event: InputEvent) -> void:
 	#print(str(event))
+	
+	
+	if is_equipped and event is InputEventKey and event.is_pressed() and event.keycode == KEY_J and event.echo == false:
+		print("J IS PRESSED")
 	
 	if is_equipped and event is InputEventKey and event.is_pressed() and event.keycode == KEY_G and event.echo == false:
 		auto_fire = !auto_fire

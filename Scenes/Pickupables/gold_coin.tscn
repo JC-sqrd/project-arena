@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_w1ffm"]
 radius = 15.0
 
-[node name="GoldCoin" type="Node2D"]
+[node name="GoldCoin" type="Node2D" groups=["coins"]]
 script = ExtResource("1_yra64")
 gold_add = 10.0
 gold_number_scene = ExtResource("2_6byxe")

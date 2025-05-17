@@ -23,7 +23,7 @@ func _ready():
 	applied_damage.connect(_on_damage_applied)
 	pass
 
-func take_damage(damage_data : Dictionary) -> float:
+func take_damage(damage_data : DamageEffectData) -> float:
 	var mitigated_damage = damage_listener.apply_mitigation_effects(damage_data)
 	damage_data["damage"] = mitigated_damage
 	took_damage_with_type.emit(mitigated_damage, damage_data["damage_type"])
@@ -50,7 +50,7 @@ func _on_damage_applied(damage : float):
 	total_damage_applied += damage
 	pass
 
-func _on_damage_data_created(damage_data : Dictionary):
+func _on_damage_data_created(damage_data : DamageEffectData):
 	damage_data_created.emit(damage_data)
 	pass
 

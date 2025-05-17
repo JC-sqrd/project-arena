@@ -37,12 +37,12 @@ func _process(delta):
 func _reset_attack():
 	actor.can_attack = true
 
-func _initialize_attack():
-	actor.can_attack = false
-	weapon.attack_cooldown = _attack_cooldown
-	weapon.attack_speed = attack_speed.stat_derived_value
-	weapon.start_attack()
-	pass
+#func _initialize_attack():
+	#actor.can_attack = false
+	#weapon.attack_cooldown = _attack_cooldown
+	#weapon.attack_speed = attack_speed.stat_derived_value
+	#weapon.start_attack()
+	#pass
 
 func _set_weapon(new_weapon : Weapon):
 	weapon = new_weapon

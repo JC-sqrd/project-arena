@@ -41,10 +41,21 @@ func _on_actor_applied_damage_with_data(damage_data : Dictionary):
 		pass
 	pass
 
-func _on_actor_damage_data_created(damage_data : Dictionary):
+func _on_actor_damage_data_created(damage_data : DamageEffectData):
 	if charged and hit_listener != null:
 		charged = false
 		charge = 0
 		charge_particle_system.visible = false
-		damage_data["damage"] += bonus_damage.stat_derived_value
+		#print("DAMAGE EFFECT DAMAGE VALUE: " + str(damage_data.damage))
+		damage_data.damage += bonus_damage.stat_derived_value
+		print("DAMAGE EFFECT DAMAGE VALUE: " + str(damage_data.damage) + " EFFECT REVCEIVED: " + str(damage_data.recieved))
 	pass
+
+
+#func _on_actor_damage_data_created(damage_data : Dictionary):
+	#if charged and hit_listener != null:
+		#charged = false
+		#charge = 0
+		#charge_particle_system.visible = false
+		#damage_data["damage"] += bonus_damage.stat_derived_value
+	#pass

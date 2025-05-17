@@ -10,7 +10,6 @@
 [node name="ChargeDamageAbility" type="Node2D"]
 script = ExtResource("1_rwkjq")
 emited_object = ExtResource("2_7qya1")
-cast_mode = 1
 
 [node name="HitListener" type="Node" parent="."]
 script = ExtResource("3_15277")

@@ -17,7 +17,7 @@ var total_damage : float = 0
 var bonus_damage : float = 0
 var bonus_multiplier : float = 1
 
-signal damage_data_created (damage_data : Dictionary)
+signal damage_data_created (damage_data : DamageEffectData)
 signal damage_effect_received (damage_data : Dictionary)
 signal bonus_damage_calculated (damage_effect : DamageEffect)
 signal applied_damage(damage : float)
@@ -33,88 +33,61 @@ func get_effect_key() -> Variant:
 	return "damage_effect"
 
 func get_effect_value() -> Variant:
-	var damage_data : Dictionary
-	damage_data["damage"] = damage_stat.stat_derived_value
-	damage_data["total_damage"] = damage_stat.stat_derived_value
-	var penetrates : bool = false
-	var critical : bool = false
-	if penetration_stat != null:
-		penetrates = true
-		damage_data["penetration"] = penetration_stat.stat_derived_value
-	if crit_chance_stat != null:
-		if crit_chance_stat.stat_derived_value >= randf_range(0, 1):
-			damage_data["critical"] = true
-			critical = true
-		else:
-			damage_data["critical"] = false
-	damage_data["damage_type"] = damage_type
-	if lifesteal:
-		damage_data["lifesteal"] = DamageReceiver.Lifesteal.new(lifesteal_stat.stat_derived_value, lifesteal_type)
-		pass
-	
+	#var damage_data : Dictionary
+	#damage_data["damage"] = damage_stat.stat_derived_value
+	#damage_data["total_damage"] = damage_stat.stat_derived_value
+	#var penetrates : bool = false
+	#var critical : bool = false
+	#if penetration_stat != null:
+		#penetrates = true
+		#damage_data["penetration"] = penetration_stat.stat_derived_value
+	#if crit_chance_stat != null:
+		#if crit_chance_stat.stat_derived_value >= randf_range(0, 1):
+			#damage_data["critical"] = true
+			#critical = true
+		#else:
+			#damage_data["critical"] = false
+	#damage_data["damage_type"] = damage_type
+	#if lifesteal:
+		#damage_data["lifesteal"] = DamageReceiver.Lifesteal.new(lifesteal_stat.stat_derived_value, lifesteal_type)
+		#pass
+	#
 	var checks : Array[BonusValueCondition]
 	for check in bonus_damage_checks:
 		checks.append(check.generate_bonus_value_condition())
-	damage_data["checks"] = checks
-	damage_data_created.emit(damage_data)
-	damage_data["damage_received_callback"] = on_damage_received
-	#var damage_effect_data : DamageData = DamageData.new()
-	#damage_effect_data.set_damage(damage_stat.stat_derived_value)
-	#damage_effect_data.set_total_damage(damage_stat.stat_derived_value)
-	#damage_effect_data.set_penetrates(penetrates)
-	#damage_effect_data.set_penetration(penetration_stat.stat_derived_value)
-	#damage_effect_data.set_critical(critical)
-	#damage_effect_data.set_damage_type(damage_type)
-	#damage_effect_data.set_is_lifesteal(lifesteal)
-	#damage_effect_data.set_lifesteal(DamageReceiver.Lifesteal.new(lifesteal_stat.stat_derived_value, lifesteal_type))
-	#damage_effect_data.set_checks(checks)
+	#damage_data["checks"] = checks
+	#damage_data_created.emit(damage_data)
+	#damage_data["damage_received_callback"] = on_damage_received
 	
-	return damage_data 
+	#---------------------------------------------------------------------------------
+	
+	var damage_effect_data : DamageEffectData = DamageEffectData.new()
+	damage_effect_data.damage = damage_stat.stat_derived_value
+	damage_effect_data.total_damage = damage_stat.stat_derived_value
+	if penetration_stat != null:
+		damage_effect_data.penetrates = false
+		damage_effect_data.penetration = penetration_stat.stat_derived_value
+	if crit_chance_stat != null:
+		if crit_chance_stat.stat_derived_value >= randf_range(0, 1):
+			damage_effect_data.critical = true
+		else:
+			damage_effect_data.critical = false
+	damage_effect_data.damage_type = damage_type
+	damage_effect_data.is_lifesteal = (lifesteal)
+	if lifesteal:
+		damage_effect_data.lifesteal = (DamageReceiver.Lifesteal.new(lifesteal_stat.stat_derived_value, lifesteal_type))
+	damage_effect_data.checks = (checks)
+	
+	
+	damage_data_created.emit(damage_effect_data) 
+	print_stack()
+	print("Damage effect data generated")
+	
+	return damage_effect_data
 
 func on_damage_received(damage_data : Dictionary):
 	damage_effect_received.emit(damage_data)
 
-class DamageData:
-	var damage : float = 0 : set = set_damage
-	var total_damage : float = 0 : set = set_total_damage
-	var penetrates : bool = false : set = set_penetrates
-	var penetration : float = 0 : set = set_penetration
-	var critical : bool = false : set = set_critical
-	var damage_type : Enums.DamageType = Enums.DamageType.PHYSICAL : set = set_damage_type
-	var is_lifesteal : bool = false : set = set_is_lifesteal
-	var lifesteal : DamageReceiver.Lifesteal : set = set_lifesteal
-	var checks : Array[BonusValueCondition] : set = set_checks
-	
-	func _init():
-		pass
-	
-	func set_damage(new_value : float) -> DamageData:
-		damage = new_value
-		return self
-	func set_total_damage(new_value : float) -> DamageData:
-		total_damage = new_value
-		return self
-	func set_penetrates(new_value : bool) -> DamageData:
-		penetrates = new_value
-		return self
-	func set_penetration(new_value : float) -> DamageData:
-		penetration = new_value
-		return self
-	func set_critical(new_value : bool) -> DamageData:
-		critical = new_value
-		return self
-	func set_damage_type(new_value : Enums.DamageType) -> DamageData:
-		damage_type = new_value
-		return self
-	func set_is_lifesteal(new_value : bool) -> DamageData:
-		is_lifesteal = new_value
-		return self
-	func set_lifesteal(new_value : DamageReceiver.Lifesteal) -> DamageData:
-		lifesteal = new_value
-		return self
-	func set_checks(new_value : Array[BonusValueCondition]) -> DamageData:
-		checks = new_value
-		return self
 
 #func apply_effect(hit_data : Dictionary):
 	#var target : Entity = hit_data.get("target")

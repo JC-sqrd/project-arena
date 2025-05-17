@@ -29,7 +29,8 @@ metadata/_custom_type_script = "uid://d3fin4411ww46"
 
 [node name="Damage" type="Node" parent="."]
 script = ExtResource("4_7kfdi")
-stat_value = 5.0
+stat_value = 6.0
+can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
@@ -47,6 +48,7 @@ metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 [node name="AttackSpeed" type="Node" parent="."]
 script = ExtResource("4_7kfdi")
 stat_value = 0.8
+can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]

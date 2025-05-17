@@ -29,7 +29,7 @@ func condition_met(hit_data : Dictionary) -> bool:
 func get_bonus_value() -> float:
 	return bonus_value
 
-func calculate_bonus_value(damage_data : Dictionary) -> float:
+func calculate_bonus_value(damage_data : DamageEffectData) -> float:
 	return bonus_value
 
 func _to_string():

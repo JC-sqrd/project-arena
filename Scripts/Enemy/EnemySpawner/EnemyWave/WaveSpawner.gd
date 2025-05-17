@@ -60,15 +60,16 @@ func on_current_wave_end(wave : Wave):
 		current_wave = wave.next_wave
 	current_wave_end.emit(current_wave)
 	wave_active = false
+	await get_tree().create_timer(0.5, false, false, false).timeout
+	for coin in get_tree().get_nodes_in_group("coins"):
+		(coin as Pickupable).move_to_entity(player)
+		pass
 	print("Current wave ended")
 	pass
 
 func on_child_entered_tree(node : Node):
 	if node is Wave:
 		node.wave_spawner = self
-	if node is EnemyWave:
-		node.player = player
-		pass
 
 func get_random_position() -> Vector2:
 	var rand_x : int = randi_range(global_position.x - (spawn_zone.x / 2), global_position.x + (spawn_zone.x / 2))

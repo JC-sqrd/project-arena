@@ -10,9 +10,9 @@ signal picked_up
 var _lerp_weight : float = -0.5
 @onready var _lerp_weight_counter : float = _lerp_weight 
 
-func move_to_pickup(pickup_pos : Vector2):
+func move_to_pickup(pickup_pos : Vector2, delta : float):
 	var lerped_pos : Vector2 = lerp(global_position, pickup_pos, _lerp_weight_counter)
-	global_position = lerp(global_position, lerped_pos, 0.1)
+	global_position = lerp(global_position, lerped_pos, 5 * delta)
 	_lerp_weight_counter += 0.05
 	pass
 	
@@ -23,7 +23,7 @@ func move_to_entity(entity : Entity):
 
 func _physics_process(delta):
 	if _move_to_entity and move_to != null:
-		move_to_pickup(move_to.global_position)
+		move_to_pickup(move_to.global_position, delta)
 		pass
 	pass
 

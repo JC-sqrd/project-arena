@@ -55,6 +55,7 @@ dot_burn=""
 equipped_items=""
 equipped_abilities=""
 player=""
+coins=""
 
 [input]
 

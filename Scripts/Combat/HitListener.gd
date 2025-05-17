@@ -35,6 +35,7 @@ func generate_effect_data() -> Dictionary:
 	var effect_data : Dictionary
 	for effect in effects:
 		effect_data[effect.get_effect_key()] = effect.get_effect_value()
+	print("Effect data generated")
 	return effect_data
 
 func append_effect_data(data : Dictionary) -> Dictionary:

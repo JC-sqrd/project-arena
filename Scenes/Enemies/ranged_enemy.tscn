@@ -268,7 +268,6 @@ corner_radius_bottom_left = 10
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hit_listener", "hit_receiver", "stat_manager", "level_manager", "health_manager", "status_effect_manager", "damage_listener") groups=["Enemy", "Hittable"]]
 collision_layer = 2
-collision_mask = 3
 motion_mode = 1
 platform_floor_layers = 4294901760
 script = ExtResource("1_2pg2u")
@@ -296,7 +295,6 @@ mana = NodePath("../../Stats/Mana")
 [node name="EnemyGroupProjectile" parent="AIRangeAttack/AIAbilityContainer" instance=ExtResource("4_j6tms")]
 max_range = 5.0
 spawn = ExtResource("5_hcgn7")
-cast_mode = 1
 
 [node name="Timer" type="Timer" parent="AIRangeAttack/AIAbilityContainer"]
 
