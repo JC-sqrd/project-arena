@@ -183,7 +183,7 @@ metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 [node name="AttackSpeed" type="Node" parent="."]
 script = ExtResource("4_kenp3")
 stat_name = "swift_sword_attack_speed"
-stat_value = 1.0
+stat_value = 1.2
 metadata/_custom_type_script = "uid://nke8ejxjdu4s"
 
 [node name="GetActorStatMult" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]

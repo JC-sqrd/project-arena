@@ -1,10 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://cggb2x36mslpl"]
+[gd_scene load_steps=14 format=3 uid="uid://cggb2x36mslpl"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/test_character.tscn" id="1_n43wd"]
-[ext_resource type="PackedScene" uid="uid://od3lf463dx1c" path="res://Scenes/Abilities/Emit Abilities/sword_slash_emit.tscn" id="2_qau1h"]
+[ext_resource type="PackedScene" uid="uid://od3lf463dx1c" path="res://Scenes/Abilities/Emit Abilities/SwordSlash/sword_slash_emit.tscn" id="2_qau1h"]
 [ext_resource type="PackedScene" uid="uid://cacqqobo0qx73" path="res://Scenes/Abilities/AbilityTrees/LungeStrike/ability_lunge_strike.tscn" id="2_qi0ur"]
-[ext_resource type="PackedScene" uid="uid://c322tkntieeqb" path="res://Scenes/Abilities/Spawn Abilities/wind_slash_ability.tscn" id="4_n83j8"]
-[ext_resource type="Script" uid="uid://yd87aj2hybru" path="res://Scripts/Ability System/SpawnAbilitySpawnBehavior/PointSpawn.gd" id="4_wfw53"]
 [ext_resource type="PackedScene" uid="uid://dengtpj68hcix" path="res://Scenes/Equipments/Head Gears/headgear_iron_helmet.tscn" id="5_0v31t"]
 [ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="5_a3qyk"]
 [ext_resource type="PackedScene" uid="uid://ba77g51rg80ak" path="res://Scenes/Weapons/Shuriken/weapon_shuriken.tscn" id="6_52u7q"]
@@ -12,14 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://bkmw1nqw6gp4q" path="res://Scenes/Weapons/Hammer/weapon_hammer.tscn" id="6_vsorn"]
 [ext_resource type="PackedScene" uid="uid://dq2ilob20a4t5" path="res://Scenes/Weapons/Bow/weapon_bow.tscn" id="6_wfw53"]
 [ext_resource type="PackedScene" uid="uid://br6km26u30bs6" path="res://Scenes/Weapons/Chakram/weapon_chakram.tscn" id="8_2feh8"]
-[ext_resource type="PackedScene" uid="uid://c11kdiu2c6vx" path="res://Scenes/Items/item_vitality.tscn" id="14_a3qyk"]
-[ext_resource type="PackedScene" uid="uid://3tleitsb6xke" path="res://Scenes/Items/block_damage/item_chance_block_damage.tscn" id="15_epo7i"]
-[ext_resource type="PackedScene" uid="uid://c7f3i2m7h07jc" path="res://Scenes/Items/charge_move_speed/item_charge_move_speed.tscn" id="17_usktj"]
-[ext_resource type="PackedScene" uid="uid://c6gvfaa8b8jnj" path="res://Scenes/Items/gain_move_speed/item_move_speed.tscn" id="18_8km3p"]
-
-[sub_resource type="Resource" id="Resource_52u7q"]
-script = ExtResource("4_wfw53")
-metadata/_custom_type_script = "uid://yd87aj2hybru"
+[ext_resource type="PackedScene" uid="uid://d2s7ucuvduwgx" path="res://Scenes/Equipments/Armgear/armgear_iron_gauntlets.tscn" id="11_0v31t"]
+[ext_resource type="PackedScene" uid="uid://cnefmjw46bhom" path="res://Scenes/Equipments/Shoes/shoes_iron_boots.tscn" id="12_wxcst"]
+[ext_resource type="PackedScene" uid="uid://7evpmhu4mrpd" path="res://Scenes/Items/chain_lightning/item_chain_lightning.tscn" id="13_wxcst"]
 
 [node name="SwordCharacter" instance=ExtResource("1_n43wd")]
 
@@ -47,19 +40,12 @@ ability = NodePath("SwordSlashEmit")
 [node name="SwordSlashEmit" parent="InnateActiveAbility" index="1" instance=ExtResource("2_qau1h")]
 start_cooldown_on = 1
 
-[node name="InnateUtilityAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
-ability = NodePath("WindSlashAbility")
-
-[node name="WindSlashAbility" parent="InnateUtilityAbility" index="1" instance=ExtResource("4_n83j8")]
-spawn_behavior = SubResource("Resource_52u7q")
-cooldown = 3.0
-
-[node name="UtilityAbilityContainer" parent="." index="4" node_paths=PackedStringArray("ability")]
+[node name="UtilityAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityLungeStrike")
 
 [node name="AbilityLungeStrike" parent="UtilityAbilityContainer" index="2" instance=ExtResource("2_qi0ur")]
 
-[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
+[node name="WeaponSlot" parent="." index="5" node_paths=PackedStringArray("equipment")]
 position = Vector2(-1.07288e-06, 9)
 equipment = NodePath("WeaponPosition/WeaponBow")
 
@@ -70,27 +56,30 @@ position = Vector2(17, 0)
 visible = false
 position = Vector2(-17, -9.00001)
 
-[node name="OffhandWeaponSlot" parent="." index="7"]
+[node name="OffhandWeaponSlot" parent="." index="6"]
 position = Vector2(0, 9)
 
 [node name="WeaponPosition" parent="OffhandWeaponSlot" index="0"]
 position = Vector2(17, 0)
 
-[node name="HeadGearSlot" parent="." index="8" node_paths=PackedStringArray("equipment")]
+[node name="HeadGearSlot" parent="." index="7" node_paths=PackedStringArray("equipment")]
 equipment = NodePath("IronHelmet")
 
 [node name="IronHelmet" parent="HeadGearSlot" index="0" instance=ExtResource("5_0v31t")]
 
-[node name="ItemVitality" parent="ItemInventory" index="0" instance=ExtResource("14_a3qyk")]
-stack = 500
+[node name="ArmGearSlot" parent="." index="9" node_paths=PackedStringArray("equipment")]
+equipment = NodePath("ArmgearIronGauntlets")
 
-[node name="ItemChanceBlockDamage" parent="ItemInventory" index="1" instance=ExtResource("15_epo7i")]
-stack = 500
+[node name="ArmgearIronGauntlets" parent="ArmGearSlot" index="0" instance=ExtResource("11_0v31t")]
 
-[node name="ItemChargeMoveSpeed" parent="ItemInventory" index="2" instance=ExtResource("17_usktj")]
+[node name="ShoesSlot" parent="." index="10" node_paths=PackedStringArray("equipment")]
+equipment = NodePath("ShoesIronBoots")
 
-[node name="ItemMoveSpeed" parent="ItemInventory" index="3" instance=ExtResource("18_8km3p")]
-stack = 50
+[node name="ShoesIronBoots" parent="ShoesSlot" index="0" instance=ExtResource("12_wxcst")]
+
+[node name="ItemChainLightning" parent="ItemInventory" index="0" instance=ExtResource("13_wxcst")]
+trigger_chance = 1.0
+stack = 5
 
 [node name="MaxHealth" parent="Stats" index="7"]
 stat_value = 50.0

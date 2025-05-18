@@ -54,9 +54,15 @@ func set_equipment(new_equipment : Equipment):
 		equipment.visible = false
 		print("Unequip Equipment: " + str(equipment.equipment_name))
 		unequip(equipment)
-	equipment = new_equipment
-	weapon = equipment
-	equip(new_equipment)
+	if new_equipment != null:
+		print("Set weapon equipped to not null")
+		weapon = new_equipment
+		equip(new_equipment)
+		equipment = new_equipment
+	else:
+		print("Set weapon equipped to null")
+		equipment = null
+		weapon = null
 	pass 
 
 func equip(equipment : Equipment):
@@ -70,9 +76,11 @@ func equip(equipment : Equipment):
 	pass
 
 func unequip(equipment : Equipment):
+	print("Unequipe weapon: " + equipment.name)
 	equipment.unequip()
 	equipment.visible = false
 	equipment = null
+	weapon = null
 	pass
 
 func _start_attack_cooldown():

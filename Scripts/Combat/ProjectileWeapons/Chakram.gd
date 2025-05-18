@@ -62,7 +62,8 @@ func projectile_weapon_process(delta : float):
 func initialize_attack():
 	if throw_amount <= 0:
 		actor.can_attack = false
-	cooldown_counter = attack_cooldown
+	#cooldown_counter = attack_cooldown
+	_start_cooldown = true
 	start_attack()
 	pass
 
@@ -83,8 +84,9 @@ func end_attack():
 	attack_state = AttackState.DORMANT
 	#look_at_mouse = true
 	attacking = false
-	if throw_amount <= 0:
-		_start_cooldown = true
+	actor.can_attack = true
+	#if throw_amount <= 0:
+	#	_start_cooldown = true
 	throw_amount += 1
 	attack_end.emit()
 

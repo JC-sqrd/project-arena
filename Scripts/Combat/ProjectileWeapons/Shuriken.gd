@@ -15,8 +15,7 @@ func _spawn_projectile():
 		if shuriken_sprite != null:
 			shuriken_sprite.visible = true
 		throw_counter -= 1
-	
-	
+		end_attack()
 	pass
 
 func spawn_shuriken():
@@ -41,7 +40,7 @@ func spawn_shuriken():
 			new_projectile.rotation = global_position.direction_to(get_global_mouse_position()).angle()
 			attack_active.emit()
 			actor.basic_attack.emit(self)
-			end_attack()
+			#end_attack()
 	else:
 		printerr("No projectile to spawn")
 	pass

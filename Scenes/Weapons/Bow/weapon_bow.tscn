@@ -14,6 +14,7 @@
 
 [node name="WeaponBow" type="Node2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "hit_listener")]
 script = ExtResource("1_dscfw")
+max_charge_multiplier = 1.25
 projectile = ExtResource("2_esbd8")
 speed = 880.0
 max_distance = 1000.0
@@ -27,7 +28,7 @@ metadata/_custom_type_script = "uid://d3fin4411ww46"
 
 [node name="Damage" type="Node" parent="."]
 script = ExtResource("4_cwckh")
-stat_value = 10.0
+stat_value = 20.0
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
@@ -44,7 +45,7 @@ metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="AttackSpeed" type="Node" parent="."]
 script = ExtResource("4_cwckh")
-stat_value = 1.0
+stat_value = 1.5
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]

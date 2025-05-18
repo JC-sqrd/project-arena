@@ -16,5 +16,5 @@ func set_equipment(new_equipment : Equipment):
 	else:
 		equipment_icon.texture = null
 		tooltip_text = ""
-		equipment_slot.unequip(equipment_slot.equipment)
+		equipment_slot.equipment = null
 	pass

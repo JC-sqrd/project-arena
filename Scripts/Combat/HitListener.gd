@@ -6,7 +6,7 @@ var effects : Array[Effect]
 var hit_data_arr : Array[HitData]
 
 func _ready():
-	child_entered_tree.connect(_on_child_entered_tree)
+	#child_entered_tree.connect(_on_child_entered_tree)
 	for child in get_children():
 		if child is Effect:
 			effects.append(child)
@@ -34,8 +34,10 @@ func on_hit(hit_data : Dictionary):
 func generate_effect_data() -> Dictionary:
 	var effect_data : Dictionary
 	for effect in effects:
-		effect_data[effect.get_effect_key()] = effect.get_effect_value()
-	print("Effect data generated")
+		var effect_key : String = effect.get_effect_key()
+		effect_data[effect_key] = effect.get_effect_value()
+		print("Effect data generated | key: " + effect_key)
+	
 	return effect_data
 
 func append_effect_data(data : Dictionary) -> Dictionary:
@@ -48,7 +50,7 @@ func _on_free_hit_data(hit_data : HitData):
 	hit_data.queue_free()
 	pass
 
-func _on_child_entered_tree(node : Node):
-	if node is Effect:
-		effects.append(node)
-	pass
+#func _on_child_entered_tree(node : Node):
+	#if node is Effect:
+		#effects.append(node)
+	#pass

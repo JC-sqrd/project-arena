@@ -23,7 +23,7 @@ script = ExtResource("4_os730")
 item = NodePath("../..")
 stat_to_scale = NodePath("..")
 
-[node name="ItemBonusStat" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
+[node name="BonusMaxHealth" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
 script = ExtResource("2_x2pke")
 stat_name = "max_health"
 bonus_value = NodePath("../Stackx5")

@@ -4,7 +4,7 @@ extends EffectReceiver
 
 func receive_effect(hit_data : Dictionary):
 	if hit_data.has("knockback_effect"):
-		var knockback_data : Knockback.KnockbackData = hit_data["knockback_effect"]
+		var knockback_data : KnockbackEffectData = hit_data["knockback_effect"]
 		var target = hit_data["target"]
 		var strength : float = knockback_data.knockback_strength
 		var direction : Vector2 = (target.global_position - hit_data.get("source").global_position).normalized()

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnefmjw46bhom"]
+
+[ext_resource type="Script" uid="uid://5ojl8wjpptpv" path="res://Scripts/Combat/Equipment/Shoes/Shoes.gd" id="1_5qwhd"]
+[ext_resource type="Script" uid="uid://bjpxplndvkee" path="res://Scripts/StatSystem/Stats/EquipmentBonusStat.gd" id="2_lpoep"]
+[ext_resource type="Texture2D" uid="uid://chbqvkg27h3dc" path="res://Placeholders/Icons/Icon.3_84.png" id="2_q64b6"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="3_q64b6"]
+
+[node name="ShoesIronBoots" type="Node2D"]
+script = ExtResource("1_5qwhd")
+equipment_name = "Iron Boots"
+equipment_icon = ExtResource("2_q64b6")
+metadata/_custom_type_script = "uid://5ojl8wjpptpv"
+
+[node name="EquipmentBonusStat" type="Node" parent="." node_paths=PackedStringArray("equipment", "bonus_value")]
+script = ExtResource("2_lpoep")
+equipment = NodePath("..")
+stat_name = "armor"
+bonus_value = NodePath("Stat")
+metadata/_custom_type_script = "uid://bjpxplndvkee"
+
+[node name="Stat" type="Node" parent="EquipmentBonusStat"]
+script = ExtResource("3_q64b6")
+stat_value = 10.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="EquipmentBonusStat2" type="Node" parent="." node_paths=PackedStringArray("equipment", "bonus_value")]
+script = ExtResource("2_lpoep")
+equipment = NodePath("..")
+stat_name = "move_speed"
+bonus_value = NodePath("Stat")
+metadata/_custom_type_script = "uid://bjpxplndvkee"
+
+[node name="Stat" type="Node" parent="EquipmentBonusStat2"]
+script = ExtResource("3_q64b6")
+stat_value = -10.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"

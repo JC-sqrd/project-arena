@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bau78s0ws2us8"]
+[gd_scene load_steps=9 format=3 uid="uid://bau78s0ws2us8"]
 
 [ext_resource type="Script" uid="uid://c0hgfeu5xb7mq" path="res://Scripts/Combat/CombatEffects/EffectReceivers/HitReceiver.gd" id="1_64oyb"]
+[ext_resource type="Script" uid="uid://bnn1sxc1gdtud" path="res://Scripts/Combat/CombatEffects/EffectReceivers/OnHitReceiver.gd" id="2_r43ib"]
 [ext_resource type="Script" uid="uid://bah4lg44ubj3o" path="res://Scripts/Combat/CombatEffects/EffectReceivers/DamageReceiver.gd" id="2_wb60a"]
 [ext_resource type="Script" uid="uid://cfexk56bbwq34" path="res://Scripts/Combat/CombatEffects/EffectReceivers/KnockbackReceiver.gd" id="3_oiep0"]
 [ext_resource type="Script" uid="uid://i77moci7cqsx" path="res://Scripts/Combat/CombatEffects/EffectReceivers/ConsumeStatusEffectReceiver.gd" id="4_j2tcp"]
@@ -10,6 +11,10 @@
 
 [node name="HitReceiver" type="Node"]
 script = ExtResource("1_64oyb")
+
+[node name="OnHitReceiver" type="Node" parent="."]
+script = ExtResource("2_r43ib")
+metadata/_custom_type_script = "uid://bnn1sxc1gdtud"
 
 [node name="ConsumeStatusEffectReceiver" type="Node" parent="."]
 script = ExtResource("4_j2tcp")

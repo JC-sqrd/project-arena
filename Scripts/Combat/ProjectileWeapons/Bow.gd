@@ -1,6 +1,8 @@
 extends ProjectileWeapon
 
 @export var charge_time : float = 0.5
+@export var max_charge_multiplier : float = 1
+@export var min_charge_multiplier : float = 0.5
 @export var arrow_sprite : Node2D
 var throw_counter : float = 0
 
@@ -92,7 +94,7 @@ func spawn_arrow(charge : float):
 				var effect_data : Dictionary = hit_listener.generate_effect_data()
 				new_projectile.hit_data = effect_data
 				if effect_data.has("damage_effect"):
-					effect_data["damage_effect"].damage *= max(0.5, 2 * (charge/charge_time))
+					effect_data["damage_effect"].damage *= max(min_charge_multiplier, max_charge_multiplier * (charge/charge_time))
 				
 			new_projectile.max_distance_reached.connect(func() : attack_end.emit())
 			new_projectile.source = self

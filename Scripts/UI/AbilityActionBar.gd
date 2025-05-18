@@ -33,8 +33,8 @@ func _on_player_ready():
 	innate_ability_icon.ability_icon_texture = player.innate_active_ability.ability_icon
 	innate_active_bar.add_child(innate_ability_icon)
 	
-	var innate_utility_icon : AbilityIconUI = ability_icon_ui_scene.instantiate() as AbilityIconUI
-	innate_utility_icon.ability_container = player.innate_utility_ability
-	innate_utility_icon.ability_icon_texture = player.innate_utility_ability.ability_icon
-	innate_utility_bar.add_child(innate_utility_icon)
+	#var innate_utility_icon : AbilityIconUI = ability_icon_ui_scene.instantiate() as AbilityIconUI
+	#innate_utility_icon.ability_container = player.innate_utility_ability
+	#innate_utility_icon.ability_icon_texture = player.innate_utility_ability.ability_icon
+	#innate_utility_bar.add_child(innate_utility_icon)
 	pass

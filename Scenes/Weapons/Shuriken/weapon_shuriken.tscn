@@ -47,7 +47,7 @@ metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="AttackSpeed" type="Node" parent="."]
 script = ExtResource("4_7kfdi")
-stat_value = 0.8
+stat_value = 0.85
 can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 

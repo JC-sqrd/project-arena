@@ -25,6 +25,7 @@ func switch_weapon():
 		if offhand_weapon_slot.equipment != null:
 			main_weapon_slot.unequip(main_weapon_slot.equipment)
 			offhand_weapon_slot.equip_offhand()
+			offhand_weapon_slot.equipment.actor.can_attack = true
 		else:
 			main_weapon = !main_weapon
 		pass
@@ -32,5 +33,6 @@ func switch_weapon():
 		print("Switch Offhand to Main")
 		offhand_weapon_slot.unequip(offhand_weapon_slot.equipment)
 		main_weapon_slot.equip(main_weapon_slot.equipment)
+		main_weapon_slot.equipment.actor.can_attack = true
 		pass
 	pass

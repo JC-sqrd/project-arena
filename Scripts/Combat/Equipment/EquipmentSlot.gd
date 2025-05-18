@@ -21,6 +21,7 @@ func equip(equipment : Equipment):
 
 func unequip(equipment : Equipment):
 	equipment.unequip()
+	equipment = null
 	pass
 
 func set_equipment(new_equipment : Equipment):

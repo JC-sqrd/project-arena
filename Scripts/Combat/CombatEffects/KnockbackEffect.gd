@@ -18,13 +18,13 @@ func get_effect_key() -> Variant:
 	return "knockback_effect"
 
 
-func get_effect_value() -> KnockbackData:
-	return KnockbackData.new(force, condition_checks)
+func get_effect_value() -> KnockbackEffectData:
+	return KnockbackEffectData.new(force, condition_checks)
 
-class KnockbackData:
-	var knockback_strength : float = 0
-	var checks : Array[BonusValueCondition] 
-	func _init(strength : float, checks : Array[BonusValueCondition]):
-		knockback_strength = strength
-		self.checks = checks
-		pass
+#class KnockbackData:
+	#var knockback_strength : float = 0
+	#var checks : Array[BonusValueCondition] 
+	#func _init(strength : float, checks : Array[BonusValueCondition]):
+		#knockback_strength = strength
+		#self.checks = checks
+		#pass

@@ -27,7 +27,7 @@ scale_curve = SubResource("CurveTexture_2i274")
 
 [node name="ItemChargeMoveSpeed" type="Node" node_paths=PackedStringArray("bonus_damage", "hit_listener", "charge_particle_system")]
 script = ExtResource("1_ri3rj")
-charge_threshold = 2500.0
+charge_threshold = 1500.0
 bonus_damage = NodePath("ActorMoveSpeed20Plus5Percent")
 hit_listener = NodePath("HitListener")
 charge_particle_system = NodePath("GPUParticles2D")
@@ -35,7 +35,7 @@ item_name = "Energized Gem"
 item_icon = ExtResource("2_rdjvl")
 item_id = 11
 string_id = "charge_move_speed"
-item_detail = "Moving generates charge. When fully charged, your next source of damage will deal extra damage (5% (+5% each stack) of base movement speed)"
+item_detail = "Moving generates charge. When fully charged, your next source of damage will deal extra damage (10% (+5% each stack) of base movement speed)"
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 visible = false
@@ -48,12 +48,6 @@ process_material = SubResource("ParticleProcessMaterial_3hu6m")
 
 [node name="BonusDamage" type="Node" parent="."]
 script = ExtResource("4_33agv")
-
-[node name="GetActorStatScaler" type="Node" parent="BonusDamage" node_paths=PackedStringArray("stat")]
-script = ExtResource("5_2iwjw")
-stat = NodePath("..")
-scale_with_stat_id = "strength"
-scale_ratio = 0.25
 
 [node name="HitListener" type="Node" parent="."]
 script = ExtResource("5_lba6y")
@@ -73,7 +67,7 @@ script = ExtResource("4_33agv")
 script = ExtResource("5_2iwjw")
 stat = NodePath("..")
 scale_with_stat_id = "move_speed"
-scale_ratio = 0.05
+scale_ratio = 0.1
 scale_base_value = true
 
 [node name="ActorMoveSpeed20Plus5Percent" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]

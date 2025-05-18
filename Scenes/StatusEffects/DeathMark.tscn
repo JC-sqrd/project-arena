@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx2dv4pt7n4gm"]
+
+[ext_resource type="Script" uid="uid://fxa1axpjy421" path="res://Scripts/Combat/StatusEffects/DeathMark.gd" id="1_qbthe"]
+
+[node name="DeathMark" type="Node"]
+script = ExtResource("1_qbthe")
+metadata/_custom_type_script = "uid://j8ikr42fnud0"

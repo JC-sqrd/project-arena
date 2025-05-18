@@ -99,14 +99,13 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_4yy27"]
 radius = 150.0
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("gold_manager", "innate_active_ability", "innate_utility_ability", "utility_ability", "hit_receiver", "stat_manager", "level_manager", "health_manager", "mana_manager", "status_effect_manager", "stat_mods_manager", "damage_listener", "item_iventory") groups=["Hittable", "player"]]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("gold_manager", "innate_active_ability", "utility_ability", "hit_receiver", "stat_manager", "level_manager", "health_manager", "mana_manager", "status_effect_manager", "stat_mods_manager", "damage_listener", "item_iventory") groups=["Hittable", "player"]]
 y_sort_enabled = true
 motion_mode = 1
 platform_floor_layers = 4294901760
 script = ExtResource("1_emetf")
 gold_manager = NodePath("GoldManager")
 innate_active_ability = NodePath("InnateActiveAbility")
-innate_utility_ability = NodePath("InnateUtilityAbility")
 utility_ability = NodePath("UtilityAbilityContainer")
 hit_receiver = NodePath("HitReceiver")
 stat_manager = NodePath("Stats")
@@ -137,11 +136,6 @@ ability_action_trigger = "primary_ability"
 actor = NodePath("..")
 mana = NodePath("../Stats/Mana")
 
-[node name="InnateUtilityAbility" parent="." node_paths=PackedStringArray("actor", "mana") groups=["innate_ability_containers"] instance=ExtResource("6_tx7qf")]
-ability_action_trigger = "m_right"
-actor = NodePath("..")
-mana = NodePath("../Stats/Mana")
-
 [node name="UtilityAbilityContainer" parent="." node_paths=PackedStringArray("actor", "mana") instance=ExtResource("6_tx7qf")]
 ability_action_trigger = "utility_ability"
 actor = NodePath("..")
@@ -164,7 +158,7 @@ scale = Vector2(0.999999, 0.999999)
 attack_speed = NodePath("../Stats/AttackSpeedMultiplier")
 weapon_position = NodePath("WeaponPosition")
 actor = NodePath("..")
-action_trigger = "secondary_ability"
+action_trigger = "m_right"
 
 [node name="WeaponPosition" type="Marker2D" parent="WeaponSlot"]
 

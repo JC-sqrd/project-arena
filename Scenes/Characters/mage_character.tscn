@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgy7pdawvoiwa"]
+[gd_scene load_steps=12 format=3 uid="uid://bgy7pdawvoiwa"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/test_character.tscn" id="1_mooh8"]
-[ext_resource type="PackedScene" uid="uid://bsyjglycqybnf" path="res://Scenes/Abilities/Spawn Abilities/Fireball/ability_fireball.tscn" id="2_2tih5"]
 [ext_resource type="PackedScene" uid="uid://bkmw1nqw6gp4q" path="res://Scenes/Weapons/Hammer/weapon_hammer.tscn" id="2_efl5i"]
 [ext_resource type="PackedScene" uid="uid://df35xeepp7qfx" path="res://Scenes/Weapons/Fire Grimoire/weapon_fire_grimoire.tscn" id="3_a5sja"]
 [ext_resource type="PackedScene" uid="uid://br6km26u30bs6" path="res://Scenes/Weapons/Chakram/weapon_chakram.tscn" id="3_judwm"]
@@ -30,17 +29,11 @@ position = Vector2(20, 10)
 scale = Vector2(0.999999, 0.999999)
 
 [node name="InnateActiveAbility" parent="." index="2" node_paths=PackedStringArray("ability")]
-ability = NodePath("AbilityFireball")
-
-[node name="AbilityFireball" parent="InnateActiveAbility" index="1" instance=ExtResource("2_2tih5")]
-
-[node name="InnateUtilityAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityFlameBreath")
-ability_cooldown = 5.0
 
-[node name="AbilityFlameBreath" parent="InnateUtilityAbility" index="1" instance=ExtResource("12_rpc63")]
+[node name="AbilityFlameBreath" parent="InnateActiveAbility" index="1" instance=ExtResource("12_rpc63")]
 
-[node name="UtilityAbilityContainer" parent="." index="4" node_paths=PackedStringArray("ability")]
+[node name="UtilityAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("DashAbility")
 
 [node name="DashAbility" parent="UtilityAbilityContainer" index="1"]
@@ -49,7 +42,7 @@ direction_input = 1
 
 [node name="FlamePillar" parent="UtilityAbilityContainer" index="2" instance=ExtResource("10_w6ej0")]
 
-[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
+[node name="WeaponSlot" parent="." index="5" node_paths=PackedStringArray("equipment")]
 position = Vector2(0, 10)
 equipment = NodePath("WeaponPosition/WeaponMagicGun")
 
@@ -58,7 +51,6 @@ position = Vector2(20, 0)
 
 [node name="WeaponMagicGun" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("5_cylll")]
 position = Vector2(-20, -10)
-scale = Vector2(1, 1)
 
 [node name="ItemChargeMoveSpeed" parent="ItemInventory" index="0" instance=ExtResource("4_rpc63")]
 

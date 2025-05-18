@@ -1,22 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bptnxnhvrfpcp"]
+[gd_scene load_steps=5 format=3 uid="uid://bptnxnhvrfpcp"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/test_character.tscn" id="1_htyvo"]
 [ext_resource type="PackedScene" uid="uid://blgfsj2jbixh6" path="res://Scenes/Weapons/Magic Gun/weapon_magic_gun.tscn" id="2_7rjos"]
-[ext_resource type="PackedScene" uid="uid://3ruase02hrhv" path="res://Scenes/Abilities/ToggleAbilities/Laser/ability_laser.tscn" id="3_eg0o0"]
 [ext_resource type="PackedScene" uid="uid://dpxeo3vfdhsen" path="res://Scenes/Items/burst_damage/item_burst_damage.tscn" id="5_eg0o0"]
 [ext_resource type="PackedScene" uid="uid://dhn271q16a0kf" path="res://Scenes/Abilities/Emit Abilities/RayBurst/ability_ray_burst.tscn" id="5_pymqp"]
 
 [node name="GunCharacter" instance=ExtResource("1_htyvo")]
 
-[node name="InnateActiveAbility" parent="." index="1" node_paths=PackedStringArray("ability")]
+[node name="InnateActiveAbility" parent="." index="2" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityRayBurst")
 
 [node name="AbilityRayBurst" parent="InnateActiveAbility" index="1" instance=ExtResource("5_pymqp")]
-
-[node name="InnateUtilityAbility" parent="." index="2" node_paths=PackedStringArray("ability")]
-ability = NodePath("AbilityLaser")
-
-[node name="AbilityLaser" parent="InnateUtilityAbility" index="1" instance=ExtResource("3_eg0o0")]
 
 [node name="UtilityAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("DashAbility")
@@ -24,11 +18,9 @@ ability = NodePath("DashAbility")
 [node name="DashAbility" parent="UtilityAbilityContainer" index="1"]
 dash_distance = 300.0
 direction_input = 1
-cast_mode = 1
 
-[node name="WeaponSlot" parent="." index="4" node_paths=PackedStringArray("weapon")]
+[node name="WeaponSlot" parent="." index="5"]
 position = Vector2(-1.07288e-06, 9)
-weapon = NodePath("WeaponPosition/MagicGun")
 
 [node name="WeaponPosition" parent="WeaponSlot" index="1"]
 position = Vector2(25, 0)
@@ -39,8 +31,5 @@ position = Vector2(25, 0)
 
 [node name="MaxHealth" parent="Stats" index="7"]
 stat_value = 30.0
-
-[node name="VitalityStatScaler" parent="Stats/MaxHealth" index="0"]
-scale_ratio = 1.0
 
 [editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]

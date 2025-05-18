@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dophsrqv8y3sh"]
+[gd_scene load_steps=8 format=3 uid="uid://dophsrqv8y3sh"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/test_character.tscn" id="1_5hmdl"]
 [ext_resource type="PackedScene" uid="uid://br6km26u30bs6" path="res://Scenes/Weapons/Chakram/weapon_chakram.tscn" id="2_t2lar"]
 [ext_resource type="PackedScene" uid="uid://du2r3qg36q32c" path="res://Scenes/Abilities/Spawn Abilities/ground_burst_ability.tscn" id="2_v11n0"]
 [ext_resource type="PackedScene" uid="uid://df35xeepp7qfx" path="res://Scenes/Weapons/Fire Grimoire/weapon_fire_grimoire.tscn" id="3_e1acb"]
-[ext_resource type="PackedScene" uid="uid://c54utx7ghqari" path="res://Scenes/Abilities/Emit Abilities/Aura/ability_aura.tscn" id="3_hynws"]
 [ext_resource type="PackedScene" uid="uid://ba77g51rg80ak" path="res://Scenes/Weapons/Shuriken/weapon_shuriken.tscn" id="4_7raj0"]
 [ext_resource type="PackedScene" uid="uid://bkmw1nqw6gp4q" path="res://Scenes/Weapons/Hammer/weapon_hammer.tscn" id="4_325pn"]
 [ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="5_7fhwv"]
@@ -24,19 +23,14 @@ ability = NodePath("GroundBurstAbility")
 
 [node name="GroundBurstAbility" parent="InnateActiveAbility" index="1" instance=ExtResource("2_v11n0")]
 
-[node name="InnateUtilityAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
-ability = NodePath("AbilityAura")
-
-[node name="AbilityAura" parent="InnateUtilityAbility" index="1" instance=ExtResource("3_hynws")]
-
-[node name="UtilityAbilityContainer" parent="." index="4" node_paths=PackedStringArray("ability")]
+[node name="UtilityAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("DashAbility")
 
 [node name="DashAbility" parent="UtilityAbilityContainer" index="1"]
 dash_distance = 300.0
 direction_input = 1
 
-[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
+[node name="WeaponSlot" parent="." index="5" node_paths=PackedStringArray("equipment")]
 position = Vector2(-1.07288e-06, 14)
 equipment = NodePath("WeaponPosition/Hammer")
 

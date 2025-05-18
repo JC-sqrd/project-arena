@@ -33,5 +33,5 @@ metadata/_custom_type_script = "uid://bjpxplndvkee"
 
 [node name="Stat" type="Node" parent="BonusStat2"]
 script = ExtResource("3_r62ra")
-stat_value = -20.0
+stat_value = -10.0
 metadata/_custom_type_script = "uid://bgka26pbphks7"

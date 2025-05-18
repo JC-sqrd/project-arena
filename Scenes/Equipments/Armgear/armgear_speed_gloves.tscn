@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b7874mt2gee5e"]
 
-[ext_resource type="Script" uid="uid://cfgh4nylljfr5" path="res://Scripts/Combat/Equipment/Armwear/Armwear.gd" id="1_j7qch"]
+[ext_resource type="Script" uid="uid://cfgh4nylljfr5" path="res://Scripts/Combat/Equipment/Armgear/Armgear.gd" id="1_j7qch"]
 
 [node name="ArmwearSpeedGloves" type="Node2D"]
 script = ExtResource("1_j7qch")
