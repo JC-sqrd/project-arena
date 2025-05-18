@@ -41,6 +41,11 @@ func _ready():
 		if offhand_slot.equipment != null:
 			offhand_equip_slot.equipment = offhand_slot.equipment
 			offhand_equip_slot.equipment_icon.texture = offhand_slot.equipment.equipment_icon
+	if armgear_slot != null:
+		armgear_equip_slot.equipment_slot = armgear_slot
+		if armgear_slot.equipment != null:
+			armgear_equip_slot.equipment = armgear_slot.equipment
+			armgear_equip_slot.equipment_icon.texture = armgear_slot.equipment.equipment_icon
 	if headgear_slot != null:
 		headgear_equip_slot.equipment_slot = headgear_slot
 		if headgear_slot.equipment != null:

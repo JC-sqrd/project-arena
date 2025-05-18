@@ -2,7 +2,7 @@ class_name EquipmentInventory
 extends Node
 
 
-var max_size : int = 6
+@export var max_size : int = 6
 var inventory : Array[Equipment] = [null, null, null, null, null, null]
 
 @export var weapon_slot : WeaponSlot
@@ -22,14 +22,17 @@ var equipped_shoes : Equipment
 
 func _ready() -> void:
 	var children : Array[Node] = get_children()
-	var inventory_index : int = 0
+	#for i in range(children.size()):
+		#print("CHILDREN INDEX : " + str(i))
+		#if i < max_size and children[i] is Equipment:
+			#inventory[i] = children[i]
+			#pass
+	inventory.resize(max_size)
+	inventory.fill(null)
 	for i in range(children.size()):
-		print("CHILDREN INDEX : " + str(i))
-		if i < max_size and children[i] is Equipment:
+		if children[i] is Equipment:
 			inventory[i] = children[i]
-			print("INVENTORY INDEX : " + str(inventory_index))
-			inventory_index += 1
-			pass
+			#inventory.append(equipment)
 		pass
 
 

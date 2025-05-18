@@ -8,6 +8,7 @@
 [node name="ShoesIronBoots" type="Node2D"]
 script = ExtResource("1_5qwhd")
 equipment_name = "Iron Boots"
+type = 4
 equipment_icon = ExtResource("2_q64b6")
 metadata/_custom_type_script = "uid://5ojl8wjpptpv"
 

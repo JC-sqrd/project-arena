@@ -28,7 +28,10 @@ func set_equipment(new_equipment : Equipment):
 	if equipment != null:
 		equipment.visible = false
 		unequip(equipment)
-	equipment = new_equipment
-	equipment.visible = true
-	equip(new_equipment)
+	if new_equipment != null:
+		equipment = new_equipment
+		equipment.visible = true
+		equip(new_equipment)
+	else:
+		equipment = null
 	pass 

@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cfgh4nylljfr5" path="res://Scripts/Combat/Equipment/Armgear/Armgear.gd" id="1_xa2i5"]
 [ext_resource type="Script" uid="uid://bjpxplndvkee" path="res://Scripts/StatSystem/Stats/EquipmentBonusStat.gd" id="2_4qt04"]
-[ext_resource type="Texture2D" uid="uid://bs2vtrd6wnypu" path="res://Placeholders/Icons/Icon.2_24.png" id="2_s1sw7"]
+[ext_resource type="Texture2D" uid="uid://bckho4r5trpmx" path="res://Placeholders/Icons/Icon.3_10.png" id="2_s1sw7"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="3_s1sw7"]
 
 [node name="ArmgearIronGauntlets" type="Node2D"]
 script = ExtResource("1_xa2i5")
 equipment_name = "Iron Gauntlets"
+type = 3
 equipment_icon = ExtResource("2_s1sw7")
 metadata/_custom_type_script = "uid://cfgh4nylljfr5"
 

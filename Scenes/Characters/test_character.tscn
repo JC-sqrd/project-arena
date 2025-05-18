@@ -119,6 +119,7 @@ item_iventory = NodePath("ItemInventory")
 
 [node name="EquipmentInventory" type="Node" parent="." node_paths=PackedStringArray("weapon_slot", "headgear_slot", "torso_slot", "armgear_slot", "shoes_slot")]
 script = ExtResource("2_oxhu7")
+max_size = 10
 weapon_slot = NodePath("../WeaponSlot")
 headgear_slot = NodePath("../HeadGearSlot")
 torso_slot = NodePath("../TorsoSlot")

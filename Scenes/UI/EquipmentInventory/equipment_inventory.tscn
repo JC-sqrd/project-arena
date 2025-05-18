@@ -35,7 +35,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="InventoryGrid" type="GridContainer" parent="EquipmentInventory/MarginContainer"]
 layout_mode = 2
-columns = 10
+columns = 5
 
 [node name="EquippedSlots" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -74,7 +74,7 @@ equip_type = 2
 
 [node name="ArmgearEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
 layout_mode = 2
-equip_type = 1
+equip_type = 3
 
 [node name="ShoesEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
 layout_mode = 2
