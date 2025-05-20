@@ -293,6 +293,12 @@ stat_name = "move_speed"
 stat_value = 290.0
 can_be_negative = false
 
+[node name="Acceleration" type="Node" parent="Stats"]
+script = ExtResource("6_idxee")
+stat_name = "acceleration"
+stat_value = 3000.0
+can_be_negative = false
+
 [node name="AttackSpeedMultiplier" type="Node" parent="Stats"]
 script = ExtResource("4_jr810")
 stat_name = "attack_speed_mult"
@@ -471,10 +477,11 @@ script = ExtResource("4_jyghi")
 
 [node name="MovementSystem" type="Node" parent="."]
 
-[node name="MovementController" parent="MovementSystem" node_paths=PackedStringArray("character", "movement_input", "speed") instance=ExtResource("3_vhpeq")]
+[node name="MovementController" parent="MovementSystem" node_paths=PackedStringArray("character", "movement_input", "speed", "acceleration") instance=ExtResource("3_vhpeq")]
 character = NodePath("../..")
 movement_input = NodePath("../MovementInput")
 speed = NodePath("../../Stats/MoveSpeed")
+acceleration = NodePath("../../Stats/Acceleration")
 
 [node name="MovementInput" parent="MovementSystem" instance=ExtResource("4_fjo2p")]
 

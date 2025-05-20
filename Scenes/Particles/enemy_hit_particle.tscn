@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ull35nal2yub"]
+[gd_scene load_steps=7 format=3 uid="uid://ull35nal2yub"]
 
 [ext_resource type="Texture2D" uid="uid://bovxwuugbprsi" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/fire_01.png" id="1_fpi4n"]
-[ext_resource type="Script" uid="uid://botqhhrbfbmcw" path="res://Scripts/Enemy/EntityHitParticle.gd" id="2_m0sqi"]
 
 [sub_resource type="Gradient" id="Gradient_i1fq4"]
 offsets = PackedFloat32Array(0, 0.624366, 1)
@@ -35,9 +34,8 @@ color_ramp = SubResource("GradientTexture1D_sfb58")
 
 [node name="EnemyHitParticle" type="GPUParticles2D"]
 emitting = false
-process_material = SubResource("ParticleProcessMaterial_cuh0q")
 texture = ExtResource("1_fpi4n")
 lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
-script = ExtResource("2_m0sqi")
+process_material = SubResource("ParticleProcessMaterial_cuh0q")

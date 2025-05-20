@@ -49,6 +49,7 @@ func receive_effect(data : Dictionary):
 	var damage_received : float = 0
 	var target : Entity = data["target"] as Entity
 	var actor : Entity
+	var bonus_damage : float = 0
 	if data["actor"] != null:
 		actor = data["actor"] as Entity
 	#var hit_data : Dictionary = data
@@ -62,13 +63,15 @@ func receive_effect(data : Dictionary):
 		for check in damage_data.checks:
 			if check is BonusValueCondition:
 				if check.condition_met(data):
-					damage_data.damage += check.calculate_bonus_value(damage_data)#check.get_bonus_value()
+					bonus_damage += check.calculate_bonus_value(damage_data)#check.get_bonus_value()
 					pass
 			pass
+		damage_data.damage += bonus_damage
 		#Apply damage
-		print("DAMAGE EFFECT DAMAGE RECIEVED: " + str(damage_data.damage))
+		print("DAMAGE EFFECT DAMAGE RECIEVED: " + str(bonus_damage))
 		damage_received = target.damage_listener.apply_mitigation_effects(damage_data)
 		damage_data.total_damage = damage_received
+		damage_data.damage -= bonus_damage
 		
 		if damage_data.is_lifesteal:
 			var lifesteal_effect : DamageReceiver.Lifesteal = damage_data.lifesteal 

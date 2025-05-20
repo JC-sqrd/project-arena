@@ -15,6 +15,7 @@ var block_incoming_damage : bool = false
 
 signal damage_applied()
 signal damage_blocked()
+signal incoming_damage(damage_data : DamageEffectData)
 
 func _ready():
 	child_entered_tree.connect(
@@ -44,6 +45,7 @@ func _ready():
 	#return _apply_damage(damage_data)
 
 func apply_mitigation_effects(damage_data : DamageEffectData) -> float:
+	incoming_damage.emit(damage_data)
 	var post_mitigated_damage : float = calculate_post_mitigated_damage(damage_data) * calculate_damage_multiplier()
 	apply_modifiers(damage_data)
 	reset_damage_multiplier()

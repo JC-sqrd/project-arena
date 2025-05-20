@@ -313,7 +313,6 @@ damage_stat = NodePath("../../Stats/AttackDamage")
 [node name="AddGoldOnSlain" type="Node" parent="."]
 script = ExtResource("2_k2cwq")
 gold_add = 10.0
-active = false
 
 [node name="AddExpOnSlain" type="Node" parent="."]
 script = ExtResource("2_yqgnx")
@@ -523,6 +522,7 @@ drop_chance = 0.05
 script = ExtResource("60_1bywy")
 dropper = NodePath("..")
 loot = ExtResource("59_k26d3")
+active = false
 metadata/_custom_type_script = "uid://4aq4lbc1j01f"
 
 [node name="Panel" type="Panel" parent="."]
@@ -559,9 +559,12 @@ stream = ExtResource("38_wst1g")
 script = ExtResource("39_i6u0l")
 entity = NodePath("..")
 
-[node name="EntityHitParticle" type="Node" parent="." node_paths=PackedStringArray("entity")]
+[node name="EntityHitParticle" type="Node" parent="." node_paths=PackedStringArray("entity", "hit_particle")]
 script = ExtResource("40_sfnxl")
 entity = NodePath("..")
 particle_scene = ExtResource("50_1vlta")
+hit_particle = NodePath("../EnemyHitSparkParticle")
+
+[node name="EnemyHitSparkParticle" parent="." instance=ExtResource("50_1vlta")]
 
 [editable path="Panel/MarginContainer/TextureProgressBar"]

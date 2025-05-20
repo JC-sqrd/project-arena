@@ -5,7 +5,6 @@ enum DirectionInput {MOUSE, KEYBOARD}
 
 @export var dash_distance : float
 @export var dash_speed : float = 2500
-@export var dash_acceleration : float = 1000
 @export var direction_input : DirectionInput = DirectionInput.MOUSE
 @export var can_cast_while_dashing : bool = false
 
@@ -67,6 +66,9 @@ func _process(delta):
 func _physics_process(delta):
 	if _begin_dashing and active:
 		dash(delta)
+		#_dash_duration -= delta
+	#if _dash_duration <= 0:
+		#end_dash()
 		#Distance condition
 		#if actor.position.distance_to(_dash_position) <= 10:
 			#end_dash()
@@ -92,12 +94,10 @@ func _start_dash():
 	
 	_dash_position = actor.position + (_dash_direction * dash_distance)
 	_dash_duration = dash_distance / dash_speed
-	#_dash_duration = sqrt((2 * dash_distance) / dash_acceleration)
 	_begin_dashing = true
 	_get_dash_direction = false
 	#Start Dash Timer
-	get_tree().create_timer(_dash_duration, false, true, false).timeout.connect(end_dash)
-	
+	get_tree().create_timer(_dash_duration, false, false, false).timeout.connect(end_dash)
 	pass
 	
 func _cancel_dash():
@@ -114,7 +114,8 @@ func dash(delta : float):
 	#Prohibits the player from moving the actor while dashing
 	actor.can_move = false
 	#VELOCITY DASH
-	actor.velocity += lerp(actor.velocity, _dash_direction * dash_speed, 1)
+	actor.velocity = _dash_direction * (dash_speed) 
+	#actor.velocity += lerp(actor.velocity, _dash_direction * dash_speed, 1)
 	actor.move_and_slide()
 	ability_active.emit()
 	pass
@@ -122,11 +123,12 @@ func dash(delta : float):
 func end_dash():
 	#Ability ended
 	active = false
+	_begin_dashing = false
 	current_state = AbilityState.DORMANT
 	actor.can_attack = true
 	actor.can_move = true
 	actor.can_cast = true
-	_begin_dashing = false
+	actor.velocity = Vector2.ZERO
 	ability_end.emit()
 	pass
 

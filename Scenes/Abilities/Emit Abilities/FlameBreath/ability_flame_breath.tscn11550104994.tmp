@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cx8tgb7k8cwbk"]
+[gd_scene load_steps=26 format=3 uid="uid://cx8tgb7k8cwbk"]
 
 [ext_resource type="Script" uid="uid://42qvy4m6xprb" path="res://Scripts/Ability System/EmitAbility.gd" id="1_ooi45"]
 [ext_resource type="PackedScene" uid="uid://cgfrvfbxilhqf" path="res://Scenes/Abilities/Emit Abilities/FlameBreath/Spawnable/spawnable_flame_breath.tscn" id="2_cgcej"]
@@ -22,6 +22,10 @@ script = ExtResource("3_s50ku")
 stat_name = "current_mana"
 required_value = 20.0
 metadata/_custom_type_script = "uid://tuvjl40jf0pm"
+
+[sub_resource type="Curve" id="Curve_w471h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 1, Vector2(0.253394, 1), 0.0, -1.33939, 0, 1, Vector2(1, 0), -1.33939, 0.0, 1, 0]
+point_count = 3
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8naak"]
 atlas = ExtResource("14_w471h")
@@ -125,6 +129,7 @@ metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 [node name="DistanceCheck" type="Node" parent="HitListener/DamageEffect" node_paths=PackedStringArray("stat")]
 script = ExtResource("8_cgcej")
 stat = NodePath("Stat")
+damage_curve = SubResource("Curve_w471h")
 distance = 300.0
 is_percentage = true
 metadata/_custom_type_script = "uid://b41oadkxkerfk"

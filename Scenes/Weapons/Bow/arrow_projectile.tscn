@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cr6ajbl5x5egu"]
+
+[ext_resource type="Script" uid="uid://csk81q2x4j06s" path="res://Scripts/Combat/ProjectileWeapons/Projectile/Projectile.gd" id="1_bxxnk"]
+[ext_resource type="Texture2D" uid="uid://bjejgkunngclk" path="res://Sprites/BowAndArrow/Arrow.png" id="2_b8q0o"]
+
+[sub_resource type="Curve" id="Curve_b8q0o"]
+_data = [Vector2(0, 1), 0.0, 0.848164, 0, 0, Vector2(1, 0.853448), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8q0o"]
+size = Vector2(56, 25)
+
+[node name="ArrowProjectile" type="Area2D"]
+script = ExtResource("1_bxxnk")
+speed_curve = SubResource("Curve_b8q0o")
+max_distance = 5000.0
+metadata/_custom_type_script = "uid://csk81q2x4j06s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 1.5)
+shape = SubResource("RectangleShape2D_b8q0o")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_b8q0o")

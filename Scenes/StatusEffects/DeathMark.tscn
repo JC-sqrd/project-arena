@@ -4,4 +4,5 @@
 
 [node name="DeathMark" type="Node"]
 script = ExtResource("1_qbthe")
+stackable = true
 metadata/_custom_type_script = "uid://j8ikr42fnud0"

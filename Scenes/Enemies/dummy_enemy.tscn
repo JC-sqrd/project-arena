@@ -606,9 +606,12 @@ stream = ExtResource("65_g5ym1")
 script = ExtResource("66_b780o")
 entity = NodePath("..")
 
-[node name="EntityHitParticle" type="Node" parent="." node_paths=PackedStringArray("entity")]
+[node name="EntityHitParticle" type="Node" parent="." node_paths=PackedStringArray("entity", "hit_particle")]
 script = ExtResource("67_nvjd5")
 entity = NodePath("..")
 particle_scene = ExtResource("68_n37al")
+hit_particle = NodePath("../EnemyHitSparkParticle")
+
+[node name="EnemyHitSparkParticle" parent="." instance=ExtResource("68_n37al")]
 
 [editable path="Panel/MarginContainer/TextureProgressBar"]

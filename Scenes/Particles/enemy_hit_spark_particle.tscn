@@ -33,6 +33,22 @@ scale_min = 0.55
 scale_max = 0.55
 scale_curve = SubResource("CurveTexture_8mjgy")
 color_ramp = SubResource("GradientTexture1D_lcfdi")
+sub_emitter_mode = 4
+sub_emitter_amount_at_start = 1
+
+[sub_resource type="Curve" id="Curve_vy4a5"]
+_data = [Vector2(0, 0.0337079), 0.0, 0.0, 0, 0, Vector2(1, 0.146068), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o0jsp"]
+curve = SubResource("Curve_vy4a5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cd6jr"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_o0jsp")
+sub_emitter_mode = 4
+sub_emitter_amount_at_start = 8
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ot5fx"]
 blend_mode = 1
@@ -81,22 +97,11 @@ scale_max = 0.3
 scale_curve = SubResource("CurveXYZTexture_vymj4")
 color_ramp = SubResource("GradientTexture1D_yrcl4")
 
-[sub_resource type="Curve" id="Curve_vy4a5"]
-_data = [Vector2(0, 0.0337079), 0.0, 0.0, 0, 0, Vector2(1, 0.146068), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_o0jsp"]
-curve = SubResource("Curve_vy4a5")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cd6jr"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_o0jsp")
-
 [node name="EnemyHitSparkParticle" type="GPUParticles2D"]
 material = SubResource("CanvasItemMaterial_jkw3r")
 emitting = false
 amount = 1
+sub_emitter = NodePath("CircleParticle")
 texture = ExtResource("1_ant38")
 lifetime = 0.5
 one_shot = true
@@ -104,7 +109,18 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_pfl2t")
 script = ExtResource("2_kcyeu")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="CircleParticle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+sub_emitter = NodePath("../SmallSparkSparticle")
+texture = ExtResource("4_7fcr8")
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_cd6jr")
+
+[node name="SmallSparkSparticle" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_ot5fx")
 emitting = false
 texture = ExtResource("2_3uym0")
@@ -113,13 +129,3 @@ one_shot = true
 explosiveness = 1.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_qd8us")
-
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 1
-texture = ExtResource("4_7fcr8")
-lifetime = 0.2
-one_shot = true
-explosiveness = 1.0
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_cd6jr")

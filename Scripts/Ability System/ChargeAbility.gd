@@ -11,7 +11,7 @@ func dash(delta : float):
 	actor.can_move = false
 	#VELOCITY DASH
 	input_vector = Input.get_vector("left", "right", "up", "down").normalized()
-	_current_charge_speed += dash_acceleration / _dash_duration
+	#_current_charge_speed += dash_acceleration / _dash_duration
 	_current_charge_speed = clampf(_current_charge_speed, -INF, dash_speed)
 	actor.velocity += lerp(actor.velocity, (input_vector) * _current_charge_speed, 1)
 	actor.move_and_slide()

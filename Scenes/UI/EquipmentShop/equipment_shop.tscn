@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cktf4rpw44nwi"]
+[gd_scene load_steps=3 format=3 uid="uid://cktf4rpw44nwi"]
 
+[ext_resource type="Script" uid="uid://cl8p3vpl3cns0" path="res://Scripts/ItemAndEquipmentShop/GeneralShopUI.gd" id="1_1hu44"]
 [ext_resource type="PackedScene" uid="uid://babmiqnjapjdm" path="res://Scenes/UI/EquipmentShop/equipment_shop_card.tscn" id="1_q777v"]
 
 [node name="EquipmentShop" type="Control"]
@@ -11,6 +12,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1hu44")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

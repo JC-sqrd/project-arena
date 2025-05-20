@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dnnl681s4yejk" path="res://Scripts/Combat/ProjectileWeapons/Bow.gd" id="1_dscfw"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="2_7hck8"]
-[ext_resource type="PackedScene" uid="uid://dfh3qc3n36tdr" path="res://Scenes/Weapons/Fire Grimoire/grimoire_projectile.tscn" id="2_esbd8"]
+[ext_resource type="PackedScene" uid="uid://cr6ajbl5x5egu" path="res://Scenes/Weapons/Bow/arrow_projectile.tscn" id="2_1500e"]
 [ext_resource type="Texture2D" uid="uid://brnjjbr66u1vv" path="res://Placeholders/Icons/Icon.4_60.png" id="3_1500e"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="3_esbd8"]
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="4_1500e"]
@@ -15,8 +15,8 @@
 [node name="WeaponBow" type="Node2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "hit_listener")]
 script = ExtResource("1_dscfw")
 max_charge_multiplier = 1.25
-projectile = ExtResource("2_esbd8")
-speed = 880.0
+projectile = ExtResource("2_1500e")
+speed = 800.0
 max_distance = 1000.0
 attack_damage = NodePath("Damage")
 attack_speed_stat = NodePath("AttackSpeed")
