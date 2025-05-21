@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://xqh50xxjdw70" path="res://Scripts/Combat/StatusEffects/SlowStatusEffect.gd" id="1_qkvox"]
 
-[node name="SlowStatusEffect" type="Node" groups=["negative_status_effect", "slow"]]
+[node name="SlowStatusEffect" type="Node" node_paths=PackedStringArray("timer") groups=["negative_status_effect", "slow"]]
 script = ExtResource("1_qkvox")
 slow_percentage = 0.3
 duration = 3.0
+timer = NodePath("Timer")
 id = "slow"
+
+[node name="Timer" type="Timer" parent="."]

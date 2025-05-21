@@ -1,16 +1,15 @@
 class_name StatusEffectData
-extends RefCounted
+extends EffectData
 
 
 
-var status_effect : StatusEffect
+var status_effect_scene : PackedScene
 var stack : int = 1
 var chance : float = 1
 
 var tags : Array[StringName]
 
-func _init(status_effect : StatusEffect, stack : int, chance : float, tags : Array[StringName]):
-	self.status_effect = status_effect
+func _init(status_effect_scene : PackedScene, stack : int, chance : float):
+	self.status_effect_scene = status_effect_scene
 	self.stack = stack
 	self.chance = chance
-	self.tags = tags

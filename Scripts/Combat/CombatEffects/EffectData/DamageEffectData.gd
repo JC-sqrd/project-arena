@@ -1,5 +1,5 @@
 class_name DamageEffectData
-extends RefCounted
+extends EffectData
 
 var actor : Entity
 var target : Entity

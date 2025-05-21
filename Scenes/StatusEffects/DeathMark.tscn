@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://fxa1axpjy421" path="res://Scripts/Combat/StatusEffects/DeathMark.gd" id="1_qbthe"]
 
-[node name="DeathMark" type="Node"]
+[node name="DeathMark" type="Node" node_paths=PackedStringArray("timer")]
 script = ExtResource("1_qbthe")
 stackable = true
+timer = NodePath("Timer")
 metadata/_custom_type_script = "uid://j8ikr42fnud0"
+
+[node name="Timer" type="Timer" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cx8tgb7k8cwbk"]
+[gd_scene load_steps=24 format=3 uid="uid://cx8tgb7k8cwbk"]
 
 [ext_resource type="Script" uid="uid://42qvy4m6xprb" path="res://Scripts/Ability System/EmitAbility.gd" id="1_ooi45"]
 [ext_resource type="PackedScene" uid="uid://cgfrvfbxilhqf" path="res://Scenes/Abilities/Emit Abilities/FlameBreath/Spawnable/spawnable_flame_breath.tscn" id="2_cgcej"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="5_u5ecf"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="6_eridb"]
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="7_v4c78"]
-[ext_resource type="Script" uid="uid://b41oadkxkerfk" path="res://Scripts/Combat/CombatEffects/BonusValueChecks/DistanceCheck.gd" id="8_cgcej"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="8_xb1eg"]
 [ext_resource type="Script" uid="uid://88st3pdi1hky" path="res://Scripts/Combat/CombatEffects/ApplyStatusEffect.gd" id="9_u5ecf"]
 [ext_resource type="PackedScene" uid="uid://d2mjy2iqk7hmw" path="res://Scenes/StatusEffects/Burn.tscn" id="10_eridb"]
@@ -102,7 +101,11 @@ metadata/_custom_type_script = "uid://dm3uuggj1g47y"
 [node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
 script = ExtResource("5_u5ecf")
 damage_stat = NodePath("ScaledDamage")
+scaling_ratio = null
 damage_type = 1
+health_percent_damage = null
+lifesteal = null
+lifesteal_type = null
 metadata/_custom_type_script = "uid://c8sj8b1npavnd"
 
 [node name="ScaledDamage" type="Node" parent="HitListener/DamageEffect"]
@@ -122,21 +125,10 @@ stat = NodePath("..")
 scale_with_stat_id = "magic_damage"
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
-[node name="DistanceCheck" type="Node" parent="HitListener/DamageEffect" node_paths=PackedStringArray("stat")]
-script = ExtResource("8_cgcej")
-stat = NodePath("Stat")
-distance = 300.0
-is_percentage = true
-metadata/_custom_type_script = "uid://b41oadkxkerfk"
-
-[node name="Stat" type="Node" parent="HitListener/DamageEffect/DistanceCheck"]
-script = ExtResource("6_eridb")
-stat_value = 1.0
-metadata/_custom_type_script = "uid://bgka26pbphks7"
-
 [node name="ApplyStatusEffect" type="Node" parent="HitListener"]
 script = ExtResource("9_u5ecf")
 status_effect_scene = ExtResource("10_eridb")
+stack = null
 chance = 0.5
 metadata/_custom_type_script = "uid://88st3pdi1hky"
 

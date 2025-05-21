@@ -1,5 +1,5 @@
 class_name OnHitEffectData
-extends RefCounted
+extends EffectData
 
 
 var on_hit_chance : float = 1

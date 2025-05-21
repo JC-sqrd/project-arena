@@ -3,9 +3,11 @@ extends RefCounted
 
 
 var bonus_value : float = 0
+var is_multiplier : bool = false
 
-func _init(bonus_value : float):
+func _init(bonus_value : float, is_multiplier : bool):
 	self.bonus_value = bonus_value
+	self.is_multiplier = is_multiplier
 
 func condition_met(hit_data : Dictionary) -> bool:
 	return true

@@ -17,9 +17,8 @@ var target_entity : Entity
 func get_effect_key() -> Variant:
 	return "apply_status_effect"
 
-func get_effect_value() -> StatusEffectData:
-	var status_effect : StatusEffect = status_effect_scene.instantiate() as StatusEffect 
-	return StatusEffectData.new(status_effect, stack, chance, status_effect.get_groups())
+func get_effect_value() -> StatusEffectData: 
+	return StatusEffectData.new(status_effect_scene, stack, chance)
 
 #class StatusEffectData:
 	#var status_effect : StatusEffect

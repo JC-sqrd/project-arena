@@ -1,5 +1,5 @@
 class_name KnockbackEffectData
-extends RefCounted
+extends EffectData
 
 
 

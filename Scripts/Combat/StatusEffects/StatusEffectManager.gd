@@ -39,17 +39,21 @@ func add_status_effect(status_effect : StatusEffect, stack : int):
 		if duplicate != null and duplicate.stackable:
 			duplicate.add_stack(stack)
 			status_effect.queue_free()
+			duplicate = null
 			pass
 		#Check if duplicate and if it is not stackable
 		elif duplicate != null and !duplicate.stackable:
 			duplicate.restart_duration()
 			status_effect.queue_free()
+			duplicate = null
 			pass
+		#New status effect
 		else:
 			add_child(status_effect)
 			status_effects.append(status_effect)
 			status_effect.add_stack(stack)
 			status_effect.activate_status_effect(entity)
+			duplicate.queue_free()
 	pass
 
 func remove_status_effect_by_id(id : String):

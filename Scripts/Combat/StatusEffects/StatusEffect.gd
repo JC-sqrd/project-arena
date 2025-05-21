@@ -7,6 +7,7 @@ var actor : Entity
 @export var icon : Texture
 @export var duration : float = 0
 @export var stackable : bool = false
+@export var timer : Timer
 @export var stack_stat : Stat
 @export var max_stack : int = 999
 @export var restart_on_stack_add : bool = false
@@ -14,7 +15,6 @@ var actor : Entity
 @export var type : Type 
 @export var is_permanent : bool = false
 var stack : int = 0 : set = _set_stack
-var timer : Timer = Timer.new()
 var active : bool = false
 
 var target_entity : Entity
@@ -24,7 +24,6 @@ signal duration_end()
 
 func activate_status_effect(target : Entity):
 	target_entity = target
-	add_child(timer)
 	timer.wait_time = duration
 	timer.one_shot = true
 	active = true

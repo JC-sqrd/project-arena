@@ -72,7 +72,6 @@ func _cancel_spawn():
 	if actor is PlayerCharacter:
 		actor.can_attack = true
 		actor.can_cast = true
-
 		get_cast_position = false
 	pass
 

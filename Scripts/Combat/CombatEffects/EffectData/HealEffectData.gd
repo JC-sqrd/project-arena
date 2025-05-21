@@ -1,5 +1,5 @@
 class_name HealEffectData
-extends RefCounted
+extends EffectData
 
 var heal_amount : float = 0
 

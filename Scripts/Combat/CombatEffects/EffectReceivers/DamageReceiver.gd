@@ -3,7 +3,6 @@ extends EffectReceiver
 
 #@export var damage_listener : DamageListener
 
-
 func _ready():
 	pass
 
@@ -50,6 +49,8 @@ func receive_effect(data : Dictionary):
 	var target : Entity = data["target"] as Entity
 	var actor : Entity
 	var bonus_damage : float = 0
+	var damage_mult : float = 0
+	var unmodified_damage : float = 0
 	if data["actor"] != null:
 		actor = data["actor"] as Entity
 	#var hit_data : Dictionary = data
@@ -62,16 +63,20 @@ func receive_effect(data : Dictionary):
 		if data["actor"] != null:
 			damage_data.actor = data["actor"]
 		for check in damage_data.checks:
-			if check is BonusValueCondition:
-				if check.condition_met(data):
+			if check.condition_met(data):
+				if check.is_multiplier:
+					damage_mult += check.calculate_bonus_value(damage_data)
+				else:
 					bonus_damage += check.calculate_bonus_value(damage_data)#check.get_bonus_value()
-					pass
+				pass
 			pass
+		unmodified_damage = damage_data.damage
 		damage_data.damage += bonus_damage
+		damage_data.damage += damage_data.damage * damage_mult
 		#Apply damage
 		damage_received = target.damage_listener.apply_mitigation_effects(damage_data)
 		damage_data.total_damage = damage_received
-		damage_data.damage -= bonus_damage
+		damage_data.damage = unmodified_damage
 		
 		if damage_data.is_lifesteal:
 			var lifesteal_effect : DamageReceiver.Lifesteal = damage_data.lifesteal 

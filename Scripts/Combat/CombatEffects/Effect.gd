@@ -3,6 +3,8 @@ extends Node
 
 var actor : Entity 
 
+signal effect_data_generated(effect_data : EffectData)
+
 func _enter_tree():
 	if owner is Entity:
 		actor = owner

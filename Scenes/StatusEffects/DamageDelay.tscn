@@ -6,11 +6,12 @@
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="4_lblk8"]
 [ext_resource type="Script" uid="uid://clr8tbibqclow" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="4_tg50c"]
 
-[node name="DamageDelayStatusEffect" type="Node" node_paths=PackedStringArray("damage_effect", "stack_stat") groups=["damage_delay", "negative_status_effect"]]
+[node name="DamageDelayStatusEffect" type="Node" node_paths=PackedStringArray("damage_effect", "timer", "stack_stat") groups=["damage_delay", "negative_status_effect"]]
 script = ExtResource("1_l1ftv")
 damage_effect = NodePath("DamageEffect")
 duration = 5.0
 stackable = true
+timer = NodePath("Timer")
 stack_stat = NodePath("StackStat")
 id = "damage_delay"
 
@@ -37,3 +38,5 @@ stat_value = 1.0
 script = ExtResource("4_lblk8")
 stat = NodePath("..")
 scale_with_stat_id = "magic"
+
+[node name="Timer" type="Timer" parent="."]

@@ -9,9 +9,10 @@
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="7_mkuag"]
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="8_8wv7e"]
 
-[node name="SpawnOnAttack" type="Node" node_paths=PackedStringArray("spawn_effect")]
+[node name="SpawnOnAttack" type="Node" node_paths=PackedStringArray("spawn_effect", "timer")]
 script = ExtResource("1_0ca48")
 spawn_effect = NodePath("SpawnEffect")
+timer = NodePath("Timer")
 
 [node name="SpawnEffect" type="Node" parent="." node_paths=PackedStringArray("source", "spawn_direction", "hit_listener")]
 script = ExtResource("2_txlkf")
@@ -39,3 +40,5 @@ script = ExtResource("8_8wv7e")
 stat = NodePath("..")
 scale_with_stat_id = "strength"
 scale_ratio = 0.1
+
+[node name="Timer" type="Timer" parent="."]

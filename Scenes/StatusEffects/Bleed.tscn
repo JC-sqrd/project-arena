@@ -5,11 +5,12 @@
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="3_3om55"]
 [ext_resource type="Script" uid="uid://dqjgy52bq0foh" path="res://Scripts/StatSystem/Stats/StatAdder.gd" id="3_k1pxt"]
 
-[node name="DamageOverTimeStatusEffect" type="Node" node_paths=PackedStringArray("damage_effect", "stack_stat") groups=["dot", "dot_bleed", "negative_status_effect"]]
+[node name="DamageOverTimeStatusEffect" type="Node" node_paths=PackedStringArray("damage_effect", "timer", "stack_stat") groups=["dot", "dot_bleed", "negative_status_effect"]]
 script = ExtResource("1_8mh38")
 damage_effect = NodePath("DamageEffect")
 duration = 3.0
 stackable = true
+timer = NodePath("Timer")
 stack_stat = NodePath("StackStat")
 id = "dot_bleed"
 
@@ -31,3 +32,5 @@ stat_value = 5.0
 [node name="StackStat" type="Node" parent="."]
 script = ExtResource("3_3om55")
 stat_value = 1.0
+
+[node name="Timer" type="Timer" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgy7pdawvoiwa"]
+[gd_scene load_steps=15 format=3 uid="uid://bgy7pdawvoiwa"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/test_character.tscn" id="1_mooh8"]
 [ext_resource type="PackedScene" uid="uid://bkmw1nqw6gp4q" path="res://Scenes/Weapons/Hammer/weapon_hammer.tscn" id="2_efl5i"]
@@ -9,9 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="6_judwm"]
 [ext_resource type="PackedScene" uid="uid://dq2ilob20a4t5" path="res://Scenes/Weapons/Bow/weapon_bow.tscn" id="7_rpc63"]
 [ext_resource type="PackedScene" uid="uid://bkjwb31l88d7n" path="res://Scenes/Abilities/Spawn Abilities/FlamePillar/flame_pillar.tscn" id="10_w6ej0"]
+[ext_resource type="PackedScene" uid="uid://c11kdiu2c6vx" path="res://Scenes/Items/item_vitality.tscn" id="12_cylll"]
 [ext_resource type="PackedScene" uid="uid://cx8tgb7k8cwbk" path="res://Scenes/Abilities/Emit Abilities/FlameBreath/ability_flame_breath.tscn" id="12_rpc63"]
+[ext_resource type="PackedScene" uid="uid://dcnhw5on07snr" path="res://Scenes/Items/item_magic.tscn" id="13_du287"]
 [ext_resource type="PackedScene" uid="uid://3tleitsb6xke" path="res://Scenes/Items/block_damage/item_chance_block_damage.tscn" id="13_nguqx"]
-[ext_resource type="PackedScene" uid="uid://cegtgo0ykur7n" path="res://Scenes/Items/mana_on_kill/item_mana_on_kill.tscn" id="14_qqrol"]
+[ext_resource type="PackedScene" uid="uid://dusnluek410g4" path="res://Scenes/Items/gain_attack_speed/item_attack_speed.tscn" id="14_cylll"]
 
 [node name="MageCharacter" instance=ExtResource("1_mooh8")]
 
@@ -53,10 +55,16 @@ position = Vector2(20, 0)
 [node name="WeaponMagicGun" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("5_cylll")]
 position = Vector2(-20, -10)
 
-[node name="ItemChanceBlockDamage" parent="ItemInventory" index="0" instance=ExtResource("13_nguqx")]
-stack = 900
+[node name="ItemMagic" parent="ItemInventory" index="0" instance=ExtResource("13_du287")]
+stack = 10
 
-[node name="ItemManaOnKill" parent="ItemInventory" index="1" instance=ExtResource("14_qqrol")]
+[node name="ItemChanceBlockDamage" parent="ItemInventory" index="1" instance=ExtResource("13_nguqx")]
+stack = 999
+
+[node name="ItemVitality" parent="ItemInventory" index="2" instance=ExtResource("12_cylll")]
+stack = 5000
+
+[node name="AttackSpeedItem" parent="ItemInventory" index="3" instance=ExtResource("14_cylll")]
 stack = 500
 
 [node name="MaxMana" parent="Stats" index="4"]
