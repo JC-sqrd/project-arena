@@ -24,9 +24,9 @@ func _on_hit_trigger(hit_data : Dictionary):
 	pass
 
 func cast_lightning(hit_data : Dictionary):
-	var lightning = lightning_scene.instantiate()
 	var target : Entity = hit_data["target"] as Entity
-	if lightning is ChainSpawnable and current_instance < MAX_INSTANCE:
+	if current_instance < MAX_INSTANCE:
+		var lightning : ChainSpawnable = lightning_scene.instantiate() as ChainSpawnable
 		lightning.actor = actor
 		lightning.stack = stack
 		lightning.source = self
