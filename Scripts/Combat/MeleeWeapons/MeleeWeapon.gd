@@ -213,7 +213,6 @@ func _hit_enemy():
 	for enemy in enemy_hits:
 		var hit_data : Dictionary = _create_hit_data(enemy)
 		if hit_listener != null and filter.is_valid(self, enemy, enemy_hits):
-			print("ENEMY HIT!")
 			attack_hit.emit(hit_data)
 			enemy.on_hit.emit(hit_data)
 			hit_listener.on_hit(hit_data)

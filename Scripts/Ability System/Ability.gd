@@ -115,7 +115,6 @@ func initialize_cooldown_timer() -> Timer:
 		ability_end.connect(start_cooldown)
 	cooldown_timer = cooldown_timer
 	add_child(cooldown_timer)
-	print("Cooldown timer initalized")
 	return cooldown_timer
 
 func on_cooldown_timer_timeout():

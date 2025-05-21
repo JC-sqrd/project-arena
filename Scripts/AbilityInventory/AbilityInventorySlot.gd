@@ -47,7 +47,6 @@ func slot_abilitiy(ability: Ability):
 	slotted = true
 	ability_in_slot = ability
 	ability_icon.position = Vector2.ZERO
-	print("Ability slotted: " + str(ability))
 	ability_icon.texture = ability.ability_icon_texture
 
 func unslot_ability() -> Ability:

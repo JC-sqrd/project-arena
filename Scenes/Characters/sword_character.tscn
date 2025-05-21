@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cggb2x36mslpl"]
+[gd_scene load_steps=20 format=3 uid="uid://cggb2x36mslpl"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/test_character.tscn" id="1_n43wd"]
 [ext_resource type="PackedScene" uid="uid://ull35nal2yub" path="res://Scenes/Particles/enemy_hit_particle.tscn" id="2_a3qyk"]
@@ -14,10 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://d2s7ucuvduwgx" path="res://Scenes/Equipments/Armgear/armgear_iron_gauntlets.tscn" id="11_0v31t"]
 [ext_resource type="PackedScene" uid="uid://c0kg5eyjqqw2k" path="res://Scenes/Equipments/Torso/torso_iron_chestplate.tscn" id="11_a3qyk"]
 [ext_resource type="PackedScene" uid="uid://cnefmjw46bhom" path="res://Scenes/Equipments/Shoes/shoes_iron_boots.tscn" id="12_wxcst"]
-[ext_resource type="PackedScene" uid="uid://3tleitsb6xke" path="res://Scenes/Items/block_damage/item_chance_block_damage.tscn" id="15_8km3p"]
-[ext_resource type="PackedScene" uid="uid://c11kdiu2c6vx" path="res://Scenes/Items/item_vitality.tscn" id="16_kt73f"]
-[ext_resource type="PackedScene" uid="uid://dusnluek410g4" path="res://Scenes/Items/gain_attack_speed/item_attack_speed.tscn" id="17_ny8jn"]
-[ext_resource type="PackedScene" uid="uid://7evpmhu4mrpd" path="res://Scenes/Items/chain_lightning/item_chain_lightning.tscn" id="18_x2u4q"]
+[ext_resource type="PackedScene" uid="uid://3tleitsb6xke" path="res://Scenes/Items/block_damage/item_chance_block_damage.tscn" id="15_epo7i"]
+[ext_resource type="PackedScene" uid="uid://2r2w7448yaau" path="res://Scenes/Items/item_strength.tscn" id="16_vsorn"]
+[ext_resource type="PackedScene" uid="uid://c11kdiu2c6vx" path="res://Scenes/Items/item_vitality.tscn" id="17_usktj"]
+[ext_resource type="PackedScene" uid="uid://dusnluek410g4" path="res://Scenes/Items/gain_attack_speed/item_attack_speed.tscn" id="18_kt73f"]
+[ext_resource type="PackedScene" uid="uid://7evpmhu4mrpd" path="res://Scenes/Items/chain_lightning/item_chain_lightning.tscn" id="19_ny8jn"]
 
 [node name="SwordCharacter" instance=ExtResource("1_n43wd")]
 
@@ -89,16 +90,20 @@ equipment = NodePath("ShoesIronBoots")
 
 [node name="ShoesIronBoots" parent="ShoesSlot" index="0" instance=ExtResource("12_wxcst")]
 
-[node name="ItemChanceBlockDamage" parent="ItemInventory" index="0" instance=ExtResource("15_8km3p")]
-stack = 500
+[node name="ItemChanceBlockDamage" parent="ItemInventory" index="0" instance=ExtResource("15_epo7i")]
+stack = 9000
 
-[node name="ItemVitality" parent="ItemInventory" index="1" instance=ExtResource("16_kt73f")]
-stack = 500
+[node name="ItemStrength" parent="ItemInventory" index="1" instance=ExtResource("16_vsorn")]
+stack = 20
 
-[node name="AttackSpeedItem" parent="ItemInventory" index="2" instance=ExtResource("17_ny8jn")]
+[node name="ItemVitality" parent="ItemInventory" index="2" instance=ExtResource("17_usktj")]
+stack = 10000
+
+[node name="AttackSpeedItem" parent="ItemInventory" index="3" instance=ExtResource("18_kt73f")]
 stack = 50
 
-[node name="ItemChainLightning" parent="ItemInventory" index="3" instance=ExtResource("18_x2u4q")]
+[node name="ItemChainLightning" parent="ItemInventory" index="4" instance=ExtResource("19_ny8jn")]
+trigger_chance = 1.0
 stack = 500
 
 [node name="MaxHealth" parent="Stats" index="7"]

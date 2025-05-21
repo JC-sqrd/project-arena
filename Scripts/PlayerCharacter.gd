@@ -5,7 +5,7 @@ var total_damage_applied : float = 0
 var damage_effects : Array[Node]
 @export var gold_manager : GoldManager
 @export var innate_active_ability : AbilityContainer
-@export var innate_utility_ability : AbilityContainer
+@export var innate_secondary_ability : AbilityContainer
 @export var utility_ability : AbilityContainer
 
 signal item_picker_picked_up (player : PlayerCharacter, loot_pool : Array[PackedScene])
@@ -13,7 +13,6 @@ signal item_picker_picked_up (player : PlayerCharacter, loot_pool : Array[Packed
 func _ready():
 	super()
 	Globals.player = self
-	print("Equipped abilities: " + str(ability_containers))
 	damage_effects = find_children("DamageEffect", "DamageEffect")
 	for damage_effect in damage_effects:
 		if damage_effect is DamageEffect:
@@ -43,7 +42,6 @@ func attack(attack_data : Dictionary):
 func on_hit_received(hit_data : Dictionary):
 	if hit_receiver != null:
 		hit_receiver.receive_hit(hit_data)
-		print("Player received hit data")
 	pass
 
 func _on_damage_applied(damage : float):

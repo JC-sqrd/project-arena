@@ -23,7 +23,6 @@ func _ready() -> void:
 
 func _on_actor_ready():
 	level_label.text = str(level_manager.current_level)
-	print("Current level:" + str(level_manager.current_level))
 	pass
 
 func _level_bar_exp_gained():
@@ -35,6 +34,5 @@ func _level_bar_exp_gained():
 func _level_bar_level_up():
 	value = 0
 	max_value = level_manager.exp_to_level
-	print("Current level:" + str(level_manager.current_level))
 	level_label.text = str(actor.stat_manager.stats["level"].stat_derived_value)
 	pass

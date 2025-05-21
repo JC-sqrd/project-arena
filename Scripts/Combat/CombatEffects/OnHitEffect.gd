@@ -14,5 +14,4 @@ func get_effect_key() -> Variant:
 	return "on_hit_effect"
 
 func get_effect_value() -> float:
-	print("On hit effect generated")
 	return on_hit_chance

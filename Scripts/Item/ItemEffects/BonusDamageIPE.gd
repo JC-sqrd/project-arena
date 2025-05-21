@@ -28,5 +28,5 @@ func _ready():
 		
 		pass
 	else:
-		print("Owner is not item")
+		printerr("Owner is not item")
 	pass

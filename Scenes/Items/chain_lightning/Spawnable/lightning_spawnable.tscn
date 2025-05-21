@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ck0wk5jnbtrqk"]
+[gd_scene load_steps=11 format=3 uid="uid://ck0wk5jnbtrqk"]
 
 [ext_resource type="Script" uid="uid://fxpig16cesb0" path="res://Scenes/Items/chain_lightning/Scripts/Spawnable/ChainSpawnable.gd" id="1_p7d7g"]
 [ext_resource type="Texture2D" uid="uid://b1btj33f6x5b" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/spark_07.png" id="2_yrg67"]
@@ -6,8 +6,6 @@
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="4_h5dqr"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_ea61t"]
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="6_rv07b"]
-[ext_resource type="Texture2D" uid="uid://df8wxrk1dlhxa" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/spark_06.png" id="7_2uedm"]
-[ext_resource type="Texture2D" uid="uid://d2v4eqepl2n5f" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/circle_01.png" id="8_cfynk"]
 [ext_resource type="Script" uid="uid://dh7s35t1333xw" path="res://Scenes/Items/chain_lightning/Scripts/Spawnable/LightningTrail.gd" id="8_i6w14"]
 
 [sub_resource type="Gradient" id="Gradient_uj1ff"]
@@ -19,19 +17,12 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ppuo"]
 radius = 300.0
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cixy0"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bg5ys"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
-
-[node name="LightningSpawnable" type="Area2D" node_paths=PackedStringArray("chain_area")]
+[node name="LightningSpawnable" type="Area2D" node_paths=PackedStringArray("chain_area", "chain_area_coll_shape")]
 collision_mask = 3
 monitorable = false
 script = ExtResource("1_p7d7g")
 chain_area = NodePath("ChainArea")
+chain_area_coll_shape = NodePath("ChainArea/ChainAreaCollisionShape2D")
 windup_time = 0.05
 
 [node name="LightningTrail" type="Line2D" parent="."]
@@ -52,7 +43,7 @@ shape = SubResource("CircleShape2D_anw3x")
 collision_mask = 3
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ChainArea"]
+[node name="ChainAreaCollisionShape2D" type="CollisionShape2D" parent="ChainArea"]
 shape = SubResource("CircleShape2D_3ppuo")
 debug_color = Color(0.986492, 0, 0.323033, 0.42)
 
@@ -77,18 +68,3 @@ script = ExtResource("6_rv07b")
 stat = NodePath("..")
 scale_with_stat_id = "magic_damage"
 scale_ratio = 0.2
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-visible = false
-amount = 1
-sub_emitter = NodePath("GPUParticles2D")
-process_material = SubResource("ParticleProcessMaterial_cixy0")
-texture = ExtResource("8_cfynk")
-explosiveness = 1.0
-local_coords = true
-trail_enabled = true
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="GPUParticles2D"]
-process_material = SubResource("ParticleProcessMaterial_bg5ys")
-texture = ExtResource("7_2uedm")
-explosiveness = 1.0

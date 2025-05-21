@@ -51,7 +51,6 @@ func _ready():
 func _on_max_health_changed_data(old_value : float, new_value : float):
 	#current_health.stat_derived_value = max_health.stat_derived_value
 	var health_difference : float = new_value - old_value 
-	print(owner.name +" new health value: " + str(health_difference))
 	current_health.stat_derived_value +=  health_difference
 	current_health_value_changed.emit(current_health.stat_derived_value, max_health.stat_derived_value)
 	max_health_value_changed.emit(current_health.stat_derived_value, max_health.stat_derived_value)

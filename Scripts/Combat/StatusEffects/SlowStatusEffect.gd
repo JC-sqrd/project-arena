@@ -18,7 +18,7 @@ func activate_status_effect(target : Entity):
 			target_move_speed.update_stat()
 			pass
 	else:
-		print("status effect target null")
+		printerr("Status effect target null")
 	timer.start()
 	pass
 

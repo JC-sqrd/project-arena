@@ -26,7 +26,6 @@ func _on_entity_took_damage_data(data : DamageEffectData):
 		hit_particle.emitting = false
 		hit_particle.restart()
 		hit_particle.emitting = true
-		print("EMITTED HIT PARTICLE SYSTEM FOR: " + str(entity.name) + " PARTICLE SYSTEM: " + str(hit_particle.name))
 	pass
 
 #func _on_entity_took_damage_data(data : Dictionary):

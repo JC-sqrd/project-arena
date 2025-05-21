@@ -50,7 +50,6 @@ func _on_body_exited(body : Node2D):
 
 func hit_body(target : Entity):
 	var is_valid : bool = filter.is_valid(self, target, entities_in_area)
-	print("Target is valid: " + str(is_valid))
 	if is_valid:
 		var data : Dictionary = _create_hit_data(target)
 		target.on_hit.emit(data)

@@ -9,7 +9,6 @@ signal game_over(stage : Stage)
 func _ready() -> void:
 	player = Globals.player
 	player.died.connect(on_player_died)
-	print("Group nodes: " + str(get_tree().get_nodes_in_group("Hittable")))
 	pass
 
 

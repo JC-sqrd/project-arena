@@ -19,7 +19,6 @@ signal cooling_down(time_left : float)
 
 func _ready():
 	#cooldown_timer.wait_time = ability_cooldown
-	print("Ability cooldown timer: " + str(cooldown_timer))
 	if ability != null:
 		ability_icon = ability.ability_icon_texture
 		ability_cooldown = ability.cooldown
@@ -101,6 +100,5 @@ func _on_ability_start():
 	pass
 
 func _on_ability_cooldown_start():
-	print("Ability cooldown start")
 	#cooldown_start.emit()
 	pass

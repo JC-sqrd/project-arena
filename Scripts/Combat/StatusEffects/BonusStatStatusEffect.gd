@@ -53,5 +53,4 @@ func on_target_stat_changed():
 func on_duration_end():
 	stat.bonus_value -= _old_bonus_value
 	stat.update_stat()
-	print("BONUS STAT BUFF DURATION END")
 	pass

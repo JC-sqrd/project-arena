@@ -31,7 +31,6 @@ func _on_actor_applied_damage_with_data(damage_data : DamageEffectData):
 			spawnable.stack = stack
 			spawnable.on_hit.connect(_on_spawnable_hit)
 			spawnable.collision_mask = target.original_coll_layer
-			print("Spawnable coll mask: " + str(target.collision_layer))
 			if hit_listener != null:
 				var effect_data : Dictionary = hit_listener.generate_effect_data()
 				if effect_data.has("damage_effect"):

@@ -13,7 +13,6 @@ signal returned_to_actor()
 
 func _physics_process(delta):
 	if current_distance >= max_distance and !returning:
-		print("BOOMERANG RETURN")
 		returning = true
 		current_distance = 0
 		max_distance_reached.emit()
@@ -26,7 +25,6 @@ func _physics_process(delta):
 	else:
 		motion = global_position.direction_to(actor.global_position) * delta * (return_speed * return_curve.sample(current_distance/max_distance))
 		position += motion
-		print("Current boomerang distance to actor: " + str(global_position.distance_to(actor.global_position)))
 	
 	if global_position.distance_to(actor.global_position) <= 10 and returning:
 		returned_to_actor.emit()

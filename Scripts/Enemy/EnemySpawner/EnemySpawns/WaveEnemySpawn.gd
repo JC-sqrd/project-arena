@@ -19,7 +19,6 @@ func on_one_second_passed():
 		if spawn_timing.is_valid(wave.current_time):
 			var spawn : Node2D = spawn_sprite.instantiate() as Node2D
 			var spawn_position : Vector2 = wave.wave_spawner.get_random_position()#Vector2(randi() % int(wave.wave_spawner.spawn_zone.x), randi() % int(wave.wave_spawner.spawn_zone.y))
-			print("WAVE ENEMY SPAWN: " + name)
 			spawn.global_position = spawn_position
 			get_tree().root.add_child(spawn)
 			get_tree().create_timer(1, false, true, false).timeout.connect(

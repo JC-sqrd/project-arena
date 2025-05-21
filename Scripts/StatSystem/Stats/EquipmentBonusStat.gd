@@ -24,7 +24,6 @@ func _ready():
 func apply_bonus_value(actor : Entity):
 	
 	if actor != null:
-		print("EQUIPPED ITEM BONUS VALUE ADDED " + str(actor.stat_manager.stats.has(stat_name)))
 		if actor.stat_manager.stats.has(stat_name):
 			stat = actor.stat_manager.stats[stat_name]
 			if !percentage:
@@ -48,7 +47,6 @@ func apply_bonus_value(actor : Entity):
 	pass
 
 func remove_bonus_value():
-	print("EQUIPPED ITEM BONUS VALUE REMOVED")
 	if actor != null:
 		if actor.stat_manager.stats.has(stat_name):
 			stat = actor.stat_manager.stats[stat_name]

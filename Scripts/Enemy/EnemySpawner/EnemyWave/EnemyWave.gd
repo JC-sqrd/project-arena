@@ -2,7 +2,6 @@ class_name EnemyWave
 extends Wave
 
 
-
 @export var wave_duration : float 
 @onready var current_time : float = wave_duration
 
@@ -42,7 +41,6 @@ func on_wave_timer_timeout():
 		active = false
 		wave_timer.stop()
 		current_time = wave_duration
-		print(name + " end")
 	pass
 
 func on_wave_enemy_spawned(enemy : Enemy):

@@ -23,7 +23,6 @@ func _process(delta):
 	
 	if charge >= charge_time and !full_charged:
 		charge = charge_time
-		print("BOW CHARGED")
 		full_charged = true
 	
 	
@@ -119,14 +118,12 @@ func attack_key_pressed():
 	if can_attack:
 		charge_bow = true
 		charge_start.emit()
-		print("BOW CHARGE START")
 	pass
 
 func attack_key_released():
 	if charge_bow:
 		charge_bow = false
 		full_charged = false
-		print("BOW CHARGE: " + str(charge/charge_time))
 		charge_end.emit()
 		_spawn_projectile()
 		_start_cooldown = true
@@ -136,5 +133,4 @@ func attack_key_held():
 	if can_attack and !charge_bow:
 		charge_bow = true
 		charge_start.emit()
-		print("BOW CHARGE START")
 	pass

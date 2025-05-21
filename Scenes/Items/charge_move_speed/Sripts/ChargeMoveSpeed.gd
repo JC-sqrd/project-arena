@@ -23,7 +23,6 @@ func _process(delta: float) -> void:
 	if actor.velocity.length() > 0:
 		charge += actor.velocity.length() * delta
 	if charge >= charge_threshold and !charged:
-		print("Item charged")
 		charge_particle_system.visible = true
 		charged = true
 
@@ -48,7 +47,6 @@ func _on_actor_damage_data_created(damage_data : DamageEffectData):
 		charge_particle_system.visible = false
 		#print("DAMAGE EFFECT DAMAGE VALUE: " + str(damage_data.damage))
 		damage_data.damage += bonus_damage.stat_derived_value
-		print("DAMAGE EFFECT DAMAGE VALUE: " + str(damage_data.damage) + " EFFECT REVCEIVED: " + str(damage_data.recieved))
 	pass
 
 

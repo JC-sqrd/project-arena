@@ -96,7 +96,6 @@ func on_equip_slot_selected(equip_slot : EquipmentInventorySlot):
 	if selected_slot != null:
 		selected_slot.slot_border.modulate = Color.AQUA
 		selected_slot.is_selected = true
-		print("Selected Slot: " + str(selected_slot.name))
 	pass
 
 func on_inventory_slot_selected(inventory_slot : EquipmentInventorySlot):
@@ -161,7 +160,6 @@ func on_inventory_slot_selected(inventory_slot : EquipmentInventorySlot):
 			selected_slot = selected_slot as EquipmentEquipSlot
 			if selected_slot.equipment != null and inventory_slot.equipment == null:
 				inventory_slot.equipment = selected_slot.equipment
-				print("EQUIP SLOT TO INVETORY SLOT | Selected slot: " + selected_slot.name)
 				selected_slot.equipment = null
 				selected_slot.is_selected = false
 				selected_slot.slot_border.modulate = Color.WHITE

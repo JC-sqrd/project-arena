@@ -8,7 +8,6 @@ var mouse_angle_degree : float = 0
 
 func _ready():
 	if weapon != null:
-		print(weapon.name)
 		weapon.attack_start.connect(_play_wind_up)
 		weapon.attack_active.connect(_play_attack)
 		weapon.ready.connect(
@@ -27,7 +26,6 @@ func _ready():
 func _play_weapon_anim():
 	#position = weapon.get_coll_position()
 	anim_speed = weapon.actor.stat_manager.get_stat("attack_speed").stat_derived_value
-	print("Animation speed: " + str(anim_speed))
 	#speed_scale = 1 - weapon.weapon_windup_time
 	play("attack", anim_speed, false)
 	if flip_on_weapon:

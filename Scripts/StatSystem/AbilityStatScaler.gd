@@ -12,14 +12,12 @@ extends StatScaler
 #var _original_base_value : float = 0
 
 func _ready():
-	print("Owner: " + str(owner.name))
 	ability.owner.ready.connect(initialize_stat_scaler)
 	pass
 
 func initialize_stat_scaler():
 	var actor = ability.actor
 	if actor is Entity:
-		print("Actor stats: " + str(actor.stat_manager.stats.has(stat_to_scale)))
 		if actor.stat_manager.stats.has(stat_to_scale):
 			scale_with_stat = actor.stat_manager.stats[stat_to_scale] 
 			scale_with_stat.stat_changed.connect(apply_scaled_value)

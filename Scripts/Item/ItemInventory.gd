@@ -39,7 +39,6 @@ func add_item(new_item : Item):
 			# New item
 			items.append(new_item)
 			new_item.actor = actor
-			print(new_item.name + " item actor: " + str(new_item.actor))
 			add_child(new_item, true)
 			new_item.owner = actor
 			new_item.equip_item(actor)

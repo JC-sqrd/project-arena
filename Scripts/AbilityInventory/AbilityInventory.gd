@@ -21,8 +21,6 @@ func _ready():
 
 
 func on_slot_clicked(ability_inventory_slot : AbilityInventorySlot):
-	if ability_inventory_slot.ability_in_slot != null:
-		print("Inventory ability slot clicked: " + str(ability_inventory_slot.ability_in_slot.name))
 	if !dragging and ability_inventory_slot.ability_in_slot != null:
 		ability_inventory_slot.dragging = true
 		dragging = true
@@ -37,7 +35,6 @@ func on_slot_clicked(ability_inventory_slot : AbilityInventorySlot):
 	if dragging:
 		if !ability_inventory_slot.slotted:
 			#Slot
-			print("Slot Ability")
 			dragging = false
 			dragged_ability_slot.dragging = false
 			ability_inventory_slot.slot_abilitiy(dragged_ability_slot.unslot_ability()) 
@@ -48,11 +45,9 @@ func on_slot_clicked(ability_inventory_slot : AbilityInventorySlot):
 			pass
 		elif ability_inventory_slot == dragged_ability_slot:
 			#Swap
-			print("Swap Ability")
 			dragging = false
 			dragged_ability_slot.dragging = false
 			var temp : Ability = ability_inventory_slot.unslot_ability()
-			print("Temp Ability : " + str(temp))
 			ability_inventory_slot.slot_abilitiy(temp)
 			dragged_ability_slot = null
 			ability_inventory_slot.ability_icon.visible = true
@@ -61,11 +56,9 @@ func on_slot_clicked(ability_inventory_slot : AbilityInventorySlot):
 			pass
 		else:
 			#Swap
-			print("Swap Ability")
 			dragging = false
 			dragged_ability_slot.dragging = false
 			var temp : Ability = ability_inventory_slot.unslot_ability()
-			print("Temp Ability : " + str(temp))
 			dragged_ability_slot.ability_icon.visible = true
 			ability_inventory_slot.slot_abilitiy(dragged_ability_slot.unslot_ability())
 			dragged_ability_slot.slot_abilitiy(temp)

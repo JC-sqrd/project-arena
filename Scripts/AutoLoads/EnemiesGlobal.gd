@@ -8,7 +8,6 @@ func _ready():
 	print("Enemies Global ready")
 	for enemy in get_tree().get_nodes_in_group("Enemy"):
 		global_enemies.append(enemy)
-	print(global_enemies)
 	pass
 
 func add_enemy(enemy : Enemy):

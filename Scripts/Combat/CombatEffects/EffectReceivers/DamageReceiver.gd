@@ -68,7 +68,6 @@ func receive_effect(data : Dictionary):
 			pass
 		damage_data.damage += bonus_damage
 		#Apply damage
-		print("DAMAGE EFFECT DAMAGE RECIEVED: " + str(bonus_damage))
 		damage_received = target.damage_listener.apply_mitigation_effects(damage_data)
 		damage_data.total_damage = damage_received
 		damage_data.damage -= bonus_damage

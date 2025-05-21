@@ -23,7 +23,5 @@ func set_toggled(new_value : bool):
 	toggled = new_value
 	if toggled:
 		ability_toggled_on.emit()
-		print("Ability toggled on")
 	else:
 		ability_toggled_off.emit()
-		print("Ability toggled off")

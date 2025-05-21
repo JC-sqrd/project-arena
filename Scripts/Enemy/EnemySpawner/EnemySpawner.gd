@@ -70,7 +70,6 @@ func spawn_enemy(enemy_position : Vector2):
 				enemy.position = enemy_position
 				enemy.player = player
 				add_child(enemy)
-				print("Enemy spawned: " + str(enemy))
 				#enemy.stat_manager.get_stat("level").stat_value += clampf(enemy_level, 1, 30)
 				enemy.stat_manager.stats["level"].stat_value += clampf(enemy_level, 1, 30)
 				enemy.stat_manager.stats["level"].update_stat()

@@ -92,7 +92,6 @@ func apply_scaled_value():
 			stat.bonus_value += new_scaled_value
 			_old_scaled_value = new_scaled_value
 			stat.update_stat()
-			print("APPLIED STAT MULT: " + str(stat.name) + " " + str(owner.name) + " " + str(new_scaled_value))
 	else:
 		printerr("No stat to mult attached to " + stat.name)
 	pass

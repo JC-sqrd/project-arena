@@ -13,7 +13,6 @@ func _ready() -> void:
 func apply_effect_to_ability(ability : Ability):
 	on_hit_effect.actor = ability.actor
 	ability.hit_listener.add_child(on_hit_effect, true)
-	print("Ability on hit effect added")
 	pass
 
 func remove_effect_from_ability(ability : Ability):

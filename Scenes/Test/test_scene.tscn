@@ -1,17 +1,15 @@
-[gd_scene load_steps=88 format=3 uid="uid://cu8fhpggbxh6d"]
+[gd_scene load_steps=87 format=3 uid="uid://cu8fhpggbxh6d"]
 
 [ext_resource type="Script" uid="uid://bj6bpkhscp2un" path="res://Scripts/Stage/Stage.gd" id="1_4g24u"]
 [ext_resource type="Script" uid="uid://bgc72bvmdqnok" path="res://Scripts/Audio/StageAudioPlayer.gd" id="1_aliv6"]
 [ext_resource type="Script" uid="uid://dl25s0283xs7c" path="res://Scripts/LineTrail2D.gd" id="1_v4vyo"]
 [ext_resource type="Texture2D" uid="uid://b1btj33f6x5b" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/spark_07.png" id="1_whsjw"]
 [ext_resource type="AudioStream" uid="uid://g0xroqlbng6s" path="res://Placeholders/Audio/Soliloquy.mp3" id="2_aln3g"]
-[ext_resource type="PackedScene" uid="uid://k8xc7t7x4e6j" path="res://Scenes/Enemies/dummy_enemy.tscn" id="2_awsut"]
 [ext_resource type="Script" uid="uid://oyowq3ae4fkf" path="res://Scripts/Enemy/EnemySpawner/EnemyWave/WaveSpawner.gd" id="2_bg8bh"]
 [ext_resource type="Texture2D" uid="uid://cbwdmsdvh7q6b" path="res://Placeholders/Sprites/Test Character/Character Placeholder Sprite.png" id="2_eyxx2"]
 [ext_resource type="Script" uid="uid://ba1mnuv3bxi1k" path="res://Scenes/Test/EnemyWaveUI.gd" id="2_fuaum"]
 [ext_resource type="PackedScene" uid="uid://dxwshug5qnf5u" path="res://Scenes/Timer/game_timer.tscn" id="2_ome0m"]
 [ext_resource type="AudioStream" uid="uid://c3qto05j6g5p4" path="res://Placeholders/Audio/The Rain Formerly Known as Purple.mp3" id="2_ukeqt"]
-[ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="3_3rgso"]
 [ext_resource type="PackedScene" uid="uid://cvfsmjmaolpet" path="res://Scenes/Enemies/tank_enemy.tscn" id="3_g57ev"]
 [ext_resource type="Script" uid="uid://balv8nrfgo4ds" path="res://Scripts/Enemy/EnemySpawner/EnemyWave/EnemyWave.gd" id="3_l3e4g"]
 [ext_resource type="AudioStream" uid="uid://bjdd0ti8t76rc" path="res://Placeholders/Audio/…con lentitud poderosa.mp3" id="3_u5ev3"]
@@ -34,15 +32,15 @@
 [ext_resource type="PackedScene" uid="uid://cyrnk80mwy1j1" path="res://Scenes/Enemies/small_enemy.tscn" id="13_yafh7"]
 [ext_resource type="Script" uid="uid://d4jcbfrhfsuyc" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnEverySecondChance.gd" id="14_nf4wj"]
 [ext_resource type="PackedScene" uid="uid://bhfxmtkiocwvt" path="res://Scenes/Test/test_mini_boss.tscn" id="22_fbpa4"]
+[ext_resource type="Script" uid="uid://cvhqdknyb5yni" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveDebugSpawn.gd" id="22_jjq5d"]
 [ext_resource type="PackedScene" uid="uid://bdc1qoow3anrr" path="res://Scenes/Test/test_mini_boss2.tscn" id="26_lqybr"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jjq5d"]
-resource_local_to_scene = true
-shader = ExtResource("3_3rgso")
-shader_parameter/hit_opacity = 0.0
-shader_parameter/modulate = Color(1, 1, 1, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_f5ccp"]
+
+[sub_resource type="Resource" id="Resource_jjq5d"]
+script = ExtResource("9_x1f3b")
+spawn_at_x_second = 59.0
+metadata/_custom_type_script = "uid://cmhw0pu66me2e"
 
 [sub_resource type="Resource" id="Resource_bdr8d"]
 script = ExtResource("9_0lwa2")
@@ -253,20 +251,6 @@ color_ramp = SubResource("GradientTexture1D_jbfx5")
 process_mode = 1
 script = ExtResource("1_4g24u")
 
-[node name="FastEnemy" parent="." instance=ExtResource("13_oqogj")]
-position = Vector2(1652, 891)
-follow_player = false
-
-[node name="AnimatedSprite2D" parent="FastEnemy" index="6"]
-material = SubResource("ShaderMaterial_jjq5d")
-
-[node name="MaxHealth" parent="FastEnemy/Stats" index="2"]
-stat_value = 500000.0
-
-[node name="Enemy" parent="." instance=ExtResource("2_awsut")]
-position = Vector2(1652, 876)
-follow_player = false
-
 [node name="SwordCharacter" parent="." instance=ExtResource("3_yafh7")]
 position = Vector2(544, 1080)
 
@@ -352,12 +336,25 @@ position = Vector2(1500, 750)
 script = ExtResource("2_bg8bh")
 spawn_zone = Vector2(2500, 1500)
 min_x = 1200.0
-root_wave = NodePath("Wave10")
+root_wave = NodePath("DebugWave")
 draw_spawn_zone = true
 
 [node name="SkillCircleVisual" type="Sprite2D" parent="WaveSpawner"]
 visible = false
 texture = ExtResource("7_mwf75")
+
+[node name="DebugWave" type="Node" parent="WaveSpawner"]
+script = ExtResource("3_l3e4g")
+wave_duration = 60.0
+
+[node name="WaveDebugSpawn" type="Node" parent="WaveSpawner/DebugWave"]
+script = ExtResource("22_jjq5d")
+spawn_count = 200
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_jjq5d")])
+enemy_scene = ExtResource("3_g57ev")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 20
+metadata/_custom_type_script = "uid://cvhqdknyb5yni"
 
 [node name="Wave1" type="Node" parent="WaveSpawner" node_paths=PackedStringArray("next_wave")]
 script = ExtResource("3_l3e4g")
@@ -952,6 +949,4 @@ process_material = SubResource("ParticleProcessMaterial_t8bln")
 [node name="PointLight2D" parent="ExpOrb" index="2"]
 color = Color(0, 0.560693, 0.531956, 1)
 
-[editable path="FastEnemy"]
-[editable path="FastEnemy/Panel/MarginContainer/TextureProgressBar"]
 [editable path="ExpOrb"]

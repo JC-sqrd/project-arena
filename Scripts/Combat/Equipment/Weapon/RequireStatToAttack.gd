@@ -13,7 +13,6 @@ func _ready():
 		weapon.ready.connect(
 			func():
 				weapon.actor.ready.connect(on_actor_ready)
-				#print("Connected to weapon")
 				)
 	pass
 

@@ -3,7 +3,6 @@ extends AnimatedSprite2D
 @export var entity : Entity
 
 func _ready():
-	print("Entity: " + name)
 	if entity != null:
 		entity.took_damage.connect(_on_damage_taken)
 	pass

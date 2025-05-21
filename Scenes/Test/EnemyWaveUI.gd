@@ -13,7 +13,6 @@ func _ready():
 	pass
 
 func on_start_wave_button_pressed():
-	print("Start Wave!!!")
 	wave_spawner.start_next_wave()
 	current_wave_label.text = wave_spawner.current_wave.name
 	start_wave_button.disabled = true

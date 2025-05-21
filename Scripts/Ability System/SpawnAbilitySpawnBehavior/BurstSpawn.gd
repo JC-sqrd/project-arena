@@ -17,8 +17,6 @@ func spawn(ability : Ability, actor: Entity, spawn_position : Vector2, spawn_dir
 		burst_counter -= 1
 
 	spawn_finished.emit()
-	
-	print("Spawn finished")
 	pass
 
 func spawn_spawnable(ability : Ability, actor: Entity, spawn_position : Vector2, spawn_direction : Vector2, spawn_scene : PackedScene):

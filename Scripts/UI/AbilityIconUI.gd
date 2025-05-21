@@ -28,7 +28,6 @@ func _ready():
 	if InputMap.has_action(prompt_action):
 		#will depend on how many keys assigned to action
 		var key_action : InputEvent = InputMap.action_get_events(prompt_action)[0]
-		print("Key action: " + key_action.as_text())
 		if key_action is InputEventKey:
 			var key_string = OS.get_keycode_string(key_action.physical_keycode)
 			ability_key_label.text = str(key_string)
