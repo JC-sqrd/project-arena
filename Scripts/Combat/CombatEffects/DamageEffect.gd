@@ -23,13 +23,13 @@ signal bonus_damage_calculated (damage_effect : DamageEffect)
 signal applied_damage(damage : float)
 signal applied_damage_with_data (damaga_data : float)
 
-var damage_effect_data : DamageEffectData 
+#var damage_effect_data : DamageEffectData 
 
 func _ready():
 	for child in get_children():
 		if child is EffectCheck:
 			bonus_damage_checks.append(child)
-	damage_effect_data = DamageEffectData.new()
+	#damage_effect_data = DamageEffectData.new()
 	pass
 
 func get_effect_key() -> Variant:
@@ -64,9 +64,10 @@ func get_effect_value() -> Variant:
 	
 	#---------------------------------------------------------------------------------
 	
-	#var damage_effect_data : DamageEffectData = DamageEffectData.new()
+	var damage_effect_data : DamageEffectData = DamageEffectData.new()
 	damage_effect_data.damage = damage_stat.stat_derived_value
 	damage_effect_data.total_damage = damage_stat.stat_derived_value
+	damage_effect_data.blocked = false
 	if penetration_stat != null:
 		damage_effect_data.penetrates = false
 		damage_effect_data.penetration = penetration_stat.stat_derived_value

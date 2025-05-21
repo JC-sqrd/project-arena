@@ -11,12 +11,13 @@
 [ext_resource type="Script" uid="uid://ba1mnuv3bxi1k" path="res://Scenes/Test/EnemyWaveUI.gd" id="2_fuaum"]
 [ext_resource type="PackedScene" uid="uid://dxwshug5qnf5u" path="res://Scenes/Timer/game_timer.tscn" id="2_ome0m"]
 [ext_resource type="AudioStream" uid="uid://c3qto05j6g5p4" path="res://Placeholders/Audio/The Rain Formerly Known as Purple.mp3" id="2_ukeqt"]
+[ext_resource type="PackedScene" uid="uid://bgy7pdawvoiwa" path="res://Scenes/Characters/mage_character.tscn" id="2_yafh7"]
 [ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="3_3rgso"]
 [ext_resource type="PackedScene" uid="uid://cvfsmjmaolpet" path="res://Scenes/Enemies/tank_enemy.tscn" id="3_g57ev"]
 [ext_resource type="Script" uid="uid://balv8nrfgo4ds" path="res://Scripts/Enemy/EnemySpawner/EnemyWave/EnemyWave.gd" id="3_l3e4g"]
 [ext_resource type="AudioStream" uid="uid://bjdd0ti8t76rc" path="res://Placeholders/Audio/…con lentitud poderosa.mp3" id="3_u5ev3"]
+[ext_resource type="PackedScene" uid="uid://3tleitsb6xke" path="res://Scenes/Items/block_damage/item_chance_block_damage.tscn" id="3_w24wr"]
 [ext_resource type="AudioStream" uid="uid://0v3gvdke2m6u" path="res://Placeholders/Audio/Hero Immortal.mp3" id="3_wtiud"]
-[ext_resource type="PackedScene" uid="uid://cggb2x36mslpl" path="res://Scenes/Characters/sword_character.tscn" id="3_yafh7"]
 [ext_resource type="PackedScene" uid="uid://7dmxfiismoas" path="res://Scenes/UI/GameOverUI/game_over_ui.tscn" id="4_050cx"]
 [ext_resource type="AudioStream" uid="uid://cn58gfvdnfpqs" path="res://Placeholders/Audio/You're Gonna Need a Bigger Ukulele.mp3" id="4_b707s"]
 [ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="4_d3glx"]
@@ -37,13 +38,7 @@
 [ext_resource type="Script" uid="uid://cvhqdknyb5yni" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveDebugSpawn.gd" id="22_jjq5d"]
 [ext_resource type="PackedScene" uid="uid://bdc1qoow3anrr" path="res://Scenes/Test/test_mini_boss2.tscn" id="26_lqybr"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jjq5d"]
-resource_local_to_scene = true
-shader = ExtResource("3_3rgso")
-shader_parameter/hit_opacity = 0.0
-shader_parameter/modulate = Color(1, 1, 1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7bmvy"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2d4qq"]
 resource_local_to_scene = true
 shader = ExtResource("3_3rgso")
 shader_parameter/hit_opacity = 0.0
@@ -207,7 +202,7 @@ metadata/_custom_type_script = "uid://dqunvl8tgfqvj"
 
 [sub_resource type="Resource" id="Resource_3rgso"]
 script = ExtResource("9_x1f3b")
-spawn_at_x_second = 40.0
+spawn_at_x_second = 50.0
 metadata/_custom_type_script = "uid://cmhw0pu66me2e"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70841"]
@@ -265,34 +260,19 @@ color_ramp = SubResource("GradientTexture1D_jbfx5")
 process_mode = 1
 script = ExtResource("1_4g24u")
 
-[node name="FastEnemy" parent="." instance=ExtResource("13_oqogj")]
-position = Vector2(1652, 742)
-follow_player = false
-
-[node name="AnimatedSprite2D" parent="FastEnemy" index="6"]
-material = SubResource("ShaderMaterial_jjq5d")
-
-[node name="MaxHealth" parent="FastEnemy/Stats" index="2"]
-stat_value = 500000.0
-
-[node name="SmallEnemy" parent="." instance=ExtResource("13_yafh7")]
-position = Vector2(1639, 1029)
-follow_player = false
-
-[node name="AnimatedSprite2D" parent="SmallEnemy" index="9"]
-material = SubResource("ShaderMaterial_7bmvy")
-
-[node name="VisibleOnScreenEnabler2D" parent="SmallEnemy/AnimatedSprite2D" index="0"]
-position = Vector2(-6, 19.6667)
-
-[node name="MaxHealth" parent="SmallEnemy/Stats" index="2"]
-stat_value = 500000.0
-
 [node name="DummyEnemy" parent="." instance=ExtResource("2_awsut")]
-position = Vector2(1652, 876)
-follow_player = false
+position = Vector2(1466, 728)
 
-[node name="SwordCharacter" parent="." instance=ExtResource("3_yafh7")]
+[node name="ItemChanceBlockDamage" parent="DummyEnemy/ItemInventory" index="0" instance=ExtResource("3_w24wr")]
+stack = 999
+
+[node name="AnimatedSprite2D" parent="DummyEnemy" index="9"]
+material = SubResource("ShaderMaterial_2d4qq")
+
+[node name="DummyEnemy2" parent="." instance=ExtResource("2_awsut")]
+position = Vector2(1469, 829)
+
+[node name="MageCharacter" parent="." instance=ExtResource("2_yafh7")]
 position = Vector2(544, 1080)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -377,7 +357,7 @@ position = Vector2(1500, 750)
 script = ExtResource("2_bg8bh")
 spawn_zone = Vector2(2500, 1500)
 min_x = 1200.0
-root_wave = NodePath("DebugWave")
+root_wave = NodePath("Wave11")
 draw_spawn_zone = true
 
 [node name="SkillCircleVisual" type="Sprite2D" parent="WaveSpawner"]
@@ -990,8 +970,6 @@ process_material = SubResource("ParticleProcessMaterial_t8bln")
 [node name="PointLight2D" parent="ExpOrb" index="2"]
 color = Color(0, 0.560693, 0.531956, 1)
 
-[editable path="FastEnemy"]
-[editable path="FastEnemy/Panel/MarginContainer/TextureProgressBar"]
-[editable path="SmallEnemy"]
-[editable path="SmallEnemy/Panel/MarginContainer/TextureProgressBar"]
+[editable path="DummyEnemy"]
+[editable path="DummyEnemy/Panel/MarginContainer/TextureProgressBar"]
 [editable path="ExpOrb"]

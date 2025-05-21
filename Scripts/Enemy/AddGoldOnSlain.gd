@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func _on_slain(slain_by : Entity):
-	if slain_by.stat_manager.stats.has("gold"):
+	if slain_by != null and slain_by.stat_manager.stats.has("gold"):
 		slain_by.stat_manager.stats.get("gold").stat_value += gold_add
 		spawn_gold_number(slain_by)
 	pass

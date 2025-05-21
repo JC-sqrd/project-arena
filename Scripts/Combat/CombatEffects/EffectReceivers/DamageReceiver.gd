@@ -57,9 +57,10 @@ func receive_effect(data : Dictionary):
 		var damage_data : DamageEffectData = data["damage_effect"]
 		damage_data.target = data["target"]
 		damage_data.source = data["source"]
+		# Set the blokced flag to false 
+		damage_data.blocked = false
 		if data["actor"] != null:
 			damage_data.actor = data["actor"]
-		
 		for check in damage_data.checks:
 			if check is BonusValueCondition:
 				if check.condition_met(data):
