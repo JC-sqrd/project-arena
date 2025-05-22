@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var stat_mods_manager : StatModManager
 @export var damage_listener : DamageListener
 @export var item_iventory : ItemInventory
+@export var equipment_inventory : EquipmentInventory
 @export var ability_containers : Array[AbilityContainer] = []
 var hit_listeners : Array[HitListener]
 

@@ -99,7 +99,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_4yy27"]
 radius = 150.0
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("gold_manager", "innate_active_ability", "utility_ability", "hit_receiver", "stat_manager", "level_manager", "health_manager", "mana_manager", "status_effect_manager", "stat_mods_manager", "damage_listener", "item_iventory") groups=["Hittable", "player"]]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("gold_manager", "innate_active_ability", "utility_ability", "hit_receiver", "stat_manager", "level_manager", "health_manager", "mana_manager", "status_effect_manager", "stat_mods_manager", "damage_listener", "item_iventory", "equipment_inventory") groups=["Hittable", "player"]]
 y_sort_enabled = true
 motion_mode = 1
 platform_floor_layers = 4294901760
@@ -116,6 +116,7 @@ status_effect_manager = NodePath("StatusEffectManager")
 stat_mods_manager = NodePath("StatModManager")
 damage_listener = NodePath("DamageListener")
 item_iventory = NodePath("ItemInventory")
+equipment_inventory = NodePath("EquipmentInventory")
 
 [node name="EquipmentInventory" type="Node" parent="." node_paths=PackedStringArray("weapon_slot", "headgear_slot", "torso_slot", "armgear_slot", "shoes_slot")]
 script = ExtResource("2_oxhu7")

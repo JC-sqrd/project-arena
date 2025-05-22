@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://4wls88f0glxy"]
+[gd_scene load_steps=3 format=3 uid="uid://babmiqnjapjdm"]
 
-[ext_resource type="Script" uid="uid://by6xpnkbdkhou" path="res://Scripts/GeneralShop/EquipmentBuyInstanceUI.gd" id="1_8ytjs"]
-[ext_resource type="Texture2D" uid="uid://bfjv5pykqpmoc" path="res://Placeholders/InventorySlot.png" id="2_tqe16"]
+[ext_resource type="Script" uid="uid://48q00aqa71db" path="res://Scripts/GeneralShop/ItemBuyInstanceUI.gd" id="1_eck24"]
+[ext_resource type="Texture2D" uid="uid://bfjv5pykqpmoc" path="res://Placeholders/InventorySlot.png" id="2_783m2"]
 
-[node name="EquipmentShopCard" type="Control"]
+[node name="ItemShopCard" type="Control"]
 clip_contents = true
 custom_minimum_size = Vector2(50, 70)
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_8ytjs")
+script = ExtResource("1_eck24")
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(50, 50)
@@ -25,7 +25,7 @@ theme_override_constants/separation = -2
 [node name="SlotBorder" type="TextureRect" parent="VBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("2_tqe16")
+texture = ExtResource("2_783m2")
 expand_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/SlotBorder"]

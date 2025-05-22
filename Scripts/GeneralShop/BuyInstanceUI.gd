@@ -1,16 +1,16 @@
-class_name EquipmentInventorySlot
+class_name BuyInstanceUI
 extends Control
 
-enum SlotType {INVENTORY, EQUIP}
+@onready var equipment_icon: TextureRect = $VBoxContainer/SlotBorder/MarginContainer/EquipmentIcon
+@onready var slot_border: TextureRect = $VBoxContainer/SlotBorder
+@onready var cost_label: Label = $VBoxContainer/CostLabel
 
-var equipment : Equipment : set = set_equipment
-@export var slot_type : SlotType
-@onready var equipment_icon: TextureRect = $SlotBorder/MarginContainer/EquipmentIcon
-@onready var slot_border: TextureRect = $SlotBorder
+
 var is_selected : bool = false
-var slot_index : int = -1
 
 signal selected (equipment_slot : EquipmentInventorySlot)
+signal attempt_to_buy(buy_instance : BuyInstanceUI)
+signal bought()
 
 func _ready() -> void:
 	mouse_entered.connect(on_mouse_entered)
@@ -22,6 +22,14 @@ func on_gui_input(event : InputEvent):
 		slot_border.modulate = Color.AQUA
 		selected.emit(self)
 		pass
+	if event is InputEventMouseButton and event.pressed and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT:
+		if (event as InputEventMouseButton).double_click:
+			slot_border.modulate = Color.GOLD
+			attempt_to_buy.emit(self)
+		pass
+	pass
+
+func buy(buyer : Entity):
 	pass
 
 func on_mouse_entered():
@@ -32,17 +40,4 @@ func on_mouse_entered():
 func on_mouse_exited():
 	if !is_selected:
 		slot_border.modulate = Color.WHITE
-	pass
-
-func set_equipment(new_equipment : Equipment):
-	equipment_icon.texture = null
-	tooltip_text = ""
-	equipment = new_equipment
-	if equipment != null:
-		equipment_icon.texture = new_equipment.equipment_icon
-		tooltip_text = equipment.equipment_name
-	pass
-
-func set_slot_type(new_slot_type : SlotType):
-	slot_type = new_slot_type
 	pass

@@ -69,9 +69,12 @@ func _ready():
 	shoes_equip_slot.selected.connect(on_inventory_slot_selected)
 	offhand_equip_slot.selected.connect(on_inventory_slot_selected)
 	
+	equipment_inventory.equipment_added.connect(on_equipment_added_to_inventory)
+	
 	for i in equipment_inventory.max_size:
 		var inventory_slot : EquipmentInventorySlot = EQUIPMENT_INVENTORY_SLOT.instantiate()
 		inventory_slot.slot_type = EquipmentInventorySlot.SlotType.INVENTORY
+		inventory_slot.slot_index = i
 		inventory_grid.add_child(inventory_slot)
 		inventory_slot.selected.connect(on_inventory_slot_selected)
 		if equipment_inventory.inventory[i] != null:
@@ -108,17 +111,23 @@ func on_inventory_slot_selected(inventory_slot : EquipmentInventorySlot):
 		
 		#INVENTORY SLOT -> INVENTORY SLOT
 		if selected_slot.slot_type == EquipmentInventorySlot.SlotType.INVENTORY and inventory_slot.slot_type == EquipmentInventorySlot.SlotType.INVENTORY:
+			#SLOTTED -> NON-SLOTTED
 			if selected_slot.equipment != null and inventory_slot.equipment == null:
 				inventory_slot.equipment = selected_slot.equipment
+				equipment_inventory.inventory[inventory_slot.slot_index] = selected_slot.equipment
+				equipment_inventory.inventory[selected_slot.slot_index] = null
 				selected_slot.equipment = null
 				selected_slot.is_selected = false
 				selected_slot.slot_border.modulate = Color.WHITE
 				selected_slot = null
 				return
 				pass
+			#SLOTTED -> SLOTTED
 			elif selected_slot.equipment != null and inventory_slot.equipment != null:
 				var temp_equipment : Equipment = inventory_slot.equipment
 				inventory_slot.equipment = selected_slot.equipment
+				equipment_inventory.inventory[inventory_slot.slot_index] = selected_slot.equipment
+				equipment_inventory.inventory[selected_slot.slot_index] = temp_equipment
 				selected_slot.equipment = temp_equipment
 				selected_slot.is_selected = false
 				selected_slot.slot_border.modulate = Color.WHITE
@@ -135,6 +144,7 @@ func on_inventory_slot_selected(inventory_slot : EquipmentInventorySlot):
 			inventory_slot = inventory_slot as EquipmentEquipSlot
 			if selected_slot.equipment != null and inventory_slot.equipment == null and selected_slot.equipment.type == inventory_slot.equip_type:
 				inventory_slot.equipment = selected_slot.equipment
+				equipment_inventory.inventory[selected_slot.slot_index] = null
 				selected_slot.equipment = null
 				selected_slot.is_selected = false
 				selected_slot.slot_border.modulate = Color.WHITE
@@ -144,6 +154,7 @@ func on_inventory_slot_selected(inventory_slot : EquipmentInventorySlot):
 			elif selected_slot.equipment != null and inventory_slot.equipment != null and selected_slot.equipment.type == inventory_slot.equip_type:
 				var temp_equipment : Equipment = inventory_slot.equipment
 				inventory_slot.equipment = selected_slot.equipment
+				equipment_inventory.inventory[selected_slot.slot_index] = temp_equipment
 				selected_slot.equipment = temp_equipment
 				selected_slot.is_selected = false
 				selected_slot.slot_border.modulate = Color.WHITE
@@ -160,6 +171,7 @@ func on_inventory_slot_selected(inventory_slot : EquipmentInventorySlot):
 			selected_slot = selected_slot as EquipmentEquipSlot
 			if selected_slot.equipment != null and inventory_slot.equipment == null:
 				inventory_slot.equipment = selected_slot.equipment
+				equipment_inventory.inventory[inventory_slot.slot_index] = selected_slot.equipment
 				selected_slot.equipment = null
 				selected_slot.is_selected = false
 				selected_slot.slot_border.modulate = Color.WHITE
@@ -169,6 +181,7 @@ func on_inventory_slot_selected(inventory_slot : EquipmentInventorySlot):
 			elif selected_slot.equipment != null and inventory_slot.equipment != null and inventory_slot.equipment.type == selected_slot.equip_type:
 				var temp_equipment : Equipment = inventory_slot.equipment
 				inventory_slot.equipment = selected_slot.equipment
+				equipment_inventory.inventory[inventory_slot.slot_index] = selected_slot.equipment
 				selected_slot.equipment = temp_equipment
 				selected_slot.is_selected = false
 				selected_slot.slot_border.modulate = Color.WHITE
@@ -240,6 +253,13 @@ func on_inventory_slot_selected(inventory_slot : EquipmentInventorySlot):
 	if selected_slot != null:
 		selected_slot.slot_border.modulate = Color.AQUA
 		selected_slot.is_selected = true
+	pass
+
+func on_equipment_added_to_inventory(equipment : Equipment, slot_index : int):
+	for slot in inventory_slots:
+		if slot.slot_index == slot_index:
+			slot.equipment = equipment
+			return
 	pass
 
 func clear_selected_slot():

@@ -19,6 +19,7 @@ var equipped_armgear : Equipment
 var equipped_shoes : Equipment
 
 
+signal equipment_added(equipment : Equipment, slot_index : int)
 
 func _ready() -> void:
 	var children : Array[Node] = get_children()
@@ -36,7 +37,17 @@ func _ready() -> void:
 		pass
 
 
-func add_equipment(equipment : Equipment):
+func add_equipment(equipment : Equipment) -> bool:
+	for i in inventory.size():
+		if inventory[i] == null:
+			inventory[i] = equipment
+			equipment_added.emit(equipment, i)
+			add_child(equipment)
+			print("Added equipment to inventory")
+			return true
+		pass
+	print("Inventory full, cannot add equipment")
+	return false
 	pass
 
 func remove_equipment(equipment : Equipment):

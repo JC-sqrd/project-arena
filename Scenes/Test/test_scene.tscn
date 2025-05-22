@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://cu8fhpggbxh6d"]
+[gd_scene load_steps=92 format=3 uid="uid://cu8fhpggbxh6d"]
 
 [ext_resource type="Script" uid="uid://bj6bpkhscp2un" path="res://Scripts/Stage/Stage.gd" id="1_4g24u"]
 [ext_resource type="Script" uid="uid://bgc72bvmdqnok" path="res://Scripts/Audio/StageAudioPlayer.gd" id="1_aliv6"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://cj01qxw0g7t0" path="res://Scenes/Pickupables/exp_orb.tscn" id="8_m7ixn"]
 [ext_resource type="Script" uid="uid://b3fq26t52vw2o" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnTiming.gd" id="8_yy25j"]
 [ext_resource type="Script" uid="uid://dqunvl8tgfqvj" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnEverySecond.gd" id="9_0lwa2"]
+[ext_resource type="PackedScene" uid="uid://cktf4rpw44nwi" path="res://Scenes/UI/EquipmentShop/general_shop.tscn" id="9_w24wr"]
 [ext_resource type="Script" uid="uid://cmhw0pu66me2e" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnAtXSecond.gd" id="9_x1f3b"]
 [ext_resource type="PackedScene" uid="uid://1p285me36gqp" path="res://Scenes/Enemies/ranged_enemy.tscn" id="10_wiifm"]
 [ext_resource type="PackedScene" uid="uid://b5atlsgxuwett" path="res://Scenes/Enemies/normal_enemy.tscn" id="13_oqogj"]
@@ -359,12 +360,14 @@ offset_top = -43.0
 offset_right = 49.5
 offset_bottom = 43.0
 
+[node name="GeneralShop" parent="CanvasLayer" instance=ExtResource("9_w24wr")]
+
 [node name="WaveSpawner" type="Node2D" parent="." node_paths=PackedStringArray("root_wave")]
 position = Vector2(1500, 750)
 script = ExtResource("2_bg8bh")
 spawn_zone = Vector2(2500, 1500)
 min_x = 1200.0
-root_wave = NodePath("DebugWave")
+root_wave = NodePath("Wave1")
 draw_spawn_zone = true
 
 [node name="SkillCircleVisual" type="Sprite2D" parent="WaveSpawner"]

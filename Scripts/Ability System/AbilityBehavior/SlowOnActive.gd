@@ -4,6 +4,7 @@ extends AbilityBehavior
 @export_range(0, 1, 0.01) var slow_multiplier : float = 1
 
 var old_actor_move_speed : float = 0
+var slow_value : float = 0
 
 func _ready() -> void:
 	super()
@@ -14,9 +15,13 @@ func _ready() -> void:
 
 func on_ability_casted():
 	old_actor_move_speed = ability.actor.stat_manager.stats["move_speed"].stat_derived_value
-	ability.actor.stat_manager.stats["move_speed"].stat_derived_value = ability.actor.stat_manager.stats["move_speed"].stat_derived_value * slow_multiplier 
+	slow_value = ability.actor.stat_manager.stats["move_speed"].stat_derived_value - (ability.actor.stat_manager.stats["move_speed"].stat_derived_value * slow_multiplier)  
+	(ability.actor.stat_manager.stats["move_speed"] as Stat).bonus_value -= slow_value
+	(ability.actor.stat_manager.stats["move_speed"] as Stat).update_stat()
 	pass
 
 func on_ability_end():
-	ability.actor.stat_manager.stats["move_speed"].stat_derived_value = old_actor_move_speed
+	#ability.actor.stat_manager.stats["move_speed"].stat_derived_value = old_actor_move_speed
+	(ability.actor.stat_manager.stats["move_speed"] as Stat).bonus_value += slow_value 
+	(ability.actor.stat_manager.stats["move_speed"] as Stat).update_stat()
 	pass
