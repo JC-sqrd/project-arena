@@ -4,6 +4,6 @@ extends Resource
 
 @export var sell_cost : float
 
-
-func buy():
+func _init(sell_cost : float):
+	self.sell_cost = sell_cost
 	pass

@@ -9,8 +9,8 @@ enum EquipmentType {WEAPON, HEADGEAR, TORSO, ARMGEAR, SHOES}
 @export_multiline var equipment_description : String
 @export_multiline var equipment_details : String
 @export var equipment_icon : Texture2D
-@export var buy_data : ShopBuyData
-@export var sell_data : ShopSellData
+@export var buy_cost : float
+@export var sell_value : float 
 var is_equipped : bool = false
 
 signal equipped (actor : Entity)

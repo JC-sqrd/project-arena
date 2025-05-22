@@ -10,6 +10,8 @@ script = ExtResource("1_kg8ex")
 equipment_name = "Iron Helmet"
 type = 1
 equipment_icon = ExtResource("2_vhy2a")
+buy_cost = 350.0
+sell_value = 80.0
 metadata/_custom_type_script = "uid://dnjhdyhsrd60y"
 
 [node name="BonusStat" type="Node" parent="." node_paths=PackedStringArray("equipment", "bonus_value")]

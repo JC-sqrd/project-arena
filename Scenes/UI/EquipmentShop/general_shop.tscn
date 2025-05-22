@@ -1,21 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cktf4rpw44nwi"]
+[gd_scene load_steps=6 format=3 uid="uid://cktf4rpw44nwi"]
 
 [ext_resource type="Script" uid="uid://cl8p3vpl3cns0" path="res://Scripts/GeneralShop/GeneralShopUI.gd" id="1_7d2p3"]
 [ext_resource type="PackedScene" uid="uid://babmiqnjapjdm" path="res://Scenes/UI/EquipmentShop/item_shop_card.tscn" id="2_kle2u"]
 [ext_resource type="PackedScene" uid="uid://dusnluek410g4" path="res://Scenes/Items/gain_attack_speed/item_attack_speed.tscn" id="3_ip65n"]
-[ext_resource type="Script" uid="uid://dfss4bco8vrxv" path="res://Scripts/GeneralShop/ItemBuyData.gd" id="3_kle2u"]
 [ext_resource type="PackedScene" uid="uid://4wls88f0glxy" path="res://Scenes/UI/EquipmentShop/equipment_shop_card.tscn" id="5_s0db2"]
 [ext_resource type="PackedScene" uid="uid://dengtpj68hcix" path="res://Scenes/Equipments/Head Gears/headgear_iron_helmet.tscn" id="6_1stx0"]
-
-[sub_resource type="Resource" id="Resource_ip65n"]
-script = ExtResource("3_kle2u")
-buy_cost = 50.0
-metadata/_custom_type_script = "uid://dfss4bco8vrxv"
-
-[sub_resource type="Resource" id="Resource_s0db2"]
-script = ExtResource("3_kle2u")
-buy_cost = 150.0
-metadata/_custom_type_script = "uid://dfss4bco8vrxv"
 
 [node name="GeneralShop" type="Control"]
 layout_mode = 3
@@ -54,9 +43,7 @@ columns = 10
 [node name="ItemShopCard" parent="Panel/ItemBuyContainer" instance=ExtResource("2_kle2u")]
 layout_mode = 2
 item_scene = ExtResource("3_ip65n")
-item_buy_data = SubResource("Resource_ip65n")
 
 [node name="EquipmentShopCard" parent="Panel/ItemBuyContainer" instance=ExtResource("5_s0db2")]
 layout_mode = 2
 equipment_scene = ExtResource("6_1stx0")
-item_buy_data = SubResource("Resource_s0db2")

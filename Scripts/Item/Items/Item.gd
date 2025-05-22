@@ -10,6 +10,8 @@ var actor : Entity = get_item_actor()
 @export var stack : int = 1 : set = _set_item_stack
 @export_multiline var item_description : String
 @export_multiline var item_detail : String 
+@export var buy_cost : float = 0
+@export var sell_value : float = 0
 var equipped : bool = false
 
 signal item_ready()

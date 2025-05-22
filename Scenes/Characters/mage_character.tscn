@@ -27,22 +27,6 @@
 position = Vector2(20, 10)
 scale = Vector2(0.999999, 0.999999)
 
-[node name="FireGrimoire2" parent="EquipmentInventory" index="6" instance=ExtResource("3_a5sja")]
-position = Vector2(20, 10)
-scale = Vector2(0.999999, 0.999999)
-
-[node name="FireGrimoire3" parent="EquipmentInventory" index="7" instance=ExtResource("3_a5sja")]
-position = Vector2(20, 10)
-scale = Vector2(0.999999, 0.999999)
-
-[node name="FireGrimoire4" parent="EquipmentInventory" index="8" instance=ExtResource("3_a5sja")]
-position = Vector2(20, 10)
-scale = Vector2(0.999999, 0.999999)
-
-[node name="FireGrimoire5" parent="EquipmentInventory" index="9" instance=ExtResource("3_a5sja")]
-position = Vector2(20, 10)
-scale = Vector2(0.999999, 0.999999)
-
 [node name="InnateActiveAbility" parent="." index="2" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityFlameBreath")
 
