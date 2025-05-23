@@ -1,7 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7874mt2gee5e"]
+[gd_scene load_steps=5 format=3 uid="uid://b7874mt2gee5e"]
 
 [ext_resource type="Script" uid="uid://cfgh4nylljfr5" path="res://Scripts/Combat/Equipment/Armgear/Armgear.gd" id="1_j7qch"]
+[ext_resource type="Script" uid="uid://bjpxplndvkee" path="res://Scripts/StatSystem/Stats/EquipmentBonusStat.gd" id="2_ga1im"]
+[ext_resource type="Texture2D" uid="uid://diuirdjokkbf5" path="res://Placeholders/Icons/Icon.4_57.png" id="2_ium8n"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="3_ium8n"]
 
 [node name="ArmwearSpeedGloves" type="Node2D"]
 script = ExtResource("1_j7qch")
+equipment_name = "Swift Gloves"
+type = 3
+equipment_icon = ExtResource("2_ium8n")
 metadata/_custom_type_script = "uid://cfgh4nylljfr5"
+
+[node name="EquipmentBonusStat" type="Node" parent="." node_paths=PackedStringArray("equipment", "bonus_value")]
+script = ExtResource("2_ga1im")
+equipment = NodePath("..")
+stat_name = "attack_speed"
+bonus_value = NodePath("Stat")
+percentage = true
+metadata/_custom_type_script = "uid://bjpxplndvkee"
+
+[node name="Stat" type="Node" parent="EquipmentBonusStat"]
+script = ExtResource("3_ium8n")
+stat_value = 0.1
+metadata/_custom_type_script = "uid://bgka26pbphks7"

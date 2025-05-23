@@ -2,6 +2,8 @@ extends Node
 
 var player : PlayerCharacter
 
+var wave_spawner : WaveSpawner
+
 var common_item_pool : Array[PackedScene] = [
 	preload("res://Scenes/Items/gain_move_speed/item_move_speed.tscn"),
 	preload("res://Scenes/Items/gain_attack_speed/item_attack_speed.tscn"),
@@ -19,6 +21,13 @@ var rare_item_pool : Array[PackedScene] = [
 	preload("res://Scenes/Items/mana_on_kill/item_mana_on_kill.tscn")
 ]
 
+var common_equipment_pool : Array[PackedScene] = [
+	preload("res://Scenes/Equipments/Armgear/armgear_iron_gauntlets.tscn"),
+	preload("res://Scenes/Equipments/Armgear/armgear_speed_gloves.tscn"),
+	preload("res://Scenes/Equipments/Head Gears/headgear_iron_helmet.tscn"),
+	preload("res://Scenes/Equipments/Shoes/shoes_iron_boots.tscn"),
+	preload("res://Scenes/Equipments/Torso/torso_iron_chestplate.tscn")
+]
 
 var player_modifiers : Dictionary = {
 	

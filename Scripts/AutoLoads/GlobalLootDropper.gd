@@ -20,7 +20,7 @@ var weights : Array[float] = [rare_dropper.weight, common_dropper.weight, empty_
 var total_weight : float = 0
 
 func _ready() -> void:
-	EnemiesGlobal.enemy_died.connect(on_enemy_died)
+	#EnemiesGlobal.enemy_died.connect(on_enemy_died)
 	for dropper in droppers:
 		total_weight += dropper.weight
 

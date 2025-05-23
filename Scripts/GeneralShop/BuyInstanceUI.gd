@@ -5,7 +5,7 @@ extends Control
 @onready var slot_border: TextureRect = $VBoxContainer/SlotBorder
 @onready var cost_label: Label = $VBoxContainer/CostLabel
 
-
+var is_locked : bool = false
 var is_selected : bool = false
 
 signal selected (equipment_slot : EquipmentInventorySlot)

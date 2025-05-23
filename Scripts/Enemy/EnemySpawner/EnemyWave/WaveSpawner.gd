@@ -29,6 +29,7 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
+	Globals.wave_spawner = self
 	player = Globals.player
 	for child in get_children():
 		if child is EnemyWave:

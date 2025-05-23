@@ -14,6 +14,8 @@ item_icon = ExtResource("3_ndmdd")
 item_id = 3
 string_id = "gain_damage"
 item_detail = "Gain [color=green]1[/color] [color=crimson]attack damage[/color](+1 for each stack)"
+buy_cost = 220.0
+sell_value = 40.0
 
 [node name="Stack" type="Node" parent="."]
 script = ExtResource("4_ecrlb")

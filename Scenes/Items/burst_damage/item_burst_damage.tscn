@@ -23,6 +23,8 @@ item_id = 8
 string_id = "burst_damage"
 item_detail = "On Damage: Create an explosion that deals 60%(+5 each stack) of the damage dealt as magic damage.
 (10 sec. cooldown)"
+buy_cost = 950.0
+sell_value = 300.0
 
 [node name="HitDamageMultiplier*Stack*0_05" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
 script = ExtResource("4_cct32")

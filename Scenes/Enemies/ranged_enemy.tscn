@@ -307,7 +307,7 @@ damage_stat = NodePath("../../Stats/AttackDamage")
 
 [node name="AddGoldOnSlain" type="Node" parent="."]
 script = ExtResource("4_43lu3")
-gold_add = 20.0
+gold_add = 15.0
 
 [node name="AddExpOnSlain" type="Node" parent="."]
 script = ExtResource("5_olt5a")
