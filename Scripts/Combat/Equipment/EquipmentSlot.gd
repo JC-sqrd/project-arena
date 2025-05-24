@@ -5,7 +5,8 @@ extends Node2D
 @export var equipment : Equipment : set = set_equipment
 @export  var action_trigger : String
 
-
+signal equipment_equipped(equipment : Equipment)
+signal equipment_unequipped(equipment : Equipment)
 
 func _ready() -> void:
 	if owner is Entity:
@@ -17,17 +18,19 @@ func _ready() -> void:
 
 func equip(equipment : Equipment):
 	equipment.equip(actor)
+	equipment_equipped.emit(equipment)
 	pass
 
 func unequip(equipment : Equipment):
 	equipment.unequip()
-	equipment = null
+	equipment_unequipped.emit(equipment)
 	pass
 
 func set_equipment(new_equipment : Equipment):
 	if equipment != null:
 		equipment.visible = false
 		unequip(equipment)
+		equipment = null
 	if new_equipment != null:
 		equipment = new_equipment
 		equipment.visible = true

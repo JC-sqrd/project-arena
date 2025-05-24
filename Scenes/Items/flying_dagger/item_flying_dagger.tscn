@@ -23,8 +23,8 @@ item_id = 9
 string_id = "flying_dagger"
 item_detail = "Every 3rd basic attack hit, fire a dagger that deals 10 + (+20% attack damage each stack) physical damage that can pierce 1(+1 each stack) times.
 +20% Critical Strike Chance"
-buy_cost = 900.0
-sell_value = 300.0
+buy_cost = 260.0
+sell_value = 12.0
 
 [node name="ItemBonusStat" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
 script = ExtResource("9_wnlvj")

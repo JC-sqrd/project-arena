@@ -3,14 +3,14 @@ extends Node
 
 
 @export var max_size : int = 6
-var inventory : Array[Equipment] = [null, null, null, null, null, null]
-
 @export var weapon_slot : WeaponSlot
 @export var headgear_slot : EquipmentSlot
 @export var torso_slot : EquipmentSlot
 @export var armgear_slot : EquipmentSlot
 @export var shoes_slot : EquipmentSlot
 
+var inventory : Array[Equipment] = [null, null, null, null, null, null]
+var equip_inventory : Array[Equipment] = [null, null, null, null, null] 
 
 var equipped_weapon : Weapon
 var equipped_headgear : Equipment
@@ -35,7 +35,57 @@ func _ready() -> void:
 			inventory[i] = children[i]
 			#inventory.append(equipment)
 		pass
+	weapon_slot.equipment_equipped.connect(on_weapon_equipped)
+	weapon_slot.equipment_unequipped.connect(on_weapon_unequipped)
+	headgear_slot.equipment_equipped.connect(on_headgear_equipped)
+	headgear_slot.equipment_unequipped.connect(on_headgear_unequipped)
+	torso_slot.equipment_equipped.connect(on_torso_equipped)
+	torso_slot.equipment_unequipped.connect(on_torso_unequipped)
+	armgear_slot.equipment_equipped.connect(on_armgear_equipped)
+	armgear_slot.equipment_unequipped.connect(on_armgear_unequipped)
+	shoes_slot.equipment_equipped.connect(on_shoes_equipped)
+	shoes_slot.equipment_unequipped.connect(on_shoes_unequipped)
 
+
+func on_weapon_equipped(equipment : Equipment):
+	equip_inventory[0] = equipment
+	pass
+
+func on_weapon_unequipped(equipment : Equipment):
+	equip_inventory[0] = null
+	pass
+
+func on_headgear_equipped(equipment : Equipment):
+	equip_inventory[1] = equipment
+	pass
+
+func on_headgear_unequipped(equipment : Equipment):
+	equip_inventory[1] = null
+	pass
+
+func on_torso_equipped(equipment : Equipment):
+	equip_inventory[2] = equipment
+	pass
+
+func on_torso_unequipped(equipment : Equipment):
+	equip_inventory[2] = null
+	pass
+
+func on_armgear_equipped(equipment : Equipment):
+	equip_inventory[3] = equipment
+	pass
+
+func on_armgear_unequipped(equipment : Equipment):
+	equip_inventory[3] = null
+	pass
+
+func on_shoes_equipped(equipment : Equipment):
+	equip_inventory[4] = equipment
+	pass
+
+func on_shoes_unequipped(equipment : Equipment):
+	equip_inventory[4] = null
+	pass
 
 func add_equipment(equipment : Equipment) -> bool:
 	for i in inventory.size():

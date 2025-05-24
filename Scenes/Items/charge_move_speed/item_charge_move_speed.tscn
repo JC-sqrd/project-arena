@@ -36,8 +36,8 @@ item_icon = ExtResource("2_rdjvl")
 item_id = 11
 string_id = "charge_move_speed"
 item_detail = "Moving generates charge. When fully charged, your next source of damage will deal extra damage (10% (+5% each stack) of base movement speed)"
-buy_cost = 800.0
-sell_value = 200.0
+buy_cost = 250.0
+sell_value = 10.0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 visible = false

@@ -14,8 +14,8 @@ item_icon = ExtResource("2_0tkll")
 item_id = 7
 string_id = "move_speed"
 item_detail = "Gain 10%(+10% each stack) movement speed"
-buy_cost = 250.0
-sell_value = 50.0
+buy_cost = 45.0
+sell_value = 8.0
 
 [node name="ItemBonusStat" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
 script = ExtResource("3_35o2l")

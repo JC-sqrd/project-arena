@@ -5,6 +5,7 @@ extends Control
 @onready var equipment_buy_container: HBoxContainer = $Panel/VBoxContainer/VBoxContainer2/EquipmentBuyContainer
 @onready var restock_item_button: Button = $Panel/VBoxContainer/VBoxContainer/HBoxContainer/RestockItemButton
 @onready var restock_equipment_button: Button = $Panel/VBoxContainer/VBoxContainer2/HBoxContainer/RestockEquipmentButton
+@onready var restock_shop_button: Button = $Panel/VBoxContainer/RestockShopButton
 
 
 @export_category("Item and Equipment Card Scene")
@@ -38,6 +39,8 @@ func _ready() -> void:
 	stock_items(max_item_stock)
 	stock_equipment(max_equipment_stock)
 	restock_item_button.pressed.connect(restock_items)
+	restock_equipment_button.pressed.connect(restock_equipment)
+	restock_shop_button.pressed.connect(restock_shop)
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -45,8 +48,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		visible = !visible
 		pass
 
-func resotck_shop():
-	
+func restock_shop():
+	restock_items()
+	restock_equipment()
 	pass
 
 func stock_items(stock_amount : int):
@@ -89,11 +93,39 @@ func stock_items(stock_amount : int):
 	pass
 
 func stock_equipment(stock_amount : int):
+	var equipment_pools : Dictionary = {
+		"common": {
+			"equipment": Globals.common_equipment_pool,
+			"weight": 70
+		}
+	}
+	var total_weight : float = 0
+	for pool in equipment_pools.values():
+		total_weight += pool.weight
+	
 	for i in stock_amount:
-		var equipment_card : EquipmentBuyInstanceUI = equipment_card_scene.instantiate() as EquipmentBuyInstanceUI
-		equipment_card.equipment_scene = Globals.common_equipment_pool[randi_range(0, Globals.common_equipment_pool.size() - 1)]
-		equipment_card.attempt_to_buy.connect(on_item_attempt_to_buy)
-		equipment_buy_container.add_child(equipment_card)
+		var roll := randi_range(1, total_weight)
+		var selected_pool : Array[PackedScene] 
+		var cumulative_weight : float = 0
+		
+		for pool_name in equipment_pools:
+			cumulative_weight += equipment_pools[pool_name].weight
+			if roll <= cumulative_weight:
+				selected_pool = equipment_pools[pool_name].equipment
+				break
+		
+		if selected_pool.size() > 0:
+			var random_equipment = selected_pool[randi_range(0, selected_pool.size() - 1)]
+			var equipment_card : EquipmentBuyInstanceUI = equipment_card_scene.instantiate() as EquipmentBuyInstanceUI
+			equipment_card.equipment_scene = random_equipment
+			equipment_card.attempt_to_buy.connect(on_item_attempt_to_buy)
+			equipment_buy_container.add_child(equipment_card)
+	
+	#for i in stock_amount:
+		#var equipment_card : EquipmentBuyInstanceUI = equipment_card_scene.instantiate() as EquipmentBuyInstanceUI
+		#equipment_card.equipment_scene = Globals.common_equipment_pool[randi_range(0, Globals.common_equipment_pool.size() - 1)]
+		#equipment_card.attempt_to_buy.connect(on_item_attempt_to_buy)
+		#equipment_buy_container.add_child(equipment_card)
 	pass
 
 func restock_items():
@@ -107,7 +139,13 @@ func restock_items():
 	pass
 
 func restock_equipment():
-	
+	var stock_count : int = max_equipment_stock
+	for equipment_buy in equipment_buy_container.get_children():
+		if (equipment_buy as BuyInstanceUI).is_locked:
+			stock_count -= 1
+		else:
+			equipment_buy.queue_free()
+	stock_equipment(stock_count)
 	pass
 
 func on_item_attempt_to_buy(buy_instance : BuyInstanceUI):

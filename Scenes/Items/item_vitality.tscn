@@ -14,8 +14,8 @@ item_icon = ExtResource("2_wqhia")
 item_id = 4
 string_id = "gain_max_health"
 item_detail = "Gain [color=green]5[/color] [color=spring_green]max health[/color](+1 for each stack)"
-buy_cost = 220.0
-sell_value = 40.0
+buy_cost = 50.0
+sell_value = 10.0
 
 [node name="Stack" type="Node" parent="."]
 script = ExtResource("4_b1qp6")

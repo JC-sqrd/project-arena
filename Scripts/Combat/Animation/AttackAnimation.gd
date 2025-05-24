@@ -7,20 +7,8 @@ var anim_speed : float = 0
 var mouse_angle_degree : float = 0
 
 func _ready():
-	if weapon != null:
-		weapon.attack_start.connect(_play_wind_up)
-		weapon.attack_active.connect(_play_attack)
-		weapon.ready.connect(
-			func():
-				await weapon.actor.ready
-				weapon.attack_speed_stat.stat_derived_value_changed_data.connect(_on_weapon_speed_changed)
-				anim_speed = weapon.attack_speed_stat.stat_derived_value
-				if anim_speed < 1:
-					anim_speed = 1
-		)
-		
-		#weapon.weapon_start.connect(_play_weapon_anim)
-		#weapon.weapon_end.connect(_stop_weapon_anim)
+	weapon.equipped.connect(on_equipped)
+	
 	pass
 
 func _play_weapon_anim():
@@ -65,3 +53,18 @@ func _on_weapon_speed_changed(old_value : float, new_value : float):
 	else:
 		anim_speed = new_value
 	pass
+
+func on_equipped(actor : Entity):
+	if weapon != null:
+		weapon.attack_start.connect(_play_wind_up)
+		weapon.attack_active.connect(_play_attack)
+		initialize()
+		#weapon.ready.connect(initialize)
+	pass
+
+func initialize():
+	#await weapon.actor.ready
+	weapon.attack_speed_stat.stat_derived_value_changed_data.connect(_on_weapon_speed_changed)
+	anim_speed = weapon.attack_speed_stat.stat_derived_value
+	if anim_speed < 1:
+		anim_speed = 1

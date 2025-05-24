@@ -53,6 +53,8 @@ func set_equipment(new_equipment : Equipment):
 	if equipment != null:
 		equipment.visible = false
 		unequip(equipment)
+		equipment = null
+		weapon = null
 	if new_equipment != null:
 		weapon = new_equipment
 		equip(new_equipment)
@@ -70,13 +72,13 @@ func equip(equipment : Equipment):
 	equipment.action_trigger = action_trigger
 	equipment.equip(actor)
 	equipment.visible = true
+	equipment_equipped.emit(equipment)
 	pass
 
 func unequip(equipment : Equipment):
 	equipment.unequip()
 	equipment.visible = false
-	equipment = null
-	weapon = null
+	equipment_unequipped.emit(equipment)
 	pass
 
 func _start_attack_cooldown():

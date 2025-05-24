@@ -26,7 +26,14 @@ var common_equipment_pool : Array[PackedScene] = [
 	preload("res://Scenes/Equipments/Armgear/armgear_speed_gloves.tscn"),
 	preload("res://Scenes/Equipments/Head Gears/headgear_iron_helmet.tscn"),
 	preload("res://Scenes/Equipments/Shoes/shoes_iron_boots.tscn"),
-	preload("res://Scenes/Equipments/Torso/torso_iron_chestplate.tscn")
+	preload("res://Scenes/Equipments/Torso/torso_iron_chestplate.tscn"),
+	preload("res://Scenes/Weapons/Bow/weapon_bow.tscn"),
+	preload("res://Scenes/Weapons/Chakram/weapon_chakram.tscn"),
+	preload("res://Scenes/Weapons/Fire Grimoire/weapon_fire_grimoire.tscn"),
+	preload("res://Scenes/Weapons/Hammer/weapon_hammer.tscn"),
+	preload("res://Scenes/Weapons/Magic Gun/weapon_magic_gun.tscn"),
+	preload("res://Scenes/Weapons/Shuriken/weapon_shuriken.tscn"),
+	preload("res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn")
 ]
 
 var player_modifiers : Dictionary = {

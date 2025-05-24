@@ -55,5 +55,5 @@ func _create_return_hit_data(entity_hit : Entity) -> Dictionary:
 	var hit_data : Dictionary = self.return_hit_data.duplicate()
 	hit_data["target"] = entity_hit
 	hit_data["source"] = self
-	hit_data["actor"] = source.owner
+	hit_data["actor"] = actor
 	return hit_data

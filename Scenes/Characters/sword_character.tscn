@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cggb2x36mslpl"]
+[gd_scene load_steps=10 format=3 uid="uid://cggb2x36mslpl"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/test_character.tscn" id="1_n43wd"]
 [ext_resource type="PackedScene" uid="uid://ull35nal2yub" path="res://Scenes/Particles/enemy_hit_particle.tscn" id="2_a3qyk"]
@@ -6,11 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cacqqobo0qx73" path="res://Scenes/Abilities/AbilityTrees/LungeStrike/ability_lunge_strike.tscn" id="2_qi0ur"]
 [ext_resource type="PackedScene" uid="uid://dengtpj68hcix" path="res://Scenes/Equipments/Head Gears/headgear_iron_helmet.tscn" id="5_0v31t"]
 [ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="5_a3qyk"]
-[ext_resource type="PackedScene" uid="uid://ba77g51rg80ak" path="res://Scenes/Weapons/Shuriken/weapon_shuriken.tscn" id="6_52u7q"]
-[ext_resource type="PackedScene" uid="uid://df35xeepp7qfx" path="res://Scenes/Weapons/Fire Grimoire/weapon_fire_grimoire.tscn" id="6_epo7i"]
-[ext_resource type="PackedScene" uid="uid://bkmw1nqw6gp4q" path="res://Scenes/Weapons/Hammer/weapon_hammer.tscn" id="6_vsorn"]
-[ext_resource type="PackedScene" uid="uid://dq2ilob20a4t5" path="res://Scenes/Weapons/Bow/weapon_bow.tscn" id="6_wfw53"]
-[ext_resource type="PackedScene" uid="uid://br6km26u30bs6" path="res://Scenes/Weapons/Chakram/weapon_chakram.tscn" id="8_2feh8"]
 [ext_resource type="PackedScene" uid="uid://d2s7ucuvduwgx" path="res://Scenes/Equipments/Armgear/armgear_iron_gauntlets.tscn" id="11_0v31t"]
 [ext_resource type="PackedScene" uid="uid://c0kg5eyjqqw2k" path="res://Scenes/Equipments/Torso/torso_iron_chestplate.tscn" id="11_a3qyk"]
 [ext_resource type="PackedScene" uid="uid://cnefmjw46bhom" path="res://Scenes/Equipments/Shoes/shoes_iron_boots.tscn" id="12_wxcst"]
@@ -18,24 +13,6 @@
 [node name="SwordCharacter" instance=ExtResource("1_n43wd")]
 
 [node name="EnemyHitParticle" parent="." index="0" instance=ExtResource("2_a3qyk")]
-
-[node name="Hammer" parent="EquipmentInventory" index="0" instance=ExtResource("6_vsorn")]
-position = Vector2(17, 9)
-scale = Vector2(0.999999, 0.999999)
-
-[node name="WeaponShuriken" parent="EquipmentInventory" index="1" instance=ExtResource("6_52u7q")]
-visible = false
-position = Vector2(17, 9)
-scale = Vector2(0.999999, 0.999999)
-
-[node name="WeaponChakram" parent="EquipmentInventory" index="2" instance=ExtResource("8_2feh8")]
-visible = false
-
-[node name="FireGrimoire" parent="EquipmentInventory" index="3" instance=ExtResource("6_epo7i")]
-visible = false
-
-[node name="SwiftSword" parent="EquipmentInventory" index="4" instance=ExtResource("5_a3qyk")]
-visible = false
 
 [node name="InnateActiveAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("SwordSlashEmit")
@@ -50,12 +27,12 @@ ability = NodePath("AbilityLungeStrike")
 
 [node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
 position = Vector2(-1.07288e-06, 9)
-equipment = NodePath("WeaponPosition/WeaponBow")
+equipment = NodePath("WeaponPosition/SwiftSword")
 
 [node name="WeaponPosition" parent="WeaponSlot" index="1"]
 position = Vector2(17, 0)
 
-[node name="WeaponBow" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("6_wfw53")]
+[node name="SwiftSword" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("5_a3qyk")]
 visible = false
 position = Vector2(-17, -9.00001)
 

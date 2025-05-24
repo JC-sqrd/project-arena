@@ -9,6 +9,7 @@ enum AttackState {START,ACTIVE, DORMANT}
 @export var attack_windup_time : float
 @export var weapon_ability : Ability
 @export var hit_listener : HitListener
+@export var sockets : Array[WeaponSocket]
 
 
 var action_trigger : String 
@@ -32,10 +33,8 @@ signal attack_end
 
 
 func _ready():
-	actor.ready.connect(_set_actor_weapon_damage)
-	if hit_listener != null:
-		if !actor.hit_listeners.has(hit_listener):
-			actor.hit_listeners.append(hit_listener)
+	equipped.connect(on_equipped)
+	print("EQUIPMENT TYPE: " + str(EquipmentType.WEAPON))
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -144,4 +143,17 @@ func _set_attack_damage(new_attack_damage : Stat):
 
 func _set_actor_weapon_damage():
 	actor.stat_manager.stats["weapon_damage"] = attack_damage
+	pass
+
+func on_equipped(actor : Entity):
+	if actor != null:
+		actor.ready.connect(_set_actor_weapon_damage)
+		if hit_listener != null:
+			if !actor.hit_listeners.has(hit_listener):
+				actor.hit_listeners.append(hit_listener)
+	for socket in sockets:
+		socket.weapon = self
+		if socket.socketable != null:
+			#socket.socketable.apply_effects_to_ability(self)
+			socket.activate_socketable()
 	pass

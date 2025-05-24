@@ -15,7 +15,7 @@ metadata/_custom_type_script = "uid://cfgh4nylljfr5"
 [node name="EquipmentBonusStat" type="Node" parent="." node_paths=PackedStringArray("equipment", "bonus_value")]
 script = ExtResource("2_ga1im")
 equipment = NodePath("..")
-stat_name = "attack_speed"
+stat_name = "attack_speed_mult"
 bonus_value = NodePath("Stat")
 percentage = true
 metadata/_custom_type_script = "uid://bjpxplndvkee"

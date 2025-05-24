@@ -1,69 +1,23 @@
-[gd_scene load_steps=30 format=3 uid="uid://dp288eneestlt"]
+[gd_scene load_steps=27 format=3 uid="uid://dp288eneestlt"]
 
 [ext_resource type="Script" uid="uid://df3mwd5sdgedk" path="res://Scripts/Combat/MeleeWeapons/MeleeWeapon.gd" id="1_5d1jb"]
 [ext_resource type="Texture2D" uid="uid://065wghtxeh6j" path="res://Sprites/Weapons/Swift Sword/SwiftSwordAttack.png" id="2_15j33"]
 [ext_resource type="Texture2D" uid="uid://e56medrovodu" path="res://Placeholders/Icons/Icon.5_46.png" id="2_fuy8b"]
-[ext_resource type="Script" uid="uid://630garh84lwo" path="res://Scripts/Combat/MeleeWeapons/MeleeAnimationPlayer.gd" id="3_fh5lt"]
-[ext_resource type="Texture2D" uid="uid://dnte6bwjloh32" path="res://Sprites/Weapons/Swift Sword/SwiftSword.png" id="3_p1507"]
-[ext_resource type="Animation" uid="uid://8y0wdx6bd8gl" path="res://Sprites/Weapons/Swift Sword/swift_sword_attack.res" id="3_wogjl"]
+[ext_resource type="Script" uid="uid://dds44weoj7cmt" path="res://Scripts/Combat/Equipment/EquipmentUpgradeManager/EquipmentUpgradeManager.gd" id="3_p1507"]
 [ext_resource type="Script" uid="uid://cmdw2c71721x0" path="res://Scripts/Combat/Animation/AttackAnimation.gd" id="4_bs7ii"]
 [ext_resource type="Script" uid="uid://nke8ejxjdu4s" path="res://Scripts/StatSystem/Stats/AttackSpeedStat.gd" id="4_kenp3"]
-[ext_resource type="Texture2D" uid="uid://dehifh0dvcxr4" path="res://Sprites/Weapons/Swift Sword/SwiftSwordTrail.png" id="4_nro22"]
+[ext_resource type="Script" uid="uid://dth77t82cf5sj" path="res://Scripts/Combat/Equipment/EquipmentUpgradeManager/UpgradeTier/UpgradeTier.gd" id="4_nro22"]
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="4_wop2k"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="5_580b7"]
-[ext_resource type="Script" uid="uid://g51pjhjvumb" path="res://Scripts/Combat/Equipment/Weapon/WeaponSprite.gd" id="6_5d1jb"]
 [ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="7_d0kcu"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="15_y2m5j"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="16_02g2i"]
 [ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="17_k3yuu"]
+[ext_resource type="Script" uid="uid://prvx4o5s1tin" path="res://Scripts/Socket/WeaponSocket.gd" id="17_wogjl"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="18_3y54e"]
+[ext_resource type="PackedScene" uid="uid://cl4txqi2sf005" path="res://Scenes/Socketables/WeaponSocketables/weapon_socketable_add_damage.tscn" id="18_5d1jb"]
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="19_yd84k"]
 [ext_resource type="PackedScene" uid="uid://c322tkntieeqb" path="res://Scenes/Abilities/Spawn Abilities/wind_slash_ability.tscn" id="21_15j33"]
-
-[sub_resource type="Animation" id="Animation_wogjl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SwiftSword:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(20, -20)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SwiftSword:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SwiftSword/SwiftSwordTrail:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5d1jb"]
-_data = {
-&"RESET": SubResource("Animation_wogjl"),
-&"attack_animation": ExtResource("3_wogjl")
-}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dmqko"]
 radius = 125.0
@@ -131,7 +85,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="SwiftSword" type="Area2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener")]
+[node name="SwiftSword" type="Area2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "sockets")]
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_5d1jb")
@@ -140,27 +94,25 @@ attack_speed_stat = NodePath("AttackSpeed")
 attack_windup_time = 0.05
 weapon_ability = NodePath("WindSlashAbility")
 hit_listener = NodePath("HitListener")
+sockets = [NodePath("WeaponSocket")]
 equipment_name = "Swift Sword"
+string_id = "swift_sword"
 equipment_icon = ExtResource("2_fuy8b")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_5d1jb")
-}
-script = ExtResource("3_fh5lt")
-animation = ExtResource("3_wogjl")
+[node name="EquipmentUpgradeManager" type="Node" parent="."]
+script = ExtResource("3_p1507")
+metadata/_custom_type_script = "uid://dds44weoj7cmt"
 
-[node name="SwiftSword" type="Sprite2D" parent="."]
-visible = false
-texture_filter = 1
-position = Vector2(20, -20)
-texture = ExtResource("3_p1507")
-script = ExtResource("6_5d1jb")
+[node name="TierTwo" type="Node" parent="EquipmentUpgradeManager" node_paths=PackedStringArray("next_tier")]
+script = ExtResource("4_nro22")
+tier = 1
+next_tier = NodePath("../TierThree")
+metadata/_custom_type_script = "uid://dth77t82cf5sj"
 
-[node name="SwiftSwordTrail" type="Sprite2D" parent="SwiftSword"]
-visible = false
-position = Vector2(-24, -24)
-texture = ExtResource("4_nro22")
+[node name="TierThree" type="Node" parent="EquipmentUpgradeManager"]
+script = ExtResource("4_nro22")
+tier = 2
+metadata/_custom_type_script = "uid://dth77t82cf5sj"
 
 [node name="Damage" type="Node" parent="."]
 script = ExtResource("18_3y54e")
@@ -259,3 +211,10 @@ scale_with_stat_id = "attack_speed"
 metadata/_custom_type_script = "uid://2vlwp08ancca"
 
 [node name="WindSlashAbility" parent="." instance=ExtResource("21_15j33")]
+
+[node name="WeaponSocket" type="Node" parent="." node_paths=PackedStringArray("socketable")]
+script = ExtResource("17_wogjl")
+socketable = NodePath("WeaponSocketableAddDamage")
+metadata/_custom_type_script = "uid://prvx4o5s1tin"
+
+[node name="WeaponSocketableAddDamage" parent="WeaponSocket" instance=ExtResource("18_5d1jb")]

@@ -77,6 +77,7 @@ func _ready():
 		inventory_slot.slot_index = i
 		inventory_grid.add_child(inventory_slot)
 		inventory_slot.selected.connect(on_inventory_slot_selected)
+		inventory_slot.right_clicked.connect(on_slot_right_clicked)
 		if equipment_inventory.inventory[i] != null:
 			inventory_slot.equipment = equipment_inventory.inventory[i]
 			#print("INVENTORY INDEX: " + str(i))
@@ -194,60 +195,6 @@ func on_inventory_slot_selected(inventory_slot : EquipmentInventorySlot):
 				return
 			pass
 		
-		#-------------------------------------------------------------------------------------------------------------------
-		#if selected_slot.equipment != null and inventory_slot.equipment == null and inventory_slot.slot_type == EquipmentInventorySlot.SlotType.INVENTORY:
-			#inventory_slot.equipment = selected_slot.equipment
-			#selected_slot.equipment = null
-			#selected_slot.is_selected = false
-			#selected_slot.slot_border.modulate = Color.WHITE
-			#selected_slot = null
-			#return
-		##If previous slot and new selected slot both contains an equipment, swap, then deselect
-		#elif selected_slot.equipment != null and inventory_slot.equipment != null and inventory_slot.slot_type == EquipmentInventorySlot.SlotType.INVENTORY:
-			#var temp_equipment : Equipment = inventory_slot.equipment
-			#inventory_slot.equipment = selected_slot.equipment
-			#selected_slot.equipment = temp_equipment
-			#selected_slot.is_selected = false
-			#selected_slot.slot_border.modulate = Color.WHITE
-			#selected_slot = null
-			#return
-		##Equip equipment to empty equip slot
-		#elif selected_slot.equipment != null and inventory_slot.equipment == null and inventory_slot is EquipmentEquipSlot:
-			#inventory_slot = inventory_slot as EquipmentEquipSlot
-			#if selected_slot.equipment.type == inventory_slot.equip_type:
-				#inventory_slot.equipment = selected_slot.equipment
-				#selected_slot.equipment = null
-				#selected_slot.is_selected = false
-				#selected_slot.slot_border.modulate = Color.WHITE
-				#selected_slot = null
-				#return
-			#else:
-				#selected_slot.is_selected = false
-				#selected_slot.slot_border.modulate = Color.WHITE
-				#selected_slot = null
-				#return
-		##Equip equipment and swap currently equipped equipment to new slot 
-		#elif selected_slot.equipment != null and inventory_slot.equipment != null and inventory_slot is EquipmentEquipSlot:
-			#inventory_slot = inventory_slot as EquipmentEquipSlot
-			#if selected_slot.equipment.type == inventory_slot.equip_type:
-				#var temp_equipment : Equipment = inventory_slot.equipment
-				#inventory_slot.equipment = selected_slot.equipment
-				#selected_slot.equipment = temp_equipment
-				#selected_slot.is_selected = false
-				#selected_slot.slot_border.modulate = Color.WHITE
-				#selected_slot = null
-				#return
-			#else:
-				#selected_slot.is_selected = false
-				#selected_slot.slot_border.modulate = Color.WHITE
-				#selected_slot = null
-				#return
-		#else:
-			#selected_slot.is_selected = false
-			#selected_slot.slot_border.modulate = Color.WHITE
-			#selected_slot = null
-			#return
-			#pass
 	selected_slot = inventory_slot
 	#Check if the new selected slot is not null
 	if selected_slot != null:
@@ -267,6 +214,24 @@ func clear_selected_slot():
 		selected_slot.is_selected = false
 		selected_slot.slot_border.modulate = Color.WHITE
 	selected_slot = null
+	pass
+
+func on_slot_right_clicked(slot : EquipmentInventorySlot):
+	check_duplicate(slot.equipment)
+	pass
+
+func check_duplicate(equipment : Equipment):
+	var whole_inventory : Array[Equipment] = equipment_inventory.inventory + equipment_inventory.equip_inventory
+	for i in whole_inventory.size():
+		if whole_inventory[i] == null or equipment == null:
+			continue
+		if whole_inventory[i].string_id == equipment.string_id and whole_inventory[i].tier == equipment.tier:
+			#Duplicate found, upgrade equipment
+			print("EQUIPMENT: " + str(equipment.equipment_name) + " DUPLICATE: " + str(whole_inventory[i].equipment_name))
+			break
+			pass  
+		pass
+	print("WHOLE INVENTORY: " + str(whole_inventory))
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:

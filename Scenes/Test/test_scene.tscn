@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://ba1mnuv3bxi1k" path="res://Scenes/Test/EnemyWaveUI.gd" id="2_fuaum"]
 [ext_resource type="PackedScene" uid="uid://dxwshug5qnf5u" path="res://Scenes/Timer/game_timer.tscn" id="2_ome0m"]
 [ext_resource type="AudioStream" uid="uid://c3qto05j6g5p4" path="res://Placeholders/Audio/The Rain Formerly Known as Purple.mp3" id="2_ukeqt"]
-[ext_resource type="PackedScene" uid="uid://bgy7pdawvoiwa" path="res://Scenes/Characters/mage_character.tscn" id="2_yafh7"]
 [ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="3_3rgso"]
 [ext_resource type="PackedScene" uid="uid://cvfsmjmaolpet" path="res://Scenes/Enemies/tank_enemy.tscn" id="3_g57ev"]
 [ext_resource type="Script" uid="uid://balv8nrfgo4ds" path="res://Scripts/Enemy/EnemySpawner/EnemyWave/EnemyWave.gd" id="3_l3e4g"]
@@ -22,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://cn58gfvdnfpqs" path="res://Placeholders/Audio/You're Gonna Need a Bigger Ukulele.mp3" id="4_b707s"]
 [ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="4_d3glx"]
 [ext_resource type="Script" uid="uid://c00l8xisrxclc" path="res://Scripts/Enemy/EnemySpawner/EnemySpawner.gd" id="5_a4ok0"]
+[ext_resource type="PackedScene" uid="uid://cggb2x36mslpl" path="res://Scenes/Characters/sword_character.tscn" id="5_w24wr"]
 [ext_resource type="PackedScene" uid="uid://dqm4fbhm3ik7d" path="res://Scenes/Enemies/SpawnSprite/spawn_sprite.tscn" id="6_hej2c"]
 [ext_resource type="Script" uid="uid://cvoh1qyqwtosh" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveEnemySpawn.gd" id="7_7wka2"]
 [ext_resource type="Texture2D" uid="uid://c35vvralpy2oe" path="res://Placeholders/Sprites/Skill Circle Visual.png" id="7_mwf75"]
@@ -280,7 +280,7 @@ material = SubResource("ShaderMaterial_2d4qq")
 [node name="DummyEnemy2" parent="." instance=ExtResource("2_awsut")]
 position = Vector2(1469, 829)
 
-[node name="MageCharacter" parent="." instance=ExtResource("2_yafh7")]
+[node name="SwordCharacter" parent="." instance=ExtResource("5_w24wr")]
 position = Vector2(544, 1080)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

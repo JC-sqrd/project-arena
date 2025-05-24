@@ -85,7 +85,7 @@ func _on_actor_on_hit(hit_data : Dictionary):
 			if hit_listener != null:
 				var effect_data : Dictionary = hit_listener.generate_effect_data()
 				if effect_data.has("damage_effect"):
-					effect_data["damage_effect"]["damage"] += (damage_data["damage"] * hit_damage_multiplier.stat_derived_value)
+					(effect_data["damage_effect"] as DamageEffectData).damage += (damage_data["damage"] * hit_damage_multiplier.stat_derived_value)
 				spawnable.hit_data = effect_data
 			get_tree().root.add_child(spawnable)
 			spawnable.global_position = target.global_position

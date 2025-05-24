@@ -36,26 +36,6 @@ var attacking : bool = false
 
 func _ready():
 	super()
-	if actor.stat_manager.stats.has("area_size"):
-		actor.stat_manager.stats["area_size"].stat_changed.connect(
-			func():
-				area_size_mult = actor.stat_manager.stats["area_size"].stat_derived_value
-				scale = Vector2.ONE
-				scale *= area_size_mult
-				#set_coll_position()
-		)
-		area_size_mult = actor.stat_manager.stats["area_size"].stat_derived_value
-	scale *= area_size_mult
-	self.body_entered.connect(get_enemy_hit)
-	self.body_exited.connect(_remove_enemy_hit)
-	#hitbox_coll = $CollisionShape2D
-	#Initialization
-	attack_windup_time = minf(attack_windup_time, 1 / attack_speed)
-	attack_timer.wait_time = attack_windup_time	
-	#hitbox_coll.set_deferred("disabled", true)
-	#set_coll_position()
-	#rect_shape.size = hitbox_size
-	#hitbox_coll.set_deferred("shape", rect_shape)
 	pass
 	
 func _process(delta):
@@ -220,7 +200,29 @@ func _hit_enemy():
 		pass
 	pass
 
-	
+func on_equipped(actor : Entity):
+	super(actor)
+	if actor.stat_manager.stats.has("area_size"):
+		actor.stat_manager.stats["area_size"].stat_changed.connect(
+			func():
+				area_size_mult = actor.stat_manager.stats["area_size"].stat_derived_value
+				scale = Vector2.ONE
+				scale *= area_size_mult
+				#set_coll_position()
+		)
+		area_size_mult = actor.stat_manager.stats["area_size"].stat_derived_value
+	scale *= area_size_mult
+	self.body_entered.connect(get_enemy_hit)
+	self.body_exited.connect(_remove_enemy_hit)
+	#hitbox_coll = $CollisionShape2D
+	#Initialization
+	attack_windup_time = minf(attack_windup_time, 1 / attack_speed)
+	attack_timer.wait_time = attack_windup_time	
+	#hitbox_coll.set_deferred("disabled", true)
+	#set_coll_position()
+	#rect_shape.size = hitbox_size
+	#hitbox_coll.set_deferred("shape", rect_shape)
+	pass
 
 
 func _draw():

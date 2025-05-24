@@ -19,7 +19,7 @@ func get_effect_key() -> Variant:
 
 func get_effect_value() -> StatusEffectData:
 	#status_effect : StatusEffect, stack : int, chance : float, tags : Array[StringName]
-	return StatusEffectData.new(status_effect_scene.instantiate(), stack, 1, [])
+	return StatusEffectData.new(status_effect_scene, stack, 1)
 
 #class StatusEffectData:
 	#var status_effect_scene : PackedScene

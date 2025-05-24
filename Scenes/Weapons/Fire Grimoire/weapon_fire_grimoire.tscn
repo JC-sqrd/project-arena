@@ -45,19 +45,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="FireGrimoire" type="Node2D" node_paths=PackedStringArray("spawn_node", "sockets", "attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener")]
+[node name="FireGrimoire" type="Node2D" node_paths=PackedStringArray("spawn_node", "attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "sockets")]
 y_sort_enabled = true
 script = ExtResource("1_i71yi")
 projectile = ExtResource("2_8254a")
 speed = 800.0
 spawn_node = NodePath("FireGrimoire")
 max_distance = 1000.0
-sockets = [NodePath("WeaponSocket")]
 attack_damage = NodePath("Damage")
 attack_speed_stat = NodePath("AttackSpeed")
 attack_windup_time = 0.1
 weapon_ability = NodePath("AbilityFireball")
 hit_listener = NodePath("HitListener")
+sockets = [NodePath("WeaponSocket")]
 equipment_name = "Fire Grimoire"
 equipment_icon = ExtResource("3_p54e5")
 

@@ -17,8 +17,8 @@ item_icon = ExtResource("2_plu0p")
 item_id = 10
 string_id = "block_chance"
 item_detail = "Gain 15% (+15% each stack) to block incoming damage"
-buy_cost = 300.0
-sell_value = 80.0
+buy_cost = 60.0
+sell_value = 15.0
 
 [node name="0_15" type="Node" parent="."]
 script = ExtResource("2_h1xh3")

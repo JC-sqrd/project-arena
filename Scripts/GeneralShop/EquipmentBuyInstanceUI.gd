@@ -16,6 +16,7 @@ func _ready():
 func buy(buyer : Entity):
 	var buyer_gold : Stat = buyer.stat_manager.get_stat("gold") as Stat
 	if buyer_gold.stat_derived_value >= equipment.buy_cost:
+		equipment.actor = buyer
 		if buyer.equipment_inventory.add_equipment(equipment):
 			buyer_gold.stat_derived_value -= equipment.buy_cost
 			print("Equipment bought!")
