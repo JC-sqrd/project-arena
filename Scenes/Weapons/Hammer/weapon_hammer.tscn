@@ -192,6 +192,7 @@ attack_speed_stat = NodePath("AttackSpeed")
 attack_windup_time = 0.25
 hit_listener = NodePath("HitListener")
 equipment_name = "Hammer"
+string_id = "hammer"
 equipment_icon = ExtResource("3_dv3hi")
 
 [node name="Damage" type="Node" parent="."]

@@ -24,6 +24,7 @@ attack_speed_stat = NodePath("AttackSpeed")
 attack_windup_time = 0.1
 hit_listener = NodePath("HitListener")
 equipment_name = "Shuriken"
+string_id = "shuriken"
 equipment_icon = ExtResource("3_j7fjk")
 metadata/_custom_type_script = "uid://d3fin4411ww46"
 

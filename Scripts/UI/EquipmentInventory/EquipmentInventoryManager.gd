@@ -26,7 +26,7 @@ const EQUIPMENT_INVENTORY_SLOT = preload("res://Scenes/UI/EquipmentInventory/equ
 @onready var inventory_grid: GridContainer = $EquipmentInventory/MarginContainer/InventoryGrid
 
 var inventory_slots : Array[EquipmentInventorySlot]
-
+var equip_slots : Array[EquipmentEquipSlot] = [null, null, null, null, null]
 var selected_slot : EquipmentInventorySlot
 
 func _ready():
@@ -36,31 +36,36 @@ func _ready():
 		if weapon_slot.equipment != null:
 			weapon_equip_slot.equipment = weapon_slot.equipment
 			weapon_equip_slot.equipment_icon.texture = weapon_slot.equipment.equipment_icon
+			equip_slots[0] = weapon_equip_slot
 	if offhand_slot != null:
 		offhand_equip_slot.equipment_slot = offhand_slot
 		if offhand_slot.equipment != null:
 			offhand_equip_slot.equipment = offhand_slot.equipment
 			offhand_equip_slot.equipment_icon.texture = offhand_slot.equipment.equipment_icon
-	if armgear_slot != null:
-		armgear_equip_slot.equipment_slot = armgear_slot
-		if armgear_slot.equipment != null:
-			armgear_equip_slot.equipment = armgear_slot.equipment
-			armgear_equip_slot.equipment_icon.texture = armgear_slot.equipment.equipment_icon
 	if headgear_slot != null:
 		headgear_equip_slot.equipment_slot = headgear_slot
 		if headgear_slot.equipment != null:
 			headgear_equip_slot.equipment = headgear_slot.equipment
 			headgear_equip_slot.equipment_icon.texture = headgear_slot.equipment.equipment_icon
+			equip_slots[1] = armgear_equip_slot
+	if armgear_slot != null:
+		armgear_equip_slot.equipment_slot = armgear_slot
+		if armgear_slot.equipment != null:
+			armgear_equip_slot.equipment = armgear_slot.equipment
+			armgear_equip_slot.equipment_icon.texture = armgear_slot.equipment.equipment_icon
+			equip_slots[2] = armgear_equip_slot
 	if torso_slot != null:
 		torso_equip_slot.equipment_slot = torso_slot
 		if torso_slot.equipment != null:
 			torso_equip_slot.equipment = torso_slot.equipment
 			torso_equip_slot.equipment_icon.texture = torso_slot.equipment.equipment_icon
+			equip_slots[3] = torso_equip_slot
 	if shoes_slot != null:
 		shoes_equip_slot.equipment_slot = shoes_slot
 		if shoes_slot.equipment != null:
 			shoes_equip_slot.equipment = shoes_slot.equipment
 			shoes_equip_slot.equipment_icon.texture = shoes_slot.equipment.equipment_icon
+			equip_slots[4] = shoes_equip_slot
 	
 	weapon_equip_slot.selected.connect(on_inventory_slot_selected)
 	headgear_equip_slot.selected.connect(on_inventory_slot_selected)
@@ -87,10 +92,6 @@ func _ready():
 	for child in inventory_grid.get_children():
 		if child is EquipmentInventorySlot:
 			inventory_slots.append(child)
-	
-	for equipment in equipment_inventory.inventory:
-		
-		pass
 	pass
 
 
@@ -217,22 +218,45 @@ func clear_selected_slot():
 	pass
 
 func on_slot_right_clicked(slot : EquipmentInventorySlot):
-	check_duplicate(slot.equipment)
+	try_to_combine_pair(slot)
 	pass
 
-func check_duplicate(equipment : Equipment):
-	var whole_inventory : Array[Equipment] = equipment_inventory.inventory + equipment_inventory.equip_inventory
-	for i in whole_inventory.size():
-		if whole_inventory[i] == null or equipment == null:
-			continue
-		if whole_inventory[i].string_id == equipment.string_id and whole_inventory[i].tier == equipment.tier:
-			#Duplicate found, upgrade equipment
-			print("EQUIPMENT: " + str(equipment.equipment_name) + " DUPLICATE: " + str(whole_inventory[i].equipment_name))
-			break
-			pass  
+
+func try_to_combine_pair(slot : EquipmentInventorySlot):
+	var pair : Array[EquipmentInventorySlot] = get_equipment_pair(slot)
+	if pair.size() < 2 or pair.size() > 2:
+		return
+	for _slot in pair:
+		_slot.equipment.queue_free()
+		_slot.equipment = null
 		pass
-	print("WHOLE INVENTORY: " + str(whole_inventory))
 	pass
+
+func check_duplicate(slot : EquipmentInventorySlot):
+	var duplicates : Array[EquipmentInventorySlot]
+	for duplicate in duplicates:
+		if duplicate.equipment != null:
+			duplicate.equipment.queue_free()
+			duplicate.equipment = null
+	print("DUPLICATES : " + str(duplicates))
+	pass
+
+func get_equipment_pair(slot : EquipmentInventorySlot) -> Array[EquipmentInventorySlot]:
+	var pair : Array[EquipmentInventorySlot]
+	pair.append(slot)
+	var all_slots : Array[EquipmentInventorySlot] = inventory_slots.duplicate()
+	for equip_slot in equip_slots:
+		all_slots.append(equip_slot)
+	
+	for i in all_slots.size():
+		if all_slots[i].equipment == null or slot.equipment == null:
+			continue
+		if all_slots[i].equipment.string_id == slot.equipment.string_id and all_slots[i].equipment.tier == slot.equipment.tier and all_slots[i] != slot:
+			#Duplicate found, append to array
+			pair.append(all_slots[i])
+			break
+		pass
+	return pair
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("open_inventory"):

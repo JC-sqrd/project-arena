@@ -59,6 +59,7 @@ weapon_ability = NodePath("AbilityFireball")
 hit_listener = NodePath("HitListener")
 sockets = [NodePath("WeaponSocket")]
 equipment_name = "Fire Grimoire"
+string_id = "fire_grimoire"
 equipment_icon = ExtResource("3_p54e5")
 
 [node name="Damage" type="Node" parent="."]

@@ -25,11 +25,7 @@ var coll_enabled_counter : float = 0
 var start_coll_timer : bool = false
 var coll_enabled : bool = false
 
-
-
-
 var attacking : bool = false
-
 
 #ATTACK FLOW: start attack(attack wind up) -> enable attack collider
 # -> end attack (disable collider)
@@ -37,7 +33,7 @@ var attacking : bool = false
 func _ready():
 	super()
 	pass
-	
+
 func _process(delta):
 	super(delta)
 	melee_weapon_process(delta)

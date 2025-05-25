@@ -28,6 +28,7 @@ attack_speed_stat = NodePath("AttackSpeed")
 attack_windup_time = 0.15
 hit_listener = NodePath("HitListener")
 equipment_name = "Chakram"
+string_id = "chakram"
 equipment_icon = ExtResource("3_agyne")
 metadata/_custom_type_script = "uid://d3fin4411ww46"
 
