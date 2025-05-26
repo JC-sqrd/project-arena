@@ -22,7 +22,8 @@ func _ready():
 	pass
 
 func apply_bonus_value(actor : Entity):
-	
+	if equipment != null:
+		actor = equipment.actor
 	if actor != null:
 		if actor.stat_manager.stats.has(stat_name):
 			stat = actor.stat_manager.stats[stat_name]
@@ -47,6 +48,8 @@ func apply_bonus_value(actor : Entity):
 	pass
 
 func remove_bonus_value():
+	if equipment != null:
+		actor = equipment.actor
 	if actor != null:
 		if actor.stat_manager.stats.has(stat_name):
 			stat = actor.stat_manager.stats[stat_name]
@@ -57,6 +60,7 @@ func remove_bonus_value():
 				stat.bonus_value -= _old_bonus_value
 				stat.update_stat()
 		_old_bonus_value = 0
+	print("BONUS STAT REMOVED FROM: " + str(actor))
 	pass
 
 

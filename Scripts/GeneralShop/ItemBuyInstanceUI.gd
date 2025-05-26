@@ -24,7 +24,7 @@ func buy(buyer : Entity):
 		queue_free()
 	else:
 		slot_border.modulate = Color.RED
-		await get_tree().create_timer(0.05, false, false, false).timeout
+		await get_tree().create_timer(0.1, false, false, false).timeout
 		slot_border.modulate = Color.WHITE
 	pass
 

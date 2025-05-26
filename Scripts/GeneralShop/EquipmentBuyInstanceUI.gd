@@ -28,6 +28,8 @@ func buy(buyer : Entity):
 			slot_border.modulate = Color.ORANGE
 	else:
 		slot_border.modulate = Color.RED
+		await get_tree().create_timer(0.1, false, false, false).timeout
+		slot_border.modulate = Color.WHITE
 	pass
 
 func _on_buy_button_pressed():

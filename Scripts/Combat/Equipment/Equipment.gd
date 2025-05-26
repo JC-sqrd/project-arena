@@ -28,8 +28,8 @@ func equip(actor : Entity):
 
 func unequip():
 	is_equipped = false
-	actor = null
 	unequipped.emit()
+	actor = null
 	pass
 
 func get_actor() -> Entity:

@@ -8,8 +8,6 @@ signal effect_data_generated(effect_data : EffectData)
 func _ready() -> void:
 	if owner != null:
 		owner.ready.connect(_on_owner_ready)
-	else:
-		print("EFFECT OWNER IS NULL :" + str(name))
 	
 	if owner is Entity:
 		actor = owner
