@@ -26,6 +26,7 @@ signal applied_damage_with_data (damaga_data : float)
 #var damage_effect_data : DamageEffectData 
 
 func _ready():
+	super()
 	for child in get_children():
 		if child is EffectCheck:
 			bonus_damage_checks.append(child)
@@ -83,8 +84,8 @@ func get_effect_value() -> Variant:
 	damage_effect_data.checks = (checks)
 	
 	damage_data_created.emit(damage_effect_data) 
-	
-	
+	#actor.damage_data_created.emit(damage_effect_data)
+	actor.effect_data_created.emit(damage_effect_data)
 	return damage_effect_data
 
 func on_damage_received(damage_data : Dictionary):

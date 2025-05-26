@@ -8,18 +8,18 @@ extends AbilitySocketableEffect
 func apply_effect_to_ability(ability : Ability):
 	var ability_hit_listener : HitListener = ability.hit_listener
 	for effect in ability_hit_listener.effects:
-		if effect is DamageEffect:
-			if effect.damage_stat != null:
-				effect.damage_stat.bonus_value += damage_add
-				effect.damage_stat.update_stat()
+		if ability_hit_listener.effects[effect] is DamageEffect:
+			if ability_hit_listener.effects[effect].damage_stat != null:
+				ability_hit_listener.effects[effect].damage_stat.bonus_value += damage_add
+				ability_hit_listener.effects[effect].damage_stat.update_stat()
 			pass
 	pass
 
 func remove_effect_from_ability(ability : Ability):
 	var ability_hit_listener : HitListener = ability.hit_listener
 	for effect in ability_hit_listener.effects:
-		if effect is DamageEffect:
-			if effect.damage_stat != null:
-				effect.damage_stat.bonus_value -= damage_add
-				effect.damage_stat.update_stat()
+		if ability_hit_listener.effects[effect] is DamageEffect:
+			if ability_hit_listener.effects[effect].damage_stat != null:
+				ability_hit_listener.effects[effect].damage_stat.bonus_value -= damage_add
+				ability_hit_listener.effects[effect].damage_stat.update_stat()
 	pass

@@ -151,7 +151,7 @@ scale_with_stat_id = "attack_speed"
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(147, -10)
+position = Vector2(128, -10)
 shape = SubResource("CircleShape2D_dmqko")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CollisionShape2D" node_paths=PackedStringArray("weapon")]

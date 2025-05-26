@@ -22,7 +22,7 @@ var can_cast : bool = true
 signal took_damage (damage_taken : float)
 signal took_damage_with_type (damage_taken : float, type : Enums.DamageType) 
 signal took_damage_with_data (damage_data : DamageEffectData)
-signal damage_data_created (damage_data : DamageEffectData)
+signal effect_data_created (effect_data : EffectData)
 signal applied_damage (damage_applied : float)
 signal applied_damage_with_data (damage_data : Dictionary)
 signal critical_striked(data : Dictionary)

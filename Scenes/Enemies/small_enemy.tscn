@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://cyrnk80mwy1j1"]
+[gd_scene load_steps=78 format=3 uid="uid://cyrnk80mwy1j1"]
 
 [ext_resource type="Script" uid="uid://c82id00axlli8" path="res://Scripts/Enemy/Enemy.gd" id="1_824wj"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="6_1bo30"]
@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://camqocmr4fo0j" path="res://Placeholders/Sprites/Animation/HitSpark/frame0009.png" id="43_na65r"]
 [ext_resource type="Script" uid="uid://xabwgpydpxaf" path="res://Scripts/Combat/HitSpriteAnimation.gd" id="44_riibb"]
 [ext_resource type="Script" uid="uid://ca00kjhgjanwc" path="res://Scripts/EntityCollisionShape2D.gd" id="45_b4mai"]
+[ext_resource type="Script" uid="uid://d35h5o2rfotvj" path="res://Scripts/StatSystem/Stats/StatMultiplier.gd" id="46_im0vk"]
 [ext_resource type="Script" uid="uid://c2c43sih3sxp0" path="res://Scripts/Entity/LevelManager.gd" id="46_w8020"]
 [ext_resource type="Script" uid="uid://cdn8b5gg8mfb8" path="res://Scripts/Entity/HealthManager.gd" id="47_76ltv"]
 [ext_resource type="Script" uid="uid://cmnd4g4du2b0u" path="res://Scripts/StatSystem/StatManager.gd" id="48_i2ntd"]
@@ -392,6 +393,12 @@ stat_name = "current_health"
 script = ExtResource("49_n853f")
 stat_name = "max_health"
 stat_value = 5.0
+
+[node name="StatMultiplier" type="Node" parent="Stats/MaxHealth" node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("46_im0vk")
+a_stat = NodePath("..")
+b_stat = NodePath("../../Level")
+metadata/_custom_type_script = "uid://d35h5o2rfotvj"
 
 [node name="LevelStatScaler" type="Node" parent="Stats/MaxHealth" node_paths=PackedStringArray("stat", "scale_with_stat")]
 script = ExtResource("50_phhd3")

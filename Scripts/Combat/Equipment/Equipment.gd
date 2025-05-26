@@ -34,3 +34,7 @@ func unequip():
 
 func get_actor() -> Entity:
 	return actor
+
+func on_equipped(actor : Entity):
+	ready.emit()
+	pass

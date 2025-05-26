@@ -1,14 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cggb2x36mslpl"]
+[gd_scene load_steps=6 format=3 uid="uid://cggb2x36mslpl"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/test_character.tscn" id="1_n43wd"]
 [ext_resource type="PackedScene" uid="uid://ull35nal2yub" path="res://Scenes/Particles/enemy_hit_particle.tscn" id="2_a3qyk"]
 [ext_resource type="PackedScene" uid="uid://od3lf463dx1c" path="res://Scenes/Abilities/Emit Abilities/SwordSlash/sword_slash_emit.tscn" id="2_qau1h"]
 [ext_resource type="PackedScene" uid="uid://cacqqobo0qx73" path="res://Scenes/Abilities/AbilityTrees/LungeStrike/ability_lunge_strike.tscn" id="2_qi0ur"]
-[ext_resource type="PackedScene" uid="uid://dengtpj68hcix" path="res://Scenes/Equipments/Head Gears/headgear_iron_helmet.tscn" id="5_0v31t"]
 [ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="5_a3qyk"]
-[ext_resource type="PackedScene" uid="uid://d2s7ucuvduwgx" path="res://Scenes/Equipments/Armgear/armgear_iron_gauntlets.tscn" id="11_0v31t"]
-[ext_resource type="PackedScene" uid="uid://c0kg5eyjqqw2k" path="res://Scenes/Equipments/Torso/torso_iron_chestplate.tscn" id="11_a3qyk"]
-[ext_resource type="PackedScene" uid="uid://cnefmjw46bhom" path="res://Scenes/Equipments/Shoes/shoes_iron_boots.tscn" id="12_wxcst"]
 
 [node name="SwordCharacter" instance=ExtResource("1_n43wd")]
 
@@ -41,26 +37,6 @@ position = Vector2(0, 9)
 
 [node name="WeaponPosition" parent="OffhandWeaponSlot" index="0"]
 position = Vector2(17, 0)
-
-[node name="HeadGearSlot" parent="." index="8" node_paths=PackedStringArray("equipment")]
-equipment = NodePath("IronHelmet")
-
-[node name="IronHelmet" parent="HeadGearSlot" index="0" instance=ExtResource("5_0v31t")]
-
-[node name="TorsoSlot" parent="." index="9" node_paths=PackedStringArray("equipment")]
-equipment = NodePath("TorsoIronChestplate")
-
-[node name="TorsoIronChestplate" parent="TorsoSlot" index="0" instance=ExtResource("11_a3qyk")]
-
-[node name="ArmGearSlot" parent="." index="10" node_paths=PackedStringArray("equipment")]
-equipment = NodePath("ArmgearIronGauntlets")
-
-[node name="ArmgearIronGauntlets" parent="ArmGearSlot" index="0" instance=ExtResource("11_0v31t")]
-
-[node name="ShoesSlot" parent="." index="11" node_paths=PackedStringArray("equipment")]
-equipment = NodePath("ShoesIronBoots")
-
-[node name="ShoesIronBoots" parent="ShoesSlot" index="0" instance=ExtResource("12_wxcst")]
 
 [node name="MaxHealth" parent="Stats" index="7"]
 stat_value = 50.0

@@ -34,8 +34,12 @@ signal attack_end
 
 func _ready():
 	equipped.connect(on_equipped)
-	print("EQUIPMENT TYPE: " + str(EquipmentType.WEAPON))
-	pass
+	for socket in sockets:
+		socket.weapon = self
+		if socket.socketable != null:
+			#socket.socketable.apply_effects_to_ability(self)
+			socket.activate_socketable()
+		pass
 
 func _unhandled_input(event: InputEvent) -> void:
 	#print(str(event))
@@ -151,9 +155,8 @@ func on_equipped(actor : Entity):
 		if hit_listener != null:
 			if !actor.hit_listeners.has(hit_listener):
 				actor.hit_listeners.append(hit_listener)
-	for socket in sockets:
-		socket.weapon = self
-		if socket.socketable != null:
-			#socket.socketable.apply_effects_to_ability(self)
-			socket.activate_socketable()
+	if weapon_ability != null:
+		weapon_ability.actor = actor
+	ready.emit()
+	print("WEAPON EQUIPPED")
 	pass

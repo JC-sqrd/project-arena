@@ -264,13 +264,6 @@ script = ExtResource("1_4g24u")
 [node name="DummyEnemy" parent="." instance=ExtResource("2_awsut")]
 position = Vector2(1466, 728)
 
-[node name="DamageEffect" parent="DummyEnemy/HitListener" index="0"]
-scaling_ratio = null
-damage_type = null
-health_percent_damage = null
-lifesteal = null
-lifesteal_type = null
-
 [node name="ItemChanceBlockDamage" parent="DummyEnemy/ItemInventory" index="0" instance=ExtResource("3_w24wr")]
 stack = 999
 

@@ -21,7 +21,6 @@ func _spawn_projectile():
 func spawn_shuriken():
 	if projectile != null:
 		var new_projectile = projectile.instantiate()
-		
 		if new_projectile is Projectile:
 			new_projectile.on_hit.connect(_on_attack_hit)
 			if hit_listener != null:

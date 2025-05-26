@@ -27,6 +27,8 @@ func on_owner_ready():
 		actor = owner.get_actor()
 	if actor != null:
 		actor.ready.connect(on_actor_ready)
+		on_actor_ready()
+	print("OWNER READY: " + owner.name)
 	pass
 
 func on_actor_ready():

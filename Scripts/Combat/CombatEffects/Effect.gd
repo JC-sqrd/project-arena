@@ -5,7 +5,17 @@ var actor : Entity
 
 signal effect_data_generated(effect_data : EffectData)
 
+func _ready() -> void:
+	owner.ready.connect(_on_owner_ready)
+
 func _enter_tree():
+	if owner is Entity:
+		actor = owner
+	elif owner != null and owner.has_method("get_actor"):
+		actor = owner.get_actor()
+	pass
+
+func _on_owner_ready():
 	if owner is Entity:
 		actor = owner
 	elif owner != null and owner.has_method("get_actor"):

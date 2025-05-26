@@ -13,12 +13,12 @@ signal item_picker_picked_up (player : PlayerCharacter, loot_pool : Array[Packed
 func _ready():
 	super()
 	Globals.player = self
-	damage_effects = find_children("DamageEffect", "DamageEffect")
-	for damage_effect in damage_effects:
-		if damage_effect is DamageEffect:
-			damage_effect.applied_damage.connect(_on_damage_applied)
-			damage_effect.damage_data_created.connect(_on_damage_data_created)
-			pass
+	#damage_effects = find_children("DamageEffect", "DamageEffect")
+	#for damage_effect in damage_effects:
+		#if damage_effect is DamageEffect:
+			#damage_effect.applied_damage.connect(_on_damage_applied)
+			#damage_effect.damage_data_created.connect(_on_damage_data_created)
+			#pass
 	applied_damage.connect(_on_damage_applied)
 	pass
 
@@ -48,9 +48,6 @@ func _on_damage_applied(damage : float):
 	total_damage_applied += damage
 	pass
 
-func _on_damage_data_created(damage_data : DamageEffectData):
-	damage_data_created.emit(damage_data)
-	pass
 
 func die():
 	velocity = Vector2.ZERO

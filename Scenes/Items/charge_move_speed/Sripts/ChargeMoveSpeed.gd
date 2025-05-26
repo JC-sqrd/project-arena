@@ -13,7 +13,8 @@ func _ready():
 
 func _on_item_equipped():
 	#actor.applied_damage_with_data.connect(_on_actor_applied_damage_with_data)
-	actor.damage_data_created.connect(_on_actor_damage_data_created)
+	#actor.damage_data_created.connect(_on_actor_damage_data_created)
+	actor.effect_data_created.connect(_on_actor_effect_data_created)
 	charge_particle_system.visible = false
 	charge_particle_system.reparent(actor, false)
 	pass
@@ -26,6 +27,17 @@ func _process(delta: float) -> void:
 		charge_particle_system.visible = true
 		charged = true
 
+
+func _on_actor_effect_data_created(effect_data : EffectData):
+	if effect_data is DamageEffectData:
+		var damage_data : DamageEffectData = effect_data as DamageEffectData
+		if charged and hit_listener != null:
+			charged = false
+			charge = 0
+			charge_particle_system.visible = false
+			#print("DAMAGE EFFECT DAMAGE VALUE: " + str(damage_data.damage))
+			damage_data.damage += bonus_damage.stat_derived_value
+	pass
 
 func _on_actor_applied_damage_with_data(damage_data : Dictionary):
 	if charged and hit_listener != null:
