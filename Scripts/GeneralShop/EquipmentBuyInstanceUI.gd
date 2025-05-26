@@ -3,9 +3,11 @@ extends BuyInstanceUI
 
 @export var equipment_scene : PackedScene
 var equipment : Equipment
+@onready var cost_button: Button = $VBoxContainer/CostButton
 
 func _ready():
 	super()
+	cost_button.pressed.connect(_on_buy_button_pressed)
 	if equipment_scene != null:
 		equipment = equipment_scene.instantiate() as Equipment
 		equipment_icon.texture = equipment.equipment_icon
@@ -26,4 +28,8 @@ func buy(buyer : Entity):
 			slot_border.modulate = Color.ORANGE
 	else:
 		slot_border.modulate = Color.RED
+	pass
+
+func _on_buy_button_pressed():
+	attempt_to_buy.emit(self)
 	pass

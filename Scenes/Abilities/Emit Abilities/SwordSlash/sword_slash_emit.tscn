@@ -13,8 +13,8 @@
 [ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="9_1s2pk"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="9_7gl34"]
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="10_l6kdd"]
-[ext_resource type="Script" uid="uid://cj3muc43jf2gx" path="res://Scripts/Ability System/AbilityBehavior/StopOnCast.gd" id="13_hbelh"]
 [ext_resource type="Script" uid="uid://dsmtvuccs0v2m" path="res://Scripts/Ability System/AbilityBehavior/AllowCastWhileActive.gd" id="14_tdlmx"]
+[ext_resource type="Script" uid="uid://wxlytnemh2wh" path="res://Scripts/Ability System/AbilityBehavior/SlowOnCast.gd" id="15_wj4n2"]
 
 [sub_resource type="Resource" id="Resource_nt1cn"]
 script = ExtResource("3_d1onx")
@@ -79,11 +79,12 @@ stat = NodePath("..")
 scale_with_stat_id = "lifesteal"
 scale_ratio = 0.5
 
-[node name="StopOnCast" type="Node" parent="."]
-script = ExtResource("13_hbelh")
-stop_time = 0.25
-stop_on = 1
-
 [node name="AllowCastWhileActive" type="Node" parent="."]
 script = ExtResource("14_tdlmx")
 metadata/_custom_type_script = "uid://dsmtvuccs0v2m"
+
+[node name="SlowOnCast" type="Node" parent="."]
+script = ExtResource("15_wj4n2")
+slow_time = 0.25
+slow_multiplier = 0.7
+metadata/_custom_type_script = "uid://wxlytnemh2wh"

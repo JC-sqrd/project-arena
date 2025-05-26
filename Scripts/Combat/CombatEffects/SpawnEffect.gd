@@ -12,10 +12,6 @@ enum SpawnOn{ACTOR, TARGET}
 @export var hit_listener : HitListener
 
 
-func _ready():
-	#spawn_ability.cast_mode = spawn_ability.CastMode.AUTO
-	#spawn_ability.spawn = spawn_scene
-	pass
 
 func get_effect_key() -> Variant:
 	return "spawn_effect"
