@@ -30,7 +30,7 @@ signal attack_active
 signal attack_hits(enemy_hits : Array[Node2D]) # Deprecated
 signal attack_hit(hit_data : HitData)
 signal attack_end 
-
+signal windup_done()
 
 func _ready():
 	equipped.connect(on_equipped)

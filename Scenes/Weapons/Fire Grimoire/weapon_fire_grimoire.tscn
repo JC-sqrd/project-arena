@@ -1,9 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://df35xeepp7qfx"]
+[gd_scene load_steps=18 format=3 uid="uid://df35xeepp7qfx"]
 
 [ext_resource type="Script" uid="uid://d3fin4411ww46" path="res://Scripts/Combat/ProjectileWeapons/ProjectileWeapon.gd" id="1_i71yi"]
 [ext_resource type="PackedScene" uid="uid://dfh3qc3n36tdr" path="res://Scenes/Weapons/Fire Grimoire/grimoire_projectile.tscn" id="2_8254a"]
 [ext_resource type="Texture2D" uid="uid://cen8e7ne06b7p" path="res://Sprites/Weapons/Fire Grimoire/Fire Grimoire.png" id="3_lsxkw"]
-[ext_resource type="Texture2D" uid="uid://brsstgfkqtbgl" path="res://Placeholders/Icons/Icon.4_19.png" id="3_p54e5"]
 [ext_resource type="Script" uid="uid://cmdw2c71721x0" path="res://Scripts/Combat/Animation/AttackAnimation.gd" id="4_n12iv"]
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="5_2chfd"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="5_ghucb"]
@@ -60,7 +59,7 @@ hit_listener = NodePath("HitListener")
 sockets = [NodePath("WeaponSocket")]
 equipment_name = "Fire Grimoire"
 string_id = "fire_grimoire"
-equipment_icon = ExtResource("3_p54e5")
+equipment_icon = ExtResource("3_lsxkw")
 
 [node name="Damage" type="Node" parent="."]
 script = ExtResource("10_qnkbf")

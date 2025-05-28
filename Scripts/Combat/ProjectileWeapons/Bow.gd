@@ -40,19 +40,19 @@ func _process(delta):
 		start_coll_timer = true
 		_spawn_projectile()
 	
-	if start_coll_timer:
-		start_coll_timer = false
-		coll_enabled = true
-		coll_enabled_counter = 0.01
-		
-	
-	if coll_enabled_counter > 0:
-		coll_enabled_counter -= delta
-		
-	if coll_enabled_counter <= 0 and coll_enabled:
-		coll_enabled = false
-		coll_enabled_counter = 0
-		end_attack()
+	#if start_coll_timer:
+		#start_coll_timer = false
+		#coll_enabled = true
+		#coll_enabled_counter = 0.01
+		#
+	#
+	#if coll_enabled_counter > 0:
+		#coll_enabled_counter -= delta
+		#
+	#if coll_enabled_counter <= 0 and coll_enabled:
+		#coll_enabled = false
+		#coll_enabled_counter = 0
+		#end_attack()
 		
 	if look_at_mouse:
 		rotation = lerp_angle(rotation, (get_global_mouse_position() - global_position).normalized().angle(), 10 * delta)

@@ -3,6 +3,7 @@ extends Weapon
 
 @export var offset : float
 @export var piercing : bool = false
+@export var hit_coll_enabled_time : float = 0.01
 @export var debug_visual : bool = false
 @export var filter : SpawnableEnterFilter = SpawnableRayFilter.new()
 @export var look_at_mouse : bool = false
@@ -43,22 +44,23 @@ func melee_weapon_process(delta : float):
 	if start_windup:
 		start_windup = false
 		winding_up = true
-		attack_windup_time = minf(attack_windup_time, 1 / attack_speed)
+		attack_windup_time = minf(attack_windup_time, 1 / attack_speed_stat.stat_derived_value)
 		windup_counter = attack_windup_time
 	
 	if windup_counter > 0:
 		windup_counter -= delta
-	
+	#Done winding up
 	if windup_counter <= 0 and winding_up:
 		winding_up = false
 		windup_counter = 0
 		start_coll_timer = true
 		look_at_mouse = false
+		windup_done.emit()
 	
 	if start_coll_timer:
 		start_coll_timer = false
 		coll_enabled = true
-		coll_enabled_counter = 0.01
+		coll_enabled_counter = hit_coll_enabled_time
 		_enable_coll()
 		modulate = Color.ORANGE_RED
 	
@@ -102,7 +104,7 @@ func _enable_coll():
 	hitbox_coll.disabled = false
 	#coll_enabled_timer.start()
 	attack_active.emit()
-	_hit_enemy()
+	_hit_enemies()
 	
 	if debug_visual:
 		queue_redraw()
@@ -161,23 +163,8 @@ func get_coll_position() -> Vector2:
 func get_enemy_hit(body : Node2D):
 	if body.is_in_group("Hittable"):
 		enemy_hits.append(body)
-		#if piercing and body != actor:
-			#enemy_hit = body
-			#enemy_hits.append(body)
-			#attack_hits.emit(enemy_hits)
-			
-		#elif body != actor:
-			#var space : PhysicsDirectSpaceState2D = get_viewport().world_2d.direct_space_state
-			#var ray : PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(global_position,body.position, 2)
-			#var result = space.intersect_ray(ray)
-			#if result.size() != 0 and result["collider"] == body:
-				##Enemy gets hit and takes damage
-				#enemy_hit = body
-				#enemy_hits.append(body)
-
-
-		if debug_visual:
-			queue_redraw()
+	if debug_visual:
+		queue_redraw()
 	pass
 
 func _remove_enemy_hit(body : Node2D):
@@ -185,7 +172,7 @@ func _remove_enemy_hit(body : Node2D):
 		enemy_hits.erase(body)
 	pass
 
-func _hit_enemy():
+func _hit_enemies():
 	for enemy in enemy_hits:
 		var hit_data : Dictionary = _create_hit_data(enemy)
 		if hit_listener != null and filter.is_valid(self, enemy, enemy_hits):
@@ -194,6 +181,15 @@ func _hit_enemy():
 			hit_listener.on_hit(hit_data)
 			actor.basic_attack_hit.emit(hit_data)
 		pass
+	pass
+
+func _hit_entity(entity : Entity ):
+	var hit_data : Dictionary = _create_hit_data(entity)
+	if hit_listener != null and filter.is_valid(self, entity, enemy_hits):
+		attack_hit.emit(hit_data)
+		entity.on_hit.emit(hit_data)
+		hit_listener.on_hit(hit_data)
+		actor.basic_attack_hit.emit(hit_data)
 	pass
 
 func on_equipped(actor : Entity):

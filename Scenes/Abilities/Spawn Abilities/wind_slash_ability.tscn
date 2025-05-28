@@ -1,15 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://c322tkntieeqb"]
+[gd_scene load_steps=14 format=3 uid="uid://c322tkntieeqb"]
 
 [ext_resource type="Script" uid="uid://df7s4oatxu4hr" path="res://Scripts/Ability System/SpawnAbility.gd" id="1_p70bi"]
 [ext_resource type="PackedScene" uid="uid://b7gtk6x7ks7m8" path="res://Scenes/Spawnables/AreaEnterDamage/wind_slash_spawnable.tscn" id="2_t26ss"]
 [ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_3tusx"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="3_4vom4"]
 [ext_resource type="Texture2D" uid="uid://kbd0tg28o1sm" path="res://Placeholders/Sprites/WindProjectileIcon.png" id="3_74q7h"]
+[ext_resource type="Script" uid="uid://yd87aj2hybru" path="res://Scripts/Ability System/SpawnAbilitySpawnBehavior/PointSpawn.gd" id="3_85hsq"]
 [ext_resource type="Script" uid="uid://cfltv6h1swg76" path="res://Scripts/StatSystem/AbilityStatScaler.gd" id="4_is05x"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="5_hvopw"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="6_qu8cx"]
 [ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="7_ick7w"]
 [ext_resource type="Script" uid="uid://wxlytnemh2wh" path="res://Scripts/Ability System/AbilityBehavior/SlowOnCast.gd" id="10_42ktq"]
+
+[sub_resource type="Resource" id="Resource_85hsq"]
+script = ExtResource("3_85hsq")
+metadata/_custom_type_script = "uid://yd87aj2hybru"
 
 [sub_resource type="Resource" id="Resource_sgg3d"]
 script = ExtResource("3_3tusx")
@@ -20,8 +25,9 @@ required_value = 5.0
 script = ExtResource("1_p70bi")
 max_range = 50.0
 spawn = ExtResource("2_t26ss")
+spawn_behavior = SubResource("Resource_85hsq")
 required_stat = SubResource("Resource_sgg3d")
-cast_time = 0.2
+cast_time = 0.83
 hit_listener = NodePath("WindSlashHitListener")
 cooldown = 2.0
 ability_icon_texture = ExtResource("3_74q7h")

@@ -65,7 +65,7 @@ func _spawn_start():
 			actor.can_cast = true
 	)
 	spawn_behavior.hit_listener = hit_listener
-	var spawn_obj : Spawnable = spawn_behavior.spawn(self, actor, cast_position, cast_data["target_position"] as Vector2, spawn) as Spawnable
+	var spawn_obj : Spawnable = await spawn_behavior.spawn(self, actor, cast_position, cast_data["target_position"] as Vector2, spawn) as Spawnable
 	pass
 
 func _cancel_spawn():
@@ -88,6 +88,8 @@ func new_spawnable(spawnable_scene : PackedScene) -> Spawnable:
 	return spawn_object
 
 func _spawn_end():
+	actor.can_attack = true
+	actor.can_cast = true
 	ability_end.emit()
 	pass
 

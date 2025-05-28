@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cr6ajbl5x5egu"]
 
 [ext_resource type="Script" uid="uid://csk81q2x4j06s" path="res://Scripts/Combat/ProjectileWeapons/Projectile/Projectile.gd" id="1_bxxnk"]
-[ext_resource type="Texture2D" uid="uid://bjejgkunngclk" path="res://Sprites/BowAndArrow/Arrow.png" id="2_b8q0o"]
+[ext_resource type="Texture2D" uid="uid://bjejgkunngclk" path="res://Sprites/Weapons/Bow/Arrow.png" id="2_b8q0o"]
 
 [sub_resource type="Curve" id="Curve_b8q0o"]
 _data = [Vector2(0, 1), 0.0, 0.848164, 0, 0, Vector2(1, 0.853448), 0.0, 0.0, 0, 0]

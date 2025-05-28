@@ -13,10 +13,10 @@ var start_windup : bool = false
 var winding_up : bool = false
 var start_coll_timer : bool = false
 
-var coll_enabled : bool = false
+#var coll_enabled : bool = false
  
 var windup_counter : float
-var coll_enabled_counter : float
+#var coll_enabled_counter : float
 
 var attacking : bool = false
 
@@ -45,19 +45,19 @@ func projectile_weapon_process(delta : float):
 		_spawn_projectile()
 		
 	
-	if start_coll_timer:
-		start_coll_timer = false
-		coll_enabled = true
-		coll_enabled_counter = 0.01
-		
-	
-	if coll_enabled_counter > 0:
-		coll_enabled_counter -= delta
-		
-	if coll_enabled_counter <= 0 and coll_enabled:
-		coll_enabled = false
-		coll_enabled_counter = 0
-		end_attack()
+	#if start_coll_timer:
+		#start_coll_timer = false
+		#coll_enabled = true
+		#coll_enabled_counter = 0.01
+		#
+	#
+	#if coll_enabled_counter > 0:
+		#coll_enabled_counter -= delta
+		#
+	#if coll_enabled_counter <= 0 and coll_enabled:
+		#coll_enabled = false
+		#coll_enabled_counter = 0
+		#end_attack()
 		
 	if look_at_mouse:
 		rotation = lerp_angle(rotation, (get_global_mouse_position() - global_position).normalized().angle(), 10 * delta)
@@ -66,7 +66,7 @@ func projectile_weapon_process(delta : float):
 func start_attack():
 	if !attacking and can_attack:
 		start_windup = true
-		attack_windup_time = minf(attack_windup_time, 1 / attack_speed)
+		attack_windup_time = minf(attack_windup_time, 1 / attack_speed_stat.stat_derived_value)
 		attack_state = AttackState.START
 		attacking = true
 		#attack_timer.wait_time = min(attack_windup_time, attack_cooldown)

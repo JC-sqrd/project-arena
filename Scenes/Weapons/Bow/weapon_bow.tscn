@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dq2ilob20a4t5"]
+[gd_scene load_steps=12 format=3 uid="uid://dq2ilob20a4t5"]
 
 [ext_resource type="Script" uid="uid://dnnl681s4yejk" path="res://Scripts/Combat/ProjectileWeapons/Bow.gd" id="1_dscfw"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="2_7hck8"]
 [ext_resource type="PackedScene" uid="uid://cr6ajbl5x5egu" path="res://Scenes/Weapons/Bow/arrow_projectile.tscn" id="2_1500e"]
-[ext_resource type="Texture2D" uid="uid://brnjjbr66u1vv" path="res://Placeholders/Icons/Icon.4_60.png" id="3_1500e"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="3_esbd8"]
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="4_1500e"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="4_cwckh"]
@@ -24,7 +23,7 @@ attack_speed_stat = NodePath("AttackSpeed")
 attack_windup_time = 0.1
 hit_listener = NodePath("HitListener")
 equipment_name = "Bow"
-equipment_icon = ExtResource("3_1500e")
+equipment_icon = ExtResource("4_ibmun")
 metadata/_custom_type_script = "uid://d3fin4411ww46"
 
 [node name="Bow" type="Sprite2D" parent="."]

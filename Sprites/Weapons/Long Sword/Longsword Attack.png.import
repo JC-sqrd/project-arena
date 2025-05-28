@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjejgkunngclk"
-path="res://.godot/imported/Arrow.png-8572d6ff391fe77b5e880f8787c7d150.ctex"
+uid="uid://bjghiliwmv17p"
+path="res://.godot/imported/Longsword Attack.png-55859a7283b88def6cfd0bb2cd3f05da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/BowAndArrow/Arrow.png"
-dest_files=["res://.godot/imported/Arrow.png-8572d6ff391fe77b5e880f8787c7d150.ctex"]
+source_file="res://Sprites/Weapons/Long Sword/Longsword Attack.png"
+dest_files=["res://.godot/imported/Longsword Attack.png-55859a7283b88def6cfd0bb2cd3f05da.ctex"]
 
 [params]
 

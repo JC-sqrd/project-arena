@@ -328,13 +328,10 @@ ability = NodePath("EnemyGroupProjectile")
 mana = NodePath("../../Stats/Mana")
 
 [node name="EnemyProjectile2" parent="AIRangeAttack/AIAbilityContainer" instance=ExtResource("4_bfe40")]
-max_range = 200.0
-cast_mode = 1
 
 [node name="EnemyGroupProjectile" parent="AIRangeAttack/AIAbilityContainer" instance=ExtResource("4_bfe40")]
 max_range = 5.0
 spawn = ExtResource("5_khmny")
-cast_mode = 1
 
 [node name="Timer" type="Timer" parent="AIRangeAttack/AIAbilityContainer"]
 
@@ -604,9 +601,12 @@ stream = ExtResource("55_3vcr2")
 script = ExtResource("56_ykwpf")
 entity = NodePath("..")
 
-[node name="EntityHitParticle" type="Node" parent="." node_paths=PackedStringArray("entity")]
+[node name="EntityHitParticle" type="Node" parent="." node_paths=PackedStringArray("entity", "hit_particle")]
 script = ExtResource("57_tme7j")
 entity = NodePath("..")
 particle_scene = ExtResource("58_j6gbo")
+hit_particle = NodePath("../EnemyHitSparkParticle")
+
+[node name="EnemyHitSparkParticle" parent="." instance=ExtResource("58_j6gbo")]
 
 [editable path="Panel/MarginContainer/TextureProgressBar"]

@@ -20,7 +20,7 @@ func spawn(ability : Ability, actor: Entity, spawn_position : Vector2, spawn_dir
 		#spawn_rotation = spawn_direction.angle()
 	#else:
 		#spawn_rotation = actor.global_position.direction_to(actor.get_global_mouse_position()).angle()
-	spawn_rotation = actor.global_position.direction_to(spawn_direction).angle()
+	spawn_rotation = ability.global_position.direction_to(actor.get_global_mouse_position()).angle()
 	
 	spawn.global_position = spawn_position
 	spawn.rotation = spawn_rotation

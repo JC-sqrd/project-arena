@@ -973,6 +973,8 @@ process_material = SubResource("ParticleProcessMaterial_t8bln")
 [node name="PointLight2D" parent="ExpOrb" index="2"]
 color = Color(0, 0.560693, 0.531956, 1)
 
+[node name="ItemChanceBlockDamage" parent="." instance=ExtResource("3_w24wr")]
+
 [editable path="DummyEnemy"]
 [editable path="DummyEnemy/Panel/MarginContainer/TextureProgressBar"]
 [editable path="ExpOrb"]
