@@ -18,7 +18,11 @@ func _ready():
 	get_tree().create_timer(windup_time, false, false, false).timeout.connect(_on_windup_end)
 
 func _on_timer_timeout():
+	get_tree().create_timer(time_active, false, false, false).timeout.connect(func (): 
+		inactive.emit()
+		)
 	get_tree().create_timer(lifetime, false, false, false).timeout.connect(func (): 
+		inactive.emit()
 		on_destroy.emit()
 		if free_on_lifetime_end:
 			queue_free()
@@ -40,7 +44,7 @@ func _on_windup_end():
 	windup_end.emit()
 	spawnable_start.emit()
 	area_hit()
-	_on_timer_timeout()	
+	_on_timer_timeout()
 	pass
 
 #func _create_hit_data(entity_hit : Entity) -> HitData:

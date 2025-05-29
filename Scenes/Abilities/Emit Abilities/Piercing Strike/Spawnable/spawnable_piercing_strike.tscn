@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://k8jxgxvgf4be"]
+
+[ext_resource type="Script" uid="uid://c2nhbp4pxbtij" path="res://Scripts/Ability System/Spawnables/AreaHit.gd" id="1_5thp6"]
+[ext_resource type="Script" uid="uid://bg43jxy7gyts0" path="res://Scripts/Ability System/Spawnables/SpawnableEnterFilter/SpawnableEnterFilter.gd" id="2_5thp6"]
+[ext_resource type="Texture2D" uid="uid://bo52mn5hfixrc" path="res://Sprites/Weapons/Long Sword/Piercing Strike Animation.png" id="3_ms73a"]
+
+[sub_resource type="Resource" id="Resource_ms73a"]
+script = ExtResource("2_5thp6")
+metadata/_custom_type_script = "uid://bg43jxy7gyts0"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8tcq"]
+size = Vector2(550, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2geg"]
+atlas = ExtResource("3_ms73a")
+region = Rect2(0, 0, 549, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hptru"]
+atlas = ExtResource("3_ms73a")
+region = Rect2(549, 0, 549, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwnyr"]
+atlas = ExtResource("3_ms73a")
+region = Rect2(1098, 0, 549, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2he2x"]
+atlas = ExtResource("3_ms73a")
+region = Rect2(1647, 0, 549, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccodj"]
+atlas = ExtResource("3_ms73a")
+region = Rect2(2196, 0, 549, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1frjd"]
+atlas = ExtResource("3_ms73a")
+region = Rect2(2745, 0, 549, 78)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dbbc2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2geg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hptru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwnyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2he2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccodj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1frjd")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="SpawnablePiercingStrike" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_5thp6")
+windup_time = 0.05
+lifetime = 0.4
+time_active = 0.25
+filter = SubResource("Resource_ms73a")
+metadata/_custom_type_script = "uid://c2nhbp4pxbtij"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(276, 0)
+shape = SubResource("RectangleShape2D_f8tcq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(275, 0)
+sprite_frames = SubResource("SpriteFrames_dbbc2")
+autoplay = "default"
+frame = 6
+frame_progress = 1.0

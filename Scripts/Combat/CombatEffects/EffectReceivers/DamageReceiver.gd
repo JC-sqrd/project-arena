@@ -78,9 +78,10 @@ func receive_effect(data : Dictionary):
 		damage_data.total_damage = damage_received
 		damage_data.damage = unmodified_damage
 		
-		if damage_data.is_lifesteal:
-			var lifesteal_effect : DamageReceiver.Lifesteal = damage_data.lifesteal 
-			lifesteal_effect.lifesteal(data, damage_data)
+		if damage_data.is_lifesteal and damage_data.lifesteal_percentage != 0:
+			#var lifesteal_effect : DamageReceiver.Lifesteal = damage_data.lifesteal 
+			#lifesteal_effect.lifesteal(data, damage_data)
+			_lifesteal(data, damage_data, damage_data.lifesteal_percentage)
 			
 		if damage_data.critical:
 			actor.critical_striked.emit(data)
@@ -95,6 +96,23 @@ func receive_effect(data : Dictionary):
 		damage_data.recieved = true
 	pass
 
+
+
+func _lifesteal(hit_data : Dictionary, damage_data : DamageEffectData, lifesteal_percentage : float):
+	if hit_data["actor"] != null:
+		var actor : Entity = hit_data.get("actor") as Entity
+		actor.heal(_create_lifesteal_data(hit_data, damage_data.damage * lifesteal_percentage))
+	pass
+
+func _create_lifesteal_data(hit_data : Dictionary, heal_amount : float) -> HealEffectData:
+	#var heal_data : Dictionary
+	#heal_data["source"] = hit_data.get("source")
+	#heal_data["heal_amount"] = heal_amount 
+	#heal_data["type"] = lifesteal_type 
+	var lifesteal_data : HealEffectData = HealEffectData.new(heal_amount)
+	#lifesteal_data.heal_amount = heal_amount
+	lifesteal_data.source = hit_data["source"]
+	return lifesteal_data
 
 class Lifesteal:
 	var percentage : float = 0

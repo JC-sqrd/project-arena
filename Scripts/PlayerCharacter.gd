@@ -31,9 +31,9 @@ func take_damage(damage_data : DamageEffectData) -> float:
 	return mitigated_damage
 	pass
 
-func heal(heal_data : Dictionary):
-	health_manager.add_current_health(heal_data["heal_amount"])
-	healed.emit(heal_data["heal_amount"])
+func heal(heal_data : HealEffectData):
+	health_manager.add_current_health(heal_data.heal_amount)
+	healed.emit(heal_data.heal_amount)
 	pass
 
 func attack(attack_data : Dictionary):

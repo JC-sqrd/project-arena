@@ -268,11 +268,12 @@ metadata/_custom_type_script = "uid://cp6un5w7sjul2"
 [node name="HitListener" type="Node" parent="."]
 script = ExtResource("15_y2m5j")
 
-[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat", "penetration_stat", "crit_chance_stat")]
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat", "penetration_stat", "crit_chance_stat", "lifesteal_stat")]
 script = ExtResource("16_02g2i")
 damage_stat = NodePath("../../Damage")
 penetration_stat = NodePath("../../ActorArmorPen")
 crit_chance_stat = NodePath("../../ActorCrit")
+lifesteal_stat = NodePath("../../ActorLifesteal")
 
 [node name="OnHitEffect" type="Node" parent="HitListener"]
 script = ExtResource("17_k3yuu")
@@ -296,6 +297,14 @@ script = ExtResource("18_3y54e")
 script = ExtResource("19_yd84k")
 stat = NodePath("..")
 scale_with_stat_id = "armor_pen"
+
+[node name="ActorLifesteal" type="Node" parent="."]
+script = ExtResource("18_3y54e")
+
+[node name="GetActorStatScaler" type="Node" parent="ActorLifesteal" node_paths=PackedStringArray("stat")]
+script = ExtResource("19_yd84k")
+stat = NodePath("..")
+scale_with_stat_id = "lifesteal"
 
 [node name="ActorAttackSpeed" type="Node" parent="."]
 script = ExtResource("18_3y54e")

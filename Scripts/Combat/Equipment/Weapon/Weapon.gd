@@ -157,6 +157,8 @@ func on_equipped(actor : Entity):
 				actor.hit_listeners.append(hit_listener)
 	if weapon_ability != null:
 		weapon_ability.actor = actor
+		weapon_ability.ready.emit()
+		print("WEAPON ABILITY ACTOR: " + str(weapon_ability.actor))
 	ready.emit()
-	print("WEAPON EQUIPPED")
+	print("WEAPON EQUIPPED: " + str(actor))
 	pass

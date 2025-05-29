@@ -8,7 +8,7 @@ extends Effect
 @export var damage_type : Enums.DamageType
 @export var health_percent_damage : bool = false
 ## Flag for lifesteal
-@export var lifesteal : bool = false
+@export var can_lifesteal : bool = true
 @export var lifesteal_stat : Stat
 @export var lifesteal_type : Enums.DamageType 
 var bonus_damage_checks : Array[EffectCheck]
@@ -78,9 +78,10 @@ func get_effect_value() -> Variant:
 		else:
 			damage_effect_data.critical = false
 	damage_effect_data.damage_type = damage_type
-	damage_effect_data.is_lifesteal = (lifesteal)
-	if lifesteal:
-		damage_effect_data.lifesteal = (DamageReceiver.Lifesteal.new(lifesteal_stat.stat_derived_value, lifesteal_type))
+	damage_effect_data.is_lifesteal = (can_lifesteal)
+	if can_lifesteal and lifesteal_stat != null:
+		damage_effect_data.lifesteal_percentage = lifesteal_stat.stat_derived_value
+		#damage_effect_data.lifesteal = (DamageReceiver.Lifesteal.new(lifesteal_stat.stat_derived_value, lifesteal_type))
 	damage_effect_data.checks = (checks)
 	
 	damage_data_created.emit(damage_effect_data) 

@@ -22,4 +22,3 @@ func _on_body_exited(body : Node2D):
 	if body is CharacterBody2D:
 		characters_on_range.erase(body)
 	pass	
-

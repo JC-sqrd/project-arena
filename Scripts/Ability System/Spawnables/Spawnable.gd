@@ -2,6 +2,7 @@ class_name Spawnable
 extends Area2D
 
 @export var lifetime : float = 1
+@export var time_active : float = 1
 @export var filter : SpawnableEnterFilter = SpawnableEnterFilter.new()
 @export var hit_listener : HitListener
 var entities_in_area : Array[Entity]
@@ -16,6 +17,7 @@ signal on_hit(hit_data : Dictionary)
 signal windup_start()
 signal windup_end()
 signal spawnable_start()
+signal inactive
 
 func _create_hit_data(entity_hit : Entity) -> Dictionary:
 	var data : Dictionary = hit_data.duplicate(true)

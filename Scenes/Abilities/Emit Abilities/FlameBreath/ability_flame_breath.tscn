@@ -105,7 +105,6 @@ damage_stat = NodePath("ScaledDamage")
 scaling_ratio = null
 damage_type = 1
 health_percent_damage = null
-lifesteal = null
 lifesteal_type = null
 metadata/_custom_type_script = "uid://c8sj8b1npavnd"
 

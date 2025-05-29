@@ -11,8 +11,6 @@ func pickup(entity : Entity):
 	picked_up.emit()
 	queue_free()
 
-func _create_heal_data() -> Dictionary:
-	var heal_data : Dictionary
-	
+func _create_heal_data() -> HealEffectData:
+	var heal_data : HealEffectData
 	return heal_data
-	

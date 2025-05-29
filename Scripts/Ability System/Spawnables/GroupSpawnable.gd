@@ -9,9 +9,13 @@ func _ready():
 			child.source = source
 			child.hit_data = hit_data
 			child.stack = stack
-	
+	get_tree().create_timer(time_active, false, false, false).timeout.connect(func (): 
+		inactive.emit()
+		)
 	get_tree().create_timer(lifetime, false, true, false).timeout.connect(
 		func():
+			inactive.emit()
+			on_destroy.emit()
 			queue_free()
 	)
 

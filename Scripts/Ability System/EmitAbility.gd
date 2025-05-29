@@ -26,7 +26,7 @@ func _start_emit():
 	var object = emited_object.instantiate() as Spawnable
 	object.source = self
 	object.on_hit.connect(_on_ability_hit)
-	object.on_destroy.connect(_end_emit)
+	object.inactive.connect(_end_emit)
 	object.collision_mask = (object.collision_mask - actor.original_coll_layer)
 	if hit_listener != null:
 		object.hit_data = hit_listener.generate_effect_data()

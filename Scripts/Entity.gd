@@ -51,8 +51,8 @@ func hit(hit_data : Dictionary):
 	on_hit.emit(hit_data)
 	pass
 
-func heal(heal_data : Dictionary):
-	healed.emit(heal_data["heal_amount"])
+func heal(heal_data : HealEffectData):
+	healed.emit(heal_data.heal_amount)
 	pass
 
 func attack(attack_data : Dictionary):

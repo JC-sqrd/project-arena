@@ -11,7 +11,10 @@
 
 [node name="EnemyHitParticle" parent="." index="0" instance=ExtResource("2_a3qyk")]
 
-[node name="LongSword" parent="EquipmentInventory" index="0" instance=ExtResource("3_j6f0m")]
+[node name="SwiftSword" parent="EquipmentInventory" index="0" instance=ExtResource("5_a3qyk")]
+visible = false
+position = Vector2(-1.90735e-06, 0)
+scale = Vector2(0.999999, 0.999999)
 
 [node name="InnateActiveAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("SwordSlashEmit")
@@ -26,14 +29,14 @@ ability = NodePath("AbilityLungeStrike")
 
 [node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
 position = Vector2(-1.07288e-06, 9)
-equipment = NodePath("WeaponPosition/SwiftSword")
+equipment = NodePath("WeaponPosition/LongSword")
 
 [node name="WeaponPosition" parent="WeaponSlot" index="1"]
 position = Vector2(17, 0)
 
-[node name="SwiftSword" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("5_a3qyk")]
-visible = false
+[node name="LongSword" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("3_j6f0m")]
 position = Vector2(-17, -9.00001)
+scale = Vector2(1, 1)
 
 [node name="OffhandWeaponSlot" parent="." index="7"]
 position = Vector2(0, 9)

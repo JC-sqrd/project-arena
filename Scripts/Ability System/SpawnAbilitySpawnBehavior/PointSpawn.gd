@@ -11,7 +11,7 @@ func spawn(ability : Ability, actor: Entity, spawn_position : Vector2, spawn_dir
 	spawn.source = ability
 	spawn.actor = actor
 	spawn.on_hit.connect(ability._on_ability_hit)
-	spawn.on_destroy.connect(ability._spawn_end)
+	spawn.inactive.connect(ability._spawn_end)
 	spawn.collision_mask = (spawn.collision_mask - actor.collision_layer)
 	if hit_listener != null:
 		spawn.hit_data = hit_listener.generate_effect_data()

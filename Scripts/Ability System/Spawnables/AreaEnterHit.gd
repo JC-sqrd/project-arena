@@ -2,8 +2,12 @@ class_name AreaEnterHit
 extends AreaHit
 
 func _on_timer_timeout():
+	get_tree().create_timer(time_active, false, false, false).timeout.connect(func (): 
+		inactive.emit()
+		)
 	get_tree().create_timer(0.1, false, false, false).timeout.connect(func (): 
 		get_tree().create_timer(lifetime, false, true, false).timeout.connect(func():
+			inactive.emit()
 			on_destroy.emit()
 			if free_on_lifetime_end:
 				queue_free()
