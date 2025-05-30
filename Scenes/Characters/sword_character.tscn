@@ -26,6 +26,7 @@ start_cooldown_on = 1
 ability = NodePath("AbilityLungeStrike")
 
 [node name="AbilityLungeStrike" parent="UtilityAbilityContainer" index="2" instance=ExtResource("2_qi0ur")]
+cooldown = 4.0
 
 [node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
 position = Vector2(-1.07288e-06, 9)
@@ -36,7 +37,6 @@ position = Vector2(17, 0)
 
 [node name="LongSword" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("3_j6f0m")]
 position = Vector2(-17, -9.00001)
-scale = Vector2(1, 1)
 
 [node name="OffhandWeaponSlot" parent="." index="7"]
 position = Vector2(0, 9)

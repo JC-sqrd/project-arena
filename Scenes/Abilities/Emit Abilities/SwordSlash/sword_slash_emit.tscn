@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://od3lf463dx1c"]
+[gd_scene load_steps=19 format=3 uid="uid://od3lf463dx1c"]
 
 [ext_resource type="Script" uid="uid://42qvy4m6xprb" path="res://Scripts/Ability System/EmitAbility.gd" id="1_ellgo"]
 [ext_resource type="PackedScene" uid="uid://67ivgv6bxove" path="res://Scenes/Spawnables/AreaDamage/sword_slash_area_damage.tscn" id="2_224we"]
+[ext_resource type="Script" uid="uid://defs21qv7fv3t" path="res://Scripts/Ability System/AbilityInputMode/PressedAbilityInputMode.gd" id="3_7gl34"]
 [ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_d1onx"]
 [ext_resource type="Texture2D" uid="uid://dsa3jttn1hoty" path="res://Placeholders/Sprites/WindSlashAbilityIcon.png" id="3_qlkjh"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="3_ry3wr"]
@@ -16,6 +17,10 @@
 [ext_resource type="Script" uid="uid://dsmtvuccs0v2m" path="res://Scripts/Ability System/AbilityBehavior/AllowCastWhileActive.gd" id="14_tdlmx"]
 [ext_resource type="Script" uid="uid://wxlytnemh2wh" path="res://Scripts/Ability System/AbilityBehavior/SlowOnCast.gd" id="15_wj4n2"]
 
+[sub_resource type="Resource" id="Resource_ngo03"]
+script = ExtResource("3_7gl34")
+metadata/_custom_type_script = "uid://defs21qv7fv3t"
+
 [sub_resource type="Resource" id="Resource_nt1cn"]
 script = ExtResource("3_d1onx")
 stat_name = "current_mana"
@@ -24,6 +29,7 @@ required_value = 15.0
 [node name="SwordSlashEmit" type="Node2D" node_paths=PackedStringArray("hit_listener")]
 script = ExtResource("1_ellgo")
 emited_object = ExtResource("2_224we")
+input_mode = SubResource("Resource_ngo03")
 required_stat = SubResource("Resource_nt1cn")
 cast_time = 0.25
 hit_listener = NodePath("HitListener")

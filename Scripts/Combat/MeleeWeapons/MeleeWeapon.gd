@@ -60,7 +60,7 @@ func melee_weapon_process(delta : float):
 	if start_coll_timer:
 		start_coll_timer = false
 		coll_enabled = true
-		coll_enabled_counter = hit_coll_enabled_time
+		coll_enabled_counter = minf(hit_coll_enabled_time, 1 / attack_speed_stat.stat_derived_value)
 		_enable_coll()
 		modulate = Color.ORANGE_RED
 	
@@ -160,11 +160,16 @@ func get_coll_position() -> Vector2:
 			#queue_redraw()
 	#pass
 
-func get_enemy_hit(body : Node2D):
+func get_enemy_in_area(body : Node2D):
 	if body.is_in_group("Hittable"):
 		enemy_hits.append(body)
 	if debug_visual:
 		queue_redraw()
+	pass
+
+func hit_entity_on_enter(body : Node2D):
+	if coll_enabled and body.is_in_group("Hittable"):
+		_hit_entity(body)
 	pass
 
 func _remove_enemy_hit(body : Node2D):
@@ -204,7 +209,8 @@ func on_equipped(actor : Entity):
 		)
 		area_size_mult = actor.stat_manager.stats["area_size"].stat_derived_value
 	scale *= area_size_mult
-	self.body_entered.connect(get_enemy_hit)
+	self.body_entered.connect(get_enemy_in_area)
+	self.body_entered.connect(hit_entity_on_enter)
 	self.body_exited.connect(_remove_enemy_hit)
 	#hitbox_coll = $CollisionShape2D
 	#Initialization

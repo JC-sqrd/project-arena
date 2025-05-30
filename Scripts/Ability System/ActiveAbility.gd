@@ -1,6 +1,8 @@
 class_name ActiveAbility
 extends Ability
 
+enum InputMode {PRESSED, HELD}
+@export var input_mode : PressedAbilityInputMode = PressedAbilityInputMode.new()
 
 func get_cast_data() -> Dictionary:
 	var data : Dictionary

@@ -135,6 +135,7 @@ animations = [{
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_x277f")
+hit_coll_enabled_time = 0.35
 filter = SubResource("Resource_hpkqv")
 attack_damage = NodePath("Damage")
 attack_speed_stat = NodePath("AttackSpeed")
