@@ -310,9 +310,10 @@ metadata/_custom_type_script = "uid://i2thtk66tgpr"
 
 [node name="HitReceiver" parent="." instance=ExtResource("12_rbffg")]
 
-[node name="DamageListener" type="Node" parent="." node_paths=PackedStringArray("health")]
+[node name="DamageListener" type="Node" parent="." node_paths=PackedStringArray("health", "health_manager")]
 script = ExtResource("13_ave0o")
 health = NodePath("../Stats/Health")
+health_manager = NodePath("../HealthManager")
 
 [node name="MagicResistMitigation" type="Node" parent="DamageListener" node_paths=PackedStringArray("mitigate_stat")]
 script = ExtResource("14_710be")

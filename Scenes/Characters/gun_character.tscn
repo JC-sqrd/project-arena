@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bptnxnhvrfpcp"]
 
-[ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/test_character.tscn" id="1_htyvo"]
+[ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_htyvo"]
 [ext_resource type="PackedScene" uid="uid://blgfsj2jbixh6" path="res://Scenes/Weapons/Magic Gun/weapon_magic_gun.tscn" id="2_7rjos"]
 [ext_resource type="PackedScene" uid="uid://dpxeo3vfdhsen" path="res://Scenes/Items/burst_damage/item_burst_damage.tscn" id="5_eg0o0"]
 [ext_resource type="PackedScene" uid="uid://dhn271q16a0kf" path="res://Scenes/Abilities/Emit Abilities/RayBurst/ability_ray_burst.tscn" id="5_pymqp"]

@@ -342,9 +342,10 @@ speed = NodePath("../Stats/MoveSpeed")
 
 [node name="HitReceiver" parent="." instance=ExtResource("8_855ry")]
 
-[node name="DamageListener" type="Node" parent="." node_paths=PackedStringArray("health")]
+[node name="DamageListener" type="Node" parent="." node_paths=PackedStringArray("health", "health_manager")]
 script = ExtResource("9_8ggx6")
 health = NodePath("../Stats/Health")
+health_manager = NodePath("../HealthManager")
 
 [node name="MagicResistMitigation" type="Node" parent="DamageListener" node_paths=PackedStringArray("mitigate_stat")]
 script = ExtResource("10_elw8f")

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=4 format=3 uid="uid://yj5xsml2cx1m"]
+
+[ext_resource type="PackedScene" uid="uid://blgfsj2jbixh6" path="res://Scenes/Weapons/Magic Gun/weapon_magic_gun.tscn" id="1_4olg1"]
+[ext_resource type="Script" uid="uid://7g2i8l80ndkw" path="res://Scripts/Resources/EquipmentData/EquipmentData.gd" id="1_7rdot"]
+[ext_resource type="Texture2D" uid="uid://d6l6rk5tkago" path="res://Placeholders/Icons/Icon.3_33.png" id="1_ubfkn"]
+
+[resource]
+script = ExtResource("1_7rdot")
+equipment_scene = ExtResource("1_4olg1")
+equipment_name = "Magic Gun"
+type = 0
+tier = 0
+string_id = "magic_gun"
+equipment_description = ""
+equipment_details = ""
+equipment_icon = ExtResource("1_ubfkn")
+buy_cost = 0.0
+sell_value = 0.0
+metadata/_custom_type_script = "uid://7g2i8l80ndkw"

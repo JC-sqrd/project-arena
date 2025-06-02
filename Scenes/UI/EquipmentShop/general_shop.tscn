@@ -2,17 +2,15 @@
 
 [ext_resource type="Script" uid="uid://cl8p3vpl3cns0" path="res://Scripts/GeneralShop/GeneralShopUI.gd" id="1_7d2p3"]
 [ext_resource type="PackedScene" uid="uid://babmiqnjapjdm" path="res://Scenes/UI/EquipmentShop/item_shop_card.tscn" id="2_kle2u"]
-[ext_resource type="PackedScene" uid="uid://dusnluek410g4" path="res://Scenes/Items/gain_attack_speed/item_attack_speed.tscn" id="3_ip65n"]
+[ext_resource type="Resource" uid="uid://dwrffqm5kiun6" path="res://Scripts/Resources/ItemData/item_data_strength.tres" id="4_ip65n"]
+[ext_resource type="Resource" uid="uid://c8rqy5cdi2len" path="res://Scripts/Resources/EquipmentData/equipment_data_swift_sword.tres" id="5_1stx0"]
 [ext_resource type="PackedScene" uid="uid://4wls88f0glxy" path="res://Scenes/UI/EquipmentShop/equipment_shop_card.tscn" id="5_s0db2"]
-[ext_resource type="PackedScene" uid="uid://dengtpj68hcix" path="res://Scenes/Equipments/Head Gears/headgear_iron_helmet.tscn" id="6_1stx0"]
 
 [node name="GeneralShop" type="Control"]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7d2p3")
@@ -61,7 +59,7 @@ layout_mode = 2
 
 [node name="ItemShopCard" parent="Panel/VBoxContainer/VBoxContainer/ItemBuyContainer" instance=ExtResource("2_kle2u")]
 layout_mode = 2
-item_scene = ExtResource("3_ip65n")
+item_data = ExtResource("4_ip65n")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
@@ -83,7 +81,7 @@ layout_mode = 2
 
 [node name="EquipmentShopCard" parent="Panel/VBoxContainer/VBoxContainer2/EquipmentBuyContainer" instance=ExtResource("5_s0db2")]
 layout_mode = 2
-equipment_scene = ExtResource("6_1stx0")
+equipment_data = ExtResource("5_1stx0")
 
 [node name="RestockShopButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2

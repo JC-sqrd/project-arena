@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cggb2x36mslpl"]
+[gd_scene load_steps=8 format=3 uid="uid://cggb2x36mslpl"]
 
-[ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/test_character.tscn" id="1_n43wd"]
+[ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_n43wd"]
 [ext_resource type="PackedScene" uid="uid://ull35nal2yub" path="res://Scenes/Particles/enemy_hit_particle.tscn" id="2_a3qyk"]
 [ext_resource type="PackedScene" uid="uid://od3lf463dx1c" path="res://Scenes/Abilities/Emit Abilities/SwordSlash/sword_slash_emit.tscn" id="2_qau1h"]
 [ext_resource type="PackedScene" uid="uid://cacqqobo0qx73" path="res://Scenes/Abilities/AbilityTrees/LungeStrike/ability_lunge_strike.tscn" id="2_qi0ur"]
 [ext_resource type="PackedScene" uid="uid://c4234y32d7c7u" path="res://Scenes/Weapons/Long Sword/weapon_long_sword.tscn" id="3_j6f0m"]
+[ext_resource type="PackedScene" uid="uid://bsb66ckahw7x" path="res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn" id="4_c67hu"]
 [ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="5_a3qyk"]
 
 [node name="SwordCharacter" instance=ExtResource("1_n43wd")]
@@ -16,11 +17,14 @@ visible = false
 position = Vector2(-1.90735e-06, 0)
 scale = Vector2(0.999999, 0.999999)
 
+[node name="WeaponWoodenMagicStaff" parent="EquipmentInventory" index="1" instance=ExtResource("4_c67hu")]
+
 [node name="InnateActiveAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("SwordSlashEmit")
 
 [node name="SwordSlashEmit" parent="InnateActiveAbility" index="1" instance=ExtResource("2_qau1h")]
 start_cooldown_on = 1
+ability_name = "Sword Slash"
 
 [node name="UtilityAbilityContainer" parent="." index="4" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityLungeStrike")

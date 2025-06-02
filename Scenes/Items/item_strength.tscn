@@ -11,7 +11,6 @@
 script = ExtResource("1_7ns6k")
 item_name = "Iron Vambrace"
 item_icon = ExtResource("3_ndmdd")
-item_id = 3
 string_id = "gain_damage"
 item_detail = "Gain [color=green]1[/color] [color=crimson]attack damage[/color](+1 for each stack)"
 buy_cost = 50.0

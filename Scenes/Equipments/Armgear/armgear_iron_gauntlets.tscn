@@ -9,6 +9,7 @@
 script = ExtResource("1_xa2i5")
 equipment_name = "Iron Gauntlets"
 type = 3
+string_id = "iron_gauntlets"
 equipment_icon = ExtResource("2_s1sw7")
 metadata/_custom_type_script = "uid://cfgh4nylljfr5"
 

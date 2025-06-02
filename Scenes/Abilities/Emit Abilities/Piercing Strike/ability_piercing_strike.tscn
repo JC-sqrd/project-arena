@@ -27,7 +27,7 @@ required_stat = SubResource("Resource_joa3i")
 cast_time = 0.25
 hit_listener = NodePath("HitListener")
 ability_name = "Piercing Strike"
-cooldown = 3.0
+cooldown = 0.5
 metadata/_custom_type_script = "uid://42qvy4m6xprb"
 
 [node name="HitListener" type="Node" parent="."]

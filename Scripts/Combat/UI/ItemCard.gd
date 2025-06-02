@@ -4,6 +4,7 @@ extends Control
 @export var item_texture_rect : TextureRect
 @export var item_name_label : RichTextLabel
 @export var item_detail_label : RichTextLabel
+var item_data : ItemData
 signal item_card_picked(item : Item)
 var item : Item
 
@@ -12,11 +13,12 @@ func _ready():
 	mouse_exited.connect(_on_mouse_exited)
 	pass
 
-func initialize(item : Item):
-	self.item = item
-	item_name_label.text = item.item_name
-	item_texture_rect.texture = item.item_icon
-	item_detail_label.text = item.item_detail
+func initialize(item_data : ItemData):
+	#self.item = item
+	self.item_data = item_data
+	item_name_label.text = item_data.item_name
+	item_texture_rect.texture = item_data.item_icon
+	item_detail_label.text = item_data.item_detail
 	pass
 
 func _on_mouse_entered():
@@ -45,8 +47,8 @@ func _gui_input(event):
 			tween.set_ease(Tween.EASE_OUT)
 			tween.set_trans(Tween.TRANS_ELASTIC)
 			tween.tween_property(self, "scale", Vector2.ONE * 1.15, 0.15)
-			if item != null:
-				item_card_picked.emit(item)
+			if item_data != null:
+				item_card_picked.emit(item_data.item_scene.instantiate() as Item)
 				pass
 			pass
 		elif !event.pressed:

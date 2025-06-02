@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=4 format=3 uid="uid://6f74y8pspxna"]
+
+[ext_resource type="Texture2D" uid="uid://vdm436vnjrbj" path="res://Sprites/Weapons/Long Sword/Longsword.png" id="1_45kis"]
+[ext_resource type="Script" uid="uid://7g2i8l80ndkw" path="res://Scripts/Resources/EquipmentData/EquipmentData.gd" id="1_vcwh3"]
+[ext_resource type="PackedScene" uid="uid://c4234y32d7c7u" path="res://Scenes/Weapons/Long Sword/weapon_long_sword.tscn" id="2_oem5j"]
+
+[resource]
+script = ExtResource("1_vcwh3")
+equipment_scene = ExtResource("2_oem5j")
+equipment_name = "Long Sword"
+type = 0
+tier = 0
+string_id = "long_sword"
+equipment_description = ""
+equipment_details = ""
+equipment_icon = ExtResource("1_45kis")
+buy_cost = 0.0
+sell_value = 0.0
+metadata/_custom_type_script = "uid://7g2i8l80ndkw"

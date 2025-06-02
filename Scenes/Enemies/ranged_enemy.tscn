@@ -307,11 +307,11 @@ damage_stat = NodePath("../../Stats/AttackDamage")
 
 [node name="AddGoldOnSlain" type="Node" parent="."]
 script = ExtResource("4_43lu3")
-gold_add = 15.0
+gold_add = 5.0
 
 [node name="AddExpOnSlain" type="Node" parent="."]
 script = ExtResource("5_olt5a")
-exp_add = 1.0
+exp_add = 2.0
 exp_label_color = Color(0.917647, 0, 0.941176, 1)
 
 [node name="ManaManager" type="Node" parent="." node_paths=PackedStringArray("stat_manager", "max_mana", "current_mana", "mana_regen")]
@@ -329,9 +329,10 @@ speed = NodePath("../Stats/MoveSpeed")
 
 [node name="HitReceiver" parent="." instance=ExtResource("8_kiut4")]
 
-[node name="DamageListener" type="Node" parent="." node_paths=PackedStringArray("health")]
+[node name="DamageListener" type="Node" parent="." node_paths=PackedStringArray("health", "health_manager")]
 script = ExtResource("9_n62t5")
 health = NodePath("../Stats/Health")
+health_manager = NodePath("../HealthManager")
 
 [node name="MagicResistMitigation" type="Node" parent="DamageListener" node_paths=PackedStringArray("mitigate_stat")]
 script = ExtResource("10_wd6nc")

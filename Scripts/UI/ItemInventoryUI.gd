@@ -16,7 +16,7 @@ func _ready():
 
 func _on_new_item_added(item : Item):
 	var item_icon : InventoryItemIcon = item_icon_scene.instantiate() as InventoryItemIcon
-	item_icon.item_id = item.item_id
+	item_icon.item_id = item.string_id
 	item_icon.item_name = item.item_name
 	item_icon.item_texture_rect.texture = item.item_icon
 	item_icon.item_detail = item.item_detail
@@ -30,7 +30,7 @@ func _on_new_item_added(item : Item):
 
 func _on_item_stack_added(item : Item):
 	for item_icon in item_icons:
-		if item_icon.item_id == item.item_id:
+		if item_icon.item_id == item.string_id:
 			item_icon.item_stack_label.text = str(item.stack)
 	pass
 

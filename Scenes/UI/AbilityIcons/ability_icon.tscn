@@ -25,6 +25,17 @@ texture = ExtResource("2_ef6yj")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="AbilityCountLabel" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "1"
+horizontal_alignment = 2
+
 [node name="Label" type="Label" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = 3

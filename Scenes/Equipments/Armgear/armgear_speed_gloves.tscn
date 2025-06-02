@@ -9,6 +9,7 @@
 script = ExtResource("1_j7qch")
 equipment_name = "Swift Gloves"
 type = 3
+string_id = "speed_gloves"
 equipment_icon = ExtResource("2_ium8n")
 metadata/_custom_type_script = "uid://cfgh4nylljfr5"
 

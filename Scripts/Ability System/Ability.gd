@@ -1,6 +1,7 @@
+class_name Ability
 extends Node2D
 
-class_name Ability
+
 
 enum CoolDownOn {CAST, START, END}
 enum AbilityState {INVOKED, START, ACTIVE, DORMANT}
@@ -24,7 +25,7 @@ enum CastMode {
 @export var ability_icon_texture : Texture2D
 @export var sockets : Array[AbilitySocket]
 
-var cooldown_timer : Timer = initialize_cooldown_timer()
+@onready var cooldown_timer : Timer = initialize_cooldown_timer()
 
 @onready var actor : Entity = await get_ability_actor()
 @onready var current_state : AbilityState = AbilityState.DORMANT
@@ -106,13 +107,16 @@ func initialize_cooldown_timer() -> Timer:
 	cooldown_timer.autostart = false
 	cooldown_timer.wait_time = cooldown
 	cooldown_timer.one_shot = false
-	cooldown_timer.timeout.connect(on_cooldown_timer_timeout)
+	#cooldown_timer.timeout.connect(on_cooldown_timer_timeout)
 	if start_cooldown_on == CoolDownOn.CAST:
 		ability_casted.connect(start_cooldown)
+		print(str(ability_name) + " start cooldown on Ability Cast")
 	elif start_cooldown_on == CoolDownOn.START:
 		ability_start.connect(start_cooldown)
+		print(str(ability_name) + " start cooldown on Ability Start")
 	elif start_cooldown_on == CoolDownOn.END:
 		ability_end.connect(start_cooldown)
+		print(str(ability_name) + " start cooldown on Ability End")
 	cooldown_timer = cooldown_timer
 	add_child(cooldown_timer)
 	return cooldown_timer
@@ -127,4 +131,5 @@ func start_cooldown():
 	cooldown_timer.start()
 	cooling_down = true
 	can_cast = false
+	print(ability_name + " Start cooldown")
 	pass

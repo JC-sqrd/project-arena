@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4b4fgpnnkhlg"]
+
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="1_n184k"]
+[ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="2_50f51"]
+
+[node name="ActorAttackSpeedComponent" type="Node"]
+script = ExtResource("1_n184k")
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatMult" type="Node" parent="." node_paths=PackedStringArray("stat")]
+script = ExtResource("2_50f51")
+stat = NodePath("..")
+scale_with_stat_id = "attack_speed"
+metadata/_custom_type_script = "uid://c4n03mihb0axg"

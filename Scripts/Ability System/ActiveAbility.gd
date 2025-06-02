@@ -3,6 +3,7 @@ extends Ability
 
 enum InputMode {PRESSED, HELD}
 @export var input_mode : PressedAbilityInputMode = PressedAbilityInputMode.new()
+@export var ability_count : int = 1
 
 func get_cast_data() -> Dictionary:
 	var data : Dictionary
@@ -27,4 +28,20 @@ func get_cast_data() -> Dictionary:
 		await get_tree().create_timer(cast_time, false, true, false).timeout
 		ability_start.emit()
 	return data
+	pass
+
+func start_cooldown():
+	get_tree().create_timer(cooldown, false, false, false).timeout.connect(on_cooldown_timer_timeout)
+	ability_count -= 1
+	if ability_count == 0:
+		#cooldown_timer.start()
+		cooling_down = true
+		can_cast = false
+	pass
+
+func on_cooldown_timer_timeout():
+	ability_count += 1
+	cooldown_end.emit()
+	cooling_down = false
+	can_cast = true
 	pass

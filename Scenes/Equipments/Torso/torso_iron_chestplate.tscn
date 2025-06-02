@@ -9,6 +9,7 @@
 script = ExtResource("1_2oj7o")
 equipment_name = "Iron Chestplate"
 type = 2
+string_id = "iron_chestplate"
 equipment_icon = ExtResource("2_wpwap")
 metadata/_custom_type_script = "uid://bviaakymd1gy8"
 

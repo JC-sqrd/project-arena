@@ -33,7 +33,6 @@ hit_listener = NodePath("HitListener")
 charge_particle_system = NodePath("GPUParticles2D")
 item_name = "Energized Gem"
 item_icon = ExtResource("2_rdjvl")
-item_id = 11
 string_id = "charge_move_speed"
 item_detail = "Moving generates charge. When fully charged, your next source of damage will deal extra damage (10% (+5% each stack) of base movement speed)"
 buy_cost = 250.0

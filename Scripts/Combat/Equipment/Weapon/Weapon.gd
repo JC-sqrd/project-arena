@@ -23,6 +23,9 @@ var attack_state : AttackState = AttackState.DORMANT
 var enemy_hits : Array[Entity]
 var enemy_hit : Node2D
 
+var _ability_input_buffer : float = 0.01
+var _ability_input_buffer_counter : float = 0
+
 var _start_cooldown : bool = false
 
 signal attack_start
@@ -56,9 +59,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			attack_key_released()
 			action_held = false
 	
+	
+	#Ability trigger
 	if is_equipped and  Input.is_action_just_pressed(action_trigger):
 		if weapon_ability != null and weapon_ability.can_cast and actor.can_cast:
 			if actor.stat_manager.stats[weapon_ability.required_stat.stat_name].stat_derived_value >= weapon_ability.required_stat.required_value:
+				_ability_input_buffer_counter = _ability_input_buffer
 				get_tree().create_timer(0.05, false, true, false).timeout.connect(func(): 
 					weapon_ability.invoke_ability()
 					)
@@ -73,28 +79,39 @@ func _process(delta: float) -> void:
 	pass
 
 func _weapon_process(delta : float):
-	if !auto_fire and is_equipped:
-		if action_held and actor.can_attack and can_attack:
-			#_start_attack_cooldown()
-			initialize_attack()
-			_start_cooldown = true
-	elif is_equipped:
-		if actor.can_attack and can_attack:
-			#_start_attack_cooldown()
-			initialize_attack()
-			_start_cooldown = true
-	
-	if _start_cooldown:
-		cooldown_counter = 1 / attack_speed_stat.stat_derived_value 
-		_start_cooldown = false
-		can_attack = false
-	
-	if cooldown_counter > 0:
-		cooldown_counter -= delta
-	
-	if cooldown_counter <= 0 and !can_attack and is_equipped:
-		can_attack = true
-		actor.can_attack = true
+	if is_equipped:
+		if !auto_fire and is_equipped:
+			if action_held and actor.can_attack and can_attack:
+				#_start_attack_cooldown()
+				initialize_attack()
+				_start_cooldown = true
+		elif is_equipped:
+			if actor.can_attack and can_attack:
+				#_start_attack_cooldown()
+				initialize_attack()
+				_start_cooldown = true
+		
+		#if _ability_input_buffer_counter and weapon_ability.can_cast:
+			#_ability_input_buffer_counter = 0
+			#get_tree().create_timer(0.05, false, true, false).timeout.connect(func(): 
+				#weapon_ability.invoke_ability()
+				#)
+			#pass
+		#
+		#if _ability_input_buffer_counter > 0:
+			#_ability_input_buffer_counter -= delta
+		
+		if _start_cooldown:
+			cooldown_counter = 1 / attack_speed_stat.stat_derived_value 
+			_start_cooldown = false
+			can_attack = false
+		
+		if cooldown_counter > 0:
+			cooldown_counter -= delta
+		
+		if cooldown_counter <= 0 and !can_attack and is_equipped:
+			can_attack = true
+			actor.can_attack = true
 	pass
 
 func start_attack():

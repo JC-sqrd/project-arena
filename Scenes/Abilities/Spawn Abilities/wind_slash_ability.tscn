@@ -27,6 +27,7 @@ max_range = 50.0
 spawn = ExtResource("2_t26ss")
 spawn_behavior = SubResource("Resource_85hsq")
 required_stat = SubResource("Resource_sgg3d")
+start_cooldown_on = 1
 cast_time = 0.83
 hit_listener = NodePath("WindSlashHitListener")
 cooldown = 2.0

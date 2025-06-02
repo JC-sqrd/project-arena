@@ -135,7 +135,7 @@ damage_type = 1
 
 [node name="ExplosionDamage" type="Node" parent="SpawnHitListener/DamageEffect"]
 script = ExtResource("5_yw3j4")
-stat_value = 30.0
+stat_value = 20.0
 
 [node name="StatScaler" type="Node" parent="SpawnHitListener/DamageEffect/ExplosionDamage" node_paths=PackedStringArray("stat", "scale_with_stat")]
 script = ExtResource("7_3taaa")

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=4 format=3 uid="uid://bsq78ffccuc1v"]
+
+[ext_resource type="PackedScene" uid="uid://ba77g51rg80ak" path="res://Scenes/Weapons/Shuriken/weapon_shuriken.tscn" id="1_gismc"]
+[ext_resource type="Script" uid="uid://7g2i8l80ndkw" path="res://Scripts/Resources/EquipmentData/EquipmentData.gd" id="1_ltmn4"]
+[ext_resource type="Texture2D" uid="uid://cyngo5gkj10dd" path="res://Sprites/Weapons/Shuriken/Shuriken.png" id="1_v7jgi"]
+
+[resource]
+script = ExtResource("1_ltmn4")
+equipment_scene = ExtResource("1_gismc")
+equipment_name = "Shuriken"
+type = 0
+tier = 0
+string_id = "shuriken"
+equipment_description = ""
+equipment_details = ""
+equipment_icon = ExtResource("1_v7jgi")
+buy_cost = 0.0
+sell_value = 0.0
+metadata/_custom_type_script = "uid://7g2i8l80ndkw"

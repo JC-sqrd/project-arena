@@ -20,6 +20,7 @@ var waves : Array[Wave]
 var current_wave : Wave
 var time_left : float = 0
 var wave_active : bool = false
+var wave_count : int = 0
 
 signal current_wave_start(current_wave : Wave)
 signal current_wave_end(current_wave : Wave)
@@ -47,6 +48,7 @@ func start_next_wave():
 	current_wave.wave_end.connect(on_current_wave_end)
 	current_wave_start.emit(current_wave)
 	current_wave.start_wave()
+	wave_count += 1
 	wave_active = true
 	pass
 

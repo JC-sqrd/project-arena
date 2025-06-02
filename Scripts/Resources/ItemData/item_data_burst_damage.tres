@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://d163p70k0ovvs"]
+
+[ext_resource type="Texture2D" uid="uid://t4wxqhtd5qyl" path="res://Placeholders/Icons/Icon.4_29.png" id="1_cijnp"]
+[ext_resource type="Script" uid="uid://cionhn23akyj3" path="res://Scripts/Resources/ItemData/ItemData.gd" id="1_wq5ko"]
+[ext_resource type="PackedScene" uid="uid://dpxeo3vfdhsen" path="res://Scenes/Items/burst_damage/item_burst_damage.tscn" id="2_8wuhh"]
+
+[resource]
+script = ExtResource("1_wq5ko")
+item_scene = ExtResource("2_8wuhh")
+item_name = "Shockwave Shard"
+item_icon = ExtResource("1_cijnp")
+string_id = "burst_damage"
+item_description = ""
+item_detail = "On Damage: Create an explosion that deals 60%(+5 each stack) of the damage dealt as magic damage.
+(10 sec. cooldown)"
+buy_cost = 300.0
+sell_value = 25.0
+metadata/_custom_type_script = "uid://cionhn23akyj3"

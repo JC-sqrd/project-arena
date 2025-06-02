@@ -22,7 +22,8 @@ attack_damage = NodePath("Damage")
 attack_speed_stat = NodePath("AttackSpeed")
 attack_windup_time = 0.1
 hit_listener = NodePath("HitListener")
-equipment_name = "Bow"
+equipment_name = "Wooden Bow"
+string_id = "wooden_bow"
 equipment_icon = ExtResource("4_ibmun")
 metadata/_custom_type_script = "uid://d3fin4411ww46"
 

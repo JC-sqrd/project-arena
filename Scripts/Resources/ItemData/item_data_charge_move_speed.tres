@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://rg3ssbxjvb5q"]
+
+[ext_resource type="PackedScene" uid="uid://c7f3i2m7h07jc" path="res://Scenes/Items/charge_move_speed/item_charge_move_speed.tscn" id="1_32rbx"]
+[ext_resource type="Texture2D" uid="uid://dspi68bbn3y2u" path="res://Placeholders/Icons/Icon.5_50.png" id="1_jmlmb"]
+[ext_resource type="Script" uid="uid://cionhn23akyj3" path="res://Scripts/Resources/ItemData/ItemData.gd" id="1_sp61p"]
+
+[resource]
+script = ExtResource("1_sp61p")
+item_scene = ExtResource("1_32rbx")
+item_name = "Energized Gem"
+item_icon = ExtResource("1_jmlmb")
+string_id = "charge_move_speed"
+item_description = ""
+item_detail = "Moving generates charge. When fully charged, your next source of damage will deal extra damage (10% (+5% each stack) of base movement speed)"
+buy_cost = 250.0
+sell_value = 10.0
+metadata/_custom_type_script = "uid://cionhn23akyj3"

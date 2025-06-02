@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=4 format=3 uid="uid://chj4527xlxj5c"]
+
+[ext_resource type="PackedScene" uid="uid://bkmw1nqw6gp4q" path="res://Scenes/Weapons/Hammer/weapon_hammer.tscn" id="1_bwvbr"]
+[ext_resource type="Texture2D" uid="uid://k4u0hhwjxom5" path="res://Sprites/Weapons/Hammer/Hammer.png" id="1_dy3pc"]
+[ext_resource type="Script" uid="uid://7g2i8l80ndkw" path="res://Scripts/Resources/EquipmentData/EquipmentData.gd" id="1_wqlx5"]
+
+[resource]
+script = ExtResource("1_wqlx5")
+equipment_scene = ExtResource("1_bwvbr")
+equipment_name = "Hammer"
+type = 0
+tier = 0
+string_id = "hammer"
+equipment_description = ""
+equipment_details = ""
+equipment_icon = ExtResource("1_dy3pc")
+buy_cost = 0.0
+sell_value = 0.0
+metadata/_custom_type_script = "uid://7g2i8l80ndkw"

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://c0861ukuqecwu"]
+
+[ext_resource type="PackedScene" uid="uid://3tleitsb6xke" path="res://Scenes/Items/block_damage/item_chance_block_damage.tscn" id="1_dkukp"]
+[ext_resource type="Texture2D" uid="uid://d25igrrvtuwn8" path="res://Placeholders/Icons/Icons8_87.png" id="1_ydo5r"]
+[ext_resource type="Script" uid="uid://cionhn23akyj3" path="res://Scripts/Resources/ItemData/ItemData.gd" id="2_ydo5r"]
+
+[resource]
+script = ExtResource("2_ydo5r")
+item_scene = ExtResource("1_dkukp")
+item_name = "Blocky Block"
+item_icon = ExtResource("1_ydo5r")
+string_id = "block_chance"
+item_description = ""
+item_detail = "Gain 15% (+15% each stack) to block incoming damage"
+buy_cost = 60.0
+sell_value = 15.0
+metadata/_custom_type_script = "uid://cionhn23akyj3"

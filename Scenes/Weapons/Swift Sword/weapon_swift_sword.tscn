@@ -255,6 +255,8 @@ texture_filter = 1
 position = Vector2(-24, 8)
 sprite_frames = SubResource("SpriteFrames_jjxnv")
 animation = &"cast_animation"
+frame = 10
+frame_progress = 1.0
 script = ExtResource("19_5d1jb")
 weapon_anim_sprite = NodePath("../AnimatedSprite2D2")
 ability = NodePath("../../WindSlashAbility")
@@ -280,6 +282,7 @@ script = ExtResource("17_k3yuu")
 
 [node name="Knockback" type="Node" parent="HitListener"]
 script = ExtResource("7_d0kcu")
+force = 150.0
 metadata/_custom_type_script = "uid://dmjo067f80ntw"
 
 [node name="ActorCrit" type="Node" parent="."]

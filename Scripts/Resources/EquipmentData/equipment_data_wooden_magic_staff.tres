@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=4 format=3 uid="uid://cwgy76ee5nubn"]
+
+[ext_resource type="Texture2D" uid="uid://c2cwami2vb0tv" path="res://Sprites/Weapons/Wooden Magic Staff/Wooden Magic Staff.png" id="1_5beo3"]
+[ext_resource type="PackedScene" uid="uid://bsb66ckahw7x" path="res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn" id="1_281gv"]
+[ext_resource type="Script" uid="uid://7g2i8l80ndkw" path="res://Scripts/Resources/EquipmentData/EquipmentData.gd" id="1_t5ybh"]
+
+[resource]
+script = ExtResource("1_t5ybh")
+equipment_scene = ExtResource("1_281gv")
+equipment_name = "Wooden Magic Staff"
+type = 0
+tier = 0
+string_id = "wooden_magic_staff"
+equipment_description = ""
+equipment_details = ""
+equipment_icon = ExtResource("1_5beo3")
+buy_cost = 0.0
+sell_value = 0.0
+metadata/_custom_type_script = "uid://7g2i8l80ndkw"

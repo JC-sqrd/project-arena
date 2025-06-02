@@ -17,7 +17,6 @@ lightning_scene = ExtResource("2_lp1sq")
 hit_listener = NodePath("HitListener")
 item_name = "Bjolnir"
 item_icon = ExtResource("3_4bi4e")
-item_id = 5
 string_id = "chain_lightning"
 item_detail = "On Hit: 20% chance to hit target with lightning that can bounce to nearby enemies 2(+1 each stack) times, dealing 10 + 20% magic damage."
 buy_cost = 400.0

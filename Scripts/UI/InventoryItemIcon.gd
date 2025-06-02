@@ -1,7 +1,7 @@
 class_name InventoryItemIcon
 extends Control
 
-var item_id : int = 0
+var item_id : String 
 var item_name : String
 @export var item_texture_rect : TextureRect
 @export var item_stack_label : Label

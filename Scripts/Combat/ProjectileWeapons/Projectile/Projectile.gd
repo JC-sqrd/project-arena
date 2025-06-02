@@ -4,7 +4,7 @@ extends Spawnable
 @export var projectile_sprite : Sprite2D
 @onready var sprite_2d = $Sprite2D
 
-@export var speed : float = 600
+@export var speed : float = 600 : set = _set_speed
 @export var speed_curve : Curve = Curve.new()
 @export var max_distance : float = 1000
 
@@ -65,6 +65,9 @@ func _on_body_hit(body : Node2D):
 	#hit_data.data["actor"] = source.owner
 	#return hit_data
 	#pass
+
+func _set_speed(new_speed : float):
+	speed = min(5000, new_speed)
 
 func is_valid(body : Node2D) -> bool:
 	if body != null and body.is_in_group("Hittable"):

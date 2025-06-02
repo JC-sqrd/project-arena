@@ -73,6 +73,7 @@ attack_windup_time = 0.1
 weapon_ability = NodePath("AbilityLaser")
 hit_listener = NodePath("HitListener")
 equipment_name = "Magic Gun"
+string_id = "magic_gun"
 equipment_icon = ExtResource("3_cm30y")
 metadata/_custom_type_script = "uid://d3fin4411ww46"
 

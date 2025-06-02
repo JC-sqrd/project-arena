@@ -11,7 +11,6 @@
 script = ExtResource("1_0c7kb")
 item_name = "Boots of Speed"
 item_icon = ExtResource("2_0tkll")
-item_id = 7
 string_id = "move_speed"
 item_detail = "Gain 10%(+10% each stack) movement speed"
 buy_cost = 45.0

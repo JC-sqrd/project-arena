@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://cjfrn2ki8dsdr"]
+
+[ext_resource type="Script" uid="uid://rbf4cq4pfun4" path="res://Scripts/Ability System/HomingSpawnAbility.gd" id="1_a670v"]
+[ext_resource type="PackedScene" uid="uid://66htkuagc713" path="res://Scenes/Abilities/Homing Spawn Abilities/Magic Missile/magic_missile_spawnable.tscn" id="2_eej7l"]
+[ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_8magy"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="4_pyyvb"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="5_sjcy0"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="6_0ykt5"]
+[ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="7_0ykt5"]
+[ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="8_t2p3c"]
+
+[sub_resource type="Resource" id="Resource_n40f3"]
+script = ExtResource("3_8magy")
+stat_name = "current_mana"
+required_value = 10.0
+metadata/_custom_type_script = "uid://tuvjl40jf0pm"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a670v"]
+radius = 500.0
+
+[node name="AbilityMagicMissile" type="Node2D" node_paths=PackedStringArray("homing_area", "hit_listener")]
+script = ExtResource("1_a670v")
+homing_area = NodePath("Area2D")
+max_range = 5.0
+spawn = ExtResource("2_eej7l")
+required_stat = SubResource("Resource_n40f3")
+cast_time = 0.2
+hit_listener = NodePath("HitListener")
+metadata/_custom_type_script = "uid://rbf4cq4pfun4"
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(502, 0)
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_a670v")
+debug_color = Color(0.862726, 0.217512, 0.710308, 0.42)
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("4_pyyvb")
+metadata/_custom_type_script = "uid://dm3uuggj1g47y"
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("5_sjcy0")
+damage_stat = NodePath("Damage")
+damage_type = 1
+metadata/_custom_type_script = "uid://c8sj8b1npavnd"
+
+[node name="Damage" type="Node" parent="HitListener/DamageEffect"]
+script = ExtResource("6_0ykt5")
+stat_value = 10.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatAdder" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("7_0ykt5")
+stat = NodePath("..")
+scale_with_stat_id = "magic_damage"
+ratio = 0.75
+metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+
+[node name="GetActorStatMult" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("8_t2p3c")
+stat = NodePath("..")
+scale_with_stat_id = "magic_damage_mult"
+metadata/_custom_type_script = "uid://c4n03mihb0axg"

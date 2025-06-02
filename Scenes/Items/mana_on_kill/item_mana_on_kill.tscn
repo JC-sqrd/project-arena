@@ -9,8 +9,8 @@
 
 [node name="ItemManaOnKill" type="Node"]
 script = ExtResource("1_yfrt0")
+item_name = "#mana_on_kill"
 item_icon = ExtResource("2_a55ql")
-item_id = 12
 string_id = "mana_on_kill"
 item_detail = "Gives 1(+1 each stack) mana upon killing an enemy"
 buy_cost = 220.0

@@ -20,11 +20,26 @@ var common_item_chance : float = 0
 var uncommon_item_chance : float = 0
 var legendary_item_chance : float = 0
 
-@onready var player : Entity = Globals.player
+var wave_spawner : WaveSpawner
+
+var restock_item_price : float = 5
+var base_restock_item_price : float = 5
+var restock_equipment_price : float = 5
+var base_restock_equipment_price : float = 5
+
+var player : Entity
 
 
 
 func _ready() -> void:
+	get_tree().root.ready.connect(
+		func():
+			wave_spawner = Globals.wave_spawner
+			wave_spawner.current_wave_end.connect(_on_current_wave_end)
+			player = Globals.player
+			print("Wave spawner: " + str(wave_spawner))
+			pass
+	)
 	visible = false
 	for buy_item in item_buy_container.get_children():
 		if buy_item is BuyInstanceUI:
@@ -36,6 +51,8 @@ func _ready() -> void:
 			buy_equipment.attempt_to_buy.connect(on_item_attempt_to_buy)
 			pass
 		pass
+	restock_equipment_button.text = "Restock Equipment - " + str(restock_equipment_price)
+	restock_item_button.text = "Restock Item - " + str(restock_item_price)
 	stock_items(max_item_stock)
 	stock_equipment(max_equipment_stock)
 	restock_item_button.pressed.connect(restock_items)
@@ -56,11 +73,11 @@ func restock_shop():
 func stock_items(stock_amount : int):
 	var item_pools : Dictionary = {
 		"common": {
-			"items": Globals.common_item_pool,
+			"items": Globals.common_item_data_pool,
 			"weight": 70
 		},
 		"rare": {
-			"items": Globals.rare_item_pool,
+			"items": Globals.rare_item_data_pool,
 			"weight": 25
 		}
 	}
@@ -70,7 +87,7 @@ func stock_items(stock_amount : int):
 	
 	for i in stock_amount:
 		var roll := randi_range(1, total_weight)
-		var selected_pool : Array[PackedScene] 
+		var selected_pool : Array[ItemData] 
 		var cumulative_weight : float = 0
 		
 		for pool_name in item_pools:
@@ -82,7 +99,7 @@ func stock_items(stock_amount : int):
 		if selected_pool.size() > 0:
 			var random_item = selected_pool[randi_range(0, selected_pool.size() - 1)]
 			var item_card : ItemBuyInstanceUI = item_card_scene.instantiate() as ItemBuyInstanceUI
-			item_card.item_scene = random_item
+			item_card.item_data = random_item
 			item_card.attempt_to_buy.connect(on_item_attempt_to_buy)
 			item_buy_container.add_child(item_card)
 		
@@ -95,7 +112,7 @@ func stock_items(stock_amount : int):
 func stock_equipment(stock_amount : int):
 	var equipment_pools : Dictionary = {
 		"common": {
-			"equipment": Globals.common_equipment_pool,
+			"equipment": Globals.common_equipment_data_pool,
 			"weight": 70
 		}
 	}
@@ -105,7 +122,7 @@ func stock_equipment(stock_amount : int):
 	
 	for i in stock_amount:
 		var roll := randi_range(1, total_weight)
-		var selected_pool : Array[PackedScene] 
+		var selected_pool : Array[EquipmentData] 
 		var cumulative_weight : float = 0
 		
 		for pool_name in equipment_pools:
@@ -117,7 +134,7 @@ func stock_equipment(stock_amount : int):
 		if selected_pool.size() > 0:
 			var random_equipment = selected_pool[randi_range(0, selected_pool.size() - 1)]
 			var equipment_card : EquipmentBuyInstanceUI = equipment_card_scene.instantiate() as EquipmentBuyInstanceUI
-			equipment_card.equipment_scene = random_equipment
+			equipment_card.equipment_data = random_equipment
 			equipment_card.attempt_to_buy.connect(on_item_attempt_to_buy)
 			equipment_buy_container.add_child(equipment_card)
 	
@@ -129,25 +146,43 @@ func stock_equipment(stock_amount : int):
 	pass
 
 func restock_items():
-	var stock_count : int = max_item_stock
-	for item_buy in item_buy_container.get_children():
-		if (item_buy as BuyInstanceUI).is_locked:
-			stock_count -= 1
-		else:
-			item_buy.queue_free()
-	stock_items(stock_count)
+	if player.stat_manager.stats.get("gold").stat_derived_value >= restock_item_price: 
+		var stock_count : int = max_item_stock
+		for item_buy in item_buy_container.get_children():
+			if (item_buy as BuyInstanceUI).is_locked:
+				stock_count -= 1
+			else:
+				item_buy.queue_free()
+		stock_items(stock_count)
+		player.stat_manager.stats.get("gold").stat_derived_value -= restock_item_price
+		restock_item_price += restock_item_price
+		restock_item_button.text = "Restock Item - " + str(restock_item_price)
+	else:
+		return
 	pass
 
 func restock_equipment():
-	var stock_count : int = max_equipment_stock
-	for equipment_buy in equipment_buy_container.get_children():
-		if (equipment_buy as BuyInstanceUI).is_locked:
-			stock_count -= 1
-		else:
-			equipment_buy.queue_free()
-	stock_equipment(stock_count)
+	if player.stat_manager.stats.get("gold").stat_derived_value >= restock_equipment_price:
+		var stock_count : int = max_equipment_stock
+		for equipment_buy in equipment_buy_container.get_children():
+			if (equipment_buy as BuyInstanceUI).is_locked:
+				stock_count -= 1
+			else:
+				equipment_buy.queue_free()
+		stock_equipment(stock_count)
+		player.stat_manager.stats.get("gold").stat_derived_value -= restock_equipment_price
+		restock_equipment_price += restock_equipment_price
+		restock_equipment_button.text = "Restock Equipment - " + str(restock_equipment_price)
 	pass
 
 func on_item_attempt_to_buy(buy_instance : BuyInstanceUI):
 	buy_instance.buy(player)
+	pass
+
+func _on_current_wave_end(wave : Wave):
+	visible = true
+	restock_item_price = wave_spawner.wave_count * base_restock_item_price
+	restock_item_button.text = "Restock Item - " + str(restock_item_price)
+	restock_equipment_price = wave_spawner.wave_count * base_restock_equipment_price
+	restock_equipment_button.text = "Restock Equipment - " + str(restock_equipment_price)
 	pass

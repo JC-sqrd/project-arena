@@ -5,7 +5,6 @@ var actor : Entity = get_item_actor()
 @onready var source : Node = get_item_actor()
 @export var item_name : String
 @export var item_icon : Texture2D
-@export var item_id : int
 @export var string_id : String
 @export var stack : int = 1 : set = _set_item_stack
 @export_multiline var item_description : String

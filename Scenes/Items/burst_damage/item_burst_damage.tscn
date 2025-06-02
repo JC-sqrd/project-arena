@@ -19,7 +19,6 @@ spawnable_scene = ExtResource("2_n6ngu")
 hit_listener = NodePath("HitListener")
 item_name = "Shockwave Shard"
 item_icon = ExtResource("3_g315g")
-item_id = 8
 string_id = "burst_damage"
 item_detail = "On Damage: Create an explosion that deals 60%(+5 each stack) of the damage dealt as magic damage.
 (10 sec. cooldown)"

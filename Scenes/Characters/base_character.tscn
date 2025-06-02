@@ -1,54 +1,54 @@
 [gd_scene load_steps=53 format=3 uid="uid://bwbyc8vywa6vd"]
 
-[ext_resource type="Script" uid="uid://bl5aki5ii4r6t" path="res://Scripts/PlayerCharacter.gd" id="1_emetf"]
-[ext_resource type="Script" uid="uid://cdn8b5gg8mfb8" path="res://Scripts/Entity/HealthManager.gd" id="2_btby1"]
-[ext_resource type="Script" uid="uid://5fujd5ybwb45" path="res://Scripts/Combat/StatusEffects/StatusEffectManager.gd" id="2_fow85"]
-[ext_resource type="Script" uid="uid://bsn1idamyre35" path="res://Scripts/EquipmentInventory/EquipmentInventory.gd" id="2_oxhu7"]
-[ext_resource type="Script" uid="uid://dkp8llu1e5ymh" path="res://Scripts/Item/ItemInventory.gd" id="2_stva5"]
-[ext_resource type="Script" uid="uid://1bsno3scw518" path="res://Scripts/Entity/Player/GoldManager.gd" id="2_xreyn"]
-[ext_resource type="Script" uid="uid://cmnd4g4du2b0u" path="res://Scripts/StatSystem/StatManager.gd" id="3_3j7ot"]
-[ext_resource type="Script" uid="uid://c2c43sih3sxp0" path="res://Scripts/Entity/LevelManager.gd" id="3_nl5ra"]
-[ext_resource type="Script" uid="uid://46rajp5yxkq6" path="res://Scripts/Ability System/DashAbility.gd" id="3_pgb24"]
-[ext_resource type="PackedScene" uid="uid://dfopknahmh8ed" path="res://Scenes/Test/Components/movement_controller_component.tscn" id="3_vhpeq"]
-[ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="4_aeh47"]
-[ext_resource type="PackedScene" uid="uid://c0i8ypdefjyja" path="res://Scenes/Test/Components/movement_input_component.tscn" id="4_fjo2p"]
-[ext_resource type="Script" uid="uid://nke8ejxjdu4s" path="res://Scripts/StatSystem/Stats/AttackSpeedStat.gd" id="4_jr810"]
-[ext_resource type="Script" uid="uid://cyb8xt674le3f" path="res://Scripts/StatSystem/StatModManager.gd" id="4_jyghi"]
-[ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Test/Components/hit_receiver.tscn" id="4_x8b3p"]
-[ext_resource type="Script" uid="uid://cuqrw50w68lcb" path="res://Scripts/Combat/Equipment/EquipmentSlot.gd" id="5_6bkod"]
-[ext_resource type="Script" uid="uid://ctjia3ovr0cyg" path="res://Scripts/Combat/DamageListener/DamageListener.gd" id="5_wy7ba"]
-[ext_resource type="Script" uid="uid://mgrw0is6pnqq" path="res://Scripts/Combat/DamageListener/Mitigation/MitigationEffect.gd" id="6_e44g6"]
-[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="6_idxee"]
-[ext_resource type="PackedScene" uid="uid://dk87ltl8o4wft" path="res://Scenes/Test/Components/ability_container_component.tscn" id="6_tx7qf"]
-[ext_resource type="Script" uid="uid://sc7t52uxqk2w" path="res://Scripts/Entity/ManaManager.gd" id="7_hhjar"]
-[ext_resource type="Script" uid="uid://bfjkolmoudtsa" path="res://Scripts/Combat/Equipment/Weapon/WeaponManager.gd" id="7_oxhu7"]
-[ext_resource type="PackedScene" uid="uid://de6joq2hs2b4l" path="res://Scenes/Test/Components/attack_container_component.tscn" id="8_00ai3"]
-[ext_resource type="Script" uid="uid://ru2jih6etkel" path="res://Scripts/Combat/Equipment/Weapon/OffhandWeaponSlot.gd" id="9_618kc"]
-[ext_resource type="PackedScene" uid="uid://c5ynpo7p54mt" path="res://Scenes/UI/health_bar.tscn" id="9_jldnw"]
-[ext_resource type="PackedScene" uid="uid://d0cyv80ttroeg" path="res://Scenes/UI/test_player_character_stat_ui.tscn" id="11_8k8po"]
-[ext_resource type="Script" uid="uid://ci2a8fd2hsmvu" path="res://Scripts/Entity/Player/PickupArea/PickupArea.gd" id="13_1bnos"]
-[ext_resource type="PackedScene" uid="uid://bl0ros7k1ndhs" path="res://Scenes/UI/item_picker_ui.tscn" id="13_qa1p5"]
-[ext_resource type="Texture2D" uid="uid://cj4r7auaxuitq" path="res://Sprites/Character/Character_Front.png" id="14_0d76f"]
-[ext_resource type="Texture2D" uid="uid://bg2kf73272gxh" path="res://Sprites/Character/Character_Back.png" id="14_5oe00"]
-[ext_resource type="Script" uid="uid://ca00kjhgjanwc" path="res://Scripts/EntityCollisionShape2D.gd" id="14_frar0"]
-[ext_resource type="Texture2D" uid="uid://d1iulyitqkd41" path="res://Sprites/Character/Character_Side.png" id="16_wb8p2"]
-[ext_resource type="PackedScene" uid="uid://5j01qerayncq" path="res://Scenes/UI/ItemInventoryUI/item_inventory_ui.tscn" id="17_bplxg"]
-[ext_resource type="Script" uid="uid://c24tuu0jb8klf" path="res://Scripts/Entity/Player/Animation/PlayerSprite.gd" id="17_l1iip"]
-[ext_resource type="PackedScene" uid="uid://bwafxjra7npn2" path="res://Scenes/UI/PlayerUI/gold_ui.tscn" id="25_002ty"]
-[ext_resource type="PackedScene" uid="uid://gk2igu0idkeg" path="res://Scenes/UI/player_ability_action_bar_ui.tscn" id="27_rfmdq"]
-[ext_resource type="PackedScene" uid="uid://dqr55gwrmkxh0" path="res://Scenes/UI/player_level_bar_ui.tscn" id="28_s660f"]
-[ext_resource type="PackedScene" uid="uid://b8v5pw5002yu7" path="res://Scenes/UI/mana_bar.tscn" id="31_3lcr1"]
-[ext_resource type="PackedScene" uid="uid://bba116t3m1ua7" path="res://Scenes/UI/EquipmentInventory/equipment_inventory.tscn" id="31_053o4"]
-[ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="31_s7g6f"]
-[ext_resource type="Script" uid="uid://6cys06xuou5k" path="res://Scripts/Pickupable/PickupManager.gd" id="38_a2xrh"]
-[ext_resource type="Script" uid="uid://b6vsymr001rn1" path="res://Scripts/Label Popups/GoldPopup.gd" id="43_uvn65"]
-[ext_resource type="Script" uid="uid://be6xtautsysv" path="res://Scripts/Audio/PickupableStreamPlayer2D.gd" id="45_upu1f"]
-[ext_resource type="Script" uid="uid://bowwp5s7jndt1" path="res://Scripts/Combat/UI/DamageNumber.gd" id="68_8ywx1"]
-[ext_resource type="Script" uid="uid://botqhhrbfbmcw" path="res://Scripts/Enemy/EntityHitParticle.gd" id="77_xgrhj"]
-[ext_resource type="PackedScene" uid="uid://ull35nal2yub" path="res://Scenes/Particles/enemy_hit_particle.tscn" id="78_x1xkl"]
+[ext_resource type="Script" uid="uid://bl5aki5ii4r6t" path="res://Scripts/PlayerCharacter.gd" id="1_4r8nq"]
+[ext_resource type="Script" uid="uid://bsn1idamyre35" path="res://Scripts/EquipmentInventory/EquipmentInventory.gd" id="2_52ran"]
+[ext_resource type="Script" uid="uid://1bsno3scw518" path="res://Scripts/Entity/Player/GoldManager.gd" id="3_raiax"]
+[ext_resource type="PackedScene" uid="uid://dk87ltl8o4wft" path="res://Scenes/Test/Components/ability_container_component.tscn" id="4_tkk1j"]
+[ext_resource type="Script" uid="uid://46rajp5yxkq6" path="res://Scripts/Ability System/DashAbility.gd" id="5_2w7b0"]
+[ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="6_wvybv"]
+[ext_resource type="Script" uid="uid://bfjkolmoudtsa" path="res://Scripts/Combat/Equipment/Weapon/WeaponManager.gd" id="7_nss1p"]
+[ext_resource type="PackedScene" uid="uid://de6joq2hs2b4l" path="res://Scenes/Test/Components/attack_container_component.tscn" id="8_o0d6e"]
+[ext_resource type="Script" uid="uid://ru2jih6etkel" path="res://Scripts/Combat/Equipment/Weapon/OffhandWeaponSlot.gd" id="9_kaufn"]
+[ext_resource type="Script" uid="uid://cuqrw50w68lcb" path="res://Scripts/Combat/Equipment/EquipmentSlot.gd" id="10_umb11"]
+[ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Test/Components/hit_receiver.tscn" id="11_ebi1i"]
+[ext_resource type="Script" uid="uid://5fujd5ybwb45" path="res://Scripts/Combat/StatusEffects/StatusEffectManager.gd" id="12_hwi43"]
+[ext_resource type="Script" uid="uid://sc7t52uxqk2w" path="res://Scripts/Entity/ManaManager.gd" id="13_2300v"]
+[ext_resource type="Script" uid="uid://cdn8b5gg8mfb8" path="res://Scripts/Entity/HealthManager.gd" id="14_sldbe"]
+[ext_resource type="Script" uid="uid://c2c43sih3sxp0" path="res://Scripts/Entity/LevelManager.gd" id="15_3u1ni"]
+[ext_resource type="Script" uid="uid://ctjia3ovr0cyg" path="res://Scripts/Combat/DamageListener/DamageListener.gd" id="16_8aut5"]
+[ext_resource type="Script" uid="uid://mgrw0is6pnqq" path="res://Scripts/Combat/DamageListener/Mitigation/MitigationEffect.gd" id="17_s6fgp"]
+[ext_resource type="Script" uid="uid://dkp8llu1e5ymh" path="res://Scripts/Item/ItemInventory.gd" id="18_yktjw"]
+[ext_resource type="Script" uid="uid://6cys06xuou5k" path="res://Scripts/Pickupable/PickupManager.gd" id="19_vn4xv"]
+[ext_resource type="Script" uid="uid://be6xtautsysv" path="res://Scripts/Audio/PickupableStreamPlayer2D.gd" id="20_vlal2"]
+[ext_resource type="Script" uid="uid://ca00kjhgjanwc" path="res://Scripts/EntityCollisionShape2D.gd" id="21_pqgby"]
+[ext_resource type="Script" uid="uid://cmnd4g4du2b0u" path="res://Scripts/StatSystem/StatManager.gd" id="22_xk2vc"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="23_gbr3h"]
+[ext_resource type="Script" uid="uid://nke8ejxjdu4s" path="res://Scripts/StatSystem/Stats/AttackSpeedStat.gd" id="24_qngxt"]
+[ext_resource type="PackedScene" uid="uid://bwafxjra7npn2" path="res://Scenes/UI/PlayerUI/gold_ui.tscn" id="25_034ap"]
+[ext_resource type="PackedScene" uid="uid://5j01qerayncq" path="res://Scenes/UI/ItemInventoryUI/item_inventory_ui.tscn" id="26_jkxs3"]
+[ext_resource type="PackedScene" uid="uid://bl0ros7k1ndhs" path="res://Scenes/UI/item_picker_ui.tscn" id="27_6x220"]
+[ext_resource type="PackedScene" uid="uid://d0cyv80ttroeg" path="res://Scenes/UI/test_player_character_stat_ui.tscn" id="28_ehex6"]
+[ext_resource type="PackedScene" uid="uid://gk2igu0idkeg" path="res://Scenes/UI/player_ability_action_bar_ui.tscn" id="29_sqmm1"]
+[ext_resource type="PackedScene" uid="uid://dqr55gwrmkxh0" path="res://Scenes/UI/player_level_bar_ui.tscn" id="30_v20lc"]
+[ext_resource type="PackedScene" uid="uid://c5ynpo7p54mt" path="res://Scenes/UI/health_bar.tscn" id="31_e6ml3"]
+[ext_resource type="PackedScene" uid="uid://b8v5pw5002yu7" path="res://Scenes/UI/mana_bar.tscn" id="32_51lw5"]
+[ext_resource type="PackedScene" uid="uid://bba116t3m1ua7" path="res://Scenes/UI/EquipmentInventory/equipment_inventory.tscn" id="33_e7p34"]
+[ext_resource type="Script" uid="uid://cyb8xt674le3f" path="res://Scripts/StatSystem/StatModManager.gd" id="34_gf3ef"]
+[ext_resource type="PackedScene" uid="uid://dfopknahmh8ed" path="res://Scenes/Test/Components/movement_controller_component.tscn" id="35_pffph"]
+[ext_resource type="PackedScene" uid="uid://c0i8ypdefjyja" path="res://Scenes/Test/Components/movement_input_component.tscn" id="36_teqnh"]
+[ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="37_iacyq"]
+[ext_resource type="Texture2D" uid="uid://bg2kf73272gxh" path="res://Sprites/Character/Character_Back.png" id="38_qhkst"]
+[ext_resource type="Texture2D" uid="uid://cj4r7auaxuitq" path="res://Sprites/Character/Character_Front.png" id="39_j5iqx"]
+[ext_resource type="Texture2D" uid="uid://d1iulyitqkd41" path="res://Sprites/Character/Character_Side.png" id="40_4vx47"]
+[ext_resource type="Script" uid="uid://c24tuu0jb8klf" path="res://Scripts/Entity/Player/Animation/PlayerSprite.gd" id="41_aycmd"]
+[ext_resource type="Script" uid="uid://ci2a8fd2hsmvu" path="res://Scripts/Entity/Player/PickupArea/PickupArea.gd" id="42_ncqfy"]
+[ext_resource type="Script" uid="uid://bowwp5s7jndt1" path="res://Scripts/Combat/UI/DamageNumber.gd" id="43_xp615"]
+[ext_resource type="Script" uid="uid://botqhhrbfbmcw" path="res://Scripts/Enemy/EntityHitParticle.gd" id="44_eqfpn"]
+[ext_resource type="PackedScene" uid="uid://ull35nal2yub" path="res://Scenes/Particles/enemy_hit_particle.tscn" id="45_n0876"]
+[ext_resource type="Script" uid="uid://b6vsymr001rn1" path="res://Scripts/Label Popups/GoldPopup.gd" id="46_4soj8"]
 
 [sub_resource type="Resource" id="Resource_s7g6f"]
-script = ExtResource("4_aeh47")
+script = ExtResource("6_wvybv")
 stat_name = "current_mana"
 required_value = -1.0
 metadata/_custom_type_script = "uid://tuvjl40jf0pm"
@@ -60,7 +60,7 @@ radius = 50.0
 size = Vector2(24, 60)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6bkod"]
-shader = ExtResource("31_s7g6f")
+shader = ExtResource("37_iacyq")
 shader_parameter/hit_opacity = 0.0
 shader_parameter/modulate = Color(1, 1, 1, 1)
 
@@ -68,7 +68,7 @@ shader_parameter/modulate = Color(1, 1, 1, 1)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("14_5oe00")
+"texture": ExtResource("38_qhkst")
 }],
 "loop": true,
 "name": &"back_idle",
@@ -81,7 +81,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("14_0d76f")
+"texture": ExtResource("39_j5iqx")
 }],
 "loop": true,
 "name": &"front_idle",
@@ -89,7 +89,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("16_wb8p2")
+"texture": ExtResource("40_4vx47")
 }],
 "loop": true,
 "name": &"side_idle",
@@ -103,7 +103,7 @@ radius = 150.0
 y_sort_enabled = true
 motion_mode = 1
 platform_floor_layers = 4294901760
-script = ExtResource("1_emetf")
+script = ExtResource("1_4r8nq")
 gold_manager = NodePath("GoldManager")
 innate_active_ability = NodePath("InnateActiveAbility")
 utility_ability = NodePath("UtilityAbilityContainer")
@@ -119,7 +119,7 @@ item_iventory = NodePath("ItemInventory")
 equipment_inventory = NodePath("EquipmentInventory")
 
 [node name="EquipmentInventory" type="Node" parent="." node_paths=PackedStringArray("weapon_slot", "headgear_slot", "torso_slot", "armgear_slot", "shoes_slot")]
-script = ExtResource("2_oxhu7")
+script = ExtResource("2_52ran")
 max_size = 10
 weapon_slot = NodePath("../WeaponSlot")
 headgear_slot = NodePath("../HeadGearSlot")
@@ -129,32 +129,32 @@ shoes_slot = NodePath("../ShoesSlot")
 metadata/_custom_type_script = "uid://bsn1idamyre35"
 
 [node name="GoldManager" type="Node" parent="." node_paths=PackedStringArray("gold")]
-script = ExtResource("2_xreyn")
+script = ExtResource("3_raiax")
 gold = NodePath("../Stats/Gold")
 metadata/_custom_type_script = "uid://1bsno3scw518"
 
-[node name="InnateActiveAbility" parent="." node_paths=PackedStringArray("actor", "mana") groups=["innate_ability_containers"] instance=ExtResource("6_tx7qf")]
+[node name="InnateActiveAbility" parent="." node_paths=PackedStringArray("actor", "mana") groups=["innate_ability_containers"] instance=ExtResource("4_tkk1j")]
 ability_action_trigger = "primary_ability"
 actor = NodePath("..")
 mana = NodePath("../Stats/Mana")
 
-[node name="UtilityAbilityContainer" parent="." node_paths=PackedStringArray("actor", "mana") instance=ExtResource("6_tx7qf")]
+[node name="UtilityAbilityContainer" parent="." node_paths=PackedStringArray("actor", "mana") instance=ExtResource("4_tkk1j")]
 ability_action_trigger = "utility_ability"
 actor = NodePath("..")
 mana = NodePath("../Stats/Mana")
 
 [node name="DashAbility" type="Node2D" parent="UtilityAbilityContainer"]
-script = ExtResource("3_pgb24")
+script = ExtResource("5_2w7b0")
 required_stat = SubResource("Resource_s7g6f")
 cooldown = 5.0
 
 [node name="WeaponManager" type="Node2D" parent="." node_paths=PackedStringArray("main_weapon_slot", "offhand_weapon_slot")]
-script = ExtResource("7_oxhu7")
+script = ExtResource("7_nss1p")
 main_weapon_slot = NodePath("../WeaponSlot")
 offhand_weapon_slot = NodePath("../OffhandWeaponSlot")
 metadata/_custom_type_script = "uid://bfjkolmoudtsa"
 
-[node name="WeaponSlot" parent="." node_paths=PackedStringArray("attack_speed", "weapon_position", "actor") instance=ExtResource("8_00ai3")]
+[node name="WeaponSlot" parent="." node_paths=PackedStringArray("attack_speed", "weapon_position", "actor") instance=ExtResource("8_o0d6e")]
 position = Vector2(-1.07288e-06, -9.53674e-06)
 scale = Vector2(0.999999, 0.999999)
 attack_speed = NodePath("../Stats/AttackSpeedMultiplier")
@@ -165,7 +165,7 @@ action_trigger = "m_right"
 [node name="WeaponPosition" type="Marker2D" parent="WeaponSlot"]
 
 [node name="OffhandWeaponSlot" type="Node2D" parent="." node_paths=PackedStringArray("attack_speed", "weapon_position", "actor")]
-script = ExtResource("9_618kc")
+script = ExtResource("9_kaufn")
 attack_speed = NodePath("../Stats/AttackSpeedMultiplier")
 weapon_position = NodePath("WeaponPosition")
 actor = NodePath("..")
@@ -174,36 +174,36 @@ metadata/_custom_type_script = "uid://ru2jih6etkel"
 [node name="WeaponPosition" type="Marker2D" parent="OffhandWeaponSlot"]
 
 [node name="HeadGearSlot" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
-script = ExtResource("5_6bkod")
+script = ExtResource("10_umb11")
 actor = NodePath("..")
 
 [node name="TorsoSlot" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
-script = ExtResource("5_6bkod")
+script = ExtResource("10_umb11")
 actor = NodePath("..")
 
 [node name="ArmGearSlot" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
-script = ExtResource("5_6bkod")
+script = ExtResource("10_umb11")
 actor = NodePath("..")
 
 [node name="ShoesSlot" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
-script = ExtResource("5_6bkod")
+script = ExtResource("10_umb11")
 actor = NodePath("..")
 
-[node name="HitReceiver" parent="." instance=ExtResource("4_x8b3p")]
+[node name="HitReceiver" parent="." instance=ExtResource("11_ebi1i")]
 
 [node name="StatusEffectManager" type="Node" parent="." node_paths=PackedStringArray("entity")]
-script = ExtResource("2_fow85")
+script = ExtResource("12_hwi43")
 entity = NodePath("..")
 
 [node name="ManaManager" type="Node" parent="." node_paths=PackedStringArray("stat_manager", "max_mana", "current_mana", "mana_regen")]
-script = ExtResource("7_hhjar")
+script = ExtResource("13_2300v")
 stat_manager = NodePath("../Stats")
 max_mana = NodePath("../Stats/MaxMana")
 current_mana = NodePath("../Stats/Mana")
 mana_regen = NodePath("../Stats/ManaRegen")
 
 [node name="HealthManager" type="Node" parent="." node_paths=PackedStringArray("stat_manager", "max_health", "current_health", "health_regen", "max_shield", "current_shield", "shield_regen")]
-script = ExtResource("2_btby1")
+script = ExtResource("14_sldbe")
 stat_manager = NodePath("../Stats")
 max_health = NodePath("../Stats/MaxHealth")
 current_health = NodePath("../Stats/Health")
@@ -213,24 +213,25 @@ current_shield = NodePath("../Stats/Shield")
 shield_regen = NodePath("../Stats/ShieldRegen")
 
 [node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("level_stat")]
-script = ExtResource("3_nl5ra")
+script = ExtResource("15_3u1ni")
 level_stat = NodePath("../Stats/Level")
 
-[node name="DamageListener" type="Node" parent="." node_paths=PackedStringArray("health")]
-script = ExtResource("5_wy7ba")
+[node name="DamageListener" type="Node" parent="." node_paths=PackedStringArray("health", "health_manager")]
+script = ExtResource("16_8aut5")
 health = NodePath("../Stats/Health")
+health_manager = NodePath("../HealthManager")
 
 [node name="ArmorMitigationEffect" type="Node" parent="DamageListener" node_paths=PackedStringArray("mitigate_stat")]
-script = ExtResource("6_e44g6")
+script = ExtResource("17_s6fgp")
 mitigate_stat = NodePath("../../Stats/Armor")
 
 [node name="ItemInventory" type="Node" parent="." node_paths=PackedStringArray("actor")]
-script = ExtResource("2_stva5")
+script = ExtResource("18_yktjw")
 actor = NodePath("..")
 
 [node name="PickupManager" type="Area2D" parent="." node_paths=PackedStringArray("actor")]
 monitorable = false
-script = ExtResource("38_a2xrh")
+script = ExtResource("19_vn4xv")
 actor = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupManager"]
@@ -238,128 +239,128 @@ shape = SubResource("CircleShape2D_kr7mf")
 debug_color = Color(0.270791, 0.49712, 8.66354e-07, 0.42)
 
 [node name="PickupableStreamPlayer2D" type="AudioStreamPlayer2D" parent="PickupManager" node_paths=PackedStringArray("pickup_manager")]
-script = ExtResource("45_upu1f")
+script = ExtResource("20_vlal2")
 pickup_manager = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -3.5)
 shape = SubResource("RectangleShape2D_g6il8")
-script = ExtResource("14_frar0")
+script = ExtResource("21_pqgby")
 
 [node name="Stats" type="Node" parent="."]
-script = ExtResource("3_3j7ot")
+script = ExtResource("22_xk2vc")
 
 [node name="Shield" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_value = 20.0
 
 [node name="MaxShield" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_value = 50.0
 
 [node name="ShieldRegen" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 
 [node name="Mana" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "current_mana"
 
 [node name="MaxMana" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "max_mana"
 stat_value = 100.0
 
 [node name="ManaRegen" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "mana_regen"
 stat_value = 1.0
 
 [node name="Health" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "current_health"
 
 [node name="MaxHealth" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "max_health"
 stat_value = 90.0
 
 [node name="HealthRegen" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "health_regen"
 stat_value = 1.0
 
 [node name="MoveSpeed" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "move_speed"
 stat_value = 290.0
 can_be_negative = false
 
 [node name="Acceleration" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "acceleration"
 stat_value = 3000.0
 can_be_negative = false
 
 [node name="AttackSpeedMultiplier" type="Node" parent="Stats"]
-script = ExtResource("4_jr810")
+script = ExtResource("24_qngxt")
 stat_name = "attack_speed_mult"
 stat_value = 1.0
 
 [node name="AttackDamageMultiplier" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "attack_damage_mult"
 stat_value = 1.0
 
 [node name="AttackDamageFlat" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "attack_damage"
 
 [node name="MagicDamageMult" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "magic_damage_mult"
 stat_value = 1.0
 
 [node name="MagicDamageFlat" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "magic_damage"
 
 [node name="Level" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "level"
 stat_value = 1.0
 
 [node name="AreaSize" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "area_size"
 stat_value = 1.0
 
 [node name="Armor" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "armor"
 
 [node name="MagicResist" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "magic_resist"
 
 [node name="Lifesteal" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "lifesteal"
 stat_value = 0.5
 
 [node name="ArmorPen" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "armor_pen"
 
 [node name="MagicPen" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "magic_pen"
 
 [node name="CritChance" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "crit_chance"
 
 [node name="Gold" type="Node" parent="Stats"]
-script = ExtResource("6_idxee")
+script = ExtResource("23_gbr3h")
 stat_name = "gold"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -373,17 +374,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="GoldUI" parent="CanvasLayer/Control" node_paths=PackedStringArray("gold_stat") instance=ExtResource("25_002ty")]
+[node name="GoldUI" parent="CanvasLayer/Control" node_paths=PackedStringArray("gold_stat") instance=ExtResource("25_034ap")]
 layout_mode = 0
 mouse_filter = 1
 gold_stat = NodePath("../../../Stats/Gold")
 
-[node name="ItemInventoryUI" parent="CanvasLayer/Control" node_paths=PackedStringArray("inventory") instance=ExtResource("17_bplxg")]
+[node name="ItemInventoryUI" parent="CanvasLayer/Control" node_paths=PackedStringArray("inventory") instance=ExtResource("26_jkxs3")]
 layout_mode = 1
 mouse_filter = 1
 inventory = NodePath("../../../ItemInventory")
 
-[node name="ItemPicker" parent="CanvasLayer/Control" instance=ExtResource("13_qa1p5")]
+[node name="ItemPicker" parent="CanvasLayer/Control" instance=ExtResource("27_6x220")]
 process_mode = 3
 layout_mode = 1
 anchors_preset = 8
@@ -395,7 +396,7 @@ offset_right = 250.0
 offset_bottom = 250.0
 mouse_filter = 2
 
-[node name="PlayerStat" parent="CanvasLayer/Control" node_paths=PackedStringArray("player_character", "stats_manager") instance=ExtResource("11_8k8po")]
+[node name="PlayerStat" parent="CanvasLayer/Control" node_paths=PackedStringArray("player_character", "stats_manager") instance=ExtResource("28_ehex6")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -418,7 +419,7 @@ offset_right = 110.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="AbilitiesPanelContainer" parent="CanvasLayer/Control/VBoxContainer" instance=ExtResource("27_rfmdq")]
+[node name="AbilitiesPanelContainer" parent="CanvasLayer/Control/VBoxContainer" instance=ExtResource("29_sqmm1")]
 layout_mode = 2
 
 [node name="LevelBarContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer"]
@@ -428,7 +429,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 0
 
-[node name="LevelPanel" parent="CanvasLayer/Control/VBoxContainer/LevelBarContainer" instance=ExtResource("28_s660f")]
+[node name="LevelPanel" parent="CanvasLayer/Control/VBoxContainer/LevelBarContainer" instance=ExtResource("30_v20lc")]
 layout_mode = 2
 
 [node name="HealthBarContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer"]
@@ -438,7 +439,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="TextureProgressBar" parent="CanvasLayer/Control/VBoxContainer/HealthBarContainer" node_paths=PackedStringArray("health_manager") instance=ExtResource("9_jldnw")]
+[node name="TextureProgressBar" parent="CanvasLayer/Control/VBoxContainer/HealthBarContainer" node_paths=PackedStringArray("health_manager") instance=ExtResource("31_e6ml3")]
 custom_minimum_size = Vector2(125, 15)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -451,11 +452,11 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ManaBar" parent="CanvasLayer/Control/VBoxContainer/HealthBarContainer2" node_paths=PackedStringArray("mana_manager") instance=ExtResource("31_3lcr1")]
+[node name="ManaBar" parent="CanvasLayer/Control/VBoxContainer/HealthBarContainer2" node_paths=PackedStringArray("mana_manager") instance=ExtResource("32_51lw5")]
 layout_mode = 2
 mana_manager = NodePath("../../../../../ManaManager")
 
-[node name="EquipmentInventory" parent="CanvasLayer" node_paths=PackedStringArray("equipment_inventory", "weapon_slot", "offhand_slot", "headgear_slot", "torso_slot", "armgear_slot", "shoes_slot") instance=ExtResource("31_053o4")]
+[node name="EquipmentInventory" parent="CanvasLayer" node_paths=PackedStringArray("equipment_inventory", "weapon_slot", "offhand_slot", "headgear_slot", "torso_slot", "armgear_slot", "shoes_slot") instance=ExtResource("33_e7p34")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -474,17 +475,17 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="StatModManager" type="Node" parent="."]
-script = ExtResource("4_jyghi")
+script = ExtResource("34_gf3ef")
 
 [node name="MovementSystem" type="Node" parent="."]
 
-[node name="MovementController" parent="MovementSystem" node_paths=PackedStringArray("character", "movement_input", "speed", "acceleration") instance=ExtResource("3_vhpeq")]
+[node name="MovementController" parent="MovementSystem" node_paths=PackedStringArray("character", "movement_input", "speed", "acceleration") instance=ExtResource("35_pffph")]
 character = NodePath("../..")
 movement_input = NodePath("../MovementInput")
 speed = NodePath("../../Stats/MoveSpeed")
 acceleration = NodePath("../../Stats/Acceleration")
 
-[node name="MovementInput" parent="MovementSystem" instance=ExtResource("4_fjo2p")]
+[node name="MovementInput" parent="MovementSystem" instance=ExtResource("36_teqnh")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -493,29 +494,29 @@ position = Vector2(-1, -16)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_yymfs")
 animation = &"front_idle"
-script = ExtResource("17_l1iip")
+script = ExtResource("41_aycmd")
 
 [node name="PickupArea" type="Area2D" parent="."]
 process_priority = -1
 process_physics_priority = -1
 collision_layer = 0
 monitorable = false
-script = ExtResource("13_1bnos")
+script = ExtResource("42_ncqfy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 shape = SubResource("CircleShape2D_4yy27")
 debug_color = Color(0.442251, 0.580471, 0.415384, 0.42)
 
 [node name="DamageNumber" type="Node" parent="."]
-script = ExtResource("68_8ywx1")
+script = ExtResource("43_xp615")
 
 [node name="EntityHitParticle" type="Node" parent="." node_paths=PackedStringArray("entity")]
-script = ExtResource("77_xgrhj")
+script = ExtResource("44_eqfpn")
 entity = NodePath("..")
-particle_scene = ExtResource("78_x1xkl")
+particle_scene = ExtResource("45_n0876")
 
 [node name="GoldPopup" type="Node" parent="."]
-script = ExtResource("43_uvn65")
+script = ExtResource("46_4soj8")
 metadata/_custom_type_script = "uid://b6vsymr001rn1"
 
 [editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]

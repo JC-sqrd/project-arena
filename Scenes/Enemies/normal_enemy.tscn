@@ -312,11 +312,11 @@ damage_stat = NodePath("../../Stats/AttackDamage")
 
 [node name="AddGoldOnSlain" type="Node" parent="."]
 script = ExtResource("2_k2cwq")
-gold_add = 10.0
+gold_add = 5.0
 
 [node name="AddExpOnSlain" type="Node" parent="."]
 script = ExtResource("2_yqgnx")
-exp_add = 2.0
+exp_add = 5.0
 exp_label_color = Color(0.917647, 0, 0.941176, 1)
 
 [node name="HitReceiver" parent="." instance=ExtResource("6_kla3v")]
@@ -367,9 +367,10 @@ script = ExtResource("21_wnamf")
 enemy = NodePath("..")
 speed = NodePath("../Stats/MoveSpeed")
 
-[node name="DamageListener" type="Node" parent="." node_paths=PackedStringArray("health")]
+[node name="DamageListener" type="Node" parent="." node_paths=PackedStringArray("health", "health_manager")]
 script = ExtResource("22_to4bi")
 health = NodePath("../Stats/Health")
+health_manager = NodePath("../HealthManager")
 
 [node name="MagicResistMitigation" type="Node" parent="DamageListener" node_paths=PackedStringArray("mitigate_stat")]
 script = ExtResource("23_1ypxb")
@@ -452,7 +453,7 @@ stat_value = 1.25
 script = ExtResource("28_xylax")
 stat = NodePath("..")
 scale_with_stat = NodePath("../../Level")
-scale_ratio = 0.05
+scale_ratio = 0.1
 metadata/_custom_type_script = "uid://clr8tbibqclow"
 
 [node name="AttackDamage" type="Node" parent="Stats"]

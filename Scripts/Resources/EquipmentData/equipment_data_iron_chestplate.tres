@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=4 format=3 uid="uid://g1g30yburs1m"]
+
+[ext_resource type="Texture2D" uid="uid://bnlm0cqbjx8u3" path="res://Placeholders/Icons/Icon.6_94.png" id="1_lnwxg"]
+[ext_resource type="PackedScene" uid="uid://c0kg5eyjqqw2k" path="res://Scenes/Equipments/Torso/torso_iron_chestplate.tscn" id="1_t24wc"]
+[ext_resource type="Script" uid="uid://7g2i8l80ndkw" path="res://Scripts/Resources/EquipmentData/EquipmentData.gd" id="2_lnwxg"]
+
+[resource]
+script = ExtResource("2_lnwxg")
+equipment_scene = ExtResource("1_t24wc")
+equipment_name = "Iron Chestplate"
+type = 0
+tier = 0
+string_id = "iron_chestplate"
+equipment_description = ""
+equipment_details = ""
+equipment_icon = ExtResource("1_lnwxg")
+buy_cost = 0.0
+sell_value = 0.0
+metadata/_custom_type_script = "uid://7g2i8l80ndkw"

@@ -20,9 +20,11 @@ func _ready():
 func _on_timer_timeout():
 	get_tree().create_timer(time_active, false, false, false).timeout.connect(func (): 
 		inactive.emit()
+		is_inactive = true
 		)
 	get_tree().create_timer(lifetime, false, false, false).timeout.connect(func (): 
-		inactive.emit()
+		if !is_inactive:
+			inactive.emit()
 		on_destroy.emit()
 		if free_on_lifetime_end:
 			queue_free()

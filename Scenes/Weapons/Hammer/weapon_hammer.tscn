@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="2_sivhm"]
 [ext_resource type="Texture2D" uid="uid://v4t1bnc52ypq" path="res://Sprites/Weapons/Hammer/HammerStrike.png" id="3_11dr6"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="3_arpwg"]
-[ext_resource type="Texture2D" uid="uid://bq7vfcu20ywnu" path="res://Placeholders/Icons/Icon.6_47.png" id="3_dv3hi"]
+[ext_resource type="Texture2D" uid="uid://k4u0hhwjxom5" path="res://Sprites/Weapons/Hammer/Hammer.png" id="3_dv3hi"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="3_qbxlp"]
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="4_11dr6"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="5_7sqg3"]
@@ -186,6 +186,7 @@ animations = [{
 collision_mask = 2
 script = ExtResource("1_f6rey")
 piercing = true
+hit_coll_enabled_time = 0.25
 filter = SubResource("Resource_dv3hi")
 attack_damage = NodePath("Damage")
 attack_speed_stat = NodePath("AttackSpeed")
@@ -241,9 +242,7 @@ shape = SubResource("CircleShape2D_arpwg")
 texture_filter = 1
 position = Vector2(-24, -1)
 sprite_frames = SubResource("SpriteFrames_u1kbt")
-animation = &"attack"
-frame = 15
-frame_progress = 1.0
+animation = &"windup"
 script = ExtResource("12_kbh6d")
 weapon = NodePath("../..")
 

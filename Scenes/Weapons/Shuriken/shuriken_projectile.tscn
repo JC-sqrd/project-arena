@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bufnlkpdb3bcu"]
+[gd_scene load_steps=16 format=3 uid="uid://bufnlkpdb3bcu"]
 
 [ext_resource type="Script" uid="uid://csk81q2x4j06s" path="res://Scripts/Combat/ProjectileWeapons/Projectile/Projectile.gd" id="1_gw73q"]
-[ext_resource type="Texture2D" uid="uid://io3tuxjoxo5s" path="res://Sprites/Weapons/Shuriken/Shuriken Projectile.png" id="2_oenly"]
+[ext_resource type="Texture2D" uid="uid://bkgmfbtqoeo2j" path="res://Sprites/Weapons/Shuriken/Shuriken Spin.png" id="2_tuevu"]
 [ext_resource type="Script" uid="uid://y1c1hiwxwmkf" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/SpawnableHitCounterBehavior.gd" id="3_tuevu"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="4_4lodj"]
 
@@ -13,28 +13,41 @@ point_count = 3
 [sub_resource type="CircleShape2D" id="CircleShape2D_uhosi"]
 radius = 40.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tuevu"]
-atlas = ExtResource("2_oenly")
-region = Rect2(0, 0, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_4lodj"]
-atlas = ExtResource("2_oenly")
-region = Rect2(64, 0, 64, 64)
+atlas = ExtResource("2_tuevu")
+region = Rect2(0, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rrvwn"]
-atlas = ExtResource("2_oenly")
-region = Rect2(128, 0, 64, 64)
+atlas = ExtResource("2_tuevu")
+region = Rect2(96, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6tiv"]
-atlas = ExtResource("2_oenly")
-region = Rect2(192, 0, 64, 64)
+atlas = ExtResource("2_tuevu")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fwle"]
+atlas = ExtResource("2_tuevu")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4aj0"]
+atlas = ExtResource("2_tuevu")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4w6n"]
+atlas = ExtResource("2_tuevu")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6vss"]
+atlas = ExtResource("2_tuevu")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yxvw"]
+atlas = ExtResource("2_tuevu")
+region = Rect2(672, 0, 96, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6fwle"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tuevu")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4lodj")
 }, {
@@ -43,10 +56,25 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y6tiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fwle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4aj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4w6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6vss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6yxvw")
 }],
 "loop": true,
 "name": &"default",
-"speed": 12.0
+"speed": 24.0
 }]
 
 [node name="ShurikenProjectile" type="Area2D"]
@@ -63,10 +91,9 @@ shape = SubResource("CircleShape2D_uhosi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_6fwle")
 autoplay = "default"
-frame_progress = 0.109955
+frame_progress = 0.306822
 
 [node name="SpawnableHitCounterBehavior" type="Node" parent="." node_paths=PackedStringArray("hit_times", "spawnable")]
 script = ExtResource("3_tuevu")

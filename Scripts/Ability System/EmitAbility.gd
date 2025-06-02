@@ -44,6 +44,7 @@ func _end_emit():
 	actor.can_cast = true
 	active = false
 	ability_end.emit()
+	print("Ability end " + str(can_cast))
 	pass
 
 #func _on_ability_hit(hit_data : HitData):

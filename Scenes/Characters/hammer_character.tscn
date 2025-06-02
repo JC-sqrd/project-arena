@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://dophsrqv8y3sh"]
 
-[ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/test_character.tscn" id="1_5hmdl"]
+[ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_5hmdl"]
 [ext_resource type="PackedScene" uid="uid://br6km26u30bs6" path="res://Scenes/Weapons/Chakram/weapon_chakram.tscn" id="2_t2lar"]
 [ext_resource type="PackedScene" uid="uid://du2r3qg36q32c" path="res://Scenes/Abilities/Spawn Abilities/ground_burst_ability.tscn" id="2_v11n0"]
 [ext_resource type="PackedScene" uid="uid://df35xeepp7qfx" path="res://Scenes/Weapons/Fire Grimoire/weapon_fire_grimoire.tscn" id="3_e1acb"]

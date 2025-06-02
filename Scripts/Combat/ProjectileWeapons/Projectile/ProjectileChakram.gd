@@ -2,7 +2,7 @@ class_name ProjectileChakram
 extends Projectile
 
 
-@export var return_speed : float = 600
+@export var return_speed : float = 600 : set = _set_return_speed
 @export var return_curve : Curve
 
 
@@ -50,6 +50,9 @@ func _on_max_distance_reached():
 	returning = true
 	current_distance = 0
 	pass
+
+func _set_return_speed(new_return_speed : float):
+	return_speed = min(5000, new_return_speed)
 
 func _create_return_hit_data(entity_hit : Entity) -> Dictionary:
 	var hit_data : Dictionary = self.return_hit_data.duplicate()

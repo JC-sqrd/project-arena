@@ -52,6 +52,7 @@ script = ExtResource("1_fwymn")
 hit_speed = NodePath("HitSpeed")
 windup_time = 0.05
 lifetime = 3.0
+time_active = 3.0
 filter = SubResource("Resource_5xr14")
 metadata/_custom_type_script = "uid://blbwnmv676w3j"
 

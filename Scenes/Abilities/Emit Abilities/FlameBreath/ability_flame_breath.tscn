@@ -123,18 +123,19 @@ metadata/_custom_type_script = "uid://c4n03mihb0axg"
 script = ExtResource("8_xb1eg")
 stat = NodePath("..")
 scale_with_stat_id = "magic_damage"
+ratio = 0.5
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="DistanceCheck" type="Node" parent="HitListener/DamageEffect" node_paths=PackedStringArray("stat")]
 script = ExtResource("9_ijl0h")
 stat = NodePath("Stat")
-distance = 300.0
+distance = 260.0
 is_multiplier = true
 metadata/_custom_type_script = "uid://b41oadkxkerfk"
 
 [node name="Stat" type="Node" parent="HitListener/DamageEffect/DistanceCheck"]
 script = ExtResource("6_eridb")
-stat_value = 0.75
+stat_value = 0.45
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="ApplyStatusEffect" type="Node" parent="HitListener"]

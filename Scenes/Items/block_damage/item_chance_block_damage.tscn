@@ -14,7 +14,6 @@ script = ExtResource("1_lvdnd")
 block_chance = NodePath("1-1|0_15xStack+1")
 item_name = "Blocky Block"
 item_icon = ExtResource("2_plu0p")
-item_id = 10
 string_id = "block_chance"
 item_detail = "Gain 15% (+15% each stack) to block incoming damage"
 buy_cost = 60.0

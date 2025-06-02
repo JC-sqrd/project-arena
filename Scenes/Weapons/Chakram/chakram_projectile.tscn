@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://upkphqac5gql"]
 
 [ext_resource type="Script" uid="uid://dy5y7hbsepscr" path="res://Scripts/Combat/ProjectileWeapons/Projectile/ProjectileChakram.gd" id="1_7b383"]
-[ext_resource type="Texture2D" uid="uid://cyngo5gkj10dd" path="res://Sprites/Weapons/Shuriken/Shuriken.png" id="2_bd1kf"]
+[ext_resource type="Texture2D" uid="uid://cn1hgcl86qar2" path="res://Sprites/Weapons/Chakram/Chakram.png" id="2_igpwg"]
 
 [sub_resource type="Curve" id="Curve_bd1kf"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), -2.25065, 0.0, 0, 0]
@@ -26,6 +26,7 @@ metadata/_custom_type_script = "uid://dy5y7hbsepscr"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ycax0")
 
-[node name="Shuriken" type="Sprite2D" parent="."]
+[node name="Chakram" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_bd1kf")
+position = Vector2(0, 1)
+texture = ExtResource("2_igpwg")

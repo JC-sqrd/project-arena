@@ -8,7 +8,7 @@ var max_item_choice : int = 3
 var index_pool : Array[int]
 var player : PlayerCharacter
 
-var current_item_pool : Array[PackedScene]
+var current_item_pool : Array[ItemData]
 var item_pool_queue : Array
 
 var orphaned_items : Array[Item]
@@ -28,7 +28,7 @@ func _ready():
 func _on_item_card_picked(item : Item):
 	player.item_iventory.add_item(item)
 	item_pool_queue.remove_at(0)
-	orphaned_items.erase(item)
+	#orphaned_items.erase(item)
 	if item_pool_queue.size() <= 0:
 		visible = false
 		PauseManager.resume_scene_tree()
@@ -38,12 +38,12 @@ func _on_item_card_picked(item : Item):
 		#for item_card in item_cards:
 			#item_card.initialize()
 		pass
-	for orphaned_item in orphaned_items:
-		if orphaned_item != null:
-			orphaned_item.queue_free()
+	#for orphaned_item in orphaned_items:
+	#	if orphaned_item != null:
+	#		orphaned_item.queue_free()
 	pass
 
-func _on_item_picker_picked(player : PlayerCharacter, loot_pool : Array[PackedScene]):
+func _on_item_picker_picked(player : PlayerCharacter, loot_pool : Array[ItemData]):
 	PauseManager.pause_scene_tree()
 	item_pool_queue.append(loot_pool)
 	if !visible:
@@ -55,7 +55,7 @@ func _on_item_picker_picked(player : PlayerCharacter, loot_pool : Array[PackedSc
 	visible = true
 	pass
 
-func _shuffle_current_item_pool(loot_pool : Array[PackedScene]):
+func _shuffle_current_item_pool(loot_pool : Array[ItemData]):
 	index_pool.clear()
 	for child in item_card_container.get_children():
 		child.queue_free()
@@ -73,9 +73,8 @@ func _shuffle_current_item_pool(loot_pool : Array[PackedScene]):
 		
 		var item_card_object = item_card_scene.instantiate() as ItemCard
 		item_card_container.add_child(item_card_object)
-		var item : Item = loot_pool[item_index].instantiate() as Item
-		item_card_object.initialize(item)
+		item_card_object.initialize(loot_pool[item_index])
 		item_card_object.item_card_picked.connect(_on_item_card_picked)
-		orphaned_items.append(item)
+		#orphaned_items.append(item)
 		index_pool.append(item_index)
 	pass

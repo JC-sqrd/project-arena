@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://df35xeepp7qfx"]
+[gd_scene load_steps=17 format=3 uid="uid://df35xeepp7qfx"]
 
 [ext_resource type="Script" uid="uid://d3fin4411ww46" path="res://Scripts/Combat/ProjectileWeapons/ProjectileWeapon.gd" id="1_i71yi"]
 [ext_resource type="PackedScene" uid="uid://dfh3qc3n36tdr" path="res://Scenes/Weapons/Fire Grimoire/grimoire_projectile.tscn" id="2_8254a"]
@@ -15,7 +15,6 @@
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="11_ce1u2"]
 [ext_resource type="PackedScene" uid="uid://bsyjglycqybnf" path="res://Scenes/Abilities/Spawn Abilities/Fireball/ability_fireball.tscn" id="13_ut77k"]
 [ext_resource type="Script" uid="uid://prvx4o5s1tin" path="res://Scripts/Socket/WeaponSocket.gd" id="16_5goof"]
-[ext_resource type="PackedScene" uid="uid://cl4txqi2sf005" path="res://Scenes/Socketables/WeaponSocketables/weapon_socketable_add_damage.tscn" id="17_q7kx3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n12iv"]
 animations = [{
@@ -63,7 +62,7 @@ equipment_icon = ExtResource("3_lsxkw")
 
 [node name="Damage" type="Node" parent="."]
 script = ExtResource("10_qnkbf")
-stat_value = 2.0
+stat_value = 5.0
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
@@ -144,9 +143,6 @@ metadata/_custom_type_script = "uid://2vlwp08ancca"
 
 [node name="AbilityFireball" parent="." instance=ExtResource("13_ut77k")]
 
-[node name="WeaponSocket" type="Node" parent="." node_paths=PackedStringArray("socketable")]
+[node name="WeaponSocket" type="Node" parent="."]
 script = ExtResource("16_5goof")
-socketable = NodePath("WeaponSocketableAddDamage")
 metadata/_custom_type_script = "uid://prvx4o5s1tin"
-
-[node name="WeaponSocketableAddDamage" parent="WeaponSocket" instance=ExtResource("17_q7kx3")]

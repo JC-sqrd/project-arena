@@ -7,6 +7,7 @@ extends Area2D
 @export var hit_listener : HitListener
 var entities_in_area : Array[Entity]
 var hit_data : Dictionary
+var is_inactive : bool = false
 var source : Node
 var stack : int = 1
 

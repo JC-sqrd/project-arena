@@ -9,6 +9,7 @@
 script = ExtResource("1_kg8ex")
 equipment_name = "Iron Helmet"
 type = 1
+string_id = "iron_helmet"
 equipment_icon = ExtResource("2_vhy2a")
 buy_cost = 350.0
 sell_value = 80.0

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dhxpvlvibaei1"]
+
+[ext_resource type="Texture2D" uid="uid://bw4ccmwvvoxs2" path="res://Placeholders/Icons/Icon.5_07.png" id="1_ndy6l"]
+[ext_resource type="Script" uid="uid://cionhn23akyj3" path="res://Scripts/Resources/ItemData/ItemData.gd" id="1_pdcfu"]
+[ext_resource type="PackedScene" uid="uid://7evpmhu4mrpd" path="res://Scenes/Items/chain_lightning/item_chain_lightning.tscn" id="1_ticlp"]
+
+[resource]
+script = ExtResource("1_pdcfu")
+item_scene = ExtResource("1_ticlp")
+item_name = "Bjolnir"
+item_icon = ExtResource("1_ndy6l")
+string_id = "chain_lightning"
+item_description = ""
+item_detail = "On Hit: 20% chance to hit target with lightning that can bounce to nearby enemies 2(+1 each stack) times, dealing 10 + 20% magic damage."
+buy_cost = 400.0
+sell_value = 30.0
+metadata/_custom_type_script = "uid://cionhn23akyj3"

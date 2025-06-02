@@ -2,6 +2,7 @@ class_name DamageListener
 extends Node
 
 @export var health : Stat
+@export var health_manager : HealthManager
 var mitigation_effects : Array[MitigationEffect]
 var modifiers : Array[MitigationModifier]
 
@@ -111,15 +112,33 @@ func reset_damage_multiplier():
 	pass
 
 func _apply_damage(damage_data : DamageEffectData) -> float:
-	var damage = damage_data.damage
-	if (health.stat_derived_value - damage) <= 0:
-		var leftover_health = health.stat_derived_value
-		health.stat_derived_value -= leftover_health
+	var damage : float = damage_data.damage
+	#if (health.stat_derived_value - damage) <= 0:
+		#var leftover_health = health.stat_derived_value
+		#health.stat_derived_value -= leftover_health
+		#damage = leftover_health
+	#else:
+		#health.stat_derived_value -= damage
+	#
+	#if health.stat_derived_value <= 0:
+		#(damage_data.target).slain.emit(damage_data.actor)
+		#if damage_data.actor != null:
+			#(damage_data.actor).slayed.emit(damage_data.target)
+		#(damage_data.target).die()
+	#damage_applied.emit()
+	#return damage
+	
+	#-----------------------------------
+	
+	
+	if (health_manager.current_health.stat_derived_value - damage) <= 0:
+		var leftover_health = health_manager.current_health.stat_derived_value
+		health_manager.remove_current_health(leftover_health)
 		damage = leftover_health
 	else:
-		health.stat_derived_value -= damage
+		health_manager.remove_current_health(damage)
 	
-	if health.stat_derived_value <= 0:
+	if health_manager.current_health.stat_derived_value <= 0:
 		(damage_data.target).slain.emit(damage_data.actor)
 		if damage_data.actor != null:
 			(damage_data.actor).slayed.emit(damage_data.target)

@@ -19,7 +19,6 @@ func _ready():
 	pass
 
 func add_item(new_item : Item):
-	var new_item_id : int = new_item.item_id
 	var new_item_string_id : String = new_item.string_id
 	if items.size() == 0:
 		items.append(new_item)

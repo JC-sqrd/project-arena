@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=4 format=3 uid="uid://bk4ie4vfbhel8"]
+
+[ext_resource type="PackedScene" uid="uid://dq2ilob20a4t5" path="res://Scenes/Weapons/Bow/weapon_bow.tscn" id="1_cc3u7"]
+[ext_resource type="Script" uid="uid://7g2i8l80ndkw" path="res://Scripts/Resources/EquipmentData/EquipmentData.gd" id="1_i3sfm"]
+[ext_resource type="Texture2D" uid="uid://dr2a25q3svqur" path="res://Sprites/Weapons/Bow/Bow.png" id="1_yk8ly"]
+
+[resource]
+script = ExtResource("1_i3sfm")
+equipment_scene = ExtResource("1_cc3u7")
+equipment_name = "Wooden Bow"
+type = 0
+tier = 0
+string_id = "wooden_bow"
+equipment_description = ""
+equipment_details = ""
+equipment_icon = ExtResource("1_yk8ly")
+buy_cost = 0.0
+sell_value = 0.0
+metadata/_custom_type_script = "uid://7g2i8l80ndkw"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=4 format=3 uid="uid://dm2irhefojq5d"]
+
+[ext_resource type="Texture2D" uid="uid://cn1hgcl86qar2" path="res://Sprites/Weapons/Chakram/Chakram.png" id="1_6sglv"]
+[ext_resource type="PackedScene" uid="uid://br6km26u30bs6" path="res://Scenes/Weapons/Chakram/weapon_chakram.tscn" id="1_cw32m"]
+[ext_resource type="Script" uid="uid://7g2i8l80ndkw" path="res://Scripts/Resources/EquipmentData/EquipmentData.gd" id="1_kmis0"]
+
+[resource]
+script = ExtResource("1_kmis0")
+equipment_scene = ExtResource("1_cw32m")
+equipment_name = "Chakram"
+type = 0
+tier = 0
+string_id = "chakram"
+equipment_description = ""
+equipment_details = ""
+equipment_icon = ExtResource("1_6sglv")
+buy_cost = 0.0
+sell_value = 0.0
+metadata/_custom_type_script = "uid://7g2i8l80ndkw"

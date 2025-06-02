@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dghtl5wiu6obb"]
+
+[ext_resource type="Script" uid="uid://cionhn23akyj3" path="res://Scripts/Resources/ItemData/ItemData.gd" id="1_ca7bb"]
+[ext_resource type="Texture2D" uid="uid://c0c83dsj80tb4" path="res://Placeholders/Icons/Icon.2_77.png" id="1_l8134"]
+[ext_resource type="PackedScene" uid="uid://4m3bpkty0d23" path="res://Scenes/Items/flying_dagger/item_flying_dagger.tscn" id="2_e388m"]
+
+[resource]
+script = ExtResource("1_ca7bb")
+item_scene = ExtResource("2_e388m")
+item_name = "Flying Dagger"
+item_icon = ExtResource("1_l8134")
+string_id = "flying_dagger"
+item_description = ""
+item_detail = "Every 3rd basic attack hit, fire a dagger that deals 10 + (+20% attack damage each stack) physical damage that can pierce 1(+1 each stack) times.
++20% Critical Strike Chance"
+buy_cost = 300.0
+sell_value = 15.0
+metadata/_custom_type_script = "uid://cionhn23akyj3"
