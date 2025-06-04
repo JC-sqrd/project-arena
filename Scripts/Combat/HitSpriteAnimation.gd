@@ -4,14 +4,25 @@ extends AnimatedSprite2D
 
 func _ready():
 	if entity != null:
-		entity.took_damage.connect(_on_damage_taken)
+		#entity.took_damage.connect(_on_damage_taken)
+		entity.died.connect(_on_entity_died)
 	pass
 
 func _on_damage_taken(damage : float):
-	speed_scale = 2
+	speed_scale = 1
 	rotation = randf_range(0, 360)
 	if is_playing():
-		return
-		#stop()
+		#return
+		stop()
+	play("hit_spark")
+	pass
+
+
+func _on_entity_died():
+	speed_scale = 1
+	rotation = randf_range(0, 360)
+	if is_playing():
+		#return
+		stop()
 	play("hit_spark")
 	pass

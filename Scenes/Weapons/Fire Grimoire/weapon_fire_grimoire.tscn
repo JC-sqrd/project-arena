@@ -1,13 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://df35xeepp7qfx"]
+[gd_scene load_steps=23 format=3 uid="uid://df35xeepp7qfx"]
 
 [ext_resource type="Script" uid="uid://d3fin4411ww46" path="res://Scripts/Combat/ProjectileWeapons/ProjectileWeapon.gd" id="1_i71yi"]
 [ext_resource type="PackedScene" uid="uid://dfh3qc3n36tdr" path="res://Scenes/Weapons/Fire Grimoire/grimoire_projectile.tscn" id="2_8254a"]
+[ext_resource type="Texture2D" uid="uid://r4kmrlxyhifp" path="res://Sprites/Weapons/Fire Grimoire/Fire Grimoire Icon.png" id="3_5goof"]
 [ext_resource type="Texture2D" uid="uid://cen8e7ne06b7p" path="res://Sprites/Weapons/Fire Grimoire/Fire Grimoire.png" id="3_lsxkw"]
 [ext_resource type="Script" uid="uid://cmdw2c71721x0" path="res://Scripts/Combat/Animation/AttackAnimation.gd" id="4_n12iv"]
+[ext_resource type="Script" uid="uid://tsoqg0it4kc5" path="res://Scripts/Combat/Equipment/Weapon/WeaponFlipRotation.gd" id="4_q7kx3"]
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="5_2chfd"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="5_ghucb"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="6_3hjyv"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="6_p54e5"]
+[ext_resource type="Texture2D" uid="uid://bkgd31sddo2em" path="res://Sprites/Weapons/Fire Grimoire/Fire Grimoire Attack.png" id="7_i8erm"]
 [ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="7_r7yxm"]
 [ext_resource type="Script" uid="uid://88st3pdi1hky" path="res://Scripts/Combat/CombatEffects/ApplyStatusEffect.gd" id="8_353su"]
 [ext_resource type="PackedScene" uid="uid://d2mjy2iqk7hmw" path="res://Scenes/StatusEffects/Burn.tscn" id="9_hd76i"]
@@ -16,15 +19,36 @@
 [ext_resource type="PackedScene" uid="uid://bsyjglycqybnf" path="res://Scenes/Abilities/Spawn Abilities/Fireball/ability_fireball.tscn" id="13_ut77k"]
 [ext_resource type="Script" uid="uid://prvx4o5s1tin" path="res://Scripts/Socket/WeaponSocket.gd" id="16_5goof"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5goof"]
+atlas = ExtResource("7_i8erm")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7kx3"]
+atlas = ExtResource("7_i8erm")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47iqu"]
+atlas = ExtResource("7_i8erm")
+region = Rect2(512, 0, 256, 256)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_n12iv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5goof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7kx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47iqu")
+}, {
+"duration": 1.0,
 "texture": ExtResource("3_lsxkw")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -34,10 +58,7 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_lsxkw")
-}],
+"frames": [],
 "loop": true,
 "name": &"windup",
 "speed": 5.0
@@ -48,21 +69,21 @@ y_sort_enabled = true
 script = ExtResource("1_i71yi")
 projectile = ExtResource("2_8254a")
 speed = 800.0
-spawn_node = NodePath("FireGrimoire")
+spawn_node = NodePath("FireGrimoire/Marker2D")
 max_distance = 1000.0
 attack_damage = NodePath("Damage")
 attack_speed_stat = NodePath("AttackSpeed")
-attack_windup_time = 0.1
+attack_windup_time = 0.25
 weapon_ability = NodePath("AbilityFireball")
 hit_listener = NodePath("HitListener")
 sockets = [NodePath("WeaponSocket")]
 equipment_name = "Fire Grimoire"
 string_id = "fire_grimoire"
-equipment_icon = ExtResource("3_lsxkw")
+equipment_icon = ExtResource("3_5goof")
 
 [node name="Damage" type="Node" parent="."]
 script = ExtResource("10_qnkbf")
-stat_value = 5.0
+stat_value = 10.0
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
@@ -98,11 +119,17 @@ metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="FireGrimoire" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("weapon")]
 texture_filter = 1
-scale = Vector2(1.5, 1.5)
+position = Vector2(112, 0)
 sprite_frames = SubResource("SpriteFrames_n12iv")
-animation = &"windup"
 script = ExtResource("4_n12iv")
 weapon = NodePath("..")
+
+[node name="Marker2D" type="Marker2D" parent="FireGrimoire"]
+position = Vector2(-100, 0)
+
+[node name="WeaponFlipRotation" type="Node" parent="FireGrimoire/Marker2D"]
+script = ExtResource("4_q7kx3")
+metadata/_custom_type_script = "uid://tsoqg0it4kc5"
 
 [node name="HitListener" type="Node" parent="."]
 script = ExtResource("5_ghucb")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://coi8i25buuakq"]
+[gd_scene load_steps=9 format=3 uid="uid://coi8i25buuakq"]
 
 [ext_resource type="Script" uid="uid://csk81q2x4j06s" path="res://Scripts/Combat/ProjectileWeapons/Projectile/Projectile.gd" id="1_es2ou"]
 [ext_resource type="Texture2D" uid="uid://cwj7w1jwnhq7t" path="res://Sprites/Weapons/Wooden Magic Staff/Wooden Magic Staff Projectile.png" id="2_cr2n1"]
 [ext_resource type="Script" uid="uid://y1c1hiwxwmkf" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/SpawnableHitCounterBehavior.gd" id="3_tvr7o"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="4_tbh4q"]
+[ext_resource type="Script" uid="uid://ctvag6dleiceg" path="res://Scripts/Trail2D.gd" id="5_tbh4q"]
 
 [sub_resource type="Curve" id="Curve_tvr7o"]
 _data = [Vector2(0, 0.0435714), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0]
@@ -11,6 +12,10 @@ point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_es2ou"]
 radius = 25.0
+
+[sub_resource type="Curve" id="Curve_tbh4q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="WoodenMagicStaffProjectile" type="Area2D"]
 collision_layer = 0
@@ -38,3 +43,10 @@ metadata/_custom_type_script = "uid://y1c1hiwxwmkf"
 script = ExtResource("4_tbh4q")
 stat_value = 1.0
 metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="Trail2D" type="Line2D" parent="."]
+width = 20.0
+width_curve = SubResource("Curve_tbh4q")
+script = ExtResource("5_tbh4q")
+max_points = 15
+metadata/_custom_type_script = "uid://ctvag6dleiceg"

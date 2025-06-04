@@ -146,7 +146,7 @@ func stock_equipment(stock_amount : int):
 	pass
 
 func restock_items():
-	if player.stat_manager.stats.get("gold").stat_derived_value >= restock_item_price: 
+	if player.stat_manager.stats.get("gold").stat_value >= restock_item_price: 
 		var stock_count : int = max_item_stock
 		for item_buy in item_buy_container.get_children():
 			if (item_buy as BuyInstanceUI).is_locked:
@@ -154,7 +154,7 @@ func restock_items():
 			else:
 				item_buy.queue_free()
 		stock_items(stock_count)
-		player.stat_manager.stats.get("gold").stat_derived_value -= restock_item_price
+		player.stat_manager.stats.get("gold").stat_value -= restock_item_price
 		restock_item_price += restock_item_price
 		restock_item_button.text = "Restock Item - " + str(restock_item_price)
 	else:
@@ -162,7 +162,7 @@ func restock_items():
 	pass
 
 func restock_equipment():
-	if player.stat_manager.stats.get("gold").stat_derived_value >= restock_equipment_price:
+	if player.stat_manager.stats.get("gold").stat_value >= restock_equipment_price:
 		var stock_count : int = max_equipment_stock
 		for equipment_buy in equipment_buy_container.get_children():
 			if (equipment_buy as BuyInstanceUI).is_locked:
@@ -170,7 +170,7 @@ func restock_equipment():
 			else:
 				equipment_buy.queue_free()
 		stock_equipment(stock_count)
-		player.stat_manager.stats.get("gold").stat_derived_value -= restock_equipment_price
+		player.stat_manager.stats.get("gold").stat_value -= restock_equipment_price
 		restock_equipment_price += restock_equipment_price
 		restock_equipment_button.text = "Restock Equipment - " + str(restock_equipment_price)
 	pass

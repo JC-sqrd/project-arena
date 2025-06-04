@@ -17,11 +17,11 @@ func _ready():
 
 func buy(buyer : Entity):
 	var buyer_gold : Stat = buyer.stat_manager.get_stat("gold") as Stat
-	if buyer_gold.stat_derived_value >= equipment_data.buy_cost:
+	if buyer_gold.stat_value >= equipment_data.buy_cost:
 		equipment = equipment_data.equipment_scene.instantiate() as Equipment
 		equipment.actor = buyer
 		if buyer.equipment_inventory.add_equipment(equipment):
-			buyer_gold.stat_derived_value -= equipment_data.buy_cost
+			buyer_gold.stat_value -= equipment_data.buy_cost
 			print("Equipment bought!")
 			queue_free()
 		else:

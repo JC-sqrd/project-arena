@@ -47,5 +47,5 @@ metadata/_custom_type_script = "uid://y1c1hiwxwmkf"
 
 [node name="Stat" type="Node" parent="SpawnableHitCounterBehavior"]
 script = ExtResource("5_numia")
-stat_value = 2.0
+stat_value = 1.0
 metadata/_custom_type_script = "uid://bgka26pbphks7"

@@ -18,9 +18,9 @@ func _ready():
 
 func buy(buyer : Entity):
 	var buyer_gold : Stat = buyer.stat_manager.get_stat("gold") as Stat
-	if buyer_gold.stat_derived_value >= item_data.buy_cost:
+	if buyer_gold.stat_value >= item_data.buy_cost:
 		buyer.item_iventory.add_item(item_data.item_scene.instantiate() as Item)
-		buyer_gold.stat_derived_value -= item_data.buy_cost
+		buyer_gold.stat_value -= item_data.buy_cost
 		queue_free()
 	else:
 		slot_border.modulate = Color.RED

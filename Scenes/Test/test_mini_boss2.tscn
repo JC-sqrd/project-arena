@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://mgrw0is6pnqq" path="res://Scripts/Combat/DamageListener/Mitigation/MitigationEffect.gd" id="13_5qrlk"]
 [ext_resource type="Script" uid="uid://5fujd5ybwb45" path="res://Scripts/Combat/StatusEffects/StatusEffectManager.gd" id="14_2ad6b"]
 [ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="15_okku3"]
-[ext_resource type="Texture2D" uid="uid://c5d42fo30i1ux" path="res://Sprites/Enemy/Enemy_Front.png" id="16_shms8"]
+[ext_resource type="Texture2D" uid="uid://c5d42fo30i1ux" path="res://Sprites/Enemy/Tank Enemy/Enemy_Front.png" id="16_shms8"]
 [ext_resource type="Script" uid="uid://dkp8llu1e5ymh" path="res://Scripts/Item/ItemInventory.gd" id="17_etud4"]
 [ext_resource type="PackedScene" uid="uid://3tleitsb6xke" path="res://Scenes/Items/block_damage/item_chance_block_damage.tscn" id="18_f0wxi"]
 [ext_resource type="Script" uid="uid://b7ufh45hbdc8e" path="res://Scripts/EntitySprite.gd" id="19_firgm"]

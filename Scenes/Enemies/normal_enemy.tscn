@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://b5atlsgxuwett"]
+[gd_scene load_steps=49 format=3 uid="uid://b5atlsgxuwett"]
 
 [ext_resource type="Script" uid="uid://c82id00axlli8" path="res://Scripts/Enemy/Enemy.gd" id="1_8wxgr"]
 [ext_resource type="Script" uid="uid://sc7t52uxqk2w" path="res://Scripts/Entity/ManaManager.gd" id="2_e7npy"]
@@ -10,46 +10,18 @@
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="3_dq2xg"]
 [ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="3_jkojm"]
 [ext_resource type="Script" uid="uid://b7ufh45hbdc8e" path="res://Scripts/EntitySprite.gd" id="5_5x8ff"]
-[ext_resource type="Texture2D" uid="uid://cpg7kaa2t85md" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Attack hit marker.png" id="6_hetbw"]
 [ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Test/Components/hit_receiver.tscn" id="6_kla3v"]
-[ext_resource type="Texture2D" uid="uid://c7iewtsox23sg" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0000.png" id="7_gvi1j"]
-[ext_resource type="Texture2D" uid="uid://bvt0giighv5ax" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0001.png" id="8_uhakg"]
-[ext_resource type="Texture2D" uid="uid://baxfth1ufpiin" path="res://Sprites/Enemy/FastEnemy_Front.png" id="9_cglyf"]
-[ext_resource type="Texture2D" uid="uid://c16sn36nfwj76" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0002.png" id="9_xwtbe"]
-[ext_resource type="Texture2D" uid="uid://b4stxohqkxe4y" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0003.png" id="10_oupu6"]
-[ext_resource type="Texture2D" uid="uid://dxojwmbxnf2b7" path="res://Placeholders/Sprites/Animation/FastEnemyHurt/FastEnemy_Front_Hurt_Anim1.png" id="11_d24uu"]
-[ext_resource type="Texture2D" uid="uid://evkgstx1vrgd" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0004.png" id="11_g2s3c"]
-[ext_resource type="Texture2D" uid="uid://f8ukp48mceff" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0005.png" id="12_edkmj"]
-[ext_resource type="Texture2D" uid="uid://cha380xegwl4t" path="res://Placeholders/Sprites/Animation/FastEnemyHurt/FastEnemy_Front_Hurt_Anim2.png" id="12_wagk1"]
-[ext_resource type="Texture2D" uid="uid://ctafmh71xgcnk" path="res://Placeholders/Sprites/Animation/FastEnemyHurt/FastEnemy_Front_Hurt_Anim3.png" id="13_ds2a3"]
-[ext_resource type="Texture2D" uid="uid://rg8khxkgr6i0" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0006.png" id="13_hisxn"]
-[ext_resource type="Texture2D" uid="uid://ciru8oma8tbxv" path="res://Placeholders/Sprites/Animation/FastEnemyHurt/FastEnemy_Front_Hurt_Anim4.png" id="14_7mg25"]
-[ext_resource type="Texture2D" uid="uid://mty87lri11va" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0007.png" id="14_nh2g3"]
-[ext_resource type="Texture2D" uid="uid://ddh16dnwj061n" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0008.png" id="15_jo7ka"]
-[ext_resource type="Texture2D" uid="uid://bohr86u44g60a" path="res://Placeholders/Sprites/Animation/FastEnemyHurt/FastEnemy_Front_Hurt_Anim5.png" id="15_yr7v1"]
-[ext_resource type="Texture2D" uid="uid://boh7l2hia0nyn" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0009.png" id="16_3ebgk"]
-[ext_resource type="Texture2D" uid="uid://c080sl6m4pdcc" path="res://Placeholders/Sprites/Animation/FastEnemyHurt/FastEnemy_Front_Hurt_Anim6.png" id="16_wf7wg"]
-[ext_resource type="Texture2D" uid="uid://cvxbuwbv1di3m" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0010.png" id="17_6ihiy"]
-[ext_resource type="Texture2D" uid="uid://dtl6ibq8dvo85" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0011.png" id="18_mguc7"]
-[ext_resource type="Texture2D" uid="uid://5yxrvlqcu88u" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0012.png" id="19_pvqos"]
+[ext_resource type="Texture2D" uid="uid://yigasothu8cv" path="res://Sprites/Enemy/Normal Enemy/FastEnemy_Front.png" id="10_4amni"]
+[ext_resource type="Texture2D" uid="uid://d20xo7dtl47io" path="res://Sprites/Enemy/Normal Enemy/FastEnemy_Front_Hurt_Anim.png" id="11_lnnef"]
+[ext_resource type="SpriteFrames" uid="uid://vtufrjrnc2av" path="res://Scripts/Resources/Animations/hit_spark_2D_anim.tres" id="13_crijp"]
 [ext_resource type="Script" uid="uid://xabwgpydpxaf" path="res://Scripts/Combat/HitSpriteAnimation.gd" id="20_n66tn"]
-[ext_resource type="Texture2D" uid="uid://cyumnmi1ktoef" path="res://Placeholders/Sprites/Animation/HitSpark/frame0000.png" id="20_vini2"]
-[ext_resource type="Texture2D" uid="uid://dwbsgb3v246ym" path="res://Placeholders/Sprites/Animation/HitSpark/frame0001.png" id="21_ru5kq"]
 [ext_resource type="Script" uid="uid://i2thtk66tgpr" path="res://Scripts/Enemy/AI/FollowPlayer.gd" id="21_wnamf"]
-[ext_resource type="Texture2D" uid="uid://bnpokfuasf7cx" path="res://Placeholders/Sprites/Animation/HitSpark/frame0002.png" id="22_doxw4"]
 [ext_resource type="Script" uid="uid://ctjia3ovr0cyg" path="res://Scripts/Combat/DamageListener/DamageListener.gd" id="22_to4bi"]
 [ext_resource type="Script" uid="uid://mgrw0is6pnqq" path="res://Scripts/Combat/DamageListener/Mitigation/MitigationEffect.gd" id="23_1ypxb"]
-[ext_resource type="Texture2D" uid="uid://c0dl6sa2a5jt3" path="res://Placeholders/Sprites/Animation/HitSpark/frame0003.png" id="23_pp18w"]
-[ext_resource type="Texture2D" uid="uid://ba5b4cq4h3xw2" path="res://Placeholders/Sprites/Animation/HitSpark/frame0004.png" id="24_f87cy"]
 [ext_resource type="Script" uid="uid://c2c43sih3sxp0" path="res://Scripts/Entity/LevelManager.gd" id="24_tqk11"]
-[ext_resource type="Texture2D" uid="uid://dpr3kqaphvdqu" path="res://Placeholders/Sprites/Animation/HitSpark/frame0005.png" id="25_8l81f"]
 [ext_resource type="Script" uid="uid://cdn8b5gg8mfb8" path="res://Scripts/Entity/HealthManager.gd" id="25_uekoc"]
-[ext_resource type="Texture2D" uid="uid://c7d6srnstq8dw" path="res://Placeholders/Sprites/Animation/HitSpark/frame0006.png" id="26_i1bbd"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="27_8hbk4"]
-[ext_resource type="Texture2D" uid="uid://6ydfd8td374p" path="res://Placeholders/Sprites/Animation/HitSpark/frame0007.png" id="27_ntu3f"]
-[ext_resource type="Texture2D" uid="uid://bvb8wdfxk0srf" path="res://Placeholders/Sprites/Animation/HitSpark/frame0008.png" id="28_wcc1a"]
 [ext_resource type="Script" uid="uid://clr8tbibqclow" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="28_xylax"]
-[ext_resource type="Texture2D" uid="uid://camqocmr4fo0j" path="res://Placeholders/Sprites/Animation/HitSpark/frame0009.png" id="29_nr0pp"]
 [ext_resource type="Script" uid="uid://cxjykw6uf7uti" path="res://Scripts/Loot/EntityLootDropManager.gd" id="29_sk5q4"]
 [ext_resource type="PackedScene" uid="uid://cj01qxw0g7t0" path="res://Scenes/Pickupables/exp_orb.tscn" id="30_qoj44"]
 [ext_resource type="Script" uid="uid://dxpbdqwawfhk5" path="res://Scripts/Loot/LootDropper.gd" id="31_b73cx"]
@@ -73,6 +45,30 @@ shader = ExtResource("3_jkojm")
 shader_parameter/hit_opacity = 0.0
 shader_parameter/modulate = Color(1, 1, 1, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7q78"]
+atlas = ExtResource("11_lnnef")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hduax"]
+atlas = ExtResource("11_lnnef")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ik7m"]
+atlas = ExtResource("11_lnnef")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctxbq"]
+atlas = ExtResource("11_lnnef")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xi4fp"]
+atlas = ExtResource("11_lnnef")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2iw72"]
+atlas = ExtResource("11_lnnef")
+region = Rect2(480, 0, 96, 96)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_b66ty"]
 animations = [{
 "frames": [],
@@ -82,7 +78,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_cglyf")
+"texture": ExtResource("10_4amni")
 }],
 "loop": true,
 "name": &"front",
@@ -90,194 +86,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("12_wagk1")
+"texture": SubResource("AtlasTexture_g7q78")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_ds2a3")
+"texture": SubResource("AtlasTexture_hduax")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_7mg25")
+"texture": SubResource("AtlasTexture_2ik7m")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_yr7v1")
+"texture": SubResource("AtlasTexture_ctxbq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_wf7wg")
+"texture": SubResource("AtlasTexture_xi4fp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_d24uu")
+"texture": SubResource("AtlasTexture_2iw72")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_d24uu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_d24uu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_d24uu")
+"texture": SubResource("AtlasTexture_g7q78")
 }],
 "loop": false,
 "name": &"hurt",
-"speed": 12.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wyoix"]
-atlas = ExtResource("6_hetbw")
-region = Rect2(0, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0vqdy"]
-atlas = ExtResource("6_hetbw")
-region = Rect2(0, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ddg7u"]
-atlas = ExtResource("6_hetbw")
-region = Rect2(100, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_arnim"]
-atlas = ExtResource("6_hetbw")
-region = Rect2(200, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r1utq"]
-atlas = ExtResource("6_hetbw")
-region = Rect2(300, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_toxha"]
-atlas = ExtResource("6_hetbw")
-region = Rect2(400, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_agecp"]
-atlas = ExtResource("6_hetbw")
-region = Rect2(500, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gq4qn"]
-atlas = ExtResource("6_hetbw")
-region = Rect2(600, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hiwsu"]
-atlas = ExtResource("6_hetbw")
-region = Rect2(700, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iav3h"]
-atlas = ExtResource("6_hetbw")
-region = Rect2(800, 0, 100, 100)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_34vpu"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wyoix")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0vqdy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ddg7u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_arnim")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r1utq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_toxha")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_agecp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gq4qn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hiwsu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iav3h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wyoix")
-}],
-"loop": false,
-"name": &"default",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_gvi1j")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_uhakg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_xwtbe")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_oupu6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_g2s3c")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_edkmj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_hisxn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_nh2g3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_jo7ka")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_3ebgk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_6ihiy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_mguc7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_pvqos")
-}],
-"loop": false,
-"name": &"hit",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("20_vini2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_ru5kq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_doxw4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_pp18w")
-}, {
-"duration": 1.0,
-"texture": ExtResource("24_f87cy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("25_8l81f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("26_i1bbd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("27_ntu3f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("28_wcc1a")
-}, {
-"duration": 1.0,
-"texture": ExtResource("29_nr0pp")
-}],
-"loop": false,
-"name": &"hit_spark",
 "speed": 12.0
 }]
 
@@ -336,22 +166,20 @@ entity = NodePath("..")
 texture_filter = 1
 material = SubResource("ShaderMaterial_wfwwp")
 position = Vector2(0, -24)
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_b66ty")
 animation = &"front"
 script = ExtResource("5_5x8ff")
 entity = NodePath("..")
 
 [node name="VisibleOnScreenEnabler2D2" type="VisibleOnScreenEnabler2D" parent="AnimatedSprite2D"]
-position = Vector2(-10.6667, -2.66667)
-scale = Vector2(0.213333, 0.213333)
+position = Vector2(-36, -2.66667)
+scale = Vector2(0.72, 0.506667)
 rect = Rect2(0, 0, 100, 100)
 enable_node_path = NodePath("")
 
 [node name="HitAnimation" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("entity")]
-visible = false
 scale = Vector2(0.75, 0.75)
-sprite_frames = SubResource("SpriteFrames_34vpu")
+sprite_frames = ExtResource("13_crijp")
 animation = &"hit_spark"
 script = ExtResource("20_n66tn")
 entity = NodePath("..")

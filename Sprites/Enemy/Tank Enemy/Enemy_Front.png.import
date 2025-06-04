@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q77vaalj1c7g"
-path="res://.godot/imported/Small Enemy.png-cc012d700ec58544058b1ec55ebbf7bc.ctex"
+uid="uid://c5d42fo30i1ux"
+path="res://.godot/imported/Enemy_Front.png-68d94d8944febeb26722321e0cd98dc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemy/Small Enemy.png"
-dest_files=["res://.godot/imported/Small Enemy.png-cc012d700ec58544058b1ec55ebbf7bc.ctex"]
+source_file="res://Sprites/Enemy/Tank Enemy/Enemy_Front.png"
+dest_files=["res://.godot/imported/Enemy_Front.png-68d94d8944febeb26722321e0cd98dc3.ctex"]
 
 [params]
 

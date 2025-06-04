@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://cvfsmjmaolpet"]
+[gd_scene load_steps=86 format=3 uid="uid://cvfsmjmaolpet"]
 
 [ext_resource type="Script" uid="uid://c82id00axlli8" path="res://Scripts/Enemy/Enemy.gd" id="1_85oim"]
 [ext_resource type="Script" uid="uid://5fujd5ybwb45" path="res://Scripts/Combat/StatusEffects/StatusEffectManager.gd" id="2_2lgle"]
@@ -27,17 +27,12 @@
 [ext_resource type="Texture2D" uid="uid://rg8khxkgr6i0" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0006.png" id="12_4psk6"]
 [ext_resource type="Texture2D" uid="uid://mty87lri11va" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0007.png" id="13_ytn3o"]
 [ext_resource type="Texture2D" uid="uid://ddh16dnwj061n" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0008.png" id="14_0tgo2"]
-[ext_resource type="Texture2D" uid="uid://6muajijbhbdg" path="res://Placeholders/Sprites/Animation/EnemyHurt/Enemy_Front_Hurt_Anim1.png" id="14_hl44h"]
-[ext_resource type="Texture2D" uid="uid://c5d42fo30i1ux" path="res://Sprites/Enemy/Enemy_Front.png" id="14_or87p"]
+[ext_resource type="Texture2D" uid="uid://c5d42fo30i1ux" path="res://Sprites/Enemy/Tank Enemy/Enemy_Front.png" id="14_or87p"]
 [ext_resource type="Texture2D" uid="uid://boh7l2hia0nyn" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0009.png" id="15_jml50"]
-[ext_resource type="Texture2D" uid="uid://dnfiwdykf64rv" path="res://Placeholders/Sprites/Animation/EnemyHurt/Enemy_Front_Hurt_Anim2.png" id="15_m85y1"]
-[ext_resource type="Texture2D" uid="uid://8fwpbktijjgr" path="res://Placeholders/Sprites/Animation/EnemyHurt/Enemy_Front_Hurt_Anim3.png" id="16_s061y"]
+[ext_resource type="Texture2D" uid="uid://wfcph1gow7a3" path="res://Sprites/Enemy/Tank Enemy/Enemy_Front_Hurt_Anim.png" id="15_s8u05"]
 [ext_resource type="Texture2D" uid="uid://cvxbuwbv1di3m" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0010.png" id="16_y2hp1"]
 [ext_resource type="Texture2D" uid="uid://dtl6ibq8dvo85" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0011.png" id="17_5ula7"]
-[ext_resource type="Texture2D" uid="uid://c1p4hj1opdd8c" path="res://Placeholders/Sprites/Animation/EnemyHurt/Enemy_Front_Hurt_Anim4.png" id="17_i0mkh"]
 [ext_resource type="Texture2D" uid="uid://5yxrvlqcu88u" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0012.png" id="18_6nk6j"]
-[ext_resource type="Texture2D" uid="uid://bfplm75582com" path="res://Placeholders/Sprites/Animation/EnemyHurt/Enemy_Front_Hurt_Anim5.png" id="18_yhlkm"]
-[ext_resource type="Texture2D" uid="uid://3ew3prfcf5fx" path="res://Placeholders/Sprites/Animation/EnemyHurt/Enemy_Front_Hurt_Anim6.png" id="19_lc0rt"]
 [ext_resource type="Script" uid="uid://c2c43sih3sxp0" path="res://Scripts/Entity/LevelManager.gd" id="23_m6pbx"]
 [ext_resource type="Script" uid="uid://ctjia3ovr0cyg" path="res://Scripts/Combat/DamageListener/DamageListener.gd" id="24_x1dv3"]
 [ext_resource type="Script" uid="uid://mgrw0is6pnqq" path="res://Scripts/Combat/DamageListener/Mitigation/MitigationEffect.gd" id="25_ci6ga"]
@@ -75,6 +70,30 @@ shader = ExtResource("2_gkyh4")
 shader_parameter/hit_opacity = 0.0
 shader_parameter/modulate = Color(1, 1, 1, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kskwo"]
+atlas = ExtResource("15_s8u05")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30ctc"]
+atlas = ExtResource("15_s8u05")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t7sj"]
+atlas = ExtResource("15_s8u05")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0lpt"]
+atlas = ExtResource("15_s8u05")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr60n"]
+atlas = ExtResource("15_s8u05")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rxhk"]
+atlas = ExtResource("15_s8u05")
+region = Rect2(480, 0, 96, 96)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_pwdm6"]
 animations = [{
 "frames": [],
@@ -92,31 +111,25 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("15_m85y1")
+"texture": SubResource("AtlasTexture_kskwo")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_s061y")
+"texture": SubResource("AtlasTexture_30ctc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_i0mkh")
+"texture": SubResource("AtlasTexture_3t7sj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("18_yhlkm")
+"texture": SubResource("AtlasTexture_w0lpt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("19_lc0rt")
+"texture": SubResource("AtlasTexture_gr60n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_hl44h")
+"texture": SubResource("AtlasTexture_3rxhk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_hl44h")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_hl44h")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_hl44h")
+"texture": SubResource("AtlasTexture_kskwo")
 }],
 "loop": false,
 "name": &"hurt",
@@ -365,15 +378,14 @@ actor = NodePath("..")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("entity")]
 texture_filter = 1
 material = SubResource("ShaderMaterial_w5k4g")
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_pwdm6")
-animation = &"front"
+animation = &"hurt"
 script = ExtResource("4_h8kdw")
 entity = NodePath("..")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="AnimatedSprite2D"]
-position = Vector2(-13.3333, -10.6667)
-scale = Vector2(0.266667, 0.266667)
+position = Vector2(-39, -30)
+scale = Vector2(0.79, 0.79)
 rect = Rect2(0, 0, 100, 100)
 enable_node_path = NodePath("")
 

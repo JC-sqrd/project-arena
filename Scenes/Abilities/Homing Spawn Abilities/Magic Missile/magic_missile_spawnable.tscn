@@ -1,9 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://66htkuagc713"]
+[gd_scene load_steps=6 format=3 uid="uid://66htkuagc713"]
 
 [ext_resource type="Script" uid="uid://ot5dr4px3hri" path="res://Scripts/Ability System/Spawnables/HomingHitSpawnable.gd" id="1_eg6d3"]
 [ext_resource type="Texture2D" uid="uid://3d5sjsst0lv7" path="res://Scenes/Abilities/Homing Spawn Abilities/Magic Missile/Magic Misslie Projectile.png" id="2_0jqvg"]
+[ext_resource type="Script" uid="uid://ctvag6dleiceg" path="res://Scripts/Trail2D.gd" id="3_gpy44"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eg6d3"]
+
+[sub_resource type="Curve" id="Curve_gpy44"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="MagicMissileSpawnable" type="Area2D"]
 collision_layer = 0
@@ -23,3 +28,9 @@ shape = SubResource("CircleShape2D_eg6d3")
 texture_filter = 1
 position = Vector2(-3, 0)
 texture = ExtResource("2_0jqvg")
+
+[node name="Trail2D" type="Line2D" parent="."]
+width_curve = SubResource("Curve_gpy44")
+script = ExtResource("3_gpy44")
+max_points = 15
+metadata/_custom_type_script = "uid://ctvag6dleiceg"
