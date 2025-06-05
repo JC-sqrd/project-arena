@@ -4,10 +4,16 @@ extends Node2D
 @export var main_weapon_slot : WeaponSlot
 @export var offhand_weapon_slot : OffhandWeaponSlot
 
+var actor : Entity
+
 var main_weapon : bool = true
 
 
 func _ready() -> void:
+	if owner is Entity:
+		actor = owner
+	elif owner.has_method("get_actor"):
+		actor = owner.get_actor()
 	pass
 
 
@@ -24,6 +30,7 @@ func switch_weapon():
 		print("Switch Main to Offhand")
 		if offhand_weapon_slot.equipment != null:
 			main_weapon_slot.unequip(main_weapon_slot.equipment)
+			main_weapon_slot.equipment.actor = actor
 			offhand_weapon_slot.equip_offhand()
 			offhand_weapon_slot.equipment.actor.can_attack = true
 		else:
@@ -32,6 +39,7 @@ func switch_weapon():
 	elif main_weapon:
 		print("Switch Offhand to Main")
 		offhand_weapon_slot.unequip(offhand_weapon_slot.equipment)
+		offhand_weapon_slot.equipment.actor = actor
 		main_weapon_slot.equip(main_weapon_slot.equipment)
 		main_weapon_slot.equipment.actor.can_attack = true
 		pass

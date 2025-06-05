@@ -1,28 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://d0cyv80ttroeg"]
+[gd_scene load_steps=3 format=3 uid="uid://d0cyv80ttroeg"]
 
 [ext_resource type="Script" uid="uid://r58kcinovkpf" path="res://Scripts/DebugLabel.gd" id="1_y4yg3"]
-[ext_resource type="Texture2D" uid="uid://bckho4r5trpmx" path="res://Placeholders/Icons/Icon.3_10.png" id="2_71oqp"]
-[ext_resource type="Texture2D" uid="uid://bb4cu6lgswreo" path="res://Placeholders/Icons/Icon.6_83.png" id="3_iw85u"]
-[ext_resource type="Texture2D" uid="uid://c1qdywl86c0v3" path="res://Placeholders/Icons/Icon.2_75.png" id="4_1s2cs"]
-[ext_resource type="Texture2D" uid="uid://e56medrovodu" path="res://Placeholders/Icons/Icon.5_46.png" id="5_yj6h7"]
-[ext_resource type="Texture2D" uid="uid://bnnyoo8atnocu" path="res://Placeholders/Icons/Icon.5_15.png" id="6_47ksd"]
-[ext_resource type="Texture2D" uid="uid://kw55mscj116h" path="res://Placeholders/Icons/Icon.7_59.png" id="7_7g68q"]
-[ext_resource type="Texture2D" uid="uid://1hsoktpfpfhu" path="res://Placeholders/Icons/Icon.1_95.png" id="8_5jm1e"]
-[ext_resource type="Texture2D" uid="uid://n0iqrgimqa4b" path="res://Placeholders/Icons/Icon.1_88.png" id="9_bnhxt"]
-[ext_resource type="Texture2D" uid="uid://dsa3jttn1hoty" path="res://Placeholders/Sprites/WindSlashAbilityIcon.png" id="10_e5k48"]
-[ext_resource type="Texture2D" uid="uid://kbd0tg28o1sm" path="res://Placeholders/Sprites/WindProjectileIcon.png" id="11_6icfi"]
-[ext_resource type="Texture2D" uid="uid://dqfper6ggt1en" path="res://Placeholders/Sprites/SlashDashIcon2.png" id="12_4q6to"]
-[ext_resource type="Texture2D" uid="uid://b7foa83jkp0jo" path="res://Placeholders/Sprites/SlashFieldIcon.png" id="13_2vp7i"]
-[ext_resource type="Texture2D" uid="uid://da4sd0ss238r3" path="res://Placeholders/Sprites/Test Character/Exp orb palceholder 3.png" id="14_lupit"]
+[ext_resource type="PackedScene" uid="uid://ow0u5wroiajl" path="res://Scenes/Components/stat_ui.tscn" id="10_dd3x1"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_fqoii"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_w3scg"]
-font_size = 32
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_amqn2"]
-
-[node name="Control" type="Control" node_paths=PackedStringArray("strength_label", "vitality_label", "magic_label", "ad_label", "md_label", "as_label", "ms_label", "ar_label", "mr_label", "crit_label", "arp_label", "mp_label", "ls_label")]
+[node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,19 +12,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_y4yg3")
-strength_label = NodePath("StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StrengthText")
-vitality_label = NodePath("StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/VitalityText")
-magic_label = NodePath("StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/MagicText")
-ad_label = NodePath("StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/ADLabel")
-md_label = NodePath("StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/MDLabel")
-as_label = NodePath("StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer6/ASLabel")
-ms_label = NodePath("StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer7/MSLabel")
-ar_label = NodePath("StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer8/ARLabel")
-mr_label = NodePath("StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer10/MRLabel")
-crit_label = NodePath("StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer11/CRLabel")
-arp_label = NodePath("StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer12/ARPLabel")
-mp_label = NodePath("StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer13/MPLabel")
-ls_label = NodePath("StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer14/LSLabel")
 
 [node name="StatsMarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -72,318 +40,37 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="StatsMarginContainer2/PanelContainer/MarginContainer"]
+[node name="StatUIContainer" type="VBoxContainer" parent="StatsMarginContainer2/PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="StatUi" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
 layout_mode = 2
+stat_name = "ATTACK DAMAGE"
+stat_id = "attack_damage"
 
-[node name="TextureRect" type="TextureRect" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-self_modulate = Color(0.809028, 0.213819, 0.15953, 1)
-custom_minimum_size = Vector2(10, 10)
+[node name="StatUi2" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
 layout_mode = 2
-tooltip_text = "Strength"
-texture = ExtResource("2_71oqp")
-expand_mode = 3
+stat_name = "ATTACK DAMAGE MULT"
+stat_id = "attack_damage_mult"
 
-[node name="StrengthText" type="Label" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="StatUi3" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
 layout_mode = 2
-text = "STR_TEXT"
+stat_name = "MAGIC DAMAGE"
+stat_id = "magic_damage"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="StatUi4" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
 layout_mode = 2
+stat_name = "MAGIC DAMAGE MULT"
+stat_id = "magic_damage_mult"
 
-[node name="TextureRect" type="TextureRect" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-self_modulate = Color(0.498039, 0.819608, 0.109804, 1)
+[node name="StatUi5" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
 layout_mode = 2
-texture = ExtResource("3_iw85u")
-expand_mode = 3
+stat_name = "ATTACK SPEED MULT"
+stat_id = "attack_speed_mult"
 
-[node name="VitalityText" type="Label" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="StatUi6" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
 layout_mode = 2
-text = "VIT_TEXT"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-self_modulate = Color(0.0588235, 0.831373, 0.929412, 1)
-layout_mode = 2
-texture = ExtResource("4_1s2cs")
-expand_mode = 3
-
-[node name="MagicText" type="Label" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "MGC_TEXT"
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
-layout_mode = 2
-texture = ExtResource("5_yj6h7")
-expand_mode = 3
-
-[node name="ADLabel" type="Label" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
-layout_mode = 2
-text = "AD_TEXT"
-
-[node name="HBoxContainer5" type="HBoxContainer" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
-layout_mode = 2
-texture = ExtResource("6_47ksd")
-expand_mode = 3
-
-[node name="MDLabel" type="Label" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
-layout_mode = 2
-text = "MD_TEXT"
-
-[node name="HBoxContainer6" type="HBoxContainer" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
-layout_mode = 2
-texture = ExtResource("7_7g68q")
-expand_mode = 3
-
-[node name="ASLabel" type="Label" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
-layout_mode = 2
-text = "AS_TEXT
-"
-
-[node name="HBoxContainer7" type="HBoxContainer" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
-layout_mode = 2
-texture = ExtResource("8_5jm1e")
-expand_mode = 3
-
-[node name="MSLabel" type="Label" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
-layout_mode = 2
-text = "MS_TEXT"
-
-[node name="HBoxContainer8" type="HBoxContainer" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
-layout_mode = 2
-texture = ExtResource("9_bnhxt")
-expand_mode = 3
-
-[node name="ARLabel" type="Label" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
-layout_mode = 2
-text = "AR_TEXT"
-
-[node name="HBoxContainer10" type="HBoxContainer" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
-layout_mode = 2
-texture = ExtResource("9_bnhxt")
-expand_mode = 3
-
-[node name="MRLabel" type="Label" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
-layout_mode = 2
-text = "MR_TEXT"
-
-[node name="HBoxContainer11" type="HBoxContainer" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer11"]
-layout_mode = 2
-texture = ExtResource("9_bnhxt")
-expand_mode = 3
-
-[node name="CRLabel" type="Label" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer11"]
-layout_mode = 2
-text = "CRIT_TEXT"
-
-[node name="HBoxContainer12" type="HBoxContainer" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer12"]
-layout_mode = 2
-texture = ExtResource("9_bnhxt")
-expand_mode = 3
-
-[node name="ARPLabel" type="Label" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer12"]
-layout_mode = 2
-text = "ARP_TEXT"
-
-[node name="HBoxContainer13" type="HBoxContainer" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer13"]
-layout_mode = 2
-texture = ExtResource("9_bnhxt")
-expand_mode = 3
-
-[node name="MPLabel" type="Label" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer13"]
-layout_mode = 2
-text = "MP_TEXT"
-
-[node name="HBoxContainer14" type="HBoxContainer" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer14"]
-layout_mode = 2
-texture = ExtResource("9_bnhxt")
-expand_mode = 3
-
-[node name="LSLabel" type="Label" parent="StatsMarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer14"]
-layout_mode = 2
-text = "LS_TEXT"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -521.0
-offset_top = -69.0
-offset_right = 521.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="AbilitiesPanelContainer" type="PanelContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="AbilitiesBar" type="MarginContainer" parent="VBoxContainer/AbilitiesPanelContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/AbilitiesPanelContainer/AbilitiesBar"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="PrimaryAbilityTextureRect" type="TextureRect" parent="VBoxContainer/AbilitiesPanelContainer/AbilitiesBar/HBoxContainer"]
-layout_mode = 2
-tooltip_text = "Primary Ability"
-texture = ExtResource("10_e5k48")
-expand_mode = 3
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="VBoxContainer/AbilitiesPanelContainer/AbilitiesBar/HBoxContainer/PrimaryAbilityTextureRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-fill_mode = 5
-nine_patch_stretch = true
-texture_progress = SubResource("CanvasTexture_fqoii")
-
-[node name="Label" type="Label" parent="VBoxContainer/AbilitiesPanelContainer/AbilitiesBar/HBoxContainer/PrimaryAbilityTextureRect"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -23.0
-offset_top = -23.0
-offset_right = 23.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Space"
-
-[node name="SecondaryAbilityTextureRect2" type="TextureRect" parent="VBoxContainer/AbilitiesPanelContainer/AbilitiesBar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("11_6icfi")
-expand_mode = 3
-
-[node name="Label" type="Label" parent="VBoxContainer/AbilitiesPanelContainer/AbilitiesBar/HBoxContainer/SecondaryAbilityTextureRect2"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -24.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "E"
-
-[node name="UtilityAbilityTextureRect3" type="TextureRect" parent="VBoxContainer/AbilitiesPanelContainer/AbilitiesBar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("12_4q6to")
-expand_mode = 3
-
-[node name="Label" type="Label" parent="VBoxContainer/AbilitiesPanelContainer/AbilitiesBar/HBoxContainer/UtilityAbilityTextureRect3"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -14.0
-offset_top = -24.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Shift"
-
-[node name="UltimateAbilityTextureRect4" type="TextureRect" parent="VBoxContainer/AbilitiesPanelContainer/AbilitiesBar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("13_2vp7i")
-expand_mode = 3
-
-[node name="Label" type="Label" parent="VBoxContainer/AbilitiesPanelContainer/AbilitiesBar/HBoxContainer/UltimateAbilityTextureRect4"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -14.0
-offset_top = -24.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "R"
-
-[node name="Level" type="MarginContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Level"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Level/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("14_lupit")
-expand_mode = 3
-
-[node name="LevelLabel" type="Label" parent="VBoxContainer/Level/HBoxContainer"]
-layout_mode = 2
-text = "1
-"
-label_settings = SubResource("LabelSettings_w3scg")
-
-[node name="LevelBar" type="TextureProgressBar" parent="VBoxContainer/Level/HBoxContainer"]
-custom_minimum_size = Vector2(1000, 25)
-layout_mode = 2
-size_flags_vertical = 4
-value = 100.0
-nine_patch_stretch = true
-texture_progress = SubResource("CanvasTexture_amqn2")
-tint_progress = Color(0.606707, 0.155933, 0.901938, 1)
+stat_name = "MOVE SPEED"
+stat_id = "move_speed"
+stat_display = 2

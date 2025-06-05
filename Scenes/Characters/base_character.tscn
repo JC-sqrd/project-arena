@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://bl5aki5ii4r6t" path="res://Scripts/PlayerCharacter.gd" id="1_4r8nq"]
 [ext_resource type="Script" uid="uid://bsn1idamyre35" path="res://Scripts/EquipmentInventory/EquipmentInventory.gd" id="2_52ran"]
 [ext_resource type="Script" uid="uid://1bsno3scw518" path="res://Scripts/Entity/Player/GoldManager.gd" id="3_raiax"]
-[ext_resource type="PackedScene" uid="uid://dk87ltl8o4wft" path="res://Scenes/Test/Components/ability_container_component.tscn" id="4_tkk1j"]
+[ext_resource type="PackedScene" uid="uid://dk87ltl8o4wft" path="res://Scenes/Components/ability_container_component.tscn" id="4_tkk1j"]
 [ext_resource type="Script" uid="uid://46rajp5yxkq6" path="res://Scripts/Ability System/DashAbility.gd" id="5_2w7b0"]
 [ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="6_wvybv"]
 [ext_resource type="Script" uid="uid://bfjkolmoudtsa" path="res://Scripts/Combat/Equipment/Weapon/WeaponManager.gd" id="7_nss1p"]
-[ext_resource type="PackedScene" uid="uid://de6joq2hs2b4l" path="res://Scenes/Test/Components/attack_container_component.tscn" id="8_o0d6e"]
+[ext_resource type="PackedScene" uid="uid://de6joq2hs2b4l" path="res://Scenes/Components/attack_container_component.tscn" id="8_o0d6e"]
 [ext_resource type="Script" uid="uid://ru2jih6etkel" path="res://Scripts/Combat/Equipment/Weapon/OffhandWeaponSlot.gd" id="9_kaufn"]
 [ext_resource type="Script" uid="uid://cuqrw50w68lcb" path="res://Scripts/Combat/Equipment/EquipmentSlot.gd" id="10_umb11"]
-[ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Test/Components/hit_receiver.tscn" id="11_ebi1i"]
+[ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Components/hit_receiver.tscn" id="11_ebi1i"]
 [ext_resource type="Script" uid="uid://5fujd5ybwb45" path="res://Scripts/Combat/StatusEffects/StatusEffectManager.gd" id="12_hwi43"]
 [ext_resource type="Script" uid="uid://sc7t52uxqk2w" path="res://Scripts/Entity/ManaManager.gd" id="13_2300v"]
 [ext_resource type="Script" uid="uid://cdn8b5gg8mfb8" path="res://Scripts/Entity/HealthManager.gd" id="14_sldbe"]
@@ -34,8 +34,8 @@
 [ext_resource type="PackedScene" uid="uid://b8v5pw5002yu7" path="res://Scenes/UI/mana_bar.tscn" id="32_51lw5"]
 [ext_resource type="PackedScene" uid="uid://bba116t3m1ua7" path="res://Scenes/UI/EquipmentInventory/equipment_inventory.tscn" id="33_e7p34"]
 [ext_resource type="Script" uid="uid://cyb8xt674le3f" path="res://Scripts/StatSystem/StatModManager.gd" id="34_gf3ef"]
-[ext_resource type="PackedScene" uid="uid://dfopknahmh8ed" path="res://Scenes/Test/Components/movement_controller_component.tscn" id="35_pffph"]
-[ext_resource type="PackedScene" uid="uid://c0i8ypdefjyja" path="res://Scenes/Test/Components/movement_input_component.tscn" id="36_teqnh"]
+[ext_resource type="PackedScene" uid="uid://dfopknahmh8ed" path="res://Scenes/Components/movement_controller_component.tscn" id="35_pffph"]
+[ext_resource type="PackedScene" uid="uid://c0i8ypdefjyja" path="res://Scenes/Components/movement_input_component.tscn" id="36_teqnh"]
 [ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="37_iacyq"]
 [ext_resource type="Texture2D" uid="uid://bg2kf73272gxh" path="res://Sprites/Character/Character_Back.png" id="38_qhkst"]
 [ext_resource type="Texture2D" uid="uid://cj4r7auaxuitq" path="res://Sprites/Character/Character_Front.png" id="39_j5iqx"]
@@ -169,6 +169,7 @@ script = ExtResource("9_kaufn")
 attack_speed = NodePath("../Stats/AttackSpeedMultiplier")
 weapon_position = NodePath("WeaponPosition")
 actor = NodePath("..")
+action_trigger = "m_right"
 metadata/_custom_type_script = "uid://ru2jih6etkel"
 
 [node name="WeaponPosition" type="Marker2D" parent="OffhandWeaponSlot"]
@@ -292,7 +293,7 @@ stat_value = 1.0
 [node name="MoveSpeed" type="Node" parent="Stats"]
 script = ExtResource("23_gbr3h")
 stat_name = "move_speed"
-stat_value = 290.0
+stat_value = 230.0
 can_be_negative = false
 
 [node name="Acceleration" type="Node" parent="Stats"]
@@ -345,7 +346,6 @@ stat_name = "magic_resist"
 [node name="Lifesteal" type="Node" parent="Stats"]
 script = ExtResource("23_gbr3h")
 stat_name = "lifesteal"
-stat_value = 0.5
 
 [node name="ArmorPen" type="Node" parent="Stats"]
 script = ExtResource("23_gbr3h")

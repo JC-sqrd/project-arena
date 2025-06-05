@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://ow0u5wroiajl"]
+
+[ext_resource type="Script" uid="uid://drjfb7an3gt63" path="res://Scripts/StatSystem/UI/StatUI.gd" id="1_qwaj7"]
+[ext_resource type="Texture2D" uid="uid://bckho4r5trpmx" path="res://Placeholders/Icons/Icon.3_10.png" id="2_odes5"]
+
+[node name="StatUi" type="Control"]
+custom_minimum_size = Vector2(220, 23)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -420.0
+offset_bottom = -337.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qwaj7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+
+[node name="StatIconRect" type="TextureRect" parent="HBoxContainer"]
+self_modulate = Color(0.809028, 0.213819, 0.15953, 1)
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+tooltip_text = "Strength"
+texture = ExtResource("2_odes5")
+expand_mode = 3
+
+[node name="StatNameLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "STAT_NAME"
+
+[node name="StatValueLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "STAT_VALUE"

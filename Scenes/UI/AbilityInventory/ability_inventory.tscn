@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cssaytam6dsn7" path="res://Scenes/UI/AbilityInventory/ability_inventory_slot.tscn" id="1_oxjks"]
 [ext_resource type="Script" uid="uid://b7jv5gsfhixse" path="res://Scripts/AbilityInventory/AbilityInventory.gd" id="1_yfdm1"]
-[ext_resource type="PackedScene" uid="uid://bsyjglycqybnf" path="res://Scenes/Abilities/Spawn Abilities/Fireball/ability_fireball.tscn" id="2_ifr8e"]
+[ext_resource type="PackedScene" uid="uid://bsyjglycqybnf" path="res://Scenes/Weapons/Fire Grimoire/Tier1/Ability/Fireball/ability_fireball.tscn" id="2_ifr8e"]
 [ext_resource type="PackedScene" uid="uid://cudqoqqqk8thc" path="res://Scenes/Abilities/Spawn Abilities/Flare/ability_flare.tscn" id="3_tspmi"]
 [ext_resource type="PackedScene" uid="uid://qig4bnksvojg" path="res://Scenes/Abilities/Spawn Abilities/slash_field_ability.tscn" id="4_tubsq"]
 [ext_resource type="PackedScene" uid="uid://c322tkntieeqb" path="res://Scenes/Abilities/Spawn Abilities/wind_slash_ability.tscn" id="5_a8ato"]

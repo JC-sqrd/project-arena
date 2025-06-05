@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dwl80mahfwd12" path="res://Scenes/Spawnables/GroupSpawnables/bullet_pattern.tscn" id="5_hcgn7"]
 [ext_resource type="Script" uid="uid://bmcifytwc82pu" path="res://Scripts/Enemy/AddExpOnSlain.gd" id="5_olt5a"]
 [ext_resource type="Script" uid="uid://sc7t52uxqk2w" path="res://Scripts/Entity/ManaManager.gd" id="6_45h4d"]
-[ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Test/Components/hit_receiver.tscn" id="8_kiut4"]
+[ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Components/hit_receiver.tscn" id="8_kiut4"]
 [ext_resource type="Script" uid="uid://ctjia3ovr0cyg" path="res://Scripts/Combat/DamageListener/DamageListener.gd" id="9_n62t5"]
 [ext_resource type="Script" uid="uid://mgrw0is6pnqq" path="res://Scripts/Combat/DamageListener/Mitigation/MitigationEffect.gd" id="10_wd6nc"]
 [ext_resource type="Script" uid="uid://5fujd5ybwb45" path="res://Scripts/Combat/StatusEffects/StatusEffectManager.gd" id="11_enmpy"]

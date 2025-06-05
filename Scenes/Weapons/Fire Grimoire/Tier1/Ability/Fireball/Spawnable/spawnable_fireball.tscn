@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://cpckelycmmpmk" path="res://Placeholders/Audio/fireball2.wav" id="6_a842g"]
 [ext_resource type="Script" uid="uid://dqm3u6331dpou" path="res://Scripts/Ability System/Spawnables/SpawnableAudioStream/SpawnableAudioStreamPlayer2D.gd" id="6_gg2cj"]
 [ext_resource type="Texture2D" uid="uid://b5ydp7fsxrr15" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="8_1jjfm"]
-[ext_resource type="Texture2D" uid="uid://busi55oxdb2nu" path="res://Scenes/Abilities/Spawn Abilities/Fireball/Fireball Sprite.png" id="9_v6pnr"]
+[ext_resource type="Texture2D" uid="uid://busi55oxdb2nu" path="res://Scenes/Weapons/Fire Grimoire/Tier1/Ability/Fireball/Fireball Sprite.png" id="9_v6pnr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cwh8b"]
 radius = 20.0

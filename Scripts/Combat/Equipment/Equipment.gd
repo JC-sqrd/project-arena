@@ -2,7 +2,7 @@ class_name Equipment
 extends Node2D
 
 enum EquipmentType {WEAPON, HEADGEAR, TORSO, ARMGEAR, SHOES}
-enum EquipmentTier {ONE, TWO, THREE}
+enum EquipmentTier {ONE, TWO, THREE, FOUR, FIVE}
 
 @onready var actor : Entity = owner
 @export var equipment_name : String

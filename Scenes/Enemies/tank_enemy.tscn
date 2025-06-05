@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cj01qxw0g7t0" path="res://Scenes/Pickupables/exp_orb.tscn" id="6_ra8b0"]
 [ext_resource type="Texture2D" uid="uid://c7iewtsox23sg" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0000.png" id="6_x5e44"]
 [ext_resource type="Texture2D" uid="uid://bvt0giighv5ax" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0001.png" id="7_ov2wn"]
-[ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Test/Components/hit_receiver.tscn" id="8_817nx"]
+[ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Components/hit_receiver.tscn" id="8_817nx"]
 [ext_resource type="Texture2D" uid="uid://c16sn36nfwj76" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0002.png" id="8_d13gu"]
 [ext_resource type="Texture2D" uid="uid://b4stxohqkxe4y" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0003.png" id="9_agu7s"]
 [ext_resource type="Texture2D" uid="uid://evkgstx1vrgd" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0004.png" id="10_1whbd"]
@@ -426,6 +426,13 @@ script = ExtResource("4_5ijs6")
 script = ExtResource("27_js4va")
 stat_name = "move_speed"
 stat_value = 180.0
+
+[node name="StatScaler" type="Node" parent="Stats/MoveSpeed" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("27_k265g")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Level")
+scale_ratio = 0.1
+metadata/_custom_type_script = "uid://clr8tbibqclow"
 
 [node name="Health" type="Node" parent="Stats"]
 script = ExtResource("27_js4va")

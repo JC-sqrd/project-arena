@@ -225,11 +225,13 @@ func on_slot_right_clicked(slot : EquipmentInventorySlot):
 func try_to_combine_pair(slot : EquipmentInventorySlot):
 	var pair : Array[EquipmentInventorySlot] = get_equipment_pair(slot)
 	if pair.size() < 2 or pair.size() > 2:
+		print("No pair found")
 		return
 	for _slot in pair:
 		_slot.equipment.queue_free()
 		_slot.equipment = null
 		pass
+	print("Combined pair")
 	pass
 
 func check_duplicate(slot : EquipmentInventorySlot):

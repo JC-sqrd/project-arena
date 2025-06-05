@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cdiu1n82272s0" path="res://Scripts/Enemy/AddGoldOnSlain.gd" id="8_y34hv"]
 [ext_resource type="Script" uid="uid://bmcifytwc82pu" path="res://Scripts/Enemy/AddExpOnSlain.gd" id="9_hgf7s"]
 [ext_resource type="Script" uid="uid://sc7t52uxqk2w" path="res://Scripts/Entity/ManaManager.gd" id="10_eteh1"]
-[ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Test/Components/hit_receiver.tscn" id="12_rbffg"]
+[ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Components/hit_receiver.tscn" id="12_rbffg"]
 [ext_resource type="Script" uid="uid://ctjia3ovr0cyg" path="res://Scripts/Combat/DamageListener/DamageListener.gd" id="13_ave0o"]
 [ext_resource type="Script" uid="uid://mgrw0is6pnqq" path="res://Scripts/Combat/DamageListener/Mitigation/MitigationEffect.gd" id="14_710be"]
 [ext_resource type="Texture2D" uid="uid://3vr2khjeyni1" path="res://Sprites/Enemy/Small Enemy/SmallEnemy_Front.png" id="14_im0vk"]

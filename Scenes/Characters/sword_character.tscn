@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c4234y32d7c7u" path="res://Scenes/Weapons/Long Sword/weapon_long_sword.tscn" id="3_j6f0m"]
 [ext_resource type="PackedScene" uid="uid://bsb66ckahw7x" path="res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn" id="4_c67hu"]
 [ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="5_a3qyk"]
-[ext_resource type="PackedScene" uid="uid://df35xeepp7qfx" path="res://Scenes/Weapons/Fire Grimoire/weapon_fire_grimoire.tscn" id="5_wfw53"]
+[ext_resource type="PackedScene" uid="uid://bq8vln2e2bn51" path="res://Scenes/Weapons/Fire Grimoire/Tier2/weapon_fire_grimoire_tier2.tscn" id="5_wfw53"]
 
 [node name="SwordCharacter" instance=ExtResource("1_n43wd")]
 
@@ -20,7 +20,7 @@ scale = Vector2(0.999999, 0.999999)
 
 [node name="WeaponWoodenMagicStaff" parent="EquipmentInventory" index="1" instance=ExtResource("4_c67hu")]
 
-[node name="FireGrimoire" parent="EquipmentInventory" index="2" instance=ExtResource("5_wfw53")]
+[node name="FireGrimoire2" parent="EquipmentInventory" index="2" instance=ExtResource("5_wfw53")]
 
 [node name="InnateActiveAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("SwordSlashEmit")

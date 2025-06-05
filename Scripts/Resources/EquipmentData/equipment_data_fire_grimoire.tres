@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cen8e7ne06b7p" path="res://Sprites/Weapons/Fire Grimoire/Fire Grimoire.png" id="1_80ske"]
 [ext_resource type="Script" uid="uid://7g2i8l80ndkw" path="res://Scripts/Resources/EquipmentData/EquipmentData.gd" id="1_l0jlc"]
-[ext_resource type="PackedScene" uid="uid://df35xeepp7qfx" path="res://Scenes/Weapons/Fire Grimoire/weapon_fire_grimoire.tscn" id="1_u7f06"]
+[ext_resource type="PackedScene" uid="uid://df35xeepp7qfx" path="res://Scenes/Weapons/Fire Grimoire/Tier1/weapon_fire_grimoire.tscn" id="1_u7f06"]
 
 [resource]
 script = ExtResource("1_l0jlc")

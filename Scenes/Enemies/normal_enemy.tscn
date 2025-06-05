@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="3_dq2xg"]
 [ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="3_jkojm"]
 [ext_resource type="Script" uid="uid://b7ufh45hbdc8e" path="res://Scripts/EntitySprite.gd" id="5_5x8ff"]
-[ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Test/Components/hit_receiver.tscn" id="6_kla3v"]
+[ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Components/hit_receiver.tscn" id="6_kla3v"]
 [ext_resource type="Texture2D" uid="uid://yigasothu8cv" path="res://Sprites/Enemy/Normal Enemy/FastEnemy_Front.png" id="10_4amni"]
 [ext_resource type="Texture2D" uid="uid://d20xo7dtl47io" path="res://Sprites/Enemy/Normal Enemy/FastEnemy_Front_Hurt_Anim.png" id="11_lnnef"]
 [ext_resource type="SpriteFrames" uid="uid://vtufrjrnc2av" path="res://Scripts/Resources/Animations/hit_spark_2D_anim.tres" id="13_crijp"]
@@ -230,6 +230,13 @@ script = ExtResource("2_ntwkw")
 script = ExtResource("27_8hbk4")
 stat_name = "move_speed"
 stat_value = 210.0
+
+[node name="StatScaler" type="Node" parent="Stats/MoveSpeed" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("28_xylax")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Level")
+scale_ratio = 0.1
+metadata/_custom_type_script = "uid://clr8tbibqclow"
 
 [node name="Health" type="Node" parent="Stats"]
 script = ExtResource("27_8hbk4")

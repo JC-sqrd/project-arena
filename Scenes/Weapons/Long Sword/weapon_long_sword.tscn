@@ -234,7 +234,7 @@ metadata/_custom_type_script = "uid://bgka26pbphks7"
 [node name="DistanceCheck" type="Node" parent="HitListener/DamageEffect" node_paths=PackedStringArray("stat")]
 script = ExtResource("12_uan7s")
 stat = NodePath("Stat")
-distance = 250.0
+distance = 200.0
 greater_than = true
 is_multiplier = true
 metadata/_custom_type_script = "uid://b41oadkxkerfk"

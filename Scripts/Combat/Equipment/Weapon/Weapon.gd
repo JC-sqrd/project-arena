@@ -51,7 +51,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if is_equipped and event is InputEventKey and event.is_pressed() and event.keycode == KEY_G and event.echo == false:
 		auto_fire = !auto_fire
 	
-	if is_equipped and  event is InputEventMouseButton:
+	if is_equipped and event is InputEventMouseButton:
 		if event.button_index == 1 and event.is_pressed():
 			attack_key_pressed()
 			action_held = true

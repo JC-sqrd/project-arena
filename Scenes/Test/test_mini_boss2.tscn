@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://c3ibb3s6s2iyq" path="res://Scripts/Enemy/AI/AIAbilityContainer.gd" id="3_yjlxm"]
 [ext_resource type="PackedScene" uid="uid://lknrbxfm7tv1" path="res://Scenes/Abilities/Spawn Abilities/enemy_projectile.tscn" id="4_wqqb4"]
 [ext_resource type="PackedScene" uid="uid://polhightjk7e" path="res://Scenes/Spawnables/GroupSpawnables/circle_bullet_pattern.tscn" id="5_r6cnf"]
-[ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Test/Components/hit_receiver.tscn" id="7_qriru"]
+[ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Components/hit_receiver.tscn" id="7_qriru"]
 [ext_resource type="Script" uid="uid://ctjia3ovr0cyg" path="res://Scripts/Combat/DamageListener/DamageListener.gd" id="12_asru5"]
 [ext_resource type="Script" uid="uid://mgrw0is6pnqq" path="res://Scripts/Combat/DamageListener/Mitigation/MitigationEffect.gd" id="13_5qrlk"]
 [ext_resource type="Script" uid="uid://5fujd5ybwb45" path="res://Scripts/Combat/StatusEffects/StatusEffectManager.gd" id="14_2ad6b"]

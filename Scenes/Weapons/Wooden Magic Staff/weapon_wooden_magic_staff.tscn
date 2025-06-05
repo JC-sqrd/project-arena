@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d3fin4411ww46" path="res://Scripts/Combat/ProjectileWeapons/ProjectileWeapon.gd" id="1_o0v0s"]
 [ext_resource type="PackedScene" uid="uid://coi8i25buuakq" path="res://Scenes/Weapons/Wooden Magic Staff/wooden_magic_staff_projectile.tscn" id="2_305on"]
 [ext_resource type="Texture2D" uid="uid://c2cwami2vb0tv" path="res://Sprites/Weapons/Wooden Magic Staff/Wooden Magic Staff.png" id="2_ebvw8"]
-[ext_resource type="PackedScene" uid="uid://ctpttqx5poej8" path="res://Scenes/Test/Components/weapon_attack_animation_component.tscn" id="2_ly78o"]
+[ext_resource type="PackedScene" uid="uid://ctpttqx5poej8" path="res://Scenes/Components/weapon_attack_animation_component.tscn" id="2_ly78o"]
 [ext_resource type="Texture2D" uid="uid://cm66t3dd4u2os" path="res://Sprites/Weapons/Wooden Magic Staff/Wooden Magic Staff Attack.png" id="3_tq3kl"]
 [ext_resource type="Script" uid="uid://cp6un5w7sjul2" path="res://Scripts/Ability System/AbilityAnimation/WeaponAbilityAnimatedSprite2D.gd" id="4_22s86"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="4_bnl4j"]

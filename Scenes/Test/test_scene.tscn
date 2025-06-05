@@ -331,7 +331,6 @@ script = ExtResource("2_bg8bh")
 spawn_zone = Vector2(2250, 1250)
 min_x = 1200.0
 root_wave = NodePath("Wave1")
-draw_spawn_zone = true
 
 [node name="ColorRect" type="ColorRect" parent="WaveSpawner"]
 custom_minimum_size = Vector2(2250, 1250)

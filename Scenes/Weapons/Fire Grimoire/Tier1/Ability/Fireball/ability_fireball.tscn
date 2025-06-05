@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=3 uid="uid://bsyjglycqybnf"]
 
 [ext_resource type="Script" uid="uid://df7s4oatxu4hr" path="res://Scripts/Ability System/SpawnAbility.gd" id="1_0hkgi"]
-[ext_resource type="PackedScene" uid="uid://cl7l8ffhkgv1k" path="res://Scenes/Abilities/Spawn Abilities/Fireball/Spawnable/spawnable_fireball.tscn" id="2_xc2w6"]
+[ext_resource type="PackedScene" uid="uid://cl7l8ffhkgv1k" path="res://Scenes/Weapons/Fire Grimoire/Tier1/Ability/Fireball/Spawnable/spawnable_fireball.tscn" id="2_xc2w6"]
 [ext_resource type="Script" uid="uid://yd87aj2hybru" path="res://Scripts/Ability System/SpawnAbilitySpawnBehavior/PointSpawn.gd" id="3_3sgpq"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="3_871q2"]
 [ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_rxpk5"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_yw3j4"]
 [ext_resource type="PackedScene" uid="uid://d2mjy2iqk7hmw" path="res://Scenes/StatusEffects/Burn.tscn" id="6_sixx5"]
 [ext_resource type="Script" uid="uid://6ygen6bqklti" path="res://Scripts/Combat/CombatEffects/SpawnEffect.gd" id="7_n3t4k"]
-[ext_resource type="PackedScene" uid="uid://bkxscpm8t76o2" path="res://Scenes/Abilities/Spawn Abilities/Fireball/Spawnable/spawnable_fireball_explosion.tscn" id="8_5py51"]
+[ext_resource type="PackedScene" uid="uid://bkxscpm8t76o2" path="res://Scenes/Weapons/Fire Grimoire/Tier1/Ability/Fireball/Spawnable/spawnable_fireball_explosion.tscn" id="8_5py51"]
 [ext_resource type="Script" uid="uid://whgjrqeo3rir" path="res://Scripts/Socket/AbilitySocket.gd" id="11_qi74n"]
 [ext_resource type="PackedScene" uid="uid://g5ag3dw5tl13" path="res://Scenes/Socketables/AbilitySocketables/socketable_ability_on_hit.tscn" id="12_fhr1v"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="13_xrvdm"]

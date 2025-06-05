@@ -231,6 +231,6 @@ func _draw():
 		hitbox_coll.position.y)
 		#draw_line(line_start,line_end, Color(Color.DARK_GOLDENROD, 0.45), hitbox_size.y)
 	
-	for enemy in enemy_hits:
-		if enemy != null:
-			draw_line(position, to_local(enemy.position), Color.CRIMSON, 5)
+	#for enemy in enemy_hits:
+		#if enemy != null:
+			#draw_line(position, to_local(enemy.position), Color.CRIMSON, 5)
