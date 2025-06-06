@@ -28,50 +28,50 @@ script = ExtResource("3_rxpk5")
 stat_name = "current_mana"
 required_value = 20.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8naak"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kxbx"]
 atlas = ExtResource("16_3lpts")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kum5h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujeix"]
 atlas = ExtResource("16_3lpts")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(96, 0, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0eelo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmc8m"]
 atlas = ExtResource("16_3lpts")
-region = Rect2(64, 0, 32, 32)
+region = Rect2(192, 0, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vvgxo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8pyj"]
 atlas = ExtResource("16_3lpts")
-region = Rect2(96, 0, 32, 32)
+region = Rect2(288, 0, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ugsg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_06h31"]
 atlas = ExtResource("16_3lpts")
-region = Rect2(128, 0, 32, 32)
+region = Rect2(384, 0, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_se8l3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5s1n"]
 atlas = ExtResource("16_3lpts")
-region = Rect2(160, 0, 32, 32)
+region = Rect2(480, 0, 96, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y3yp4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8naak")
+"texture": SubResource("AtlasTexture_7kxbx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kum5h")
+"texture": SubResource("AtlasTexture_ujeix")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0eelo")
+"texture": SubResource("AtlasTexture_pmc8m")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vvgxo")
+"texture": SubResource("AtlasTexture_x8pyj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2ugsg")
+"texture": SubResource("AtlasTexture_06h31")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_se8l3")
+"texture": SubResource("AtlasTexture_h5s1n")
 }, {
 "duration": 1.0,
 "texture": null
@@ -141,7 +141,6 @@ stack = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(4.5, 4.5)
 sprite_frames = SubResource("SpriteFrames_y3yp4")
 script = ExtResource("17_xyeuh")
 

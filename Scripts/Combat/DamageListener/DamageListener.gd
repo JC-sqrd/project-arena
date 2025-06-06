@@ -86,7 +86,7 @@ func calculate_post_mitigated_damage(damage_data : DamageEffectData) -> float:
 		mitigation += mitigation_effect.calculate_mitigation_percentage(damage_data)
 		post_mitigated_damage *= mitigation_percentage
 	if damage_data.critical:
-		return post_mitigated_damage * 2
+		return post_mitigated_damage * damage_data.crit_multiplier
 	return post_mitigated_damage
 	pass
 

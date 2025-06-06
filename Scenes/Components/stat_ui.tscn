@@ -16,6 +16,7 @@ grow_vertical = 2
 script = ExtResource("1_qwaj7")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
 
 [node name="StatIconRect" type="TextureRect" parent="HBoxContainer"]
 self_modulate = Color(0.809028, 0.213819, 0.15953, 1)

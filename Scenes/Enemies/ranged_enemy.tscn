@@ -404,6 +404,13 @@ script = ExtResource("49_d3j22")
 stat_name = "move_speed"
 stat_value = 200.0
 
+[node name="StatScaler" type="Node" parent="Stats/MoveSpeed" node_paths=PackedStringArray("stat", "scale_with_stat")]
+script = ExtResource("50_ejhu5")
+stat = NodePath("..")
+scale_with_stat = NodePath("../../Level")
+scale_ratio = 2.0
+metadata/_custom_type_script = "uid://clr8tbibqclow"
+
 [node name="Health" type="Node" parent="Stats"]
 script = ExtResource("49_d3j22")
 stat_name = "current_health"

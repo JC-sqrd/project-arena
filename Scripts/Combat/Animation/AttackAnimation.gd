@@ -8,7 +8,6 @@ var mouse_angle_degree : float = 0
 
 func _ready():
 	weapon.equipped.connect(on_equipped)
-	
 	pass
 
 func _play_weapon_anim():

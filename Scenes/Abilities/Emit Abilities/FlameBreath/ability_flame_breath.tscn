@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cx8tgb7k8cwbk"]
+[gd_scene load_steps=26 format=3 uid="uid://cx8tgb7k8cwbk"]
 
 [ext_resource type="Script" uid="uid://42qvy4m6xprb" path="res://Scripts/Ability System/EmitAbility.gd" id="1_ooi45"]
 [ext_resource type="PackedScene" uid="uid://cgfrvfbxilhqf" path="res://Scenes/Abilities/Emit Abilities/FlameBreath/Spawnable/spawnable_flame_breath.tscn" id="2_cgcej"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dmdepcdgdeep6" path="res://Placeholders/Sprites/Animation/FireballWindup/FireballWindup.png" id="14_w471h"]
 [ext_resource type="Script" uid="uid://divbdk4dvxyga" path="res://Scripts/Ability System/AbilityAnimation/AbilityAnimatedSprite2D.gd" id="15_ijl0h"]
 [ext_resource type="Script" uid="uid://dsmtvuccs0v2m" path="res://Scripts/Ability System/AbilityBehavior/AllowCastWhileActive.gd" id="16_ijl0h"]
+[ext_resource type="Script" uid="uid://wl5ewsc20lns" path="res://Scripts/Ability System/AbilityBehavior/DisableAttackWhileActive.gd" id="17_alx3g"]
 
 [sub_resource type="Resource" id="Resource_vq3b8"]
 script = ExtResource("3_s50ku")
@@ -23,50 +24,50 @@ stat_name = "current_mana"
 required_value = 20.0
 metadata/_custom_type_script = "uid://tuvjl40jf0pm"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8naak"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_alx3g"]
 atlas = ExtResource("14_w471h")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kum5h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4c78"]
 atlas = ExtResource("14_w471h")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(96, 0, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0eelo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb1eg"]
 atlas = ExtResource("14_w471h")
-region = Rect2(64, 0, 32, 32)
+region = Rect2(192, 0, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vvgxo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbrfe"]
 atlas = ExtResource("14_w471h")
-region = Rect2(96, 0, 32, 32)
+region = Rect2(288, 0, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ugsg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o30c"]
 atlas = ExtResource("14_w471h")
-region = Rect2(128, 0, 32, 32)
+region = Rect2(384, 0, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_se8l3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_401io"]
 atlas = ExtResource("14_w471h")
-region = Rect2(160, 0, 32, 32)
+region = Rect2(480, 0, 96, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_alx3g"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8naak")
+"texture": SubResource("AtlasTexture_alx3g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kum5h")
+"texture": SubResource("AtlasTexture_v4c78")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0eelo")
+"texture": SubResource("AtlasTexture_xb1eg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vvgxo")
+"texture": SubResource("AtlasTexture_vbrfe")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2ugsg")
+"texture": SubResource("AtlasTexture_3o30c")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_se8l3")
+"texture": SubResource("AtlasTexture_401io")
 }, {
 "duration": 1.0,
 "texture": null
@@ -102,10 +103,7 @@ metadata/_custom_type_script = "uid://dm3uuggj1g47y"
 [node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
 script = ExtResource("5_u5ecf")
 damage_stat = NodePath("ScaledDamage")
-scaling_ratio = null
 damage_type = 1
-health_percent_damage = null
-lifesteal_type = null
 metadata/_custom_type_script = "uid://c8sj8b1npavnd"
 
 [node name="ScaledDamage" type="Node" parent="HitListener/DamageEffect"]
@@ -157,10 +155,13 @@ metadata/_custom_type_script = "uid://cogh8iqclt3ew"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(4.5, 4.5)
 sprite_frames = SubResource("SpriteFrames_alx3g")
 script = ExtResource("15_ijl0h")
 
 [node name="AllowCastWhileActive" type="Node" parent="."]
 script = ExtResource("16_ijl0h")
 metadata/_custom_type_script = "uid://dsmtvuccs0v2m"
+
+[node name="DisableAttackWhileActive" type="Node" parent="."]
+script = ExtResource("17_alx3g")
+metadata/_custom_type_script = "uid://wl5ewsc20lns"

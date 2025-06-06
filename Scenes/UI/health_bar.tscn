@@ -14,7 +14,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_s8683"]
 
-[node name="HealthBar" type="TextureProgressBar" node_paths=PackedStringArray("health_label", "shield_bar", "under_healthbar")]
+[node name="HealthBar" type="TextureProgressBar"]
 custom_minimum_size = Vector2(50, 10)
 anchors_preset = 14
 anchor_top = 0.5
@@ -28,9 +28,6 @@ nine_patch_stretch = true
 texture_progress = SubResource("CanvasTexture_dwfp7")
 tint_progress = Color(0.0431373, 0.733333, 0.054902, 1)
 script = ExtResource("1_7m4pk")
-health_label = NodePath("HealthLabel")
-shield_bar = NodePath("ShieldProgressBar")
-under_healthbar = NodePath("UnderHealthBar")
 
 [node name="HealthLabel" type="Label" parent="."]
 layout_mode = 1

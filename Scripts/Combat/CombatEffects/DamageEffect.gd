@@ -4,6 +4,7 @@ extends Effect
 @export var damage_stat : Stat
 @export var penetration_stat : Stat : get = _get_penetration_stat
 @export var crit_chance_stat : Stat
+@export var crit_mult_stat : Stat
 @export var scaling_ratio : float = 1
 @export var damage_type : Enums.DamageType
 @export var health_percent_damage : bool = false
@@ -77,6 +78,9 @@ func get_effect_value() -> Variant:
 			damage_effect_data.critical = true
 		else:
 			damage_effect_data.critical = false
+	if crit_mult_stat != null:
+		damage_effect_data.crit_multiplier = crit_mult_stat.stat_derived_value
+		pass
 	damage_effect_data.damage_type = damage_type
 	damage_effect_data.is_lifesteal = (can_lifesteal)
 	if can_lifesteal and lifesteal_stat != null:

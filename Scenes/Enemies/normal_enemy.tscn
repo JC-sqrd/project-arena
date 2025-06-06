@@ -235,7 +235,7 @@ stat_value = 210.0
 script = ExtResource("28_xylax")
 stat = NodePath("..")
 scale_with_stat = NodePath("../../Level")
-scale_ratio = 0.1
+scale_ratio = 5.0
 metadata/_custom_type_script = "uid://clr8tbibqclow"
 
 [node name="Health" type="Node" parent="Stats"]
@@ -386,6 +386,7 @@ grow_vertical = 2
 [node name="TextureProgressBar" parent="Panel/MarginContainer" node_paths=PackedStringArray("health_manager") instance=ExtResource("36_spbdk")]
 layout_mode = 2
 health_manager = NodePath("../../../HealthManager")
+show_health_text = false
 
 [node name="DamageNumber" type="Node" parent="."]
 script = ExtResource("37_hr30q")

@@ -64,64 +64,64 @@ scale_max = 0.2
 scale_curve = SubResource("CurveXYZTexture_ajhpj")
 color_ramp = SubResource("GradientTexture1D_gcyac")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gcyac"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfi46"]
 atlas = ExtResource("9_v6pnr")
-region = Rect2(0, 0, 64, 32)
+region = Rect2(0, 0, 192, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vomkx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ls5q"]
 atlas = ExtResource("9_v6pnr")
-region = Rect2(64, 0, 64, 32)
+region = Rect2(192, 0, 192, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iyqdr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1xte"]
 atlas = ExtResource("9_v6pnr")
-region = Rect2(128, 0, 64, 32)
+region = Rect2(384, 0, 192, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_78dxt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7hbd"]
 atlas = ExtResource("9_v6pnr")
-region = Rect2(192, 0, 64, 32)
+region = Rect2(576, 0, 192, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_luk8u"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_df25i"]
 atlas = ExtResource("9_v6pnr")
-region = Rect2(256, 0, 64, 32)
+region = Rect2(768, 0, 192, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f53k1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_10ypx"]
 atlas = ExtResource("9_v6pnr")
-region = Rect2(320, 0, 64, 32)
+region = Rect2(960, 0, 192, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ajhpj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v43g"]
 atlas = ExtResource("9_v6pnr")
-region = Rect2(384, 0, 64, 32)
+region = Rect2(1152, 0, 192, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ki41g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_if417"]
 atlas = ExtResource("9_v6pnr")
-region = Rect2(448, 0, 64, 32)
+region = Rect2(1344, 0, 192, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cbfdi"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gcyac")
+"texture": SubResource("AtlasTexture_xfi46")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vomkx")
+"texture": SubResource("AtlasTexture_8ls5q")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iyqdr")
+"texture": SubResource("AtlasTexture_q1xte")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_78dxt")
+"texture": SubResource("AtlasTexture_l7hbd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_luk8u")
+"texture": SubResource("AtlasTexture_df25i")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f53k1")
+"texture": SubResource("AtlasTexture_10ypx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ajhpj")
+"texture": SubResource("AtlasTexture_0v43g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ki41g")
+"texture": SubResource("AtlasTexture_if417")
 }],
 "loop": true,
 "name": &"default",
@@ -178,9 +178,7 @@ process_material = SubResource("ParticleProcessMaterial_ki41g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-66, 0)
-scale = Vector2(3.5, 3.5)
+position = Vector2(-54, 0)
 sprite_frames = SubResource("SpriteFrames_cbfdi")
 autoplay = "default"
-frame = 5
-frame_progress = 0.567022
+frame_progress = 0.74552

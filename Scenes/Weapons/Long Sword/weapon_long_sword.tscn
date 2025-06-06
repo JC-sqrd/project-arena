@@ -192,6 +192,7 @@ metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 script = ExtResource("4_o5g0w")
 stat = NodePath("..")
 scale_with_stat_id = "attack_speed_mult"
+ratio = 0.85
 metadata/_custom_type_script = "uid://c4n03mihb0axg"
 
 [node name="ActorArmorPen" type="Node" parent="."]

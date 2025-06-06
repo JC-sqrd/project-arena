@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dp288eneestlt"]
+[gd_scene load_steps=39 format=3 uid="uid://dp288eneestlt"]
 
 [ext_resource type="Script" uid="uid://df3mwd5sdgedk" path="res://Scripts/Combat/MeleeWeapons/MeleeWeapon.gd" id="1_5d1jb"]
 [ext_resource type="Texture2D" uid="uid://065wghtxeh6j" path="res://Sprites/Weapons/Swift Sword/SwiftSwordAttack.png" id="2_15j33"]
@@ -16,7 +16,6 @@
 [ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="17_k3yuu"]
 [ext_resource type="Script" uid="uid://prvx4o5s1tin" path="res://Scripts/Socket/WeaponSocket.gd" id="17_wogjl"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="18_3y54e"]
-[ext_resource type="PackedScene" uid="uid://cl4txqi2sf005" path="res://Scenes/Socketables/WeaponSocketables/weapon_socketable_add_damage.tscn" id="18_5d1jb"]
 [ext_resource type="Script" uid="uid://cp6un5w7sjul2" path="res://Scripts/Ability System/AbilityAnimation/WeaponAbilityAnimatedSprite2D.gd" id="19_5d1jb"]
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="19_yd84k"]
 [ext_resource type="PackedScene" uid="uid://c322tkntieeqb" path="res://Scenes/Abilities/Spawn Abilities/wind_slash_ability.tscn" id="21_15j33"]
@@ -223,13 +222,14 @@ metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 [node name="AttackSpeed" type="Node" parent="."]
 script = ExtResource("4_kenp3")
 stat_name = "swift_sword_attack_speed"
-stat_value = 2.0
+stat_value = 1.25
 metadata/_custom_type_script = "uid://nke8ejxjdu4s"
 
 [node name="GetActorStatMult" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]
 script = ExtResource("4_wop2k")
 stat = NodePath("..")
 scale_with_stat_id = "attack_speed_mult"
+ratio = 1.1
 metadata/_custom_type_script = "uid://c4n03mihb0axg"
 
 [node name="GetActorStatAdder" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]
@@ -326,7 +326,5 @@ cast_time = 0.75
 
 [node name="WeaponSocket" type="Node" parent="." node_paths=PackedStringArray("socketable")]
 script = ExtResource("17_wogjl")
-socketable = NodePath("WeaponSocketableAddDamage")
+socketable = NodePath("")
 metadata/_custom_type_script = "uid://prvx4o5s1tin"
-
-[node name="WeaponSocketableAddDamage" parent="WeaponSocket" instance=ExtResource("18_5d1jb")]

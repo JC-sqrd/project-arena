@@ -17,17 +17,22 @@ func _ready():
 		pass
 	parent = get_parent()
 	
-	mouse_angle_degree = -rad_to_deg(owner.global_position.direction_to(owner.get_global_mouse_position()).angle())
-	if !(mouse_angle_degree <= 90 and mouse_angle_degree >= -90) and flip == false:
-		print("Flip Left")
-		flip_left = true
-		flip_right = false
-		pass
-	else:
-		print("Flip Right")
-		flip_left = false
-		flip_right = true
-		pass
+	#mouse_angle_degree = -rad_to_deg(owner.global_position.direction_to(owner.get_global_mouse_position()).angle())
+	#var original_y = parent.position.y
+	#if !(mouse_angle_degree <= 90 and mouse_angle_degree >= -90) and flip_left == false:
+		##Flip vertically
+		#parent.position.y = -original_y
+		#print("Flip Left: " + str(parent.position.y))
+		#flip_left = true
+		#flip_right = false
+		#pass
+	#elif (mouse_angle_degree <= 90 and mouse_angle_degree >= -90) and flip_right == false:
+		##Flip vertically
+		#parent.position.y = -original_y
+		#print("Flip Right: " + str(parent.position.y))
+		#flip_left = false
+		#flip_right = true
+		#pass
 	pass
 
 func _process(delta: float) -> void:

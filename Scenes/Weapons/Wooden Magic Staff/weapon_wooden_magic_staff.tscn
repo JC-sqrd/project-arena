@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bsb66ckahw7x"]
+[gd_scene load_steps=40 format=3 uid="uid://bsb66ckahw7x"]
 
 [ext_resource type="Script" uid="uid://d3fin4411ww46" path="res://Scripts/Combat/ProjectileWeapons/ProjectileWeapon.gd" id="1_o0v0s"]
 [ext_resource type="PackedScene" uid="uid://coi8i25buuakq" path="res://Scenes/Weapons/Wooden Magic Staff/wooden_magic_staff_projectile.tscn" id="2_305on"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="8_22s86"]
 [ext_resource type="Texture2D" uid="uid://df4m4mdv0djjw" path="res://Sprites/Weapons/Wooden Magic Staff/Wooden Magic Staff Muzzle Fire.png" id="8_lqela"]
 [ext_resource type="Script" uid="uid://tsoqg0it4kc5" path="res://Scripts/Combat/Equipment/Weapon/WeaponFlipRotation.gd" id="10_85l1t"]
+[ext_resource type="Script" uid="uid://v5algp5kfkvg" path="res://Scripts/Combat/ProjectileWeapons/WeaponMuzzleParticles2D.gd" id="10_ff5bq"]
 [ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="11_p34sm"]
 [ext_resource type="PackedScene" uid="uid://cjfrn2ki8dsdr" path="res://Scenes/Abilities/Homing Spawn Abilities/Magic Missile/ability_magic_missile.tscn" id="12_6q5oc"]
 
@@ -186,6 +187,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1qhmh"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_85l1t"]
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+
 [node name="WeaponWoodenMagicStaff" type="Node2D" node_paths=PackedStringArray("spawn_node", "attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener")]
 script = ExtResource("1_o0v0s")
 projectile = ExtResource("2_305on")
@@ -230,12 +246,22 @@ script = ExtResource("10_85l1t")
 metadata/_custom_type_script = "uid://tsoqg0it4kc5"
 
 [node name="WeaponAttackAnimationComponent2" parent="Marker2D" node_paths=PackedStringArray("weapon") instance=ExtResource("2_ly78o")]
+visible = false
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xtggq")
 animation = &"attack"
 frame = 5
 frame_progress = 1.0
 weapon = NodePath("../..")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Marker2D"]
+material = SubResource("CanvasItemMaterial_1qhmh")
+emitting = false
+amount = 1
+texture = ExtResource("8_lqela")
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_85l1t")
+script = ExtResource("10_ff5bq")
 
 [node name="Damage" type="Node" parent="."]
 script = ExtResource("6_305on")
@@ -263,6 +289,7 @@ metadata/_custom_type_script = "uid://bgka26pbphks7"
 script = ExtResource("8_22s86")
 stat = NodePath("..")
 scale_with_stat_id = "attack_speed_mult"
+ratio = 1.1
 metadata/_custom_type_script = "uid://c4n03mihb0axg"
 
 [node name="HitListener" type="Node" parent="."]

@@ -114,5 +114,6 @@ func _on_attack_hit(hit_data : Dictionary):
 	if hit_listener != null:
 		hit_listener.on_hit(hit_data)
 	attack_hit.emit(hit_data)
-	actor.basic_attack_hit.emit(hit_data)
+	if actor != null:
+		actor.basic_attack_hit.emit(hit_data)
 	pass

@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cr6ajbl5x5egu"]
+[gd_scene load_steps=7 format=3 uid="uid://cr6ajbl5x5egu"]
 
 [ext_resource type="Script" uid="uid://csk81q2x4j06s" path="res://Scripts/Combat/ProjectileWeapons/Projectile/Projectile.gd" id="1_bxxnk"]
 [ext_resource type="Texture2D" uid="uid://bjejgkunngclk" path="res://Sprites/Weapons/Bow/Arrow.png" id="2_b8q0o"]
+[ext_resource type="Script" uid="uid://y1c1hiwxwmkf" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/SpawnableHitCounterBehavior.gd" id="3_2b27d"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="4_mnaqc"]
 
 [sub_resource type="Curve" id="Curve_b8q0o"]
 _data = [Vector2(0, 1), 0.0, 0.848164, 0, 0, Vector2(1, 0.853448), 0.0, 0.0, 0, 0]
@@ -23,3 +25,14 @@ shape = SubResource("RectangleShape2D_b8q0o")
 [node name="Arrow" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_b8q0o")
+
+[node name="SpawnableHitCounterBehavior" type="Node" parent="." node_paths=PackedStringArray("hit_times", "spawnable")]
+script = ExtResource("3_2b27d")
+hit_times = NodePath("Stat")
+spawnable = NodePath("..")
+metadata/_custom_type_script = "uid://y1c1hiwxwmkf"
+
+[node name="Stat" type="Node" parent="SpawnableHitCounterBehavior"]
+script = ExtResource("4_mnaqc")
+stat_value = 1.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"

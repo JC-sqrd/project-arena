@@ -9,6 +9,7 @@ var total_damage : float
 var penetrates : bool = false
 var penetration : float
 var critical : bool = false
+var crit_multiplier : float = 1.65
 var damage_type : Enums.DamageType = Enums.DamageType.PHYSICAL
 var is_lifesteal : bool = false
 var blocked : bool = false

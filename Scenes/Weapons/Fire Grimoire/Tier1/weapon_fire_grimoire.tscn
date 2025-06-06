@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://df35xeepp7qfx"]
+[gd_scene load_steps=28 format=3 uid="uid://df35xeepp7qfx"]
 
 [ext_resource type="Script" uid="uid://d3fin4411ww46" path="res://Scripts/Combat/ProjectileWeapons/ProjectileWeapon.gd" id="1_i71yi"]
 [ext_resource type="PackedScene" uid="uid://dfh3qc3n36tdr" path="res://Scenes/Weapons/Fire Grimoire/Tier1/grimoire_projectile.tscn" id="2_8254a"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://d2mjy2iqk7hmw" path="res://Scenes/StatusEffects/Burn.tscn" id="9_hd76i"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="10_qnkbf"]
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="11_ce1u2"]
+[ext_resource type="Texture2D" uid="uid://pdoo8mv20qvb" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/fire_02.png" id="11_ii5cw"]
+[ext_resource type="Script" uid="uid://v5algp5kfkvg" path="res://Scripts/Combat/ProjectileWeapons/WeaponMuzzleParticles2D.gd" id="12_po0cc"]
 [ext_resource type="PackedScene" uid="uid://bsyjglycqybnf" path="res://Scenes/Weapons/Fire Grimoire/Tier1/Ability/Fireball/ability_fireball.tscn" id="13_ut77k"]
 [ext_resource type="Script" uid="uid://prvx4o5s1tin" path="res://Scripts/Socket/WeaponSocket.gd" id="16_5goof"]
 
@@ -33,6 +35,19 @@ region = Rect2(512, 0, 256, 256)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n12iv"]
 animations = [{
+"frames": [],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_lsxkw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5goof")
@@ -47,29 +62,35 @@ animations = [{
 "texture": ExtResource("3_lsxkw")
 }],
 "loop": false,
-"name": &"attack",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_lsxkw")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
 "name": &"windup",
-"speed": 5.0
+"speed": 12.0
 }]
+
+[sub_resource type="Curve" id="Curve_ii5cw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.00184286), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_po0cc"]
+curve = SubResource("Curve_ii5cw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w75qo"]
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_po0cc")
 
 [node name="FireGrimoire" type="Node2D" node_paths=PackedStringArray("spawn_node", "attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "sockets")]
 y_sort_enabled = true
 script = ExtResource("1_i71yi")
 projectile = ExtResource("2_8254a")
 speed = 800.0
-spawn_node = NodePath("FireGrimoire/Marker2D")
+spawn_node = NodePath("Marker2D")
 max_distance = 1000.0
 attack_damage = NodePath("Damage")
 attack_speed_stat = NodePath("AttackSpeed")
@@ -124,12 +145,24 @@ sprite_frames = SubResource("SpriteFrames_n12iv")
 script = ExtResource("4_n12iv")
 weapon = NodePath("..")
 
-[node name="Marker2D" type="Marker2D" parent="FireGrimoire"]
-position = Vector2(-100, 0)
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(12, 0)
 
-[node name="WeaponFlipRotation" type="Node" parent="FireGrimoire/Marker2D"]
+[node name="WeaponFlipRotation" type="Node" parent="Marker2D"]
 script = ExtResource("4_q7kx3")
 metadata/_custom_type_script = "uid://tsoqg0it4kc5"
+
+[node name="WeaponMuzzleParticles2D" type="GPUParticles2D" parent="Marker2D"]
+visible = false
+position = Vector2(0, -37)
+amount = 1
+texture = ExtResource("11_ii5cw")
+lifetime = 0.5
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_w75qo")
+script = ExtResource("12_po0cc")
+look_at_mouse = false
+metadata/_custom_type_script = "uid://v5algp5kfkvg"
 
 [node name="HitListener" type="Node" parent="."]
 script = ExtResource("5_ghucb")
@@ -169,6 +202,7 @@ scale_with_stat_id = "crit_chance"
 metadata/_custom_type_script = "uid://2vlwp08ancca"
 
 [node name="AbilityFireball" parent="." instance=ExtResource("13_ut77k")]
+position = Vector2(12, 0)
 
 [node name="WeaponSocket" type="Node" parent="."]
 script = ExtResource("16_5goof")

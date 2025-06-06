@@ -62,7 +62,7 @@ func melee_weapon_process(delta : float):
 		coll_enabled = true
 		coll_enabled_counter = minf(hit_coll_enabled_time, 1 / attack_speed_stat.stat_derived_value)
 		_enable_coll()
-		modulate = Color.ORANGE_RED
+		#modulate = Color.ORANGE_RED
 	
 	if coll_enabled_counter > 0:
 		coll_enabled_counter -= delta
