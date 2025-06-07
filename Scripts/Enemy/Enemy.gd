@@ -49,7 +49,7 @@ func knockback(direction : Vector2, strength : float):
 	velocity += direction * strength
 	#velocity = lerp(velocity, velocity + (_knockback_direction * _knockback_strength), 1 / knockback_time)
 
-#func update_health_ui():W
+#func update_health_ui():
 	#health_label.text = str(ceilf(stat_manager.stats["current_health"].stat_derived_value)) 
 	#health_bar.max_value = stat_manager.stats["max_health"].stat_derived_value
 	#health_bar.value = stat_manager.stats["current_health"].stat_derived_value
@@ -82,7 +82,7 @@ func die():
 	can_attack = false
 	can_cast = false
 	enemy_died.emit(self)
-	died.emit()
+	died.emit(self)
 	get_tree().create_timer(0.5, false, false, false).timeout.connect(
 		func(): 
 			queue_free()

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyptbbn8d0pqd"]
+
+[ext_resource type="Script" uid="uid://blbwnmv676w3j" path="res://Scripts/Ability System/Spawnables/AreaHitOverTime.gd" id="1_mtr84"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="2_nqne8"]
+[ext_resource type="Texture2D" uid="uid://bfniy65wdcaje" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/circle_03.png" id="3_nqne8"]
+[ext_resource type="Texture2D" uid="uid://b5ydp7fsxrr15" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="4_23ape"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ppd0"]
+radius = 250.0
+
+[node name="ToxicCloudSpawnable" type="Area2D" node_paths=PackedStringArray("hit_speed")]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_mtr84")
+hit_speed = NodePath("HitSpeed")
+windup_time = 0.25
+lifetime = 3.5
+time_active = 3.0
+metadata/_custom_type_script = "uid://blbwnmv676w3j"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4ppd0")
+debug_color = Color(0.368858, 0.605698, 0.322883, 0.42)
+
+[node name="HitSpeed" type="Node" parent="."]
+script = ExtResource("2_nqne8")
+stat_value = 1.5
+
+[node name="Circle03" type="Sprite2D" parent="."]
+modulate = Color(0.203922, 0.498039, 0.380392, 1)
+scale = Vector2(1.03845, 1.03845)
+texture = ExtResource("3_nqne8")
+
+[node name="Circle05" type="Sprite2D" parent="."]
+modulate = Color(0.12549, 0.878431, 0.219608, 1)
+scale = Vector2(1.03053, 1.03053)
+texture = ExtResource("4_23ape")

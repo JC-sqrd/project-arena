@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqtqghdwyycf3"]
+
+[ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_2ijky"]
+[ext_resource type="PackedScene" uid="uid://ds562unpt0f2c" path="res://Scenes/Abilities/Emit Abilities/Blade Dance/ability_blade_dance.tscn" id="2_3u1iy"]
+[ext_resource type="Script" uid="uid://dqj32qeba6flj" path="res://Scripts/Ability System/BlinkAbility.gd" id="3_pqm36"]
+[ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="3_ys4ku"]
+[ext_resource type="Script" uid="uid://d3nv4w5x5iplh" path="res://Scripts/Ability System/AbilityTree.gd" id="4_ui581"]
+[ext_resource type="Script" uid="uid://dt5ekno3nrmcr" path="res://Scripts/Ability System/AbilityBranch.gd" id="5_8amkt"]
+[ext_resource type="PackedScene" uid="uid://bqmrcuovcr6dr" path="res://Scenes/Abilities/Blink Abilities/ability_phantom_step.tscn" id="6_8amkt"]
+
+[node name="PhantomCharacter" instance=ExtResource("1_2ijky")]
+
+[node name="InnateActiveAbility" parent="." index="2" node_paths=PackedStringArray("ability")]
+ability = NodePath("AbilityBladeDance")
+
+[node name="AbilityBladeDance" parent="InnateActiveAbility" index="1" instance=ExtResource("2_3u1iy")]
+
+[node name="UtilityAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
+ability = NodePath("AbilityPhantomStep")
+
+[node name="DashAbility" parent="UtilityAbilityContainer" index="1"]
+direction_input = 1
+
+[node name="BlinkAbility" type="Node2D" parent="UtilityAbilityContainer" index="2"]
+script = ExtResource("3_pqm36")
+max_range = 200.0
+metadata/_custom_type_script = "uid://dqj32qeba6flj"
+
+[node name="AbilityTree" type="Node2D" parent="UtilityAbilityContainer" index="3" node_paths=PackedStringArray("head_branch")]
+script = ExtResource("4_ui581")
+head_branch = NodePath("AbilityBranch")
+metadata/_custom_type_script = "uid://d3nv4w5x5iplh"
+
+[node name="AbilityBranch" type="Node" parent="UtilityAbilityContainer/AbilityTree" index="0" node_paths=PackedStringArray("ability", "next_ability")]
+script = ExtResource("5_8amkt")
+ability = NodePath("../../BlinkAbility")
+next_ability = NodePath("../../../InnateActiveAbility/AbilityBladeDance")
+invoke_next_on = 3
+metadata/_custom_type_script = "uid://dt5ekno3nrmcr"
+
+[node name="AbilityPhantomStep" parent="UtilityAbilityContainer" index="4" instance=ExtResource("6_8amkt")]
+
+[node name="WeaponSlot" parent="." index="5" node_paths=PackedStringArray("equipment")]
+equipment = NodePath("WeaponPosition/SwiftSword")
+
+[node name="WeaponPosition" parent="WeaponSlot" index="1"]
+position = Vector2(11, 6.00002)
+
+[node name="SwiftSword" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("3_ys4ku")]
+
+[editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]

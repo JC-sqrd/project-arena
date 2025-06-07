@@ -8,13 +8,12 @@ extends AreaHit
 var hit_per_second : float
 
 func _ready():
+	hit_speed.stat_derived_value_changed.connect(_on_hit_speed_changed)
 	if actor_stats.stats.has("area_size"):
 		area_size_mult = actor_stats.stats["area_size"].stat_derived_value
 	self.scale *= area_size_mult
 	self.body_entered.connect(_on_body_entered)
 	self.body_exited.connect(_on_body_exited)
-	hit_per_second = 1 / hit_speed.stat_derived_value
-	hit_timer.wait_time = hit_per_second
 	windup_start.emit()
 	area_hit()
 	get_tree().create_timer(windup_time, false, false, false).timeout.connect(
@@ -39,6 +38,8 @@ func area_hit():
 
 func _start_lifetime():
 	hit_timer.timeout.connect(area_hit)
+	hit_per_second = 1 / hit_speed.stat_derived_value
+	hit_timer.wait_time = hit_per_second
 	hit_timer.autostart = true
 	add_child(hit_timer)
 	pass
@@ -63,3 +64,8 @@ func hit_body(target : Entity):
 		on_hit.emit(data)
 		if hit_listener != null:
 			hit_listener.on_hit(data)
+
+func _on_hit_speed_changed():
+	hit_timer.stop()
+	hit_timer.start(max(0.05, 1 / hit_speed.stat_derived_value))
+	pass

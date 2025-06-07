@@ -17,7 +17,7 @@ func invoke_ability():
 func _process(delta):
 	if get_cast_position:
 		if actor is PlayerCharacter:
-			actor.can_attack = false
+			#actor.can_attack = false
 			actor.can_cast = false
 		get_cast_data()
 

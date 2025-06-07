@@ -12,7 +12,7 @@ func _ready() -> void:
 	pass
 
 
-func on_player_died():
+func on_player_died(entity : Entity):
 	#get_tree().change_scene_to_file("res://Scenes/Test/test_scene.tscn")
 	#player.queue_free()
 	game_over.emit(self)

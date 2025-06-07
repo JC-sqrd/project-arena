@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://4m3bpkty0d23"]
+[gd_scene load_steps=14 format=3 uid="uid://4m3bpkty0d23"]
 
 [ext_resource type="Script" uid="uid://dqsm34bpqqb52" path="res://Scripts/Item/Items/Item.gd" id="1_m05mf"]
 [ext_resource type="Texture2D" uid="uid://c0c83dsj80tb4" path="res://Placeholders/Icons/Icon.2_77.png" id="2_m6u15"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="6_j8s8r"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="7_4jnmj"]
 [ext_resource type="Script" uid="uid://tw1mwca5s05v" path="res://Scripts/StatSystem/ItemStackStatAdder.gd" id="8_0nbj0"]
-[ext_resource type="Script" uid="uid://bf3pgksjjh1i0" path="res://Scripts/Item/ItemBonusStat.gd" id="9_wnlvj"]
 [ext_resource type="Script" uid="uid://dqjgy52bq0foh" path="res://Scripts/StatSystem/Stats/StatAdder.gd" id="10_2ww4y"]
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="11_06fqe"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="12_isa8t"]
@@ -24,15 +23,6 @@ item_detail = "Every 3rd basic attack hit, fire a dagger that deals 10 + (+20% a
 +20% Critical Strike Chance"
 buy_cost = 300.0
 sell_value = 15.0
-
-[node name="ItemBonusStat" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
-script = ExtResource("9_wnlvj")
-stat_name = "crit_chance"
-bonus_value = NodePath("BonusCrit")
-
-[node name="BonusCrit" type="Node" parent="ItemBonusStat"]
-script = ExtResource("7_4jnmj")
-stat_value = 0.2
 
 [node name="OnXHitIPE" type="Node" parent="."]
 script = ExtResource("5_nrdhc")

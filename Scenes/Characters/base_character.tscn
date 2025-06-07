@@ -138,13 +138,15 @@ ability_action_trigger = "primary_ability"
 actor = NodePath("..")
 mana = NodePath("../Stats/Mana")
 
-[node name="UtilityAbilityContainer" parent="." node_paths=PackedStringArray("actor", "mana") instance=ExtResource("4_tkk1j")]
+[node name="UtilityAbilityContainer" parent="." node_paths=PackedStringArray("actor", "ability", "mana") instance=ExtResource("4_tkk1j")]
 ability_action_trigger = "utility_ability"
 actor = NodePath("..")
+ability = NodePath("DashAbility")
 mana = NodePath("../Stats/Mana")
 
 [node name="DashAbility" type="Node2D" parent="UtilityAbilityContainer"]
 script = ExtResource("5_2w7b0")
+dash_distance = 300.0
 required_stat = SubResource("Resource_s7g6f")
 cooldown = 5.0
 
@@ -283,7 +285,7 @@ stat_name = "current_health"
 [node name="MaxHealth" type="Node" parent="Stats"]
 script = ExtResource("23_gbr3h")
 stat_name = "max_health"
-stat_value = 90.0
+stat_value = 30.0
 
 [node name="HealthRegen" type="Node" parent="Stats"]
 script = ExtResource("23_gbr3h")

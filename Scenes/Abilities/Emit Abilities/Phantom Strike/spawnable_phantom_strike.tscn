@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwu1ttvyfthw3"]
+
+[ext_resource type="Script" uid="uid://c2nhbp4pxbtij" path="res://Scripts/Ability System/Spawnables/AreaHit.gd" id="1_41j7i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_41j7i"]
+radius = 150.0
+
+[node name="SpawnablePhantomStrike" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_41j7i")
+windup_time = 0.05
+lifetime = 0.6
+time_active = 0.5
+metadata/_custom_type_script = "uid://c2nhbp4pxbtij"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_41j7i")

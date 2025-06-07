@@ -14,11 +14,13 @@ timer = NodePath("Timer")
 stack_stat = NodePath("StackStat")
 max_stack = 10
 restart_on_stack_add = true
+id = "burn"
 
 [node name="DamageEffect" type="Node" parent="." node_paths=PackedStringArray("damage_stat")]
 script = ExtResource("2_dom82")
 damage_stat = NodePath("StatMultiplier")
 damage_type = 2
+can_lifesteal = false
 
 [node name="StatMultiplier" type="Node" parent="DamageEffect" node_paths=PackedStringArray("a_stat", "b_stat")]
 script = ExtResource("3_0aysk")

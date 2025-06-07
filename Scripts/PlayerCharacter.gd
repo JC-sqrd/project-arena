@@ -56,6 +56,6 @@ func die():
 	get_tree().create_timer(0.5, false, false, false).timeout.connect(
 		func(): 
 			queue_free()
-			died.emit()
+			died.emit(self)
 			)
 	pass

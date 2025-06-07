@@ -56,9 +56,6 @@ stat_value = 150.0
 [node name="ManaRegen" parent="Stats" index="5"]
 stat_value = 5.0
 
-[node name="MaxHealth" parent="Stats" index="7"]
-stat_value = 30.0
-
 [node name="MoveSpeed" parent="Stats" index="9"]
 stat_value = 240.0
 

@@ -26,7 +26,7 @@
 [ext_resource type="Script" uid="uid://cvoh1qyqwtosh" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveEnemySpawn.gd" id="7_7wka2"]
 [ext_resource type="Texture2D" uid="uid://c35vvralpy2oe" path="res://Placeholders/Sprites/Skill Circle Visual.png" id="7_mwf75"]
 [ext_resource type="Script" uid="uid://bm6en5pumq560" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WeightedEnemySpawn.gd" id="8_edhef"]
-[ext_resource type="PackedScene" uid="uid://cggb2x36mslpl" path="res://Scenes/Characters/sword_character.tscn" id="8_w24wr"]
+[ext_resource type="PackedScene" uid="uid://bgy7pdawvoiwa" path="res://Scenes/Characters/mage_character.tscn" id="8_w24wr"]
 [ext_resource type="Script" uid="uid://b3fq26t52vw2o" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnTiming.gd" id="8_yy25j"]
 [ext_resource type="Script" uid="uid://dqunvl8tgfqvj" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnEverySecond.gd" id="9_0lwa2"]
 [ext_resource type="PackedScene" uid="uid://cktf4rpw44nwi" path="res://Scenes/UI/EquipmentShop/general_shop.tscn" id="9_w24wr"]
@@ -259,7 +259,7 @@ frame_progress = 0.0
 [node name="DummyEnemy2" parent="." instance=ExtResource("2_awsut")]
 position = Vector2(1469, 829)
 
-[node name="SwordCharacter" parent="." instance=ExtResource("8_w24wr")]
+[node name="MageCharacter" parent="." instance=ExtResource("8_w24wr")]
 position = Vector2(544, 1080)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

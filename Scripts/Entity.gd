@@ -32,7 +32,7 @@ signal on_hit (hit_data : Dictionary)
 signal basic_attack_hit (hit_data : Dictionary)
 signal basic_attack (weapon : Weapon)
 signal update_health_ui (new_current : float, new_max : float)
-signal died ()
+signal died (entity : Entity)
 signal slayed (slayed : Entity)
 signal slain (slain_by : Entity)
 
@@ -59,7 +59,7 @@ func attack(attack_data : Dictionary):
 	pass
 
 func die():
-	died.emit()
+	died.emit(self)
 	pass
 
 func on_hit_received(hit_data : Dictionary):

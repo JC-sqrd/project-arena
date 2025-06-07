@@ -1,0 +1,55 @@
+[gd_scene load_steps=12 format=3 uid="uid://ddebycj73nrys"]
+
+[ext_resource type="Script" uid="uid://42qvy4m6xprb" path="res://Scripts/Ability System/EmitAbility.gd" id="1_dw0yd"]
+[ext_resource type="PackedScene" uid="uid://cyptbbn8d0pqd" path="res://Scenes/Abilities/Emit Abilities/Toxic Cloud/spawnable_toxic_cloud.tscn" id="2_ktv1a"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="2_laxn6"]
+[ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_j4xaq"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="3_rfp2m"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="4_lbkg1"]
+[ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="6_ncag5"]
+[ext_resource type="Script" uid="uid://88st3pdi1hky" path="res://Scripts/Combat/CombatEffects/ApplyStatusEffect.gd" id="6_v26fl"]
+[ext_resource type="PackedScene" uid="uid://ut3msbbx2nmj" path="res://Scenes/StatusEffects/Poison.tscn" id="7_ncag5"]
+[ext_resource type="Script" uid="uid://dsmtvuccs0v2m" path="res://Scripts/Ability System/AbilityBehavior/AllowCastWhileActive.gd" id="9_nxixj"]
+
+[sub_resource type="Resource" id="Resource_4duoe"]
+script = ExtResource("3_j4xaq")
+stat_name = "current_mana"
+required_value = 10.0
+metadata/_custom_type_script = "uid://tuvjl40jf0pm"
+
+[node name="ToxicCloudEmitAbility" type="Node2D" node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("1_dw0yd")
+emited_object = ExtResource("2_ktv1a")
+required_stat = SubResource("Resource_4duoe")
+cast_time = 0.1
+hit_listener = NodePath("HitListener")
+cooldown = 5.0
+metadata/_custom_type_script = "uid://42qvy4m6xprb"
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("2_laxn6")
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("3_rfp2m")
+damage_stat = NodePath("Damage")
+damage_type = 1
+
+[node name="Damage" type="Node" parent="HitListener/DamageEffect"]
+script = ExtResource("4_lbkg1")
+stat_value = 2.0
+
+[node name="GetActorStatAdder" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_ncag5")
+stat = NodePath("..")
+scale_with_stat_id = "magic_damage"
+ratio = 0.5
+metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+
+[node name="ApplyStatusEffect" type="Node" parent="HitListener"]
+script = ExtResource("6_v26fl")
+status_effect_scene = ExtResource("7_ncag5")
+metadata/_custom_type_script = "uid://88st3pdi1hky"
+
+[node name="AllowCastWhileActive" type="Node" parent="."]
+script = ExtResource("9_nxixj")
+metadata/_custom_type_script = "uid://dsmtvuccs0v2m"

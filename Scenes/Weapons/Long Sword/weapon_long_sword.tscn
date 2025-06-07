@@ -219,18 +219,12 @@ metadata/_custom_type_script = "uid://2vlwp08ancca"
 script = ExtResource("4_yxwxf")
 metadata/_custom_type_script = "uid://dm3uuggj1g47y"
 
-[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat", "penetration_stat", "crit_chance_stat", "lifesteal_stat")]
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat", "penetration_stat", "crit_chance_stat")]
 script = ExtResource("5_0cynv")
 damage_stat = NodePath("../../Damage")
 penetration_stat = NodePath("../../ActorArmorPen")
 crit_chance_stat = NodePath("../../ActorCrit")
-lifesteal_stat = NodePath("Lifesteal")
 metadata/_custom_type_script = "uid://c8sj8b1npavnd"
-
-[node name="Lifesteal" type="Node" parent="HitListener/DamageEffect"]
-script = ExtResource("2_5bq0p")
-stat_value = 0.5
-metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="DistanceCheck" type="Node" parent="HitListener/DamageEffect" node_paths=PackedStringArray("stat")]
 script = ExtResource("12_uan7s")

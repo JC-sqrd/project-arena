@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsv311pctm6hj"]
+
+[ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_3pxk1"]
+[ext_resource type="PackedScene" uid="uid://cjsofxtnqu0gj" path="res://Scenes/Abilities/Passive Abilities/passive_ability_poison_spread.tscn" id="2_fjbkd"]
+[ext_resource type="PackedScene" uid="uid://ddebycj73nrys" path="res://Scenes/Abilities/Emit Abilities/Toxic Cloud/ability_toxic_cloud.tscn" id="2_sdwxm"]
+[ext_resource type="PackedScene" uid="uid://c4234y32d7c7u" path="res://Scenes/Weapons/Long Sword/weapon_long_sword.tscn" id="3_g6kxe"]
+[ext_resource type="PackedScene" uid="uid://bsb66ckahw7x" path="res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn" id="3_yksum"]
+
+[node name="PlagueCharacter" instance=ExtResource("1_3pxk1")]
+
+[node name="PassiveAbilityPosionSpread" parent="." index="0" instance=ExtResource("2_fjbkd")]
+
+[node name="LongSword" parent="EquipmentInventory" index="0" instance=ExtResource("3_g6kxe")]
+
+[node name="InnateActiveAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
+ability = NodePath("ToxicCloudEmitAbility")
+
+[node name="ToxicCloudEmitAbility" parent="InnateActiveAbility" index="1" instance=ExtResource("2_sdwxm")]
+
+[node name="DashAbility" parent="UtilityAbilityContainer" index="1"]
+direction_input = 1
+
+[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
+equipment = NodePath("WeaponPosition/WeaponWoodenMagicStaff")
+
+[node name="WeaponPosition" parent="WeaponSlot" index="1"]
+position = Vector2(15, 7.00002)
+
+[node name="WeaponWoodenMagicStaff" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("3_yksum")]
+
+[editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]

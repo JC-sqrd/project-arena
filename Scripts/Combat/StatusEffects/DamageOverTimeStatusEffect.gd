@@ -13,11 +13,12 @@ var damage_tick_timer : Timer
 func activate_status_effect(target : Entity):
 	active = true
 	target_entity = target
-	damage_tick_timer = Timer.new()
-	add_child(damage_tick_timer)
-	damage_tick_timer.wait_time = damage_rate
-	damage_tick_timer.one_shot = false
-	damage_tick_timer.timeout.connect(_on_damage_tick) 
+	if damage_tick_timer == null:
+		damage_tick_timer = Timer.new()
+		add_child(damage_tick_timer)
+		damage_tick_timer.wait_time = damage_rate
+		damage_tick_timer.one_shot = false
+		damage_tick_timer.timeout.connect(_on_damage_tick) 
 	
 	
 	if !is_permanent:
@@ -32,7 +33,7 @@ func activate_status_effect(target : Entity):
 	pass
 
 func _on_damage_tick():
-	if target_entity != null:
+	if target_entity != null and actor != null:
 		target_entity.on_hit.emit(_create_hit_data())
 	pass
 
