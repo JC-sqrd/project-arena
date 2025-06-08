@@ -205,6 +205,7 @@ metadata/_custom_type_script = "uid://dth77t82cf5sj"
 script = ExtResource("18_3y54e")
 stat_name = "swift_sword_damage"
 stat_value = 10.0
+can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
@@ -216,13 +217,15 @@ metadata/_custom_type_script = "uid://c4n03mihb0axg"
 [node name="GetActorStatAdder" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
 script = ExtResource("5_580b7")
 stat = NodePath("..")
-scale_with_stat_id = "attack_damage"
+scale_with_stat_id = "strength"
+ratio = 0.1
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="AttackSpeed" type="Node" parent="."]
 script = ExtResource("4_kenp3")
 stat_name = "swift_sword_attack_speed"
 stat_value = 1.25
+can_be_negative = false
 metadata/_custom_type_script = "uid://nke8ejxjdu4s"
 
 [node name="GetActorStatMult" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]

@@ -16,6 +16,7 @@ var block_incoming_damage : bool = false
 
 signal damage_applied()
 signal damage_blocked()
+signal damage_dodged()
 signal incoming_damage(damage_data : DamageEffectData)
 
 func _ready():
@@ -50,8 +51,9 @@ func apply_mitigation_effects(damage_data : DamageEffectData) -> float:
 	var post_mitigated_damage : float = calculate_post_mitigated_damage(damage_data) * calculate_damage_multiplier()
 	apply_modifiers(damage_data)
 	reset_damage_multiplier()
-	if damage_data.damage_type != Enums.DamageType.TRUE and damage_data.blocked:
-		damage_blocked.emit()
+	if damage_data.damage_type != Enums.DamageType.TRUE and damage_data.dodged:
+		#damage_blocked.emit()
+		damage_dodged.emit()
 		return 0
 	damage_data["blocked"] = false
 	damage_data["damage"] = floorf(post_mitigated_damage)

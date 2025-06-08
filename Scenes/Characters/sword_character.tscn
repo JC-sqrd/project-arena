@@ -51,7 +51,7 @@ position = Vector2(0, 9)
 [node name="WeaponPosition" parent="OffhandWeaponSlot" index="0"]
 position = Vector2(17, 0)
 
-[node name="MaxHealth" parent="Stats" index="7"]
+[node name="MaxHealth" parent="Stats" index="11"]
 stat_value = 40.0
 
 [node name="EntityHitParticle" parent="." index="29" node_paths=PackedStringArray("hit_particle")]

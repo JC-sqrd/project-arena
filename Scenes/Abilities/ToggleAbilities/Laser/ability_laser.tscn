@@ -42,6 +42,7 @@ scale_ratio = 0.15
 
 [node name="ActorMagic" type="Node" parent="."]
 script = ExtResource("7_do6da")
+can_be_negative = false
 
 [node name="GetActorStatScaler" type="Node" parent="ActorMagic" node_paths=PackedStringArray("stat")]
 script = ExtResource("7_hd4ka")

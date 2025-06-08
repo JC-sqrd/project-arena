@@ -85,6 +85,7 @@ equipment_icon = ExtResource("3_w0ssw")
 [node name="Damage" type="Node" parent="."]
 script = ExtResource("4_gwh6c")
 stat_value = 20.0
+can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
@@ -102,6 +103,7 @@ metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 [node name="AttackSpeed" type="Node" parent="."]
 script = ExtResource("4_gwh6c")
 stat_value = 1.0
+can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]

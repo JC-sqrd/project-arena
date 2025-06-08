@@ -44,33 +44,56 @@ theme_override_constants/margin_bottom = 10
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="StatUi" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
+[node name="STRENGTH" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
 layout_mode = 2
-stat_name = "ATTACK DAMAGE"
-stat_id = "attack_damage"
+stat_name = "STRENGTH"
+stat_id = "strength"
+stat_display = 2
 
-[node name="StatUi2" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
+[node name="MAGIC" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
 layout_mode = 2
-stat_name = "ATTACK DAMAGE MULT"
-stat_id = "attack_damage_mult"
+stat_name = "MAGIC"
+stat_id = "magic"
+stat_display = 2
 
-[node name="StatUi3" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
+[node name="AGILITY" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
 layout_mode = 2
-stat_name = "MAGIC DAMAGE"
-stat_id = "magic_damage"
+stat_name = "AGILITY"
+stat_id = "agility"
+stat_display = 2
 
-[node name="StatUi4" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
+[node name="VITALITY" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
 layout_mode = 2
-stat_name = "MAGIC DAMAGE MULT"
-stat_id = "magic_damage_mult"
+stat_name = "VITALITY"
+stat_id = "vitality"
+stat_display = 2
 
-[node name="StatUi5" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
+[node name="FOCUS" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
 layout_mode = 2
-stat_name = "ATTACK SPEED MULT"
-stat_id = "attack_speed_mult"
+stat_name = "FOCUS"
+stat_id = "focus"
+stat_display = 2
 
-[node name="StatUi6" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
+[node name="ATTACK SPEED" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
+layout_mode = 2
+stat_name = "ATTACK SPEED"
+stat_id = "attack_speed"
+stat_display = 2
+
+[node name="MOVE SPEED" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
 layout_mode = 2
 stat_name = "MOVE SPEED"
 stat_id = "move_speed"
+stat_display = 2
+
+[node name="DODGE CHANCE" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
+layout_mode = 2
+stat_name = "DODGE CHANCE"
+stat_id = "dodge_chance"
+stat_display = 2
+
+[node name="CRIT DAMAGE" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
+layout_mode = 2
+stat_name = "CRIT DAMAGE"
+stat_id = "crit_damage"
 stat_display = 2

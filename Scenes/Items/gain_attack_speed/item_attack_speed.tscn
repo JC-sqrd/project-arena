@@ -18,9 +18,8 @@ sell_value = 8.0
 
 [node name="ItemBonusStat" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
 script = ExtResource("2_dijkr")
-stat_name = "attack_speed_mult"
-bonus_value = NodePath("BonusAttackSpeedMultStack")
-percentage = true
+stat_name = "agility"
+bonus_value = NodePath("../BonusAgilityMultStack")
 
 [node name="BonusAttackSpeed" type="Node" parent="ItemBonusStat"]
 script = ExtResource("4_7rd7q")
@@ -38,3 +37,14 @@ script = ExtResource("4_7rd7q")
 script = ExtResource("6_dkvb2")
 item = NodePath("../..")
 stat_to_scale = NodePath("..")
+
+[node name="BonusAgility" type="Node" parent="."]
+script = ExtResource("4_7rd7q")
+stat_value = 5.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="BonusAgilityMultStack" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("5_esuro")
+a_stat = NodePath("../BonusAgility")
+b_stat = NodePath("../Stack")
+metadata/_custom_type_script = "uid://d35h5o2rfotvj"

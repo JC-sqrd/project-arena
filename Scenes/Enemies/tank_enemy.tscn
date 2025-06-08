@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://cvfsmjmaolpet"]
+[gd_scene load_steps=87 format=3 uid="uid://cvfsmjmaolpet"]
 
 [ext_resource type="Script" uid="uid://c82id00axlli8" path="res://Scripts/Enemy/Enemy.gd" id="1_85oim"]
 [ext_resource type="Script" uid="uid://5fujd5ybwb45" path="res://Scripts/Combat/StatusEffects/StatusEffectManager.gd" id="2_2lgle"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://evkgstx1vrgd" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0004.png" id="10_1whbd"]
 [ext_resource type="Texture2D" uid="uid://f8ukp48mceff" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0005.png" id="11_1vkgu"]
 [ext_resource type="Script" uid="uid://bowwp5s7jndt1" path="res://Scripts/Combat/UI/DamageNumber.gd" id="11_8h80h"]
+[ext_resource type="Script" uid="uid://csugnbipwc8rl" path="res://Scripts/Combat/DamageListener/Mitigation/BlockMultiplier.gd" id="11_kskwo"]
 [ext_resource type="Texture2D" uid="uid://rg8khxkgr6i0" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0006.png" id="12_4psk6"]
 [ext_resource type="Texture2D" uid="uid://mty87lri11va" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0007.png" id="13_ytn3o"]
 [ext_resource type="Texture2D" uid="uid://ddh16dnwj061n" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0008.png" id="14_0tgo2"]
@@ -367,6 +368,11 @@ mitigation_type = 1
 script = ExtResource("25_ci6ga")
 mitigate_stat = NodePath("../../Stats/Armor")
 
+[node name="DodgeModifier" type="Node" parent="DamageListener" node_paths=PackedStringArray("dodge_chance")]
+script = ExtResource("11_kskwo")
+dodge_chance = NodePath("../../Stats/DodgeChance")
+metadata/_custom_type_script = "uid://csugnbipwc8rl"
+
 [node name="StatusEffectManager" type="Node" parent="." node_paths=PackedStringArray("entity")]
 script = ExtResource("2_2lgle")
 entity = NodePath("..")
@@ -525,6 +531,11 @@ script = ExtResource("27_js4va")
 
 [node name="ShieldRegen" type="Node" parent="Stats"]
 script = ExtResource("27_js4va")
+
+[node name="DodgeChance" type="Node" parent="Stats"]
+script = ExtResource("27_js4va")
+stat_name = "dodge_chance"
+metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="LootDropManager" type="Node2D" parent="." node_paths=PackedStringArray("enemy")]
 script = ExtResource("25_on0a0")

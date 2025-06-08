@@ -44,13 +44,29 @@ func initialize(actor : Entity):
 	pass
 
 func _on_bonus_value_changed(old_value : float, new_value : float):
-	stat_value_label.text = str(stat.bonus_value)
+	_evaluate_stat_label_color(stat.bonus_value)
+	stat_value_label.text += str(stat.bonus_value)
 	pass
 
 func _on_base_value_changed(old_value : float, new_value : float):
-	stat_value_label.text = str(stat.bonus_value)
+	_evaluate_stat_label_color(stat.stat_value)
+	stat_value_label.text += str(stat.stat_value)
 	pass
 
 func _on_derived_value_changed(old_value : float, new_value : float):
-	stat_value_label.text = str(stat.stat_derived_value)
+	_evaluate_stat_label_color(stat.stat_derived_value)
+	stat_value_label.text += str(stat.stat_derived_value)
+	pass
+
+func _evaluate_stat_label_color(stat_value : float):
+	if stat_value > 0:
+		stat_value_label.modulate = Color.GREEN
+		stat_value_label.text = "+"
+		pass
+	elif stat_value < 0:
+		stat_value_label.modulate = Color.RED
+		stat_value_label.text = ""
+	else:
+		stat_value_label.modulate = Color.WHITE
+		stat_value_label.text = ""
 	pass

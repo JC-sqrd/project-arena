@@ -109,6 +109,7 @@ metadata/_custom_type_script = "uid://c8sj8b1npavnd"
 [node name="ScaledDamage" type="Node" parent="HitListener/DamageEffect"]
 script = ExtResource("6_eridb")
 stat_value = 4.0
+can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="HitListener/DamageEffect/ScaledDamage" node_paths=PackedStringArray("stat")]

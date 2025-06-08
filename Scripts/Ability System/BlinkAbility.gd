@@ -15,7 +15,7 @@ var _cast_data : Dictionary
 func _ready():
 	super()
 	ability_start.connect(_start_blink)
-	ability_canceled.connect(_cancel_dash)
+	ability_canceled.connect(_cancel_blink)
 	ability_end.connect(_on_ability_end)
 	
 func initialize_ability():
@@ -68,7 +68,7 @@ func _start_blink():
 	get_tree().create_timer(0.05, false, false, false).timeout.connect(end_blink)
 	pass
 	
-func _cancel_dash():
+func _cancel_blink():
 	actor.collision_layer = actor.original_coll_layer
 	_get_blink_position = false
 	actor.can_attack = true

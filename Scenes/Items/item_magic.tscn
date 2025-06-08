@@ -26,14 +26,14 @@ stat_to_scale = NodePath("..")
 
 [node name="ItemBonusStat" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
 script = ExtResource("2_3duwr")
-stat_name = "magic_damage"
-bonus_value = NodePath("../Stackx1")
+stat_name = "magic"
+bonus_value = NodePath("../Stackx5")
 
-[node name="Stackx1" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
+[node name="Stackx5" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
 script = ExtResource("6_0ypr1")
 a_stat = NodePath("../Stack")
-b_stat = NodePath("1")
+b_stat = NodePath("5")
 
-[node name="1" type="Node" parent="Stackx1"]
+[node name="5" type="Node" parent="Stackx5"]
 script = ExtResource("4_0t5a2")
-stat_value = 1.0
+stat_value = 5.0

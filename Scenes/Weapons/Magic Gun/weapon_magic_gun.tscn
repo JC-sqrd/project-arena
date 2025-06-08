@@ -80,6 +80,7 @@ metadata/_custom_type_script = "uid://d3fin4411ww46"
 [node name="Damage" type="Node" parent="."]
 script = ExtResource("6_kap1h")
 stat_value = 5.0
+can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
@@ -91,12 +92,14 @@ metadata/_custom_type_script = "uid://c4n03mihb0axg"
 [node name="GetActorStatAdder" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
 script = ExtResource("5_07ylq")
 stat = NodePath("..")
-scale_with_stat_id = "magic_damage"
+scale_with_stat_id = "magic"
+ratio = 0.2
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="AttackSpeed" type="Node" parent="."]
 script = ExtResource("6_kap1h")
 stat_value = 2.0
+can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]

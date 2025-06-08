@@ -33,11 +33,12 @@ script = ExtResource("2_4ranx")
 
 [node name="DamageEffect" type="Node" parent="HitListener/SpawnEffect/SpawnHitListener" node_paths=PackedStringArray("damage_stat")]
 script = ExtResource("3_wiift")
-damage_stat = NodePath("Stat")
+damage_stat = NodePath("Damage")
 
-[node name="Stat" type="Node" parent="HitListener/SpawnEffect/SpawnHitListener/DamageEffect"]
+[node name="Damage" type="Node" parent="HitListener/SpawnEffect/SpawnHitListener/DamageEffect"]
 script = ExtResource("3_msp5w")
 stat_value = 10.0
+can_be_negative = false
 
 [node name="HitOverTimeToggle" type="Node" parent="." node_paths=PackedStringArray("hit_rate")]
 script = ExtResource("2_mnf6u")

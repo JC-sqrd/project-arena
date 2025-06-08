@@ -14,7 +14,7 @@ var required_stat : Stat
 
 var can_cast : bool = true
 
-var _ability_input_buffer : float = 0.25
+var _ability_input_buffer : float = 0.35
 var _ability_input_buffer_counter : float = 0 
 
 signal ability_triggered
@@ -50,7 +50,7 @@ func _ready():
 	pass
 
 func _process(delta):
-	if Input.is_action_just_pressed(ability_action_trigger) and actor.can_cast and ability != null:
+	if Input.is_action_just_pressed(ability_action_trigger) and ability != null:
 		#Input.action_release(ability_action_trigger)
 		if actor.stat_manager.stats[ability.required_stat.stat_name].stat_derived_value >= ability.required_stat.required_value and _ability_input_buffer_counter <= 0:
 			_ability_input_buffer_counter = _ability_input_buffer
@@ -61,7 +61,7 @@ func _process(delta):
 		#ability.invoke_ability()
 		#ability_triggered.emit()
 	
-	if _ability_input_buffer_counter > 0 and ability.can_cast:
+	if _ability_input_buffer_counter > 0 and ability.can_cast and actor.can_cast:
 		_ability_input_buffer_counter = 0
 		get_tree().create_timer(0.05, false, true, false).timeout.connect(func(): 
 			ability.invoke_ability()

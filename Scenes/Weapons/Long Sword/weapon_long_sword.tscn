@@ -163,12 +163,14 @@ shape = SubResource("CircleShape2D_1clad")
 [node name="Damage" type="Node" parent="."]
 script = ExtResource("2_5bq0p")
 stat_value = 10.0
+can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatAdder" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
 script = ExtResource("3_1clad")
 stat = NodePath("..")
-scale_with_stat_id = "attack_damage"
+scale_with_stat_id = "strength"
+ratio = 0.1
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="GetActorStatMult" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
@@ -180,6 +182,7 @@ metadata/_custom_type_script = "uid://c4n03mihb0axg"
 [node name="AttackSpeed" type="Node" parent="."]
 script = ExtResource("2_5bq0p")
 stat_value = 1.0
+can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatAdder" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]

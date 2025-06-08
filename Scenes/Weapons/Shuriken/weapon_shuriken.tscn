@@ -42,7 +42,8 @@ metadata/_custom_type_script = "uid://c4n03mihb0axg"
 [node name="GetActorStatAdder" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
 script = ExtResource("6_j7fjk")
 stat = NodePath("..")
-scale_with_stat_id = "attack_damage"
+scale_with_stat_id = "strength"
+ratio = 0.1
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="AttackSpeed" type="Node" parent="."]

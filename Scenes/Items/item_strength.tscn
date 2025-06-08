@@ -12,7 +12,7 @@ script = ExtResource("1_7ns6k")
 item_name = "Iron Vambrace"
 item_icon = ExtResource("3_ndmdd")
 string_id = "gain_damage"
-item_detail = "Gain [color=green]1[/color] [color=crimson]attack damage[/color](+1 for each stack)"
+item_detail = "Gain [color=green]1[/color] [color=crimson]strength[/color](+1 for each stack)"
 buy_cost = 50.0
 sell_value = 10.0
 
@@ -26,14 +26,28 @@ stat_to_scale = NodePath("..")
 
 [node name="ItemBonusStat" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
 script = ExtResource("2_q7cc2")
-stat_name = "attack_damage"
-bonus_value = NodePath("../Stackx1")
+stat_name = "strength"
+bonus_value = NodePath("../Stackx5")
 
-[node name="Stackx1" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
+[node name="ItemBonusStat2" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
+script = ExtResource("2_q7cc2")
+stat_name = "magic"
+bonus_value = NodePath("../Stackx-5")
+
+[node name="Stackx5" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
 script = ExtResource("6_1qmi6")
 a_stat = NodePath("../Stack")
-b_stat = NodePath("1")
+b_stat = NodePath("5")
 
-[node name="1" type="Node" parent="Stackx1"]
+[node name="5" type="Node" parent="Stackx5"]
 script = ExtResource("4_ecrlb")
-stat_value = 1.0
+stat_value = 5.0
+
+[node name="Stackx-5" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("6_1qmi6")
+a_stat = NodePath("../Stack")
+b_stat = NodePath("-5")
+
+[node name="-5" type="Node" parent="Stackx-5"]
+script = ExtResource("4_ecrlb")
+stat_value = -5.0

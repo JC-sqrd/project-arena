@@ -13,6 +13,7 @@ var crit_multiplier : float = 1.65
 var damage_type : Enums.DamageType = Enums.DamageType.PHYSICAL
 var is_lifesteal : bool = false
 var blocked : bool = false
+var dodged : bool = false
 var lifesteal : DamageReceiver.Lifesteal
 var lifesteal_percentage : float
 var checks : Array[BonusValueCondition]

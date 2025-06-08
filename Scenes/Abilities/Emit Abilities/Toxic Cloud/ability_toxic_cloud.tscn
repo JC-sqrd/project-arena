@@ -37,11 +37,12 @@ damage_type = 1
 [node name="Damage" type="Node" parent="HitListener/DamageEffect"]
 script = ExtResource("4_lbkg1")
 stat_value = 2.0
+can_be_negative = false
 
 [node name="GetActorStatAdder" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
 script = ExtResource("6_ncag5")
 stat = NodePath("..")
-scale_with_stat_id = "magic_damage"
+scale_with_stat_id = "magic"
 ratio = 0.5
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 

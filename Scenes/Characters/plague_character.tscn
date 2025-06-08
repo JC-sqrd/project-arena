@@ -28,4 +28,7 @@ position = Vector2(15, 7.00002)
 
 [node name="WeaponWoodenMagicStaff" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("3_yksum")]
 
+[node name="MoveSpeed" parent="Stats" index="21"]
+can_be_negative = true
+
 [editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]

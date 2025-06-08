@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cimp4a7eu73ym"]
+
+[ext_resource type="Script" uid="uid://ib8i24wttd56" path="res://Scripts/Ability System/SelfTargetAbility.gd" id="1_04nil"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="2_1tjq4"]
+[ext_resource type="Script" uid="uid://88st3pdi1hky" path="res://Scripts/Combat/CombatEffects/ApplyStatusEffect.gd" id="3_mlwit"]
+[ext_resource type="PackedScene" uid="uid://du62ru44xlhru" path="res://Scenes/StatusEffects/DodgeChanceBuff.tscn" id="4_wqx8f"]
+
+[node name="AbilityDodgeChanceBuff" type="Node2D" node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("1_04nil")
+hit_listener = NodePath("HitListener")
+metadata/_custom_type_script = "uid://ib8i24wttd56"
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("2_1tjq4")
+metadata/_custom_type_script = "uid://dm3uuggj1g47y"
+
+[node name="ApplyStatusEffect" type="Node" parent="HitListener"]
+script = ExtResource("3_mlwit")
+status_effect_scene = ExtResource("4_wqx8f")
+metadata/_custom_type_script = "uid://88st3pdi1hky"

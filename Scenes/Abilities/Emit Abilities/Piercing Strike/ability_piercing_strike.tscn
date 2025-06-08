@@ -53,6 +53,7 @@ metadata/_custom_type_script = "uid://dmjo067f80ntw"
 [node name="Damage" type="Node" parent="."]
 script = ExtResource("6_j317q")
 stat_value = 10.0
+can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]

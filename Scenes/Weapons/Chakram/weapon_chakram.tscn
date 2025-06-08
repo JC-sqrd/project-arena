@@ -40,6 +40,7 @@ texture = ExtResource("3_agyne")
 [node name="Damage" type="Node" parent="."]
 script = ExtResource("4_k1e25")
 stat_value = 5.0
+can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
@@ -51,12 +52,14 @@ metadata/_custom_type_script = "uid://c4n03mihb0axg"
 [node name="GetActorStatAdder" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
 script = ExtResource("5_k1e25")
 stat = NodePath("..")
-scale_with_stat_id = "attack_damage"
+scale_with_stat_id = "strength"
+ratio = 0.1
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="AttackSpeed" type="Node" parent="."]
 script = ExtResource("4_k1e25")
 stat_value = 3.0
+can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]

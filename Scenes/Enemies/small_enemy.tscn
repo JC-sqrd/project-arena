@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://cyrnk80mwy1j1"]
+[gd_scene load_steps=52 format=3 uid="uid://cyrnk80mwy1j1"]
 
 [ext_resource type="Script" uid="uid://c82id00axlli8" path="res://Scripts/Enemy/Enemy.gd" id="1_824wj"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="6_1bo30"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cdiu1n82272s0" path="res://Scripts/Enemy/AddGoldOnSlain.gd" id="8_y34hv"]
 [ext_resource type="Script" uid="uid://bmcifytwc82pu" path="res://Scripts/Enemy/AddExpOnSlain.gd" id="9_hgf7s"]
 [ext_resource type="Script" uid="uid://sc7t52uxqk2w" path="res://Scripts/Entity/ManaManager.gd" id="10_eteh1"]
+[ext_resource type="Script" uid="uid://csugnbipwc8rl" path="res://Scripts/Combat/DamageListener/Mitigation/BlockMultiplier.gd" id="11_0jpem"]
 [ext_resource type="PackedScene" uid="uid://bau78s0ws2us8" path="res://Scenes/Components/hit_receiver.tscn" id="12_rbffg"]
 [ext_resource type="Script" uid="uid://ctjia3ovr0cyg" path="res://Scripts/Combat/DamageListener/DamageListener.gd" id="13_ave0o"]
 [ext_resource type="Script" uid="uid://mgrw0is6pnqq" path="res://Scripts/Combat/DamageListener/Mitigation/MitigationEffect.gd" id="14_710be"]
@@ -177,6 +178,11 @@ mitigation_type = 1
 [node name="ArmorMitigation" type="Node" parent="DamageListener" node_paths=PackedStringArray("mitigate_stat")]
 script = ExtResource("14_710be")
 mitigate_stat = NodePath("../../Stats/Armor")
+
+[node name="DodgeModifier" type="Node" parent="DamageListener" node_paths=PackedStringArray("dodge_chance")]
+script = ExtResource("11_0jpem")
+dodge_chance = NodePath("../../Stats/DodgeChance")
+metadata/_custom_type_script = "uid://csugnbipwc8rl"
 
 [node name="StatusEffectManager" type="Node" parent="." node_paths=PackedStringArray("entity")]
 script = ExtResource("15_clhf8")
@@ -366,6 +372,11 @@ script = ExtResource("49_n853f")
 
 [node name="ShieldRegen" type="Node" parent="Stats"]
 script = ExtResource("49_n853f")
+
+[node name="DodgeChance" type="Node" parent="Stats"]
+script = ExtResource("49_n853f")
+stat_name = "dodge_chance"
+metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="LootDropManager" type="Node2D" parent="." node_paths=PackedStringArray("enemy")]
 script = ExtResource("51_mwlfa")

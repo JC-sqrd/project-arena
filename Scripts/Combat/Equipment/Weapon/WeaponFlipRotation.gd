@@ -9,6 +9,7 @@ var flip_left : bool = false
 var flip_right : bool = false
 
 var flip : bool = false
+var _initial_flip : bool = true
 
 func _ready():
 	if owner is Weapon:
@@ -16,8 +17,7 @@ func _ready():
 		weapon.equipped.connect(_on_weapon_equipped)
 		pass
 	parent = get_parent()
-	
-	#mouse_angle_degree = -rad_to_deg(owner.global_position.direction_to(owner.get_global_mouse_position()).angle())
+	#mouse_angle_degree = -rad_to_deg(owner.global_position.direction_to(parent.get_global_mouse_position()).angle())
 	#var original_y = parent.position.y
 	#if !(mouse_angle_degree <= 90 and mouse_angle_degree >= -90) and flip_left == false:
 		##Flip vertically
@@ -67,10 +67,14 @@ func _on_weapon_equipped(actor : Entity):
 		pass
 	elif (mouse_angle_degree <= 90 and mouse_angle_degree >= -90) and flip_right == false:
 		#Flip vertically
-		parent.position.y = -original_y
-		print("Flip Right: " + str(parent.position.y))
-		flip_left = false
-		flip_right = true
+		if !_initial_flip:
+			parent.position.y = -original_y
+			print("Flip Right: " + str(parent.position.y))
+			flip_left = false
+			flip_right = true
+		else:
+			_initial_flip = false
+			return
 		pass
 	pass
 #func _process(delta: float) -> void:

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7rjno18idwr6"]
+[gd_scene load_steps=7 format=3 uid="uid://c7rjno18idwr6"]
 
 [ext_resource type="Script" uid="uid://42qvy4m6xprb" path="res://Scripts/Ability System/EmitAbility.gd" id="1_0kgu2"]
 [ext_resource type="PackedScene" uid="uid://dwu1ttvyfthw3" path="res://Scenes/Abilities/Emit Abilities/Phantom Strike/spawnable_phantom_strike.tscn" id="2_l6iy3"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="3_kuvbe"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="4_fj8n5"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_rpk34"]
+[ext_resource type="Script" uid="uid://dsmtvuccs0v2m" path="res://Scripts/Ability System/AbilityBehavior/AllowCastWhileActive.gd" id="6_kuvbe"]
 
 [node name="AbilityPhantomStrike" type="Node2D" node_paths=PackedStringArray("hit_listener")]
 script = ExtResource("1_0kgu2")
@@ -19,10 +20,15 @@ metadata/_custom_type_script = "uid://dm3uuggj1g47y"
 
 [node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
 script = ExtResource("4_fj8n5")
-damage_stat = NodePath("Stat")
+damage_stat = NodePath("Damage")
 metadata/_custom_type_script = "uid://c8sj8b1npavnd"
 
-[node name="Stat" type="Node" parent="HitListener/DamageEffect"]
+[node name="Damage" type="Node" parent="HitListener/DamageEffect"]
 script = ExtResource("5_rpk34")
 stat_value = 10.0
+can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="AllowCastWhileActive" type="Node" parent="."]
+script = ExtResource("6_kuvbe")
+metadata/_custom_type_script = "uid://dsmtvuccs0v2m"

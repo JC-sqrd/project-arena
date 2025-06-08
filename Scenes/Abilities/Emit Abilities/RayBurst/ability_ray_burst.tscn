@@ -38,6 +38,7 @@ metadata/_custom_type_script = "uid://c8sj8b1npavnd"
 [node name="Damage" type="Node" parent="HitListener/DamageEffect"]
 script = ExtResource("6_qf7kb")
 stat_value = 25.0
+can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatAdder" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]

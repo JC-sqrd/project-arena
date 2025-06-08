@@ -68,6 +68,7 @@ crit_chance_stat = NodePath("../../../../CritChance")
 [node name="Damage" type="Node" parent="AbilityBranch/EmitAbility/HitListener/DamageEffect"]
 script = ExtResource("8_cxeq3")
 stat_value = 10.0
+can_be_negative = false
 
 [node name="StatScaler" type="Node" parent="AbilityBranch/EmitAbility/HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat", "scale_with_stat")]
 script = ExtResource("9_37ywq")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dub5sb7kwl6lg"]
+[gd_scene load_steps=9 format=3 uid="uid://dub5sb7kwl6lg"]
 
 [ext_resource type="Script" uid="uid://42qvy4m6xprb" path="res://Scripts/Ability System/EmitAbility.gd" id="1_0bxeg"]
 [ext_resource type="PackedScene" uid="uid://dndkgxqahawqw" path="res://Scenes/Spawnables/AreaDamage/spawnable_area_damage.tscn" id="2_x5vld"]
@@ -9,10 +9,6 @@
 [ext_resource type="Script" uid="uid://b41oadkxkerfk" path="res://Scripts/Combat/CombatEffects/BonusValueChecks/DistanceCheck.gd" id="7_uycry"]
 [ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="8_w4n2w"]
 
-[sub_resource type="Curve" id="Curve_wy0au"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
-point_count = 1
-
 [node name="EmitAbility" type="Node2D" node_paths=PackedStringArray("hit_listener")]
 script = ExtResource("1_0bxeg")
 emited_object = ExtResource("2_x5vld")
@@ -21,6 +17,7 @@ hit_listener = NodePath("HitListener")
 [node name="MagicDamage" type="Node" parent="."]
 script = ExtResource("3_hvgsh")
 stat_name = "player_magic_damage"
+can_be_negative = false
 
 [node name="AbilityStatScaler" type="Node" parent="MagicDamage" node_paths=PackedStringArray("stat")]
 script = ExtResource("4_g3ur6")
@@ -50,7 +47,6 @@ damage_type = 1
 [node name="DistanceCheck" type="Node" parent="HitListener/DamageEffect" node_paths=PackedStringArray("stat")]
 script = ExtResource("7_uycry")
 stat = NodePath("../../../MagicDamage")
-damage_curve = SubResource("Curve_wy0au")
 scaling_ratio = 2.0
 distance = 200.0
 greater_than = true
