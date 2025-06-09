@@ -60,6 +60,7 @@ func receive_effect(data : Dictionary):
 		damage_data.source = data["source"]
 		# Set the blokced flag to false 
 		damage_data.blocked = false
+		damage_data.dodged = false
 		if data["actor"] != null:
 			damage_data.actor = data["actor"]
 		for check in damage_data.checks:

@@ -46,7 +46,6 @@ func apply_bonus_value():
 					_old_bonus_value = stat.stat_value * bonus_value.stat_derived_value
 				item_stack = item.stack
 				stat.update_stat()
-	
 	pass
 
 func remove_bonus_value():

@@ -27,7 +27,6 @@ next_ability = NodePath("AbilityBladeDance")
 metadata/_custom_type_script = "uid://dt5ekno3nrmcr"
 
 [node name="AbilityBladeDance" parent="InnateActiveAbility/AbilityTree/AbilityBranch" index="0" instance=ExtResource("2_3u1iy")]
-cooldown = 0.0
 
 [node name="AbilityDodgeChanceBuff" parent="InnateActiveAbility/AbilityTree/AbilityBranch" index="1" instance=ExtResource("5_dokha")]
 

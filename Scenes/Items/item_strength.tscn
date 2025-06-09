@@ -24,15 +24,15 @@ script = ExtResource("4_uuy7n")
 item = NodePath("../..")
 stat_to_scale = NodePath("..")
 
-[node name="ItemBonusStat" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
+[node name="BonusStrength" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
 script = ExtResource("2_q7cc2")
 stat_name = "strength"
 bonus_value = NodePath("../Stackx5")
 
-[node name="ItemBonusStat2" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
+[node name="TradeoffVitality" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
 script = ExtResource("2_q7cc2")
-stat_name = "magic"
-bonus_value = NodePath("../Stackx-5")
+stat_name = "vitality"
+bonus_value = NodePath("../Stackx-3")
 
 [node name="Stackx5" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
 script = ExtResource("6_1qmi6")
@@ -43,11 +43,11 @@ b_stat = NodePath("5")
 script = ExtResource("4_ecrlb")
 stat_value = 5.0
 
-[node name="Stackx-5" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
+[node name="Stackx-3" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
 script = ExtResource("6_1qmi6")
 a_stat = NodePath("../Stack")
-b_stat = NodePath("-5")
+b_stat = NodePath("-3")
 
-[node name="-5" type="Node" parent="Stackx-5"]
+[node name="-3" type="Node" parent="Stackx-3"]
 script = ExtResource("4_ecrlb")
-stat_value = -5.0
+stat_value = -3.0
