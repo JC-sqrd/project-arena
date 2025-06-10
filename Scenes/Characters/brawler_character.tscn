@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cggb2x36mslpl"]
+[gd_scene load_steps=11 format=3 uid="uid://cggb2x36mslpl"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_g348i"]
 [ext_resource type="Script" uid="uid://b74u7eflax8b2" path="res://Scripts/Ability System/PassiveAbility/GainDecayingStrengthOnHit.gd" id="2_3yh4f"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="3_3yh4f"]
 [ext_resource type="PackedScene" uid="uid://bsb66ckahw7x" path="res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn" id="4_ub57k"]
 [ext_resource type="PackedScene" uid="uid://bq8vln2e2bn51" path="res://Scenes/Weapons/Fire Grimoire/Tier2/weapon_fire_grimoire_tier2.tscn" id="5_1t5iw"]
+[ext_resource type="PackedScene" uid="uid://bkmw1nqw6gp4q" path="res://Scenes/Weapons/Hammer/weapon_hammer.tscn" id="6_3yh4f"]
 [ext_resource type="PackedScene" uid="uid://od3lf463dx1c" path="res://Scenes/Abilities/Emit Abilities/SwordSlash/sword_slash_emit.tscn" id="6_mtotw"]
 [ext_resource type="PackedScene" uid="uid://cacqqobo0qx73" path="res://Scenes/Abilities/AbilityTrees/LungeStrike/ability_lunge_strike.tscn" id="7_cxhod"]
 [ext_resource type="PackedScene" uid="uid://c4234y32d7c7u" path="res://Scenes/Weapons/Long Sword/weapon_long_sword.tscn" id="8_paabx"]
@@ -22,6 +23,8 @@ scale = Vector2(0.999999, 0.999999)
 [node name="WeaponWoodenMagicStaff" parent="EquipmentInventory" index="1" instance=ExtResource("4_ub57k")]
 
 [node name="FireGrimoire2" parent="EquipmentInventory" index="2" instance=ExtResource("5_1t5iw")]
+
+[node name="Hammer" parent="EquipmentInventory" index="3" instance=ExtResource("6_3yh4f")]
 
 [node name="PassiveAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("GainDecayingStrengthOnHit")
