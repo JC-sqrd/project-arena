@@ -1,12 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqmrcuovcr6dr"]
+[gd_scene load_steps=10 format=3 uid="uid://bqmrcuovcr6dr"]
 
 [ext_resource type="Script" uid="uid://d3nv4w5x5iplh" path="res://Scripts/Ability System/AbilityTree.gd" id="1_j0778"]
 [ext_resource type="Script" uid="uid://dt5ekno3nrmcr" path="res://Scripts/Ability System/AbilityBranch.gd" id="2_gkg86"]
 [ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="2_q34bc"]
 [ext_resource type="Script" uid="uid://dqj32qeba6flj" path="res://Scripts/Ability System/BlinkAbility.gd" id="3_q34bc"]
 [ext_resource type="PackedScene" uid="uid://c7rjno18idwr6" path="res://Scenes/Abilities/Emit Abilities/Phantom Strike/ability_phantom_strike.tscn" id="4_oeqxl"]
+[ext_resource type="Script" uid="uid://10mik3j8w4cp" path="res://Scripts/Ability System/AbilityBehavior/AllowAttackWhileActive.gd" id="6_oeqxl"]
 
 [sub_resource type="Resource" id="Resource_oeqxl"]
+script = ExtResource("2_q34bc")
+stat_name = "current_mana"
+required_value = 0.0
+metadata/_custom_type_script = "uid://tuvjl40jf0pm"
+
+[sub_resource type="Resource" id="Resource_q34bc"]
+script = ExtResource("2_q34bc")
+stat_name = "current_mana"
+required_value = 0.0
+metadata/_custom_type_script = "uid://tuvjl40jf0pm"
+
+[sub_resource type="Resource" id="Resource_7aue4"]
 script = ExtResource("2_q34bc")
 stat_name = "current_mana"
 required_value = -1.0
@@ -27,6 +40,16 @@ metadata/_custom_type_script = "uid://dt5ekno3nrmcr"
 
 [node name="BlinkAbility" type="Node2D" parent="AbilityBranch"]
 script = ExtResource("3_q34bc")
+required_stat = SubResource("Resource_q34bc")
 metadata/_custom_type_script = "uid://dqj32qeba6flj"
 
+[node name="AllowAttackWhileActive" type="Node" parent="AbilityBranch/BlinkAbility"]
+script = ExtResource("6_oeqxl")
+metadata/_custom_type_script = "uid://10mik3j8w4cp"
+
 [node name="AbilityPhantomStrike" parent="AbilityBranch" instance=ExtResource("4_oeqxl")]
+required_stat = SubResource("Resource_7aue4")
+
+[node name="AllowAttackWhileActive" type="Node" parent="."]
+script = ExtResource("6_oeqxl")
+metadata/_custom_type_script = "uid://10mik3j8w4cp"

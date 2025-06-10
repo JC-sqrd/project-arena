@@ -18,7 +18,7 @@ func _on_damage_taken(damage : float):
 	pass
 
 
-func _on_entity_died():
+func _on_entity_died(entity : Entity):
 	speed_scale = 1
 	rotation = randf_range(0, 360)
 	if is_playing():

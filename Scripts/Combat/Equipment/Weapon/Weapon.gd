@@ -37,6 +37,7 @@ signal windup_done()
 
 func _ready():
 	equipped.connect(on_equipped)
+	unequipped.connect(on_unequipped)
 	for socket in sockets:
 		socket.weapon = self
 		if socket.socketable != null:
@@ -111,7 +112,8 @@ func _weapon_process(delta : float):
 		
 		if cooldown_counter <= 0 and !can_attack and is_equipped:
 			can_attack = true
-			actor.can_attack = true
+			cooldown_counter = 0
+			#actor.can_attack = true
 	pass
 
 func start_attack():
@@ -138,7 +140,7 @@ func attack_key_held():
 	#pass
 
 func initialize_attack():
-	actor.can_attack = false
+	#actor.can_attack = false
 	cooldown_counter = attack_cooldown
 	start_attack()
 	pass
@@ -173,9 +175,15 @@ func on_equipped(actor : Entity):
 			if !actor.hit_listeners.has(hit_listener):
 				actor.hit_listeners.append(hit_listener)
 	if weapon_ability != null:
+		weapon_ability.process_mode = Node.PROCESS_MODE_INHERIT
 		weapon_ability.actor = actor
 		weapon_ability.ready.emit()
 		print("WEAPON ABILITY ACTOR: " + str(weapon_ability.actor))
 	ready.emit()
 	print("WEAPON EQUIPPED: " + str(actor))
+	pass
+
+func on_unequipped():
+	if weapon_ability != null:
+		weapon_ability.process_mode = Node.PROCESS_MODE_DISABLED
 	pass

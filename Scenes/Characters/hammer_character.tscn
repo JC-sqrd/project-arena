@@ -22,19 +22,15 @@
 
 [node name="WeaponShuriken" parent="EquipmentInventory" index="3" instance=ExtResource("4_7raj0")]
 
-[node name="InnateActiveAbility" parent="." index="2" node_paths=PackedStringArray("ability")]
+[node name="InnateActiveAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("GroundBurstAbility")
 
 [node name="GroundBurstAbility" parent="InnateActiveAbility" index="1" instance=ExtResource("2_v11n0")]
 
-[node name="UtilityAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
-ability = NodePath("DashAbility")
-
 [node name="DashAbility" parent="UtilityAbilityContainer" index="1"]
-dash_distance = 300.0
 direction_input = 1
 
-[node name="WeaponSlot" parent="." index="5" node_paths=PackedStringArray("equipment")]
+[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
 position = Vector2(-1.07288e-06, 14)
 equipment = NodePath("WeaponPosition/Hammer")
 
@@ -43,30 +39,30 @@ position = Vector2(12, 0)
 
 [node name="Hammer" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("4_325pn")]
 
-[node name="HeadGearSlot" parent="." index="7" node_paths=PackedStringArray("equipment")]
+[node name="HeadGearSlot" parent="." index="8" node_paths=PackedStringArray("equipment")]
 equipment = NodePath("IronHelmet")
 
 [node name="IronHelmet" parent="HeadGearSlot" index="0" instance=ExtResource("8_e1acb")]
 
-[node name="TorsoSlot" parent="." index="8" node_paths=PackedStringArray("equipment")]
+[node name="TorsoSlot" parent="." index="9" node_paths=PackedStringArray("equipment")]
 equipment = NodePath("TorsoIronChestplate")
 
 [node name="TorsoIronChestplate" parent="TorsoSlot" index="0" instance=ExtResource("8_iq7j3")]
 
-[node name="ArmGearSlot" parent="." index="9" node_paths=PackedStringArray("equipment")]
+[node name="ArmGearSlot" parent="." index="10" node_paths=PackedStringArray("equipment")]
 equipment = NodePath("ArmgearIronGauntlets")
 
 [node name="ArmgearIronGauntlets" parent="ArmGearSlot" index="0" instance=ExtResource("9_t2lar")]
 
-[node name="ShoesSlot" parent="." index="10" node_paths=PackedStringArray("equipment")]
+[node name="ShoesSlot" parent="." index="11" node_paths=PackedStringArray("equipment")]
 equipment = NodePath("ShoesIronBoots")
 
 [node name="ShoesIronBoots" parent="ShoesSlot" index="0" instance=ExtResource("11_7raj0")]
 
-[node name="MaxHealth" parent="Stats" index="7"]
+[node name="MaxHealth" parent="Stats" index="12"]
 stat_value = 65.0
 
-[node name="MoveSpeed" parent="Stats" index="9"]
+[node name="MoveSpeed" parent="Stats" index="23"]
 stat_value = 240.0
 
 [editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=55 format=3 uid="uid://bwbyc8vywa6vd"]
+[gd_scene load_steps=56 format=3 uid="uid://bwbyc8vywa6vd"]
 
 [ext_resource type="Script" uid="uid://bl5aki5ii4r6t" path="res://Scripts/PlayerCharacter.gd" id="1_4r8nq"]
 [ext_resource type="Script" uid="uid://bsn1idamyre35" path="res://Scripts/EquipmentInventory/EquipmentInventory.gd" id="2_52ran"]
 [ext_resource type="Script" uid="uid://1bsno3scw518" path="res://Scripts/Entity/Player/GoldManager.gd" id="3_raiax"]
+[ext_resource type="Script" uid="uid://578ycnskjjbu" path="res://Scripts/Ability System/AbilityContainer/PassiveAbilityContainer.gd" id="4_2w7b0"]
 [ext_resource type="PackedScene" uid="uid://dk87ltl8o4wft" path="res://Scenes/Components/ability_container_component.tscn" id="4_tkk1j"]
 [ext_resource type="Script" uid="uid://46rajp5yxkq6" path="res://Scripts/Ability System/DashAbility.gd" id="5_2w7b0"]
 [ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="6_wvybv"]
@@ -101,12 +102,13 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_4yy27"]
 radius = 150.0
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("gold_manager", "innate_active_ability", "utility_ability", "hit_receiver", "stat_manager", "level_manager", "health_manager", "mana_manager", "status_effect_manager", "stat_mods_manager", "damage_listener", "item_iventory", "equipment_inventory") groups=["Hittable", "player"]]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("gold_manager", "passive_ability_container", "innate_active_ability", "utility_ability", "hit_receiver", "stat_manager", "level_manager", "health_manager", "mana_manager", "status_effect_manager", "stat_mods_manager", "damage_listener", "item_iventory", "equipment_inventory") groups=["Hittable", "player"]]
 y_sort_enabled = true
 motion_mode = 1
 platform_floor_layers = 4294901760
 script = ExtResource("1_4r8nq")
 gold_manager = NodePath("GoldManager")
+passive_ability_container = NodePath("PassiveAbilityContainer")
 innate_active_ability = NodePath("InnateActiveAbility")
 utility_ability = NodePath("UtilityAbilityContainer")
 hit_receiver = NodePath("HitReceiver")
@@ -134,6 +136,11 @@ metadata/_custom_type_script = "uid://bsn1idamyre35"
 script = ExtResource("3_raiax")
 gold = NodePath("../Stats/Gold")
 metadata/_custom_type_script = "uid://1bsno3scw518"
+
+[node name="PassiveAbilityContainer" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("4_2w7b0")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://578ycnskjjbu"
 
 [node name="InnateActiveAbility" parent="." node_paths=PackedStringArray("actor", "mana") groups=["innate_ability_containers"] instance=ExtResource("4_tkk1j")]
 ability_action_trigger = "primary_ability"
@@ -284,9 +291,27 @@ script = ExtResource("23_gbr3h")
 stat_name = "focus"
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
-[node name="CooldownReduction" type="Node" parent="Stats"]
-script = ExtResource("23_gbr3h")
+[node name="CooldownReduction" type="Node" parent="Stats" node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("24_raiax")
+a_stat = NodePath("../BaseCooldownReduction")
+b_stat = NodePath("4PercentxFocus")
 stat_name = "cooldown_reduction"
+metadata/_custom_type_script = "uid://dqjgy52bq0foh"
+
+[node name="4PercentxFocus" type="Node" parent="Stats/CooldownReduction" node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("24_52ran")
+a_stat = NodePath("../../Focus")
+b_stat = NodePath("../4Percent")
+metadata/_custom_type_script = "uid://d35h5o2rfotvj"
+
+[node name="4Percent" type="Node" parent="Stats/CooldownReduction"]
+script = ExtResource("23_gbr3h")
+stat_value = 0.4
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="BaseCooldownReduction" type="Node" parent="Stats"]
+script = ExtResource("23_gbr3h")
+stat_name = "base_cooldown_reduction"
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="DodgeChance" type="Node" parent="Stats"]
@@ -390,15 +415,33 @@ script = ExtResource("23_gbr3h")
 stat_name = "max_mana"
 stat_value = 100.0
 
-[node name="ManaRegen" type="Node" parent="Stats"]
-script = ExtResource("23_gbr3h")
+[node name="ManaRegen" type="Node" parent="Stats" node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("24_raiax")
+a_stat = NodePath("../BaseManaRegen")
+b_stat = NodePath("1PercentxFocus")
 stat_name = "mana_regen"
+stat_value = 1.0
+metadata/_custom_type_script = "uid://dqjgy52bq0foh"
+
+[node name="1PercentxFocus" type="Node" parent="Stats/ManaRegen" node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("24_52ran")
+a_stat = NodePath("../../Focus")
+b_stat = NodePath("../1Percent")
+metadata/_custom_type_script = "uid://d35h5o2rfotvj"
+
+[node name="1Percent" type="Node" parent="Stats/ManaRegen"]
+script = ExtResource("23_gbr3h")
+stat_value = 0.1
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="BaseManaRegen" type="Node" parent="Stats"]
+script = ExtResource("23_gbr3h")
+stat_name = "base_mana_regen"
 stat_value = 1.0
 
 [node name="HealthRegen" type="Node" parent="Stats"]
 script = ExtResource("23_gbr3h")
 stat_name = "health_regen"
-stat_value = 1.0
 
 [node name="MoveSpeed" type="Node" parent="Stats"]
 script = ExtResource("23_gbr3h")

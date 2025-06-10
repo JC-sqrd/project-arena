@@ -373,7 +373,6 @@ rect = Rect2(0, 0, 100, 100)
 enable_node_path = NodePath("")
 
 [node name="HitSpriteAnimation" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("entity")]
-visible = false
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_srgw6")
 animation = &"hit_spark"
@@ -516,6 +515,10 @@ scale_base_value = true
 [node name="Mana" type="Node" parent="Stats"]
 script = ExtResource("49_d3j22")
 stat_name = "current_mana"
+
+[node name="CooldownReduction" type="Node" parent="Stats"]
+script = ExtResource("49_d3j22")
+stat_name = "cooldown_reduction"
 
 [node name="MaxMana" type="Node" parent="Stats"]
 script = ExtResource("49_d3j22")

@@ -186,7 +186,7 @@ animations = [{
 collision_mask = 2
 script = ExtResource("1_f6rey")
 piercing = true
-hit_coll_enabled_time = 0.25
+hit_coll_enabled_time = 0.5
 filter = SubResource("Resource_dv3hi")
 attack_damage = NodePath("Damage")
 attack_speed_stat = NodePath("AttackSpeed")
@@ -223,14 +223,8 @@ metadata/_custom_type_script = "uid://bgka26pbphks7"
 [node name="GetActorStatMult" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]
 script = ExtResource("4_11dr6")
 stat = NodePath("..")
-scale_with_stat_id = "attack_speed_mult"
-metadata/_custom_type_script = "uid://c4n03mihb0axg"
-
-[node name="GetActorStatAdder" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]
-script = ExtResource("5_7sqg3")
-stat = NodePath("..")
 scale_with_stat_id = "attack_speed"
-metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+metadata/_custom_type_script = "uid://c4n03mihb0axg"
 
 [node name="CollisionEnabledTimer" type="Timer" parent="."]
 

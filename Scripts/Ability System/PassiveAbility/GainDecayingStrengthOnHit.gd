@@ -22,17 +22,30 @@ func _ready():
 	decay_delay_timer.autostart = false
 	decay_delay_timer.wait_time = decay_delay
 	_max_bonus = max_bonus_strength
-	decay_delay_timer.timeout.connect(_on_decay_delay_timer_timeout)
-	decay_timer.timeout.connect(_on_decay_timer_timeout)
-	actor.basic_attack_hit.connect(_on_basic_attack_hit)
-	actor.ready.connect(_on_actor_ready)
 	pass
 
-func _on_actor_ready():
-	actor_strength = actor.stat_manager.stats.get("strength")
-	actor_level = actor.stat_manager.stats.get("level")
-	(actor_level as Stat).stat_derived_value_changed.connect(_on_actor_level_changed)
+
+func enable_passive_ability():
+	if actor != null:
+		decay_delay_timer.timeout.connect(_on_decay_delay_timer_timeout)
+		decay_timer.timeout.connect(_on_decay_timer_timeout)
+		actor.basic_attack_hit.connect(_on_basic_attack_hit)
+		actor_strength = actor.stat_manager.stats.get("strength")
+		actor_level = actor.stat_manager.stats.get("level")
+		(actor_level as Stat).stat_derived_value_changed.connect(_on_actor_level_changed)
+		enabled = true
 	pass
+
+func disable_passive_ability():
+	decay_delay_timer.timeout.disconnect(_on_decay_delay_timer_timeout)
+	decay_timer.timeout.disconnect(_on_decay_timer_timeout)
+	actor.basic_attack_hit.disconnect(_on_basic_attack_hit)
+	enabled = false
+	#actor_strength = actor.stat_manager.stats.get("strength")
+	#actor_level = actor.stat_manager.stats.get("level")
+	#(actor_level as Stat).stat_derived_value_changed.connect(_on_actor_level_changed)
+	pass
+
 
 func _on_basic_attack_hit(hit_data : Dictionary):
 	decay_delay_timer.stop()

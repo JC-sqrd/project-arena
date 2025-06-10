@@ -8,9 +8,12 @@
 
 [node name="PlagueCharacter" instance=ExtResource("1_3pxk1")]
 
-[node name="PassiveAbilityPosionSpread" parent="." index="0" instance=ExtResource("2_fjbkd")]
-
 [node name="LongSword" parent="EquipmentInventory" index="0" instance=ExtResource("3_g6kxe")]
+
+[node name="PassiveAbilityContainer" parent="." index="2" node_paths=PackedStringArray("ability")]
+ability = NodePath("PassiveAbilityPosionSpread")
+
+[node name="PassiveAbilityPosionSpread" parent="PassiveAbilityContainer" index="0" instance=ExtResource("2_fjbkd")]
 
 [node name="InnateActiveAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("ToxicCloudEmitAbility")
@@ -28,7 +31,7 @@ position = Vector2(15, 7.00002)
 
 [node name="WeaponWoodenMagicStaff" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("3_yksum")]
 
-[node name="MoveSpeed" parent="Stats" index="21"]
+[node name="MoveSpeed" parent="Stats" index="23"]
 can_be_negative = true
 
 [editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]

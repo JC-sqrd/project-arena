@@ -12,17 +12,7 @@
 
 [node name="BrawlerCharacter" instance=ExtResource("1_g348i")]
 
-[node name="GainDecayingStrengthOnHit" type="Node2D" parent="." index="0" node_paths=PackedStringArray("decay_timer", "decay_delay_timer")]
-script = ExtResource("2_3yh4f")
-decay_timer = NodePath("DecayTimer")
-decay_delay_timer = NodePath("DecayDelayTimer")
-metadata/_custom_type_script = "uid://b74u7eflax8b2"
-
-[node name="DecayTimer" type="Timer" parent="GainDecayingStrengthOnHit" index="0"]
-
-[node name="DecayDelayTimer" type="Timer" parent="GainDecayingStrengthOnHit" index="1"]
-
-[node name="EnemyHitParticle" parent="." index="1" instance=ExtResource("2_g61ps")]
+[node name="EnemyHitParticle" parent="." index="0" instance=ExtResource("2_g61ps")]
 
 [node name="SwiftSword" parent="EquipmentInventory" index="0" instance=ExtResource("3_3yh4f")]
 visible = false
@@ -32,6 +22,19 @@ scale = Vector2(0.999999, 0.999999)
 [node name="WeaponWoodenMagicStaff" parent="EquipmentInventory" index="1" instance=ExtResource("4_ub57k")]
 
 [node name="FireGrimoire2" parent="EquipmentInventory" index="2" instance=ExtResource("5_1t5iw")]
+
+[node name="PassiveAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
+ability = NodePath("GainDecayingStrengthOnHit")
+
+[node name="GainDecayingStrengthOnHit" type="Node2D" parent="PassiveAbilityContainer" index="0" node_paths=PackedStringArray("decay_timer", "decay_delay_timer")]
+script = ExtResource("2_3yh4f")
+decay_timer = NodePath("DecayTimer")
+decay_delay_timer = NodePath("DecayDelayTimer")
+metadata/_custom_type_script = "uid://b74u7eflax8b2"
+
+[node name="DecayTimer" type="Timer" parent="PassiveAbilityContainer/GainDecayingStrengthOnHit" index="0"]
+
+[node name="DecayDelayTimer" type="Timer" parent="PassiveAbilityContainer/GainDecayingStrengthOnHit" index="1"]
 
 [node name="InnateActiveAbility" parent="." index="4" node_paths=PackedStringArray("ability")]
 ability = NodePath("SwordSlashEmit")
@@ -62,7 +65,10 @@ position = Vector2(0, 9)
 [node name="WeaponPosition" parent="OffhandWeaponSlot" index="0"]
 position = Vector2(17, 0)
 
-[node name="MaxHealth" parent="Stats" index="11"]
+[node name="Focus" parent="Stats" index="4"]
+stat_value = 100.0
+
+[node name="MaxHealth" parent="Stats" index="12"]
 stat_value = 40.0
 
 [node name="EntityHitParticle" parent="." index="30" node_paths=PackedStringArray("hit_particle")]

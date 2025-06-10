@@ -4,6 +4,7 @@ extends Entity
 var total_damage_applied : float = 0
 var damage_effects : Array[Node]
 @export var gold_manager : GoldManager
+@export var passive_ability_container : PassiveAbilityContainer
 @export var innate_active_ability : AbilityContainer
 @export var innate_secondary_ability : AbilityContainer
 @export var utility_ability : AbilityContainer

@@ -7,6 +7,7 @@ enum StatDisplay {BONUS, BASE, DERIVED, }
 @export var actor : Entity
 @export var percentage : bool = false
 @export var stat_name : String = "Stat"
+@export var suffix : String = ""
 @export var stat_id : String
 @export var stat_display : StatDisplay = StatDisplay.BONUS
 @export var stat_icon : Texture
@@ -66,10 +67,11 @@ func _format_stat_label_text(stat_value : float):
 	if percentage:
 		var percent_value : float = stat_value * 100
 		stat_value_label.text += "%s" %String.num(percent_value, 0 if percent_value == int(percent_value) else 2)
-		stat_value_label.text += "%"
+		stat_value_label.text += "%" + suffix
 		pass
 	else:
 		stat_value_label.text += "%s" %String.num(stat_value, 0 if stat_value == int(stat_value) else 2)
+		stat_value_label.text += suffix
 		pass
 	pass
 

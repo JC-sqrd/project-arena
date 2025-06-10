@@ -44,6 +44,10 @@ theme_override_constants/margin_bottom = 10
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
+[node name="Label2" type="Label" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer"]
+layout_mode = 2
+text = "CORE STATS"
+
 [node name="STRENGTH" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
 layout_mode = 2
 stat_name = "STRENGTH"
@@ -74,6 +78,22 @@ stat_name = "FOCUS"
 stat_id = "focus"
 stat_display = 2
 
+[node name="ARMOR" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
+layout_mode = 2
+stat_name = "ARMOR"
+stat_id = "armor"
+
+[node name="AREA SIZE" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
+layout_mode = 2
+percentage = true
+stat_name = "AREA SIZE"
+stat_id = "area_size"
+stat_display = 2
+
+[node name="Label" type="Label" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer"]
+layout_mode = 2
+text = "DERIVED STATS"
+
 [node name="ATTACK SPEED" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
 layout_mode = 2
 stat_name = "ATTACK SPEED"
@@ -84,6 +104,20 @@ stat_display = 2
 layout_mode = 2
 stat_name = "MOVE SPEED"
 stat_id = "move_speed"
+stat_display = 2
+
+[node name="MANA REGEN" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
+layout_mode = 2
+stat_name = "MANA REGEN"
+suffix = "/s"
+stat_id = "mana_regen"
+stat_display = 2
+
+[node name="COOLDOWN REDUCTION" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
+layout_mode = 2
+percentage = true
+stat_name = "CDR"
+stat_id = "cooldown_reduction"
 stat_display = 2
 
 [node name="DODGE CHANCE" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]

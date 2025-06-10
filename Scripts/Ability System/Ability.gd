@@ -36,6 +36,8 @@ var cooling_down : bool = false
 var cast_data : Dictionary
 var get_cast_position : bool = false
 
+var _cdr : Stat # Cooldown reduction
+
 ##Emitted when an ability's action key is pressed
 signal ability_invoked
 ##Emitted when an ability is casted (Usually after invoked)
@@ -67,11 +69,27 @@ func _ready():
 		actor = owner
 	elif owner.has_method("get_actor"):
 		actor = owner.get_actor()
+		print("Abiltiy name: " + str(name))
 	for socket in sockets:
 		socket.ability = self
 		if socket.socketable != null:
 			#socket.socketable.apply_effects_to_ability(self)
 			socket.activate_socketable()
+	if actor != null:
+		actor.ready.connect(_on_actor_ready)
+	ready.connect(_on_actor_ready)
+
+func _on_ready():
+	if actor != null:
+		actor.ready.connect(_on_actor_ready)
+		pass
+	pass
+
+func _on_actor_ready():
+	if actor != null:
+		if actor.stat_manager != null:
+			_cdr = actor.stat_manager.get_stat("cooldown_reduction")
+	pass
 
 func initialize_ability():
 	pass
@@ -128,8 +146,10 @@ func on_cooldown_timer_timeout():
 	pass
 
 func start_cooldown():
-	cooldown_timer.start()
+	var cooldown_time : float = cooldown * (1 - (_cdr.stat_derived_value / 100))
+	cooldown_timer.start(cooldown_time)
 	cooling_down = true
 	can_cast = false
+	cooldown_start.emit()
 	print(ability_name + " Start cooldown")
 	pass

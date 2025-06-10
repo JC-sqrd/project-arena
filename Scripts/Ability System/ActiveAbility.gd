@@ -31,12 +31,14 @@ func get_cast_data() -> Dictionary:
 	pass
 
 func start_cooldown():
-	get_tree().create_timer(cooldown, false, false, false).timeout.connect(on_cooldown_timer_timeout)
+	var cooldown_time : float = cooldown * (1 - (_cdr.stat_derived_value / 100))
+	get_tree().create_timer(cooldown_time, false, false, false).timeout.connect(on_cooldown_timer_timeout)
 	ability_count -= 1
 	if ability_count == 0:
 		#cooldown_timer.start()
 		cooling_down = true
 		can_cast = false
+	cooldown_start.emit()
 	pass
 
 func on_cooldown_timer_timeout():

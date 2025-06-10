@@ -11,7 +11,7 @@
 
 [node name="PhantomCharacter" instance=ExtResource("1_2ijky")]
 
-[node name="InnateActiveAbility" parent="." index="2" node_paths=PackedStringArray("ability")]
+[node name="InnateActiveAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityTree/AbilityBranch/AbilityBladeDance")
 
 [node name="AbilityTree" type="Node2D" parent="InnateActiveAbility" index="1" node_paths=PackedStringArray("head_branch")]
@@ -30,7 +30,7 @@ metadata/_custom_type_script = "uid://dt5ekno3nrmcr"
 
 [node name="AbilityDodgeChanceBuff" parent="InnateActiveAbility/AbilityTree/AbilityBranch" index="1" instance=ExtResource("5_dokha")]
 
-[node name="UtilityAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
+[node name="UtilityAbilityContainer" parent="." index="4" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityPhantomStep")
 
 [node name="DashAbility" parent="UtilityAbilityContainer" index="1"]
@@ -43,7 +43,7 @@ metadata/_custom_type_script = "uid://dqj32qeba6flj"
 
 [node name="AbilityPhantomStep" parent="UtilityAbilityContainer" index="3" instance=ExtResource("6_8amkt")]
 
-[node name="WeaponSlot" parent="." index="5" node_paths=PackedStringArray("equipment")]
+[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
 equipment = NodePath("WeaponPosition/SwiftSword")
 
 [node name="WeaponPosition" parent="WeaponSlot" index="1"]
@@ -51,7 +51,7 @@ position = Vector2(11, 6.00002)
 
 [node name="SwiftSword" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("3_ys4ku")]
 
-[node name="MoveSpeed" parent="Stats" index="21"]
+[node name="MoveSpeed" parent="Stats" index="23"]
 can_be_negative = true
 
 [editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]

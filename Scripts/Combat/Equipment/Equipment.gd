@@ -38,3 +38,6 @@ func get_actor() -> Entity:
 func on_equipped(actor : Entity):
 	ready.emit()
 	pass
+
+func on_unequipped():
+	pass

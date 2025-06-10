@@ -22,10 +22,10 @@
 [ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="4_d3glx"]
 [ext_resource type="Script" uid="uid://c00l8xisrxclc" path="res://Scripts/Enemy/EnemySpawner/EnemySpawner.gd" id="5_a4ok0"]
 [ext_resource type="PackedScene" uid="uid://dqm4fbhm3ik7d" path="res://Scenes/Enemies/SpawnSprite/spawn_sprite.tscn" id="6_hej2c"]
+[ext_resource type="PackedScene" uid="uid://cggb2x36mslpl" path="res://Scenes/Characters/brawler_character.tscn" id="7_7bmvy"]
 [ext_resource type="Script" uid="uid://cvoh1qyqwtosh" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveEnemySpawn.gd" id="7_7wka2"]
 [ext_resource type="Texture2D" uid="uid://c35vvralpy2oe" path="res://Placeholders/Sprites/Skill Circle Visual.png" id="7_mwf75"]
 [ext_resource type="Script" uid="uid://bm6en5pumq560" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WeightedEnemySpawn.gd" id="8_edhef"]
-[ext_resource type="PackedScene" uid="uid://dqtqghdwyycf3" path="res://Scenes/Characters/phantom_character.tscn" id="8_w24wr"]
 [ext_resource type="Script" uid="uid://b3fq26t52vw2o" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnTiming.gd" id="8_yy25j"]
 [ext_resource type="Script" uid="uid://dqunvl8tgfqvj" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnEverySecond.gd" id="9_0lwa2"]
 [ext_resource type="PackedScene" uid="uid://cktf4rpw44nwi" path="res://Scenes/UI/EquipmentShop/general_shop.tscn" id="9_w24wr"]
@@ -255,7 +255,7 @@ material = SubResource("ShaderMaterial_dcwql")
 [node name="Level" parent="FastEnemy/Stats" index="6"]
 stat_value = 10.0
 
-[node name="PhantomCharacter" parent="." instance=ExtResource("8_w24wr")]
+[node name="BrawlerCharacter" parent="." instance=ExtResource("7_7bmvy")]
 position = Vector2(544, 1080)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

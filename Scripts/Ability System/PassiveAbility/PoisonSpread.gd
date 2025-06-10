@@ -8,8 +8,19 @@ var entities_in_area : Array[Entity]
 
 func _ready():
 	super()
+	
+	pass
+
+func enable_passive_ability():
 	area.body_entered.connect(_on_body_entered)
 	area.body_exited.connect(_on_body_exited)
+	enabled = true
+	pass
+
+func disable_passive_ability():
+	area.body_entered.disconnect(_on_body_entered)
+	area.body_exited.disconnect(_on_body_exited)
+	enabled = false
 	pass
 
 func _on_body_entered(body : Node2D):
