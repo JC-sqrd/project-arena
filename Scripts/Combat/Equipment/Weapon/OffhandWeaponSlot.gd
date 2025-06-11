@@ -1,24 +1,24 @@
 class_name OffhandWeaponSlot
-extends EquipmentSlot
+extends WeaponSlot
 
 #@export var weapon : Weapon : set = _set_weapon
-@export var attack_speed : Stat
-@export var weapon_position : Node2D
-
-var _attack_cooldown : float
-var _cooldown_counter : float
-
-var weapon : Weapon 
-
-var _start_cooldown : bool = false
-var _on_cooldown : bool = false
-var look_at_mouse : bool = true
-
-var can_attack : bool = true
-
-var action_held : bool = false
-
-signal weapon_ability_triggered()
+#@export var attack_speed : Stat
+#@export var weapon_position : Node2D
+#
+#var _attack_cooldown : float
+#var _cooldown_counter : float
+#
+#var weapon : Weapon 
+#
+#var _start_cooldown : bool = false
+#var _on_cooldown : bool = false
+#var look_at_mouse : bool = true
+#
+#var can_attack : bool = true
+#
+#var action_held : bool = false
+#
+#signal weapon_ability_triggered()
 
 func _ready():
 	if equipment != null:
@@ -49,14 +49,39 @@ func _set_weapon(new_weapon : Weapon):
 	pass
 
 
+#func set_equipment(new_equipment : Equipment):
+	#if equipment != null:
+		#equipment.visible = false
+		#unequip(equipment)
+	#equipment = new_equipment
+	#weapon = equipment
+	#pass 
+
 func set_equipment(new_equipment : Equipment):
 	if equipment != null:
 		equipment.visible = false
 		unequip(equipment)
-	equipment = new_equipment
-	weapon = equipment
+		equipment = null
+		weapon = null
+	if new_equipment != null:
+		weapon = new_equipment
+		equip(new_equipment)
+		equipment = new_equipment
+	else:
+		equipment = null
+		weapon = null
 	pass 
 
+
+func equip(equipment : Equipment):
+	equipment.reparent(weapon_position)
+	equipment.global_position = Vector2.ZERO
+	equipment.rotation = 0
+	equipment.position = Vector2.ZERO
+	equipment.action_trigger = action_trigger
+	equipment.visible = false
+	equipment_equipped.emit(equipment)
+	pass
 
 func equip_offhand():
 	equipment.reparent(weapon_position)
@@ -66,11 +91,13 @@ func equip_offhand():
 	equipment.action_trigger = action_trigger
 	equipment.equip(actor)
 	equipment.visible = true
+	equipment_equipped.emit(equipment)
 	pass
 
 func unequip(equipment : Equipment):
 	equipment.unequip()
 	equipment.visible = false
+	equipment_unequipped.emit(equipment)
 	pass
 
 func _start_attack_cooldown():

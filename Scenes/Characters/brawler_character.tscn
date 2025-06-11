@@ -15,16 +15,14 @@
 
 [node name="EnemyHitParticle" parent="." index="0" instance=ExtResource("2_g61ps")]
 
-[node name="SwiftSword" parent="EquipmentInventory" index="0" instance=ExtResource("3_3yh4f")]
-visible = false
-position = Vector2(-1.90735e-06, 0)
-scale = Vector2(0.999999, 0.999999)
+[node name="WeaponWoodenMagicStaff" parent="EquipmentInventory" index="0" instance=ExtResource("4_ub57k")]
 
-[node name="WeaponWoodenMagicStaff" parent="EquipmentInventory" index="1" instance=ExtResource("4_ub57k")]
+[node name="FireGrimoire2" parent="EquipmentInventory" index="1" instance=ExtResource("5_1t5iw")]
 
-[node name="FireGrimoire2" parent="EquipmentInventory" index="2" instance=ExtResource("5_1t5iw")]
+[node name="Hammer" parent="EquipmentInventory" index="2" instance=ExtResource("6_3yh4f")]
 
-[node name="Hammer" parent="EquipmentInventory" index="3" instance=ExtResource("6_3yh4f")]
+[node name="LongSword" parent="EquipmentInventory" index="3" instance=ExtResource("8_paabx")]
+position = Vector2(-17, -9.00001)
 
 [node name="PassiveAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("GainDecayingStrengthOnHit")
@@ -53,14 +51,14 @@ ability = NodePath("AbilityLungeStrike")
 cooldown = 4.0
 
 [node name="WeaponSlot" parent="." index="7" node_paths=PackedStringArray("equipment")]
-position = Vector2(-1.07288e-06, 9)
-equipment = NodePath("WeaponPosition/LongSword")
+equipment = NodePath("WeaponPosition/SwiftSword")
 
 [node name="WeaponPosition" parent="WeaponSlot" index="1"]
 position = Vector2(17, 0)
 
-[node name="LongSword" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("8_paabx")]
+[node name="SwiftSword" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("3_3yh4f")]
 position = Vector2(-17, -9.00001)
+scale = Vector2(1, 1)
 
 [node name="OffhandWeaponSlot" parent="." index="8"]
 position = Vector2(0, 9)

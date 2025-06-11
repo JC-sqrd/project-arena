@@ -55,7 +55,7 @@ signal ability_hit(hit_data : HitData)
 ##Emitted when an ability applies damage
 signal ability_applied_damage (damage : float)
 
-signal cooldown_start()
+signal cooldown_start(cooldown : float)
 signal cooldown_end()
 
 func _enter_tree():
@@ -150,6 +150,6 @@ func start_cooldown():
 	cooldown_timer.start(cooldown_time)
 	cooling_down = true
 	can_cast = false
-	cooldown_start.emit()
+	cooldown_start.emit(cooldown_time)
 	print(ability_name + " Start cooldown")
 	pass

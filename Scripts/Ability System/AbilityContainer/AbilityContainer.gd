@@ -145,6 +145,6 @@ func _on_ability_start():
 	actor.stat_manager.stats[ability.required_stat.stat_name].stat_derived_value -= ability.required_stat.required_value
 	pass
 
-func _on_ability_cooldown_start():
+func _on_ability_cooldown_start(cooldown : float):
 	#cooldown_start.emit()
 	pass

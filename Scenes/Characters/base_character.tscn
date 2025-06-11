@@ -102,12 +102,13 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_4yy27"]
 radius = 150.0
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("gold_manager", "passive_ability_container", "innate_active_ability", "utility_ability", "hit_receiver", "stat_manager", "level_manager", "health_manager", "mana_manager", "status_effect_manager", "stat_mods_manager", "damage_listener", "item_iventory", "equipment_inventory") groups=["Hittable", "player"]]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("gold_manager", "weapon_manager", "passive_ability_container", "innate_active_ability", "utility_ability", "hit_receiver", "stat_manager", "level_manager", "health_manager", "mana_manager", "status_effect_manager", "stat_mods_manager", "damage_listener", "item_iventory", "equipment_inventory") groups=["Hittable", "player"]]
 y_sort_enabled = true
 motion_mode = 1
 platform_floor_layers = 4294901760
 script = ExtResource("1_4r8nq")
 gold_manager = NodePath("GoldManager")
+weapon_manager = NodePath("WeaponManager")
 passive_ability_container = NodePath("PassiveAbilityContainer")
 innate_active_ability = NodePath("InnateActiveAbility")
 utility_ability = NodePath("UtilityAbilityContainer")
@@ -175,8 +176,9 @@ action_trigger = "m_right"
 
 [node name="WeaponPosition" type="Marker2D" parent="WeaponSlot"]
 
-[node name="OffhandWeaponSlot" type="Node2D" parent="." node_paths=PackedStringArray("weapon_position", "actor")]
+[node name="OffhandWeaponSlot" type="Node2D" parent="." node_paths=PackedStringArray("attack_speed", "weapon_position", "actor")]
 script = ExtResource("9_kaufn")
+attack_speed = NodePath("../Stats/AttackSpeed")
 weapon_position = NodePath("WeaponPosition")
 actor = NodePath("..")
 action_trigger = "m_right"

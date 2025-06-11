@@ -38,7 +38,7 @@ func start_cooldown():
 		#cooldown_timer.start()
 		cooling_down = true
 		can_cast = false
-	cooldown_start.emit()
+	cooldown_start.emit(cooldown_time)
 	pass
 
 func on_cooldown_timer_timeout():
