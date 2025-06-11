@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _on_actor_ready():
 	if ability != null:
-		ability.enable_passive_ability()
+		ability.enable_passive_ability(actor)
 	pass
 
 func _set_ability(new_ability : PassiveAbility):
@@ -22,6 +22,6 @@ func _set_ability(new_ability : PassiveAbility):
 		ability.disable_passive_ability()
 	ability = new_ability
 	ability.add_to_group("equipped_abilities")
-	ability.enable_passive_ability()
+	ability.enable_passive_ability(actor)
 	ability_icon = new_ability.ability_icon_texture
 	pass

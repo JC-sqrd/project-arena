@@ -18,3 +18,4 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_6qnxu")
+debug_color = Color(1, 0.496162, 0.732226, 0.42)

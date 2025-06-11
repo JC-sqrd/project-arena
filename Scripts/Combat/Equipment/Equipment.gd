@@ -20,6 +20,10 @@ signal equipped (actor : Entity)
 signal unequipped ()
 signal upgrade (equipment : Equipment)
 
+func _ready():
+	equipped.connect(on_equipped)
+	pass
+
 func equip(actor : Entity):
 	self.actor = actor
 	is_equipped = true

@@ -4,6 +4,8 @@ extends Ability
 enum InputMode {PRESSED, HELD}
 @export var input_mode : PressedAbilityInputMode = PressedAbilityInputMode.new()
 @export var ability_count : int = 1
+@export var hit_listener : HitListener
+
 
 func get_cast_data() -> Dictionary:
 	var data : Dictionary

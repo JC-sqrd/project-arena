@@ -14,8 +14,8 @@ metadata/_custom_type_script = "uid://tuvjl40jf0pm"
 
 [node name="AbilityAttackSpeedBuff" type="Node2D" node_paths=PackedStringArray("hit_listener")]
 script = ExtResource("1_ckod6")
-required_stat = SubResource("Resource_sigyp")
 hit_listener = NodePath("HitListener")
+required_stat = SubResource("Resource_sigyp")
 metadata/_custom_type_script = "uid://ib8i24wttd56"
 
 [node name="HitListener" type="Node" parent="."]

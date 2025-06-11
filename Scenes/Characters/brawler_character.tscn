@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cggb2x36mslpl"]
+[gd_scene load_steps=12 format=3 uid="uid://cggb2x36mslpl"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_g348i"]
-[ext_resource type="Script" uid="uid://b74u7eflax8b2" path="res://Scripts/Ability System/PassiveAbility/GainDecayingStrengthOnHit.gd" id="2_3yh4f"]
+[ext_resource type="Script" uid="uid://b74u7eflax8b2" path="res://Scripts/Ability System/PassiveAbility/GainDecayingStatOnHit.gd" id="2_3yh4f"]
 [ext_resource type="PackedScene" uid="uid://ull35nal2yub" path="res://Scenes/Particles/enemy_hit_particle.tscn" id="2_g61ps"]
 [ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="3_3yh4f"]
 [ext_resource type="PackedScene" uid="uid://bsb66ckahw7x" path="res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn" id="4_ub57k"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bkmw1nqw6gp4q" path="res://Scenes/Weapons/Hammer/weapon_hammer.tscn" id="6_3yh4f"]
 [ext_resource type="PackedScene" uid="uid://od3lf463dx1c" path="res://Scenes/Abilities/Emit Abilities/SwordSlash/sword_slash_emit.tscn" id="6_mtotw"]
 [ext_resource type="PackedScene" uid="uid://cacqqobo0qx73" path="res://Scenes/Abilities/AbilityTrees/LungeStrike/ability_lunge_strike.tscn" id="7_cxhod"]
+[ext_resource type="PackedScene" uid="uid://c0kg5eyjqqw2k" path="res://Scenes/Equipments/Torso/torso_iron_chestplate.tscn" id="7_ub57k"]
 [ext_resource type="PackedScene" uid="uid://c4234y32d7c7u" path="res://Scenes/Weapons/Long Sword/weapon_long_sword.tscn" id="8_paabx"]
 
 [node name="BrawlerCharacter" instance=ExtResource("1_g348i")]
@@ -24,11 +25,14 @@
 [node name="LongSword" parent="EquipmentInventory" index="3" instance=ExtResource("8_paabx")]
 position = Vector2(-17, -9.00001)
 
+[node name="TorsoIronChestplate" parent="EquipmentInventory" index="4" instance=ExtResource("7_ub57k")]
+
 [node name="PassiveAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("GainDecayingStrengthOnHit")
 
 [node name="GainDecayingStrengthOnHit" type="Node2D" parent="PassiveAbilityContainer" index="0" node_paths=PackedStringArray("decay_timer", "decay_delay_timer")]
 script = ExtResource("2_3yh4f")
+stat_id = "strength"
 decay_timer = NodePath("DecayTimer")
 decay_delay_timer = NodePath("DecayDelayTimer")
 metadata/_custom_type_script = "uid://b74u7eflax8b2"
@@ -41,14 +45,38 @@ metadata/_custom_type_script = "uid://b74u7eflax8b2"
 ability = NodePath("SwordSlashEmit")
 
 [node name="SwordSlashEmit" parent="InnateActiveAbility" index="1" instance=ExtResource("6_mtotw")]
+ability_count = null
+cast_mode = null
 start_cooldown_on = 1
 ability_name = "Sword Slash"
+ability_description = null
+ability_details = null
 
 [node name="UtilityAbilityContainer" parent="." index="5" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityLungeStrike")
 
+[node name="DashAbility" parent="UtilityAbilityContainer" index="1"]
+dash_speed = null
+direction_input = null
+can_cast_while_dashing = null
+debug_visual = null
+ability_count = null
+cast_mode = null
+start_cooldown_on = null
+cast_time = null
+ability_name = null
+ability_description = null
+ability_details = null
+
 [node name="AbilityLungeStrike" parent="UtilityAbilityContainer" index="2" instance=ExtResource("7_cxhod")]
+ability_count = null
+cast_mode = null
+start_cooldown_on = null
+cast_time = null
+ability_name = null
 cooldown = 4.0
+ability_description = null
+ability_details = null
 
 [node name="WeaponSlot" parent="." index="7" node_paths=PackedStringArray("equipment")]
 equipment = NodePath("WeaponPosition/SwiftSword")
@@ -58,7 +86,6 @@ position = Vector2(17, 0)
 
 [node name="SwiftSword" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("3_3yh4f")]
 position = Vector2(-17, -9.00001)
-scale = Vector2(1, 1)
 
 [node name="OffhandWeaponSlot" parent="." index="8"]
 position = Vector2(0, 9)

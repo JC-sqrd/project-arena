@@ -536,6 +536,11 @@ script = ExtResource("27_js4va")
 stat_name = "dodge_chance"
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
+[node name="CooldownReduction" type="Node" parent="Stats"]
+script = ExtResource("27_js4va")
+stat_name = "cooldown_reduction"
+stat_value = 5.0
+
 [node name="LootDropManager" type="Node2D" parent="." node_paths=PackedStringArray("enemy")]
 script = ExtResource("25_on0a0")
 enemy = NodePath("..")

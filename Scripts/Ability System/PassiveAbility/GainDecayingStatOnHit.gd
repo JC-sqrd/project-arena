@@ -1,6 +1,7 @@
-class_name GainDecayingStrengthOnHit
+class_name GainDecayingStatOnHit
 extends PassiveAbility
 
+@export var stat_id : String
 @export var bonus_strength_on_hit : float = 2
 @export var max_bonus_strength : float = 50
 @export var decay_timer : Timer
@@ -25,18 +26,20 @@ func _ready():
 	pass
 
 
-func enable_passive_ability():
+func enable_passive_ability(actor : Entity):
+	super(actor)
 	if actor != null:
 		decay_delay_timer.timeout.connect(_on_decay_delay_timer_timeout)
 		decay_timer.timeout.connect(_on_decay_timer_timeout)
 		actor.basic_attack_hit.connect(_on_basic_attack_hit)
-		actor_strength = actor.stat_manager.stats.get("strength")
+		actor_strength = actor.stat_manager.stats.get(stat_id)
 		actor_level = actor.stat_manager.stats.get("level")
 		(actor_level as Stat).stat_derived_value_changed.connect(_on_actor_level_changed)
 		enabled = true
 	pass
 
 func disable_passive_ability():
+	super()
 	decay_delay_timer.timeout.disconnect(_on_decay_delay_timer_timeout)
 	decay_timer.timeout.disconnect(_on_decay_timer_timeout)
 	actor.basic_attack_hit.disconnect(_on_basic_attack_hit)

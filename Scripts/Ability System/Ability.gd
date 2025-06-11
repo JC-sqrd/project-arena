@@ -17,7 +17,7 @@ enum CastMode {
 @export var start_cooldown_on : CoolDownOn = CoolDownOn.CAST
 @export var cast_time : float = 0
 
-@export var hit_listener : HitListener
+#@export var hit_listener : HitListener
 @export var ability_name : String
 @export var cooldown : float = 1
 @export_multiline var ability_description : String

@@ -30,9 +30,9 @@ required_value = 15.0
 script = ExtResource("1_ellgo")
 emited_object = ExtResource("2_224we")
 input_mode = SubResource("Resource_ngo03")
+hit_listener = NodePath("HitListener")
 required_stat = SubResource("Resource_nt1cn")
 cast_time = 0.25
-hit_listener = NodePath("HitListener")
 cooldown = 5.0
 ability_icon_texture = ExtResource("3_qlkjh")
 

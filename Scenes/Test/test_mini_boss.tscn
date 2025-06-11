@@ -529,6 +529,11 @@ stat = NodePath("..")
 scale_with_stat = NodePath("../../Level")
 scale_base_value = true
 
+[node name="CooldownReduction" type="Node" parent="Stats"]
+script = ExtResource("45_15sa8")
+stat_name = "cooldown_reduction"
+stat_value = 5.0
+
 [node name="Mana" type="Node" parent="Stats"]
 script = ExtResource("45_15sa8")
 stat_name = "current_mana"
