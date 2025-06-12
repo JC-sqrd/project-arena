@@ -32,7 +32,8 @@ var player : Entity
 
 
 func _ready() -> void:
-	get_tree().root.ready.connect(
+	player = Globals.player
+	owner.ready.connect(
 		func():
 			wave_spawner = Globals.wave_spawner
 			wave_spawner.current_wave_end.connect(_on_current_wave_end)

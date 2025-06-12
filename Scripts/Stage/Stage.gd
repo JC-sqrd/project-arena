@@ -1,8 +1,8 @@
 class_name Stage
 extends Node2D
 
-
-@export var player : PlayerCharacter
+var player : PlayerCharacter
+@export var player_spawn_point : Node2D
 
 signal game_over(stage : Stage)
 

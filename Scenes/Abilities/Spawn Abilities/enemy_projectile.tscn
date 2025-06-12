@@ -17,8 +17,8 @@ metadata/_custom_type_script = "uid://yd87aj2hybru"
 script = ExtResource("1_16q40")
 spawn = ExtResource("2_t6wnu")
 spawn_behavior = SubResource("Resource_23k1a")
-cast_time = 0.5
 hit_listener = NodePath("HitListener")
+cast_time = 0.5
 cooldown = 5.0
 
 [node name="HitListener" type="Node" parent="."]

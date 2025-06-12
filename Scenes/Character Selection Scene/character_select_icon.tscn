@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf13rcs6hgstl"]
+
+[ext_resource type="Script" uid="uid://ddkk314rpb7yk" path="res://Scripts/CharacterSelect/CharacterSelectIconUI.gd" id="1_5cjxm"]
+[ext_resource type="Texture2D" uid="uid://bfjv5pykqpmoc" path="res://Placeholders/InventorySlot.png" id="1_vu5gn"]
+[ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="2_70xh4"]
+
+[node name="CharacterSelectIcon" type="Control"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5cjxm")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 50.0
+offset_bottom = 50.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 50.0
+offset_bottom = 50.0
+theme_override_constants/separation = -2
+
+[node name="SlotBorder" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("1_vu5gn")
+expand_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/SlotBorder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CharacterIcon" type="TextureRect" parent="VBoxContainer/SlotBorder/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_70xh4")
+expand_mode = 3

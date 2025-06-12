@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfhjoayy8w4lt"]
+[gd_scene load_steps=15 format=3 uid="uid://cfhjoayy8w4lt"]
 
 [ext_resource type="Script" uid="uid://blbwnmv676w3j" path="res://Scripts/Ability System/Spawnables/AreaHitOverTime.gd" id="1_fpie0"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="2_di36a"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bfniy65wdcaje" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/circle_03.png" id="4_vpxeo"]
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="4_xb62l"]
 [ext_resource type="Script" uid="uid://b7arbvb75or7o" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/EmitBasicAttackSignal.gd" id="6_03ufb"]
+[ext_resource type="Texture2D" uid="uid://bwxlrf6brh1xm" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/scratch_01.png" id="7_llnwj"]
 
 [sub_resource type="Resource" id="Resource_vpxeo"]
 script = ExtResource("2_fdmxv")
@@ -13,6 +14,30 @@ metadata/_custom_type_script = "uid://bg43jxy7gyts0"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fpie0"]
 radius = 250.0
+
+[sub_resource type="Gradient" id="Gradient_w06j2"]
+offsets = PackedFloat32Array(0.0100334, 0.334448, 0.494983, 0.675585)
+colors = PackedColorArray(1, 1, 1, 1, 0.309804, 0.882353, 0.835294, 1, 0.349566, 0.833773, 0.563446, 1, 0.172549, 0.305882, 0.313726, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1lqh1"]
+gradient = SubResource("Gradient_w06j2")
+
+[sub_resource type="Curve" id="Curve_ddove"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.741539, 1), 0.0, -19.0315, 0, 0, Vector2(0.756923, 0), -42.8211, 0.0, 0, 0, Vector2(0.987692, 0), -0.0171122, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_pacn1"]
+curve = SubResource("Curve_ddove")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_smab4"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 50.0
+angle_min = -90.0
+angle_max = 90.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_pacn1")
+color_ramp = SubResource("GradientTexture1D_1lqh1")
 
 [node name="SpawnableBladeDance" type="Area2D" node_paths=PackedStringArray("hit_speed")]
 collision_layer = 0
@@ -41,6 +66,7 @@ scale_with_stat_id = "attack_speed_mult"
 metadata/_custom_type_script = "uid://c4n03mihb0axg"
 
 [node name="Circle03" type="Sprite2D" parent="."]
+modulate = Color(0.309804, 0.882353, 0.835294, 0.47451)
 scale = Vector2(1.07792, 1.07792)
 texture = ExtResource("4_vpxeo")
 
@@ -48,3 +74,9 @@ texture = ExtResource("4_vpxeo")
 script = ExtResource("6_03ufb")
 spawnable = NodePath("..")
 metadata/_custom_type_script = "uid://b7arbvb75or7o"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 4
+texture = ExtResource("7_llnwj")
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_smab4")

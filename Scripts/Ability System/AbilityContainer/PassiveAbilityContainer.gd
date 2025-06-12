@@ -3,7 +3,7 @@ extends Node2D
 
 
 @export var actor : Entity
-@export var ability : PassiveAbility : set = _set_ability
+@export var ability : PassiveAbility #: set = _set_ability
 var ability_icon : Texture2D
 
 func _ready() -> void:
@@ -21,7 +21,8 @@ func _set_ability(new_ability : PassiveAbility):
 		ability.remove_from_group("equipped_abilities")
 		ability.disable_passive_ability()
 	ability = new_ability
-	ability.add_to_group("equipped_abilities")
-	ability.enable_passive_ability(actor)
-	ability_icon = new_ability.ability_icon_texture
+	if actor != null:
+		ability.add_to_group("equipped_abilities")
+		ability.enable_passive_ability(actor)
+		ability_icon = new_ability.ability_icon_texture
 	pass

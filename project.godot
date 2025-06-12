@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Risk of Survivors 2"
-run/main_scene="res://Scenes/Test/test_scene.tscn"
+run/main_scene="uid://cbnrx2xpmgtqk"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=120
 config/icon="res://icon.svg"

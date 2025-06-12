@@ -1,8 +1,16 @@
 extends Node
 
+var current_player_character_data : CharacterSelectData
+var current_stage_scene : PackedScene
+var current_stage : Stage
+var character_select_screen : CharacterSelectUI
 var player : PlayerCharacter
 
-var wave_spawner : WaveSpawner
+
+var wave_spawner : WaveSpawner : set = _set_wave_spawner
+
+signal wave_spawner_set(wave_spawner : WaveSpawner)
+
 
 var common_item_pool : Array[PackedScene] = [
 	preload("res://Scenes/Items/gain_move_speed/item_move_speed.tscn"),
@@ -77,3 +85,27 @@ var player_modifiers : Dictionary = {
 var item_modifiers : Dictionary = {
 	"cooldown":1.0
 }
+
+func restart_current_stage():
+	for child in get_tree().root.get_children():
+		if child is Node2D:
+			child.queue_free()
+	#current_stage.queue_free()
+	current_stage = current_stage_scene.instantiate() as Stage
+	player = current_player_character_data.character_scene.instantiate()
+	get_tree().root.add_child(current_stage)
+	current_stage.add_child(player)
+	player.global_position = current_stage.player_spawn_point.global_position
+	character_select_screen.visible = false
+	pass
+
+func clear_2D_nodes():
+	for child in get_tree().root.get_children():
+		if child is Node2D:
+			child.queue_free()
+	pass
+
+func _set_wave_spawner(new_wave_spawner : WaveSpawner):
+	wave_spawner = new_wave_spawner
+	wave_spawner_set.emit(new_wave_spawner)
+	pass
