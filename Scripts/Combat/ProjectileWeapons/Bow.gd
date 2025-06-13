@@ -84,10 +84,19 @@ func _spawn_projectile():
 	pass
 
 func spawn_arrow(charge : float):
+	_spawn_count = _projectile_count + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
 	if projectile != null:
-		var new_projectile = projectile.instantiate()
 		
-		if new_projectile is Projectile:
+		_base_angle = global_position.direction_to(get_global_mouse_position()).angle()
+		_spread = deg_to_rad(spread_degrees)
+		_start_angle = _base_angle - _spread * 0.5
+		_angle_step = _spread / (_spawn_count)
+		_spawn_index = 0
+		
+		while _spawn_count > 0:
+			var new_projectile = projectile.instantiate()
+			_spawn_angle = _start_angle + _spawn_index  * _angle_step
+			
 			new_projectile.on_hit.connect(_on_attack_hit)
 			if hit_listener != null:
 				var effect_data : Dictionary = hit_listener.generate_effect_data()
@@ -106,10 +115,13 @@ func spawn_arrow(charge : float):
 			else:
 				new_projectile.position = global_position
 			#new_projectile.direction = ((get_global_mouse_position() + position) - position).normalized()
-			new_projectile.rotation = global_position.direction_to(get_global_mouse_position()).angle()
-			attack_active.emit()
-			actor.basic_attack.emit(self)
-			end_attack()
+			#new_projectile.rotation = global_position.direction_to(get_global_mouse_position()).angle()
+			new_projectile.rotation = _spawn_angle
+			_spawn_count -= 1
+			_spawn_index += 1
+		attack_active.emit()
+		actor.basic_attack.emit(self)
+		end_attack()
 	else:
 		printerr("No projectile to spawn")
 	pass

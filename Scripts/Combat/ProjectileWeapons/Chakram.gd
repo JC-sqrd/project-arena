@@ -4,6 +4,7 @@ extends ProjectileWeapon
 @export var return_speed : float = 700
 @export var return_hit_listener : HitListener
 
+var _throw_counter : int = 0
 var throwing : bool = false
 
 func _ready():
@@ -50,7 +51,7 @@ func projectile_weapon_process(delta : float):
 	if windup_counter <= 0 and winding_up:
 		winding_up = false
 		windup_counter = 0
-		throw_amount -= 1
+		_throw_counter -= 1
 		_spawn_projectile()
 		await get_tree().create_timer(0.05, false, true, false).timeout
 		throwing = false
@@ -60,7 +61,8 @@ func projectile_weapon_process(delta : float):
 	pass
 
 func initialize_attack():
-	if throw_amount <= 0:
+	_throw_counter = throw_amount + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
+	if _throw_counter <= 0:
 		actor.can_attack = false
 	#cooldown_counter = attack_cooldown
 	_start_cooldown = true
@@ -68,7 +70,7 @@ func initialize_attack():
 	pass
 
 func start_attack():
-	if throw_amount > 0 and can_attack and !throwing:
+	if _throw_counter > 0 and can_attack and !throwing:
 		start_windup = true
 		attack_windup_time = minf(attack_windup_time, 1 / attack_speed)
 		attack_state = AttackState.START
@@ -87,7 +89,7 @@ func end_attack():
 	actor.can_attack = true
 	#if throw_amount <= 0:
 	#	_start_cooldown = true
-	throw_amount += 1
+	_throw_counter += 1
 	attack_end.emit()
 
 func _spawn_projectile():

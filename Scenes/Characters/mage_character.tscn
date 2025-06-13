@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgy7pdawvoiwa"]
+[gd_scene load_steps=13 format=3 uid="uid://bgy7pdawvoiwa"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_mooh8"]
 [ext_resource type="PackedScene" uid="uid://bkmw1nqw6gp4q" path="res://Scenes/Weapons/Hammer/weapon_hammer.tscn" id="2_efl5i"]
@@ -9,7 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://bsb66ckahw7x" path="res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn" id="7_efl5i"]
 [ext_resource type="PackedScene" uid="uid://dq2ilob20a4t5" path="res://Scenes/Weapons/Bow/weapon_bow.tscn" id="7_rpc63"]
 [ext_resource type="PackedScene" uid="uid://bkjwb31l88d7n" path="res://Scenes/Abilities/Spawn Abilities/FlamePillar/flame_pillar.tscn" id="10_w6ej0"]
+[ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="11_judwm"]
 [ext_resource type="PackedScene" uid="uid://cx8tgb7k8cwbk" path="res://Scenes/Abilities/Emit Abilities/FlameBreath/ability_flame_breath.tscn" id="12_rpc63"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rpc63"]
+shader = ExtResource("11_judwm")
+shader_parameter/hit_opacity = 0.0
+shader_parameter/modulate = Color(0.164706, 0.756863, 1, 1)
 
 [node name="MageCharacter" instance=ExtResource("1_mooh8")]
 
@@ -25,21 +31,17 @@
 
 [node name="WeaponWoodenMagicStaff" parent="EquipmentInventory" index="5" instance=ExtResource("7_efl5i")]
 
-[node name="InnateActiveAbility" parent="." index="2" node_paths=PackedStringArray("ability")]
+[node name="InnateActiveAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityFlameBreath")
 
 [node name="AbilityFlameBreath" parent="InnateActiveAbility" index="1" instance=ExtResource("12_rpc63")]
 
-[node name="UtilityAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
-ability = NodePath("DashAbility")
-
 [node name="DashAbility" parent="UtilityAbilityContainer" index="1"]
-dash_distance = 300.0
 direction_input = 1
 
 [node name="FlamePillar" parent="UtilityAbilityContainer" index="2" instance=ExtResource("10_w6ej0")]
 
-[node name="WeaponSlot" parent="." index="5" node_paths=PackedStringArray("equipment")]
+[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
 position = Vector2(0, 10)
 equipment = NodePath("WeaponPosition/FireGrimoire")
 
@@ -50,13 +52,19 @@ position = Vector2(20, 0)
 position = Vector2(20, 10)
 scale = Vector2(0.999999, 0.999999)
 
-[node name="MaxMana" parent="Stats" index="4"]
+[node name="MaxMana" parent="Stats" index="19"]
 stat_value = 150.0
 
-[node name="ManaRegen" parent="Stats" index="5"]
+[node name="ManaRegen" parent="Stats" index="20"]
 stat_value = 5.0
 
-[node name="MoveSpeed" parent="Stats" index="9"]
+[node name="MoveSpeed" parent="Stats" index="23"]
 stat_value = 240.0
+
+[node name="ProjectileCount" parent="Stats" index="26"]
+stat_value = 1.0
+
+[node name="AnimatedSprite2D" parent="." index="26"]
+material = SubResource("ShaderMaterial_rpc63")
 
 [editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]

@@ -6,7 +6,7 @@ extends ProjectileWeapon
 var throw_counter : float = 0
 
 func _spawn_projectile():
-	throw_counter = throw_count
+	throw_counter = throw_count + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
 	while throw_counter >= 1:
 		if shuriken_sprite != null:
 			shuriken_sprite.visible = false

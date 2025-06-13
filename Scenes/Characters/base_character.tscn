@@ -461,6 +461,10 @@ script = ExtResource("23_gbr3h")
 stat_name = "area_size"
 stat_value = 1.0
 
+[node name="ProjectileCount" type="Node" parent="Stats"]
+script = ExtResource("23_gbr3h")
+stat_name = "projectile_count"
+
 [node name="Armor" type="Node" parent="Stats"]
 script = ExtResource("23_gbr3h")
 stat_name = "armor"

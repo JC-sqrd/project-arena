@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cl7l8ffhkgv1k"]
+[gd_scene load_steps=41 format=3 uid="uid://cl7l8ffhkgv1k"]
 
 [ext_resource type="Script" uid="uid://d1xavjy2kbus2" path="res://Scripts/Ability System/Spawnables/AreaEnterHit.gd" id="1_xh5kv"]
 [ext_resource type="Texture2D" uid="uid://dayd0ykci1raf" path="res://Sprites/AbilitySprites/Fireball/Fireball.png" id="2_q3ht5"]
@@ -129,6 +129,45 @@ linear_accel_curve = SubResource("CurveTexture_8ls5q")
 scale_curve = SubResource("CurveXYZTexture_q1xte")
 color_ramp = SubResource("GradientTexture1D_xfi46")
 
+[sub_resource type="Gradient" id="Gradient_xfi46"]
+offsets = PackedFloat32Array(0, 0.00668896, 0.280936, 0.538462, 0.782609)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.574429, 0.343362, 2.88785e-07, 1, 0.054902, 0.0352941, 0, 0.709804, 0, 0, 0, 0.596078)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8ls5q"]
+gradient = SubResource("Gradient_xfi46")
+
+[sub_resource type="Curve" id="Curve_q1xte"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0.00615384, 5.15973), 0.0, 0.0, 0, 0, Vector2(0.264615, 200), 2530.33, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_df25i"]
+curve = SubResource("Curve_q1xte")
+
+[sub_resource type="Curve" id="Curve_10ypx"]
+_data = [Vector2(0, 0.800369), 0.0, 0.0, 0, 0, Vector2(1, 0.113636), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0v43g"]
+curve = SubResource("Curve_10ypx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_if417"]
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 15.0
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(-1, 0, 0)
+spread = 2.0
+initial_velocity_min = 350.0
+initial_velocity_max = 500.0
+gravity = Vector3(0, 0, 0)
+linear_accel_curve = SubResource("CurveTexture_df25i")
+scale_curve = SubResource("CurveTexture_0v43g")
+color_ramp = SubResource("GradientTexture1D_8ls5q")
+turbulence_noise_scale = 0.0
+
 [sub_resource type="Curve" id="Curve_xfi46"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.113636), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -210,6 +249,11 @@ texture = ExtResource("13_if417")
 lifetime = 0.5
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ki41g")
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="."]
+texture = ExtResource("13_if417")
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_if417")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
 texture = ExtResource("13_if417")
