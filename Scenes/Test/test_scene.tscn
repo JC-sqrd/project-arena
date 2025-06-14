@@ -293,13 +293,12 @@ grow_horizontal = 2
 [node name="GameOverUI" parent="CanvasLayer/Control2" instance=ExtResource("4_050cx")]
 process_mode = 3
 layout_mode = 1
-offset_left = -49.5
-offset_top = -43.0
-offset_right = 49.5
-offset_bottom = 43.0
+offset_left = -77.5
+offset_top = -60.5
+offset_right = 77.5
+offset_bottom = 60.5
 
 [node name="GeneralShop" parent="CanvasLayer" instance=ExtResource("9_w24wr")]
-visible = false
 
 [node name="WaveSpawner" type="Node2D" parent="." node_paths=PackedStringArray("root_wave")]
 position = Vector2(1500, 750)

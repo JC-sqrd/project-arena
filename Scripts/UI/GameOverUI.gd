@@ -19,9 +19,9 @@ func on_game_over(stage : Stage):
 
 func on_try_again_pressed():
 	#get_tree().reload_current_scene()
+	Globals.restart_current_stage()
 	PauseManager.resume_scene_tree()
 	GameState.reset_game_timer()
-	Globals.restart_current_stage()
 	pass
 
 func _on_character_select_button_pressed():
@@ -29,6 +29,6 @@ func _on_character_select_button_pressed():
 	#Globals.character_select_screen.visible = true
 	#Globals.character_select_screen._ready()
 	#get_tree().change_scene_to_packed(character_select_scene)
-	get_tree().change_scene_to_file("res://Scenes/Character Selection Scene/character_select_scene.tscn")
 	Globals.clear_2D_nodes()
+	get_tree().change_scene_to_file("res://Scenes/Character Selection Scene/character_select_scene.tscn")
 	pass

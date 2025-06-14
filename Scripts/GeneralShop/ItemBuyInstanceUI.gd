@@ -3,16 +3,22 @@ extends BuyInstanceUI
 
 @export var item_data : ItemData
 var item : Item
-@onready var cost_button: Button = $VBoxContainer/CostButton
+@onready var cost_button: Button =$Panel/VBoxContainer/CostButton
+@onready var item_name_label: RichTextLabel = $Panel/VBoxContainer/ItemNameLabel
+@onready var item_detail_label: RichTextLabel = $Panel/VBoxContainer/ItemDetailLabel
+
 
 func _ready():
 	super()
 	cost_button.pressed.connect(_on_buy_button_pressed)
 	if item_data != null:
 		#item = item_scene.instantiate() as Item
+		print("EQUIPMENT ICON: " + str(cost_label))
 		equipment_icon.texture = item_data.item_icon
 		cost_label.text = str(item_data.buy_cost)
 		cost_button.text = str(item_data.buy_cost)
+		item_name_label.text = item_data.item_name
+		item_detail_label.text = item_data.item_detail
 		pass
 	pass
 

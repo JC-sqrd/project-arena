@@ -1,15 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsv311pctm6hj"]
+[gd_scene load_steps=6 format=3 uid="uid://dsv311pctm6hj"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_3pxk1"]
 [ext_resource type="PackedScene" uid="uid://cjsofxtnqu0gj" path="res://Scenes/Abilities/Passive Abilities/passive_ability_poison_spread.tscn" id="2_fjbkd"]
 [ext_resource type="PackedScene" uid="uid://ddebycj73nrys" path="res://Scenes/Abilities/Emit Abilities/Toxic Cloud/ability_toxic_cloud.tscn" id="2_sdwxm"]
-[ext_resource type="PackedScene" uid="uid://c4234y32d7c7u" path="res://Scenes/Weapons/Long Sword/weapon_long_sword.tscn" id="3_g6kxe"]
 [ext_resource type="PackedScene" uid="uid://bsb66ckahw7x" path="res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn" id="3_yksum"]
 [ext_resource type="PackedScene" uid="uid://v7icnbp05khd" path="res://Scenes/Abilities/SelfTarget Abilities/ability_move_speed_buff.tscn" id="5_67f1g"]
 
 [node name="PlagueCharacter" instance=ExtResource("1_3pxk1")]
-
-[node name="LongSword" parent="EquipmentInventory" index="0" instance=ExtResource("3_g6kxe")]
 
 [node name="PassiveAbilityContainer" parent="." index="2" node_paths=PackedStringArray("ability")]
 ability = NodePath("PassiveAbilityPosionSpread")

@@ -1,31 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://cggb2x36mslpl"]
+[gd_scene load_steps=7 format=3 uid="uid://cggb2x36mslpl"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_g348i"]
 [ext_resource type="Script" uid="uid://b74u7eflax8b2" path="res://Scripts/Ability System/PassiveAbility/GainDecayingStatOnHit.gd" id="2_3yh4f"]
 [ext_resource type="PackedScene" uid="uid://ull35nal2yub" path="res://Scenes/Particles/enemy_hit_particle.tscn" id="2_g61ps"]
 [ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="3_3yh4f"]
-[ext_resource type="PackedScene" uid="uid://bsb66ckahw7x" path="res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn" id="4_ub57k"]
-[ext_resource type="PackedScene" uid="uid://bq8vln2e2bn51" path="res://Scenes/Weapons/Fire Grimoire/Tier2/weapon_fire_grimoire_tier2.tscn" id="5_1t5iw"]
-[ext_resource type="PackedScene" uid="uid://bkmw1nqw6gp4q" path="res://Scenes/Weapons/Hammer/weapon_hammer.tscn" id="6_3yh4f"]
 [ext_resource type="PackedScene" uid="uid://od3lf463dx1c" path="res://Scenes/Abilities/Emit Abilities/SwordSlash/sword_slash_emit.tscn" id="6_mtotw"]
 [ext_resource type="PackedScene" uid="uid://cacqqobo0qx73" path="res://Scenes/Abilities/AbilityTrees/LungeStrike/ability_lunge_strike.tscn" id="7_cxhod"]
-[ext_resource type="PackedScene" uid="uid://c0kg5eyjqqw2k" path="res://Scenes/Equipments/Torso/torso_iron_chestplate.tscn" id="7_ub57k"]
-[ext_resource type="PackedScene" uid="uid://c4234y32d7c7u" path="res://Scenes/Weapons/Long Sword/weapon_long_sword.tscn" id="8_paabx"]
 
 [node name="BrawlerCharacter" instance=ExtResource("1_g348i")]
 
 [node name="EnemyHitParticle" parent="." index="0" instance=ExtResource("2_g61ps")]
-
-[node name="WeaponWoodenMagicStaff" parent="EquipmentInventory" index="0" instance=ExtResource("4_ub57k")]
-
-[node name="FireGrimoire2" parent="EquipmentInventory" index="1" instance=ExtResource("5_1t5iw")]
-
-[node name="Hammer" parent="EquipmentInventory" index="2" instance=ExtResource("6_3yh4f")]
-
-[node name="LongSword" parent="EquipmentInventory" index="3" instance=ExtResource("8_paabx")]
-position = Vector2(-17, -9.00001)
-
-[node name="TorsoIronChestplate" parent="EquipmentInventory" index="4" instance=ExtResource("7_ub57k")]
 
 [node name="PassiveAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("GainDecayingStrengthOnHit")

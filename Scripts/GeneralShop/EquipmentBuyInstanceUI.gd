@@ -3,7 +3,9 @@ extends BuyInstanceUI
 
 @export var equipment_data : EquipmentData
 var equipment : Equipment
-@onready var cost_button: Button = $VBoxContainer/CostButton
+@onready var cost_button: Button = $Panel/VBoxContainer/CostButton
+@onready var equipment_name_label: RichTextLabel = $Panel/VBoxContainer/EquipmentNameLabel
+
 
 func _ready():
 	super()
@@ -12,6 +14,7 @@ func _ready():
 		#equipment = equipment_data.instantiate() as Equipment
 		equipment_icon.texture = equipment_data.equipment_icon
 		cost_label.text = str(equipment_data.buy_cost)
+		equipment_name_label.text = equipment_data.equipment_name
 		pass
 	pass
 

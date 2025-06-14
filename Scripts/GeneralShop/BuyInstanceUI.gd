@@ -1,9 +1,9 @@
 class_name BuyInstanceUI
 extends Control
 
-@onready var equipment_icon: TextureRect = $VBoxContainer/SlotBorder/MarginContainer/EquipmentIcon
-@onready var slot_border: TextureRect = $VBoxContainer/SlotBorder
-@onready var cost_label: Label = $VBoxContainer/CostLabel
+@onready var equipment_icon: TextureRect = $Panel/VBoxContainer/MarginContainer/SlotBorder/MarginContainer/EquipmentIcon
+@onready var slot_border: TextureRect = $Panel/VBoxContainer/MarginContainer/SlotBorder
+@onready var cost_label: Label = $Panel/VBoxContainer/CostLabel
 
 var is_locked : bool = false
 var is_selected : bool = false

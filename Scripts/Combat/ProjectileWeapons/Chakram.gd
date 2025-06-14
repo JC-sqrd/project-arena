@@ -61,7 +61,6 @@ func projectile_weapon_process(delta : float):
 	pass
 
 func initialize_attack():
-	_throw_counter = throw_amount + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
 	if _throw_counter <= 0:
 		actor.can_attack = false
 	#cooldown_counter = attack_cooldown
@@ -128,4 +127,14 @@ func _on_attack_hit(hit_data : Dictionary):
 		hit_listener.on_hit(hit_data)
 	attack_hit.emit(hit_data)
 	actor.basic_attack_hit.emit(hit_data)
+	pass
+
+func _on_projectile_count_changed():
+	_throw_counter = throw_amount + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
+	pass
+
+func on_equipped(actor : Entity):
+	super(actor)
+	_throw_counter = throw_amount + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
+	actor.stat_manager.get_stat("projectile_count").stat_derived_value_changed.connect(_on_projectile_count_changed)
 	pass

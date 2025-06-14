@@ -92,17 +92,42 @@ func end_attack():
 func _spawn_projectile():
 	_spawn_count = _projectile_count + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
 	if projectile != null:
-		_base_angle = global_position.direction_to(get_global_mouse_position()).angle()
+		_base_angle = spawn_node.global_position.direction_to(get_global_mouse_position()).angle()
 		_spread = deg_to_rad(spread_degrees)
 		_start_angle = _base_angle - _spread * 0.5
 		_angle_step = _spread / (_spawn_count)
 		_spawn_index = 0
 		
+		if _spawn_count == 1:
+			var new_projectile = projectile.instantiate()
+			_spawn_angle = _start_angle + (_spawn_index  * _angle_step)
+			print("PROJECTILE ANGLE: " + str(_spawn_angle) + " " + str(_start_angle))
+			if new_projectile is Projectile:
+				new_projectile.on_hit.connect(_on_attack_hit)
+				if hit_listener != null:
+					new_projectile.hit_data = hit_listener.generate_effect_data()
+				new_projectile.max_distance_reached.connect(func() : attack_end.emit())
+				new_projectile.source = self
+				new_projectile.max_distance = max_distance
+				new_projectile.speed = speed
+				get_tree().root.add_child(new_projectile)
+				new_projectile.set_collision_mask_value(actor.original_coll_layer, false)
+				if spawn_node != null:
+					new_projectile.position = spawn_node.global_position
+				else:
+					new_projectile.position = global_position
+				#new_projectile.direction = ((get_global_mouse_position() + position) - position).normalized()
+				#new_projectile.rotation = global_position.direction_to(get_global_mouse_position()).angle()
+				new_projectile.rotation = _base_angle
+				attack_active.emit()
+				actor.basic_attack.emit(self)
+				end_attack()
+				return
 		
 		while _spawn_count > 0:
 			var new_projectile = projectile.instantiate()
-			_spawn_angle = _start_angle + _spawn_index  * _angle_step
-			
+			_spawn_angle = _start_angle + (_spawn_index  * _angle_step)
+			print("PROJECTILE ANGLE: " + str(_spawn_angle) + " " + str(_start_angle))
 			if new_projectile is Projectile:
 				new_projectile.on_hit.connect(_on_attack_hit)
 				if hit_listener != null:

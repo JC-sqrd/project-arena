@@ -19,15 +19,9 @@ equipment_card_scene = ExtResource("5_s0db2")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -318.0
-offset_top = -166.0
-offset_right = 318.0
-offset_bottom = 166.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -54,11 +48,14 @@ layout_mode = 2
 text = "Restock Items"
 
 [node name="ItemBuyContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(50, 70)
+custom_minimum_size = Vector2(50, 320)
 layout_mode = 2
+alignment = 1
 
 [node name="ItemShopCard" parent="Panel/VBoxContainer/VBoxContainer/ItemBuyContainer" instance=ExtResource("2_kle2u")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 item_data = ExtResource("4_ip65n")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer"]
@@ -76,8 +73,9 @@ layout_mode = 2
 text = "Restock Equipment"
 
 [node name="EquipmentBuyContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(50, 70)
+custom_minimum_size = Vector2(50, 320)
 layout_mode = 2
+alignment = 1
 
 [node name="EquipmentShopCard" parent="Panel/VBoxContainer/VBoxContainer2/EquipmentBuyContainer" instance=ExtResource("5_s0db2")]
 layout_mode = 2

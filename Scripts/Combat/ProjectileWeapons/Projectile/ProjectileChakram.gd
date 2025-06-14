@@ -12,26 +12,28 @@ var returning : bool = false
 signal returned_to_actor()
 
 func _physics_process(delta):
-	if current_distance >= max_distance and !returning:
-		returning = true
-		current_distance = 0
-		max_distance_reached.emit()
-	
-	initial_pos = global_position
-	
-	if !returning:
-		motion = global_transform.x * delta * (speed * speed_curve.sample(current_distance/max_distance))
-		position += motion
-	else:
-		motion = global_position.direction_to(actor.global_position) * delta * (return_speed * return_curve.sample(current_distance/max_distance))
-		position += motion
-	
-	if global_position.distance_to(actor.global_position) <= 10 and returning:
-		returned_to_actor.emit()
-		queue_free()
-		pass
-	
-	current_distance += global_position.distance_to(initial_pos)
+	if actor != null:
+		if current_distance >= max_distance and !returning:
+			returning = true
+			current_distance = 0
+			max_distance_reached.emit()
+		
+		initial_pos = global_position
+		
+		
+		if !returning:
+			motion = global_transform.x * delta * (speed * speed_curve.sample(current_distance/max_distance))
+			position += motion
+		else:
+			motion = global_position.direction_to(actor.global_position) * delta * (return_speed * return_curve.sample(current_distance/max_distance))
+			position += motion
+		
+		if global_position.distance_to(actor.global_position) <= 10 and returning:
+			returned_to_actor.emit()
+			queue_free()
+			pass
+		
+		current_distance += global_position.distance_to(initial_pos)
 	pass
 
 func _on_body_hit(body : Node2D):

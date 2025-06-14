@@ -130,8 +130,8 @@ scale_curve = SubResource("CurveXYZTexture_q1xte")
 color_ramp = SubResource("GradientTexture1D_xfi46")
 
 [sub_resource type="Gradient" id="Gradient_xfi46"]
-offsets = PackedFloat32Array(0, 0.00668896, 0.280936, 0.538462, 0.782609)
-colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.574429, 0.343362, 2.88785e-07, 1, 0.054902, 0.0352941, 0, 0.709804, 0, 0, 0, 0.596078)
+offsets = PackedFloat32Array(0, 0.00668896, 0.137124, 0.394649, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.671122, 0.25316, 1.92523e-07, 1, 0.685466, 0.0113699, 0.534225, 1, 0.229257, 2.40654e-08, 0.114053, 0.596078)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8ls5q"]
 gradient = SubResource("Gradient_xfi46")
@@ -145,8 +145,8 @@ point_count = 3
 curve = SubResource("Curve_q1xte")
 
 [sub_resource type="Curve" id="Curve_10ypx"]
-_data = [Vector2(0, 0.800369), 0.0, 0.0, 0, 0, Vector2(1, 0.113636), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0.800369), 0.0, 0.0, 0, 0, Vector2(0.603077, 0.800369), 0.0, 0.0, 0, 0, Vector2(1, 0.113636), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_0v43g"]
 curve = SubResource("Curve_10ypx")
@@ -251,6 +251,7 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ki41g")
 
 [node name="GPUParticles2D4" type="GPUParticles2D" parent="."]
+amount = 24
 texture = ExtResource("13_if417")
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_if417")

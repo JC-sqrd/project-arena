@@ -1,13 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgy7pdawvoiwa"]
+[gd_scene load_steps=7 format=3 uid="uid://bgy7pdawvoiwa"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_mooh8"]
-[ext_resource type="PackedScene" uid="uid://bkmw1nqw6gp4q" path="res://Scenes/Weapons/Hammer/weapon_hammer.tscn" id="2_efl5i"]
 [ext_resource type="PackedScene" uid="uid://df35xeepp7qfx" path="res://Scenes/Weapons/Fire Grimoire/Tier1/weapon_fire_grimoire.tscn" id="3_a5sja"]
-[ext_resource type="PackedScene" uid="uid://br6km26u30bs6" path="res://Scenes/Weapons/Chakram/weapon_chakram.tscn" id="3_judwm"]
-[ext_resource type="PackedScene" uid="uid://ba77g51rg80ak" path="res://Scenes/Weapons/Shuriken/weapon_shuriken.tscn" id="4_du287"]
-[ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="6_judwm"]
-[ext_resource type="PackedScene" uid="uid://bsb66ckahw7x" path="res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn" id="7_efl5i"]
-[ext_resource type="PackedScene" uid="uid://dq2ilob20a4t5" path="res://Scenes/Weapons/Bow/weapon_bow.tscn" id="7_rpc63"]
 [ext_resource type="PackedScene" uid="uid://bkjwb31l88d7n" path="res://Scenes/Abilities/Spawn Abilities/FlamePillar/flame_pillar.tscn" id="10_w6ej0"]
 [ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="11_judwm"]
 [ext_resource type="PackedScene" uid="uid://cx8tgb7k8cwbk" path="res://Scenes/Abilities/Emit Abilities/FlameBreath/ability_flame_breath.tscn" id="12_rpc63"]
@@ -18,18 +12,6 @@ shader_parameter/hit_opacity = 0.0
 shader_parameter/modulate = Color(0.164706, 0.756863, 1, 1)
 
 [node name="MageCharacter" instance=ExtResource("1_mooh8")]
-
-[node name="Hammer" parent="EquipmentInventory" index="0" instance=ExtResource("2_efl5i")]
-
-[node name="WeaponChakram" parent="EquipmentInventory" index="1" instance=ExtResource("3_judwm")]
-
-[node name="WeaponShuriken" parent="EquipmentInventory" index="2" instance=ExtResource("4_du287")]
-
-[node name="SwiftSword" parent="EquipmentInventory" index="3" instance=ExtResource("6_judwm")]
-
-[node name="WeaponBow" parent="EquipmentInventory" index="4" instance=ExtResource("7_rpc63")]
-
-[node name="WeaponWoodenMagicStaff" parent="EquipmentInventory" index="5" instance=ExtResource("7_efl5i")]
 
 [node name="InnateActiveAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityFlameBreath")
@@ -60,9 +42,6 @@ stat_value = 5.0
 
 [node name="MoveSpeed" parent="Stats" index="23"]
 stat_value = 240.0
-
-[node name="ProjectileCount" parent="Stats" index="26"]
-stat_value = 1.0
 
 [node name="AnimatedSprite2D" parent="." index="26"]
 material = SubResource("ShaderMaterial_rpc63")
