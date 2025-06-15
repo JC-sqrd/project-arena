@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=4 uid="uid://cu8fhpggbxh6d"]
+[gd_scene load_steps=77 format=4 uid="uid://cu8fhpggbxh6d"]
 
 [ext_resource type="Script" uid="uid://bj6bpkhscp2un" path="res://Scripts/Stage/Stage.gd" id="1_4g24u"]
 [ext_resource type="Script" uid="uid://bgc72bvmdqnok" path="res://Scripts/Audio/StageAudioPlayer.gd" id="1_aliv6"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://bhfxmtkiocwvt" path="res://Scenes/Test/test_mini_boss.tscn" id="22_fbpa4"]
 [ext_resource type="Script" uid="uid://cvhqdknyb5yni" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveDebugSpawn.gd" id="22_jjq5d"]
 [ext_resource type="PackedScene" uid="uid://bdc1qoow3anrr" path="res://Scenes/Test/test_mini_boss2.tscn" id="26_lqybr"]
+[ext_resource type="PackedScene" uid="uid://k8xc7t7x4e6j" path="res://Scenes/Enemies/dummy_enemy.tscn" id="33_awsut"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2d4qq"]
 texture = ExtResource("2_w24wr")
@@ -893,3 +894,6 @@ visible = false
 position = Vector2(-35, 28.6451)
 scale = Vector2(1.02612, 10.0837)
 texture = ExtResource("4_d3glx")
+
+[node name="Enemy" parent="." instance=ExtResource("33_awsut")]
+position = Vector2(1345, 730)

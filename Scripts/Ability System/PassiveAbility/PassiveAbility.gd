@@ -7,7 +7,7 @@ var enabled : bool = false
 
 func enable_passive_ability(actor : Entity):
 	if actor != null:
-		self.actor
+		self.actor = actor
 	enabled = true
 	pass
 

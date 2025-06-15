@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://kp315ueo00jh"]
+
+[ext_resource type="Script" uid="uid://bviaakymd1gy8" path="res://Scripts/Combat/Equipment/Torso/Torso.gd" id="1_v1ssr"]
+[ext_resource type="Script" uid="uid://bvj2nh3d8upjg" path="res://Scripts/Ability System/AbilityContainer/EquipmentPassiveAbilityContainer.gd" id="2_qenml"]
+[ext_resource type="Script" uid="uid://mg160j4ej742" path="res://Scripts/Ability System/PassiveAbility/PassiveEmit.gd" id="3_47pr7"]
+[ext_resource type="PackedScene" uid="uid://67ivgv6bxove" path="res://Scenes/Spawnables/AreaDamage/sword_slash_area_damage.tscn" id="4_rt1qk"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="5_afc67"]
+[ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="6_t4o4c"]
+
+[node name="TorsoKnockback" type="Node2D"]
+script = ExtResource("1_v1ssr")
+type = 2
+metadata/_custom_type_script = "uid://bviaakymd1gy8"
+
+[node name="EquipmentPassiveAbilityContainer" type="Node" parent="." node_paths=PackedStringArray("passive_ability")]
+script = ExtResource("2_qenml")
+passive_ability = NodePath("PassiveEmit")
+metadata/_custom_type_script = "uid://bvj2nh3d8upjg"
+
+[node name="PassiveEmit" type="Node2D" parent="EquipmentPassiveAbilityContainer" node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("3_47pr7")
+spawnable_scene = ExtResource("4_rt1qk")
+hit_listener = NodePath("HitListener")
+metadata/_custom_type_script = "uid://mg160j4ej742"
+
+[node name="HitListener" type="Node" parent="EquipmentPassiveAbilityContainer/PassiveEmit"]
+script = ExtResource("5_afc67")
+metadata/_custom_type_script = "uid://dm3uuggj1g47y"
+
+[node name="Knockback" type="Node" parent="EquipmentPassiveAbilityContainer/PassiveEmit/HitListener"]
+script = ExtResource("6_t4o4c")
+force = 650.0
+metadata/_custom_type_script = "uid://dmjo067f80ntw"

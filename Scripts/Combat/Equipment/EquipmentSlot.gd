@@ -19,6 +19,15 @@ func _ready() -> void:
 func equip(equipment : Equipment):
 	equipment.equip(actor)
 	equipment_equipped.emit(equipment)
+	
+	equipment.reparent(actor)
+	equipment.global_position = Vector2.ZERO
+	equipment.rotation = 0
+	equipment.position = Vector2.ZERO
+	#equipment.action_trigger = action_trigger
+	equipment.equip(actor)
+	equipment.visible = true
+	equipment_equipped.emit(equipment)
 	pass
 
 func unequip(equipment : Equipment):
