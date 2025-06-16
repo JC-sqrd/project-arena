@@ -4,6 +4,7 @@ extends PassiveAbility
 @export var spawn_scene : PackedScene
 @export var area : Area2D
 @export var hit_listener : HitListener
+@export var look_at_mouse : bool = true
 
 var hittable_entities : Array[Entity]
 
@@ -47,7 +48,8 @@ func _on_util_casted():
 		#spawn_rotation = ability.global_position.direction_to(spawn_direction).angle()
 		
 		spawn.global_position = hittable_entities[0].global_position
-		spawn.rotation = actor.global_position.direction_to(actor.get_global_mouse_position()).angle()
+		if look_at_mouse:
+			spawn.rotation = actor.global_position.direction_to(actor.get_global_mouse_position()).angle()
 		#actor.get_tree().root.add_child(spawn)
 		get_tree().root.add_child(spawn)
 	pass

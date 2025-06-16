@@ -1,0 +1,324 @@
+[gd_scene load_steps=41 format=3 uid="uid://dmmiedqxdamsh"]
+
+[ext_resource type="Script" uid="uid://df3mwd5sdgedk" path="res://Scripts/Combat/MeleeWeapons/MeleeWeapon.gd" id="1_l8ass"]
+[ext_resource type="Script" uid="uid://bg43jxy7gyts0" path="res://Scripts/Ability System/Spawnables/SpawnableEnterFilter/SpawnableEnterFilter.gd" id="2_w6s41"]
+[ext_resource type="Texture2D" uid="uid://difspcenxsyig" path="res://Sprites/Weapons/Swift Sword/Swift Sword Tier 3 Icon.png" id="3_0le67"]
+[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentLevelManager/EquipmentLevelManager.gd" id="4_8ea4y"]
+[ext_resource type="Resource" uid="uid://ba5qvyk5vbslq" path="res://Scenes/Weapons/Swift Sword/Level4/swift_sword_lvl4_data.tres" id="5_0le67"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="6_xxhkb"]
+[ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="7_u3bxu"]
+[ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="8_womh3"]
+[ext_resource type="Script" uid="uid://nke8ejxjdu4s" path="res://Scripts/StatSystem/Stats/AttackSpeedStat.gd" id="9_58b0k"]
+[ext_resource type="Texture2D" uid="uid://065wghtxeh6j" path="res://Sprites/Weapons/Swift Sword/SwiftSwordAttack.png" id="10_nf4dn"]
+[ext_resource type="Script" uid="uid://cmdw2c71721x0" path="res://Scripts/Combat/Animation/AttackAnimation.gd" id="11_bdxoo"]
+[ext_resource type="Texture2D" uid="uid://rtajl1o12fw4" path="res://Sprites/Weapons/Swift Sword/SwiftSwordWindSlash.png" id="12_sayex"]
+[ext_resource type="Script" uid="uid://cp6un5w7sjul2" path="res://Scripts/Ability System/AbilityAnimation/WeaponAbilityAnimatedSprite2D.gd" id="13_mhdey"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="14_5t6e2"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="15_tfd8q"]
+[ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="16_ns3al"]
+[ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="17_as0vf"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="18_4kon2"]
+[ext_resource type="PackedScene" uid="uid://c322tkntieeqb" path="res://Scenes/Abilities/Spawn Abilities/wind_slash_ability.tscn" id="19_7daho"]
+[ext_resource type="Script" uid="uid://prvx4o5s1tin" path="res://Scripts/Socket/WeaponSocket.gd" id="20_pkc32"]
+
+[sub_resource type="Resource" id="Resource_15j33"]
+script = ExtResource("2_w6s41")
+metadata/_custom_type_script = "uid://bg43jxy7gyts0"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dmqko"]
+radius = 125.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5d1jb"]
+atlas = ExtResource("10_nf4dn")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmc6s"]
+atlas = ExtResource("10_nf4dn")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15j33"]
+atlas = ExtResource("10_nf4dn")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bs7ii"]
+atlas = ExtResource("10_nf4dn")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5vr2"]
+atlas = ExtResource("10_nf4dn")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxfcc"]
+atlas = ExtResource("10_nf4dn")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xaawn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5d1jb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmc6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15j33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bs7ii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5vr2")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5vr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxfcc")
+}],
+"loop": false,
+"name": &"windup",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftwbh"]
+atlas = ExtResource("12_sayex")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_heebh"]
+atlas = ExtResource("12_sayex")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbmuh"]
+atlas = ExtResource("12_sayex")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xaawn"]
+atlas = ExtResource("12_sayex")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgd1h"]
+atlas = ExtResource("12_sayex")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjeqf"]
+atlas = ExtResource("12_sayex")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjxnv"]
+atlas = ExtResource("12_sayex")
+region = Rect2(1536, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hruq1"]
+atlas = ExtResource("12_sayex")
+region = Rect2(1792, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2m5j"]
+atlas = ExtResource("12_sayex")
+region = Rect2(2048, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02g2i"]
+atlas = ExtResource("12_sayex")
+region = Rect2(2304, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jjxnv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftwbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_heebh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbmuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xaawn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgd1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjeqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjxnv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hruq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2m5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02g2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftwbh")
+}],
+"loop": false,
+"name": &"cast_animation",
+"speed": 12.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="SwiftSwordLevel3" type="Area2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "sockets", "level_manager")]
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_l8ass")
+filter = SubResource("Resource_15j33")
+attack_damage = NodePath("Damage")
+attack_speed_stat = NodePath("AttackSpeed")
+attack_windup_time = 0.05
+weapon_ability = NodePath("WindSlashAbility")
+hit_listener = NodePath("HitListener")
+sockets = [NodePath("WeaponSocket")]
+equipment_name = "Swift Sword"
+tier = 2
+level_manager = NodePath("EquipmentLevelManager")
+string_id = "swift_sword"
+equipment_icon = ExtResource("3_0le67")
+
+[node name="EquipmentLevelManager" type="Node" parent="."]
+script = ExtResource("4_8ea4y")
+next_tier_data = ExtResource("5_0le67")
+metadata/_custom_type_script = "uid://0tj10r8qa8qr"
+
+[node name="Damage" type="Node" parent="."]
+script = ExtResource("6_xxhkb")
+stat_name = "swift_sword_damage"
+stat_value = 20.0
+can_be_negative = false
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatMult" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("7_u3bxu")
+stat = NodePath("..")
+scale_with_stat_id = "attack_damage_mult"
+metadata/_custom_type_script = "uid://c4n03mihb0axg"
+
+[node name="GetActorStatAdder" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("8_womh3")
+stat = NodePath("..")
+scale_with_stat_id = "strength"
+ratio = 0.1
+metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+
+[node name="AttackSpeed" type="Node" parent="."]
+script = ExtResource("9_58b0k")
+stat_name = "swift_sword_attack_speed"
+stat_value = 1.25
+can_be_negative = false
+metadata/_custom_type_script = "uid://nke8ejxjdu4s"
+
+[node name="GetActorStatMult" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]
+script = ExtResource("7_u3bxu")
+stat = NodePath("..")
+scale_with_stat_id = "attack_speed"
+ratio = 1.1
+metadata/_custom_type_script = "uid://c4n03mihb0axg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(128, -10)
+shape = SubResource("CircleShape2D_dmqko")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CollisionShape2D" node_paths=PackedStringArray("weapon")]
+texture_filter = 1
+position = Vector2(-24, 8)
+sprite_frames = SubResource("SpriteFrames_xaawn")
+animation = &"windup"
+script = ExtResource("11_bdxoo")
+weapon = NodePath("../..")
+
+[node name="WeaponAbilityAnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D" node_paths=PackedStringArray("weapon_anim_sprite", "ability", "weapon")]
+texture_filter = 1
+position = Vector2(-24, 8)
+sprite_frames = SubResource("SpriteFrames_jjxnv")
+animation = &"cast_animation"
+frame = 10
+frame_progress = 1.0
+script = ExtResource("13_mhdey")
+weapon_anim_sprite = NodePath("../AnimatedSprite2D2")
+ability = NodePath("../../WindSlashAbility")
+weapon = NodePath("../..")
+metadata/_custom_type_script = "uid://cp6un5w7sjul2"
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="CollisionEnabledTimer" type="Timer" parent="."]
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("14_5t6e2")
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat", "penetration_stat", "crit_chance_stat", "lifesteal_stat")]
+script = ExtResource("15_tfd8q")
+damage_stat = NodePath("../../Damage")
+penetration_stat = NodePath("../../ActorArmorPen")
+crit_chance_stat = NodePath("../../ActorCrit")
+lifesteal_stat = NodePath("../../ActorLifesteal")
+
+[node name="OnHitEffect" type="Node" parent="HitListener"]
+script = ExtResource("16_ns3al")
+
+[node name="Knockback" type="Node" parent="HitListener"]
+script = ExtResource("17_as0vf")
+force = 150.0
+metadata/_custom_type_script = "uid://dmjo067f80ntw"
+
+[node name="ActorCrit" type="Node" parent="."]
+script = ExtResource("6_xxhkb")
+
+[node name="GetActorStatScaler" type="Node" parent="ActorCrit" node_paths=PackedStringArray("stat")]
+script = ExtResource("18_4kon2")
+stat = NodePath("..")
+scale_with_stat_id = "crit_chance"
+
+[node name="ActorArmorPen" type="Node" parent="."]
+script = ExtResource("6_xxhkb")
+
+[node name="GetActorStatScaler" type="Node" parent="ActorArmorPen" node_paths=PackedStringArray("stat")]
+script = ExtResource("18_4kon2")
+stat = NodePath("..")
+scale_with_stat_id = "armor_pen"
+
+[node name="ActorLifesteal" type="Node" parent="."]
+script = ExtResource("6_xxhkb")
+
+[node name="GetActorStatScaler" type="Node" parent="ActorLifesteal" node_paths=PackedStringArray("stat")]
+script = ExtResource("18_4kon2")
+stat = NodePath("..")
+scale_with_stat_id = "lifesteal"
+
+[node name="ActorAttackSpeed" type="Node" parent="."]
+script = ExtResource("6_xxhkb")
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatScaler" type="Node" parent="ActorAttackSpeed" node_paths=PackedStringArray("stat")]
+script = ExtResource("18_4kon2")
+stat = NodePath("..")
+scale_with_stat_id = "attack_speed"
+metadata/_custom_type_script = "uid://2vlwp08ancca"
+
+[node name="WindSlashAbility" parent="." instance=ExtResource("19_7daho")]
+position = Vector2(44, -31)
+max_range = 1.0
+cast_time = 0.75
+
+[node name="WeaponSocket" type="Node" parent="."]
+script = ExtResource("20_pkc32")
+metadata/_custom_type_script = "uid://prvx4o5s1tin"

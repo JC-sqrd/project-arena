@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dec7r165egkvi"]
+[gd_scene load_steps=8 format=3 uid="uid://sa3py7m7awjp"]
 
 [ext_resource type="Script" uid="uid://csk81q2x4j06s" path="res://Scripts/Combat/ProjectileWeapons/Projectile/Projectile.gd" id="1_8yelt"]
 [ext_resource type="Texture2D" uid="uid://0dx6a0pery4a" path="res://Sprites/Weapons/Fire Grimoire/Fireball projectile.png" id="2_m48rd"]

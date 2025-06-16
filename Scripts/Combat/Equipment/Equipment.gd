@@ -8,12 +8,14 @@ enum EquipmentTier {ONE, TWO, THREE, FOUR, FIVE}
 @export var equipment_name : String
 @export var type : EquipmentType = EquipmentType.WEAPON
 @export var tier : EquipmentTier = EquipmentTier.ONE
+@export var level_manager : EquipmentLevelManager
 @export var string_id : String
 @export_multiline var equipment_description : String
 @export_multiline var equipment_details : String
 @export var equipment_icon : Texture2D
 @export var buy_cost : float
-@export var sell_value : float 
+@export var sell_value : float
+ 
 var is_equipped : bool = false
 
 signal equipped (actor : Entity)

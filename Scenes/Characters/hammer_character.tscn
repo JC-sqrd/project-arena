@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_5hmdl"]
 [ext_resource type="PackedScene" uid="uid://du2r3qg36q32c" path="res://Scenes/Abilities/Spawn Abilities/ground_burst_ability.tscn" id="2_v11n0"]
 [ext_resource type="PackedScene" uid="uid://bkmw1nqw6gp4q" path="res://Scenes/Weapons/Hammer/weapon_hammer.tscn" id="4_325pn"]
-[ext_resource type="PackedScene" uid="uid://dengtpj68hcix" path="res://Scenes/Equipments/Head Gears/headgear_iron_helmet.tscn" id="8_e1acb"]
+[ext_resource type="PackedScene" uid="uid://dengtpj68hcix" path="res://Scenes/Equipments/Head Gears/Iron Helmet/headgear_iron_helmet.tscn" id="8_e1acb"]
 [ext_resource type="PackedScene" uid="uid://c0kg5eyjqqw2k" path="res://Scenes/Equipments/Torso/torso_iron_chestplate.tscn" id="8_iq7j3"]
 [ext_resource type="PackedScene" uid="uid://d2s7ucuvduwgx" path="res://Scenes/Equipments/Armgear/armgear_iron_gauntlets.tscn" id="9_t2lar"]
 [ext_resource type="PackedScene" uid="uid://cnefmjw46bhom" path="res://Scenes/Equipments/Shoes/shoes_iron_boots.tscn" id="11_7raj0"]

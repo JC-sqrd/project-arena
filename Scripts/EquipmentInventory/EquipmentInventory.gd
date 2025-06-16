@@ -101,5 +101,19 @@ func add_equipment(equipment : Equipment) -> bool:
 	pass
 
 func remove_equipment(equipment : Equipment):
-	inventory.erase(equipment)
+	var equipment_index : int = _linear_search(equipment)
+	if equipment_index >= 0:
+		inventory[equipment_index] = null
+		pass
+	else:
+		printerr("Equipment does not exist in inventory")
+	pass
+
+func _linear_search(equipment : Equipment) -> int:
+	var index : int = 0
+	for _equipment in inventory:
+		if _equipment == equipment:
+			return index
+		index += 1
+	return -1
 	pass

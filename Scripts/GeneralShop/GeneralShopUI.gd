@@ -186,4 +186,5 @@ func _on_current_wave_end(wave : Wave):
 	restock_item_button.text = "Restock Item - " + str(restock_item_price)
 	restock_equipment_price = wave_spawner.wave_count * base_restock_equipment_price
 	restock_equipment_button.text = "Restock Equipment - " + str(restock_equipment_price)
+	restock_shop()
 	pass

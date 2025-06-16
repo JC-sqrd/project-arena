@@ -43,6 +43,7 @@ func set_equipment(new_equipment : Equipment):
 	if new_equipment != null:
 		equipment = new_equipment
 		equipment.visible = true
+		print("SET NEW EQUIPMENT")
 		equip(new_equipment)
 	else:
 		equipment = null

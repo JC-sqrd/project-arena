@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cggb2x36mslpl"]
+[gd_scene load_steps=11 format=3 uid="uid://cggb2x36mslpl"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_g348i"]
 [ext_resource type="Script" uid="uid://b74u7eflax8b2" path="res://Scripts/Ability System/PassiveAbility/GainDecayingStatOnHit.gd" id="2_3yh4f"]
 [ext_resource type="PackedScene" uid="uid://ull35nal2yub" path="res://Scenes/Particles/enemy_hit_particle.tscn" id="2_g61ps"]
-[ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="3_3yh4f"]
+[ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/Level1/weapon_swift_sword.tscn" id="3_3yh4f"]
 [ext_resource type="PackedScene" uid="uid://kp315ueo00jh" path="res://Scenes/Equipments/Torso/torso_knockback.tscn" id="3_fch3p"]
 [ext_resource type="Texture2D" uid="uid://cumuxx6uq8kae" path="res://Sprites/Torso/Knockback Torso/knockback_torso_placeholder.png" id="4_g348i"]
 [ext_resource type="PackedScene" uid="uid://ckkbe1bgata60" path="res://Scenes/Equipments/Shoes/shoes_lightning_boots.tscn" id="5_g61ps"]
+[ext_resource type="PackedScene" uid="uid://df35xeepp7qfx" path="res://Scenes/Weapons/Fire Grimoire/Tier1/weapon_fire_grimoire.tscn" id="6_3yh4f"]
 [ext_resource type="PackedScene" uid="uid://od3lf463dx1c" path="res://Scenes/Abilities/Emit Abilities/SwordSlash/sword_slash_emit.tscn" id="6_mtotw"]
 [ext_resource type="PackedScene" uid="uid://cacqqobo0qx73" path="res://Scenes/Abilities/AbilityTrees/LungeStrike/ability_lunge_strike.tscn" id="7_cxhod"]
 
@@ -18,6 +19,10 @@
 equipment_icon = ExtResource("4_g348i")
 
 [node name="ShoesLightningBoots" parent="EquipmentInventory" index="1" instance=ExtResource("5_g61ps")]
+
+[node name="FireGrimoire" parent="EquipmentInventory" index="2" instance=ExtResource("6_3yh4f")]
+
+[node name="FireGrimoire2" parent="EquipmentInventory" index="3" instance=ExtResource("6_3yh4f")]
 
 [node name="PassiveAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("GainDecayingStrengthOnHit")
@@ -90,6 +95,9 @@ stat_value = 100.0
 
 [node name="MaxHealth" parent="Stats" index="12"]
 stat_value = 40.0
+
+[node name="Gold" parent="Stats" index="33"]
+stat_value = 1e+11
 
 [node name="EntityHitParticle" parent="." index="30" node_paths=PackedStringArray("hit_particle")]
 hit_particle = NodePath("../EnemyHitParticle")

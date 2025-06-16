@@ -1,55 +1,55 @@
-[gd_scene load_steps=41 format=3 uid="uid://dp288eneestlt"]
+[gd_scene load_steps=41 format=3 uid="uid://dnsjian6pffmu"]
 
-[ext_resource type="Script" uid="uid://df3mwd5sdgedk" path="res://Scripts/Combat/MeleeWeapons/MeleeWeapon.gd" id="1_5d1jb"]
-[ext_resource type="Texture2D" uid="uid://065wghtxeh6j" path="res://Sprites/Weapons/Swift Sword/SwiftSwordAttack.png" id="2_15j33"]
-[ext_resource type="Script" uid="uid://bg43jxy7gyts0" path="res://Scripts/Ability System/Spawnables/SpawnableEnterFilter/SpawnableEnterFilter.gd" id="2_fmc6s"]
-[ext_resource type="Texture2D" uid="uid://dnte6bwjloh32" path="res://Sprites/Weapons/Swift Sword/SwiftSword.png" id="2_wogjl"]
-[ext_resource type="Script" uid="uid://dds44weoj7cmt" path="res://Scripts/Combat/Equipment/EquipmentUpgradeManager/EquipmentUpgradeManager.gd" id="3_p1507"]
-[ext_resource type="Script" uid="uid://cmdw2c71721x0" path="res://Scripts/Combat/Animation/AttackAnimation.gd" id="4_bs7ii"]
-[ext_resource type="Script" uid="uid://nke8ejxjdu4s" path="res://Scripts/StatSystem/Stats/AttackSpeedStat.gd" id="4_kenp3"]
-[ext_resource type="Script" uid="uid://dth77t82cf5sj" path="res://Scripts/Combat/Equipment/EquipmentUpgradeManager/UpgradeTier/UpgradeTier.gd" id="4_nro22"]
-[ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="4_wop2k"]
-[ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="5_580b7"]
-[ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="7_d0kcu"]
-[ext_resource type="Texture2D" uid="uid://rtajl1o12fw4" path="res://Sprites/Weapons/Swift Sword/SwiftSwordWindSlash.png" id="9_fmc6s"]
-[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="15_y2m5j"]
-[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="16_02g2i"]
-[ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="17_k3yuu"]
-[ext_resource type="Script" uid="uid://prvx4o5s1tin" path="res://Scripts/Socket/WeaponSocket.gd" id="17_wogjl"]
-[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="18_3y54e"]
-[ext_resource type="Script" uid="uid://cp6un5w7sjul2" path="res://Scripts/Ability System/AbilityAnimation/WeaponAbilityAnimatedSprite2D.gd" id="19_5d1jb"]
-[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="19_yd84k"]
-[ext_resource type="PackedScene" uid="uid://c322tkntieeqb" path="res://Scenes/Abilities/Spawn Abilities/wind_slash_ability.tscn" id="21_15j33"]
+[ext_resource type="Script" uid="uid://df3mwd5sdgedk" path="res://Scripts/Combat/MeleeWeapons/MeleeWeapon.gd" id="1_1e8vh"]
+[ext_resource type="Script" uid="uid://bg43jxy7gyts0" path="res://Scripts/Ability System/Spawnables/SpawnableEnterFilter/SpawnableEnterFilter.gd" id="2_4f4mb"]
+[ext_resource type="Texture2D" uid="uid://m0ftiuwcx2ha" path="res://Sprites/Weapons/Swift Sword/Swift Sword Tier 4 Icon.png" id="3_4f4mb"]
+[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentLevelManager/EquipmentLevelManager.gd" id="4_nq7le"]
+[ext_resource type="Resource" uid="uid://c18aekodnbnb" path="res://Scenes/Weapons/Swift Sword/Level5/swift_sword_lvl5_data.tres" id="5_4f4mb"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_qv5bn"]
+[ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="6_u463c"]
+[ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="7_wko5r"]
+[ext_resource type="Script" uid="uid://nke8ejxjdu4s" path="res://Scripts/StatSystem/Stats/AttackSpeedStat.gd" id="8_pfqyb"]
+[ext_resource type="Texture2D" uid="uid://065wghtxeh6j" path="res://Sprites/Weapons/Swift Sword/SwiftSwordAttack.png" id="9_safxq"]
+[ext_resource type="Script" uid="uid://cmdw2c71721x0" path="res://Scripts/Combat/Animation/AttackAnimation.gd" id="10_jkly7"]
+[ext_resource type="Texture2D" uid="uid://rtajl1o12fw4" path="res://Sprites/Weapons/Swift Sword/SwiftSwordWindSlash.png" id="11_m8nbu"]
+[ext_resource type="Script" uid="uid://cp6un5w7sjul2" path="res://Scripts/Ability System/AbilityAnimation/WeaponAbilityAnimatedSprite2D.gd" id="12_mxr2k"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="13_q2rlf"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="14_rirpx"]
+[ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="15_78av2"]
+[ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="16_mmxe1"]
+[ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="17_safrs"]
+[ext_resource type="PackedScene" uid="uid://c322tkntieeqb" path="res://Scenes/Abilities/Spawn Abilities/wind_slash_ability.tscn" id="18_xmb33"]
+[ext_resource type="Script" uid="uid://prvx4o5s1tin" path="res://Scripts/Socket/WeaponSocket.gd" id="19_tkv1a"]
 
 [sub_resource type="Resource" id="Resource_15j33"]
-script = ExtResource("2_fmc6s")
+script = ExtResource("2_4f4mb")
 metadata/_custom_type_script = "uid://bg43jxy7gyts0"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dmqko"]
 radius = 125.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5d1jb"]
-atlas = ExtResource("2_15j33")
+atlas = ExtResource("9_safxq")
 region = Rect2(512, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fmc6s"]
-atlas = ExtResource("2_15j33")
+atlas = ExtResource("9_safxq")
 region = Rect2(768, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_15j33"]
-atlas = ExtResource("2_15j33")
+atlas = ExtResource("9_safxq")
 region = Rect2(1024, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bs7ii"]
-atlas = ExtResource("2_15j33")
+atlas = ExtResource("9_safxq")
 region = Rect2(1280, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b5vr2"]
-atlas = ExtResource("2_15j33")
+atlas = ExtResource("9_safxq")
 region = Rect2(0, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vxfcc"]
-atlas = ExtResource("2_15j33")
+atlas = ExtResource("9_safxq")
 region = Rect2(256, 0, 256, 256)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xaawn"]
@@ -92,43 +92,43 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ftwbh"]
-atlas = ExtResource("9_fmc6s")
+atlas = ExtResource("11_m8nbu")
 region = Rect2(0, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_heebh"]
-atlas = ExtResource("9_fmc6s")
+atlas = ExtResource("11_m8nbu")
 region = Rect2(256, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbmuh"]
-atlas = ExtResource("9_fmc6s")
+atlas = ExtResource("11_m8nbu")
 region = Rect2(512, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xaawn"]
-atlas = ExtResource("9_fmc6s")
+atlas = ExtResource("11_m8nbu")
 region = Rect2(768, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bgd1h"]
-atlas = ExtResource("9_fmc6s")
+atlas = ExtResource("11_m8nbu")
 region = Rect2(1024, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjeqf"]
-atlas = ExtResource("9_fmc6s")
+atlas = ExtResource("11_m8nbu")
 region = Rect2(1280, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jjxnv"]
-atlas = ExtResource("9_fmc6s")
+atlas = ExtResource("11_m8nbu")
 region = Rect2(1536, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hruq1"]
-atlas = ExtResource("9_fmc6s")
+atlas = ExtResource("11_m8nbu")
 region = Rect2(1792, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y2m5j"]
-atlas = ExtResource("9_fmc6s")
+atlas = ExtResource("11_m8nbu")
 region = Rect2(2048, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_02g2i"]
-atlas = ExtResource("9_fmc6s")
+atlas = ExtResource("11_m8nbu")
 region = Rect2(2304, 0, 256, 256)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jjxnv"]
@@ -177,10 +177,10 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="SwiftSword" type="Area2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "sockets")]
+[node name="SwiftSwordLevel4" type="Area2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "sockets", "level_manager")]
 collision_mask = 2
 monitorable = false
-script = ExtResource("1_5d1jb")
+script = ExtResource("1_1e8vh")
 filter = SubResource("Resource_15j33")
 attack_damage = NodePath("Damage")
 attack_speed_stat = NodePath("AttackSpeed")
@@ -189,53 +189,45 @@ weapon_ability = NodePath("WindSlashAbility")
 hit_listener = NodePath("HitListener")
 sockets = [NodePath("WeaponSocket")]
 equipment_name = "Swift Sword"
+tier = 3
+level_manager = NodePath("EquipmentLevelManager")
 string_id = "swift_sword"
-equipment_icon = ExtResource("2_wogjl")
+equipment_icon = ExtResource("3_4f4mb")
 
-[node name="EquipmentUpgradeManager" type="Node" parent="."]
-script = ExtResource("3_p1507")
-metadata/_custom_type_script = "uid://dds44weoj7cmt"
-
-[node name="TierTwo" type="Node" parent="EquipmentUpgradeManager" node_paths=PackedStringArray("next_tier")]
-script = ExtResource("4_nro22")
-tier = 1
-next_tier = NodePath("../TierThree")
-metadata/_custom_type_script = "uid://dth77t82cf5sj"
-
-[node name="TierThree" type="Node" parent="EquipmentUpgradeManager"]
-script = ExtResource("4_nro22")
-tier = 2
-metadata/_custom_type_script = "uid://dth77t82cf5sj"
+[node name="EquipmentLevelManager" type="Node" parent="."]
+script = ExtResource("4_nq7le")
+next_tier_data = ExtResource("5_4f4mb")
+metadata/_custom_type_script = "uid://0tj10r8qa8qr"
 
 [node name="Damage" type="Node" parent="."]
-script = ExtResource("18_3y54e")
+script = ExtResource("5_qv5bn")
 stat_name = "swift_sword_damage"
-stat_value = 10.0
+stat_value = 25.0
 can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
-script = ExtResource("4_wop2k")
+script = ExtResource("6_u463c")
 stat = NodePath("..")
 scale_with_stat_id = "attack_damage_mult"
 metadata/_custom_type_script = "uid://c4n03mihb0axg"
 
 [node name="GetActorStatAdder" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
-script = ExtResource("5_580b7")
+script = ExtResource("7_wko5r")
 stat = NodePath("..")
 scale_with_stat_id = "strength"
 ratio = 0.1
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="AttackSpeed" type="Node" parent="."]
-script = ExtResource("4_kenp3")
+script = ExtResource("8_pfqyb")
 stat_name = "swift_sword_attack_speed"
 stat_value = 1.25
 can_be_negative = false
 metadata/_custom_type_script = "uid://nke8ejxjdu4s"
 
 [node name="GetActorStatMult" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]
-script = ExtResource("4_wop2k")
+script = ExtResource("6_u463c")
 stat = NodePath("..")
 scale_with_stat_id = "attack_speed"
 ratio = 1.1
@@ -250,7 +242,7 @@ texture_filter = 1
 position = Vector2(-24, 8)
 sprite_frames = SubResource("SpriteFrames_xaawn")
 animation = &"windup"
-script = ExtResource("4_bs7ii")
+script = ExtResource("10_jkly7")
 weapon = NodePath("../..")
 
 [node name="WeaponAbilityAnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D" node_paths=PackedStringArray("weapon_anim_sprite", "ability", "weapon")]
@@ -260,7 +252,7 @@ sprite_frames = SubResource("SpriteFrames_jjxnv")
 animation = &"cast_animation"
 frame = 10
 frame_progress = 1.0
-script = ExtResource("19_5d1jb")
+script = ExtResource("12_mxr2k")
 weapon_anim_sprite = NodePath("../AnimatedSprite2D2")
 ability = NodePath("../../WindSlashAbility")
 weapon = NodePath("../..")
@@ -271,62 +263,62 @@ metadata/_custom_type_script = "uid://cp6un5w7sjul2"
 [node name="CollisionEnabledTimer" type="Timer" parent="."]
 
 [node name="HitListener" type="Node" parent="."]
-script = ExtResource("15_y2m5j")
+script = ExtResource("13_q2rlf")
 
 [node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat", "penetration_stat", "crit_chance_stat", "lifesteal_stat")]
-script = ExtResource("16_02g2i")
+script = ExtResource("14_rirpx")
 damage_stat = NodePath("../../Damage")
 penetration_stat = NodePath("../../ActorArmorPen")
 crit_chance_stat = NodePath("../../ActorCrit")
 lifesteal_stat = NodePath("../../ActorLifesteal")
 
 [node name="OnHitEffect" type="Node" parent="HitListener"]
-script = ExtResource("17_k3yuu")
+script = ExtResource("15_78av2")
 
 [node name="Knockback" type="Node" parent="HitListener"]
-script = ExtResource("7_d0kcu")
+script = ExtResource("16_mmxe1")
 force = 150.0
 metadata/_custom_type_script = "uid://dmjo067f80ntw"
 
 [node name="ActorCrit" type="Node" parent="."]
-script = ExtResource("18_3y54e")
+script = ExtResource("5_qv5bn")
 
 [node name="GetActorStatScaler" type="Node" parent="ActorCrit" node_paths=PackedStringArray("stat")]
-script = ExtResource("19_yd84k")
+script = ExtResource("17_safrs")
 stat = NodePath("..")
 scale_with_stat_id = "crit_chance"
 
 [node name="ActorArmorPen" type="Node" parent="."]
-script = ExtResource("18_3y54e")
+script = ExtResource("5_qv5bn")
 
 [node name="GetActorStatScaler" type="Node" parent="ActorArmorPen" node_paths=PackedStringArray("stat")]
-script = ExtResource("19_yd84k")
+script = ExtResource("17_safrs")
 stat = NodePath("..")
 scale_with_stat_id = "armor_pen"
 
 [node name="ActorLifesteal" type="Node" parent="."]
-script = ExtResource("18_3y54e")
+script = ExtResource("5_qv5bn")
 
 [node name="GetActorStatScaler" type="Node" parent="ActorLifesteal" node_paths=PackedStringArray("stat")]
-script = ExtResource("19_yd84k")
+script = ExtResource("17_safrs")
 stat = NodePath("..")
 scale_with_stat_id = "lifesteal"
 
 [node name="ActorAttackSpeed" type="Node" parent="."]
-script = ExtResource("18_3y54e")
+script = ExtResource("5_qv5bn")
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatScaler" type="Node" parent="ActorAttackSpeed" node_paths=PackedStringArray("stat")]
-script = ExtResource("19_yd84k")
+script = ExtResource("17_safrs")
 stat = NodePath("..")
 scale_with_stat_id = "attack_speed"
 metadata/_custom_type_script = "uid://2vlwp08ancca"
 
-[node name="WindSlashAbility" parent="." instance=ExtResource("21_15j33")]
+[node name="WindSlashAbility" parent="." instance=ExtResource("18_xmb33")]
 position = Vector2(44, -31)
 max_range = 1.0
 cast_time = 0.75
 
 [node name="WeaponSocket" type="Node" parent="."]
-script = ExtResource("17_wogjl")
+script = ExtResource("19_tkv1a")
 metadata/_custom_type_script = "uid://prvx4o5s1tin"

@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://d3nv4w5x5iplh" path="res://Scripts/Ability System/AbilityTree.gd" id="2_h4hyn"]
 [ext_resource type="Script" uid="uid://dt5ekno3nrmcr" path="res://Scripts/Ability System/AbilityBranch.gd" id="3_iqjn1"]
 [ext_resource type="Script" uid="uid://dqj32qeba6flj" path="res://Scripts/Ability System/BlinkAbility.gd" id="3_pqm36"]
-[ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/weapon_swift_sword.tscn" id="3_ys4ku"]
+[ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/Level1/weapon_swift_sword.tscn" id="3_ys4ku"]
 [ext_resource type="PackedScene" uid="uid://cimp4a7eu73ym" path="res://Scenes/Abilities/SelfTarget Abilities/ability_dodge_chance_buff.tscn" id="5_dokha"]
 [ext_resource type="PackedScene" uid="uid://bqmrcuovcr6dr" path="res://Scenes/Abilities/Blink Abilities/ability_phantom_step.tscn" id="6_8amkt"]
 

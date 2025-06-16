@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dp5ulm7wnucna"]
+
+[ext_resource type="Script" uid="uid://c2nhbp4pxbtij" path="res://Scripts/Ability System/Spawnables/AreaHit.gd" id="1_736sk"]
+[ext_resource type="Texture2D" uid="uid://df8wxrk1dlhxa" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/spark_06.png" id="2_r5klm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_736sk"]
+radius = 25.0
+
+[sub_resource type="Gradient" id="Gradient_3h8k4"]
+offsets = PackedFloat32Array(0, 0.478261, 1)
+colors = PackedColorArray(0.433491, 0.986245, 0.918798, 1, 0.121569, 0.384314, 0.611765, 1, 0.392157, 0.0117647, 0.298039, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qpn0h"]
+gradient = SubResource("Gradient_3h8k4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w2aj1"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -250, 0)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_qpn0h")
+turbulence_noise_strength = 0.0
+
+[node name="SpawnableLightningStrike" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_736sk")
+windup_time = 0.05
+lifetime = 0.3
+time_active = 0.3
+metadata/_custom_type_script = "uid://c2nhbp4pxbtij"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_736sk")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 1
+texture = ExtResource("2_r5klm")
+lifetime = 0.3
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_w2aj1")

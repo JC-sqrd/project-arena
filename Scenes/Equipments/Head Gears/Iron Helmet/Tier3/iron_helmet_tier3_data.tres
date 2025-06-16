@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EquipmentLevelData" load_steps=3 format=3 uid="uid://uywysiyie1u4"]
+
+[ext_resource type="PackedScene" uid="uid://r6ryrfmwcuif" path="res://Scenes/Equipments/Head Gears/Iron Helmet/Tier3/headgear_iron_helmet_tier3.tscn" id="1_0nmav"]
+[ext_resource type="Script" uid="uid://dgmjfaome3jv5" path="res://Scripts/Combat/Equipment/EquipmentLevelManager/EquipmentLevelData.gd" id="2_r8mc1"]
+
+[resource]
+script = ExtResource("2_r8mc1")
+equipment_scene = ExtResource("1_0nmav")
+metadata/_custom_type_script = "uid://dgmjfaome3jv5"

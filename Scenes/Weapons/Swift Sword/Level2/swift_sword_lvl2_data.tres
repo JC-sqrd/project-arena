@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EquipmentLevelData" load_steps=3 format=3 uid="uid://clt4djbej2fob"]
+
+[ext_resource type="PackedScene" uid="uid://iedpu7im0bon" path="res://Scenes/Weapons/Swift Sword/Level2/weapon_swift_sword_lvl2.tscn" id="1_rpv5s"]
+[ext_resource type="Script" uid="uid://dgmjfaome3jv5" path="res://Scripts/Combat/Equipment/EquipmentLevelManager/EquipmentLevelData.gd" id="1_vjud8"]
+
+[resource]
+script = ExtResource("1_vjud8")
+equipment_scene = ExtResource("1_rpv5s")
+metadata/_custom_type_script = "uid://dgmjfaome3jv5"

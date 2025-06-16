@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckkbe1bgata60"]
+[gd_scene load_steps=11 format=3 uid="uid://ckkbe1bgata60"]
 
 [ext_resource type="Script" uid="uid://bviaakymd1gy8" path="res://Scripts/Combat/Equipment/Torso/Torso.gd" id="1_mhtjb"]
 [ext_resource type="Texture2D" uid="uid://b1xkpvr4tkxc7" path="res://Sprites/Shoes/Lightning Shoes/lightning_shoes_placeholder.png" id="2_kcu81"]
 [ext_resource type="Script" uid="uid://bvj2nh3d8upjg" path="res://Scripts/Ability System/AbilityContainer/EquipmentPassiveAbilityContainer.gd" id="3_1t711"]
 [ext_resource type="Script" uid="uid://k87nq4771qol" path="res://Scripts/Ability System/PassiveAbility/SpawnOnUtilCastArea.gd" id="3_4rvsl"]
-[ext_resource type="PackedScene" uid="uid://dndkgxqahawqw" path="res://Scenes/Spawnables/AreaDamage/spawnable_area_damage.tscn" id="4_uq1fp"]
+[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentLevelManager/EquipmentLevelManager.gd" id="3_7124w"]
+[ext_resource type="PackedScene" uid="uid://dp5ulm7wnucna" path="res://Scenes/Equipments/Shoes/spawnable_lightning_strike.tscn" id="5_1t711"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="5_jb1g1"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="6_1t711"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="7_7124w"]
@@ -12,11 +13,16 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_orxxb"]
 radius = 500.0
 
-[node name="ShoesLightningBoots" type="Node2D"]
+[node name="ShoesLightningBoots" type="Node2D" node_paths=PackedStringArray("level_manager")]
 script = ExtResource("1_mhtjb")
 type = 4
+level_manager = NodePath("EquipmentLevelManager")
 equipment_icon = ExtResource("2_kcu81")
 metadata/_custom_type_script = "uid://bviaakymd1gy8"
+
+[node name="EquipmentLevelManager" type="Node" parent="."]
+script = ExtResource("3_7124w")
+metadata/_custom_type_script = "uid://0tj10r8qa8qr"
 
 [node name="EquipmentPassiveAbilityContainer" type="Node" parent="." node_paths=PackedStringArray("passive_ability")]
 script = ExtResource("3_1t711")
@@ -25,9 +31,10 @@ metadata/_custom_type_script = "uid://bvj2nh3d8upjg"
 
 [node name="SpawnOnUtilCastArea" type="Node2D" parent="." node_paths=PackedStringArray("area", "hit_listener")]
 script = ExtResource("3_4rvsl")
-spawn_scene = ExtResource("4_uq1fp")
+spawn_scene = ExtResource("5_1t711")
 area = NodePath("Area2D")
 hit_listener = NodePath("HitListener")
+look_at_mouse = false
 metadata/_custom_type_script = "uid://k87nq4771qol"
 
 [node name="Area2D" type="Area2D" parent="SpawnOnUtilCastArea"]

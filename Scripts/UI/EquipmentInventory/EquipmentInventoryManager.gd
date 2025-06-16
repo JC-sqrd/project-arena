@@ -44,7 +44,7 @@ func _ready():
 			offhand_equip_slot.equipment_icon.texture = offhand_slot.equipment.equipment_icon
 	if headgear_slot != null:
 		headgear_equip_slot.equipment_slot = headgear_slot
-		equip_slots[1] = armgear_equip_slot
+		equip_slots[1] = headgear_equip_slot
 		if headgear_slot.equipment != null:
 			headgear_equip_slot.equipment = headgear_slot.equipment
 			headgear_equip_slot.equipment_icon.texture = headgear_slot.equipment.equipment_icon
@@ -227,11 +227,24 @@ func try_to_combine_pair(slot : EquipmentInventorySlot):
 	if pair.size() < 2 or pair.size() > 2:
 		print("No pair found")
 		return
+	var new_equipment : Equipment
+	if pair[0].equipment.level_manager != null:
+		new_equipment = pair[0].equipment.level_manager.get_next_level_equipment()
+		#slot.equipment = new_equipment
+		print("Equipment leveled up")
+	else:
+		print("Equipment does not have level manager")
 	for _slot in pair:
+		equipment_inventory.remove_equipment(_slot.equipment)
 		_slot.equipment.queue_free()
 		_slot.equipment = null
 		pass
-	print("Combined pair")
+	print("EQUIPMENT INVENTORY : " + str(equipment_inventory.inventory))
+	if new_equipment != null:
+		equipment_inventory.add_equipment(new_equipment)
+		print("NEW EQUIPMENT ADDED TO INVENTORY!")
+	await get_tree().create_timer(0.5, false, false, false).timeout
+	print("EQUIPMENT INVENTORY : " + str(equipment_inventory.inventory))
 	pass
 
 func check_duplicate(slot : EquipmentInventorySlot):

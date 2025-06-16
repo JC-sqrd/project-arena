@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EquipmentData" load_steps=4 format=3 uid="uid://cptx8b8u6efhp"]
 
 [ext_resource type="Texture2D" uid="uid://3ckkqiqcpgt" path="res://Placeholders/Icons/Icon.1_05.png" id="1_7ddkd"]
-[ext_resource type="PackedScene" uid="uid://dengtpj68hcix" path="res://Scenes/Equipments/Head Gears/headgear_iron_helmet.tscn" id="1_bu8lb"]
+[ext_resource type="PackedScene" uid="uid://dengtpj68hcix" path="res://Scenes/Equipments/Head Gears/Iron Helmet/headgear_iron_helmet.tscn" id="1_bu8lb"]
 [ext_resource type="Script" uid="uid://7g2i8l80ndkw" path="res://Scripts/Resources/EquipmentData/EquipmentData.gd" id="1_v2kv6"]
 
 [resource]
