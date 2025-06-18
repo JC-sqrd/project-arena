@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EquipmentLevelData" load_steps=3 format=3 uid="uid://bbk01mcqul2i7"]
 
 [ext_resource type="PackedScene" uid="uid://cppva5gwykigl" path="res://Scenes/Equipments/Head Gears/Iron Helmet/Tier2/headgear_iron_helmet_tier2.tscn" id="1_jl81h"]
-[ext_resource type="Script" uid="uid://dgmjfaome3jv5" path="res://Scripts/Combat/Equipment/EquipmentLevelManager/EquipmentLevelData.gd" id="2_v8em0"]
+[ext_resource type="Script" uid="uid://dgmjfaome3jv5" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierData.gd" id="2_v8em0"]
 
 [resource]
 script = ExtResource("2_v8em0")

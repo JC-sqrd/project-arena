@@ -37,7 +37,6 @@ func _process(delta):
 	if windup_counter <= 0 and winding_up:
 		winding_up = false
 		windup_counter = 0
-		start_coll_timer = true
 		_spawn_projectile()
 	
 	#if start_coll_timer:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ba77g51rg80ak"]
+[gd_scene load_steps=13 format=3 uid="uid://ba77g51rg80ak"]
 
 [ext_resource type="Script" uid="uid://cme6hu4jnh50c" path="res://Scripts/Combat/ProjectileWeapons/Shuriken.gd" id="1_5olyp"]
 [ext_resource type="PackedScene" uid="uid://bufnlkpdb3bcu" path="res://Scenes/Weapons/Shuriken/shuriken_projectile.tscn" id="2_7kfdi"]
@@ -11,8 +11,9 @@
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="6_j7fjk"]
 [ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="6_xhd5g"]
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="7_j7fjk"]
+[ext_resource type="PackedScene" uid="uid://dyp7qwg63ge44" path="res://Scenes/Abilities/Spawn Abilities/Giant Shuriken/ability_giant_shuriken.tscn" id="12_j7fjk"]
 
-[node name="WeaponShuriken" type="Node2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "hit_listener")]
+[node name="WeaponShuriken" type="Node2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener")]
 script = ExtResource("1_5olyp")
 throw_count = 3
 projectile = ExtResource("2_7kfdi")
@@ -21,6 +22,7 @@ max_distance = 1000.0
 attack_damage = NodePath("Damage")
 attack_speed_stat = NodePath("AttackSpeed")
 attack_windup_time = 0.1
+weapon_ability = NodePath("AbilityGiantShuriken")
 hit_listener = NodePath("HitListener")
 equipment_name = "Shuriken"
 string_id = "shuriken"
@@ -48,21 +50,15 @@ metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="AttackSpeed" type="Node" parent="."]
 script = ExtResource("4_7kfdi")
-stat_value = 0.85
+stat_value = 1.0
 can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatMult" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]
 script = ExtResource("5_xhd5g")
 stat = NodePath("..")
-scale_with_stat_id = "attack_speed_mult"
-metadata/_custom_type_script = "uid://c4n03mihb0axg"
-
-[node name="GetActorStatAdder" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]
-script = ExtResource("6_j7fjk")
-stat = NodePath("..")
 scale_with_stat_id = "attack_speed"
-metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+metadata/_custom_type_script = "uid://c4n03mihb0axg"
 
 [node name="AttackTimer" type="Timer" parent="."]
 
@@ -110,3 +106,5 @@ metadata/_custom_type_script = "uid://2vlwp08ancca"
 [node name="Shuriken" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("3_cenqv")
+
+[node name="AbilityGiantShuriken" parent="." instance=ExtResource("12_j7fjk")]

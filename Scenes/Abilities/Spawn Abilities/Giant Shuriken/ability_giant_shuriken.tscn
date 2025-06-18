@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://dyp7qwg63ge44"]
+
+[ext_resource type="Script" uid="uid://df7s4oatxu4hr" path="res://Scripts/Ability System/SpawnAbility.gd" id="1_gdi8c"]
+[ext_resource type="PackedScene" uid="uid://pbctk5uy8nc" path="res://Scenes/Abilities/Spawn Abilities/Giant Shuriken/spawnable_giant_shuriken_lvl2.tscn" id="2_f718i"]
+[ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_f718i"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="3_x2sfo"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="4_f718i"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_bd53u"]
+
+[sub_resource type="Resource" id="Resource_bd53u"]
+script = ExtResource("3_f718i")
+stat_name = "current_mana"
+required_value = 10.0
+metadata/_custom_type_script = "uid://tuvjl40jf0pm"
+
+[node name="AbilityGiantShuriken" type="Node2D" node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("1_gdi8c")
+max_range = 0.0
+spawn = ExtResource("2_f718i")
+hit_listener = NodePath("HitListener")
+required_stat = SubResource("Resource_bd53u")
+cast_time = 0.1
+cooldown = 5.0
+metadata/_custom_type_script = "uid://df7s4oatxu4hr"
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("3_x2sfo")
+metadata/_custom_type_script = "uid://dm3uuggj1g47y"
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("4_f718i")
+damage_stat = NodePath("Damage")
+metadata/_custom_type_script = "uid://c8sj8b1npavnd"
+
+[node name="Damage" type="Node" parent="HitListener/DamageEffect"]
+script = ExtResource("5_bd53u")
+stat_value = 10.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"

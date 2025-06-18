@@ -9,6 +9,8 @@ var damage_effects : Array[Node]
 @export var innate_active_ability : AbilityContainer
 @export var innate_secondary_ability : AbilityContainer
 @export var utility_ability : AbilityContainer
+@export var main_weapon_ability_container : AbilityContainer
+@export var off_weapon_ability_container : AbilityContainer
 
 signal item_picker_picked_up (player : PlayerCharacter, loot_pool : Array[PackedScene])
 

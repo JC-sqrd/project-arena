@@ -6,6 +6,7 @@ enum SlotType {INVENTORY, EQUIP}
 var equipment : Equipment : set = set_equipment
 @export var slot_type : SlotType
 @onready var equipment_icon: TextureRect = $SlotBorder/MarginContainer/EquipmentIcon
+@onready var equipment_inventory_slot_icon: EquipmentInventorySlotIcon = $SlotBorder/MarginContainer/EquipmentInventorySlotIcon
 @onready var slot_border: TextureRect = $SlotBorder
 const EQUIPMENT_CONTEXT_MENU = preload("res://Scenes/UI/EquipmentInventory/equipment_context_menu.tscn")
 var context_menu : EquipmentContextMenu
@@ -46,9 +47,11 @@ func on_mouse_exited():
 
 func set_equipment(new_equipment : Equipment):
 	equipment_icon.texture = null
+	equipment_inventory_slot_icon.clear_equipment()
 	tooltip_text = ""
 	equipment = new_equipment
 	if equipment != null:
+		equipment_inventory_slot_icon.set_equipment(new_equipment)
 		equipment_icon.texture = new_equipment.equipment_icon
 		tooltip_text = equipment.equipment_name
 	pass

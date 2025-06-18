@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3cvt2uhjhjhq"]
+
+[ext_resource type="Script" uid="uid://bipbqocucm4eg" path="res://Scripts/Ability System/Spawnables/GroupSpawnable.gd" id="1_5gunf"]
+[ext_resource type="PackedScene" uid="uid://cbcumdencdqr7" path="res://Scenes/Abilities/Emit Abilities/Whirling Chakram/spawnable_whirling_chakram.tscn" id="2_5gunf"]
+
+[node name="SpawnableChakramCyclone" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_5gunf")
+lifetime = 3.0
+time_active = 3.0
+metadata/_custom_type_script = "uid://bipbqocucm4eg"
+
+[node name="SpawnableWhirlingChakram" parent="." instance=ExtResource("2_5gunf")]
+position = Vector2(-110, 0)
+
+[node name="SpawnableWhirlingChakram2" parent="." instance=ExtResource("2_5gunf")]
+position = Vector2(110, 0)

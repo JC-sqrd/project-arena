@@ -25,6 +25,7 @@ func _start_emit():
 	get_cast_position = false
 	var object = emited_object.instantiate() as Spawnable
 	object.source = self
+	object.actor = actor
 	object.on_hit.connect(_on_ability_hit)
 	object.inactive.connect(_end_emit)
 	object.collision_mask = (object.collision_mask - actor.original_coll_layer)

@@ -4,13 +4,13 @@ extends PassiveAbility
 @export var spawnable_scene : PackedScene
 @export var hit_listener : HitListener
 
-func enable_passive_ability(actor : Entity):
+func enable_ability(actor : Entity):
 	super(actor)
 	actor.took_damage.connect(_on_actor_took_damage)
 	print("TOOK DAMAGE SIGNAL CONNECTED")
 	pass
 
-func disable_passive_ability():
+func disable_ability():
 	actor.took_damage.disconnect(_on_actor_took_damage)
 	pass
 

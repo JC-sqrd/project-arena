@@ -3,14 +3,21 @@ extends BuyInstanceUI
 
 @export var item_data : ItemData
 var item : Item
-@onready var cost_button: Button =$Panel/VBoxContainer/CostButton
+
+@onready var cost_button: Button = %CostButton
+@onready var lock_button: Button = %LockButton
+@onready var locked_icon: TextureRect = %LockedIcon
 @onready var item_name_label: RichTextLabel = $Panel/VBoxContainer/ItemNameLabel
 @onready var item_detail_label: RichTextLabel = $Panel/VBoxContainer/ItemDetailLabel
+
+
 
 
 func _ready():
 	super()
 	cost_button.pressed.connect(_on_buy_button_pressed)
+	lock_button.pressed.connect(_on_lock_button_pressed)
+	locked_icon.visible = false
 	if item_data != null:
 		#item = item_scene.instantiate() as Item
 		print("EQUIPMENT ICON: " + str(cost_label))
@@ -42,4 +49,12 @@ func is_buyable(gold_amount : float) -> bool:
 
 func _on_buy_button_pressed():
 	attempt_to_buy.emit(self)
+	pass
+
+func _on_lock_button_pressed():
+	is_locked = !is_locked
+	if is_locked:
+		locked_icon.visible = true
+	else:
+		locked_icon.visible = false
 	pass

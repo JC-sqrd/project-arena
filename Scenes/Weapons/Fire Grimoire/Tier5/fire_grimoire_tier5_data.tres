@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EquipmentLevelData" load_steps=3 format=3 uid="uid://yxvbeu0jeqyk"]
+
+[ext_resource type="Script" uid="uid://dgmjfaome3jv5" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierData.gd" id="1_5sllw"]
+[ext_resource type="PackedScene" uid="uid://cl03a5h3ugua6" path="res://Scenes/Weapons/Fire Grimoire/Tier5/weapon_fire_grimoire_tier5.tscn" id="1_sgg42"]
+
+[resource]
+script = ExtResource("1_5sllw")
+equipment_scene = ExtResource("1_sgg42")
+metadata/_custom_type_script = "uid://dgmjfaome3jv5"

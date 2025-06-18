@@ -12,12 +12,13 @@ extends Weapon
 
 var start_windup : bool = false
 var winding_up : bool = false
-var start_coll_timer : bool = false
+var start_cooldown_timer : bool = false
 #var coll_enabled : bool = false
 var windup_counter : float
 #var coll_enabled_counter : float
 var attacking : bool = false
 
+var _cooldown_counter : float = 0
 var _projectile_count : int = 1
 var _spawn_count : int = 0
 var _start_angle : float = 0
@@ -49,10 +50,9 @@ func projectile_weapon_process(delta : float):
 	if windup_counter <= 0 and winding_up:
 		winding_up = false
 		windup_counter = 0
-		start_coll_timer = true
 		_spawn_projectile()
-		
 	
+
 	#if start_coll_timer:
 		#start_coll_timer = false
 		#coll_enabled = true

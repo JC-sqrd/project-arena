@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://b6vlpqigfmac8"]
+
+[ext_resource type="Script" uid="uid://cionhn23akyj3" path="res://Scripts/Resources/ItemData/ItemData.gd" id="1_7dbhd"]
+[ext_resource type="PackedScene" uid="uid://j432bymt2fw8" path="res://Scenes/Items/item_focus.tscn" id="1_dudsj"]
+[ext_resource type="Texture2D" uid="uid://dk0i3hk2p26go" path="res://Placeholders/Icons/Icon.3_48.png" id="1_on2pi"]
+
+[resource]
+script = ExtResource("1_7dbhd")
+item_scene = ExtResource("1_dudsj")
+item_name = "#gain_focus"
+item_icon = ExtResource("1_on2pi")
+string_id = "gain_focus"
+item_description = ""
+item_detail = "+5 Focus"
+buy_cost = 40.0
+sell_value = 0.0
+metadata/_custom_type_script = "uid://cionhn23akyj3"

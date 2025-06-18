@@ -13,7 +13,7 @@ func _ready():
 	
 	pass
 
-func enable_passive_ability(actor : Entity):
+func enable_ability(actor : Entity):
 	super(actor)
 	if actor != null and actor.stat_manager.stats.has("area_size"):
 		area_size_stat = actor_stats.stats["area_size"]
@@ -24,7 +24,7 @@ func enable_passive_ability(actor : Entity):
 	enabled = true
 	pass
 
-func disable_passive_ability():
+func disable_ability():
 	super()
 	area.body_entered.disconnect(_on_body_entered)
 	area.body_exited.disconnect(_on_body_exited)

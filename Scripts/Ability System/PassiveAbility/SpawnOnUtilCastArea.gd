@@ -2,13 +2,15 @@ class_name SpawnOnUtilCastArea
 extends PassiveAbility
 
 @export var spawn_scene : PackedScene
+@export var max_targets : int = 1
 @export var area : Area2D
 @export var hit_listener : HitListener
 @export var look_at_mouse : bool = true
 
+var _target_counter : int = 0
 var hittable_entities : Array[Entity]
 
-func enable_passive_ability(actor : Entity):
+func enable_ability(actor : Entity):
 	super(actor)
 	self.actor = actor
 	(self.actor as PlayerCharacter).utility_ability.ability.ability_casted.connect(_on_util_casted)
@@ -19,7 +21,7 @@ func enable_passive_ability(actor : Entity):
 		area.body_entered.emit(body)
 	pass
 
-func disable_passive_ability():
+func disable_ability():
 	(self.actor as PlayerCharacter).utility_ability.ability.ability_casted.disconnect(_on_util_casted)
 	super()
 	hittable_entities.clear()
@@ -27,31 +29,33 @@ func disable_passive_ability():
 
 
 func _on_util_casted():
-	if hittable_entities.size() > 0:
-		print("PASSIVE UTIL CAST")
-		var spawn = spawn_scene.instantiate() as Spawnable
-		
-		var spawn_rotation : float = 0
-		
-		spawn.source = self
-		spawn.actor = actor
-		spawn.on_hit.connect(_on_spawn_hit)
-		spawn.inactive.connect(_on_spawn_inactive)
-		spawn.collision_mask = (spawn.collision_mask - actor.collision_layer)
-		if hit_listener != null:
-			spawn.hit_data = hit_listener.generate_effect_data()
-		
-		#if !aim_at_mouse:
-			#spawn_rotation = spawn_direction.angle()
-		#else:
-			#spawn_rotation = actor.global_position.direction_to(actor.get_global_mouse_position()).angle()
-		#spawn_rotation = ability.global_position.direction_to(spawn_direction).angle()
-		
-		spawn.global_position = hittable_entities[0].global_position
-		if look_at_mouse:
-			spawn.rotation = actor.global_position.direction_to(actor.get_global_mouse_position()).angle()
-		#actor.get_tree().root.add_child(spawn)
-		get_tree().root.add_child(spawn)
+	for i in min(hittable_entities.size(), max_targets):
+		if !cooling_down:
+			print("PASSIVE UTIL CAST")
+			var spawn = spawn_scene.instantiate() as Spawnable
+			
+			var spawn_rotation : float = 0
+			
+			spawn.source = self
+			spawn.actor = actor
+			spawn.on_hit.connect(_on_spawn_hit)
+			spawn.inactive.connect(_on_spawn_inactive)
+			spawn.collision_mask = (spawn.collision_mask - actor.collision_layer)
+			if hit_listener != null:
+				spawn.hit_data = hit_listener.generate_effect_data()
+			
+			#if !aim_at_mouse:
+				#spawn_rotation = spawn_direction.angle()
+			#else:
+				#spawn_rotation = actor.global_position.direction_to(actor.get_global_mouse_position()).angle()
+			#spawn_rotation = ability.global_position.direction_to(spawn_direction).angle()
+			
+			spawn.global_position = hittable_entities[i].global_position
+			if look_at_mouse:
+				spawn.rotation = actor.global_position.direction_to(actor.get_global_mouse_position()).angle()
+			#actor.get_tree().root.add_child(spawn)
+			get_tree().root.add_child(spawn)
+	start_cooldown()
 	pass
 
 func _on_body_entered(body : Node2D):

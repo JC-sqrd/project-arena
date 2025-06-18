@@ -102,7 +102,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_4yy27"]
 radius = 150.0
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("gold_manager", "weapon_manager", "passive_ability_container", "innate_active_ability", "utility_ability", "hit_receiver", "stat_manager", "level_manager", "health_manager", "mana_manager", "status_effect_manager", "stat_mods_manager", "damage_listener", "item_iventory", "equipment_inventory") groups=["Hittable", "player"]]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("gold_manager", "weapon_manager", "passive_ability_container", "innate_active_ability", "utility_ability", "main_weapon_ability_container", "off_weapon_ability_container", "hit_receiver", "stat_manager", "level_manager", "health_manager", "mana_manager", "status_effect_manager", "stat_mods_manager", "damage_listener", "item_iventory", "equipment_inventory") groups=["Hittable", "player"]]
 y_sort_enabled = true
 motion_mode = 1
 platform_floor_layers = 4294901760
@@ -112,6 +112,8 @@ weapon_manager = NodePath("WeaponManager")
 passive_ability_container = NodePath("PassiveAbilityContainer")
 innate_active_ability = NodePath("InnateActiveAbility")
 utility_ability = NodePath("UtilityAbilityContainer")
+main_weapon_ability_container = NodePath("MainWeaponAbilityContainer")
+off_weapon_ability_container = NodePath("OffWeaponAbilityContainer")
 hit_receiver = NodePath("HitReceiver")
 stat_manager = NodePath("Stats")
 level_manager = NodePath("LevelManager")
@@ -160,10 +162,21 @@ dash_distance = 300.0
 required_stat = SubResource("Resource_s7g6f")
 cooldown = 5.0
 
-[node name="WeaponManager" type="Node2D" parent="." node_paths=PackedStringArray("main_weapon_slot", "offhand_weapon_slot")]
+[node name="MainWeaponAbilityContainer" parent="." node_paths=PackedStringArray("actor", "mana") instance=ExtResource("4_tkk1j")]
+actor = NodePath("..")
+mana = NodePath("../Stats/Mana")
+
+[node name="OffWeaponAbilityContainer" parent="." node_paths=PackedStringArray("actor", "mana") instance=ExtResource("4_tkk1j")]
+ability_action_trigger = "secondary_ability"
+actor = NodePath("..")
+mana = NodePath("../Stats/Mana")
+
+[node name="WeaponManager" type="Node2D" parent="." node_paths=PackedStringArray("main_weapon_slot", "offhand_weapon_slot", "main_weapon_ability_container", "offhand_weapon_ability_container")]
 script = ExtResource("7_nss1p")
 main_weapon_slot = NodePath("../WeaponSlot")
 offhand_weapon_slot = NodePath("../OffhandWeaponSlot")
+main_weapon_ability_container = NodePath("../MainWeaponAbilityContainer")
+offhand_weapon_ability_container = NodePath("../OffWeaponAbilityContainer")
 metadata/_custom_type_script = "uid://bfjkolmoudtsa"
 
 [node name="WeaponSlot" parent="." node_paths=PackedStringArray("attack_speed", "weapon_position", "actor") instance=ExtResource("8_o0d6e")]
@@ -587,11 +600,6 @@ layout_mode = 2
 mana_manager = NodePath("../../../../../ManaManager")
 
 [node name="EquipmentInventory" parent="CanvasLayer" node_paths=PackedStringArray("equipment_inventory", "weapon_slot", "offhand_slot", "headgear_slot", "torso_slot", "armgear_slot", "shoes_slot") instance=ExtResource("33_e7p34")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 equipment_inventory = NodePath("../../EquipmentInventory")
 weapon_slot = NodePath("../../WeaponSlot")
 offhand_slot = NodePath("../../OffhandWeaponSlot")

@@ -11,7 +11,7 @@
 script = ExtResource("1_k5y84")
 item_name = "Giant's Heart"
 item_icon = ExtResource("2_wqhia")
-string_id = "gain_max_health"
+string_id = "gain_vitality"
 item_detail = "Gain [color=green]5[/color] [color=spring_green]max health[/color](+1 for each stack)"
 buy_cost = 50.0
 sell_value = 10.0
@@ -29,6 +29,11 @@ script = ExtResource("2_x2pke")
 stat_name = "vitality"
 bonus_value = NodePath("../Stackx5")
 
+[node name="TradeoffAgility" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
+script = ExtResource("2_x2pke")
+stat_name = "agility"
+bonus_value = NodePath("../Stackx-2")
+
 [node name="Stackx5" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
 script = ExtResource("6_1uyy0")
 a_stat = NodePath("../Stack")
@@ -37,3 +42,12 @@ b_stat = NodePath("5")
 [node name="5" type="Node" parent="Stackx5"]
 script = ExtResource("4_b1qp6")
 stat_value = 5.0
+
+[node name="Stackx-2" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("6_1uyy0")
+a_stat = NodePath("../Stack")
+b_stat = NodePath("-2")
+
+[node name="-2" type="Node" parent="Stackx-2"]
+script = ExtResource("4_b1qp6")
+stat_value = -2.0

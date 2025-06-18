@@ -27,7 +27,8 @@ var common_item_data_pool : Array[ItemData] = [
 	preload("res://Scripts/Resources/ItemData/item_data_magic.tres"),
 	preload("res://Scripts/Resources/ItemData/item_data_strength.tres"),
 	preload("res://Scripts/Resources/ItemData/item_data_vitality.tres"),
-	preload("res://Scripts/Resources/ItemData/item_data_chance_block_damage.tres")
+	preload("res://Scripts/Resources/ItemData/item_data_chance_block_damage.tres"),
+	preload("res://Scripts/Resources/ItemData/item_data_focus.tres")
 ]
 
 var rare_item_data_pool : Array[ItemData] = [
@@ -60,7 +61,7 @@ var common_equipment_data_pool : Array[EquipmentData] = [
 	preload("res://Scripts/Resources/EquipmentData/equipment_data_shuriken.tres"),
 	preload("res://Scripts/Resources/EquipmentData/equipment_data_swift_sword.tres"),
 	preload("res://Scripts/Resources/EquipmentData/equipment_data_wooden_magic_staff.tres"),
-	preload("res://Scripts/Resources/EquipmentData/equipment_data_long_sword.tres")
+	preload("res://Scripts/Resources/EquipmentData/equipment_data_long_sword.tres"),
 ]
 
 var common_equipment_pool : Array[PackedScene] = [

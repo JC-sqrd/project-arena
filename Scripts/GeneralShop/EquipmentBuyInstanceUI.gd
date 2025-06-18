@@ -3,17 +3,22 @@ extends BuyInstanceUI
 
 @export var equipment_data : EquipmentData
 var equipment : Equipment
-@onready var cost_button: Button = $Panel/VBoxContainer/CostButton
 @onready var equipment_name_label: RichTextLabel = $Panel/VBoxContainer/EquipmentNameLabel
+@onready var cost_button: Button = %CostButton
+@onready var lock_button: Button = %LockButton
+@onready var lock_icon: TextureRect = %LockIcon
 
 
 func _ready():
 	super()
 	cost_button.pressed.connect(_on_buy_button_pressed)
+	lock_button.pressed.connect(_on_lock_button_pressed)
+	lock_icon.visible = false
 	if equipment_data != null:
 		#equipment = equipment_data.instantiate() as Equipment
 		equipment_icon.texture = equipment_data.equipment_icon
 		cost_label.text = str(equipment_data.buy_cost)
+		cost_button.text = str(equipment_data.buy_cost)
 		equipment_name_label.text = equipment_data.equipment_name
 		pass
 	pass
@@ -38,4 +43,12 @@ func buy(buyer : Entity):
 
 func _on_buy_button_pressed():
 	attempt_to_buy.emit(self)
+	pass
+
+func _on_lock_button_pressed():
+	is_locked = !is_locked
+	if is_locked:
+		lock_icon.visible = true
+	else:
+		lock_icon.visible = false
 	pass

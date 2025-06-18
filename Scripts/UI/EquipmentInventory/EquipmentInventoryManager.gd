@@ -228,8 +228,8 @@ func try_to_combine_pair(slot : EquipmentInventorySlot):
 		print("No pair found")
 		return
 	var new_equipment : Equipment
-	if pair[0].equipment.level_manager != null:
-		new_equipment = pair[0].equipment.level_manager.get_next_level_equipment()
+	if pair[0].equipment.tier_manager != null:
+		new_equipment = pair[0].equipment.tier_manager.get_next_level_equipment()
 		#slot.equipment = new_equipment
 		print("Equipment leveled up")
 	else:
@@ -239,12 +239,8 @@ func try_to_combine_pair(slot : EquipmentInventorySlot):
 		_slot.equipment.queue_free()
 		_slot.equipment = null
 		pass
-	print("EQUIPMENT INVENTORY : " + str(equipment_inventory.inventory))
 	if new_equipment != null:
 		equipment_inventory.add_equipment(new_equipment)
-		print("NEW EQUIPMENT ADDED TO INVENTORY!")
-	await get_tree().create_timer(0.5, false, false, false).timeout
-	print("EQUIPMENT INVENTORY : " + str(equipment_inventory.inventory))
 	pass
 
 func check_duplicate(slot : EquipmentInventorySlot):

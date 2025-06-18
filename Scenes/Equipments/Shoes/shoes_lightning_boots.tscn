@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckkbe1bgata60"]
+[gd_scene load_steps=12 format=3 uid="uid://ckkbe1bgata60"]
 
 [ext_resource type="Script" uid="uid://bviaakymd1gy8" path="res://Scripts/Combat/Equipment/Torso/Torso.gd" id="1_mhtjb"]
 [ext_resource type="Texture2D" uid="uid://b1xkpvr4tkxc7" path="res://Sprites/Shoes/Lightning Shoes/lightning_shoes_placeholder.png" id="2_kcu81"]
 [ext_resource type="Script" uid="uid://bvj2nh3d8upjg" path="res://Scripts/Ability System/AbilityContainer/EquipmentPassiveAbilityContainer.gd" id="3_1t711"]
 [ext_resource type="Script" uid="uid://k87nq4771qol" path="res://Scripts/Ability System/PassiveAbility/SpawnOnUtilCastArea.gd" id="3_4rvsl"]
-[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentLevelManager/EquipmentLevelManager.gd" id="3_7124w"]
+[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierManager.gd" id="3_7124w"]
 [ext_resource type="PackedScene" uid="uid://dp5ulm7wnucna" path="res://Scenes/Equipments/Shoes/spawnable_lightning_strike.tscn" id="5_1t711"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="5_jb1g1"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="6_1t711"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="7_7124w"]
+[ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="10_hsy0h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_orxxb"]
 radius = 500.0
@@ -32,6 +33,7 @@ metadata/_custom_type_script = "uid://bvj2nh3d8upjg"
 [node name="SpawnOnUtilCastArea" type="Node2D" parent="." node_paths=PackedStringArray("area", "hit_listener")]
 script = ExtResource("3_4rvsl")
 spawn_scene = ExtResource("5_1t711")
+max_targets = 5
 area = NodePath("Area2D")
 hit_listener = NodePath("HitListener")
 look_at_mouse = false
@@ -53,9 +55,17 @@ metadata/_custom_type_script = "uid://dm3uuggj1g47y"
 [node name="DamageEffect" type="Node" parent="SpawnOnUtilCastArea/HitListener" node_paths=PackedStringArray("damage_stat")]
 script = ExtResource("6_1t711")
 damage_stat = NodePath("Stat")
+damage_type = 1
 metadata/_custom_type_script = "uid://c8sj8b1npavnd"
 
 [node name="Stat" type="Node" parent="SpawnOnUtilCastArea/HitListener/DamageEffect"]
 script = ExtResource("7_7124w")
 stat_value = 10.0
 metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatAdder" type="Node" parent="SpawnOnUtilCastArea/HitListener/DamageEffect/Stat" node_paths=PackedStringArray("stat")]
+script = ExtResource("10_hsy0h")
+stat = NodePath("..")
+scale_with_stat_id = "magic"
+ratio = 0.25
+metadata/_custom_type_script = "uid://cbdnn38awoh2q"

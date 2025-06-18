@@ -1,0 +1,122 @@
+[gd_scene load_steps=19 format=3 uid="uid://ifguwges6y8e"]
+
+[ext_resource type="Script" uid="uid://d1xavjy2kbus2" path="res://Scripts/Ability System/Spawnables/AreaEnterHit.gd" id="1_y6cas"]
+[ext_resource type="Script" uid="uid://bg43jxy7gyts0" path="res://Scripts/Ability System/Spawnables/SpawnableEnterFilter/SpawnableEnterFilter.gd" id="2_5eumx"]
+[ext_resource type="Texture2D" uid="uid://bkgmfbtqoeo2j" path="res://Sprites/Weapons/Shuriken/Shuriken Spin.png" id="2_iocbl"]
+[ext_resource type="Script" uid="uid://c6hdo0rjgde2q" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/MoveSpawnable.gd" id="3_q4mlg"]
+[ext_resource type="Script" uid="uid://y1c1hiwxwmkf" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/SpawnableHitCounterBehavior.gd" id="4_r25ix"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_5eumx"]
+
+[sub_resource type="Resource" id="Resource_sef4u"]
+script = ExtResource("2_5eumx")
+metadata/_custom_type_script = "uid://bg43jxy7gyts0"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y6cas"]
+radius = 60.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4mlg"]
+atlas = ExtResource("2_iocbl")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g5j6"]
+atlas = ExtResource("2_iocbl")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r25ix"]
+atlas = ExtResource("2_iocbl")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5eumx"]
+atlas = ExtResource("2_iocbl")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sef4u"]
+atlas = ExtResource("2_iocbl")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xwio"]
+atlas = ExtResource("2_iocbl")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6cp8"]
+atlas = ExtResource("2_iocbl")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmyqy"]
+atlas = ExtResource("2_iocbl")
+region = Rect2(672, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oytai"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4mlg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g5j6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r25ix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5eumx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sef4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xwio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6cp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmyqy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Curve" id="Curve_4g5j6"]
+_data = [Vector2(0, 0.496024), 0.0, 2.14063, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="SpawnableGiantShuriken" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_y6cas")
+windup_time = 0.05
+lifetime = 5.0
+time_active = 5.0
+filter = SubResource("Resource_sef4u")
+metadata/_custom_type_script = "uid://d1xavjy2kbus2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y6cas")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_oytai")
+autoplay = "default"
+frame_progress = 0.539812
+
+[node name="SpawnableMoveBehavior" type="Node" parent="." node_paths=PackedStringArray("spawnable")]
+script = ExtResource("3_q4mlg")
+move_speed = 950.0
+curve = SubResource("Curve_4g5j6")
+spawnable = NodePath("..")
+metadata/_custom_type_script = "uid://c6hdo0rjgde2q"
+
+[node name="SpawnableHitCounterBehavior" type="Node" parent="." node_paths=PackedStringArray("hit_times", "spawnable")]
+script = ExtResource("4_r25ix")
+hit_times = NodePath("HitCount")
+spawnable = NodePath("..")
+metadata/_custom_type_script = "uid://y1c1hiwxwmkf"
+
+[node name="HitCount" type="Node" parent="SpawnableHitCounterBehavior"]
+script = ExtResource("5_5eumx")
+stat_value = 10.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"

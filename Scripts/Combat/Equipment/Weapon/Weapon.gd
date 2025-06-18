@@ -103,7 +103,8 @@ func _weapon_process(delta : float):
 			#_ability_input_buffer_counter -= delta
 		
 		if _start_cooldown:
-			cooldown_counter = 1 / attack_speed_stat.stat_derived_value 
+			cooldown_counter = 1 / attack_speed_stat.stat_derived_value
+			print(str(equipment_name) + " WEAPON COOLDOWN: " + str(cooldown_counter)) 
 			_start_cooldown = false
 			can_attack = false
 		

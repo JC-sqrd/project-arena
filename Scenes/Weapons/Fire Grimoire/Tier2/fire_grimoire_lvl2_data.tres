@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="EquipmentLevelData" load_steps=3 format=3 uid="uid://dquma67no8cw8"]
-
-[ext_resource type="PackedScene" uid="uid://bq8vln2e2bn51" path="res://Scenes/Weapons/Fire Grimoire/Tier2/weapon_fire_grimoire_tier2.tscn" id="1_ws1lg"]
-[ext_resource type="Script" uid="uid://dgmjfaome3jv5" path="res://Scripts/Combat/Equipment/EquipmentLevelManager/EquipmentLevelData.gd" id="1_yjypi"]
-
-[resource]
-script = ExtResource("1_yjypi")
-equipment_scene = ExtResource("1_ws1lg")
-metadata/_custom_type_script = "uid://dgmjfaome3jv5"

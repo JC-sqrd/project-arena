@@ -4,7 +4,7 @@ extends PassiveAbility
 @export var spawnable_scene : PackedScene
 @export var hit_listener : HitListener
 
-func enable_passive_ability(actor : Entity):
+func enable_ability(actor : Entity):
 	super(actor)
 	cooldown_timer.autostart = false
 	_cdr = actor.stat_manager.get_stat("cooldown_reduction")
@@ -14,7 +14,7 @@ func enable_passive_ability(actor : Entity):
 	print("PASSIVE EMIT ABILITY ENABLED: " + str(cooldown))
 	pass
 
-func disable_passive_ability():
+func disable_ability():
 	super()
 	print("PASSIVE EMIT ABILITY DISABLED: " + str(cooldown))
 	cooldown_timer.stop()

@@ -26,7 +26,7 @@ func _ready():
 	pass
 
 
-func enable_passive_ability(actor : Entity):
+func enable_ability(actor : Entity):
 	super(actor)
 	if actor != null:
 		decay_delay_timer.timeout.connect(_on_decay_delay_timer_timeout)
@@ -38,7 +38,7 @@ func enable_passive_ability(actor : Entity):
 		enabled = true
 	pass
 
-func disable_passive_ability():
+func disable_ability():
 	super()
 	decay_delay_timer.timeout.disconnect(_on_decay_delay_timer_timeout)
 	decay_timer.timeout.disconnect(_on_decay_timer_timeout)

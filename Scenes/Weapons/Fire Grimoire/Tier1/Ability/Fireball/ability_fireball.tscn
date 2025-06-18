@@ -94,27 +94,12 @@ script = ExtResource("1_0hkgi")
 max_range = 0.0
 spawn = ExtResource("2_xc2w6")
 spawn_behavior = SubResource("Resource_3sgpq")
+hit_listener = NodePath("HitListener")
 required_stat = SubResource("Resource_xknc8")
 cast_time = 0.35
-hit_listener = NodePath("HitListener")
 cooldown = 1.5
 ability_icon_texture = ExtResource("4_i632a")
 sockets = [NodePath("AbilitySocket")]
-
-[node name="HitListener" type="Node" parent="."]
-script = ExtResource("3_871q2")
-
-[node name="SpawnEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("source", "hit_listener")]
-script = ExtResource("7_n3t4k")
-spawn_scene = ExtResource("8_5py51")
-source = NodePath("../..")
-hit_listener = NodePath("../../SpawnHitListener")
-
-[node name="AbilitySocket" type="Node" parent="." node_paths=PackedStringArray("socketable")]
-script = ExtResource("11_qi74n")
-socketable = NodePath("SocketableAbilityOnHit")
-
-[node name="SocketableAbilityOnHit" parent="AbilitySocket" instance=ExtResource("12_fhr1v")]
 
 [node name="SpawnHitListener" type="Node" parent="."]
 script = ExtResource("3_871q2")
@@ -131,13 +116,29 @@ stat_value = 20.0
 [node name="GetActorStatAdder" type="Node" parent="SpawnHitListener/DamageEffect/ExplosionDamage" node_paths=PackedStringArray("stat")]
 script = ExtResource("13_xrvdm")
 stat = NodePath("..")
-scale_with_stat_id = "magic_damage"
+scale_with_stat_id = "magic"
+ratio = 0.8
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="ApplyStatusEffect" type="Node" parent="SpawnHitListener"]
 script = ExtResource("5_elnet")
 status_effect_scene = ExtResource("6_sixx5")
 stack = 5
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("3_871q2")
+
+[node name="SpawnEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("source", "hit_listener")]
+script = ExtResource("7_n3t4k")
+spawn_scene = ExtResource("8_5py51")
+source = NodePath("../..")
+hit_listener = NodePath("../../SpawnHitListener")
+
+[node name="AbilitySocket" type="Node" parent="." node_paths=PackedStringArray("socketable")]
+script = ExtResource("11_qi74n")
+socketable = NodePath("SocketableAbilityOnHit")
+
+[node name="SocketableAbilityOnHit" parent="AbilitySocket" instance=ExtResource("12_fhr1v")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

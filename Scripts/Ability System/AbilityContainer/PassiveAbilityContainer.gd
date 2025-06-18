@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _on_actor_ready():
 	if ability != null:
-		ability.enable_passive_ability(actor)
+		ability.enable_ability(actor)
 	pass
 
 func _set_ability(new_ability : PassiveAbility):

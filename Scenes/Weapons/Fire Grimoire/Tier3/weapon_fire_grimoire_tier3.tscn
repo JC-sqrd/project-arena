@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://nxffm0l2ajux"]
+[gd_scene load_steps=25 format=3 uid="uid://nxffm0l2ajux"]
 
 [ext_resource type="Script" uid="uid://d3fin4411ww46" path="res://Scripts/Combat/ProjectileWeapons/ProjectileWeapon.gd" id="1_bnrdb"]
 [ext_resource type="PackedScene" uid="uid://dfh3qc3n36tdr" path="res://Scenes/Weapons/Fire Grimoire/Tier1/grimoire_projectile.tscn" id="2_6ivou"]
 [ext_resource type="Texture2D" uid="uid://r4kmrlxyhifp" path="res://Sprites/Weapons/Fire Grimoire/Fire Grimoire Icon.png" id="3_agax4"]
-[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentLevelManager/EquipmentLevelManager.gd" id="4_w06ed"]
+[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierManager.gd" id="4_w06ed"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_8j4gg"]
+[ext_resource type="Resource" uid="uid://1vhf744uot0e" path="res://Scenes/Weapons/Fire Grimoire/Tier4/fire_grimoire_tier4_data.tres" id="5_xrpiq"]
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="6_koewm"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="7_yy3hb"]
 [ext_resource type="Texture2D" uid="uid://bkgd31sddo2em" path="res://Sprites/Weapons/Fire Grimoire/Fire Grimoire Attack.png" id="8_0yybw"]
@@ -65,7 +66,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="FireGrimoireLevel3" type="Node2D" node_paths=PackedStringArray("spawn_node", "attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "sockets", "level_manager")]
+[node name="FireGrimoireTier3" type="Node2D" node_paths=PackedStringArray("spawn_node", "attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "sockets", "tier_manager")]
 y_sort_enabled = true
 script = ExtResource("1_bnrdb")
 projectile = ExtResource("2_6ivou")
@@ -80,12 +81,13 @@ hit_listener = NodePath("HitListener")
 sockets = [NodePath("WeaponSocket")]
 equipment_name = "Fire Grimoire"
 tier = 2
-level_manager = NodePath("EquipmentLevelManager")
+tier_manager = NodePath("EquipmentTierManager")
 string_id = "fire_grimoire"
 equipment_icon = ExtResource("3_agax4")
 
-[node name="EquipmentLevelManager" type="Node" parent="."]
+[node name="EquipmentTierManager" type="Node" parent="."]
 script = ExtResource("4_w06ed")
+next_tier_data = ExtResource("5_xrpiq")
 metadata/_custom_type_script = "uid://0tj10r8qa8qr"
 
 [node name="Damage" type="Node" parent="."]
@@ -115,14 +117,8 @@ metadata/_custom_type_script = "uid://bgka26pbphks7"
 [node name="GetActorStatMult" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]
 script = ExtResource("6_koewm")
 stat = NodePath("..")
-scale_with_stat_id = "attack_speed_mult"
-metadata/_custom_type_script = "uid://c4n03mihb0axg"
-
-[node name="GetActorStatAdder" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]
-script = ExtResource("7_yy3hb")
-stat = NodePath("..")
 scale_with_stat_id = "attack_speed"
-metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+metadata/_custom_type_script = "uid://c4n03mihb0axg"
 
 [node name="AttackTimer" type="Timer" parent="."]
 
@@ -179,6 +175,11 @@ metadata/_custom_type_script = "uid://2vlwp08ancca"
 
 [node name="AbilityFireball" parent="." instance=ExtResource("18_bgmlr")]
 
+[node name="GetActorStatAdder" parent="AbilityFireball/SpawnHitListener/DamageEffect/ExplosionDamage" index="0"]
+ratio = 0.95
+
 [node name="WeaponSocket" type="Node" parent="."]
 script = ExtResource("19_ocnyc")
 metadata/_custom_type_script = "uid://prvx4o5s1tin"
+
+[editable path="AbilityFireball"]

@@ -3,6 +3,9 @@ extends Node2D
 
 @export var main_weapon_slot : WeaponSlot
 @export var offhand_weapon_slot : OffhandWeaponSlot
+@export var main_weapon_ability_container : AbilityContainer
+@export var offhand_weapon_ability_container : AbilityContainer
+
 
 var current_weapon_slot : WeaponSlot
 
@@ -19,6 +22,8 @@ func _ready() -> void:
 	elif owner.has_method("get_actor"):
 		actor = owner.get_actor()
 	current_weapon_slot = main_weapon_slot
+	#main_weapon_slot.equipment_equipped.connect(_on_main_weapon_equipped)
+	#offhand_weapon_slot.equipment_equipped.connect(_on_off_weapon_equipped)
 	pass
 
 
@@ -52,4 +57,20 @@ func switch_weapon():
 		current_weapon_slot = main_weapon_slot
 		weapon_switched.emit(main_weapon_slot)
 		pass
+	pass
+
+func _on_main_weapon_equipped(equipment : Equipment):
+	main_weapon_ability_container.ability = (equipment as Weapon).weapon_ability
+	pass
+
+func _on_main_weapon_unequipped(equipment : Equipment):
+	main_weapon_ability_container.ability = null
+	pass
+
+func _on_off_weapon_equipped(equipment : Equipment):
+	offhand_weapon_ability_container.ability = (equipment as Weapon).weapon_ability
+	pass
+
+func _on_off_weapon_unequipped(equipment : Equipment):
+	offhand_weapon_ability_container.ability = null
 	pass

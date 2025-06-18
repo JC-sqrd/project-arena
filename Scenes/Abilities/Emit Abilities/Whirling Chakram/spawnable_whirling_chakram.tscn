@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbcumdencdqr7"]
+
+[ext_resource type="Script" uid="uid://d1xavjy2kbus2" path="res://Scripts/Ability System/Spawnables/AreaEnterHit.gd" id="1_41xni"]
+[ext_resource type="Script" uid="uid://bg43jxy7gyts0" path="res://Scripts/Ability System/Spawnables/SpawnableEnterFilter/SpawnableEnterFilter.gd" id="2_db7ri"]
+[ext_resource type="Texture2D" uid="uid://cn1hgcl86qar2" path="res://Sprites/Weapons/Chakram/Chakram.png" id="2_t8t16"]
+[ext_resource type="Script" uid="uid://dgj2vr1or4j86" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/SpawnableOrbitBehavior.gd" id="3_sp3y6"]
+
+[sub_resource type="Resource" id="Resource_xpyy8"]
+script = ExtResource("2_db7ri")
+metadata/_custom_type_script = "uid://bg43jxy7gyts0"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sp3y6"]
+radius = 50.0
+
+[node name="SpawnableWhirlingChakram" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_41xni")
+windup_time = 0.05
+lifetime = 3.0
+time_active = 3.0
+filter = SubResource("Resource_xpyy8")
+metadata/_custom_type_script = "uid://d1xavjy2kbus2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sp3y6")
+
+[node name="Chakram" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_t8t16")
+
+[node name="SpawnableOrbitBehavior" type="Node" parent="." node_paths=PackedStringArray("spawnable")]
+script = ExtResource("3_sp3y6")
+angular_speed = 180.0
+spawnable = NodePath("..")
+metadata/_custom_type_script = "uid://dgj2vr1or4j86"

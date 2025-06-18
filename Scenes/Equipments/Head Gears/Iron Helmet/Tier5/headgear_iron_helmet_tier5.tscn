@@ -2,23 +2,23 @@
 
 [ext_resource type="Script" uid="uid://dnjhdyhsrd60y" path="res://Scripts/Combat/Equipment/HeadGear/HeadGear.gd" id="1_j6spn"]
 [ext_resource type="Texture2D" uid="uid://3ckkqiqcpgt" path="res://Placeholders/Icons/Icon.1_05.png" id="2_qkn84"]
-[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentLevelManager/EquipmentLevelManager.gd" id="3_q2irn"]
+[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierManager.gd" id="3_q2irn"]
 [ext_resource type="Script" uid="uid://bjpxplndvkee" path="res://Scripts/StatSystem/Stats/EquipmentBonusStat.gd" id="4_npphv"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_ewght"]
 
-[node name="IronHelmetTier5" type="Node2D" node_paths=PackedStringArray("level_manager")]
+[node name="IronHelmetTier5" type="Node2D" node_paths=PackedStringArray("tier_manager")]
 script = ExtResource("1_j6spn")
 equipment_name = "Iron Helmet"
 type = 1
 tier = 4
-level_manager = NodePath("EquipmentLevelManager")
+tier_manager = NodePath("EquipmentTierManager")
 string_id = "iron_helmet"
 equipment_icon = ExtResource("2_qkn84")
 buy_cost = 350.0
 sell_value = 80.0
 metadata/_custom_type_script = "uid://dnjhdyhsrd60y"
 
-[node name="EquipmentLevelManager" type="Node" parent="."]
+[node name="EquipmentTierManager" type="Node" parent="."]
 script = ExtResource("3_q2irn")
 metadata/_custom_type_script = "uid://0tj10r8qa8qr"
 

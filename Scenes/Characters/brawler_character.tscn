@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cggb2x36mslpl"]
+[gd_scene load_steps=12 format=3 uid="uid://cggb2x36mslpl"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_g348i"]
 [ext_resource type="Script" uid="uid://b74u7eflax8b2" path="res://Scripts/Ability System/PassiveAbility/GainDecayingStatOnHit.gd" id="2_3yh4f"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://df35xeepp7qfx" path="res://Scenes/Weapons/Fire Grimoire/Tier1/weapon_fire_grimoire.tscn" id="6_3yh4f"]
 [ext_resource type="PackedScene" uid="uid://od3lf463dx1c" path="res://Scenes/Abilities/Emit Abilities/SwordSlash/sword_slash_emit.tscn" id="6_mtotw"]
 [ext_resource type="PackedScene" uid="uid://cacqqobo0qx73" path="res://Scenes/Abilities/AbilityTrees/LungeStrike/ability_lunge_strike.tscn" id="7_cxhod"]
+[ext_resource type="PackedScene" uid="uid://br6km26u30bs6" path="res://Scenes/Weapons/Chakram/weapon_chakram.tscn" id="7_ub57k"]
 
 [node name="BrawlerCharacter" instance=ExtResource("1_g348i")]
 
@@ -23,6 +24,8 @@ equipment_icon = ExtResource("4_g348i")
 [node name="FireGrimoire" parent="EquipmentInventory" index="2" instance=ExtResource("6_3yh4f")]
 
 [node name="FireGrimoire2" parent="EquipmentInventory" index="3" instance=ExtResource("6_3yh4f")]
+
+[node name="WeaponChakram" parent="EquipmentInventory" index="4" instance=ExtResource("7_ub57k")]
 
 [node name="PassiveAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("GainDecayingStrengthOnHit")
@@ -42,12 +45,8 @@ metadata/_custom_type_script = "uid://b74u7eflax8b2"
 ability = NodePath("SwordSlashEmit")
 
 [node name="SwordSlashEmit" parent="InnateActiveAbility" index="1" instance=ExtResource("6_mtotw")]
-ability_count = null
-cast_mode = null
 start_cooldown_on = 1
 ability_name = "Sword Slash"
-ability_description = null
-ability_details = null
 
 [node name="UtilityAbilityContainer" parent="." index="5" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityLungeStrike")
@@ -75,7 +74,7 @@ cooldown = 4.0
 ability_description = null
 ability_details = null
 
-[node name="WeaponSlot" parent="." index="7" node_paths=PackedStringArray("equipment")]
+[node name="WeaponSlot" parent="." index="9" node_paths=PackedStringArray("equipment")]
 equipment = NodePath("WeaponPosition/SwiftSword")
 
 [node name="WeaponPosition" parent="WeaponSlot" index="1"]
@@ -84,7 +83,7 @@ position = Vector2(17, 0)
 [node name="SwiftSword" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("3_3yh4f")]
 position = Vector2(-17, -9.00001)
 
-[node name="OffhandWeaponSlot" parent="." index="8"]
+[node name="OffhandWeaponSlot" parent="." index="10"]
 position = Vector2(0, 9)
 
 [node name="WeaponPosition" parent="OffhandWeaponSlot" index="0"]
@@ -96,10 +95,7 @@ stat_value = 100.0
 [node name="MaxHealth" parent="Stats" index="12"]
 stat_value = 40.0
 
-[node name="Gold" parent="Stats" index="33"]
-stat_value = 1e+11
-
-[node name="EntityHitParticle" parent="." index="30" node_paths=PackedStringArray("hit_particle")]
+[node name="EntityHitParticle" parent="." index="32" node_paths=PackedStringArray("hit_particle")]
 hit_particle = NodePath("../EnemyHitParticle")
 
 [editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]

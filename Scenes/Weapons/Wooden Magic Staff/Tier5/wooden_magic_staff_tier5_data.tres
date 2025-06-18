@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EquipmentTierData" load_steps=3 format=3 uid="uid://b6o5bjvm4wag1"]
+
+[ext_resource type="PackedScene" uid="uid://cd1u8v4fotbct" path="res://Scenes/Weapons/Wooden Magic Staff/Tier5/weapon_wooden_magic_tier5_staff.tscn" id="1_747lq"]
+[ext_resource type="Script" uid="uid://dgmjfaome3jv5" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierData.gd" id="1_o17ay"]
+
+[resource]
+script = ExtResource("1_o17ay")
+equipment_scene = ExtResource("1_747lq")
+metadata/_custom_type_script = "uid://dgmjfaome3jv5"

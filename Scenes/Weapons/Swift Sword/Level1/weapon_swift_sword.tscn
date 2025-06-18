@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bewmy64fdg3fd" path="res://Sprites/Weapons/Swift Sword/Swift Sword Tier 1 Icon.png" id="3_lgo86"]
 [ext_resource type="Script" uid="uid://cmdw2c71721x0" path="res://Scripts/Combat/Animation/AttackAnimation.gd" id="4_bs7ii"]
 [ext_resource type="Script" uid="uid://nke8ejxjdu4s" path="res://Scripts/StatSystem/Stats/AttackSpeedStat.gd" id="4_kenp3"]
-[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentLevelManager/EquipmentLevelManager.gd" id="4_lgo86"]
+[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierManager.gd" id="4_lgo86"]
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="4_wop2k"]
 [ext_resource type="Resource" uid="uid://clt4djbej2fob" path="res://Scenes/Weapons/Swift Sword/Level2/swift_sword_lvl2_data.tres" id="5_8s50r"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="5_580b7"]
@@ -177,7 +177,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="SwiftSword" type="Area2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "sockets", "level_manager")]
+[node name="SwiftSword" type="Area2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "sockets", "tier_manager")]
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_5d1jb")
@@ -189,11 +189,11 @@ weapon_ability = NodePath("WindSlashAbility")
 hit_listener = NodePath("HitListener")
 sockets = [NodePath("WeaponSocket")]
 equipment_name = "Swift Sword"
-level_manager = NodePath("EquipmentLevelManager")
+tier_manager = NodePath("EquipmentTierManager")
 string_id = "swift_sword"
 equipment_icon = ExtResource("3_lgo86")
 
-[node name="EquipmentLevelManager" type="Node" parent="."]
+[node name="EquipmentTierManager" type="Node" parent="."]
 script = ExtResource("4_lgo86")
 next_tier_data = ExtResource("5_8s50r")
 metadata/_custom_type_script = "uid://0tj10r8qa8qr"

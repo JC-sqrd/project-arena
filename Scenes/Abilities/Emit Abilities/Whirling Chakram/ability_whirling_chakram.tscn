@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://c42ua48l5bb27"]
+
+[ext_resource type="Script" uid="uid://42qvy4m6xprb" path="res://Scripts/Ability System/EmitAbility.gd" id="1_qid3k"]
+[ext_resource type="PackedScene" uid="uid://c3cvt2uhjhjhq" path="res://Scenes/Abilities/Emit Abilities/Whirling Chakram/spawnable_chakram_cyclone.tscn" id="2_f1ea2"]
+[ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_ikpuj"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="4_f1ea2"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="5_cq37r"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="6_1vthi"]
+[ext_resource type="Script" uid="uid://dsmtvuccs0v2m" path="res://Scripts/Ability System/AbilityBehavior/AllowCastWhileActive.gd" id="7_1vthi"]
+[ext_resource type="Script" uid="uid://10mik3j8w4cp" path="res://Scripts/Ability System/AbilityBehavior/AllowAttackWhileActive.gd" id="8_df1c2"]
+
+[sub_resource type="Resource" id="Resource_4xetk"]
+script = ExtResource("3_ikpuj")
+stat_name = "current_mana"
+required_value = 10.0
+metadata/_custom_type_script = "uid://tuvjl40jf0pm"
+
+[node name="AbilityWhirlingChakram" type="Node2D" node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("1_qid3k")
+emited_object = ExtResource("2_f1ea2")
+hit_listener = NodePath("HitListener")
+required_stat = SubResource("Resource_4xetk")
+cast_time = 0.1
+cooldown = 8.0
+metadata/_custom_type_script = "uid://42qvy4m6xprb"
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("4_f1ea2")
+metadata/_custom_type_script = "uid://dm3uuggj1g47y"
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("5_cq37r")
+damage_stat = NodePath("Damage")
+metadata/_custom_type_script = "uid://c8sj8b1npavnd"
+
+[node name="Damage" type="Node" parent="HitListener/DamageEffect"]
+script = ExtResource("6_1vthi")
+stat_value = 10.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="AllowCastWhileActive" type="Node" parent="."]
+script = ExtResource("7_1vthi")
+metadata/_custom_type_script = "uid://dsmtvuccs0v2m"
+
+[node name="AllowAttackWhileActive" type="Node" parent="."]
+script = ExtResource("8_df1c2")
+metadata/_custom_type_script = "uid://10mik3j8w4cp"

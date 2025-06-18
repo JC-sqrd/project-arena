@@ -1,0 +1,323 @@
+[gd_scene load_steps=42 format=3 uid="uid://b3q123cav7pby"]
+
+[ext_resource type="Script" uid="uid://d3fin4411ww46" path="res://Scripts/Combat/ProjectileWeapons/ProjectileWeapon.gd" id="1_1x8k1"]
+[ext_resource type="PackedScene" uid="uid://coi8i25buuakq" path="res://Scenes/Weapons/Wooden Magic Staff/wooden_magic_staff_projectile.tscn" id="2_hfvpb"]
+[ext_resource type="Texture2D" uid="uid://c2cwami2vb0tv" path="res://Sprites/Weapons/Wooden Magic Staff/Wooden Magic Staff.png" id="3_32jul"]
+[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierManager.gd" id="4_k223q"]
+[ext_resource type="Texture2D" uid="uid://ckxqjh3rkj7u8" path="res://Sprites/Weapons/Wooden Magic Staff/Wooden Magic Staff Cast.png" id="5_8l2kt"]
+[ext_resource type="Resource" uid="uid://b6o5bjvm4wag1" path="res://Scenes/Weapons/Wooden Magic Staff/Tier5/wooden_magic_staff_tier5_data.tres" id="5_pdigw"]
+[ext_resource type="Script" uid="uid://cp6un5w7sjul2" path="res://Scripts/Ability System/AbilityAnimation/WeaponAbilityAnimatedSprite2D.gd" id="6_2da3h"]
+[ext_resource type="PackedScene" uid="uid://ctpttqx5poej8" path="res://Scenes/Components/weapon_attack_animation_component.tscn" id="7_qb8e8"]
+[ext_resource type="Texture2D" uid="uid://cm66t3dd4u2os" path="res://Sprites/Weapons/Wooden Magic Staff/Wooden Magic Staff Attack.png" id="8_8ygea"]
+[ext_resource type="Script" uid="uid://tsoqg0it4kc5" path="res://Scripts/Combat/Equipment/Weapon/WeaponFlipRotation.gd" id="9_jhob2"]
+[ext_resource type="Texture2D" uid="uid://df4m4mdv0djjw" path="res://Sprites/Weapons/Wooden Magic Staff/Wooden Magic Staff Muzzle Fire.png" id="10_scs1l"]
+[ext_resource type="Script" uid="uid://v5algp5kfkvg" path="res://Scripts/Combat/ProjectileWeapons/WeaponMuzzleParticles2D.gd" id="11_tat61"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="12_rkanl"]
+[ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="13_ufga7"]
+[ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="14_l3yra"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="15_nixyq"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="16_aacvp"]
+[ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="17_sue6g"]
+[ext_resource type="PackedScene" uid="uid://cjfrn2ki8dsdr" path="res://Scenes/Abilities/Homing Spawn Abilities/Magic Missile/ability_magic_missile.tscn" id="18_ijik8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqela"]
+atlas = ExtResource("5_8l2kt")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qhmh"]
+atlas = ExtResource("5_8l2kt")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85l1t"]
+atlas = ExtResource("5_8l2kt")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff5bq"]
+atlas = ExtResource("5_8l2kt")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h7d5"]
+atlas = ExtResource("5_8l2kt")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_naa5q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqela")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qhmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85l1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff5bq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6h7d5")
+}],
+"loop": false,
+"name": &"cast_animation",
+"speed": 12.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_305on"]
+atlas = ExtResource("8_8ygea")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxfuv"]
+atlas = ExtResource("8_8ygea")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pt44s"]
+atlas = ExtResource("8_8ygea")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p34sm"]
+atlas = ExtResource("8_8ygea")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6q5oc"]
+atlas = ExtResource("8_8ygea")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22s86"]
+atlas = ExtResource("8_8ygea")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifu1m"]
+atlas = ExtResource("8_8ygea")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p34sm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_305on")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxfuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pt44s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p34sm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6q5oc")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6q5oc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22s86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifu1m")
+}],
+"loop": false,
+"name": &"windup",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_naa5q"]
+atlas = ExtResource("10_scs1l")
+region = Rect2(0, 0, 93, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2plj1"]
+atlas = ExtResource("10_scs1l")
+region = Rect2(93, 0, 93, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im47s"]
+atlas = ExtResource("10_scs1l")
+region = Rect2(186, 0, 93, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb2i3"]
+atlas = ExtResource("10_scs1l")
+region = Rect2(279, 0, 93, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nhjg"]
+atlas = ExtResource("10_scs1l")
+region = Rect2(372, 0, 93, 93)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xtggq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_naa5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2plj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im47s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kb2i3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nhjg")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1qhmh"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_85l1t"]
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+
+[node name="WeaponWoodenMagicStaffTier4" type="Node2D" node_paths=PackedStringArray("spawn_node", "attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "tier_manager")]
+script = ExtResource("1_1x8k1")
+projectile = ExtResource("2_hfvpb")
+speed = 1200.0
+spawn_node = NodePath("Marker2D")
+max_distance = 1000.0
+attack_damage = NodePath("Damage")
+attack_speed_stat = NodePath("AttackSpeed")
+attack_windup_time = 0.36
+weapon_ability = NodePath("AbilityMagicMissile")
+hit_listener = NodePath("HitListener")
+equipment_name = "Wooden Magic Staff"
+tier = 3
+tier_manager = NodePath("EquipmentTierManager")
+string_id = "wooden_magic_staff"
+equipment_icon = ExtResource("3_32jul")
+metadata/_custom_type_script = "uid://d3fin4411ww46"
+
+[node name="EquipmentTierManager" type="Node" parent="."]
+script = ExtResource("4_k223q")
+next_tier_data = ExtResource("5_pdigw")
+metadata/_custom_type_script = "uid://0tj10r8qa8qr"
+
+[node name="WeaponAbilityAnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("weapon_anim_sprite", "ability", "weapon")]
+visible = false
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_naa5q")
+animation = &"cast_animation"
+frame = 4
+frame_progress = 1.0
+script = ExtResource("6_2da3h")
+weapon_anim_sprite = NodePath("../WeaponAttackAnimationComponent")
+ability = NodePath("../AbilityMagicMissile")
+weapon = NodePath("..")
+weapon_sprite_visible_on = 3
+metadata/_custom_type_script = "uid://cp6un5w7sjul2"
+
+[node name="WeaponAttackAnimationComponent" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("7_qb8e8")]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_p34sm")
+animation = &"windup"
+weapon = NodePath("..")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(17, -19)
+
+[node name="WeaponFlipRotation" type="Node" parent="Marker2D"]
+script = ExtResource("9_jhob2")
+metadata/_custom_type_script = "uid://tsoqg0it4kc5"
+
+[node name="WeaponAttackAnimationComponent2" parent="Marker2D" node_paths=PackedStringArray("weapon") instance=ExtResource("7_qb8e8")]
+visible = false
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_xtggq")
+animation = &"attack"
+frame = 5
+frame_progress = 1.0
+weapon = NodePath("../..")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Marker2D"]
+material = SubResource("CanvasItemMaterial_1qhmh")
+emitting = false
+amount = 1
+texture = ExtResource("10_scs1l")
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_85l1t")
+script = ExtResource("11_tat61")
+
+[node name="Damage" type="Node" parent="."]
+script = ExtResource("12_rkanl")
+stat_value = 10.0
+can_be_negative = false
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatAdder" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("13_ufga7")
+stat = NodePath("..")
+scale_with_stat_id = "magic"
+ratio = 0.2
+metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+
+[node name="GetActorStatMult" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("14_l3yra")
+stat = NodePath("..")
+scale_with_stat_id = "magic_damage_mult"
+metadata/_custom_type_script = "uid://c4n03mihb0axg"
+
+[node name="AttackSpeed" type="Node" parent="."]
+script = ExtResource("12_rkanl")
+stat_value = 1.0
+can_be_negative = false
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatMult" type="Node" parent="AttackSpeed" node_paths=PackedStringArray("stat")]
+script = ExtResource("14_l3yra")
+stat = NodePath("..")
+scale_with_stat_id = "attack_speed_mult"
+ratio = 1.1
+metadata/_custom_type_script = "uid://c4n03mihb0axg"
+
+[node name="HitListener" type="Node" parent="."]
+script = ExtResource("15_nixyq")
+metadata/_custom_type_script = "uid://dm3uuggj1g47y"
+
+[node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("16_aacvp")
+damage_stat = NodePath("../../Damage")
+damage_type = 1
+metadata/_custom_type_script = "uid://c8sj8b1npavnd"
+
+[node name="OnHitEffect" type="Node" parent="HitListener"]
+script = ExtResource("17_sue6g")
+on_hit_chance = 0.75
+metadata/_custom_type_script = "uid://ckgh7mgba1eo4"
+
+[node name="AbilityMagicMissile" parent="." instance=ExtResource("18_ijik8")]
+max_targets = 9

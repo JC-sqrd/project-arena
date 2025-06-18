@@ -19,12 +19,13 @@ func _ready():
 			queue_free()
 	)
 
-
-
+func _enter_tree() -> void:
+	child_entered_tree.connect(_on_child_entered_tree)
 
 func _on_child_entered_tree(node):
 	if node is Spawnable:
 		#node.rotate(rotation)
 		node.source = source
+		node.actor = actor
 		node.collision_mask = collision_mask
 	pass # Replace with function body.

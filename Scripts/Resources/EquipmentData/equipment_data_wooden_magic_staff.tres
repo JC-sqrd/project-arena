@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EquipmentData" load_steps=4 format=3 uid="uid://cwgy76ee5nubn"]
 
 [ext_resource type="Texture2D" uid="uid://c2cwami2vb0tv" path="res://Sprites/Weapons/Wooden Magic Staff/Wooden Magic Staff.png" id="1_5beo3"]
-[ext_resource type="PackedScene" uid="uid://bsb66ckahw7x" path="res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn" id="1_281gv"]
+[ext_resource type="PackedScene" uid="uid://bsb66ckahw7x" path="res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff_tier1.tscn" id="1_281gv"]
 [ext_resource type="Script" uid="uid://7g2i8l80ndkw" path="res://Scripts/Resources/EquipmentData/EquipmentData.gd" id="1_t5ybh"]
 
 [resource]

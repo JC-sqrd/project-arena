@@ -35,6 +35,7 @@ var can_cast : bool = true
 var cooling_down : bool = false
 var cast_data : Dictionary
 var get_cast_position : bool = false
+var enabled : bool = false
 
 var _cdr : Stat # Cooldown reduction
 
@@ -78,6 +79,16 @@ func _ready():
 	if actor != null:
 		actor.ready.connect(_on_actor_ready)
 	ready.connect(_on_actor_ready)
+
+func enable_ability(actor : Entity):
+	self.actor = actor
+	if actor.stat_manager != null:
+		_cdr = actor.stat_manager.get_stat("cooldown_reduction")
+	pass
+
+func disable_ability():
+	actor = null
+	pass
 
 func _on_ready():
 	if actor != null:

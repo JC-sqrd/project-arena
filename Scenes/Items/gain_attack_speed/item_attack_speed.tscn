@@ -11,7 +11,7 @@
 script = ExtResource("1_vf1rm")
 item_name = "Quickstrike Dagger"
 item_icon = ExtResource("2_qyihj")
-string_id = "attack_speed"
+string_id = "gain_agility"
 item_detail = "Gain 10%(+10% each stack) attack speed"
 buy_cost = 45.0
 sell_value = 8.0
@@ -30,6 +30,11 @@ script = ExtResource("5_esuro")
 a_stat = NodePath("../BonusAttackSpeed")
 b_stat = NodePath("../../Stack")
 
+[node name="ItemTradeOffStat" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
+script = ExtResource("2_dijkr")
+stat_name = "magic"
+bonus_value = NodePath("../TradeOffMagicMultStack")
+
 [node name="Stack" type="Node" parent="."]
 script = ExtResource("4_7rd7q")
 
@@ -43,8 +48,19 @@ script = ExtResource("4_7rd7q")
 stat_value = 5.0
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
+[node name="TradeOffMagic" type="Node" parent="."]
+script = ExtResource("4_7rd7q")
+stat_value = -2.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
 [node name="BonusAgilityMultStack" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
 script = ExtResource("5_esuro")
 a_stat = NodePath("../BonusAgility")
+b_stat = NodePath("../Stack")
+metadata/_custom_type_script = "uid://d35h5o2rfotvj"
+
+[node name="TradeOffMagicMultStack" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("5_esuro")
+a_stat = NodePath("../TradeOffMagic")
 b_stat = NodePath("../Stack")
 metadata/_custom_type_script = "uid://d35h5o2rfotvj"

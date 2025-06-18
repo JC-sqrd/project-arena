@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="EquipmentLevelData" load_steps=3 format=3 uid="uid://cj1h38f5p4iij"]
+[gd_resource type="Resource" script_class="EquipmentTierData" load_steps=3 format=3 uid="uid://cj1h38f5p4iij"]
 
 [ext_resource type="PackedScene" uid="uid://dmmiedqxdamsh" path="res://Scenes/Weapons/Swift Sword/Level3/weapon_swift_sword_lvl3.tscn" id="1_ndtal"]
-[ext_resource type="Script" uid="uid://dgmjfaome3jv5" path="res://Scripts/Combat/Equipment/EquipmentLevelManager/EquipmentLevelData.gd" id="2_u2qar"]
+[ext_resource type="Script" uid="uid://dgmjfaome3jv5" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierData.gd" id="2_u2qar"]
 
 [resource]
 script = ExtResource("2_u2qar")

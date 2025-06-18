@@ -5,13 +5,13 @@ extends PassiveAbility
 @export var hit_listener : HitListener
 
 
-func enable_passive_ability(actor : Entity):
+func enable_ability(actor : Entity):
 	super(actor)
 	self.actor = actor as PlayerCharacter
 	(self.actor as PlayerCharacter).utility_ability.ability.ability_casted.connect(_on_util_casted)
 	pass
 
-func disable_passive_ability():
+func disable_ability():
 	super()
 	(self.actor as PlayerCharacter).utility_ability.ability.ability_casted.disconnect(_on_util_casted)
 	pass

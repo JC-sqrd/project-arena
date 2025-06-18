@@ -14,11 +14,11 @@ func _ready() -> void:
 
 func _on_equipment_equipped(actor : Entity):
 	passive_ability.actor = equipment.actor
-	passive_ability.enable_passive_ability(equipment.actor)
+	passive_ability.enable_ability(equipment.actor)
 	pass
 
 func _on_equipment_unequipped():
-	passive_ability.disable_passive_ability()
+	passive_ability.disable_ability()
 	passive_ability.actor = null
 	pass
 	

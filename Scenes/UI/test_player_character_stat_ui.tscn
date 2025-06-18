@@ -115,7 +115,6 @@ stat_display = 2
 
 [node name="COOLDOWN REDUCTION" parent="StatsMarginContainer2/PanelContainer/MarginContainer/StatUIContainer" instance=ExtResource("10_dd3x1")]
 layout_mode = 2
-percentage = true
 stat_name = "CDR"
 stat_id = "cooldown_reduction"
 stat_display = 2

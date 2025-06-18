@@ -37,6 +37,7 @@ func _on_body_exited(body : Node2D):
 	pass
 
 func _get_actor_from_source() -> Entity:
+	print("SPAWNABLE : " + str(name))
 	return source.actor
 	pass
 

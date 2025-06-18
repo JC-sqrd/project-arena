@@ -11,7 +11,7 @@
 script = ExtResource("1_sy2j0")
 item_name = "Lightning in a Bottle"
 item_icon = ExtResource("2_1fxcn")
-string_id = "gain_magic_damage"
+string_id = "gain_magic"
 item_detail = "Gain [color=green]1[/color] [color=cyan]magic damage[/color](+1 for each stack)"
 buy_cost = 50.0
 sell_value = 10.0
@@ -29,6 +29,11 @@ script = ExtResource("2_3duwr")
 stat_name = "magic"
 bonus_value = NodePath("../Stackx5")
 
+[node name="TradeOffStat" type="Node" parent="." node_paths=PackedStringArray("bonus_value")]
+script = ExtResource("2_3duwr")
+stat_name = "strength"
+bonus_value = NodePath("../Stackx-2")
+
 [node name="Stackx5" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
 script = ExtResource("6_0ypr1")
 a_stat = NodePath("../Stack")
@@ -37,3 +42,12 @@ b_stat = NodePath("5")
 [node name="5" type="Node" parent="Stackx5"]
 script = ExtResource("4_0t5a2")
 stat_value = 5.0
+
+[node name="Stackx-2" type="Node" parent="." node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("6_0ypr1")
+a_stat = NodePath("../Stack")
+b_stat = NodePath("-2")
+
+[node name="-2" type="Node" parent="Stackx-2"]
+script = ExtResource("4_0t5a2")
+stat_value = -2.0
