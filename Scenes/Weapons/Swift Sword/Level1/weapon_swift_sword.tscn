@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dp288eneestlt"]
+[gd_scene load_steps=46 format=3 uid="uid://dp288eneestlt"]
 
 [ext_resource type="Script" uid="uid://df3mwd5sdgedk" path="res://Scripts/Combat/MeleeWeapons/MeleeWeapon.gd" id="1_5d1jb"]
 [ext_resource type="Texture2D" uid="uid://065wghtxeh6j" path="res://Sprites/Weapons/Swift Sword/SwiftSwordAttack.png" id="2_15j33"]
@@ -10,8 +10,13 @@
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="4_wop2k"]
 [ext_resource type="Resource" uid="uid://clt4djbej2fob" path="res://Scenes/Weapons/Swift Sword/Level2/swift_sword_lvl2_data.tres" id="5_8s50r"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="5_580b7"]
+[ext_resource type="Script" uid="uid://boi71j6dy2kn6" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierNode.gd" id="6_8s50r"]
 [ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="7_d0kcu"]
+[ext_resource type="Script" uid="uid://dkb4p6s36rwxr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierModifications/ModifyEquipmentStat.gd" id="7_y544v"]
+[ext_resource type="Script" uid="uid://cdhvyoc4o63cs" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierModifications/ModifyWeaponAbility.gd" id="8_ovpvs"]
 [ext_resource type="Texture2D" uid="uid://rtajl1o12fw4" path="res://Sprites/Weapons/Swift Sword/SwiftSwordWindSlash.png" id="9_fmc6s"]
+[ext_resource type="PackedScene" uid="uid://od3lf463dx1c" path="res://Scenes/Abilities/Emit Abilities/SwordSlash/sword_slash_emit.tscn" id="9_qrgsq"]
+[ext_resource type="Script" uid="uid://dwht3ms2ld8qy" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierModifications/ModifyEquipmentGetActorStatAdder.gd" id="10_qrgsq"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="15_y2m5j"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="16_02g2i"]
 [ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="17_k3yuu"]
@@ -193,10 +198,50 @@ tier_manager = NodePath("EquipmentTierManager")
 string_id = "swift_sword"
 equipment_icon = ExtResource("3_lgo86")
 
-[node name="EquipmentTierManager" type="Node" parent="."]
+[node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
 script = ExtResource("4_lgo86")
 next_tier_data = ExtResource("5_8s50r")
+next_tier_node = NodePath("EquipmentTierNode2")
 metadata/_custom_type_script = "uid://0tj10r8qa8qr"
+
+[node name="EquipmentTierNode2" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("6_8s50r")
+next_tier_node = NodePath("../EquipmentTierNode3")
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode2" node_paths=PackedStringArray("stat")]
+script = ExtResource("7_y544v")
+stat = NodePath("../../../Damage")
+new_stat_value = 99.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="ModifyWeaponAbility" type="Node" parent="EquipmentTierManager/EquipmentTierNode2"]
+script = ExtResource("8_ovpvs")
+new_ability_scene = ExtResource("9_qrgsq")
+metadata/_custom_type_script = "uid://cdhvyoc4o63cs"
+
+[node name="ModifyEquipmentGetActorStatAdder" type="Node" parent="EquipmentTierManager/EquipmentTierNode2" node_paths=PackedStringArray("actor_stat_adder")]
+script = ExtResource("10_qrgsq")
+actor_stat_adder = NodePath("../../../Damage/GetActorStatAdder")
+new_ratio = 1.0
+metadata/_custom_type_script = "uid://dwht3ms2ld8qy"
+
+[node name="EquipmentTierNode3" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("6_8s50r")
+tier = 2
+next_tier_node = NodePath("../EquipmentTierNode4")
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="EquipmentTierNode4" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("6_8s50r")
+tier = 3
+next_tier_node = NodePath("../EquipmentTierNode5")
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="EquipmentTierNode5" type="Node" parent="EquipmentTierManager"]
+script = ExtResource("6_8s50r")
+tier = 4
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
 
 [node name="Damage" type="Node" parent="."]
 script = ExtResource("18_3y54e")

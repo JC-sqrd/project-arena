@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cggb2x36mslpl"]
+[gd_scene load_steps=13 format=3 uid="uid://cggb2x36mslpl"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_g348i"]
 [ext_resource type="Script" uid="uid://b74u7eflax8b2" path="res://Scripts/Ability System/PassiveAbility/GainDecayingStatOnHit.gd" id="2_3yh4f"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://od3lf463dx1c" path="res://Scenes/Abilities/Emit Abilities/SwordSlash/sword_slash_emit.tscn" id="6_mtotw"]
 [ext_resource type="PackedScene" uid="uid://cacqqobo0qx73" path="res://Scenes/Abilities/AbilityTrees/LungeStrike/ability_lunge_strike.tscn" id="7_cxhod"]
 [ext_resource type="PackedScene" uid="uid://br6km26u30bs6" path="res://Scenes/Weapons/Chakram/weapon_chakram.tscn" id="7_ub57k"]
+[ext_resource type="PackedScene" uid="uid://4m3bpkty0d23" path="res://Scenes/Items/flying_dagger/item_flying_dagger.tscn" id="12_1t5iw"]
 
 [node name="BrawlerCharacter" instance=ExtResource("1_g348i")]
 
@@ -26,6 +27,12 @@ equipment_icon = ExtResource("4_g348i")
 [node name="FireGrimoire2" parent="EquipmentInventory" index="3" instance=ExtResource("6_3yh4f")]
 
 [node name="WeaponChakram" parent="EquipmentInventory" index="4" instance=ExtResource("7_ub57k")]
+
+[node name="SwiftSword" parent="EquipmentInventory" index="5" instance=ExtResource("3_3yh4f")]
+
+[node name="SwiftSword2" parent="EquipmentInventory" index="6" instance=ExtResource("3_3yh4f")]
+
+[node name="SwiftSword3" parent="EquipmentInventory" index="7" instance=ExtResource("3_3yh4f")]
 
 [node name="PassiveAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("GainDecayingStrengthOnHit")
@@ -51,28 +58,8 @@ ability_name = "Sword Slash"
 [node name="UtilityAbilityContainer" parent="." index="5" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityLungeStrike")
 
-[node name="DashAbility" parent="UtilityAbilityContainer" index="1"]
-dash_speed = null
-direction_input = null
-can_cast_while_dashing = null
-debug_visual = null
-ability_count = null
-cast_mode = null
-start_cooldown_on = null
-cast_time = null
-ability_name = null
-ability_description = null
-ability_details = null
-
 [node name="AbilityLungeStrike" parent="UtilityAbilityContainer" index="2" instance=ExtResource("7_cxhod")]
-ability_count = null
-cast_mode = null
-start_cooldown_on = null
-cast_time = null
-ability_name = null
 cooldown = 4.0
-ability_description = null
-ability_details = null
 
 [node name="WeaponSlot" parent="." index="9" node_paths=PackedStringArray("equipment")]
 equipment = NodePath("WeaponPosition/SwiftSword")
@@ -89,11 +76,16 @@ position = Vector2(0, 9)
 [node name="WeaponPosition" parent="OffhandWeaponSlot" index="0"]
 position = Vector2(17, 0)
 
+[node name="ItemFlyingDagger" parent="ItemInventory" index="0" instance=ExtResource("12_1t5iw")]
+
 [node name="Focus" parent="Stats" index="4"]
 stat_value = 100.0
 
 [node name="MaxHealth" parent="Stats" index="12"]
 stat_value = 40.0
+
+[node name="Gold" parent="Stats" index="33"]
+stat_value = 1e+11
 
 [node name="EntityHitParticle" parent="." index="32" node_paths=PackedStringArray("hit_particle")]
 hit_particle = NodePath("../EnemyHitParticle")

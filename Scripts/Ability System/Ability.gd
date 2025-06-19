@@ -60,15 +60,16 @@ signal cooldown_start(cooldown : float)
 signal cooldown_end()
 
 func _enter_tree():
-	if owner is Entity:
-		actor = owner
-	elif owner.has_method("get_actor"):
-		actor = owner.get_actor()
+	#if owner is Entity:
+		#actor = owner
+	#elif owner.has_method("get_actor"):
+		#actor = owner.get_actor()
+	pass
 
 func _ready():
 	if owner is Entity:
 		actor = owner
-	elif owner.has_method("get_actor"):
+	elif owner != null and owner.has_method("get_actor"):
 		actor = owner.get_actor()
 		print("Abiltiy name: " + str(name))
 	for socket in sockets:
@@ -112,7 +113,7 @@ func invoke_ability():
 func get_ability_actor() -> Entity:
 	if owner is Entity:
 		return owner
-	elif owner.has_method("get_actor"):
+	elif owner != null and owner.has_method("get_actor"):
 		await owner.ready
 		return owner.get_actor()
 	else:

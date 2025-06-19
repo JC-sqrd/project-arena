@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EquipmentTierData" load_steps=2 format=3 uid="uid://na777d1iica7"]
+
+[ext_resource type="Script" uid="uid://dgmjfaome3jv5" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierData.gd" id="1_11a1m"]
+
+[resource]
+script = ExtResource("1_11a1m")
+metadata/_custom_type_script = "uid://dgmjfaome3jv5"

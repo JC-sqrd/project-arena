@@ -229,18 +229,23 @@ func try_to_combine_pair(slot : EquipmentInventorySlot):
 		return
 	var new_equipment : Equipment
 	if pair[0].equipment.tier_manager != null:
-		new_equipment = pair[0].equipment.tier_manager.get_next_level_equipment()
+		#new_equipment = pair[0].equipment.tier_manager.get_next_level_equipment()
 		#slot.equipment = new_equipment
+		pair[0].equipment.tier_manager.upgrade_to_next_tier()
+		pair[0].update_equipment_data()
+		equipment_inventory.remove_equipment(pair[1].equipment)
+		pair[1].equipment.queue_free()
+		pair[1].equipment = null
 		print("Equipment leveled up")
 	else:
 		print("Equipment does not have level manager")
-	for _slot in pair:
-		equipment_inventory.remove_equipment(_slot.equipment)
-		_slot.equipment.queue_free()
-		_slot.equipment = null
-		pass
-	if new_equipment != null:
-		equipment_inventory.add_equipment(new_equipment)
+	#for _slot in pair:
+		#equipment_inventory.remove_equipment(_slot.equipment)
+		#_slot.equipment.queue_free()
+		#_slot.equipment = null
+		#pass
+	#if new_equipment != null:
+		#equipment_inventory.add_equipment(new_equipment)
 	pass
 
 func check_duplicate(slot : EquipmentInventorySlot):

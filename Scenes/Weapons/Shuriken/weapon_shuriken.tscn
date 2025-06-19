@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ba77g51rg80ak"]
+[gd_scene load_steps=16 format=3 uid="uid://ba77g51rg80ak"]
 
 [ext_resource type="Script" uid="uid://cme6hu4jnh50c" path="res://Scripts/Combat/ProjectileWeapons/Shuriken.gd" id="1_5olyp"]
 [ext_resource type="PackedScene" uid="uid://bufnlkpdb3bcu" path="res://Scenes/Weapons/Shuriken/shuriken_projectile.tscn" id="2_7kfdi"]
@@ -6,16 +6,20 @@
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="3_5olyp"]
 [ext_resource type="Texture2D" uid="uid://cyngo5gkj10dd" path="res://Sprites/Weapons/Shuriken/Shuriken.png" id="3_cenqv"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="4_7kfdi"]
+[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierManager.gd" id="4_gxml2"]
+[ext_resource type="Script" uid="uid://boi71j6dy2kn6" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierNode.gd" id="5_bk4na"]
 [ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="5_cenqv"]
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="5_xhd5g"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="6_j7fjk"]
+[ext_resource type="Script" uid="uid://dkb4p6s36rwxr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierModifications/ModifyEquipmentStat.gd" id="6_nk2bi"]
 [ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="6_xhd5g"]
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="7_j7fjk"]
 [ext_resource type="PackedScene" uid="uid://dyp7qwg63ge44" path="res://Scenes/Abilities/Spawn Abilities/Giant Shuriken/ability_giant_shuriken.tscn" id="12_j7fjk"]
 
-[node name="WeaponShuriken" type="Node2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener")]
+[node name="WeaponShuriken" type="Node2D" node_paths=PackedStringArray("throw_count", "throw_delay", "attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "tier_manager")]
 script = ExtResource("1_5olyp")
-throw_count = 3
+throw_count = NodePath("ThrowCount")
+throw_delay = NodePath("ThrowDelay")
 projectile = ExtResource("2_7kfdi")
 speed = 800.0
 max_distance = 1000.0
@@ -25,9 +29,95 @@ attack_windup_time = 0.1
 weapon_ability = NodePath("AbilityGiantShuriken")
 hit_listener = NodePath("HitListener")
 equipment_name = "Shuriken"
+tier_manager = NodePath("EquipmentTierManager")
 string_id = "shuriken"
 equipment_icon = ExtResource("3_cenqv")
 metadata/_custom_type_script = "uid://d3fin4411ww46"
+
+[node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("4_gxml2")
+next_tier_node = NodePath("EquipmentTierNode2")
+metadata/_custom_type_script = "uid://0tj10r8qa8qr"
+
+[node name="EquipmentTierNode2" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("5_bk4na")
+next_tier_node = NodePath("../EquipmentTierNode3")
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode2" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_nk2bi")
+stat = NodePath("../../../Damage")
+new_stat_value = 12.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="ModifyEquipmentStat2" type="Node" parent="EquipmentTierManager/EquipmentTierNode2" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_nk2bi")
+stat = NodePath("../../../AttackSpeed")
+new_stat_value = 1.1
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="EquipmentTierNode3" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("5_bk4na")
+tier = 2
+next_tier_node = NodePath("../EquipmentTierNode4")
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode3" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_nk2bi")
+stat = NodePath("../../../Damage")
+new_stat_value = 14.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="ModifyEquipmentStat2" type="Node" parent="EquipmentTierManager/EquipmentTierNode3" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_nk2bi")
+stat = NodePath("../../../AttackSpeed")
+new_stat_value = 1.2
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="EquipmentTierNode4" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("5_bk4na")
+tier = 2
+next_tier_node = NodePath("../EquipmentTierNode5")
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode4" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_nk2bi")
+stat = NodePath("../../../Damage")
+new_stat_value = 16.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="ModifyEquipmentStat2" type="Node" parent="EquipmentTierManager/EquipmentTierNode4" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_nk2bi")
+stat = NodePath("../../../AttackSpeed")
+new_stat_value = 1.3
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="EquipmentTierNode5" type="Node" parent="EquipmentTierManager"]
+script = ExtResource("5_bk4na")
+tier = 4
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode5" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_nk2bi")
+stat = NodePath("../../../Damage")
+new_stat_value = 18.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="ModifyEquipmentStat2" type="Node" parent="EquipmentTierManager/EquipmentTierNode5" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_nk2bi")
+stat = NodePath("../../../AttackSpeed")
+new_stat_value = 1.45
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="ThrowCount" type="Node" parent="."]
+script = ExtResource("4_7kfdi")
+stat_value = 3.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="ThrowDelay" type="Node" parent="."]
+script = ExtResource("4_7kfdi")
+stat_value = 0.1
+metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="Damage" type="Node" parent="."]
 script = ExtResource("4_7kfdi")

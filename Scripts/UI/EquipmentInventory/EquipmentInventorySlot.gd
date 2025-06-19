@@ -56,6 +56,15 @@ func set_equipment(new_equipment : Equipment):
 		tooltip_text = equipment.equipment_name
 	pass
 
+func update_equipment_data():
+	equipment_inventory_slot_icon.clear_equipment()
+	tooltip_text = ""
+	if equipment != null:
+		equipment_inventory_slot_icon.set_equipment(equipment)
+		equipment_icon.texture = equipment.equipment_icon
+		tooltip_text = equipment.equipment_name
+	pass
+
 func set_slot_type(new_slot_type : SlotType):
 	slot_type = new_slot_type
 	pass

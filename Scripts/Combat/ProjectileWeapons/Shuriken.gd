@@ -1,18 +1,20 @@
 extends ProjectileWeapon
 
-@export var throw_count : int = 1
-@export var throw_delay : float = 0.1
+@export var throw_count : Stat 
+@export var throw_delay : Stat 
 @export var shuriken_sprite : Node2D
+
 var throw_counter : float = 0
+var _throw_delay : float = 0.1
 
 func _spawn_projectile():
-	throw_counter = throw_count + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
+	throw_counter = throw_count.stat_derived_value + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
 	while throw_counter >= 1:
 		if shuriken_sprite != null:
 			shuriken_sprite.visible = false
 		spawn_shuriken()
-		print("SHURIKEN DELAY: " + str(minf(0, throw_delay * attack_speed_stat.stat_derived_value)))
-		await get_tree().create_timer(throw_delay, false, true, false).timeout
+		print("SHURIKEN DELAY: " + str(minf(0, throw_delay.stat_derived_value * attack_speed_stat.stat_derived_value)))
+		await get_tree().create_timer(throw_delay.stat_derived_value, false, true, false).timeout
 		if shuriken_sprite != null:
 			shuriken_sprite.visible = true
 		throw_counter -= 1

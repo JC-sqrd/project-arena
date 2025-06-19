@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://di6w2pqliq4ap"]
+
+[ext_resource type="Script" uid="uid://bviaakymd1gy8" path="res://Scripts/Combat/Equipment/Torso/Torso.gd" id="1_5gc7p"]
+[ext_resource type="Texture2D" uid="uid://bnlm0cqbjx8u3" path="res://Placeholders/Icons/Icon.6_94.png" id="2_bmcmg"]
+[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierManager.gd" id="3_0f8jo"]
+[ext_resource type="Resource" uid="uid://bqd4ggxw1d67j" path="res://Scenes/Equipments/Torso/Iron Chestplate/Tier5/iron_chest_plate_tier5_data.tres" id="4_kxihs"]
+[ext_resource type="Script" uid="uid://bjpxplndvkee" path="res://Scripts/StatSystem/Stats/EquipmentBonusStat.gd" id="4_sfew8"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_qi305"]
+
+[node name="TorsoIronChestplateTier4" type="Node2D" node_paths=PackedStringArray("tier_manager")]
+script = ExtResource("1_5gc7p")
+equipment_name = "Iron Chestplate"
+type = 2
+tier_manager = NodePath("EquipmentTierManager")
+string_id = "iron_chestplate"
+equipment_icon = ExtResource("2_bmcmg")
+metadata/_custom_type_script = "uid://bviaakymd1gy8"
+
+[node name="EquipmentTierManager" type="Node" parent="."]
+script = ExtResource("3_0f8jo")
+next_tier_data = ExtResource("4_kxihs")
+metadata/_custom_type_script = "uid://0tj10r8qa8qr"
+
+[node name="EquipmentBonusStat" type="Node" parent="." node_paths=PackedStringArray("equipment", "bonus_value")]
+script = ExtResource("4_sfew8")
+equipment = NodePath("..")
+stat_name = "armor"
+bonus_value = NodePath("Stat")
+metadata/_custom_type_script = "uid://bjpxplndvkee"
+
+[node name="Stat" type="Node" parent="EquipmentBonusStat"]
+script = ExtResource("5_qi305")
+stat_value = 10.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="EquipmentBonusStat2" type="Node" parent="." node_paths=PackedStringArray("equipment", "bonus_value")]
+script = ExtResource("4_sfew8")
+equipment = NodePath("..")
+stat_name = "attack_speed_mult"
+bonus_value = NodePath("Stat")
+metadata/_custom_type_script = "uid://bjpxplndvkee"
+
+[node name="Stat" type="Node" parent="EquipmentBonusStat2"]
+script = ExtResource("5_qi305")
+stat_value = -0.1
+metadata/_custom_type_script = "uid://bgka26pbphks7"

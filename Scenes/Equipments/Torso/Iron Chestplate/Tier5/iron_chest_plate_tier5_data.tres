@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EquipmentTierData" load_steps=3 format=3 uid="uid://bqd4ggxw1d67j"]
+
+[ext_resource type="PackedScene" uid="uid://duhuvjgjlte6q" path="res://Scenes/Equipments/Torso/Iron Chestplate/Tier5/torso_iron_chestplate_tier5.tscn" id="1_efqnk"]
+[ext_resource type="Script" uid="uid://dgmjfaome3jv5" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierData.gd" id="1_rrfen"]
+
+[resource]
+script = ExtResource("1_rrfen")
+equipment_scene = ExtResource("1_efqnk")
+metadata/_custom_type_script = "uid://dgmjfaome3jv5"
