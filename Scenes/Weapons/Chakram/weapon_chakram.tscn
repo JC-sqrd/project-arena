@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://br6km26u30bs6"]
+[gd_scene load_steps=18 format=3 uid="uid://br6km26u30bs6"]
 
 [ext_resource type="Script" uid="uid://bv2yshgehr8nl" path="res://Scripts/Combat/ProjectileWeapons/Chakram.gd" id="1_qlnpl"]
 [ext_resource type="PackedScene" uid="uid://upkphqac5gql" path="res://Scenes/Weapons/Chakram/chakram_projectile.tscn" id="2_b7f46"]
@@ -7,17 +7,20 @@
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="3_b7f46"]
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="4_b7f46"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="4_k1e25"]
+[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierManager.gd" id="4_vwmig"]
+[ext_resource type="Script" uid="uid://boi71j6dy2kn6" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierNode.gd" id="5_8kede"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="5_k1e25"]
 [ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="5_xvjn4"]
+[ext_resource type="Script" uid="uid://dkb4p6s36rwxr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierModifications/ModifyEquipmentStat.gd" id="6_gha1v"]
 [ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="6_rbyrf"]
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="8_hg4l2"]
 [ext_resource type="Script" uid="uid://88st3pdi1hky" path="res://Scripts/Combat/CombatEffects/ApplyStatusEffect.gd" id="10_ejk8e"]
 [ext_resource type="PackedScene" uid="uid://wn65qvhghkpr" path="res://Scenes/StatusEffects/Bleed.tscn" id="11_agyne"]
 [ext_resource type="PackedScene" uid="uid://c42ua48l5bb27" path="res://Scenes/Abilities/Emit Abilities/Whirling Chakram/ability_whirling_chakram.tscn" id="14_rx7qf"]
 
-[node name="WeaponChakram" type="Node2D" node_paths=PackedStringArray("return_hit_listener", "spawn_node", "attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener")]
+[node name="WeaponChakram" type="Node2D" node_paths=PackedStringArray("throw_amount", "return_hit_listener", "spawn_node", "attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "tier_manager")]
 script = ExtResource("1_qlnpl")
-throw_amount = 2
+throw_amount = NodePath("ThrowAmount")
 return_speed = 1000.0
 return_hit_listener = NodePath("ReturnHitListener")
 projectile = ExtResource("2_b7f46")
@@ -30,9 +33,79 @@ attack_windup_time = 0.15
 weapon_ability = NodePath("AbilityWhirlingChakram")
 hit_listener = NodePath("HitListener")
 equipment_name = "Chakram"
+tier_manager = NodePath("EquipmentTierManager")
 string_id = "chakram"
 equipment_icon = ExtResource("3_agyne")
 metadata/_custom_type_script = "uid://d3fin4411ww46"
+
+[node name="ThrowAmount" type="Node" parent="."]
+script = ExtResource("4_k1e25")
+stat_value = 2.0
+can_be_negative = false
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("4_vwmig")
+next_tier_node = NodePath("EquipmentTierNode2")
+metadata/_custom_type_script = "uid://0tj10r8qa8qr"
+
+[node name="EquipmentTierNode2" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("5_8kede")
+next_tier_node = NodePath("../EquipmentTierNode3")
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode2" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_gha1v")
+stat = NodePath("../../../Damage")
+new_stat_value = 6.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="EquipmentTierNode3" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("5_8kede")
+tier = 2
+next_tier_node = NodePath("../EquipmentTierNode4")
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode3" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_gha1v")
+stat = NodePath("../../../Damage")
+new_stat_value = 7.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="EquipmentTierNode4" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("5_8kede")
+tier = 3
+next_tier_node = NodePath("../EquipmentTierNode5")
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode4" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_gha1v")
+stat = NodePath("../../../Damage")
+new_stat_value = 8.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="ModifyEquipmentStat2" type="Node" parent="EquipmentTierManager/EquipmentTierNode4" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_gha1v")
+stat = NodePath("../../../ThrowAmount")
+new_stat_value = 3.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="EquipmentTierNode5" type="Node" parent="EquipmentTierManager"]
+script = ExtResource("5_8kede")
+tier = 4
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode5" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_gha1v")
+stat = NodePath("../../../Damage")
+new_stat_value = 9.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="ModifyEquipmentStat2" type="Node" parent="EquipmentTierManager/EquipmentTierNode5" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_gha1v")
+stat = NodePath("../../../ThrowAmount")
+new_stat_value = 4.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
 [node name="Chakram" type="Sprite2D" parent="."]
 texture_filter = 1

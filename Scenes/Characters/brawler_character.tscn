@@ -21,18 +21,13 @@
 equipment_icon = ExtResource("4_g348i")
 
 [node name="ShoesLightningBoots" parent="EquipmentInventory" index="1" instance=ExtResource("5_g61ps")]
+tier = 2
 
 [node name="FireGrimoire" parent="EquipmentInventory" index="2" instance=ExtResource("6_3yh4f")]
 
 [node name="FireGrimoire2" parent="EquipmentInventory" index="3" instance=ExtResource("6_3yh4f")]
 
 [node name="WeaponChakram" parent="EquipmentInventory" index="4" instance=ExtResource("7_ub57k")]
-
-[node name="SwiftSword" parent="EquipmentInventory" index="5" instance=ExtResource("3_3yh4f")]
-
-[node name="SwiftSword2" parent="EquipmentInventory" index="6" instance=ExtResource("3_3yh4f")]
-
-[node name="SwiftSword3" parent="EquipmentInventory" index="7" instance=ExtResource("3_3yh4f")]
 
 [node name="PassiveAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("GainDecayingStrengthOnHit")

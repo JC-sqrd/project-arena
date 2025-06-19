@@ -1,16 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjfrn2ki8dsdr"]
+[gd_scene load_steps=11 format=3 uid="uid://d2k2e75wqq8s0"]
 
-[ext_resource type="Script" uid="uid://rbf4cq4pfun4" path="res://Scripts/Ability System/HomingSpawnAbility.gd" id="1_a670v"]
-[ext_resource type="PackedScene" uid="uid://66htkuagc713" path="res://Scenes/Abilities/Homing Spawn Abilities/Magic Missile/magic_missile_spawnable.tscn" id="2_eej7l"]
-[ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_8magy"]
-[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="4_pyyvb"]
-[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="5_sjcy0"]
-[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="6_0ykt5"]
-[ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="7_0ykt5"]
-[ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="8_t2p3c"]
+[ext_resource type="Script" uid="uid://rbf4cq4pfun4" path="res://Scripts/Ability System/HomingSpawnAbility.gd" id="1_n5sxo"]
+[ext_resource type="PackedScene" uid="uid://66htkuagc713" path="res://Scenes/Abilities/Homing Spawn Abilities/Magic Missile/magic_missile_spawnable.tscn" id="2_7iwpo"]
+[ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_wntdl"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="4_t353b"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="5_qv6ka"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="6_5obch"]
+[ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="7_awibh"]
+[ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="8_t25dy"]
 
 [sub_resource type="Resource" id="Resource_n40f3"]
-script = ExtResource("3_8magy")
+script = ExtResource("3_wntdl")
 stat_name = "current_mana"
 required_value = 10.0
 metadata/_custom_type_script = "uid://tuvjl40jf0pm"
@@ -19,11 +19,11 @@ metadata/_custom_type_script = "uid://tuvjl40jf0pm"
 radius = 500.0
 
 [node name="AbilityMagicMissile" type="Node2D" node_paths=PackedStringArray("homing_area", "hit_listener")]
-script = ExtResource("1_a670v")
-max_targets = 3
+script = ExtResource("1_n5sxo")
+max_targets = 9
 homing_area = NodePath("Area2D")
 max_range = 5.0
-spawn = ExtResource("2_eej7l")
+spawn = ExtResource("2_7iwpo")
 hit_listener = NodePath("HitListener")
 required_stat = SubResource("Resource_n40f3")
 cast_time = 0.2
@@ -40,30 +40,30 @@ shape = SubResource("CircleShape2D_a670v")
 debug_color = Color(0.862726, 0.217512, 0.710308, 0.42)
 
 [node name="HitListener" type="Node" parent="."]
-script = ExtResource("4_pyyvb")
+script = ExtResource("4_t353b")
 metadata/_custom_type_script = "uid://dm3uuggj1g47y"
 
 [node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
-script = ExtResource("5_sjcy0")
+script = ExtResource("5_qv6ka")
 damage_stat = NodePath("Damage")
 damage_type = 1
 metadata/_custom_type_script = "uid://c8sj8b1npavnd"
 
 [node name="Damage" type="Node" parent="HitListener/DamageEffect"]
-script = ExtResource("6_0ykt5")
+script = ExtResource("6_5obch")
 stat_value = 10.0
 can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatAdder" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
-script = ExtResource("7_0ykt5")
+script = ExtResource("7_awibh")
 stat = NodePath("..")
 scale_with_stat_id = "magic_damage"
 ratio = 0.75
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="GetActorStatMult" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
-script = ExtResource("8_t2p3c")
+script = ExtResource("8_t25dy")
 stat = NodePath("..")
 scale_with_stat_id = "magic_damage_mult"
 metadata/_custom_type_script = "uid://c4n03mihb0axg"

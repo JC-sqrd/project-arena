@@ -2,13 +2,14 @@ class_name SpawnOnUtilCastArea
 extends PassiveAbility
 
 @export var spawn_scene : PackedScene
-@export var max_targets : int = 1
+@export var max_targets : Stat
 @export var area : Area2D
 @export var hit_listener : HitListener
 @export var look_at_mouse : bool = true
 
 var _target_counter : int = 0
 var hittable_entities : Array[Entity]
+var _max_targets : int = 5
 
 func enable_ability(actor : Entity):
 	super(actor)
@@ -29,7 +30,7 @@ func disable_ability():
 
 
 func _on_util_casted():
-	for i in min(hittable_entities.size(), max_targets):
+	for i in min(hittable_entities.size(), int(max_targets.stat_derived_value)):
 		if !cooling_down:
 			print("PASSIVE UTIL CAST")
 			var spawn = spawn_scene.instantiate() as Spawnable

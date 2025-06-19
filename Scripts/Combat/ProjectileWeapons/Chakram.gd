@@ -1,6 +1,6 @@
 extends ProjectileWeapon
 
-@export var throw_amount : int = 1
+@export var throw_amount : Stat
 @export var return_speed : float = 700
 @export var return_hit_listener : HitListener
 
@@ -130,11 +130,11 @@ func _on_attack_hit(hit_data : Dictionary):
 	pass
 
 func _on_projectile_count_changed():
-	_throw_counter = throw_amount + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
+	_throw_counter = int(throw_amount.stat_derived_value) + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
 	pass
 
 func on_equipped(actor : Entity):
 	super(actor)
-	_throw_counter = throw_amount + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
+	_throw_counter = int(throw_amount.stat_derived_value) + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
 	actor.stat_manager.get_stat("projectile_count").stat_derived_value_changed.connect(_on_projectile_count_changed)
 	pass
