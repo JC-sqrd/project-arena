@@ -21,6 +21,7 @@ func _ready():
 
 func invoke_ability():
 	get_cast_position = true
+	print("ABILITY INVOKED " + str(get_cast_position))
 	ability_invoked.emit()
 	pass
 
@@ -30,6 +31,7 @@ func _process(delta):
 			actor.can_attack = false
 			actor.can_cast = false
 		actor.queue_redraw()
+		print("ABILITY GET CAST DATA")
 		get_cast_data()
 	pass
 

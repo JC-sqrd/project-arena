@@ -11,7 +11,8 @@ item_name = "Iron Vambrace"
 item_icon = ExtResource("1_2fjxj")
 string_id = "gain_strength"
 item_description = ""
-item_detail = "Gain [color=green]1[/color] [color=crimson]attack damage[/color](+1 for each stack)"
+item_detail = "[color=green]+5 strength (+5 for each stack) [/color]
+[color=red]-2 vitality (-2 for each stack) [/color]"
 buy_cost = 50.0
 sell_value = 10.0
 metadata/_custom_type_script = "uid://cionhn23akyj3"

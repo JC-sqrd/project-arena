@@ -27,6 +27,7 @@ func get_cast_data() -> Dictionary:
 		get_cast_position = false
 		actor.stat_manager.stats[required_stat.stat_name].stat_derived_value -= required_stat.required_value
 		ability_casted.emit()
+		print("ABILITY " + str(name)+" CASTED")
 		await get_tree().create_timer(cast_time, false, true, false).timeout
 		ability_start.emit()
 	return data

@@ -72,9 +72,12 @@ func _set_ability(new_ability : Ability):
 	if new_ability != null:
 		new_ability.ready.connect(_on_ability_ready)
 		new_ability.enable_ability(actor)
-	ability = new_ability
-	ability.add_to_group("equipped_abilities")
-	ability_icon = new_ability.ability_icon_texture
+		ability = new_ability
+		ability.add_to_group("equipped_abilities")
+		ability_icon = new_ability.ability_icon_texture
+	elif new_ability == null:
+		self.ability == null
+		ability_icon = null
 	pass
 
 func _on_ability_ready():

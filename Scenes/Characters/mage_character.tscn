@@ -18,12 +18,15 @@ ability = NodePath("AbilityFlameBreath")
 
 [node name="AbilityFlameBreath" parent="InnateActiveAbility" index="1" instance=ExtResource("12_rpc63")]
 
+[node name="UtilityAbilityContainer" parent="." index="4" node_paths=PackedStringArray("ability")]
+ability = NodePath("FlamePillar")
+
 [node name="DashAbility" parent="UtilityAbilityContainer" index="1"]
 direction_input = 1
 
 [node name="FlamePillar" parent="UtilityAbilityContainer" index="2" instance=ExtResource("10_w6ej0")]
 
-[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
+[node name="WeaponSlot" parent="." index="8" node_paths=PackedStringArray("equipment")]
 position = Vector2(0, 10)
 equipment = NodePath("WeaponPosition/FireGrimoire")
 
@@ -43,7 +46,7 @@ stat_value = 5.0
 [node name="MoveSpeed" parent="Stats" index="23"]
 stat_value = 240.0
 
-[node name="AnimatedSprite2D" parent="." index="26"]
+[node name="AnimatedSprite2D" parent="." index="28"]
 material = SubResource("ShaderMaterial_rpc63")
 
 [editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]

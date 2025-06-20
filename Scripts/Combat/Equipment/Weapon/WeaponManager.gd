@@ -22,8 +22,9 @@ func _ready() -> void:
 	elif owner.has_method("get_actor"):
 		actor = owner.get_actor()
 	current_weapon_slot = main_weapon_slot
-	#main_weapon_slot.equipment_equipped.connect(_on_main_weapon_equipped)
-	#offhand_weapon_slot.equipment_equipped.connect(_on_off_weapon_equipped)
+	main_weapon_slot.equipment_equipped.connect(_on_main_weapon_equipped)
+	offhand_weapon_slot.equipment_equipped.connect(_on_off_weapon_equipped)
+	offhand_weapon_slot.equipment_unequipped.connect(_on_off_weapon_unequipped	)
 	pass
 
 
@@ -69,8 +70,11 @@ func _on_main_weapon_unequipped(equipment : Equipment):
 
 func _on_off_weapon_equipped(equipment : Equipment):
 	offhand_weapon_ability_container.ability = (equipment as Weapon).weapon_ability
+	offhand_weapon_ability_container.ability.ready.emit()
+	print("ABILITY EQUIPPED TO CONTAINER, ABILITY OWNER: " + str(offhand_weapon_ability_container.ability.owner))
 	pass
 
 func _on_off_weapon_unequipped(equipment : Equipment):
 	offhand_weapon_ability_container.ability = null
+	print("OFFHAND ABILITY UNEQUIPPED : " + str(offhand_weapon_ability_container.ability))
 	pass

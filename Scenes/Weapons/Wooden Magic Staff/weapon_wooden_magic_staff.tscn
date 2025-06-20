@@ -391,4 +391,3 @@ on_hit_chance = 0.75
 metadata/_custom_type_script = "uid://ckgh7mgba1eo4"
 
 [node name="AbilityMagicMissile" parent="." instance=ExtResource("18_nabst")]
-max_targets = 3

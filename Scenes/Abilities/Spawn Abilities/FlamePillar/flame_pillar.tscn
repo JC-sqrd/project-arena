@@ -8,8 +8,8 @@
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="4_rbl2w"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_jekm4"]
 [ext_resource type="Script" uid="uid://88st3pdi1hky" path="res://Scripts/Combat/CombatEffects/ApplyStatusEffect.gd" id="6_bjqqw"]
-[ext_resource type="Script" uid="uid://clr8tbibqclow" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="6_yx72m"]
 [ext_resource type="PackedScene" uid="uid://d2mjy2iqk7hmw" path="res://Scenes/StatusEffects/Burn.tscn" id="8_2ion8"]
+[ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="8_73dnj"]
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="8_t6syp"]
 [ext_resource type="Script" uid="uid://wxlytnemh2wh" path="res://Scripts/Ability System/AbilityBehavior/SlowOnCast.gd" id="11_pyqdg"]
 
@@ -25,11 +25,11 @@ metadata/_custom_type_script = "uid://tuvjl40jf0pm"
 
 [node name="FlamePillar" type="Node2D" node_paths=PackedStringArray("hit_listener")]
 script = ExtResource("1_4wuys")
-max_range = 225.0
+max_range = 300.0
 spawn = ExtResource("2_8o0h4")
 spawn_behavior = SubResource("Resource_d1mt1")
-required_stat = SubResource("Resource_73dnj")
 hit_listener = NodePath("HitListener")
+required_stat = SubResource("Resource_73dnj")
 cooldown = 5.0
 
 [node name="HitListener" type="Node" parent="."]
@@ -45,11 +45,12 @@ damage_type = 1
 script = ExtResource("5_jekm4")
 stat_value = 15.0
 
-[node name="StatScaler" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat", "scale_with_stat")]
-script = ExtResource("6_yx72m")
+[node name="GetActorStatAdder" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("8_73dnj")
 stat = NodePath("..")
-scale_with_stat = NodePath("../../../../ActorMagic")
-scale_ratio = 0.25
+scale_with_stat_id = "magic"
+ratio = 1.1
+metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="ApplyStatusEffect" type="Node" parent="HitListener"]
 script = ExtResource("6_bjqqw")
