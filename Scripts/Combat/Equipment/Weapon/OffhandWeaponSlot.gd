@@ -57,20 +57,20 @@ func _set_weapon(new_weapon : Weapon):
 	#weapon = equipment
 	#pass 
 
-func set_equipment(new_equipment : Equipment):
-	if equipment != null:
-		equipment.visible = false
-		unequip(equipment)
-		equipment = null
-		weapon = null
-	if new_equipment != null:
-		weapon = new_equipment
-		equip(new_equipment)
-		equipment = new_equipment
-	else:
-		equipment = null
-		weapon = null
-	pass 
+#func set_equipment(new_equipment : Equipment):
+	#if equipment != null:
+		#equipment.visible = false
+		#unequip(equipment)
+		#equipment = null
+		#weapon = null
+	#if new_equipment != null:
+		#weapon = new_equipment
+		#equip(new_equipment)
+		#equipment = new_equipment
+	#else:
+		#equipment = null
+		#weapon = null
+	#pass 
 
 
 func equip(equipment : Equipment):

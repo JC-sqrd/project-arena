@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bwbyc8vywa6vd"]
+[gd_scene load_steps=57 format=3 uid="uid://bwbyc8vywa6vd"]
 
 [ext_resource type="Script" uid="uid://bl5aki5ii4r6t" path="res://Scripts/PlayerCharacter.gd" id="1_4r8nq"]
 [ext_resource type="Script" uid="uid://bsn1idamyre35" path="res://Scripts/EquipmentInventory/EquipmentInventory.gd" id="2_52ran"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://46rajp5yxkq6" path="res://Scripts/Ability System/DashAbility.gd" id="5_2w7b0"]
 [ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="6_wvybv"]
 [ext_resource type="Script" uid="uid://bfjkolmoudtsa" path="res://Scripts/Combat/Equipment/Weapon/WeaponManager.gd" id="7_nss1p"]
+[ext_resource type="Script" uid="uid://c3lfamkxy1hqd" path="res://Scripts/Combat/Equipment/GearManager.gd" id="8_2w7b0"]
 [ext_resource type="PackedScene" uid="uid://de6joq2hs2b4l" path="res://Scenes/Components/attack_container_component.tscn" id="8_o0d6e"]
 [ext_resource type="Script" uid="uid://ru2jih6etkel" path="res://Scripts/Combat/Equipment/Weapon/OffhandWeaponSlot.gd" id="9_kaufn"]
 [ext_resource type="Script" uid="uid://cuqrw50w68lcb" path="res://Scripts/Combat/Equipment/EquipmentSlot.gd" id="10_umb11"]
@@ -163,6 +164,7 @@ required_stat = SubResource("Resource_s7g6f")
 cooldown = 5.0
 
 [node name="MainWeaponAbilityContainer" parent="." node_paths=PackedStringArray("actor", "mana") instance=ExtResource("4_tkk1j")]
+ability_action_trigger = "m_right"
 actor = NodePath("..")
 mana = NodePath("../Stats/Mana")
 
@@ -170,6 +172,14 @@ mana = NodePath("../Stats/Mana")
 ability_action_trigger = "secondary_ability"
 actor = NodePath("..")
 mana = NodePath("../Stats/Mana")
+
+[node name="GearManager" type="Node" parent="." node_paths=PackedStringArray("headgear_slot", "torso_slot", "armgear_slot", "shoes_slot")]
+script = ExtResource("8_2w7b0")
+headgear_slot = NodePath("../HeadGearSlot")
+torso_slot = NodePath("../TorsoSlot")
+armgear_slot = NodePath("../ArmGearSlot")
+shoes_slot = NodePath("../ShoesSlot")
+metadata/_custom_type_script = "uid://c3lfamkxy1hqd"
 
 [node name="WeaponManager" type="Node2D" parent="." node_paths=PackedStringArray("main_weapon_slot", "offhand_weapon_slot", "main_weapon_ability_container", "offhand_weapon_ability_container")]
 script = ExtResource("7_nss1p")

@@ -22,9 +22,15 @@ func _ready() -> void:
 	elif owner.has_method("get_actor"):
 		actor = owner.get_actor()
 	current_weapon_slot = main_weapon_slot
-	main_weapon_slot.equipment_equipped.connect(_on_main_weapon_equipped)
-	offhand_weapon_slot.equipment_equipped.connect(_on_off_weapon_equipped)
-	offhand_weapon_slot.equipment_unequipped.connect(_on_off_weapon_unequipped	)
+	#main_weapon_slot.equipment_equipped.connect(_on_main_weapon_equipped)
+	#main_weapon_slot.equipment_unequipped.connect(_on_main_weapon_unequipped)
+	#offhand_weapon_slot.equipment_equipped.connect(_on_off_weapon_equipped)
+	#offhand_weapon_slot.equipment_unequipped.connect(_on_off_weapon_unequipped)
+	
+	main_weapon_slot.equipment_slotted.connect(_on_main_weapon_slotted)
+	main_weapon_slot.equipment_unslotted.connect(_on_main_weapon_unslotted)
+	offhand_weapon_slot.equipment_slotted.connect(_on_offhand_weapon_slotted)
+	offhand_weapon_slot.equipment_unslotted.connect(_on_offhand_weapon_unslotted)
 	pass
 
 
@@ -37,44 +43,97 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func switch_weapon():
 	main_weapon = !main_weapon
-	if !main_weapon:
-		#Switch Main to Offhand
+	if main_weapon:
+		if main_weapon_slot.equipment != null:
+			offhand_weapon_slot.unequip(offhand_weapon_slot.equipment)
+			main_weapon_slot.equip(main_weapon_slot.equipment)
+			actor.can_attack = true
+			current_weapon_slot = main_weapon_slot
+			weapon_switched.emit(current_weapon_slot)
+		elif offhand_weapon_slot.equipment != null:
+			offhand_weapon_slot.equip_offhand()
+			actor.can_attack = true
+			current_weapon_slot = offhand_weapon_slot
+			weapon_switched.emit(current_weapon_slot)
+	else:
 		if offhand_weapon_slot.equipment != null:
 			main_weapon_slot.unequip(main_weapon_slot.equipment)
-			main_weapon_slot.equipment.actor = actor
 			offhand_weapon_slot.equip_offhand()
-			offhand_weapon_slot.equipment.actor.can_attack = true
+			actor.can_attack = true
 			current_weapon_slot = offhand_weapon_slot
-			weapon_switched.emit(offhand_weapon_slot)
-		else:
-			main_weapon = !main_weapon
-		pass
-	elif main_weapon:
-		#Switch Offhand to Main
-		offhand_weapon_slot.unequip(offhand_weapon_slot.equipment)
-		offhand_weapon_slot.equipment.actor = actor
+			weapon_switched.emit(current_weapon_slot)
+		elif main_weapon_slot.equipment != null:
+			main_weapon_slot.equip(main_weapon_slot.equipment)
+			actor.can_attack = true
+			current_weapon_slot = main_weapon_slot
+			weapon_switched.emit(current_weapon_slot)
+	#if !main_weapon:
+		##Switch Main to Offhand
+		#if offhand_weapon_slot.equipment != null:
+			#main_weapon_slot.unequip(main_weapon_slot.equipment)
+			#main_weapon_slot.equipment.actor = actor
+			#offhand_weapon_slot.equip_offhand()
+			#offhand_weapon_slot.equipment.actor.can_attack = true
+			#current_weapon_slot = offhand_weapon_slot
+			#weapon_switched.emit(offhand_weapon_slot)
+		#else:
+			#main_weapon = !main_weapon
+		#pass
+	#elif main_weapon:
+		##Switch Offhand to Main
+		#offhand_weapon_slot.unequip(offhand_weapon_slot.equipment)
+		#offhand_weapon_slot.equipment.actor = actor
+		#main_weapon_slot.equip(main_weapon_slot.equipment)
+		#main_weapon_slot.equipment.actor.can_attack = true
+		#current_weapon_slot = main_weapon_slot
+		#weapon_switched.emit(main_weapon_slot)
+		#pass
+	pass
+
+func _on_main_weapon_slotted (equipment : Equipment):
+	if main_weapon:
 		main_weapon_slot.equip(main_weapon_slot.equipment)
-		main_weapon_slot.equipment.actor.can_attack = true
-		current_weapon_slot = main_weapon_slot
-		weapon_switched.emit(main_weapon_slot)
-		pass
-	pass
-
-func _on_main_weapon_equipped(equipment : Equipment):
 	main_weapon_ability_container.ability = (equipment as Weapon).weapon_ability
+	main_weapon_ability_container.ability.ready.emit()
 	pass
 
-func _on_main_weapon_unequipped(equipment : Equipment):
+
+func _on_main_weapon_unslotted (equipment : Equipment):
+	main_weapon_slot.unequip(main_weapon_slot.equipment)
 	main_weapon_ability_container.ability = null
+	print("OFFHAND ABILITY UNEQUIPPED : " + str(main_weapon_ability_container.ability))
 	pass
 
-func _on_off_weapon_equipped(equipment : Equipment):
+func _equip_main_weapon():
+	
+	pass
+
+func _on_offhand_weapon_slotted (equipment : Equipment):
+	if !main_weapon:
+		offhand_weapon_slot.equip_offhand()
 	offhand_weapon_ability_container.ability = (equipment as Weapon).weapon_ability
 	offhand_weapon_ability_container.ability.ready.emit()
 	print("ABILITY EQUIPPED TO CONTAINER, ABILITY OWNER: " + str(offhand_weapon_ability_container.ability.owner))
 	pass
 
-func _on_off_weapon_unequipped(equipment : Equipment):
+func _on_offhand_weapon_unslotted (equipment : Equipment):
+	offhand_weapon_slot.unequip(offhand_weapon_slot.equipment)
 	offhand_weapon_ability_container.ability = null
+	offhand_weapon_ability_container.clear_container()
 	print("OFFHAND ABILITY UNEQUIPPED : " + str(offhand_weapon_ability_container.ability))
+	pass
+
+func _on_main_weapon_equipped(equipment : Equipment):
+	
+	pass
+
+func _on_main_weapon_unequipped(equipment : Equipment):
+	
+	pass
+
+func _on_off_weapon_equipped(equipment : Equipment):
+	
+	pass
+
+func _on_off_weapon_unequipped(equipment : Equipment):
 	pass

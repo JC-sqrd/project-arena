@@ -20,23 +20,21 @@ func _ready():
 	ability_canceled.connect(_cancel_spawn)
 
 func invoke_ability():
-	get_cast_position = true
-	print("ABILITY INVOKED " + str(get_cast_position))
+	listen_for_cast = true
 	ability_invoked.emit()
 	pass
 
 func _process(delta):
-	if get_cast_position:
+	if listen_for_cast:
 		if actor is PlayerCharacter:
 			actor.can_attack = false
 			actor.can_cast = false
 		actor.queue_redraw()
-		print("ABILITY GET CAST DATA")
 		get_cast_data()
 	pass
 
 func _spawn_start():
-	get_cast_position = false
+	listen_for_cast = false
 	if actor is PlayerCharacter:
 		get_tree().create_timer(0.1, false, false, false).timeout.connect(func (): actor.can_attack = true)
 		if (actor.get_global_mouse_position() - actor.position).length() >= (max_range):
@@ -46,12 +44,12 @@ func _spawn_start():
 	else:
 		cast_position = actor.global_position
 	
-	#var spawn_rotation : float = 0
-	#if !aim_at_mouse:
-		#spawn_rotation = direction.angle()
-	#else:
-		##spawn_rotation = (cast_data["target_position"] - actor.global_position).normalized().angle()
-		#spawn_rotation = actor.global_position.direction_to(cast_data["target_position"]).angle()
+	var spawn_rotation : float = 0
+	if !aim_at_mouse:
+		spawn_rotation = direction.angle()
+	else:
+		#spawn_rotation = (cast_data["target_position"] - actor.global_position).normalized().angle()
+		spawn_rotation = actor.global_position.direction_to(actor.get_global_mouse_position()).angle()
 #
 	#if spawn != null:
 		#var spawn_object = new_spawnable(spawn)
@@ -62,19 +60,44 @@ func _spawn_start():
 	#else:
 		#printerr("No spawnable attached to " + name)
 		
-	spawn_behavior.spawn_finished.connect(
-		func():
-			actor.can_cast = true
-	)
-	spawn_behavior.hit_listener = hit_listener
-	var spawn_obj : Spawnable = await spawn_behavior.spawn(self, actor, cast_position, cast_data["target_position"] as Vector2, spawn) as Spawnable
+	#spawn_behavior.spawn_finished.connect(
+	#	func():
+	#		actor.can_cast = true
+	#)
+	#spawn_behavior.hit_listener = hit_listener
+	#var spawn_obj : Spawnable = await spawn_behavior.spawn(self, actor, cast_position, cast_data["target_position"] as Vector2, spawn) as Spawnable
+	
+	#######################
+	
+	var spawnable : Spawnable= spawn.instantiate() as Spawnable
+	
+	
+	spawnable.source = self
+	spawnable.actor = actor
+	spawnable.on_hit.connect(_on_ability_hit)
+	spawnable.inactive.connect(_spawn_end)
+	spawnable.collision_mask = (spawnable.collision_mask - actor.collision_layer)
+	if hit_listener != null:
+		spawnable.hit_data = hit_listener.generate_effect_data()
+	
+	#if !aim_at_mouse:
+		#spawn_rotation = spawn_direction.angle()
+	#else:
+		#spawn_rotation = actor.global_position.direction_to(actor.get_global_mouse_position()).angle()
+	#spawn_rotation = ability.global_position.direction_to(spawn_direction).angle()
+	
+	spawnable.global_position = cast_position
+	spawnable.rotation = spawn_rotation
+	actor.get_tree().root.add_child(spawnable)
+	actor.can_cast = true
+	
 	pass
 
 func _cancel_spawn():
 	if actor is PlayerCharacter:
 		actor.can_attack = true
 		actor.can_cast = true
-		get_cast_position = false
+		listen_for_cast = false
 	pass
 
 func new_spawnable(spawnable_scene : PackedScene) -> Spawnable:
@@ -108,7 +131,7 @@ func _on_ability_hit(hit_data : Dictionary):
 	pass
 	
 func draw_debug_circle():
-	if get_cast_position:
+	if listen_for_cast:
 		actor.draw_circle(Vector2.ZERO, max_range, Color(Color.AQUA, 0.2))
 	
 		if actor.get_local_mouse_position().length() >= (max_range):

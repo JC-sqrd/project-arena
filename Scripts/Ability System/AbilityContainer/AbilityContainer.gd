@@ -35,11 +35,12 @@ func _ready():
 		ability.initialize_ability()
 	pass
 
-func _process(delta):
+func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed(ability_action_trigger) and ability != null:
 		if actor.stat_manager.stats[ability.required_stat.stat_name].stat_derived_value >= ability.required_stat.required_value and _ability_input_buffer_counter <= 0:
 			_ability_input_buffer_counter = _ability_input_buffer
-			
+
+func _process(delta):
 	if _ability_input_buffer_counter > 0 and ability.can_cast and actor.can_cast:
 		_ability_input_buffer_counter = 0
 		get_tree().create_timer(0.05, false, true, false).timeout.connect(func(): 
@@ -64,6 +65,11 @@ func _reset_ability():
 	cooldown_timer.stop()
 	can_cast = true
 
+func clear_container():
+	ability = null
+	print(name + " ABILITY CONTAINER CLEARED")
+	pass
+
 func _set_ability(new_ability : Ability):
 	if ability != null:
 		ability.ready.disconnect(_on_ability_ready)
@@ -72,12 +78,14 @@ func _set_ability(new_ability : Ability):
 	if new_ability != null:
 		new_ability.ready.connect(_on_ability_ready)
 		new_ability.enable_ability(actor)
+		#new_ability.ready.emit()
 		ability = new_ability
 		ability.add_to_group("equipped_abilities")
 		ability_icon = new_ability.ability_icon_texture
 	elif new_ability == null:
-		self.ability == null
+		ability = new_ability
 		ability_icon = null
+		print(name + " SET ABILITY TO NULL")
 	pass
 
 func _on_ability_ready():

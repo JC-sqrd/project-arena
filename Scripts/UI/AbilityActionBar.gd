@@ -7,9 +7,10 @@ var abilties : Array[AbilityContainer]
 var player_weapon_manager : WeaponManager
 @export var ability_icon_ui_scene : PackedScene
 
-@onready var innate_active_bar: MarginContainer = $InnateActivePanel/InnateActiveBar
-@onready var innate_utility_bar: MarginContainer = $InnateUtilityPanel/InnateUtilityBar
-@onready var weapon_ability_bar: MarginContainer = $WeaponAbilityPanel/WeaponAbilityBar
+@onready var innate_active_bar: MarginContainer = %InnateActiveBar#$InnateActivePanel/InnateActiveBar
+@onready var innate_utility_bar: MarginContainer = %InnateUtilityBar#$InnateUtilityPanel/InnateUtilityBar
+@onready var weapon_ability_bar: MarginContainer = %WeaponAbilityBar#$WeaponAbilityPanel/WeaponAbilityBar
+@onready var offhand_weapon_ability_bar: MarginContainer = %OffhandWeaponAbilityBar
 
 
 
@@ -50,9 +51,16 @@ func _on_player_ready():
 	utility_ability_icon.initialize_ability_icon_with_container(player.utility_ability)
 	
 	#Create main weapon ability icon
-	main_weapon_ability_icon  = ability_icon_ui_scene.instantiate() as AbilityIconUI
-	weapon_ability_bar.add_child(main_weapon_ability_icon)
-	main_weapon_ability_icon.initialize_ability_icon(player.weapon_manager.current_weapon_slot.weapon.weapon_ability, player.weapon_manager.current_weapon_slot.action_trigger)
+	if player.weapon_manager.main_weapon_slot.weapon != null:
+		main_weapon_ability_icon  = ability_icon_ui_scene.instantiate() as AbilityIconUI
+		weapon_ability_bar.add_child(main_weapon_ability_icon)
+		main_weapon_ability_icon.initialize_ability_icon(player.weapon_manager.current_weapon_slot.weapon.weapon_ability, player.weapon_manager.current_weapon_slot.action_trigger)
+	
+	#Create offhand weapon ability icon
+	if player.weapon_manager.offhand_weapon_slot.weapon != null:
+		off_weapon_ability_icon = ability_icon_ui_scene.instantiate() as AbilityIconUI
+		offhand_weapon_ability_bar.add_child(off_weapon_ability_icon)
+		off_weapon_ability_icon.initialize_ability_icon(player.weapon_manager.offhand_weapon_slot.weapon.weapon_ability, player.weapon_manager.offhand_weapon_slot.action_trigger)
 	
 	if player.weapon_manager.current_weapon_slot.weapon != null:
 		current_main_weapon = player.weapon_manager.current_weapon_slot.weapon
@@ -68,9 +76,11 @@ func _on_player_ready():
 	if player_weapon_manager.offhand_weapon_slot != null:
 		off_weapon_slot = player.weapon_manager.offhand_weapon_slot
 	
-	player.weapon_manager.weapon_switched.connect(_on_current_weapon_slot_switched)
-	player.weapon_manager.main_weapon_slot.equipment_equipped.connect(_on_main_weapon_equipped)
-	player.weapon_manager.offhand_weapon_slot.equipment_equipped.connect(_on_off_weapon_equipped)
+	#player.weapon_manager.weapon_switched.connect(_on_current_weapon_slot_switched)
+	player.weapon_manager.main_weapon_slot.equipment_slotted.connect(_on_main_weapon_slotted)
+	player.weapon_manager.main_weapon_slot.equipment_unslotted.connect(_on_main_weapon_unslotted)
+	player.weapon_manager.offhand_weapon_slot.equipment_slotted.connect(_on_off_weapon_slotted)
+	player.weapon_manager.offhand_weapon_slot.equipment_unslotted.connect(_on_off_weapon_unslotted)
 	pass
 
 func _on_current_weapon_slot_switched(weapon_slot : WeaponSlot):
@@ -88,23 +98,34 @@ func _on_current_weapon_slot_switched(weapon_slot : WeaponSlot):
 		print("OFF HAND ICON VISIBLE")
 	pass
 
-func _on_main_weapon_equipped(weapon : Equipment):
+func _on_main_weapon_slotted(weapon : Equipment):
 	print("MAIN HAND WEAPON EQUIPPED")
-	main_weapon_ability_icon.queue_free()
+	if main_weapon_ability_icon != null:
+		main_weapon_ability_icon.queue_free()
 	main_weapon_ability_icon  = ability_icon_ui_scene.instantiate() as AbilityIconUI
 	weapon_ability_bar.add_child(main_weapon_ability_icon)
 	main_weapon_ability_icon.initialize_ability_icon((weapon as Weapon).weapon_ability, main_weapon_slot.action_trigger)
 	pass
 
-func _on_off_weapon_equipped(weapon : Equipment):
+func _on_main_weapon_unslotted(weapon : Equipment):
+	if main_weapon_ability_icon != null:
+		main_weapon_ability_icon.queue_free()
+	pass
+
+func _on_off_weapon_slotted(weapon : Equipment):
 	print("OFF HAND WEAPON EQUIPPED")
 	if off_weapon_ability_icon != null:
 		off_weapon_ability_icon.queue_free()
 	off_weapon_ability_icon  = ability_icon_ui_scene.instantiate() as AbilityIconUI
-	weapon_ability_bar.add_child(off_weapon_ability_icon)
+	offhand_weapon_ability_bar.add_child(off_weapon_ability_icon)
 	off_weapon_ability_icon.initialize_ability_icon((weapon as Weapon).weapon_ability, main_weapon_slot.action_trigger)
-	if player_weapon_manager.current_weapon_slot == player_weapon_manager.offhand_weapon_slot:
-		off_weapon_ability_icon.visible = true
-	else:
-		off_weapon_ability_icon.visible = false
+	#if player_weapon_manager.current_weapon_slot == player_weapon_manager.offhand_weapon_slot:
+		#off_weapon_ability_icon.visible = true
+	#else:
+		#off_weapon_ability_icon.visible = false
+	pass
+
+func _on_off_weapon_unslotted(weapon : Equipment):
+	if off_weapon_ability_icon != null:
+		off_weapon_ability_icon.queue_free()
 	pass

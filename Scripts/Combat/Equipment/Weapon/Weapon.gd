@@ -62,14 +62,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	
 	#Ability trigger
-	if is_equipped and  Input.is_action_just_pressed(action_trigger):
-		if weapon_ability != null and weapon_ability.can_cast and actor.can_cast:
-			if actor.stat_manager.stats[weapon_ability.required_stat.stat_name].stat_derived_value >= weapon_ability.required_stat.required_value:
-				_ability_input_buffer_counter = _ability_input_buffer
-				get_tree().create_timer(0.05, false, true, false).timeout.connect(func(): 
-					weapon_ability.invoke_ability()
-					)
-				pass
+	#if is_equipped and  Input.is_action_just_pressed(action_trigger):
+		#if weapon_ability != null and weapon_ability.can_cast and actor.can_cast:
+			#if actor.stat_manager.stats[weapon_ability.required_stat.stat_name].stat_derived_value >= weapon_ability.required_stat.required_value:
+				#_ability_input_buffer_counter = _ability_input_buffer
+				#get_tree().create_timer(0.05, false, true, false).timeout.connect(func(): 
+					#weapon_ability.invoke_ability()
+					#)
+				#pass
 	pass
 
 func _process(delta: float) -> void:
@@ -175,15 +175,13 @@ func on_equipped(actor : Entity):
 			if !actor.hit_listeners.has(hit_listener):
 				actor.hit_listeners.append(hit_listener)
 	if weapon_ability != null:
-		weapon_ability.process_mode = Node.PROCESS_MODE_INHERIT
 		weapon_ability.actor = actor
-		weapon_ability.ready.emit()
-		print("WEAPON ABILITY ACTOR: " + str(weapon_ability.actor))
+		print("WEAPON ACTOR: " + str(actor))
+		#weapon_ability.ready.emit()
 	ready.emit()
-	print("WEAPON EQUIPPED: " + str(actor))
 	pass
 
 func on_unequipped():
-	if weapon_ability != null:
-		weapon_ability.process_mode = Node.PROCESS_MODE_DISABLED
+	#if weapon_ability != null:
+		#weapon_ability.process_mode = Node.PROCESS_MODE_DISABLED
 	pass

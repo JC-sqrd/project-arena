@@ -76,7 +76,7 @@ metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
 [node name="EquipmentTierNode4" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
 script = ExtResource("5_bk4na")
-tier = 2
+tier = 3
 next_tier_node = NodePath("../EquipmentTierNode5")
 metadata/_custom_type_script = "uid://boi71j6dy2kn6"
 

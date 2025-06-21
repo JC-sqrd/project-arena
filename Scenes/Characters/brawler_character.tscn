@@ -79,9 +79,6 @@ stat_value = 100.0
 [node name="MaxHealth" parent="Stats" index="12"]
 stat_value = 40.0
 
-[node name="Gold" parent="Stats" index="33"]
-stat_value = 1e+11
-
 [node name="EntityHitParticle" parent="." index="32" node_paths=PackedStringArray("hit_particle")]
 hit_particle = NodePath("../EnemyHitParticle")
 

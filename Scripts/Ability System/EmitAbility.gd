@@ -10,19 +10,19 @@ func _ready():
 	ability_casted.connect(_on_ability_casted)
 
 func invoke_ability():
-	get_cast_position = true
+	listen_for_cast = true
 	ability_invoked.emit()
 	pass
 
 func _process(delta):
-	if get_cast_position:
+	if listen_for_cast:
 		if actor is PlayerCharacter:
 			#actor.can_attack = false
 			actor.can_cast = false
 		get_cast_data()
 
 func _start_emit():
-	get_cast_position = false
+	listen_for_cast = false
 	var object = emited_object.instantiate() as Spawnable
 	object.source = self
 	object.actor = actor
