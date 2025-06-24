@@ -255,6 +255,7 @@ metadata/_custom_type_script = "uid://2vlwp08ancca"
 
 [node name="AbilityFireball" parent="." instance=ExtResource("13_ut77k")]
 position = Vector2(12, 0)
+aim_at_mouse = false
 
 [node name="WeaponSocket" type="Node" parent="."]
 script = ExtResource("16_5goof")

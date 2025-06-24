@@ -126,7 +126,7 @@ damage_listener = NodePath("DamageListener")
 item_iventory = NodePath("ItemInventory")
 equipment_inventory = NodePath("EquipmentInventory")
 
-[node name="EquipmentInventory" type="Node" parent="." node_paths=PackedStringArray("weapon_slot", "headgear_slot", "torso_slot", "armgear_slot", "shoes_slot")]
+[node name="EquipmentInventory" type="Node" parent="." node_paths=PackedStringArray("weapon_slot", "headgear_slot", "torso_slot", "armgear_slot", "shoes_slot", "offhand_weapon_slot")]
 script = ExtResource("2_52ran")
 max_size = 10
 weapon_slot = NodePath("../WeaponSlot")
@@ -134,6 +134,7 @@ headgear_slot = NodePath("../HeadGearSlot")
 torso_slot = NodePath("../TorsoSlot")
 armgear_slot = NodePath("../ArmGearSlot")
 shoes_slot = NodePath("../ShoesSlot")
+offhand_weapon_slot = NodePath("../OffhandWeaponSlot")
 metadata/_custom_type_script = "uid://bsn1idamyre35"
 
 [node name="GoldManager" type="Node" parent="." node_paths=PackedStringArray("gold")]

@@ -8,9 +8,10 @@ extends Node
 @export var torso_slot : EquipmentSlot
 @export var armgear_slot : EquipmentSlot
 @export var shoes_slot : EquipmentSlot
+@export var offhand_weapon_slot : EquipmentSlot
 
 var inventory : Array[Equipment] = [null, null, null, null, null, null]
-var equip_inventory : Array[Equipment] = [null, null, null, null, null] 
+var equip_inventory : Array[Equipment] = [null, null, null, null, null, null] 
 
 var equipped_weapon : Weapon
 var equipped_headgear : Equipment
@@ -45,7 +46,9 @@ func _ready() -> void:
 	armgear_slot.equipment_unequipped.connect(on_armgear_unequipped)
 	shoes_slot.equipment_equipped.connect(on_shoes_equipped)
 	shoes_slot.equipment_unequipped.connect(on_shoes_unequipped)
-
+	offhand_weapon_slot.equipment_equipped.connect(on_offhand_weapon_equipped)
+	offhand_weapon_slot.equipment_unequipped.connect(on_offhand_weapon_unequipped)
+	
 
 func on_weapon_equipped(equipment : Equipment):
 	equip_inventory[0] = equipment
@@ -86,6 +89,14 @@ func on_shoes_equipped(equipment : Equipment):
 func on_shoes_unequipped(equipment : Equipment):
 	equip_inventory[4] = null
 	pass
+
+func on_offhand_weapon_equipped(equipment : Equipment):
+	equip_inventory[5] = equipment
+	pass
+
+func on_offhand_weapon_unequipped(equipment : Equipment):
+	equip_inventory[5] = null
+	pass 
 
 func add_equipment(equipment : Equipment) -> bool:
 	for i in inventory.size():

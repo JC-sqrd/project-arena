@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d0y6us1o18tkr"]
 
-[ext_resource type="Texture2D" uid="uid://bfjv5pykqpmoc" path="res://Placeholders/InventorySlot.png" id="1_57ng3"]
 [ext_resource type="Script" uid="uid://cmo3ygd568rki" path="res://Scripts/UI/EquipmentInventory/EquipmentInventorySlot.gd" id="1_ocd28"]
+[ext_resource type="Texture2D" uid="uid://dsgcy2jeaik3y" path="res://Sprites/UI/Slot Border/SlotBorder.png" id="2_ocd28"]
 [ext_resource type="PackedScene" uid="uid://dxrqct3t27trg" path="res://Scenes/UI/EquipmentInventory/equipment_inventory_slot_icon.tscn" id="3_ocd28"]
 
 [node name="EquipmentInventorySlot" type="Control"]
@@ -17,17 +17,22 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SlotBorder" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_57ng3")
+texture = ExtResource("2_ocd28")
 expand_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="SlotBorder"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bkmw1nqw6gp4q"]
+[gd_scene load_steps=40 format=3 uid="uid://bkmw1nqw6gp4q"]
 
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="1_d2f8j"]
 [ext_resource type="Script" uid="uid://df3mwd5sdgedk" path="res://Scripts/Combat/MeleeWeapons/MeleeWeapon.gd" id="1_f6rey"]
@@ -8,8 +8,11 @@
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="3_arpwg"]
 [ext_resource type="Texture2D" uid="uid://k4u0hhwjxom5" path="res://Sprites/Weapons/Hammer/Hammer.png" id="3_dv3hi"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="3_qbxlp"]
+[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierManager.gd" id="4_0o0tb"]
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="4_11dr6"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="5_7sqg3"]
+[ext_resource type="Script" uid="uid://boi71j6dy2kn6" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierNode.gd" id="5_ns8gk"]
+[ext_resource type="Script" uid="uid://dkb4p6s36rwxr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierModifications/ModifyEquipmentStat.gd" id="6_8trvi"]
 [ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="7_5ut7s"]
 [ext_resource type="Script" uid="uid://ckgh7mgba1eo4" path="res://Scripts/Combat/CombatEffects/OnHitEffect.gd" id="8_11dr6"]
 [ext_resource type="Script" uid="uid://cmdw2c71721x0" path="res://Scripts/Combat/Animation/AttackAnimation.gd" id="12_kbh6d"]
@@ -182,7 +185,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Hammer" type="Area2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "hit_listener")]
+[node name="Hammer" type="Area2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "hit_listener", "tier_manager")]
 collision_mask = 2
 script = ExtResource("1_f6rey")
 piercing = true
@@ -193,8 +196,60 @@ attack_speed_stat = NodePath("AttackSpeed")
 attack_windup_time = 0.25
 hit_listener = NodePath("HitListener")
 equipment_name = "Hammer"
+tier_manager = NodePath("EquipmentTierManager")
 string_id = "hammer"
 equipment_icon = ExtResource("3_dv3hi")
+
+[node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("4_0o0tb")
+next_tier_node = NodePath("EquipmentTierNode2")
+metadata/_custom_type_script = "uid://0tj10r8qa8qr"
+
+[node name="EquipmentTierNode2" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("5_ns8gk")
+next_tier_node = NodePath("../EquipmentTierNode3")
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode2" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_8trvi")
+stat = NodePath("../../../Damage")
+new_stat_value = 25.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="EquipmentTierNode3" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("5_ns8gk")
+tier = 2
+next_tier_node = NodePath("../EquipmentTierNode4")
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode3" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_8trvi")
+stat = NodePath("../../../Damage")
+new_stat_value = 30.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="EquipmentTierNode4" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("5_ns8gk")
+tier = 3
+next_tier_node = NodePath("../EquipmentTierNode5")
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode4" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_8trvi")
+stat = NodePath("../../../Damage")
+new_stat_value = 35.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="EquipmentTierNode5" type="Node" parent="EquipmentTierManager"]
+script = ExtResource("5_ns8gk")
+tier = 4
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode5" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_8trvi")
+stat = NodePath("../../../Damage")
+new_stat_value = 40.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
 [node name="Damage" type="Node" parent="."]
 script = ExtResource("1_d2f8j")

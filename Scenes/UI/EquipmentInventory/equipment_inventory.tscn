@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bba116t3m1ua7"]
+[gd_scene load_steps=4 format=3 uid="uid://bba116t3m1ua7"]
 
 [ext_resource type="Script" uid="uid://w55biq6u1q0c" path="res://Scripts/UI/EquipmentInventory/EquipmentInventoryManager.gd" id="1_ondaa"]
 [ext_resource type="PackedScene" uid="uid://cjyf0inyj3qd6" path="res://Scenes/UI/EquipmentInventory/equipment_equip_slot.tscn" id="2_ondaa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ondaa"]
+font_size = 20
 
 [node name="EquipmentInventory" type="Control"]
 layout_mode = 3
@@ -26,14 +29,30 @@ offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="EquipmentInventory"]
+[node name="VBoxContainer" type="VBoxContainer" parent="EquipmentInventory"]
+layout_mode = 2
+
+[node name="InventoryLabelMarginContainer" type="MarginContainer" parent="EquipmentInventory/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="EquipmentInventory/VBoxContainer/InventoryLabelMarginContainer"]
+layout_mode = 2
+text = "INVENTORY"
+label_settings = SubResource("LabelSettings_ondaa")
+
+[node name="InventoryGridMarginContainer" type="MarginContainer" parent="EquipmentInventory/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="InventoryGrid" type="GridContainer" parent="EquipmentInventory/MarginContainer"]
+[node name="InventoryGrid" type="GridContainer" parent="EquipmentInventory/VBoxContainer/InventoryGridMarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 5
 
@@ -58,23 +77,34 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 
 [node name="WeaponEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="HeadgearEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
+unique_name_in_owner = true
 layout_mode = 2
 equip_type = 1
 
 [node name="TorsoEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
+unique_name_in_owner = true
 layout_mode = 2
 equip_type = 2
 
 [node name="ArmgearEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
+unique_name_in_owner = true
 layout_mode = 2
 equip_type = 3
 
 [node name="ShoesEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
+unique_name_in_owner = true
 layout_mode = 2
 equip_type = 4
 
 [node name="OffhandEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
+unique_name_in_owner = true
 layout_mode = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

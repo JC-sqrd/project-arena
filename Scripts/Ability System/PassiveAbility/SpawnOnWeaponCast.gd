@@ -1,4 +1,4 @@
-class_name SpawnOnPrimaryCast
+class_name SpawnOnWeaponCast
 extends PassiveAbility
 
 @export var spawn_scene : PackedScene
@@ -8,16 +8,16 @@ extends PassiveAbility
 func enable_ability(actor : Entity):
 	super(actor)
 	self.actor = actor as PlayerCharacter
-	(self.actor as PlayerCharacter).innate_active_ability.ability_casted.connect(_on_util_casted)
+	(self.actor as PlayerCharacter).weapon_manager.main_weapon_slot.weapon.weapon_ability.ability_casted.connect(_on_weapon_ability_casted)
 	pass
 
 func disable_ability():
 	super()
-	(self.actor as PlayerCharacter).innate_active_ability.ability_casted.disconnect(_on_util_casted)
+	(self.actor as PlayerCharacter).weapon_manager.main_weapon_slot.weapon.weapon_ability.ability_casted.disconnect(_on_weapon_ability_casted)
 	pass
 
 
-func _on_util_casted():
+func _on_weapon_ability_casted():
 	var spawn = spawn_scene.instantiate() as Spawnable
 	
 	var spawn_rotation : float = 0

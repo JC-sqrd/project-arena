@@ -55,6 +55,8 @@ func _on_lock_button_pressed():
 	is_locked = !is_locked
 	if is_locked:
 		locked_icon.visible = true
+		lock_button.text = "UNLOCK"
 	else:
 		locked_icon.visible = false
+		lock_button.text = "LOCK"
 	pass

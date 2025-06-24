@@ -1,0 +1,141 @@
+[gd_scene load_steps=15 format=3 uid="uid://c0pgoq0h82gka"]
+
+[ext_resource type="Script" uid="uid://dnjhdyhsrd60y" path="res://Scripts/Combat/Equipment/HeadGear/HeadGear.gd" id="1_5adsq"]
+[ext_resource type="Script" uid="uid://bjpxplndvkee" path="res://Scripts/StatSystem/Stats/EquipmentBonusStat.gd" id="2_gx2i5"]
+[ext_resource type="Texture2D" uid="uid://mug6kupdgwxw" path="res://Sprites/Headgear/Lightning Hat/fc1842.png" id="2_ktfuy"]
+[ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierManager.gd" id="3_0bg5d"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="3_0c4e3"]
+[ext_resource type="Script" uid="uid://dhox24fwv011e" path="res://Scripts/Ability System/PassiveAbility/SpawnOnAbilityCastArea.gd" id="4_1keai"]
+[ext_resource type="Script" uid="uid://boi71j6dy2kn6" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierNode.gd" id="4_b7uuh"]
+[ext_resource type="Script" uid="uid://dkb4p6s36rwxr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierModifications/ModifyEquipmentStat.gd" id="5_2cyeb"]
+[ext_resource type="PackedScene" uid="uid://dp5ulm7wnucna" path="res://Scenes/Equipments/Shoes/spawnable_lightning_strike.tscn" id="5_jdtqx"]
+[ext_resource type="Script" uid="uid://bvj2nh3d8upjg" path="res://Scripts/Ability System/AbilityContainer/EquipmentPassiveAbilityContainer.gd" id="5_qoeel"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="6_1keai"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="7_ktfuy"]
+[ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="8_qoeel"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ktfuy"]
+radius = 500.0
+
+[node name="HeadgearLightningHat" type="Node2D" node_paths=PackedStringArray("tier_manager")]
+script = ExtResource("1_5adsq")
+equipment_name = "Lightning Hat"
+type = 1
+tier_manager = NodePath("EquipmentTierManager")
+string_id = "lightning_hat"
+equipment_icon = ExtResource("2_ktfuy")
+metadata/_custom_type_script = "uid://dnjhdyhsrd60y"
+
+[node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("3_0bg5d")
+next_tier_node = NodePath("EquipmentTierNode2")
+metadata/_custom_type_script = "uid://0tj10r8qa8qr"
+
+[node name="EquipmentTierNode2" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("4_b7uuh")
+next_tier_node = NodePath("../EquipmentTierNode3")
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode2" node_paths=PackedStringArray("stat")]
+script = ExtResource("5_2cyeb")
+stat = NodePath("../../../SpawnOnAbilityCastArea/MaxTargets")
+new_stat_value = 2.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="EquipmentTierNode3" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("4_b7uuh")
+tier = 2
+next_tier_node = NodePath("../EquipmentTierNode4")
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode3" node_paths=PackedStringArray("stat")]
+script = ExtResource("5_2cyeb")
+stat = NodePath("../../../SpawnOnAbilityCastArea/MaxTargets")
+new_stat_value = 3.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="EquipmentTierNode4" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
+script = ExtResource("4_b7uuh")
+tier = 3
+next_tier_node = NodePath("../EquipmentTierNode5")
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode4" node_paths=PackedStringArray("stat")]
+script = ExtResource("5_2cyeb")
+stat = NodePath("../../../SpawnOnAbilityCastArea/MaxTargets")
+new_stat_value = 4.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="EquipmentTierNode5" type="Node" parent="EquipmentTierManager"]
+script = ExtResource("4_b7uuh")
+tier = 4
+metadata/_custom_type_script = "uid://boi71j6dy2kn6"
+
+[node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode5" node_paths=PackedStringArray("stat")]
+script = ExtResource("5_2cyeb")
+stat = NodePath("../../../SpawnOnAbilityCastArea/MaxTargets")
+new_stat_value = 5.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="EquipmentBonusStat" type="Node" parent="." node_paths=PackedStringArray("equipment", "bonus_value")]
+script = ExtResource("2_gx2i5")
+equipment = NodePath("..")
+stat_name = "magic"
+bonus_value = NodePath("BonusValue")
+metadata/_custom_type_script = "uid://bjpxplndvkee"
+
+[node name="BonusValue" type="Node" parent="EquipmentBonusStat"]
+script = ExtResource("3_0c4e3")
+stat_value = 10.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="EquipmentPassiveAbilityContainer" type="Node" parent="." node_paths=PackedStringArray("passive_ability")]
+script = ExtResource("5_qoeel")
+passive_ability = NodePath("../SpawnOnAbilityCastArea")
+metadata/_custom_type_script = "uid://bvj2nh3d8upjg"
+
+[node name="SpawnOnAbilityCastArea" type="Node2D" parent="." node_paths=PackedStringArray("max_targets", "area", "hit_listener")]
+script = ExtResource("4_1keai")
+spawn_scene = ExtResource("5_jdtqx")
+max_targets = NodePath("MaxTargets")
+area = NodePath("Area2D")
+hit_listener = NodePath("HitListener")
+look_at_mouse = false
+spawn_on_nearest = false
+metadata/_custom_type_script = "uid://dhox24fwv011e"
+
+[node name="Area2D" type="Area2D" parent="SpawnOnAbilityCastArea"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnOnAbilityCastArea/Area2D"]
+shape = SubResource("CircleShape2D_ktfuy")
+debug_color = Color(0.677934, 0.449075, 0.617644, 0.42)
+
+[node name="HitListener" type="Node" parent="SpawnOnAbilityCastArea"]
+script = ExtResource("6_1keai")
+metadata/_custom_type_script = "uid://dm3uuggj1g47y"
+
+[node name="DamageEffect" type="Node" parent="SpawnOnAbilityCastArea/HitListener" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("7_ktfuy")
+damage_stat = NodePath("Stat")
+damage_type = 1
+metadata/_custom_type_script = "uid://c8sj8b1npavnd"
+
+[node name="Stat" type="Node" parent="SpawnOnAbilityCastArea/HitListener/DamageEffect"]
+script = ExtResource("3_0c4e3")
+stat_value = 10.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="GetActorStatAdder" type="Node" parent="SpawnOnAbilityCastArea/HitListener/DamageEffect/Stat" node_paths=PackedStringArray("stat")]
+script = ExtResource("8_qoeel")
+stat = NodePath("..")
+scale_with_stat_id = "magic"
+ratio = 0.25
+metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+
+[node name="MaxTargets" type="Node" parent="SpawnOnAbilityCastArea"]
+script = ExtResource("3_0c4e3")
+stat_value = 1.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"

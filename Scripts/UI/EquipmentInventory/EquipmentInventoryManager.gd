@@ -16,17 +16,17 @@ const EQUIPMENT_INVENTORY_SLOT = preload("res://Scenes/UI/EquipmentInventory/equ
 #@export var torso_EIS : EquipmentInventorySlot
 #@export var armgear_EIS : EquipmentInventorySlot
 #@export var shoes_EIS : EquipmentInventorySlot
-@onready var weapon_equip_slot: EquipmentEquipSlot = $EquippedSlots/MarginContainer/VBoxContainer/WeaponEquipSlot
-@onready var headgear_equip_slot: EquipmentEquipSlot = $EquippedSlots/MarginContainer/VBoxContainer/HeadgearEquipSlot
-@onready var torso_equip_slot: EquipmentEquipSlot = $EquippedSlots/MarginContainer/VBoxContainer/TorsoEquipSlot
-@onready var armgear_equip_slot: EquipmentEquipSlot = $EquippedSlots/MarginContainer/VBoxContainer/ArmgearEquipSlot
-@onready var shoes_equip_slot: EquipmentEquipSlot = $EquippedSlots/MarginContainer/VBoxContainer/ShoesEquipSlot
-@onready var offhand_equip_slot: EquipmentEquipSlot = $EquippedSlots/MarginContainer/VBoxContainer/OffhandEquipSlot
+@onready var weapon_equip_slot: EquipmentEquipSlot = %WeaponEquipSlot
+@onready var headgear_equip_slot: EquipmentEquipSlot = %HeadgearEquipSlot
+@onready var torso_equip_slot: EquipmentEquipSlot = %TorsoEquipSlot
+@onready var armgear_equip_slot: EquipmentEquipSlot = %ArmgearEquipSlot
+@onready var shoes_equip_slot: EquipmentEquipSlot = %ShoesEquipSlot
+@onready var offhand_equip_slot: EquipmentEquipSlot = %OffhandEquipSlot
 
-@onready var inventory_grid: GridContainer = $EquipmentInventory/MarginContainer/InventoryGrid
+@onready var inventory_grid: GridContainer = %InventoryGrid
 
 var inventory_slots : Array[EquipmentInventorySlot]
-var equip_slots : Array[EquipmentEquipSlot] = [null, null, null, null, null]
+var equip_slots : Array[EquipmentEquipSlot] = [null, null, null, null, null, null]
 var selected_slot : EquipmentInventorySlot
 
 func _ready():
@@ -66,6 +66,12 @@ func _ready():
 		if shoes_slot.equipment != null:
 			shoes_equip_slot.equipment = shoes_slot.equipment
 			shoes_equip_slot.equipment_icon.texture = shoes_slot.equipment.equipment_icon
+	if offhand_slot != null:
+		offhand_equip_slot.equipment_slot = offhand_slot
+		equip_slots[5] = offhand_equip_slot
+		if offhand_slot.equipment != null:
+			offhand_equip_slot.equipment = offhand_slot.equipment
+			offhand_equip_slot.equipment_icon.texture = offhand_slot.equipment.equipment_icon
 	
 	weapon_equip_slot.selected.connect(on_inventory_slot_selected)
 	headgear_equip_slot.selected.connect(on_inventory_slot_selected)

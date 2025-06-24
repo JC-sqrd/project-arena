@@ -37,9 +37,9 @@ func area_hit():
 			if filter.is_valid(self, entity, entities_in_area):
 				var data : Dictionary = _create_hit_data(entity)
 				entity.on_hit.emit(data)
-				on_hit.emit(data)
-				if hit_listener != null:
-					hit_listener.on_hit(data)
+				#on_hit.emit(data)
+				#if hit_listener != null:
+					#hit_listener.on_hit(data)
 	pass
 
 func _on_windup_end():

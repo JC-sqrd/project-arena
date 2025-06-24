@@ -6,6 +6,7 @@ extends PassiveAbility
 @export var area : Area2D
 @export var hit_listener : HitListener
 @export var look_at_mouse : bool = true
+@export var spawn_on_nearest : bool = true
 
 var _target_counter : int = 0
 var hittable_entities : Array[Entity]

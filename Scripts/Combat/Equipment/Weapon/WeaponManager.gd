@@ -44,8 +44,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func switch_weapon():
 	main_weapon = !main_weapon
 	if main_weapon:
-		if main_weapon_slot.equipment != null:
+		if main_weapon_slot.equipment != null and offhand_weapon_slot.equipment != null:
 			offhand_weapon_slot.unequip(offhand_weapon_slot.equipment)
+			offhand_weapon_slot.equipment.actor = actor
 			main_weapon_slot.equip(main_weapon_slot.equipment)
 			actor.can_attack = true
 			current_weapon_slot = main_weapon_slot
@@ -56,8 +57,9 @@ func switch_weapon():
 			current_weapon_slot = offhand_weapon_slot
 			weapon_switched.emit(current_weapon_slot)
 	else:
-		if offhand_weapon_slot.equipment != null:
+		if offhand_weapon_slot.equipment != null and main_weapon_slot.equipment != null:
 			main_weapon_slot.unequip(main_weapon_slot.equipment)
+			main_weapon_slot.equipment.actor = actor
 			offhand_weapon_slot.equip_offhand()
 			actor.can_attack = true
 			current_weapon_slot = offhand_weapon_slot
@@ -94,14 +96,14 @@ func _on_main_weapon_slotted (equipment : Equipment):
 	if main_weapon:
 		main_weapon_slot.equip(main_weapon_slot.equipment)
 	main_weapon_ability_container.ability = (equipment as Weapon).weapon_ability
-	main_weapon_ability_container.ability.ready.emit()
+	if main_weapon_ability_container.ability != null:
+		main_weapon_ability_container.ability.ready.emit()
 	pass
 
 
 func _on_main_weapon_unslotted (equipment : Equipment):
 	main_weapon_slot.unequip(main_weapon_slot.equipment)
 	main_weapon_ability_container.ability = null
-	print("OFFHAND ABILITY UNEQUIPPED : " + str(main_weapon_ability_container.ability))
 	pass
 
 func _equip_main_weapon():
@@ -112,8 +114,8 @@ func _on_offhand_weapon_slotted (equipment : Equipment):
 	if !main_weapon:
 		offhand_weapon_slot.equip_offhand()
 	offhand_weapon_ability_container.ability = (equipment as Weapon).weapon_ability
-	offhand_weapon_ability_container.ability.ready.emit()
-	print("ABILITY EQUIPPED TO CONTAINER, ABILITY OWNER: " + str(offhand_weapon_ability_container.ability.owner))
+	if offhand_weapon_ability_container.ability != null:
+		offhand_weapon_ability_container.ability.ready.emit()
 	pass
 
 func _on_offhand_weapon_unslotted (equipment : Equipment):

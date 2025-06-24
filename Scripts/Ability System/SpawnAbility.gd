@@ -10,7 +10,6 @@ enum ShapeType {CIRCLE,BOX}
 @export var direction : Vector2
 var cast_position : Vector2
 
-
 func _ready():
 	#actor = owner
 	super()
@@ -30,7 +29,7 @@ func _process(delta):
 			actor.can_attack = false
 			actor.can_cast = false
 		actor.queue_redraw()
-		get_cast_data()
+		cast_data = await get_cast_data()
 	pass
 
 func _spawn_start():
@@ -47,6 +46,7 @@ func _spawn_start():
 	var spawn_rotation : float = 0
 	if !aim_at_mouse:
 		spawn_rotation = direction.angle()
+		spawn_rotation = actor.global_position.direction_to(cast_data["target_position"]).angle()
 	else:
 		#spawn_rotation = (cast_data["target_position"] - actor.global_position).normalized().angle()
 		spawn_rotation = actor.global_position.direction_to(actor.get_global_mouse_position()).angle()
@@ -125,9 +125,9 @@ func _spawn_end():
 	#pass
 	
 func _on_ability_hit(hit_data : Dictionary):
-	if hit_listener != null:
-		ability_hit.emit(hit_data)
-		hit_listener.on_hit(hit_data)
+	#if hit_listener != null:
+		#ability_hit.emit(hit_data)
+		#hit_listener.on_hit(hit_data)
 	pass
 	
 func draw_debug_circle():
