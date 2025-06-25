@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckkbe1bgata60"]
+[gd_scene load_steps=15 format=3 uid="uid://ckkbe1bgata60"]
 
 [ext_resource type="Script" uid="uid://bviaakymd1gy8" path="res://Scripts/Combat/Equipment/Torso/Torso.gd" id="1_mhtjb"]
 [ext_resource type="Texture2D" uid="uid://b1xkpvr4tkxc7" path="res://Sprites/Shoes/Lightning Shoes/lightning_shoes_placeholder.png" id="2_kcu81"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="5_jb1g1"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="6_1t711"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="7_7124w"]
+[ext_resource type="Script" uid="uid://bjpxplndvkee" path="res://Scripts/StatSystem/Stats/EquipmentBonusStat.gd" id="7_dfm6u"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="10_hsy0h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_orxxb"]
@@ -79,6 +80,18 @@ metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 script = ExtResource("3_1t711")
 passive_ability = NodePath("../SpawnOnUtilCastArea")
 metadata/_custom_type_script = "uid://bvj2nh3d8upjg"
+
+[node name="EquipmentBonusStat" type="Node" parent="." node_paths=PackedStringArray("equipment", "bonus_value")]
+script = ExtResource("7_dfm6u")
+equipment = NodePath("..")
+stat_name = "magic"
+bonus_value = NodePath("BonusValue")
+metadata/_custom_type_script = "uid://bjpxplndvkee"
+
+[node name="BonusValue" type="Node" parent="EquipmentBonusStat"]
+script = ExtResource("7_7124w")
+stat_value = 10.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="SpawnOnUtilCastArea" type="Node2D" parent="." node_paths=PackedStringArray("max_targets", "area", "hit_listener")]
 script = ExtResource("3_4rvsl")

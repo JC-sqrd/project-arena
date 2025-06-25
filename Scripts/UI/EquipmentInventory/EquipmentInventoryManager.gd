@@ -22,12 +22,14 @@ const EQUIPMENT_INVENTORY_SLOT = preload("res://Scenes/UI/EquipmentInventory/equ
 @onready var armgear_equip_slot: EquipmentEquipSlot = %ArmgearEquipSlot
 @onready var shoes_equip_slot: EquipmentEquipSlot = %ShoesEquipSlot
 @onready var offhand_equip_slot: EquipmentEquipSlot = %OffhandEquipSlot
+@onready var _floating_icon: TextureRect = $_FloatingIcon
 
 @onready var inventory_grid: GridContainer = %InventoryGrid
 
 var inventory_slots : Array[EquipmentInventorySlot]
 var equip_slots : Array[EquipmentEquipSlot] = [null, null, null, null, null, null]
 var selected_slot : EquipmentInventorySlot
+
 
 func _ready():
 	visible = false
@@ -100,6 +102,15 @@ func _ready():
 			inventory_slots.append(child)
 	pass
 
+
+func _input(event: InputEvent) -> void:
+	if selected_slot != null and event is InputEventMouseMotion:
+		_floating_icon.visible = true
+		_floating_icon.texture = selected_slot.equipment_icon.texture
+		_floating_icon.global_position = get_global_mouse_position()
+	else:
+		_floating_icon.visible = false
+		pass
 
 func on_equip_slot_selected(equip_slot : EquipmentInventorySlot):
 	clear_selected_slot()
@@ -201,12 +212,16 @@ func on_inventory_slot_selected(inventory_slot : EquipmentInventorySlot):
 				selected_slot = null
 				return
 			pass
-		
+	elif inventory_slot.equipment == null:
+		return
 	selected_slot = inventory_slot
 	#Check if the new selected slot is not null
 	if selected_slot != null:
 		selected_slot.slot_border.modulate = Color.AQUA
 		selected_slot.is_selected = true
+	else:
+		selected_slot = null
+		return
 	pass
 
 func on_equipment_added_to_inventory(equipment : Equipment, slot_index : int):

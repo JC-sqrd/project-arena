@@ -12,7 +12,10 @@ extends CharacterBody2D
 @export var item_iventory : ItemInventory
 @export var equipment_inventory : EquipmentInventory
 @export var ability_containers : Array[AbilityContainer] = []
+@export_category("UI")
+@export var state_indicator_container : StateIndicatorContainer
 var hit_listeners : Array[HitListener]
+
 
 @onready var original_coll_layer : int = collision_layer 
 var can_move : bool = true

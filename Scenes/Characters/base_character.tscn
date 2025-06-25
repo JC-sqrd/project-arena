@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bwbyc8vywa6vd"]
+[gd_scene load_steps=58 format=3 uid="uid://bwbyc8vywa6vd"]
 
 [ext_resource type="Script" uid="uid://bl5aki5ii4r6t" path="res://Scripts/PlayerCharacter.gd" id="1_4r8nq"]
 [ext_resource type="Script" uid="uid://bsn1idamyre35" path="res://Scripts/EquipmentInventory/EquipmentInventory.gd" id="2_52ran"]
@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://c5ynpo7p54mt" path="res://Scenes/UI/health_bar.tscn" id="31_e6ml3"]
 [ext_resource type="PackedScene" uid="uid://b8v5pw5002yu7" path="res://Scenes/UI/mana_bar.tscn" id="32_51lw5"]
 [ext_resource type="PackedScene" uid="uid://bba116t3m1ua7" path="res://Scenes/UI/EquipmentInventory/equipment_inventory.tscn" id="33_e7p34"]
+[ext_resource type="PackedScene" uid="uid://bcmb48whht316" path="res://Scenes/UI/StateIndicator/state_indicator_container.tscn" id="33_wvybv"]
 [ext_resource type="Script" uid="uid://cyb8xt674le3f" path="res://Scripts/StatSystem/StatModManager.gd" id="34_gf3ef"]
 [ext_resource type="PackedScene" uid="uid://dfopknahmh8ed" path="res://Scenes/Components/movement_controller_component.tscn" id="35_pffph"]
 [ext_resource type="PackedScene" uid="uid://c0i8ypdefjyja" path="res://Scenes/Components/movement_input_component.tscn" id="36_teqnh"]
@@ -103,7 +104,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_4yy27"]
 radius = 150.0
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("gold_manager", "weapon_manager", "passive_ability_container", "innate_active_ability", "utility_ability", "main_weapon_ability_container", "off_weapon_ability_container", "hit_receiver", "stat_manager", "level_manager", "health_manager", "mana_manager", "status_effect_manager", "stat_mods_manager", "damage_listener", "item_iventory", "equipment_inventory") groups=["Hittable", "player"]]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("gold_manager", "weapon_manager", "passive_ability_container", "innate_active_ability", "utility_ability", "main_weapon_ability_container", "off_weapon_ability_container", "hit_receiver", "stat_manager", "level_manager", "health_manager", "mana_manager", "status_effect_manager", "stat_mods_manager", "damage_listener", "item_iventory", "equipment_inventory", "state_indicator_container") groups=["Hittable", "player"]]
 y_sort_enabled = true
 motion_mode = 1
 platform_floor_layers = 4294901760
@@ -125,6 +126,7 @@ stat_mods_manager = NodePath("StatModManager")
 damage_listener = NodePath("DamageListener")
 item_iventory = NodePath("ItemInventory")
 equipment_inventory = NodePath("EquipmentInventory")
+state_indicator_container = NodePath("CanvasLayer/Control/VBoxContainer/StateIndicatorContainer")
 
 [node name="EquipmentInventory" type="Node" parent="." node_paths=PackedStringArray("weapon_slot", "headgear_slot", "torso_slot", "armgear_slot", "shoes_slot", "offhand_weapon_slot")]
 script = ExtResource("2_52ran")
@@ -572,6 +574,9 @@ offset_top = -109.0
 offset_right = 110.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="StateIndicatorContainer" parent="CanvasLayer/Control/VBoxContainer" instance=ExtResource("33_wvybv")]
+layout_mode = 2
 
 [node name="AbilitiesPanelContainer" parent="CanvasLayer/Control/VBoxContainer" instance=ExtResource("29_sqmm1")]
 layout_mode = 2

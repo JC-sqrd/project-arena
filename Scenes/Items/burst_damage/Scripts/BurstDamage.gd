@@ -38,6 +38,8 @@ func _on_actor_applied_damage_with_data(damage_data : DamageEffectData):
 				spawnable.hit_data = effect_data
 			get_tree().root.add_child(spawnable)
 			spawnable.global_position = target.global_position
+			actor.state_indicator_container.add_state_indicator(StateIndicatorContainer.create_state_indicator(cooldown_time, item_icon, "Shockwave Shard cool down"))
+			print("ITEM BURST DAMAGE ACTOR: " + str(actor))
 			get_tree().create_timer(cooldown_time,false,true,false).timeout.connect(_on_cooldown_end)
 			on_cooldown = true
 		pass

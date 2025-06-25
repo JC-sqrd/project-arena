@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cggb2x36mslpl"]
+[gd_scene load_steps=19 format=3 uid="uid://cggb2x36mslpl"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_g348i"]
 [ext_resource type="Script" uid="uid://b74u7eflax8b2" path="res://Scripts/Ability System/PassiveAbility/GainDecayingStatOnHit.gd" id="2_3yh4f"]
@@ -14,8 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://c0pgoq0h82gka" path="res://Scenes/Equipments/Head Gears/Lightning Hat/headgear_lightning_hat.tscn" id="8_mtotw"]
 [ext_resource type="PackedScene" uid="uid://dscnrnivus7jc" path="res://Scenes/Equipments/Armgear/armgear_lightning_gauntlets.tscn" id="9_cxhod"]
 [ext_resource type="Script" uid="uid://ci6lj2tooi02" path="res://Scripts/Ability System/PassiveAbility/GainStatOnAbilityCast.gd" id="11_paabx"]
+[ext_resource type="Texture2D" uid="uid://kw55mscj116h" path="res://Placeholders/Icons/Icon.7_59.png" id="12_1n4dn"]
 [ext_resource type="PackedScene" uid="uid://4m3bpkty0d23" path="res://Scenes/Items/flying_dagger/item_flying_dagger.tscn" id="12_1t5iw"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="12_8aloa"]
+[ext_resource type="PackedScene" uid="uid://dpxeo3vfdhsen" path="res://Scenes/Items/burst_damage/item_burst_damage.tscn" id="17_lcvkm"]
 
 [node name="BrawlerCharacter" instance=ExtResource("1_g348i")]
 
@@ -59,6 +61,7 @@ bonus_stat = NodePath("BonusAgility")
 bonus_stat_time = NodePath("StatTime")
 stat_id = "agility"
 is_percentage = true
+ability_icon_texture = ExtResource("12_1n4dn")
 metadata/_custom_type_script = "uid://ci6lj2tooi02"
 
 [node name="BonusAgility" type="Node" parent="PassiveAbilityContainer/GainStatOnAbilityCast" index="0"]
@@ -100,6 +103,8 @@ position = Vector2(0, 9)
 position = Vector2(17, 0)
 
 [node name="ItemFlyingDagger" parent="ItemInventory" index="0" instance=ExtResource("12_1t5iw")]
+
+[node name="ItemOnBurstDamage" parent="ItemInventory" index="1" instance=ExtResource("17_lcvkm")]
 
 [node name="Agility" parent="Stats" index="3"]
 stat_value = 20.0

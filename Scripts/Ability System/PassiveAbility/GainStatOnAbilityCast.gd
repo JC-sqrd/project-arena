@@ -64,6 +64,7 @@ func _on_ability_cast():
 			_bonus_stat_timer.start(bonus_stat_time.stat_derived_value)
 			active = true
 		#get_tree().create_timer(bonus_stat_time.stat_derived_value, false, false, false).timeout.connect(_on_bonus_stat_timer_timeout)
+		actor.state_indicator_container.add_state_indicator(StateIndicatorContainer.create_state_indicator(bonus_stat_time.stat_derived_value, ability_icon_texture, ability_details))
 		start_cooldown()
 	pass
 

@@ -56,4 +56,4 @@ grow_vertical = 2
 fill_mode = 5
 nine_patch_stretch = true
 texture_progress = SubResource("CanvasTexture_520bh")
-tint_progress = Color(1, 1, 1, 0.74902)
+tint_progress = Color(0.203922, 0.356863, 0.831373, 0.709804)
