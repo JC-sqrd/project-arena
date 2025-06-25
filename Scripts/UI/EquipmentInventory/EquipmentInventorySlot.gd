@@ -8,10 +8,14 @@ var equipment : Equipment : set = set_equipment
 @onready var equipment_icon: TextureRect = $SlotBorder/MarginContainer/EquipmentIcon
 @onready var equipment_inventory_slot_icon: EquipmentInventorySlotIcon = $SlotBorder/MarginContainer/EquipmentInventorySlotIcon
 @onready var slot_border: TextureRect = $SlotBorder
+
 const EQUIPMENT_CONTEXT_MENU = preload("res://Scenes/UI/EquipmentInventory/equipment_context_menu.tscn")
+const EQUIPMENT_TOOLTIP = preload("res://Scenes/UI/ItemInventoryUI/equipment_tooltip.tscn")
+
 var context_menu : EquipmentContextMenu
 var is_selected : bool = false
 var slot_index : int = -1
+
 
 signal selected (equipment_slot : EquipmentInventorySlot)
 signal right_clicked (equipment_slot : EquipmentInventorySlot)
@@ -68,3 +72,12 @@ func update_equipment_data():
 func set_slot_type(new_slot_type : SlotType):
 	slot_type = new_slot_type
 	pass
+
+func _make_custom_tooltip(for_text: String) -> Object:
+	if equipment == null:
+		return null
+	
+	var equipment_tooltip = EQUIPMENT_TOOLTIP.instantiate()	
+	equipment_tooltip.initialize_equipment_tooltip(equipment)
+	
+	return equipment_tooltip

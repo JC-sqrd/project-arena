@@ -16,6 +16,10 @@ enum EquipmentTier {ONE, TWO, THREE, FOUR, FIVE}
 @export var buy_cost : float
 @export var sell_value : float
  
+@export_category("Tooltip Stats")
+@export var tooltip_stats : Array[Stat]
+
+
 var is_equipped : bool = false
 
 signal equipped (actor : Entity)

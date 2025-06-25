@@ -11,7 +11,6 @@ func _ready() -> void:
 	player.died.connect(on_player_died)
 	pass
 
-
 func on_player_died(entity : Entity):
 	#get_tree().change_scene_to_file("res://Scenes/Test/test_scene.tscn")
 	#player.queue_free()

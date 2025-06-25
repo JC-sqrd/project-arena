@@ -88,7 +88,7 @@ scale_min = 0.2
 scale_max = 0.2
 scale_curve = SubResource("CurveTexture_po0cc")
 
-[node name="FireGrimoire" type="Node2D" node_paths=PackedStringArray("spawn_node", "attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "sockets", "tier_manager")]
+[node name="FireGrimoire" type="Node2D" node_paths=PackedStringArray("spawn_node", "attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "sockets", "tier_manager", "tooltip_stats")]
 y_sort_enabled = true
 script = ExtResource("1_i71yi")
 projectile = ExtResource("2_8254a")
@@ -105,6 +105,7 @@ equipment_name = "Fire Grimoire"
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "fire_grimoire"
 equipment_icon = ExtResource("3_5goof")
+tooltip_stats = [NodePath("Damage"), NodePath("AttackSpeed")]
 
 [node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
 script = ExtResource("4_po0cc")

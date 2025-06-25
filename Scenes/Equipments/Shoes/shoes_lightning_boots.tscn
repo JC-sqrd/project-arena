@@ -96,10 +96,10 @@ metadata/_custom_type_script = "uid://bgka26pbphks7"
 [node name="SpawnOnUtilCastArea" type="Node2D" parent="." node_paths=PackedStringArray("max_targets", "area", "hit_listener")]
 script = ExtResource("3_4rvsl")
 spawn_scene = ExtResource("5_1t711")
+look_at_mouse = false
 max_targets = NodePath("MaxTargets")
 area = NodePath("Area2D")
 hit_listener = NodePath("HitListener")
-look_at_mouse = false
 metadata/_custom_type_script = "uid://k87nq4771qol"
 
 [node name="Area2D" type="Area2D" parent="SpawnOnUtilCastArea"]

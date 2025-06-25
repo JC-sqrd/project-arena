@@ -185,7 +185,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Hammer" type="Area2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "hit_listener", "tier_manager")]
+[node name="Hammer" type="Area2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "hit_listener", "tier_manager", "tooltip_stats")]
 collision_mask = 2
 script = ExtResource("1_f6rey")
 piercing = true
@@ -199,6 +199,7 @@ equipment_name = "Hammer"
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "hammer"
 equipment_icon = ExtResource("3_dv3hi")
+tooltip_stats = [NodePath("Damage"), NodePath("AttackSpeed")]
 
 [node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
 script = ExtResource("4_0o0tb")

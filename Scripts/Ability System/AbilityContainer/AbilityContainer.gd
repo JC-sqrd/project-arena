@@ -39,7 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed(ability_action_trigger) and ability != null:
 		if actor.stat_manager.stats[ability.required_stat.stat_name].stat_derived_value >= ability.required_stat.required_value and _ability_input_buffer_counter <= 0:
 			_ability_input_buffer_counter = _ability_input_buffer
-w
+
 func _process(delta):
 	if _ability_input_buffer_counter > 0 and ability.can_cast and actor.can_cast:
 		_ability_input_buffer_counter = 0

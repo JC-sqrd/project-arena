@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://wn65qvhghkpr" path="res://Scenes/StatusEffects/Bleed.tscn" id="11_agyne"]
 [ext_resource type="PackedScene" uid="uid://c42ua48l5bb27" path="res://Scenes/Abilities/Emit Abilities/Whirling Chakram/ability_whirling_chakram.tscn" id="14_rx7qf"]
 
-[node name="WeaponChakram" type="Node2D" node_paths=PackedStringArray("throw_amount", "return_hit_listener", "spawn_node", "attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "tier_manager")]
+[node name="WeaponChakram" type="Node2D" node_paths=PackedStringArray("throw_amount", "return_hit_listener", "spawn_node", "attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "tier_manager", "tooltip_stats")]
 script = ExtResource("1_qlnpl")
 throw_amount = NodePath("ThrowAmount")
 return_speed = 1000.0
@@ -36,6 +36,7 @@ equipment_name = "Chakram"
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "chakram"
 equipment_icon = ExtResource("3_agyne")
+tooltip_stats = [NodePath("Damage"), NodePath("AttackSpeed"), NodePath("ThrowAmount")]
 metadata/_custom_type_script = "uid://d3fin4411ww46"
 
 [node name="ThrowAmount" type="Node" parent="."]

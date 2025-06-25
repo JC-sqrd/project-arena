@@ -98,12 +98,12 @@ metadata/_custom_type_script = "uid://bvj2nh3d8upjg"
 script = ExtResource("5_8ag46")
 spawn_on = 2
 spawn_scene = ExtResource("6_8ace4")
-max_targets = NodePath("MaxTargets")
-area = NodePath("Area2D")
-hit_listener = NodePath("HitListener")
 look_at_mouse = false
 spawn_on_nearest = false
 cooldown = 5.0
+max_targets = NodePath("MaxTargets")
+area = NodePath("Area2D")
+hit_listener = NodePath("HitListener")
 metadata/_custom_type_script = "uid://dhox24fwv011e"
 
 [node name="Area2D" type="Area2D" parent="SpawnOnAbilityCastArea"]

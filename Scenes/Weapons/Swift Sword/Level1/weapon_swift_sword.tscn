@@ -178,7 +178,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="SwiftSword" type="Area2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "sockets", "tier_manager")]
+[node name="SwiftSword" type="Area2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "sockets", "tier_manager", "tooltip_stats")]
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_5d1jb")
@@ -193,6 +193,7 @@ equipment_name = "Swift Sword"
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "swift_sword"
 equipment_icon = ExtResource("3_lgo86")
+tooltip_stats = [NodePath("Damage"), NodePath("AttackSpeed")]
 
 [node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
 script = ExtResource("4_lgo86")

@@ -7,6 +7,8 @@ var equipment : Equipment
 
 
 func _ready() -> void:
+	if equipment != null:
+		set_equipment(equipment)
 	pass
 
 func set_equipment(equipment : Equipment):
