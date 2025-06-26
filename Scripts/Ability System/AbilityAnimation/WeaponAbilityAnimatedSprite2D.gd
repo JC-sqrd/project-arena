@@ -39,11 +39,13 @@ func _process(delta: float) -> void:
 func _on_ability_cast():
 	visible = true
 	weapon_anim_sprite.visible = false
+	weapon.look_at_mouse = false
 	play("cast_animation")
 	pass
 
 func _on_animation_finished():
 	visible = false
+	weapon.look_at_mouse = true
 	#weapon_anim_sprite.visible = true
 	pass
 

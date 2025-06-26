@@ -12,8 +12,8 @@
 [node name="AbilityBladeDance" type="Node2D" node_paths=PackedStringArray("hit_listener")]
 script = ExtResource("1_dxij0")
 emited_object = ExtResource("2_aijs5")
-cast_time = 0.1
 hit_listener = NodePath("HitListener")
+cast_time = 0.1
 cooldown = 6.0
 metadata/_custom_type_script = "uid://42qvy4m6xprb"
 
@@ -36,6 +36,13 @@ metadata/_custom_type_script = "uid://bgka26pbphks7"
 script = ExtResource("6_npap8")
 stat = NodePath("..")
 scale_with_stat_id = "strength"
+ratio = 0.25
+metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+
+[node name="GetActorStatAdder2" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_npap8")
+stat = NodePath("..")
+scale_with_stat_id = "magic"
 ratio = 0.25
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 

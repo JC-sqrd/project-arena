@@ -6,7 +6,6 @@ extends Weapon
 @export var speed : float = 100
 @export var spawn_node : Node2D
 @export var max_distance : float = 100
-@export var look_at_mouse : bool = false
 
 
 
@@ -67,8 +66,8 @@ func projectile_weapon_process(delta : float):
 		#coll_enabled_counter = 0
 		#end_attack()
 		
-	if look_at_mouse:
-		rotation = lerp_angle(rotation, (get_global_mouse_position() - global_position).normalized().angle(), 10 * delta)
+	#if look_at_mouse:
+		#rotation = lerp_angle(rotation, (get_global_mouse_position() - global_position).normalized().angle(), 10 * delta)
 	pass
 
 func start_attack():

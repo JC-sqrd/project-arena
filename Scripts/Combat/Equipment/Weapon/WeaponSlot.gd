@@ -31,7 +31,7 @@ func _ready():
 
 
 func _process(delta):
-	if look_at_mouse:
+	if equipment != null and weapon.look_at_mouse:
 		rotation = lerp_angle(rotation, (get_global_mouse_position() - global_position).normalized().angle(), 10 * delta)
 
 func _reset_attack():
@@ -66,9 +66,11 @@ func set_equipment(new_equipment : Equipment):
 		equipment_unslotted.emit(equipment)
 	if new_equipment != null:
 		equipment = new_equipment
+		weapon = equipment as Weapon
 		equipment_slotted.emit(equipment)
 	else:
 		equipment = new_equipment
+		weapon = equipment as Weapon
 	pass 
 
 func equip(equipment : Equipment):

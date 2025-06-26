@@ -4,7 +4,7 @@ extends TextureProgressBar
 
 var actor : Entity
 var level_manager : LevelManager
-@export var level_label : Label
+@onready var level_label: Label = $HBoxContainer/LevelLabel
 
 
 func _ready() -> void:

@@ -26,6 +26,7 @@ script = ExtResource("1_p70bi")
 max_range = 50.0
 spawn = ExtResource("2_t26ss")
 spawn_behavior = SubResource("Resource_85hsq")
+aim_at_mouse = false
 hit_listener = NodePath("WindSlashHitListener")
 required_stat = SubResource("Resource_sgg3d")
 start_cooldown_on = 1

@@ -1,9 +1,157 @@
-[gd_scene load_steps=4 format=3 uid="uid://c011dofai72u5"]
+[gd_scene load_steps=18 format=3 uid="uid://c011dofai72u5"]
 
 [ext_resource type="Script" uid="uid://q46jnq6uw7yj" path="res://Scripts/UI/AbilityIconUI.gd" id="1_bksv6"]
 [ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="2_ef6yj"]
+[ext_resource type="Texture2D" uid="uid://dsgcy2jeaik3y" path="res://Sprites/UI/Slot Border/SlotBorder.png" id="3_1k0a4"]
+[ext_resource type="Texture2D" uid="uid://1bpi7rrhecyj" path="res://Sprites/UI/Slot Border/SlotBorderHighlightAnimation/SlotBorder1.png" id="4_6je5m"]
+[ext_resource type="Texture2D" uid="uid://devw55cx0ld5c" path="res://Sprites/UI/Slot Border/SlotBorderHighlightAnimation/SlotBorder2.png" id="5_fbg0f"]
+[ext_resource type="Texture2D" uid="uid://cx6odumretlq0" path="res://Sprites/UI/Slot Border/SlotBorderHighlightAnimation/SlotBorder3.png" id="6_3un5n"]
+[ext_resource type="Texture2D" uid="uid://chj720lu264cy" path="res://Sprites/UI/Slot Border/SlotBorderHighlightAnimation/SlotBorder4.png" id="7_rcve5"]
+[ext_resource type="Texture2D" uid="uid://b5wnitk783r4j" path="res://Sprites/UI/Slot Border/SlotBorderHighlightAnimation/SlotBorder5.png" id="8_8sq40"]
+[ext_resource type="Texture2D" uid="uid://cq0h0okjocrdi" path="res://Sprites/UI/Slot Border/SlotBorderHighlightAnimation/SlotBorder6.png" id="9_wsaoi"]
+[ext_resource type="Texture2D" uid="uid://31bpdnhtrsll" path="res://Sprites/UI/Slot Border/SlotBorderHighlightAnimation/SlotBorder7.png" id="10_uywlh"]
+[ext_resource type="Texture2D" uid="uid://dewjiep7dmi6m" path="res://Sprites/UI/Slot Border/SlotBorderHighlightAnimation/SlotBorder8.png" id="11_mc1rr"]
+[ext_resource type="Texture2D" uid="uid://dk5q48o3q1khx" path="res://Sprites/UI/Slot Border/SlotBorderHighlightAnimation/SlotBorder9.png" id="12_j3q6t"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_520bh"]
+
+[sub_resource type="Animation" id="Animation_3d3i7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BorderHightlight:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BorderHightlight:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IconTextureRect/IconHighlight:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("IconTextureRect/IconHighlight:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.82924, 0.731582, 0.316743, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("IconTextureRect/IconCasted:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.4, 0.721569, 0.964706, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ifinv"]
+resource_name = "border_highlight_anim"
+step = 0.083
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BorderHightlight:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [null, ExtResource("4_6je5m"), ExtResource("5_fbg0f"), ExtResource("6_3un5n"), ExtResource("7_rcve5"), ExtResource("8_8sq40"), ExtResource("9_wsaoi"), ExtResource("10_uywlh"), ExtResource("11_mc1rr"), ExtResource("12_j3q6t")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BorderHightlight:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.803733),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IconTextureRect/IconHighlight:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("IconTextureRect/IconHighlight:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.101977, 0.202165, 0.333333, 0.583333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.92549, 0.839216, 0.482353, 0), Color(0.70476, 0.502409, 0.148781, 1), Color(0.910366, 0.775794, 0.367218, 1), Color(0.985845, 0.94215, 0.815853, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6je5m"]
+resource_name = "ability_casted_anim"
+step = 0.083
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IconTextureRect/IconCasted:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.100188, 0.202165, 0.404329),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.4, 0.721569, 0.964706, 0), Color(0.0495463, 0.118251, 0.172296, 0.74902), Color(0.0544032, 0.151843, 0.233427, 0.501961), Color(0.152941, 0.286275, 0.392157, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eirpi"]
+_data = {
+&"RESET": SubResource("Animation_3d3i7"),
+&"ability_casted_anim": SubResource("Animation_6je5m"),
+&"border_highlight_anim": SubResource("Animation_ifinv")
+}
 
 [node name="AbilityIconUI" type="Panel"]
 custom_minimum_size = Vector2(50, 50)
@@ -16,8 +164,8 @@ default_icon = ExtResource("2_ef6yj")
 [node name="IconTextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 50.0
+offset_bottom = 50.0
 texture = ExtResource("2_ef6yj")
 expand_mode = 1
 stretch_mode = 5
@@ -57,3 +205,50 @@ fill_mode = 5
 nine_patch_stretch = true
 texture_progress = SubResource("CanvasTexture_520bh")
 tint_progress = Color(0.203922, 0.356863, 0.831373, 0.709804)
+
+[node name="IconHighlight" type="ColorRect" parent="IconTextureRect"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.82924, 0.731582, 0.316743, 1)
+
+[node name="IconCasted" type="ColorRect" parent="IconTextureRect"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.4, 0.721569, 0.964706, 0)
+
+[node name="Border" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 50.0
+texture = ExtResource("3_1k0a4")
+expand_mode = 3
+
+[node name="BorderHightlight" type="TextureRect" parent="."]
+visible = false
+z_index = 1
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_eirpi")
+}

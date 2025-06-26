@@ -12,6 +12,8 @@ var ability_icon_texture : Texture2D
 @onready var ability_count_label: Label = $TextureRect/AbilityCountLabel
 @onready var key_label: Label = $IconTextureRect/KeyLabel
 @onready var cooldown_progress_bar: TextureProgressBar = $IconTextureRect/CooldownProgressBar
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 
 var cooldown_time : float = 0
 var cooldown_time_counter : float = 0
@@ -82,10 +84,14 @@ func connect_signals():
 
 func _on_ability_cooldown_start(cooldown : float):
 	var tween : Tween = create_tween()
+	animation_player.stop()
+	animation_player.play("ability_casted_anim")
 	cooldown_progress_bar.value = cooldown_progress_bar.max_value
 	tween.tween_property(cooldown_progress_bar, "value", 0, cooldown)
 	pass
 
 func _on_ability_cooldown_end():
 	cooldown_progress_bar.value = 0
+	animation_player.stop()
+	animation_player.play("border_highlight_anim")
 	pass

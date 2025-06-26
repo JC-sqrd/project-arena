@@ -364,6 +364,7 @@ metadata/_custom_type_script = "uid://2vlwp08ancca"
 [node name="WindSlashAbility" parent="." instance=ExtResource("21_15j33")]
 position = Vector2(44, -31)
 max_range = 1.0
+start_cooldown_on = 0
 cast_time = 0.75
 
 [node name="WeaponSocket" type="Node" parent="."]

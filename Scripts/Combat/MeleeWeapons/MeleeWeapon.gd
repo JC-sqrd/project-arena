@@ -6,7 +6,6 @@ extends Weapon
 @export var hit_coll_enabled_time : float = 0.01
 @export var debug_visual : bool = false
 @export var filter : SpawnableEnterFilter = SpawnableRayFilter.new()
-@export var look_at_mouse : bool = false
 
 #Onready
 
@@ -54,7 +53,7 @@ func melee_weapon_process(delta : float):
 		winding_up = false
 		windup_counter = 0
 		start_coll_timer = true
-		look_at_mouse = false
+		#look_at_mouse = false
 		windup_done.emit()
 	
 	if start_coll_timer:
@@ -73,9 +72,12 @@ func melee_weapon_process(delta : float):
 		end_attack()
 		modulate = Color.WHITE
 	
-	if look_at_mouse:
+	if is_equipped:
+		print("WEAPON LOOK AT MOUSE: " + str(look_at_mouse))
+	
+	#if look_at_mouse:
 		#look_at(get_global_mouse_position())
-		rotation = lerp_angle(rotation, (get_global_mouse_position() - global_position).normalized().angle(), 10 * delta)
+		#rotation = lerp_angle(rotation, (get_global_mouse_position() - global_position).normalized().angle(), 10 * delta)
 		#rotation = lerp(rotation, (get_global_mouse_position() - global_position).normalized().angle(), 0.1) #get_global_mouse_position().normalized().angle()
 	pass
 
@@ -100,7 +102,7 @@ func start_attack():
 func _enable_coll():
 	attack_state = AttackState.ACTIVE
 	attack_timer.stop()
-	look_at_mouse = false
+	#look_at_mouse = false
 	hitbox_coll.disabled = false
 	#coll_enabled_timer.start()
 	attack_active.emit()

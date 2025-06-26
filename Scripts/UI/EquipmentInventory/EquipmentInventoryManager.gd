@@ -103,14 +103,22 @@ func _ready():
 	pass
 
 
-func _input(event: InputEvent) -> void:
-	if selected_slot != null and event is InputEventMouseMotion:
+#func _input(event: InputEvent) -> void:
+	#if selected_slot != null and event is InputEventMouseMotion:
+		#_floating_icon.visible = true
+		#_floating_icon.texture = selected_slot.equipment_icon.texture
+		#_floating_icon.global_position = get_global_mouse_position()
+	#else:
+		#_floating_icon.visible = false
+		#pass
+
+func _process(delta: float) -> void:
+	if selected_slot != null:
 		_floating_icon.visible = true
 		_floating_icon.texture = selected_slot.equipment_icon.texture
 		_floating_icon.global_position = get_global_mouse_position()
 	else:
 		_floating_icon.visible = false
-		pass
 
 func on_equip_slot_selected(equip_slot : EquipmentInventorySlot):
 	clear_selected_slot()

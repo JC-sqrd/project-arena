@@ -57,11 +57,11 @@ metadata/_custom_type_script = "uid://b74u7eflax8b2"
 
 [node name="GainStatOnAbilityCast" type="Node2D" parent="PassiveAbilityContainer" index="1" node_paths=PackedStringArray("bonus_stat", "bonus_stat_time")]
 script = ExtResource("11_paabx")
+bonus_stat = NodePath("BonusAgility")
+bonus_stat_time = NodePath("StatTime")
 stat_id = "agility"
 is_percentage = true
 ability_icon_texture = ExtResource("12_1n4dn")
-bonus_stat = NodePath("BonusAgility")
-bonus_stat_time = NodePath("StatTime")
 metadata/_custom_type_script = "uid://ci6lj2tooi02"
 
 [node name="BonusAgility" type="Node" parent="PassiveAbilityContainer/GainStatOnAbilityCast" index="0"]

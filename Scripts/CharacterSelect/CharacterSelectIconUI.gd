@@ -3,7 +3,7 @@ extends Control
 
 @export var character_data : CharacterSelectData
 
-@onready var slot_border: TextureRect = $VBoxContainer/SlotBorder
+@onready var slot_border: TextureRect = %SlotBorder
 
 var is_selected : bool = false
 

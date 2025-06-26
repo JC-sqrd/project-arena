@@ -60,41 +60,47 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CharacterGridContainer" type="GridContainer" parent="Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = -42.5
+offset_right = 188.0
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterGridContainer" type="GridContainer" parent="Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
 columns = 10
 
-[node name="CharacterSelectIcon" parent="Panel/CharacterGridContainer" instance=ExtResource("2_4wiya")]
+[node name="CharacterSelectIcon" parent="Panel/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
 layout_mode = 2
 character_data = SubResource("Resource_b8ars")
 
-[node name="CharacterSelectIcon2" parent="Panel/CharacterGridContainer" instance=ExtResource("2_4wiya")]
+[node name="CharacterSelectIcon2" parent="Panel/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
 layout_mode = 2
 character_data = SubResource("Resource_x3cli")
 
-[node name="CharacterSelectIcon3" parent="Panel/CharacterGridContainer" instance=ExtResource("2_4wiya")]
+[node name="CharacterSelectIcon3" parent="Panel/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
 layout_mode = 2
 character_data = SubResource("Resource_flssm")
 
-[node name="CharacterSelectIcon4" parent="Panel/CharacterGridContainer" instance=ExtResource("2_4wiya")]
+[node name="CharacterSelectIcon4" parent="Panel/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
 layout_mode = 2
 character_data = SubResource("Resource_tkc3w")
 
-[node name="CharacterSelectIcon5" parent="Panel/CharacterGridContainer" instance=ExtResource("2_4wiya")]
+[node name="CharacterSelectIcon5" parent="Panel/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
 layout_mode = 2
 character_data = SubResource("Resource_xxipc")
 
-[node name="StartGameButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = -31.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="StartGameButton" type="Button" parent="Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 text = "START GAME"

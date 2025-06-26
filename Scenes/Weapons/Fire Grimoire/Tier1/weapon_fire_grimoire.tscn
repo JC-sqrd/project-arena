@@ -120,7 +120,7 @@ metadata/_custom_type_script = "uid://boi71j6dy2kn6"
 [node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode2" node_paths=PackedStringArray("stat")]
 script = ExtResource("6_o80iq")
 stat = NodePath("../../../Damage")
-new_stat_value = 15.0
+new_stat_value = 12.0
 metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
 [node name="EquipmentTierNode3" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
@@ -132,7 +132,7 @@ metadata/_custom_type_script = "uid://boi71j6dy2kn6"
 [node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode3" node_paths=PackedStringArray("stat")]
 script = ExtResource("6_o80iq")
 stat = NodePath("../../../Damage")
-new_stat_value = 20.0
+new_stat_value = 14.0
 metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
 [node name="EquipmentTierNode4" type="Node" parent="EquipmentTierManager" node_paths=PackedStringArray("next_tier_node")]
@@ -144,7 +144,7 @@ metadata/_custom_type_script = "uid://boi71j6dy2kn6"
 [node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode4" node_paths=PackedStringArray("stat")]
 script = ExtResource("6_o80iq")
 stat = NodePath("../../../Damage")
-new_stat_value = 25.0
+new_stat_value = 16.0
 metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
 [node name="EquipmentTierNode5" type="Node" parent="EquipmentTierManager"]
@@ -155,7 +155,7 @@ metadata/_custom_type_script = "uid://boi71j6dy2kn6"
 [node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode5" node_paths=PackedStringArray("stat")]
 script = ExtResource("6_o80iq")
 stat = NodePath("../../../Damage")
-new_stat_value = 30.0
+new_stat_value = 18.0
 metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
 [node name="Damage" type="Node" parent="."]
@@ -174,12 +174,12 @@ metadata/_custom_type_script = "uid://c4n03mihb0axg"
 script = ExtResource("6_p54e5")
 stat = NodePath("..")
 scale_with_stat_id = "magic"
-ratio = 0.2
+ratio = 0.15
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="AttackSpeed" type="Node" parent="."]
 script = ExtResource("10_qnkbf")
-stat_value = 1.0
+stat_value = 2.0
 can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 

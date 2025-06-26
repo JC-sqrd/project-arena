@@ -3,8 +3,8 @@ extends Control
 
 
 @export var level_scene : PackedScene
-@onready var character_grid_container: GridContainer = $Panel/CharacterGridContainer
-@onready var start_game_button: Button = $StartGameButton
+@onready var character_grid_container: GridContainer = %CharacterGridContainer
+@onready var start_game_button: Button = %StartGameButton
 
 var current_selected_icon : CharacterSelectIconUI
 var current_stage : Stage

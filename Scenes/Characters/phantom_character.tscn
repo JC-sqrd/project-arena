@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqtqghdwyycf3"]
+[gd_scene load_steps=12 format=3 uid="uid://dqtqghdwyycf3"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_2ijky"]
 [ext_resource type="PackedScene" uid="uid://ds562unpt0f2c" path="res://Scenes/Abilities/Emit Abilities/Blade Dance/ability_blade_dance.tscn" id="2_3u1iy"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/Level1/weapon_swift_sword.tscn" id="3_ys4ku"]
 [ext_resource type="PackedScene" uid="uid://cimp4a7eu73ym" path="res://Scenes/Abilities/SelfTarget Abilities/ability_dodge_chance_buff.tscn" id="5_dokha"]
 [ext_resource type="PackedScene" uid="uid://bqmrcuovcr6dr" path="res://Scenes/Abilities/Blink Abilities/ability_phantom_step.tscn" id="6_8amkt"]
+[ext_resource type="PackedScene" uid="uid://2r2w7448yaau" path="res://Scenes/Items/item_strength.tscn" id="9_dokha"]
+[ext_resource type="PackedScene" uid="uid://dcnhw5on07snr" path="res://Scenes/Items/item_magic.tscn" id="10_pf6aw"]
+[ext_resource type="PackedScene" uid="uid://c11kdiu2c6vx" path="res://Scenes/Items/item_vitality.tscn" id="11_pf6aw"]
 
 [node name="PhantomCharacter" instance=ExtResource("1_2ijky")]
 
@@ -43,13 +46,22 @@ metadata/_custom_type_script = "uid://dqj32qeba6flj"
 
 [node name="AbilityPhantomStep" parent="UtilityAbilityContainer" index="3" instance=ExtResource("6_8amkt")]
 
-[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
+[node name="WeaponSlot" parent="." index="9" node_paths=PackedStringArray("equipment")]
 equipment = NodePath("WeaponPosition/SwiftSword")
 
 [node name="WeaponPosition" parent="WeaponSlot" index="1"]
 position = Vector2(11, 6.00002)
 
 [node name="SwiftSword" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("3_ys4ku")]
+
+[node name="ItemStrength" parent="ItemInventory" index="0" instance=ExtResource("9_dokha")]
+stack = 20
+
+[node name="ItemMagic" parent="ItemInventory" index="1" instance=ExtResource("10_pf6aw")]
+stack = 20
+
+[node name="ItemVitality" parent="ItemInventory" index="2" instance=ExtResource("11_pf6aw")]
+stack = 25
 
 [node name="MoveSpeed" parent="Stats" index="23"]
 can_be_negative = true

@@ -31,7 +31,7 @@ func _ready():
 
 
 func _process(delta):
-	if look_at_mouse:
+	if equipment != null and weapon.look_at_mouse:
 		rotation = lerp_angle(rotation, (get_global_mouse_position() - global_position).normalized().angle(), 10 * delta)
 
 func _reset_attack():

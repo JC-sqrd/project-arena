@@ -580,6 +580,8 @@ layout_mode = 2
 
 [node name="AbilitiesPanelContainer" parent="CanvasLayer/Control/VBoxContainer" instance=ExtResource("29_sqmm1")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="LevelBarContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer"]
 layout_mode = 2
