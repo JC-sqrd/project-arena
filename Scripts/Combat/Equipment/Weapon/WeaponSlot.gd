@@ -71,6 +71,7 @@ func set_equipment(new_equipment : Equipment):
 	else:
 		equipment = new_equipment
 		weapon = equipment as Weapon
+		print("EQUIPMENT SET TO NULL")
 	pass 
 
 func equip(equipment : Equipment):

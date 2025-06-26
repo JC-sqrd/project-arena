@@ -1,7 +1,8 @@
 class_name SlowOnActive
 extends AbilityBehavior
 
-@export_range(0, 1, 0.01) var slow_multiplier : float = 1
+@export_range(0, 2
+, 0.01) var slow_multiplier : float = 1
 
 var old_actor_move_speed : float = 0
 var slow_value : float = 0

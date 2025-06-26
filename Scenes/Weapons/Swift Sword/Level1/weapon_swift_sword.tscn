@@ -193,7 +193,7 @@ equipment_name = "Swift Sword"
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "swift_sword"
 equipment_icon = ExtResource("3_lgo86")
-tooltip_stats = [NodePath("Damage"), NodePath("AttackSpeed")]
+tooltip_stats = [NodePath("Damage"), NodePath("AttackSpeed"), NodePath("Knockback")]
 
 [node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
 script = ExtResource("4_lgo86")
@@ -280,6 +280,13 @@ scale_with_stat_id = "attack_speed"
 ratio = 1.1
 metadata/_custom_type_script = "uid://c4n03mihb0axg"
 
+[node name="Knockback" type="Node" parent="."]
+script = ExtResource("4_kenp3")
+stat_name = "knocback"
+stat_value = 150.0
+can_be_negative = false
+metadata/_custom_type_script = "uid://nke8ejxjdu4s"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(128, -10)
 shape = SubResource("CircleShape2D_dmqko")
@@ -322,9 +329,10 @@ lifesteal_stat = NodePath("../../ActorLifesteal")
 [node name="OnHitEffect" type="Node" parent="HitListener"]
 script = ExtResource("17_k3yuu")
 
-[node name="Knockback" type="Node" parent="HitListener"]
+[node name="Knockback" type="Node" parent="HitListener" node_paths=PackedStringArray("force_stat")]
 script = ExtResource("7_d0kcu")
 force = 150.0
+force_stat = NodePath("../../Knockback")
 metadata/_custom_type_script = "uid://dmjo067f80ntw"
 
 [node name="ActorCrit" type="Node" parent="."]

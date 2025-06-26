@@ -72,9 +72,6 @@ func melee_weapon_process(delta : float):
 		end_attack()
 		modulate = Color.WHITE
 	
-	if is_equipped:
-		print("WEAPON LOOK AT MOUSE: " + str(look_at_mouse))
-	
 	#if look_at_mouse:
 		#look_at(get_global_mouse_position())
 		#rotation = lerp_angle(rotation, (get_global_mouse_position() - global_position).normalized().angle(), 10 * delta)

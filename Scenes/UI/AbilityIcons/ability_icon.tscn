@@ -78,6 +78,22 @@ tracks/4/keys = {
 "values": [Color(0.4, 0.721569, 0.964706, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_6je5m"]
+resource_name = "ability_casted_anim"
+step = 0.083
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IconTextureRect/IconCasted:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.100188, 0.202165, 0.404329),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.4, 0.721569, 0.964706, 0), Color(0.0495463, 0.118251, 0.172296, 0.74902), Color(0.0544032, 0.151843, 0.233427, 0.501961), Color(0.152941, 0.286275, 0.392157, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_ifinv"]
 resource_name = "border_highlight_anim"
 step = 0.083
@@ -128,22 +144,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(0.92549, 0.839216, 0.482353, 0), Color(0.70476, 0.502409, 0.148781, 1), Color(0.910366, 0.775794, 0.367218, 1), Color(0.985845, 0.94215, 0.815853, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_6je5m"]
-resource_name = "ability_casted_anim"
-step = 0.083
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("IconTextureRect/IconCasted:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.100188, 0.202165, 0.404329),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.4, 0.721569, 0.964706, 0), Color(0.0495463, 0.118251, 0.172296, 0.74902), Color(0.0544032, 0.151843, 0.233427, 0.501961), Color(0.152941, 0.286275, 0.392157, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eirpi"]

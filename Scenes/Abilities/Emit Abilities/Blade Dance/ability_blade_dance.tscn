@@ -53,5 +53,5 @@ metadata/_custom_type_script = "uid://ckgh7mgba1eo4"
 
 [node name="SlowOnActive" type="Node" parent="."]
 script = ExtResource("7_4fry6")
-slow_multiplier = 0.4
+slow_multiplier = 1.1
 metadata/_custom_type_script = "uid://cogh8iqclt3ew"

@@ -31,6 +31,7 @@ var equip_slots : Array[EquipmentEquipSlot] = [null, null, null, null, null, nul
 var selected_slot : EquipmentInventorySlot
 
 
+
 func _ready():
 	visible = false
 	if weapon_slot != null:
@@ -39,42 +40,42 @@ func _ready():
 		if weapon_slot.equipment != null:
 			weapon_equip_slot.equipment = weapon_slot.equipment
 			weapon_equip_slot.equipment_icon.texture = weapon_slot.equipment.equipment_icon
-	if offhand_slot != null:
-		offhand_equip_slot.equipment_slot = offhand_slot
-		if offhand_slot.equipment != null:
-			offhand_equip_slot.equipment = offhand_slot.equipment
-			offhand_equip_slot.equipment_icon.texture = offhand_slot.equipment.equipment_icon
+			
 	if headgear_slot != null:
 		headgear_equip_slot.equipment_slot = headgear_slot
 		equip_slots[1] = headgear_equip_slot
 		if headgear_slot.equipment != null:
 			headgear_equip_slot.equipment = headgear_slot.equipment
 			headgear_equip_slot.equipment_icon.texture = headgear_slot.equipment.equipment_icon
+			
 	if armgear_slot != null:
 		armgear_equip_slot.equipment_slot = armgear_slot
 		equip_slots[2] = armgear_equip_slot
 		if armgear_slot.equipment != null:
 			armgear_equip_slot.equipment = armgear_slot.equipment
 			armgear_equip_slot.equipment_icon.texture = armgear_slot.equipment.equipment_icon
+			
 	if torso_slot != null:
 		torso_equip_slot.equipment_slot = torso_slot
 		equip_slots[3] = torso_equip_slot
 		if torso_slot.equipment != null:
 			torso_equip_slot.equipment = torso_slot.equipment
 			torso_equip_slot.equipment_icon.texture = torso_slot.equipment.equipment_icon
+			
 	if shoes_slot != null:
 		shoes_equip_slot.equipment_slot = shoes_slot
 		equip_slots[4] = shoes_equip_slot
 		if shoes_slot.equipment != null:
 			shoes_equip_slot.equipment = shoes_slot.equipment
 			shoes_equip_slot.equipment_icon.texture = shoes_slot.equipment.equipment_icon
+			
 	if offhand_slot != null:
 		offhand_equip_slot.equipment_slot = offhand_slot
 		equip_slots[5] = offhand_equip_slot
 		if offhand_slot.equipment != null:
 			offhand_equip_slot.equipment = offhand_slot.equipment
 			offhand_equip_slot.equipment_icon.texture = offhand_slot.equipment.equipment_icon
-	
+			
 	weapon_equip_slot.selected.connect(on_inventory_slot_selected)
 	headgear_equip_slot.selected.connect(on_inventory_slot_selected)
 	torso_equip_slot.selected.connect(on_inventory_slot_selected)
@@ -96,6 +97,7 @@ func _ready():
 			#print("INVENTORY INDEX: " + str(i))
 			pass
 		pass
+	
 	
 	for child in inventory_grid.get_children():
 		if child is EquipmentInventorySlot:
@@ -248,6 +250,8 @@ func clear_selected_slot():
 
 func on_slot_right_clicked(slot : EquipmentInventorySlot):
 	try_to_combine_pair(slot)
+	#print("EQUIPMENT PAIR: " + str(equipment_inventory.get_equipment_pair(slot.equipment)))
+	#equipment_inventory.try_to_combine_pair(slot.equipment)
 	pass
 
 

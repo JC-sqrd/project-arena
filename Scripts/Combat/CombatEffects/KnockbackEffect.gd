@@ -2,6 +2,7 @@ class_name Knockback
 extends Effect
 
 @export var force : float = 300
+@export var force_stat : Stat
 var bonus_value_checks : Array[EffectCheck]
 var condition_checks : Array[BonusValueCondition]
 
@@ -19,7 +20,7 @@ func get_effect_key() -> Variant:
 
 
 func get_effect_value() -> KnockbackEffectData:
-	return KnockbackEffectData.new(force, condition_checks)
+	return KnockbackEffectData.new(get_force_value(), condition_checks)
 
 #class KnockbackData:
 	#var knockback_strength : float = 0
@@ -28,3 +29,6 @@ func get_effect_value() -> KnockbackEffectData:
 		#knockback_strength = strength
 		#self.checks = checks
 		#pass
+
+func get_force_value() -> float:
+	return force_stat.stat_derived_value if force_stat != null else 0

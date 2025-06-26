@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bwbyc8vywa6vd"]
+[gd_scene load_steps=60 format=3 uid="uid://bwbyc8vywa6vd"]
 
 [ext_resource type="Script" uid="uid://bl5aki5ii4r6t" path="res://Scripts/PlayerCharacter.gd" id="1_4r8nq"]
 [ext_resource type="Script" uid="uid://bsn1idamyre35" path="res://Scripts/EquipmentInventory/EquipmentInventory.gd" id="2_52ran"]
@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://bba116t3m1ua7" path="res://Scenes/UI/EquipmentInventory/equipment_inventory.tscn" id="33_e7p34"]
 [ext_resource type="PackedScene" uid="uid://bcmb48whht316" path="res://Scenes/UI/StateIndicator/state_indicator_container.tscn" id="33_wvybv"]
 [ext_resource type="Script" uid="uid://cyb8xt674le3f" path="res://Scripts/StatSystem/StatModManager.gd" id="34_gf3ef"]
+[ext_resource type="Texture2D" uid="uid://b28wwbume1cgm" path="res://Sprites/UI/Panel Container Texture/PanelTexture.png" id="34_nss1p"]
 [ext_resource type="PackedScene" uid="uid://dfopknahmh8ed" path="res://Scenes/Components/movement_controller_component.tscn" id="35_pffph"]
 [ext_resource type="PackedScene" uid="uid://c0i8ypdefjyja" path="res://Scenes/Components/movement_input_component.tscn" id="36_teqnh"]
 [ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="37_iacyq"]
@@ -63,6 +64,13 @@ radius = 50.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6il8"]
 size = Vector2(24, 60)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o0d6e"]
+texture = ExtResource("34_nss1p")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6bkod"]
 shader = ExtResource("37_iacyq")
@@ -569,53 +577,61 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -110.0
-offset_top = -109.0
-offset_right = 110.0
+offset_left = -112.0
+offset_top = -213.0
+offset_right = 112.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="StateIndicatorContainer" parent="CanvasLayer/Control/VBoxContainer" instance=ExtResource("33_wvybv")]
 layout_mode = 2
 
-[node name="AbilitiesPanelContainer" parent="CanvasLayer/Control/VBoxContainer" instance=ExtResource("29_sqmm1")]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_o0d6e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="AbilitiesPanelContainer" parent="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer" instance=ExtResource("29_sqmm1")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="LevelBarContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="LevelBarContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 0
 
-[node name="LevelPanel" parent="CanvasLayer/Control/VBoxContainer/LevelBarContainer" instance=ExtResource("30_v20lc")]
+[node name="LevelPanel" parent="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/LevelBarContainer" instance=ExtResource("30_v20lc")]
 layout_mode = 2
 
-[node name="HealthBarContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="HealthBarContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="TextureProgressBar" parent="CanvasLayer/Control/VBoxContainer/HealthBarContainer" node_paths=PackedStringArray("health_manager") instance=ExtResource("31_e6ml3")]
+[node name="TextureProgressBar" parent="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HealthBarContainer" node_paths=PackedStringArray("health_manager") instance=ExtResource("31_e6ml3")]
 custom_minimum_size = Vector2(125, 15)
 layout_mode = 2
 size_flags_horizontal = 3
-health_manager = NodePath("../../../../../HealthManager")
+health_manager = NodePath("../../../../../../../HealthManager")
 
-[node name="HealthBarContainer2" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="HealthBarContainer2" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ManaBar" parent="CanvasLayer/Control/VBoxContainer/HealthBarContainer2" node_paths=PackedStringArray("mana_manager") instance=ExtResource("32_51lw5")]
+[node name="ManaBar" parent="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HealthBarContainer2" node_paths=PackedStringArray("mana_manager") instance=ExtResource("32_51lw5")]
 layout_mode = 2
-mana_manager = NodePath("../../../../../ManaManager")
+mana_manager = NodePath("../../../../../../../ManaManager")
 
 [node name="EquipmentInventory" parent="CanvasLayer" node_paths=PackedStringArray("equipment_inventory", "weapon_slot", "offhand_slot", "headgear_slot", "torso_slot", "armgear_slot", "shoes_slot") instance=ExtResource("33_e7p34")]
 equipment_inventory = NodePath("../../EquipmentInventory")
@@ -674,4 +690,4 @@ particle_scene = ExtResource("45_n0876")
 script = ExtResource("46_4soj8")
 metadata/_custom_type_script = "uid://b6vsymr001rn1"
 
-[editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]
+[editable path="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HealthBarContainer/TextureProgressBar"]

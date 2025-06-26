@@ -77,7 +77,7 @@ func _make_custom_tooltip(for_text: String) -> Object:
 	if equipment == null:
 		return null
 	
-	var equipment_tooltip = EQUIPMENT_TOOLTIP.instantiate()	
+	var equipment_tooltip = EQUIPMENT_TOOLTIP.instantiate()
 	equipment_tooltip.initialize_equipment_tooltip(equipment)
 	
 	return equipment_tooltip
