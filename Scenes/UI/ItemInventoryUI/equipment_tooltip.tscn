@@ -1,61 +1,49 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddxjohaxomtho"]
+[gd_scene load_steps=6 format=3 uid="uid://ddxjohaxomtho"]
 
 [ext_resource type="Script" uid="uid://d3dvln6nlc1u2" path="res://Scripts/UI/EquipmentInfoUI/EquipmentTooltipUI.gd" id="1_63qov"]
 [ext_resource type="PackedScene" uid="uid://dxrqct3t27trg" path="res://Scenes/UI/EquipmentInventory/equipment_inventory_slot_icon.tscn" id="2_mfxe4"]
+[ext_resource type="Texture2D" uid="uid://b28wwbume1cgm" path="res://Sprites/UI/Panel Container Texture/PanelTexture.png" id="2_tggqc"]
 [ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="3_mfxe4"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mfxe4"]
-content_margin_left = 12.0
-content_margin_top = 24.0
-content_margin_right = 12.0
-content_margin_bottom = 24.0
-bg_color = Color(0.054902, 0.054902, 0.054902, 0.631373)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qg4ig"]
+texture = ExtResource("2_tggqc")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
 
-[node name="EquipmentTooltip" type="Control"]
+[node name="PanelContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(300, 400)
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -200.0
-offset_right = 150.0
-offset_bottom = 200.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+offset_right = 308.0
+offset_bottom = 408.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_qg4ig")
 script = ExtResource("1_63qov")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(300, 400)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_mfxe4")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="EquipmentDetailsVBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="EquipmentDetailsVBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="EquipmentInventorySlotIcon" parent="PanelContainer/VBoxContainer/EquipmentDetailsVBoxContainer" instance=ExtResource("2_mfxe4")]
+[node name="EquipmentInventorySlotIcon" parent="VBoxContainer/EquipmentDetailsVBoxContainer" instance=ExtResource("2_mfxe4")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("3_mfxe4")
 
-[node name="EquipmentNameLabel" type="Label" parent="PanelContainer/VBoxContainer/EquipmentDetailsVBoxContainer"]
+[node name="EquipmentNameLabel" type="Label" parent="VBoxContainer/EquipmentDetailsVBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "EQUIPMENT NAME"
 horizontal_alignment = 1
 
-[node name="StatVBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="StatVBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="EquipmentTooltip" type="Control" parent="."]
+layout_mode = 2
+script = ExtResource("1_63qov")

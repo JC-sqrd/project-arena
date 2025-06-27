@@ -11,7 +11,6 @@ func _ready():
 	homing_area.body_entered.connect(_on_target_enter)
 	homing_area.body_exited.connect(_on_target_exit)
 
-
 func _spawn_start():
 	get_cast_position = false
 	if actor is PlayerCharacter:
@@ -55,7 +54,6 @@ func _spawn_start():
 	#spawn_behavior.hit_listener = hit_listener
 	#var spawn_obj : Spawnable = await spawn_behavior.spawn(self, actor, cast_position, cast_data["target_position"] as Vector2, spawn) as Spawnable
 	pass
-
 
 func _on_target_enter(body : Node2D):
 	if body.is_in_group("Hittable") and body != actor:

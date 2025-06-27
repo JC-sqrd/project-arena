@@ -78,6 +78,6 @@ func _make_custom_tooltip(for_text: String) -> Object:
 		return null
 	
 	var equipment_tooltip = EQUIPMENT_TOOLTIP.instantiate()
-	equipment_tooltip.initialize_equipment_tooltip(equipment)
 	
+	equipment_tooltip.initialize_equipment_tooltip(equipment)
 	return equipment_tooltip

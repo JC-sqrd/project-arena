@@ -54,4 +54,4 @@ position = Vector2(11, 6.00002)
 [node name="MoveSpeed" parent="Stats" index="23"]
 can_be_negative = true
 
-[editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]
+[editable path="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HealthBarContainer/TextureProgressBar"]

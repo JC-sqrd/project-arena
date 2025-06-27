@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0y6us1o18tkr"]
+[gd_scene load_steps=5 format=3 uid="uid://d0y6us1o18tkr"]
 
+[ext_resource type="Theme" uid="uid://c185vbgnbqyet" path="res://Resources/Themes/equipment_inventory_slot_theme.tres" id="1_cd0pe"]
 [ext_resource type="Script" uid="uid://cmo3ygd568rki" path="res://Scripts/UI/EquipmentInventory/EquipmentInventorySlot.gd" id="1_ocd28"]
 [ext_resource type="Texture2D" uid="uid://dsgcy2jeaik3y" path="res://Sprites/UI/Slot Border/SlotBorder.png" id="2_ocd28"]
 [ext_resource type="PackedScene" uid="uid://dxrqct3t27trg" path="res://Scenes/UI/EquipmentInventory/equipment_inventory_slot_icon.tscn" id="3_ocd28"]
@@ -10,6 +11,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 50.0
 offset_bottom = 50.0
+theme = ExtResource("1_cd0pe")
 script = ExtResource("1_ocd28")
 
 [node name="Panel" type="Panel" parent="."]

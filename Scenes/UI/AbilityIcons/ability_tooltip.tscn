@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf56c8p7lrwo"]
+
+[ext_resource type="Texture2D" uid="uid://b28wwbume1cgm" path="res://Sprites/UI/Panel Container Texture/PanelTexture.png" id="1_eq3fd"]
+[ext_resource type="Script" uid="uid://ndyl877gswdb" path="res://Scripts/UI/AbilityTooltip.gd" id="1_s80h0"]
+[ext_resource type="Texture2D" uid="uid://dsgcy2jeaik3y" path="res://Sprites/UI/Slot Border/SlotBorder.png" id="3_rdsqw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gqdvg"]
+texture = ExtResource("1_eq3fd")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[node name="AbilityTooltip" type="PanelContainer"]
+custom_minimum_size = Vector2(600, 300)
+offset_right = 350.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_gqdvg")
+script = ExtResource("1_s80h0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AbilityIconBorder" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("3_rdsqw")
+expand_mode = 3
+
+[node name="AbilityIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/AbilityIconBorder"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AbilityName" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Ability Name"
+vertical_alignment = 1
+
+[node name="ResourceCost" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Resource Cost"
+vertical_alignment = 1
+
+[node name="AbilityDescription" type="RichTextLabel" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+text = "Ability Description"

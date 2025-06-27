@@ -14,6 +14,8 @@ var ability_icon_texture : Texture2D
 @onready var cooldown_progress_bar: TextureProgressBar = $IconTextureRect/CooldownProgressBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+const ABILITY_TOOLTIP = preload("res://Scenes/UI/AbilityIcons/ability_tooltip.tscn")
+
 
 var cooldown_time : float = 0
 var cooldown_time_counter : float = 0
@@ -95,3 +97,8 @@ func _on_ability_cooldown_end():
 	animation_player.stop()
 	animation_player.play("border_highlight_anim")
 	pass
+
+
+func _make_custom_tooltip(for_text: String) -> Object:
+	var ability_tooltip : AbilityTooltip = ABILITY_TOOLTIP.instantiate() as AbilityTooltip
+	return ability_tooltip

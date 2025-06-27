@@ -1,19 +1,67 @@
-[gd_scene load_steps=4 format=3 uid="uid://4wls88f0glxy"]
+[gd_scene load_steps=17 format=3 uid="uid://4wls88f0glxy"]
 
 [ext_resource type="Script" uid="uid://by6xpnkbdkhou" path="res://Scripts/GeneralShop/EquipmentBuyInstanceUI.gd" id="1_8ytjs"]
-[ext_resource type="Texture2D" uid="uid://bfjv5pykqpmoc" path="res://Placeholders/InventorySlot.png" id="2_tqe16"]
+[ext_resource type="Texture2D" uid="uid://dsgcy2jeaik3y" path="res://Sprites/UI/Slot Border/SlotBorder.png" id="2_0n1t1"]
+[ext_resource type="Texture2D" uid="uid://b28wwbume1cgm" path="res://Sprites/UI/Panel Container Texture/PanelTexture.png" id="2_x3m1p"]
 [ext_resource type="Texture2D" uid="uid://dron2hx2pqbpv" path="res://Sprites/UI/Lock Icon/Lock Icon.png" id="3_tqe16"]
+[ext_resource type="PackedScene" uid="uid://dxrqct3t27trg" path="res://Scenes/UI/EquipmentInventory/equipment_inventory_slot_icon.tscn" id="3_x3m1p"]
+[ext_resource type="Texture2D" uid="uid://clesry2a13f5v" path="res://Sprites/UI/Button Texture/ButtonFocusedTexture.png" id="5_vbk56"]
+[ext_resource type="Texture2D" uid="uid://cn1kw2i5sbe18" path="res://Sprites/UI/Button Texture/ButtonPressedTexture.png" id="6_hevyp"]
+[ext_resource type="Texture2D" uid="uid://yfmo756kyspi" path="res://Sprites/UI/Button Texture/ButtonHoveredTexture.png" id="7_7re2n"]
+[ext_resource type="Texture2D" uid="uid://rnh213sjtfff" path="res://Sprites/UI/Button Texture/ButtonTexture.png" id="8_hevyp"]
+[ext_resource type="Texture2D" uid="uid://cjcm2o6qlcxp1" path="res://Sprites/GoldCoin/Gold Coin.png" id="9_7re2n"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s5li7"]
+texture = ExtResource("2_x3m1p")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_37hm8"]
+texture = ExtResource("5_vbk56")
+texture_margin_left = 14.0
+texture_margin_top = 14.0
+texture_margin_right = 14.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7njie"]
+texture = ExtResource("6_hevyp")
+texture_margin_left = 14.0
+texture_margin_top = 14.0
+texture_margin_right = 14.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bxhxx"]
+texture = ExtResource("7_7re2n")
+texture_margin_left = 14.0
+texture_margin_top = 14.0
+texture_margin_right = 14.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vbk56"]
+texture = ExtResource("6_hevyp")
+texture_margin_left = 14.0
+texture_margin_top = 14.0
+texture_margin_right = 14.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7re2n"]
+texture = ExtResource("8_hevyp")
+texture_margin_left = 14.0
+texture_margin_top = 14.0
+texture_margin_right = 14.0
+texture_margin_bottom = 14.0
 
 [node name="EquipmentShopCard" type="Control"]
-clip_contents = true
-custom_minimum_size = Vector2(200, 320)
+custom_minimum_size = Vector2(250, 370)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 50.0
 offset_bottom = 80.0
 script = ExtResource("1_8ytjs")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
 anchors_preset = 15
@@ -21,14 +69,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_s5li7")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_constants/separation = -2
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer"]
@@ -38,10 +82,13 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 0
 
+[node name="BackgroundPanel" type="Panel" parent="Panel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
 [node name="SlotBorder" type="TextureRect" parent="Panel/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture = ExtResource("2_tqe16")
+texture = ExtResource("2_0n1t1")
 expand_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/MarginContainer/SlotBorder"]
@@ -56,9 +103,9 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="EquipmentIcon" type="TextureRect" parent="Panel/VBoxContainer/MarginContainer/SlotBorder/MarginContainer"]
+[node name="EquipmentIcon" parent="Panel/VBoxContainer/MarginContainer/SlotBorder/MarginContainer" instance=ExtResource("3_x3m1p")]
+unique_name_in_owner = true
 layout_mode = 2
-expand_mode = 3
 
 [node name="CostLabel" type="Label" parent="Panel/VBoxContainer"]
 visible = false
@@ -75,9 +122,18 @@ horizontal_alignment = 1
 
 [node name="CostButton" type="Button" parent="Panel/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxTexture_37hm8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_7njie")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bxhxx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vbk56")
+theme_override_styles/normal = SubResource("StyleBoxTexture_7re2n")
 text = "100
 "
+icon = ExtResource("9_7re2n")
+autowrap_mode = 2
 
 [node name="EquipmentDetailLabel" type="RichTextLabel" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(200, 100)

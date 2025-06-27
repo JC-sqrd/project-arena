@@ -118,4 +118,4 @@ stat_value = 40.0
 [node name="EntityHitParticle" parent="." index="33" node_paths=PackedStringArray("hit_particle")]
 hit_particle = NodePath("../EnemyHitParticle")
 
-[editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]
+[editable path="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HealthBarContainer/TextureProgressBar"]

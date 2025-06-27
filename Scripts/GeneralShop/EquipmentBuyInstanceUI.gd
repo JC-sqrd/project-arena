@@ -7,6 +7,7 @@ var equipment : Equipment
 @onready var cost_button: Button = %CostButton
 @onready var lock_button: Button = %LockButton
 @onready var lock_icon: TextureRect = %LockIcon
+@onready var equipment_icon: EquipmentInventorySlotIcon = %EquipmentIcon
 
 
 func _ready():
@@ -17,6 +18,8 @@ func _ready():
 	if equipment_data != null:
 		#equipment = equipment_data.instantiate() as Equipment
 		equipment_icon.texture = equipment_data.equipment_icon
+		equipment_icon.set_equipment_icon(equipment_data.equipment_icon)
+		equipment_icon.set_equipment_tier(equipment_data.tier)
 		cost_label.text = str(equipment_data.buy_cost)
 		cost_button.text = str(equipment_data.buy_cost)
 		equipment_name_label.text = equipment_data.equipment_name

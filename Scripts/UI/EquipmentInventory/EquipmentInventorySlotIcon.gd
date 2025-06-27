@@ -22,6 +22,21 @@ func set_equipment(equipment : Equipment):
 		h_box_container.add_child(texture_rect)
 		pass
 	pass
+ 
+func set_equipment_icon(icon : Texture):
+	texture = icon
+	pass
+
+func set_equipment_tier(tier : Equipment.EquipmentTier):
+	for child in h_box_container.get_children():
+		child.queue_free()
+	for i in range(tier + 1):
+		var texture_rect : TextureRect = TextureRect.new()
+		texture_rect.texture = TIER_STAR
+		texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+		texture_rect.custom_minimum_size = Vector2(20, 20)
+		h_box_container.add_child(texture_rect)
+	pass
 
 func clear_equipment():
 	equipment = null

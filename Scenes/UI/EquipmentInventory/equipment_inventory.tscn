@@ -122,10 +122,9 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="_FloatingIcon" type="TextureRect" parent="."]
-visible = false
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 100.0
+offset_bottom = 100.0
 mouse_filter = 2
 expand_mode = 3

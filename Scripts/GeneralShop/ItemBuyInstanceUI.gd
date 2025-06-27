@@ -9,6 +9,7 @@ var item : Item
 @onready var locked_icon: TextureRect = %LockedIcon
 @onready var item_name_label: RichTextLabel = $Panel/VBoxContainer/ItemNameLabel
 @onready var item_detail_label: RichTextLabel = $Panel/VBoxContainer/ItemDetailLabel
+@onready var item_icon: TextureRect = %ItemIcon
 
 
 
@@ -21,7 +22,7 @@ func _ready():
 	if item_data != null:
 		#item = item_scene.instantiate() as Item
 		print("EQUIPMENT ICON: " + str(cost_label))
-		equipment_icon.texture = item_data.item_icon
+		item_icon.texture = item_data.item_icon
 		cost_label.text = str(item_data.buy_cost)
 		cost_button.text = str(item_data.buy_cost)
 		item_name_label.text = item_data.item_name
