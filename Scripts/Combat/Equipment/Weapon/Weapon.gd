@@ -4,13 +4,15 @@ extends Equipment
 
 enum AttackState {START,ACTIVE, DORMANT}
 
-@export var attack_damage : Stat : set = _set_attack_damage
-@export var attack_speed_stat : Stat 
+
 @export var attack_windup_time : float
 @export var look_at_mouse : bool = true
 @export var weapon_ability : Ability
 @export var hit_listener : HitListener
 @export var sockets : Array[WeaponSocket]
+@export_category("Weapon Stats")
+@export var attack_damage : Stat : set = _set_attack_damage
+@export var attack_speed_stat : Stat 
 
 
 var action_trigger : String 

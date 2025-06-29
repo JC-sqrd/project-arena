@@ -1,5 +1,6 @@
 extends ProjectileWeapon
 
+@export_category("Custom Weapon Stats")
 @export var throw_count : Stat 
 @export var throw_delay : Stat 
 @export var shuriken_sprite : Node2D

@@ -31,6 +31,7 @@ func buy(buyer : Entity):
 	if buyer_gold.stat_value >= equipment_data.buy_cost:
 		equipment = equipment_data.equipment_scene.instantiate() as Equipment
 		equipment.actor = buyer
+		equipment.tier = equipment_data.tier
 		if buyer.equipment_inventory.add_equipment(equipment):
 			buyer_gold.stat_value -= equipment_data.buy_cost
 			print("Equipment bought!")

@@ -23,6 +23,9 @@
 script = ExtResource("2_uan7s")
 metadata/_custom_type_script = "uid://bg43jxy7gyts0"
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1clad"]
+radius = 180.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_hpkqv"]
 atlas = ExtResource("4_hpkqv")
 region = Rect2(1152, 0, 384, 384)
@@ -107,9 +110,6 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1clad"]
-radius = 180.0
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_vqv8n"]
 animations = [{
 "frames": [{
@@ -135,22 +135,50 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="LongSword" type="Area2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "tier_manager", "tooltip_stats")]
-collision_mask = 2
-monitorable = false
+[node name="LongSword" type="Node2D" node_paths=PackedStringArray("area", "weapon_ability", "hit_listener", "attack_damage", "attack_speed_stat", "tier_manager", "tooltip_stats")]
 script = ExtResource("1_x277f")
+area = NodePath("Area2D")
 hit_coll_enabled_time = 0.3
 filter = SubResource("Resource_lxxdf")
-attack_damage = NodePath("Damage")
-attack_speed_stat = NodePath("AttackSpeed")
 attack_windup_time = 0.25
 weapon_ability = NodePath("AbilityPiercingStrike")
 hit_listener = NodePath("HitListener")
+attack_damage = NodePath("Damage")
+attack_speed_stat = NodePath("AttackSpeed")
 equipment_name = "Long Sword"
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "long_sword"
 equipment_icon = ExtResource("2_g1ygs")
 tooltip_stats = [NodePath("Damage"), NodePath("AttackSpeed")]
+metadata/_custom_type_script = "uid://df3mwd5sdgedk"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(185, 0)
+shape = SubResource("CircleShape2D_1clad")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D/CollisionShape2D" node_paths=PackedStringArray("weapon")]
+position = Vector2(-17, 0)
+sprite_frames = SubResource("SpriteFrames_o6gyd")
+animation = &"windup"
+script = ExtResource("4_5i3hs")
+weapon = NodePath("../../..")
+
+[node name="WeaponAbilityAnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D/CollisionShape2D" node_paths=PackedStringArray("weapon_anim_sprite", "ability", "weapon")]
+position = Vector2(-185, 0)
+sprite_frames = SubResource("SpriteFrames_vqv8n")
+animation = &"cast_animation"
+frame = 3
+frame_progress = 1.0
+script = ExtResource("13_6xb33")
+weapon_anim_sprite = NodePath("../AnimatedSprite2D")
+ability = NodePath("../../../AbilityPiercingStrike")
+weapon = NodePath("../../..")
+weapon_sprite_visible_on = 3
+metadata/_custom_type_script = "uid://cp6un5w7sjul2"
 
 [node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
 script = ExtResource("4_lxxdf")
@@ -203,18 +231,7 @@ stat = NodePath("../../../Damage")
 new_stat_value = 30.0
 metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("weapon")]
-position = Vector2(168, 0)
-sprite_frames = SubResource("SpriteFrames_o6gyd")
-animation = &"windup"
-script = ExtResource("4_5i3hs")
-weapon = NodePath("..")
-
 [node name="AttackTimer" type="Timer" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(185, 0)
-shape = SubResource("CircleShape2D_1clad")
 
 [node name="Damage" type="Node" parent="."]
 script = ExtResource("2_5bq0p")
@@ -297,13 +314,3 @@ force = 150.0
 metadata/_custom_type_script = "uid://dmjo067f80ntw"
 
 [node name="AbilityPiercingStrike" parent="." instance=ExtResource("12_dua8e")]
-
-[node name="WeaponAbilityAnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("weapon_anim_sprite", "ability", "weapon")]
-sprite_frames = SubResource("SpriteFrames_vqv8n")
-animation = &"cast_animation"
-script = ExtResource("13_6xb33")
-weapon_anim_sprite = NodePath("../AnimatedSprite2D")
-ability = NodePath("../AbilityPiercingStrike")
-weapon = NodePath("..")
-weapon_sprite_visible_on = 3
-metadata/_custom_type_script = "uid://cp6un5w7sjul2"

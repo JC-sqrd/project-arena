@@ -18,25 +18,26 @@
 [ext_resource type="PackedScene" uid="uid://wn65qvhghkpr" path="res://Scenes/StatusEffects/Bleed.tscn" id="11_agyne"]
 [ext_resource type="PackedScene" uid="uid://c42ua48l5bb27" path="res://Scenes/Abilities/Emit Abilities/Whirling Chakram/ability_whirling_chakram.tscn" id="14_rx7qf"]
 
-[node name="WeaponChakram" type="Node2D" node_paths=PackedStringArray("throw_amount", "return_hit_listener", "spawn_node", "attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "tier_manager", "tooltip_stats")]
+[node name="WeaponChakram" type="Node2D" node_paths=PackedStringArray("throw_amount_stat", "return_speed_stat", "return_hit_listener", "spawn_node", "speed_stat", "max_distance_stat", "spread_degrees_stat", "weapon_ability", "hit_listener", "attack_damage", "attack_speed_stat", "tier_manager", "tooltip_stats")]
 script = ExtResource("1_qlnpl")
-throw_amount = NodePath("ThrowAmount")
-return_speed = 1000.0
+throw_amount_stat = NodePath("ThrowAmount")
+return_speed_stat = NodePath("ReturnSpeed")
 return_hit_listener = NodePath("ReturnHitListener")
 projectile = ExtResource("2_b7f46")
-speed = 800.0
 spawn_node = NodePath("Marker2D")
-max_distance = 450.0
-attack_damage = NodePath("Damage")
-attack_speed_stat = NodePath("AttackSpeed")
+speed_stat = NodePath("ProjectileSpeed")
+max_distance_stat = NodePath("MaxDistance")
+spread_degrees_stat = NodePath("SpreadDegrees")
 attack_windup_time = 0.15
 weapon_ability = NodePath("AbilityWhirlingChakram")
 hit_listener = NodePath("HitListener")
+attack_damage = NodePath("Damage")
+attack_speed_stat = NodePath("AttackSpeed")
 equipment_name = "Chakram"
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "chakram"
 equipment_icon = ExtResource("3_agyne")
-tooltip_stats = [NodePath("Damage"), NodePath("AttackSpeed"), NodePath("ThrowAmount")]
+tooltip_stats = [NodePath("Damage"), NodePath("ThrowAmount"), NodePath("ProjectileSpeed"), NodePath("ReturnSpeed"), NodePath("MaxDistance")]
 metadata/_custom_type_script = "uid://d3fin4411ww46"
 
 [node name="ThrowAmount" type="Node" parent="."]
@@ -149,6 +150,30 @@ script = ExtResource("5_k1e25")
 stat = NodePath("..")
 scale_with_stat_id = "attack_speed"
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+
+[node name="ProjectileSpeed" type="Node" parent="."]
+script = ExtResource("4_k1e25")
+stat_value = 800.0
+can_be_negative = false
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="ReturnSpeed" type="Node" parent="."]
+script = ExtResource("4_k1e25")
+stat_value = 1000.0
+can_be_negative = false
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="MaxDistance" type="Node" parent="."]
+script = ExtResource("4_k1e25")
+stat_value = 500.0
+can_be_negative = false
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="SpreadDegrees" type="Node" parent="."]
+script = ExtResource("4_k1e25")
+stat_value = 15.0
+can_be_negative = false
+metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="AttackTimer" type="Timer" parent="."]
 

@@ -2,12 +2,17 @@ class_name ProjectileWeapon
 extends Weapon
 
 @export var projectile : PackedScene
-@export var spread_degrees : float = 15
-@export var speed : float = 100
 @export var spawn_node : Node2D
-@export var max_distance : float = 100
 
 
+var spread_degrees : float = 10
+var speed : float = 100
+var max_distance : float = 500
+
+@export_category("Projectile Weapon Stats")
+@export var speed_stat : Stat
+@export var max_distance_stat : Stat
+@export var spread_degrees_stat : Stat
 
 var start_windup : bool = false
 var winding_up : bool = false
@@ -30,11 +35,18 @@ var _spawn_index : float = 0
 
 func _ready():
 	super()
+	speed = speed if speed_stat == null else speed_stat.stat_derived_value
+	max_distance = max_distance if max_distance_stat == null else max_distance_stat.stat_derived_value
+	spread_degrees = spread_degrees if spread_degrees_stat == null else spread_degrees_stat.stat_derived_value
+	speed_stat.stat_derived_value_changed.connect(_on_speed_stat_changed)
+	max_distance_stat.stat_derived_value_changed.connect(_on_max_distance_stat_chagned)
+	spread_degrees_stat.stat_derived_value_changed.connect(_on_spread_degrees_stat_changed)
 	pass
 
 func _process(delta):
 	super(delta)
 	projectile_weapon_process(delta)
+	
 	pass
 
 func projectile_weapon_process(delta : float):
@@ -107,8 +119,8 @@ func _spawn_projectile():
 					new_projectile.hit_data = hit_listener.generate_effect_data()
 				new_projectile.max_distance_reached.connect(func() : attack_end.emit())
 				new_projectile.source = self
-				new_projectile.max_distance = max_distance
-				new_projectile.speed = speed
+				new_projectile.max_distance = max_distance_stat.stat_derived_value
+				new_projectile.speed = speed_stat.stat_derived_value
 				get_tree().root.add_child(new_projectile)
 				new_projectile.set_collision_mask_value(actor.original_coll_layer, false)
 				if spawn_node != null:
@@ -153,7 +165,17 @@ func _spawn_projectile():
 		printerr("No projectile to spawn")
 	pass
 
+func _on_speed_stat_changed():
+	speed = speed_stat.stat_derived_value
+	pass
 
+func _on_max_distance_stat_chagned():
+	max_distance = max_distance_stat.stat_derived_value
+	pass
+
+func _on_spread_degrees_stat_changed():
+	spread_degrees = spread_degrees_stat.stat_derived_value
+	pass
 
 func _on_attack_hit(hit_data : Dictionary):
 	if hit_listener != null:

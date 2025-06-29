@@ -12,16 +12,19 @@
 [ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="6_ibmun"]
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="8_p5e7d"]
 
-[node name="WeaponBow" type="Node2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "hit_listener")]
+[node name="WeaponBow" type="Node2D" node_paths=PackedStringArray("charge_time_stat", "max_charge_multiplier_stat", "min_charge_multiplier_stat", "speed_stat", "max_distance_stat", "spread_degrees_stat", "hit_listener", "attack_damage", "attack_speed_stat")]
 script = ExtResource("1_dscfw")
-max_charge_multiplier = 1.25
+charge_time_stat = NodePath("ChargeTime")
+max_charge_multiplier_stat = NodePath("MaxChargeMultiplier")
+min_charge_multiplier_stat = NodePath("MinChargeMultiplier")
 projectile = ExtResource("2_1500e")
-speed = 800.0
-max_distance = 1000.0
-attack_damage = NodePath("Damage")
-attack_speed_stat = NodePath("AttackSpeed")
+speed_stat = NodePath("ProjectileSpeed")
+max_distance_stat = NodePath("MaxDistance")
+spread_degrees_stat = NodePath("SpreadDegrees")
 attack_windup_time = 0.1
 hit_listener = NodePath("HitListener")
+attack_damage = NodePath("Damage")
+attack_speed_stat = NodePath("AttackSpeed")
 equipment_name = "Wooden Bow"
 string_id = "wooden_bow"
 equipment_icon = ExtResource("4_ibmun")
@@ -67,6 +70,36 @@ script = ExtResource("5_ibmun")
 stat = NodePath("..")
 scale_with_stat_id = "attack_speed"
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
+
+[node name="ChargeTime" type="Node" parent="."]
+script = ExtResource("4_cwckh")
+stat_value = 0.5
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="MaxChargeMultiplier" type="Node" parent="."]
+script = ExtResource("4_cwckh")
+stat_value = 1.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="MinChargeMultiplier" type="Node" parent="."]
+script = ExtResource("4_cwckh")
+stat_value = 0.5
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="ProjectileSpeed" type="Node" parent="."]
+script = ExtResource("4_cwckh")
+stat_value = 800.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="MaxDistance" type="Node" parent="."]
+script = ExtResource("4_cwckh")
+stat_value = 1000.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="SpreadDegrees" type="Node" parent="."]
+script = ExtResource("4_cwckh")
+stat_value = 15.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="AttackTimer" type="Timer" parent="."]
 

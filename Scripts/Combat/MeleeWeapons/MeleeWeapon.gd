@@ -1,6 +1,7 @@
 class_name MeleeWeapon
 extends Weapon
 
+@export var area : Area2D
 @export var offset : float
 @export var piercing : bool = false
 @export var hit_coll_enabled_time : float = 0.01
@@ -100,7 +101,7 @@ func _enable_coll():
 	attack_state = AttackState.ACTIVE
 	attack_timer.stop()
 	#look_at_mouse = false
-	hitbox_coll.disabled = false
+	#hitbox_coll.disabled = false
 	#coll_enabled_timer.start()
 	attack_active.emit()
 	_hit_enemies()
@@ -208,9 +209,9 @@ func on_equipped(actor : Entity):
 		)
 		area_size_mult = actor.stat_manager.stats["area_size"].stat_derived_value
 	scale *= area_size_mult
-	self.body_entered.connect(hit_entity_on_enter)
-	self.body_entered.connect(get_enemy_in_area)
-	self.body_exited.connect(_remove_enemy_hit)
+	area.body_entered.connect(hit_entity_on_enter)
+	area.body_entered.connect(get_enemy_in_area)
+	area.body_exited.connect(_remove_enemy_hit)
 	#hitbox_coll = $CollisionShape2D
 	#Initialization
 	attack_windup_time = minf(attack_windup_time, 1 / attack_speed)

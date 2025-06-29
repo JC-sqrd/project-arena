@@ -1,14 +1,25 @@
 extends ProjectileWeapon
 
-@export var throw_amount : Stat
-@export var return_speed : float = 700
+
+
+@export_category("Chakram Stats")
+@export var throw_amount_stat : Stat
+@export var return_speed_stat : Stat
+ 
 @export var return_hit_listener : HitListener
+
+var throw_amount : int = 2
+var return_speed : float = 700
 
 var _throw_counter : int = 0
 var throwing : bool = false
 
 func _ready():
 	super()
+	throw_amount = throw_amount if throw_amount_stat == null else int(throw_amount_stat.stat_derived_value)
+	return_speed = return_speed if return_speed_stat == null else return_speed_stat.stat_derived_value
+	throw_amount_stat.stat_derived_value_changed.connect(_on_throw_amount_stat_changed)
+	return_speed_stat.stat_derived_value_changed.connect(_on_return_speed_stat_changed)
 	pass
 
 func _process(delta):
@@ -86,7 +97,7 @@ func end_attack():
 	#look_at_mouse = true
 	attacking = false
 	actor.can_attack = true
-	#if throw_amount <= 0:
+	#if throw_amount_stat <= 0:
 	#	_start_cooldown = true
 	_throw_counter += 1
 	attack_end.emit()
@@ -130,11 +141,19 @@ func _on_attack_hit(hit_data : Dictionary):
 	pass
 
 func _on_projectile_count_changed():
-	_throw_counter = int(throw_amount.stat_derived_value) + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
+	_throw_counter = throw_amount + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
 	pass
 
 func on_equipped(actor : Entity):
 	super(actor)
-	_throw_counter = int(throw_amount.stat_derived_value) + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
+	_throw_counter = throw_amount + int(actor.stat_manager.get_stat("projectile_count").stat_derived_value)
 	actor.stat_manager.get_stat("projectile_count").stat_derived_value_changed.connect(_on_projectile_count_changed)
+	pass
+
+func _on_throw_amount_stat_changed():
+	throw_amount = int(throw_amount_stat.stat_derived_value)
+	pass
+
+func _on_return_speed_stat_changed():
+	return_speed = return_speed_stat.stat_derived_value
 	pass

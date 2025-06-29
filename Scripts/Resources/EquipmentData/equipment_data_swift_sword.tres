@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EquipmentData" load_steps=4 format=3 uid="uid://c8rqy5cdi2len"]
 
 [ext_resource type="Script" uid="uid://7g2i8l80ndkw" path="res://Scripts/Resources/EquipmentData/EquipmentData.gd" id="1_075sj"]
-[ext_resource type="Texture2D" uid="uid://bewmy64fdg3fd" path="res://Sprites/Weapons/Swift Sword/Swift Sword Tier 1 Icon.png" id="1_l2row"]
+[ext_resource type="Texture2D" uid="uid://q527iyaauc00" path="res://Sprites/Weapons/Swift Sword/Swift Sword Icon.png" id="1_l2row"]
 [ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/Level1/weapon_swift_sword.tscn" id="2_kgoif"]
 
 [resource]

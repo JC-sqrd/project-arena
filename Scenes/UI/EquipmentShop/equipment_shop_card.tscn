@@ -83,11 +83,14 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 0
 
 [node name="BackgroundPanel" type="Panel" parent="Panel/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="SlotBorder" type="TextureRect" parent="Panel/VBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_horizontal = 4
 texture = ExtResource("2_0n1t1")
 expand_mode = 3
 

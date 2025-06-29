@@ -1,9 +1,16 @@
 extends ProjectileWeapon
 
-@export var charge_time : float = 0.5
-@export var max_charge_multiplier : float = 1
-@export var min_charge_multiplier : float = 0.5
 @export var arrow_sprite : Node2D
+
+var charge_time : float = 0.5
+var max_charge_multiplier : float = 1
+var min_charge_multiplier : float = 0.5
+
+@export_category("Charged Projectile Weapon Stats")
+@export var charge_time_stat : Stat
+@export var max_charge_multiplier_stat : Stat
+@export var min_charge_multiplier_stat : Stat
+
 var throw_counter : float = 0
 
 var charge_bow : bool = false
@@ -14,6 +21,15 @@ signal charge_start()
 signal charge_end()
 signal charging_bow()
 signal bow_released()
+
+func _ready():
+	super()
+	charge_time = charge_time if charge_time_stat == null else charge_time_stat.stat_derived_value
+	max_charge_multiplier = max_charge_multiplier if max_charge_multiplier_stat == null else max_charge_multiplier_stat.stat_derived_value
+	min_charge_multiplier = min_charge_multiplier if min_charge_multiplier_stat == null else max_charge_multiplier_stat.stat_derived_value
+	charge_time_stat.stat_derived_value_changed.connect(_on_charge_time_stat_changed)
+	max_charge_multiplier_stat.stat_derived_value_changed.connect(_on_max_charge_multiplier_stat_changed)
+	min_charge_multiplier_stat.stat_derived_value_changed.connect(_on_min_charge_multiplier_stat_chagned)
 
 func _process(delta):
 	super(delta)
@@ -105,7 +121,7 @@ func spawn_arrow(charge : float):
 			new_projectile.max_distance_reached.connect(func() : attack_end.emit())
 			new_projectile.source = self
 			new_projectile.max_distance = max_distance
-			new_projectile.speed = max(speed * min_charge_multiplier, max_charge_multiplier * speed)
+			new_projectile.speed = max(speed_stat.stat_derived_value * min_charge_multiplier_stat.stat_derived_value, max_charge_multiplier_stat.stat_derived_value * speed_stat.stat_derived_value)
 			get_tree().root.add_child(new_projectile)
 			new_projectile.set_collision_mask_value(actor.original_coll_layer, false)
 			if spawn_node != null:
@@ -134,7 +150,7 @@ func spawn_arrow(charge : float):
 			new_projectile.max_distance_reached.connect(func() : attack_end.emit())
 			new_projectile.source = self
 			new_projectile.max_distance = max_distance
-			new_projectile.speed = max(speed * min_charge_multiplier, max_charge_multiplier * speed)
+			new_projectile.speed = max(speed * min_charge_multiplier_stat.stat_derived_value, max_charge_multiplier_stat.stat_derived_value * speed)
 			get_tree().root.add_child(new_projectile)
 			new_projectile.set_collision_mask_value(actor.original_coll_layer, false)
 			if spawn_node != null:
@@ -172,4 +188,17 @@ func attack_key_held():
 	if can_attack and !charge_bow:
 		charge_bow = true
 		charge_start.emit()
+	pass
+
+func _on_charge_time_stat_changed():
+	charge_time = charge_time_stat.stat_derived_value
+	pass
+
+func _on_max_charge_multiplier_stat_changed():
+	max_charge_multiplier = max_charge_multiplier_stat.stat_derived_value
+	pass
+
+
+func _on_min_charge_multiplier_stat_chagned():
+	min_charge_multiplier = min_charge_multiplier_stat.stat_derived_value
 	pass

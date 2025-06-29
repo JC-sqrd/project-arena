@@ -178,22 +178,51 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="SwiftSword" type="Area2D" node_paths=PackedStringArray("attack_damage", "attack_speed_stat", "weapon_ability", "hit_listener", "sockets", "tier_manager", "tooltip_stats")]
-collision_mask = 2
-monitorable = false
+[node name="SwiftSword" type="Node2D" node_paths=PackedStringArray("area", "weapon_ability", "hit_listener", "sockets", "attack_damage", "attack_speed_stat", "tier_manager", "tooltip_stats")]
 script = ExtResource("1_5d1jb")
+area = NodePath("Area2D")
 filter = SubResource("Resource_15j33")
-attack_damage = NodePath("Damage")
-attack_speed_stat = NodePath("AttackSpeed")
 attack_windup_time = 0.05
 weapon_ability = NodePath("WindSlashAbility")
 hit_listener = NodePath("HitListener")
 sockets = [NodePath("WeaponSocket")]
+attack_damage = NodePath("Damage")
+attack_speed_stat = NodePath("AttackSpeed")
 equipment_name = "Swift Sword"
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "swift_sword"
 equipment_icon = ExtResource("3_lgo86")
 tooltip_stats = [NodePath("Damage"), NodePath("AttackSpeed"), NodePath("Knockback")]
+metadata/_custom_type_script = "uid://df3mwd5sdgedk"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(128, -10)
+shape = SubResource("CircleShape2D_dmqko")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Area2D/CollisionShape2D" node_paths=PackedStringArray("weapon")]
+texture_filter = 1
+position = Vector2(-24, 8)
+sprite_frames = SubResource("SpriteFrames_xaawn")
+animation = &"windup"
+script = ExtResource("4_bs7ii")
+weapon = NodePath("../../..")
+
+[node name="WeaponAbilityAnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D/CollisionShape2D" node_paths=PackedStringArray("weapon_anim_sprite", "ability", "weapon")]
+texture_filter = 1
+position = Vector2(-24, 8)
+sprite_frames = SubResource("SpriteFrames_jjxnv")
+animation = &"cast_animation"
+frame = 10
+frame_progress = 1.0
+script = ExtResource("19_5d1jb")
+weapon_anim_sprite = NodePath("../AnimatedSprite2D2")
+ability = NodePath("../../../WindSlashAbility")
+weapon = NodePath("../../..")
+metadata/_custom_type_script = "uid://cp6un5w7sjul2"
 
 [node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
 script = ExtResource("4_lgo86")
@@ -286,31 +315,6 @@ stat_name = "knocback"
 stat_value = 150.0
 can_be_negative = false
 metadata/_custom_type_script = "uid://nke8ejxjdu4s"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(128, -10)
-shape = SubResource("CircleShape2D_dmqko")
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CollisionShape2D" node_paths=PackedStringArray("weapon")]
-texture_filter = 1
-position = Vector2(-24, 8)
-sprite_frames = SubResource("SpriteFrames_xaawn")
-animation = &"windup"
-script = ExtResource("4_bs7ii")
-weapon = NodePath("../..")
-
-[node name="WeaponAbilityAnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D" node_paths=PackedStringArray("weapon_anim_sprite", "ability", "weapon")]
-texture_filter = 1
-position = Vector2(-24, 8)
-sprite_frames = SubResource("SpriteFrames_jjxnv")
-animation = &"cast_animation"
-frame = 10
-frame_progress = 1.0
-script = ExtResource("19_5d1jb")
-weapon_anim_sprite = NodePath("../AnimatedSprite2D2")
-ability = NodePath("../../WindSlashAbility")
-weapon = NodePath("../..")
-metadata/_custom_type_script = "uid://cp6un5w7sjul2"
 
 [node name="AttackTimer" type="Timer" parent="."]
 
