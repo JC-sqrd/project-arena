@@ -1,7 +1,7 @@
 class_name MeleeWeapon
 extends Weapon
 
-@export var area : Area2D
+@export var melee_area : MeleeWeaponArea2D
 @export var offset : float
 @export var piercing : bool = false
 @export var hit_coll_enabled_time : float = 0.01
@@ -16,7 +16,7 @@ extends Weapon
 @onready var attack_timer: Timer = $AttackTimer
 
 
-var area_size_mult : float = 1
+var melee_area_size_mult : float = 1
 
 var windup_counter : float = 0
 var start_windup : bool = false
@@ -160,7 +160,7 @@ func get_coll_position() -> Vector2:
 			#queue_redraw()
 	#pass
 
-func get_enemy_in_area(body : Node2D):
+func get_enemy_in_melee_area(body : Node2D):
 	if body.is_in_group("Hittable"):
 		enemy_hits.append(body)
 	if debug_visual:
@@ -199,38 +199,29 @@ func _hit_entity(entity : Entity ):
 
 func on_equipped(actor : Entity):
 	super(actor)
-	if actor.stat_manager.stats.has("area_size"):
-		actor.stat_manager.stats["area_size"].stat_changed.connect(
+	if actor.stat_manager.stats.has("melee_area_size"):
+		actor.stat_manager.stats["melee_area_size"].stat_changed.connect(
 			func():
-				area_size_mult = actor.stat_manager.stats["area_size"].stat_derived_value
+				melee_area_size_mult = actor.stat_manager.stats["melee_area_size"].stat_derived_value
 				scale = Vector2.ONE
-				scale *= area_size_mult
+				scale *= melee_area_size_mult
 				#set_coll_position()
 		)
-		area_size_mult = actor.stat_manager.stats["area_size"].stat_derived_value
-	scale *= area_size_mult
-	area.body_entered.connect(hit_entity_on_enter)
-	area.body_entered.connect(get_enemy_in_area)
-	area.body_exited.connect(_remove_enemy_hit)
+		melee_area_size_mult = actor.stat_manager.stats["melee_area_size"].stat_derived_value
+	scale *= melee_area_size_mult
+	melee_area.body_entered.connect(hit_entity_on_enter)
+	melee_area.body_entered.connect(get_enemy_in_melee_area)
+	melee_area.body_exited.connect(_remove_enemy_hit)
 	#hitbox_coll = $CollisionShape2D
 	#Initialization
 	attack_windup_time = minf(attack_windup_time, 1 / attack_speed)
 	attack_timer.wait_time = attack_windup_time	
 	#hitbox_coll.set_deferred("disabled", true)
-	#set_coll_position()
+	#set_coll_position()d
 	#rect_shape.size = hitbox_size
 	#hitbox_coll.set_deferred("shape", rect_shape)
 	pass
 
 
 func _draw():
-	if look_at_mouse == false:
-		var line_start = Vector2(hitbox_coll.position.x - ((hitbox_coll.position.x) - offset),
-		hitbox_coll.position.y)
-		var line_end = Vector2(hitbox_coll.position.x + ((hitbox_coll.position.x) - offset),
-		hitbox_coll.position.y)
-		#draw_line(line_start,line_end, Color(Color.DARK_GOLDENROD, 0.45), hitbox_size.y)
-	
-	#for enemy in enemy_hits:
-		#if enemy != null:
-			#draw_line(position, to_local(enemy.position), Color.CRIMSON, 5)
+	pass

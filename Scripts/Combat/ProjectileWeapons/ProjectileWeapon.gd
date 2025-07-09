@@ -8,11 +8,13 @@ extends Weapon
 var spread_degrees : float = 10
 var speed : float = 100
 var max_distance : float = 500
+var pierce_count : int = 1
 
 @export_category("Projectile Weapon Stats")
 @export var speed_stat : Stat
 @export var max_distance_stat : Stat
 @export var spread_degrees_stat : Stat
+@export var pierce_count_stat : Stat
 
 var start_windup : bool = false
 var winding_up : bool = false
@@ -38,6 +40,7 @@ func _ready():
 	speed = speed if speed_stat == null else speed_stat.stat_derived_value
 	max_distance = max_distance if max_distance_stat == null else max_distance_stat.stat_derived_value
 	spread_degrees = spread_degrees if spread_degrees_stat == null else spread_degrees_stat.stat_derived_value
+	pierce_count = 1 if pierce_count_stat == null else int(pierce_count_stat.stat_derived_value)
 	speed_stat.stat_derived_value_changed.connect(_on_speed_stat_changed)
 	max_distance_stat.stat_derived_value_changed.connect(_on_max_distance_stat_chagned)
 	spread_degrees_stat.stat_derived_value_changed.connect(_on_spread_degrees_stat_changed)
@@ -120,6 +123,7 @@ func _spawn_projectile():
 				new_projectile.max_distance_reached.connect(func() : attack_end.emit())
 				new_projectile.source = self
 				new_projectile.max_distance = max_distance_stat.stat_derived_value
+				new_projectile.pierce_count = pierce_count
 				new_projectile.speed = speed_stat.stat_derived_value
 				get_tree().root.add_child(new_projectile)
 				new_projectile.set_collision_mask_value(actor.original_coll_layer, false)
@@ -146,6 +150,7 @@ func _spawn_projectile():
 				new_projectile.max_distance_reached.connect(func() : attack_end.emit())
 				new_projectile.source = self
 				new_projectile.max_distance = max_distance
+				new_projectile.pierce_count = pierce_count
 				new_projectile.speed = speed
 				get_tree().root.add_child(new_projectile)
 				new_projectile.set_collision_mask_value(actor.original_coll_layer, false)
@@ -175,6 +180,10 @@ func _on_max_distance_stat_chagned():
 
 func _on_spread_degrees_stat_changed():
 	spread_degrees = spread_degrees_stat.stat_derived_value
+	pass
+
+func _on_pierce_count_stat_changed():
+	pierce_count = int(pierce_count_stat.stat_derived_value)
 	pass
 
 func _on_attack_hit(hit_data : Dictionary):

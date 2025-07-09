@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dp288eneestlt"]
+[gd_scene load_steps=43 format=3 uid="uid://dp288eneestlt"]
 
 [ext_resource type="Script" uid="uid://df3mwd5sdgedk" path="res://Scripts/Combat/MeleeWeapons/MeleeWeapon.gd" id="1_5d1jb"]
 [ext_resource type="Texture2D" uid="uid://065wghtxeh6j" path="res://Sprites/Weapons/Swift Sword/SwiftSwordAttack.png" id="2_15j33"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://nke8ejxjdu4s" path="res://Scripts/StatSystem/Stats/AttackSpeedStat.gd" id="4_kenp3"]
 [ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierManager.gd" id="4_lgo86"]
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="4_wop2k"]
+[ext_resource type="Script" uid="uid://cm6w6rydeoqo1" path="res://Scripts/Combat/MeleeWeapons/MeleeWeaponArea2D.gd" id="4_y544v"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="5_580b7"]
 [ext_resource type="Script" uid="uid://boi71j6dy2kn6" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierNode.gd" id="6_8s50r"]
 [ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="7_d0kcu"]
@@ -178,9 +179,9 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="SwiftSword" type="Node2D" node_paths=PackedStringArray("area", "weapon_ability", "hit_listener", "sockets", "attack_damage", "attack_speed_stat", "tier_manager", "tooltip_stats")]
+[node name="SwiftSword" type="Node2D" node_paths=PackedStringArray("melee_area", "weapon_ability", "hit_listener", "sockets", "attack_damage", "attack_speed_stat", "tier_manager", "tooltip_stats")]
 script = ExtResource("1_5d1jb")
-area = NodePath("Area2D")
+melee_area = NodePath("Area2D")
 filter = SubResource("Resource_15j33")
 attack_windup_time = 0.05
 weapon_ability = NodePath("WindSlashAbility")
@@ -198,6 +199,7 @@ metadata/_custom_type_script = "uid://df3mwd5sdgedk"
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 2
 monitorable = false
+script = ExtResource("4_y544v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(128, -10)
@@ -273,6 +275,12 @@ metadata/_custom_type_script = "uid://boi71j6dy2kn6"
 script = ExtResource("7_y544v")
 stat = NodePath("../../../Damage")
 new_stat_value = 30.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="ModifyEquipmentStat2" type="Node" parent="EquipmentTierManager/EquipmentTierNode5" node_paths=PackedStringArray("stat")]
+script = ExtResource("7_y544v")
+stat = NodePath("../../../AttackSpeed")
+new_stat_value = 2.0
 metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
 [node name="Damage" type="Node" parent="."]

@@ -25,6 +25,8 @@ const EQUIPMENT_INVENTORY_SLOT = preload("res://Scenes/UI/EquipmentInventory/equ
 @onready var _floating_icon: TextureRect = $_FloatingIcon
 
 @onready var inventory_grid: GridContainer = %InventoryGrid
+@onready var equipment_inventory_dismantle_slot: EquipmentInventoryDismantleSlot = %EquipmentInventoryDismantleSlot
+
 
 var inventory_slots : Array[EquipmentInventorySlot]
 var equip_slots : Array[EquipmentEquipSlot] = [null, null, null, null, null, null]
@@ -98,6 +100,7 @@ func _ready():
 			pass
 		pass
 	
+	equipment_inventory_dismantle_slot.selected.connect(on_inventory_slot_selected)
 	
 	for child in inventory_grid.get_children():
 		if child is EquipmentInventorySlot:
@@ -195,7 +198,7 @@ func on_inventory_slot_selected(inventory_slot : EquipmentInventorySlot):
 				selected_slot = null
 				return
 			pass
-			#EQUIP SLOT -> INVENTORY SLOT
+		#EQUIP SLOT -> INVENTORY SLOT
 		elif selected_slot.slot_type == EquipmentInventorySlot.SlotType.EQUIP and inventory_slot.slot_type == EquipmentInventorySlot.SlotType.INVENTORY:
 			selected_slot = selected_slot as EquipmentEquipSlot
 			if selected_slot.equipment != null and inventory_slot.equipment == null:
@@ -222,6 +225,39 @@ func on_inventory_slot_selected(inventory_slot : EquipmentInventorySlot):
 				selected_slot = null
 				return
 			pass
+		#INVENTORY SLOT -> DISMANTLE SLOT
+		elif selected_slot.slot_type == EquipmentInventorySlot.SlotType.INVENTORY and inventory_slot.slot_type == EquipmentInventorySlot.SlotType.DISMANTLE:
+			inventory_slot = inventory_slot as EquipmentInventoryDismantleSlot
+			if selected_slot.equipment != null and inventory_slot.equipment == null:
+				inventory_slot.equipment = selected_slot.equipment
+				#equipment_inventory.inventory[inventory_slot.slot_index] = selected_slot.equipment
+				selected_slot.equipment = null
+				selected_slot.is_selected = false
+				selected_slot.slot_border.modulate = Color.WHITE
+				selected_slot = null
+				return
+			elif selected_slot.equipment != null and inventory_slot.equipment != null:
+				inventory_slot.dismantle_slotted_equipment()
+				inventory_slot.equipment = selected_slot.equipment
+				#equipment_inventory.inventory[inventory_slot.slot_index] = selected_slot.equipment
+				selected_slot.equipment = null
+				selected_slot.is_selected = false
+				selected_slot.slot_border.modulate = Color.WHITE
+				selected_slot = null
+				return
+				pass
+			pass 
+		#DISMANTLE SLOT -> INVENTORY SLOT
+		elif selected_slot.slot_type == EquipmentInventorySlot.SlotType.DISMANTLE and inventory_slot.slot_type == EquipmentInventorySlot.SlotType.INVENTORY:
+			selected_slot = selected_slot as EquipmentInventoryDismantleSlot
+			if selected_slot.equipment != null and inventory_slot.equipment == null:
+				inventory_slot.equipment = selected_slot.equipment
+				equipment_inventory.inventory[inventory_slot.slot_index] = selected_slot.equipment
+				selected_slot.equipment = null
+				selected_slot.is_selected = false
+				selected_slot.slot_border.modulate = Color.WHITE
+				selected_slot = null
+				return
 	elif inventory_slot.equipment == null:
 		return
 	selected_slot = inventory_slot
@@ -306,9 +342,15 @@ func get_equipment_pair(slot : EquipmentInventorySlot) -> Array[EquipmentInvento
 		pass
 	return pair
 
+func clear_dismantle_slot():
+	equipment_inventory_dismantle_slot.dismantle_slotted_equipment()
+	pass
+
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("open_inventory"):
 		visible = !visible
+		if !visible:
+			clear_dismantle_slot()
 		clear_selected_slot()
 		pass
 	if event is InputEventMouseButton and event.pressed and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_RIGHT:

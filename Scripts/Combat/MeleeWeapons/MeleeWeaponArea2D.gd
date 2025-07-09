@@ -1,0 +1,2 @@
+class_name MeleeWeaponArea2D
+extends Area2D

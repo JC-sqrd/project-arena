@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c4234y32d7c7u"]
+[gd_scene load_steps=33 format=3 uid="uid://c4234y32d7c7u"]
 
 [ext_resource type="Script" uid="uid://df3mwd5sdgedk" path="res://Scripts/Combat/MeleeWeapons/MeleeWeapon.gd" id="1_x277f"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="2_5bq0p"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bjghiliwmv17p" path="res://Sprites/Weapons/Long Sword/Longsword Attack.png" id="4_hpkqv"]
 [ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierManager.gd" id="4_lxxdf"]
 [ext_resource type="Script" uid="uid://c4n03mihb0axg" path="res://Scripts/StatSystem/Stats/GetActorStatMult.gd" id="4_o5g0w"]
+[ext_resource type="Script" uid="uid://cm6w6rydeoqo1" path="res://Scripts/Combat/MeleeWeapons/MeleeWeaponArea2D.gd" id="4_yckbx"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="4_yxwxf"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="5_0cynv"]
 [ext_resource type="Script" uid="uid://boi71j6dy2kn6" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierNode.gd" id="5_mvr6p"]
@@ -135,9 +136,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="LongSword" type="Node2D" node_paths=PackedStringArray("area", "weapon_ability", "hit_listener", "attack_damage", "attack_speed_stat", "tier_manager", "tooltip_stats")]
+[node name="LongSword" type="Node2D" node_paths=PackedStringArray("melee_area", "weapon_ability", "hit_listener", "attack_damage", "attack_speed_stat", "tier_manager", "tooltip_stats")]
 script = ExtResource("1_x277f")
-area = NodePath("Area2D")
+melee_area = NodePath("Area2D")
 hit_coll_enabled_time = 0.3
 filter = SubResource("Resource_lxxdf")
 attack_windup_time = 0.25
@@ -155,6 +156,7 @@ metadata/_custom_type_script = "uid://df3mwd5sdgedk"
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 2
 monitorable = false
+script = ExtResource("4_yckbx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(185, 0)

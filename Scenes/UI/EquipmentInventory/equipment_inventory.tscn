@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bba116t3m1ua7"]
+[gd_scene load_steps=8 format=3 uid="uid://bba116t3m1ua7"]
 
 [ext_resource type="Script" uid="uid://w55biq6u1q0c" path="res://Scripts/UI/EquipmentInventory/EquipmentInventoryManager.gd" id="1_ondaa"]
 [ext_resource type="Texture2D" uid="uid://b28wwbume1cgm" path="res://Sprites/UI/Panel Container Texture/PanelTexture.png" id="2_eqg4x"]
 [ext_resource type="PackedScene" uid="uid://cjyf0inyj3qd6" path="res://Scenes/UI/EquipmentInventory/equipment_equip_slot.tscn" id="2_ondaa"]
+[ext_resource type="PackedScene" uid="uid://cp0ris0vgjbam" path="res://Scenes/UI/EquipmentInventory/equipment_inventory_dismantle_slot.tscn" id="3_kmrtb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kmrtb"]
 texture = ExtResource("2_eqg4x")
@@ -71,6 +72,19 @@ theme_override_constants/margin_bottom = 10
 unique_name_in_owner = true
 layout_mode = 2
 columns = 5
+
+[node name="InventoryDismantleGridContainer" type="MarginContainer" parent="EquipmentInventory/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="EquipmentInventoryDismantleSlot" parent="EquipmentInventory/VBoxContainer/InventoryDismantleGridContainer" instance=ExtResource("3_kmrtb")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
 [node name="EquippedSlots" type="PanelContainer" parent="."]
 layout_mode = 1

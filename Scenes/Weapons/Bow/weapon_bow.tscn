@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="6_ibmun"]
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="8_p5e7d"]
 
-[node name="WeaponBow" type="Node2D" node_paths=PackedStringArray("charge_time_stat", "max_charge_multiplier_stat", "min_charge_multiplier_stat", "speed_stat", "max_distance_stat", "spread_degrees_stat", "hit_listener", "attack_damage", "attack_speed_stat")]
+[node name="WeaponBow" type="Node2D" node_paths=PackedStringArray("charge_time_stat", "max_charge_multiplier_stat", "min_charge_multiplier_stat", "speed_stat", "max_distance_stat", "spread_degrees_stat", "pierce_count_stat", "hit_listener", "attack_damage", "attack_speed_stat")]
 script = ExtResource("1_dscfw")
 charge_time_stat = NodePath("ChargeTime")
 max_charge_multiplier_stat = NodePath("MaxChargeMultiplier")
@@ -21,6 +21,7 @@ projectile = ExtResource("2_1500e")
 speed_stat = NodePath("ProjectileSpeed")
 max_distance_stat = NodePath("MaxDistance")
 spread_degrees_stat = NodePath("SpreadDegrees")
+pierce_count_stat = NodePath("PierceCount")
 attack_windup_time = 0.1
 hit_listener = NodePath("HitListener")
 attack_damage = NodePath("Damage")
@@ -94,6 +95,11 @@ metadata/_custom_type_script = "uid://bgka26pbphks7"
 [node name="MaxDistance" type="Node" parent="."]
 script = ExtResource("4_cwckh")
 stat_value = 1000.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="PierceCount" type="Node" parent="."]
+script = ExtResource("4_cwckh")
+stat_value = 1.0
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="SpreadDegrees" type="Node" parent="."]

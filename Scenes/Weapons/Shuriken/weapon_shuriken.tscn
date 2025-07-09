@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="7_j7fjk"]
 [ext_resource type="PackedScene" uid="uid://dyp7qwg63ge44" path="res://Scenes/Abilities/Spawn Abilities/Giant Shuriken/ability_giant_shuriken.tscn" id="12_j7fjk"]
 
-[node name="WeaponShuriken" type="Node2D" node_paths=PackedStringArray("throw_count", "throw_delay", "speed_stat", "max_distance_stat", "spread_degrees_stat", "weapon_ability", "hit_listener", "attack_damage", "attack_speed_stat", "tier_manager", "tooltip_stats")]
+[node name="WeaponShuriken" type="Node2D" node_paths=PackedStringArray("throw_count", "throw_delay", "speed_stat", "max_distance_stat", "spread_degrees_stat", "pierce_count_stat", "weapon_ability", "hit_listener", "attack_damage", "attack_speed_stat", "tier_manager", "tooltip_stats")]
 script = ExtResource("1_5olyp")
 throw_count = NodePath("ThrowCount")
 throw_delay = NodePath("ThrowDelay")
@@ -24,6 +24,7 @@ projectile = ExtResource("2_7kfdi")
 speed_stat = NodePath("ProjectileSpeed")
 max_distance_stat = NodePath("MaxDistance")
 spread_degrees_stat = NodePath("SpreadDegrees")
+pierce_count_stat = NodePath("PierceCount")
 attack_windup_time = 0.1
 weapon_ability = NodePath("AbilityGiantShuriken")
 hit_listener = NodePath("HitListener")
@@ -33,7 +34,7 @@ equipment_name = "Shuriken"
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "shuriken"
 equipment_icon = ExtResource("3_cenqv")
-tooltip_stats = [NodePath("Damage"), NodePath("AttackSpeed"), NodePath("ThrowCount"), NodePath("ProjectileSpeed"), NodePath("MaxDistance"), NodePath("SpreadDegrees")]
+tooltip_stats = [NodePath("Damage"), NodePath("AttackSpeed"), NodePath("ThrowCount"), NodePath("ProjectileSpeed"), NodePath("MaxDistance"), NodePath("PierceCount"), NodePath("SpreadDegrees")]
 metadata/_custom_type_script = "uid://d3fin4411ww46"
 
 [node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
@@ -160,6 +161,11 @@ metadata/_custom_type_script = "uid://bgka26pbphks7"
 [node name="MaxDistance" type="Node" parent="."]
 script = ExtResource("4_7kfdi")
 stat_value = 1000.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="PierceCount" type="Node" parent="."]
+script = ExtResource("4_7kfdi")
+stat_value = 3.0
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="SpreadDegrees" type="Node" parent="."]

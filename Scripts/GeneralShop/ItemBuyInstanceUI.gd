@@ -7,9 +7,10 @@ var item : Item
 @onready var cost_button: Button = %CostButton
 @onready var lock_button: Button = %LockButton
 @onready var locked_icon: TextureRect = %LockedIcon
-@onready var item_name_label: RichTextLabel = $Panel/VBoxContainer/ItemNameLabel
-@onready var item_detail_label: RichTextLabel = $Panel/VBoxContainer/ItemDetailLabel
+@onready var item_name_label: RichTextLabel = %ItemNameLabel
+@onready var item_detail_label: RichTextLabel = %ItemDetailLabel
 @onready var item_icon: TextureRect = %ItemIcon
+@onready var cost_label: Label = %CostLabel
 
 
 

@@ -33,6 +33,7 @@ func spawn_shuriken():
 			new_projectile.max_distance_reached.connect(func() : attack_end.emit())
 			new_projectile.source = self
 			new_projectile.max_distance = max_distance
+			new_projectile.pierce_count = pierce_count
 			new_projectile.speed = speed
 			get_tree().root.add_child(new_projectile)
 			new_projectile.set_collision_mask_value(actor.original_coll_layer, false)

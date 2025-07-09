@@ -1,11 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://dfh3qc3n36tdr"]
+[gd_scene load_steps=20 format=3 uid="uid://dfh3qc3n36tdr"]
 
 [ext_resource type="Script" uid="uid://csk81q2x4j06s" path="res://Scripts/Combat/ProjectileWeapons/Projectile/Projectile.gd" id="1_bnjas"]
 [ext_resource type="Texture2D" uid="uid://dkk8xfwxrsk14" path="res://Placeholders/Sprites/Textures/Radial Texture 1.png" id="2_3y5ny"]
 [ext_resource type="Texture2D" uid="uid://0dx6a0pery4a" path="res://Sprites/Weapons/Fire Grimoire/Fireball projectile.png" id="2_xv6t8"]
-[ext_resource type="Script" uid="uid://y1c1hiwxwmkf" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/SpawnableHitCounterBehavior.gd" id="4_xv6t8"]
 [ext_resource type="Texture2D" uid="uid://cxc741a64b2hd" path="res://Sprites/AbilitySprites/Fireball/Fireball Trail 1.png" id="5_04fqy"]
-[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_numia"]
 
 [sub_resource type="Curve" id="Curve_j8crf"]
 _data = [Vector2(0, 1), 0.0, 1.01873, 0, 0, Vector2(1, 0.247191), 0.0, 0.0, 0, 0]
@@ -112,17 +110,6 @@ texture_scale = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vl0f8")
-
-[node name="SpawnableHitCounterBehavior" type="Node" parent="." node_paths=PackedStringArray("hit_times", "spawnable")]
-script = ExtResource("4_xv6t8")
-hit_times = NodePath("Stat")
-spawnable = NodePath("..")
-metadata/_custom_type_script = "uid://y1c1hiwxwmkf"
-
-[node name="Stat" type="Node" parent="SpawnableHitCounterBehavior"]
-script = ExtResource("5_numia")
-stat_value = 1.0
-metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
 texture = ExtResource("5_04fqy")

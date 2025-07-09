@@ -9,6 +9,8 @@ extends Spawnable
 @export var max_distance : float = 1000
 
 
+var pierce_count : int = 1
+
 var current_distance : float = 0
 var motion : Vector2 = Vector2.ZERO
 
@@ -54,6 +56,9 @@ func _on_body_hit(body : Node2D):
 	if is_valid(body):
 		on_hit.emit(_create_hit_data(body))
 		body.on_hit.emit(_create_hit_data(body))
+		pierce_count -= 1
+		if pierce_count <= 0:
+			queue_free()
 	else:
 		queue_free()
 	pass

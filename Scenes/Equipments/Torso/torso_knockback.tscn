@@ -9,6 +9,7 @@
 
 [node name="TorsoKnockback" type="Node2D"]
 script = ExtResource("1_v1ssr")
+equipment_name = "Knockback Chest"
 type = 2
 metadata/_custom_type_script = "uid://bviaakymd1gy8"
 

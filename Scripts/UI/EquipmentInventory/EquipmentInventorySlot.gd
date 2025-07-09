@@ -1,7 +1,7 @@
 class_name EquipmentInventorySlot
 extends Control
 
-enum SlotType {INVENTORY, EQUIP}
+enum SlotType {INVENTORY, EQUIP, DISMANTLE}
 
 var equipment : Equipment : set = set_equipment
 @export var slot_type : SlotType
@@ -24,9 +24,6 @@ func _ready() -> void:
 	mouse_entered.connect(on_mouse_entered)
 	mouse_exited.connect(on_mouse_exited)
 	gui_input.connect(on_gui_input)
-	context_menu = EQUIPMENT_CONTEXT_MENU.instantiate() as EquipmentContextMenu
-	add_child(context_menu)
-	context_menu.visible = false
 
 func on_gui_input(event : InputEvent):
 	if event is InputEventMouseButton and event.pressed and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT:

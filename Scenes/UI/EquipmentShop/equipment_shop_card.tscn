@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://4wls88f0glxy"]
+[gd_scene load_steps=22 format=3 uid="uid://4wls88f0glxy"]
 
 [ext_resource type="Script" uid="uid://by6xpnkbdkhou" path="res://Scripts/GeneralShop/EquipmentBuyInstanceUI.gd" id="1_8ytjs"]
 [ext_resource type="Texture2D" uid="uid://dsgcy2jeaik3y" path="res://Sprites/UI/Slot Border/SlotBorder.png" id="2_0n1t1"]
@@ -53,48 +53,82 @@ texture_margin_top = 14.0
 texture_margin_right = 14.0
 texture_margin_bottom = 14.0
 
-[node name="EquipmentShopCard" type="Control"]
-custom_minimum_size = Vector2(250, 370)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 50.0
-offset_bottom = 80.0
-script = ExtResource("1_8ytjs")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ythd3"]
+texture = ExtResource("5_vbk56")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
 
-[node name="Panel" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oxadc"]
+texture = ExtResource("6_hevyp")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ittw"]
+texture = ExtResource("7_7re2n")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1pwfa"]
+texture = ExtResource("6_hevyp")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fovhl"]
+texture = ExtResource("8_hevyp")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[node name="EquipmentShopCard" type="PanelContainer"]
+custom_minimum_size = Vector2(250, 370)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.0
+offset_top = -209.0
+offset_right = 149.0
+offset_bottom = 209.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_s5li7")
+script = ExtResource("1_8ytjs")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = -2
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 0
 
-[node name="BackgroundPanel" type="Panel" parent="Panel/VBoxContainer/MarginContainer"]
+[node name="BackgroundPanel" type="Panel" parent="VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="SlotBorder" type="TextureRect" parent="Panel/VBoxContainer/MarginContainer"]
+[node name="SlotBorder" type="TextureRect" parent="VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("2_0n1t1")
 expand_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/MarginContainer/SlotBorder"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/SlotBorder"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,24 +140,28 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="EquipmentIcon" parent="Panel/VBoxContainer/MarginContainer/SlotBorder/MarginContainer" instance=ExtResource("3_x3m1p")]
+[node name="EquipmentIcon" parent="VBoxContainer/MarginContainer/SlotBorder/MarginContainer" instance=ExtResource("3_x3m1p")]
 unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "
+"
 
-[node name="CostLabel" type="Label" parent="Panel/VBoxContainer"]
+[node name="CostLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "100"
 horizontal_alignment = 1
 
-[node name="EquipmentNameLabel" type="RichTextLabel" parent="Panel/VBoxContainer"]
+[node name="EquipmentNameLabel" type="RichTextLabel" parent="VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 text = "Equipment Name
 "
 horizontal_alignment = 1
 
-[node name="CostButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="CostButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -138,21 +176,27 @@ text = "100
 icon = ExtResource("9_7re2n")
 autowrap_mode = 2
 
-[node name="EquipmentDetailLabel" type="RichTextLabel" parent="Panel/VBoxContainer"]
+[node name="EquipmentDetailLabel" type="RichTextLabel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
+mouse_filter = 1
 text = "Item Detail
 "
 
-[node name="LockButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="LockButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxTexture_ythd3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_oxadc")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5ittw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1pwfa")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fovhl")
 text = "LOCK"
 
-[node name="LockIcon" type="TextureRect" parent="Panel/VBoxContainer"]
+[node name="LockIcon" type="TextureRect" parent="VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(25, 25)
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("3_tqe16")

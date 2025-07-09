@@ -16,10 +16,11 @@ func _ready():
 	for child in character_grid_container.get_children():
 		if child is CharacterSelectIconUI:
 			child.selected.connect(_on_icon_selected)
+			print("CHARACTER SELECT SCREEN ICON SIGNAL CONNECTED")
 	start_game_button.pressed.connect(_on_start_button_pressed)
 	start_game_button.disabled = true
-	visible = false
 	visible = true
+	print("CHARACTER SELECT SCREEN READY")
 	pass
 
 
@@ -28,6 +29,7 @@ func _on_icon_selected(character_icon : CharacterSelectIconUI):
 	if character_icon.character_data != null:
 		print(character_icon.character_data.character_name)
 	start_game_button.disabled = false
+	print("CHARACTER SELECT SCREEN ICON SELECTED")
 	pass
 
 

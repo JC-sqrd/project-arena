@@ -210,13 +210,14 @@ gravity = Vector3(0, 0, 0)
 anim_speed_min = 2.0
 anim_speed_max = 2.0
 
-[node name="WeaponWoodenMagicStaff" type="Node2D" node_paths=PackedStringArray("spawn_node", "speed_stat", "max_distance_stat", "spread_degrees_stat", "weapon_ability", "hit_listener", "attack_damage", "attack_speed_stat", "tier_manager", "tooltip_stats")]
+[node name="WeaponWoodenMagicStaff" type="Node2D" node_paths=PackedStringArray("spawn_node", "speed_stat", "max_distance_stat", "spread_degrees_stat", "pierce_count_stat", "weapon_ability", "hit_listener", "attack_damage", "attack_speed_stat", "tier_manager", "tooltip_stats")]
 script = ExtResource("1_ff5bq")
 projectile = ExtResource("2_6h7d5")
 spawn_node = NodePath("Marker2D")
 speed_stat = NodePath("ProjectileSpeed")
 max_distance_stat = NodePath("MaxDistance")
 spread_degrees_stat = NodePath("SpreadDegrees")
+pierce_count_stat = NodePath("PierceCount")
 attack_windup_time = 0.36
 weapon_ability = NodePath("AbilityMagicMissile")
 hit_listener = NodePath("HitListener")
@@ -226,7 +227,7 @@ equipment_name = "Wooden Magic Staff"
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "wooden_magic_staff"
 equipment_icon = ExtResource("3_naa5q")
-tooltip_stats = [NodePath("Damage"), NodePath("AttackSpeed"), NodePath("ProjectileSpeed"), NodePath("MaxDistance"), NodePath("SpreadDegrees")]
+tooltip_stats = [NodePath("Damage"), NodePath("AttackSpeed"), NodePath("ProjectileSpeed"), NodePath("MaxDistance"), NodePath("PierceCount"), NodePath("SpreadDegrees")]
 metadata/_custom_type_script = "uid://d3fin4411ww46"
 
 [node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
@@ -386,6 +387,12 @@ metadata/_custom_type_script = "uid://bgka26pbphks7"
 [node name="MaxDistance" type="Node" parent="."]
 script = ExtResource("12_42u5u")
 stat_value = 1000.0
+can_be_negative = false
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="PierceCount" type="Node" parent="."]
+script = ExtResource("12_42u5u")
+stat_value = 2.0
 can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 

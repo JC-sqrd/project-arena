@@ -2,25 +2,27 @@ class_name EquipmentInventorySlotIcon
 extends TextureRect
 
 const TIER_STAR = preload("res://Sprites/UI/Tier Star/Tier Star.png")
-@onready var h_box_container: HBoxContainer = $HBoxContainer
+#@onready var h_box_container: HBoxContainer = $HBoxContainer
+@onready var equipment_tier_ui: EquipmentTierUI = %EquipmentTierUI
+
+
+
 var equipment : Equipment
 
 
 func _ready() -> void:
 	if equipment != null:
 		set_equipment(equipment)
+	mouse_entered.connect(
+		func():
+			print("EQUIPMENT ICON MOUSE HOVERED")
+	)
 	pass
 
 func set_equipment(equipment : Equipment):
 	self.equipment = equipment
 	texture = equipment.equipment_icon
-	for i in range(equipment.tier + 1):
-		var texture_rect : TextureRect = TextureRect.new()
-		texture_rect.texture = TIER_STAR
-		texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-		texture_rect.custom_minimum_size = Vector2(20, 20)
-		h_box_container.add_child(texture_rect)
-		pass
+	equipment_tier_ui.set_tier(equipment.tier)
 	pass
  
 func set_equipment_icon(icon : Texture):
@@ -28,19 +30,11 @@ func set_equipment_icon(icon : Texture):
 	pass
 
 func set_equipment_tier(tier : Equipment.EquipmentTier):
-	for child in h_box_container.get_children():
-		child.queue_free()
-	for i in range(tier + 1):
-		var texture_rect : TextureRect = TextureRect.new()
-		texture_rect.texture = TIER_STAR
-		texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-		texture_rect.custom_minimum_size = Vector2(20, 20)
-		h_box_container.add_child(texture_rect)
+	equipment_tier_ui.set_tier(tier)
 	pass
 
 func clear_equipment():
 	equipment = null
 	texture = null
-	for child in h_box_container.get_children():
-		child.queue_free()
+	equipment_tier_ui.clear_children()
 	pass

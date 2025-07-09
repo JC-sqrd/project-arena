@@ -109,7 +109,7 @@ func spawn_arrow(charge : float):
 		_spawn_index = 0
 		
 		if _spawn_count == 1:
-			var new_projectile = projectile.instantiate()
+			var new_projectile = projectile.instantiate() as Projectile
 			
 			new_projectile.on_hit.connect(_on_attack_hit)
 			if hit_listener != null:
@@ -121,6 +121,7 @@ func spawn_arrow(charge : float):
 			new_projectile.max_distance_reached.connect(func() : attack_end.emit())
 			new_projectile.source = self
 			new_projectile.max_distance = max_distance
+			new_projectile.pierce_count = pierce_count
 			new_projectile.speed = max(speed_stat.stat_derived_value * min_charge_multiplier_stat.stat_derived_value, max_charge_multiplier_stat.stat_derived_value * speed_stat.stat_derived_value)
 			get_tree().root.add_child(new_projectile)
 			new_projectile.set_collision_mask_value(actor.original_coll_layer, false)

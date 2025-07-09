@@ -12,3 +12,10 @@ extends Resource
 @export var equipment_icon : Texture2D
 @export var buy_cost : float
 @export var sell_value : float 
+
+
+func instantiate_equipment() -> Equipment :
+	var equipment : Equipment = equipment_scene.instantiate() as Equipment
+	equipment.tier = tier
+	equipment.buy_cost = buy_cost
+	return equipment

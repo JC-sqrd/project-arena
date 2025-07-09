@@ -1,8 +1,8 @@
 class_name BuyInstanceUI
 extends Control
 
-@onready var slot_border: TextureRect = $Panel/VBoxContainer/MarginContainer/SlotBorder
-@onready var cost_label: Label = $Panel/VBoxContainer/CostLabel
+@onready var slot_border: TextureRect = %SlotBorder
+
 
 var is_locked : bool = false
 var is_selected : bool = false
@@ -12,8 +12,6 @@ signal attempt_to_buy(buy_instance : BuyInstanceUI)
 signal bought()
 
 func _ready() -> void:
-	mouse_entered.connect(on_mouse_entered)
-	mouse_exited.connect(on_mouse_exited)
 	gui_input.connect(on_gui_input)
 
 func on_gui_input(event : InputEvent):
@@ -29,14 +27,4 @@ func on_gui_input(event : InputEvent):
 	pass
 
 func buy(buyer : Entity):
-	pass
-
-func on_mouse_entered():
-	if !is_selected:
-		slot_border.modulate = Color.GREEN
-	pass
-
-func on_mouse_exited():
-	if !is_selected:
-		slot_border.modulate = Color.WHITE
 	pass
