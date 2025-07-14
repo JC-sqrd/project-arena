@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://df3mwd5sdgedk" path="res://Scripts/Combat/MeleeWeapons/MeleeWeapon.gd" id="1_5d1jb"]
 [ext_resource type="Texture2D" uid="uid://065wghtxeh6j" path="res://Sprites/Weapons/Swift Sword/SwiftSwordAttack.png" id="2_15j33"]
 [ext_resource type="Script" uid="uid://bg43jxy7gyts0" path="res://Scripts/Ability System/Spawnables/SpawnableEnterFilter/SpawnableEnterFilter.gd" id="2_fmc6s"]
-[ext_resource type="Texture2D" uid="uid://bewmy64fdg3fd" path="res://Sprites/Weapons/Swift Sword/Swift Sword Tier 1 Icon.png" id="3_lgo86"]
+[ext_resource type="Texture2D" uid="uid://q527iyaauc00" path="res://Sprites/Weapons/Swift Sword/Swift Sword Icon.png" id="3_y544v"]
 [ext_resource type="Script" uid="uid://cmdw2c71721x0" path="res://Scripts/Combat/Animation/AttackAnimation.gd" id="4_bs7ii"]
 [ext_resource type="Script" uid="uid://nke8ejxjdu4s" path="res://Scripts/StatSystem/Stats/AttackSpeedStat.gd" id="4_kenp3"]
 [ext_resource type="Script" uid="uid://0tj10r8qa8qr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierManager.gd" id="4_lgo86"]
@@ -192,7 +192,7 @@ attack_speed_stat = NodePath("AttackSpeed")
 equipment_name = "Swift Sword"
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "swift_sword"
-equipment_icon = ExtResource("3_lgo86")
+equipment_icon = ExtResource("3_y544v")
 tooltip_stats = [NodePath("Damage"), NodePath("AttackSpeed"), NodePath("Knockback")]
 metadata/_custom_type_script = "uid://df3mwd5sdgedk"
 

@@ -169,6 +169,7 @@ func restock_equipment():
 			if (equipment_buy as BuyInstanceUI).is_locked:
 				stock_count -= 1
 			else:
+				(equipment_buy as EquipmentBuyInstanceUI).equipment.queue_free()
 				equipment_buy.queue_free()
 		stock_equipment(stock_count)
 		player.stat_manager.stats.get("gold").stat_value -= restock_equipment_price

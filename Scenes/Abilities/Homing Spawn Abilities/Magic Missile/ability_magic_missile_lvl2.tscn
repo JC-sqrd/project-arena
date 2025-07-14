@@ -50,14 +50,14 @@ metadata/_custom_type_script = "uid://c8sj8b1npavnd"
 
 [node name="Damage" type="Node" parent="HitListener/DamageEffect"]
 script = ExtResource("6_tdj1n")
-stat_value = 10.0
+stat_value = 12.0
 can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="GetActorStatAdder" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
 script = ExtResource("7_2ojdk")
 stat = NodePath("..")
-scale_with_stat_id = "magic_damage"
+scale_with_stat_id = "magic"
 ratio = 0.75
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 

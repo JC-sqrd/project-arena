@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://dkb4p6s36rwxr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierModifications/ModifyEquipmentStat.gd" id="6_0nhjg"]
 [ext_resource type="Script" uid="uid://cp6un5w7sjul2" path="res://Scripts/Ability System/AbilityAnimation/WeaponAbilityAnimatedSprite2D.gd" id="6_kb2i3"]
 [ext_resource type="PackedScene" uid="uid://ctpttqx5poej8" path="res://Scenes/Components/weapon_attack_animation_component.tscn" id="7_0nhjg"]
-[ext_resource type="Script" uid="uid://cdhvyoc4o63cs" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierModifications/ModifyWeaponAbility.gd" id="7_xtggq"]
+[ext_resource type="Script" uid="uid://cdhvyoc4o63cs" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierModifications/ChangeWeaponAbility.gd" id="7_xtggq"]
 [ext_resource type="PackedScene" uid="uid://cfdke0hwsdt3" path="res://Scenes/Abilities/Homing Spawn Abilities/Magic Missile/ability_magic_missile_lvl2.tscn" id="8_boq6f"]
 [ext_resource type="Texture2D" uid="uid://cm66t3dd4u2os" path="res://Sprites/Weapons/Wooden Magic Staff/Wooden Magic Staff Attack.png" id="8_xtggq"]
 [ext_resource type="Script" uid="uid://tsoqg0it4kc5" path="res://Scripts/Combat/Equipment/Weapon/WeaponFlipRotation.gd" id="9_boq6f"]
@@ -221,13 +221,13 @@ pierce_count_stat = NodePath("PierceCount")
 attack_windup_time = 0.36
 weapon_ability = NodePath("AbilityMagicMissile")
 hit_listener = NodePath("HitListener")
-attack_damage = NodePath("Damage")
+attack_damage = NodePath("WeaponDamage")
 attack_speed_stat = NodePath("AttackSpeed")
 equipment_name = "Wooden Magic Staff"
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "wooden_magic_staff"
 equipment_icon = ExtResource("3_naa5q")
-tooltip_stats = [NodePath("Damage"), NodePath("AttackSpeed"), NodePath("ProjectileSpeed"), NodePath("MaxDistance"), NodePath("PierceCount"), NodePath("SpreadDegrees")]
+tooltip_stats = [NodePath("WeaponDamage"), NodePath("AttackSpeed"), NodePath("ProjectileSpeed"), NodePath("MaxDistance"), NodePath("PierceCount"), NodePath("SpreadDegrees")]
 metadata/_custom_type_script = "uid://d3fin4411ww46"
 
 [node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
@@ -242,11 +242,11 @@ metadata/_custom_type_script = "uid://boi71j6dy2kn6"
 
 [node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode2" node_paths=PackedStringArray("stat")]
 script = ExtResource("6_0nhjg")
-stat = NodePath("../../../Damage")
+stat = NodePath("../../../WeaponDamage")
 new_stat_value = 15.0
 metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
-[node name="ModifyWeaponAbility" type="Node" parent="EquipmentTierManager/EquipmentTierNode2"]
+[node name="ChangeWeaponAbility" type="Node" parent="EquipmentTierManager/EquipmentTierNode2"]
 script = ExtResource("7_xtggq")
 new_ability_scene = ExtResource("8_boq6f")
 metadata/_custom_type_script = "uid://cdhvyoc4o63cs"
@@ -259,11 +259,11 @@ metadata/_custom_type_script = "uid://boi71j6dy2kn6"
 
 [node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode3" node_paths=PackedStringArray("stat")]
 script = ExtResource("6_0nhjg")
-stat = NodePath("../../../Damage")
+stat = NodePath("../../../WeaponDamage")
 new_stat_value = 20.0
 metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
-[node name="ModifyWeaponAbility" type="Node" parent="EquipmentTierManager/EquipmentTierNode3"]
+[node name="ChangeWeaponAbility" type="Node" parent="EquipmentTierManager/EquipmentTierNode3"]
 script = ExtResource("7_xtggq")
 new_ability_scene = ExtResource("9_xtggq")
 metadata/_custom_type_script = "uid://cdhvyoc4o63cs"
@@ -276,11 +276,11 @@ metadata/_custom_type_script = "uid://boi71j6dy2kn6"
 
 [node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode4" node_paths=PackedStringArray("stat")]
 script = ExtResource("6_0nhjg")
-stat = NodePath("../../../Damage")
+stat = NodePath("../../../WeaponDamage")
 new_stat_value = 25.0
 metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
-[node name="ModifyWeaponAbility" type="Node" parent="EquipmentTierManager/EquipmentTierNode4"]
+[node name="ChangeWeaponAbility" type="Node" parent="EquipmentTierManager/EquipmentTierNode4"]
 script = ExtResource("7_xtggq")
 new_ability_scene = ExtResource("10_boq6f")
 metadata/_custom_type_script = "uid://cdhvyoc4o63cs"
@@ -292,11 +292,11 @@ metadata/_custom_type_script = "uid://boi71j6dy2kn6"
 
 [node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode5" node_paths=PackedStringArray("stat")]
 script = ExtResource("6_0nhjg")
-stat = NodePath("../../../Damage")
+stat = NodePath("../../../WeaponDamage")
 new_stat_value = 30.0
 metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
-[node name="ModifyWeaponAbility" type="Node" parent="EquipmentTierManager/EquipmentTierNode5"]
+[node name="ChangeWeaponAbility" type="Node" parent="EquipmentTierManager/EquipmentTierNode5"]
 script = ExtResource("7_xtggq")
 new_ability_scene = ExtResource("11_u2xhl")
 metadata/_custom_type_script = "uid://cdhvyoc4o63cs"
@@ -346,20 +346,20 @@ one_shot = true
 process_material = SubResource("ParticleProcessMaterial_85l1t")
 script = ExtResource("11_1nfyv")
 
-[node name="Damage" type="Node" parent="."]
+[node name="WeaponDamage" type="Node" parent="."]
 script = ExtResource("12_42u5u")
 stat_value = 10.0
 can_be_negative = false
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
-[node name="GetActorStatAdder" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
+[node name="GetActorStatAdder" type="Node" parent="WeaponDamage" node_paths=PackedStringArray("stat")]
 script = ExtResource("13_tn7qc")
 stat = NodePath("..")
 scale_with_stat_id = "magic"
 ratio = 0.2
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
-[node name="GetActorStatMult" type="Node" parent="Damage" node_paths=PackedStringArray("stat")]
+[node name="GetActorStatMult" type="Node" parent="WeaponDamage" node_paths=PackedStringArray("stat")]
 script = ExtResource("14_r2jgy")
 stat = NodePath("..")
 scale_with_stat_id = "magic_damage_mult"
@@ -408,7 +408,7 @@ metadata/_custom_type_script = "uid://dm3uuggj1g47y"
 
 [node name="DamageEffect" type="Node" parent="HitListener" node_paths=PackedStringArray("damage_stat")]
 script = ExtResource("16_kjadu")
-damage_stat = NodePath("../../Damage")
+damage_stat = NodePath("../../WeaponDamage")
 damage_type = 1
 metadata/_custom_type_script = "uid://c8sj8b1npavnd"
 

@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://43sjvgqjgyu8" path="res://Scripts/CharacterSelect/CharacterSelectUI.gd" id="1_cwxw3"]
 [ext_resource type="PackedScene" uid="uid://cf13rcs6hgstl" path="res://Scenes/Character Selection Scene/character_select_icon.tscn" id="2_4wiya"]
 [ext_resource type="PackedScene" uid="uid://cu8fhpggbxh6d" path="res://Scenes/Test/test_scene.tscn" id="2_xxipc"]
-[ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="3_b8ars"]
 [ext_resource type="PackedScene" uid="uid://cggb2x36mslpl" path="res://Scenes/Characters/brawler_character.tscn" id="3_rr48u"]
 [ext_resource type="Script" uid="uid://bc6vf4w4ekv4w" path="res://Scripts/Resources/CharacterSelectData/CharacterSelectData.gd" id="4_b8ars"]
+[ext_resource type="Texture2D" uid="uid://bmexg36or4ejj" path="res://Sprites/UI/Character Icons/MaskIcon.png" id="4_xxipc"]
 [ext_resource type="PackedScene" uid="uid://bgy7pdawvoiwa" path="res://Scenes/Characters/mage_character.tscn" id="6_dbpv4"]
 [ext_resource type="PackedScene" uid="uid://dqtqghdwyycf3" path="res://Scenes/Characters/phantom_character.tscn" id="8_flssm"]
 [ext_resource type="PackedScene" uid="uid://dsv311pctm6hj" path="res://Scenes/Characters/plague_character.tscn" id="9_tkc3w"]
@@ -15,7 +15,7 @@
 script = ExtResource("4_b8ars")
 character_scene = ExtResource("3_rr48u")
 character_name = "Brawler"
-character_icon_texture = ExtResource("3_b8ars")
+character_icon_texture = ExtResource("4_xxipc")
 metadata/_custom_type_script = "uid://bc6vf4w4ekv4w"
 
 [sub_resource type="Resource" id="Resource_x3cli"]
@@ -84,6 +84,9 @@ columns = 10
 layout_mode = 2
 character_data = SubResource("Resource_b8ars")
 
+[node name="CharacterIcon" parent="Panel/VBoxContainer/CharacterGridContainer/CharacterSelectIcon/PanelContainer" index="0"]
+texture = ExtResource("4_xxipc")
+
 [node name="CharacterSelectIcon2" parent="Panel/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
 layout_mode = 2
 character_data = SubResource("Resource_x3cli")
@@ -104,3 +107,5 @@ character_data = SubResource("Resource_xxipc")
 unique_name_in_owner = true
 layout_mode = 2
 text = "START GAME"
+
+[editable path="Panel/VBoxContainer/CharacterGridContainer/CharacterSelectIcon"]

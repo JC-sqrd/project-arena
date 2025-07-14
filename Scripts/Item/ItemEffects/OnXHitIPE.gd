@@ -27,7 +27,6 @@ func on_trigger_on_hit_effect(hit_data : Dictionary):
 
 func on_basic_attack(hit_data : Dictionary):
 	hit_counter += 1
-	print("BASIC ATTACK HIT!! " + str(hit_counter))
 	hit_data["stack"] = item.stack
 	if hit_counter >= hit_requirement:
 		hit_counter = 0

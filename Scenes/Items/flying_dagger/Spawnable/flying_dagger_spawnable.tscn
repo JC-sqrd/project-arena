@@ -3,23 +3,23 @@
 [ext_resource type="Script" uid="uid://d1xavjy2kbus2" path="res://Scripts/Ability System/Spawnables/AreaEnterHit.gd" id="1_m6c5x"]
 [ext_resource type="Texture2D" uid="uid://clrcj654upwep" path="res://Placeholders/Sprites/Flying Dagger Sprite.png" id="2_lasu5"]
 [ext_resource type="Script" uid="uid://u7t3n45rwjb2" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/SpawnableAccelerateBehavior.gd" id="2_owwdk"]
-[ext_resource type="Texture2D" uid="uid://bi8o1ce88qdw2" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/trace_07.png" id="3_3dake"]
 [ext_resource type="Script" uid="uid://y1c1hiwxwmkf" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/SpawnableHitCounterBehavior.gd" id="4_ge62e"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="6_vbjeo"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="7_5tn7v"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="8_lyenv"]
 [ext_resource type="Script" uid="uid://dqjgy52bq0foh" path="res://Scripts/StatSystem/Stats/StatAdder.gd" id="9_noa0k"]
 [ext_resource type="Script" uid="uid://y2d4hkc0lqbg" path="res://Scripts/StatSystem/GetStackStat.gd" id="10_kjcyv"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_euln8"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
+[ext_resource type="Script" uid="uid://ctvag6dleiceg" path="res://Scripts/Trail2D.gd" id="11_vqe85"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7f0mn"]
 radius = 15.0
 
 [sub_resource type="Curve" id="Curve_xodtg"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.499287), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_vqe85"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="FlyingDaggerSpawnable" type="Area2D"]
@@ -33,11 +33,6 @@ lifetime = 5.0
 texture_filter = 1
 rotation = 1.5708
 texture = ExtResource("2_lasu5")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
-texture = ExtResource("3_3dake")
-trail_enabled = true
-process_material = SubResource("ParticleProcessMaterial_euln8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7f0mn")
@@ -81,3 +76,10 @@ stat_value = 1.0
 script = ExtResource("4_ge62e")
 hit_times = NodePath("../1PlusStack")
 spawnable = NodePath("..")
+
+[node name="Trail2D" type="Line2D" parent="."]
+width = 20.0
+width_curve = SubResource("Curve_vqe85")
+script = ExtResource("11_vqe85")
+max_points = 20
+metadata/_custom_type_script = "uid://ctvag6dleiceg"

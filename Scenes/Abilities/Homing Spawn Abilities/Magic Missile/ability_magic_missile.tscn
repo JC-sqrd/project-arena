@@ -58,7 +58,7 @@ metadata/_custom_type_script = "uid://bgka26pbphks7"
 [node name="GetActorStatAdder" type="Node" parent="HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
 script = ExtResource("7_0ykt5")
 stat = NodePath("..")
-scale_with_stat_id = "magic_damage"
+scale_with_stat_id = "magic"
 ratio = 0.75
 metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 

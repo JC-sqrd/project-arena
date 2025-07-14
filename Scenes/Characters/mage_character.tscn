@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgy7pdawvoiwa"]
+[gd_scene load_steps=10 format=3 uid="uid://bgy7pdawvoiwa"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_mooh8"]
 [ext_resource type="PackedScene" uid="uid://ckkbe1bgata60" path="res://Scenes/Equipments/Shoes/shoes_lightning_boots.tscn" id="2_1ymtx"]
+[ext_resource type="PackedScene" uid="uid://bsb66ckahw7x" path="res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn" id="3_5cxmi"]
 [ext_resource type="PackedScene" uid="uid://df35xeepp7qfx" path="res://Scenes/Weapons/Fire Grimoire/Tier1/weapon_fire_grimoire.tscn" id="3_a5sja"]
+[ext_resource type="PackedScene" uid="uid://dcnhw5on07snr" path="res://Scenes/Items/item_magic.tscn" id="7_3v4ps"]
 [ext_resource type="PackedScene" uid="uid://bkjwb31l88d7n" path="res://Scenes/Abilities/Spawn Abilities/FlamePillar/flame_pillar.tscn" id="10_w6ej0"]
 [ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="11_judwm"]
 [ext_resource type="PackedScene" uid="uid://cx8tgb7k8cwbk" path="res://Scenes/Abilities/Emit Abilities/FlameBreath/ability_flame_breath.tscn" id="12_rpc63"]
@@ -16,6 +18,14 @@ shader_parameter/modulate = Color(0.164706, 0.756863, 1, 1)
 
 [node name="ShoesLightningBoots" parent="EquipmentInventory" index="0" instance=ExtResource("2_1ymtx")]
 tier = 4
+
+[node name="WeaponWoodenMagicStaff" parent="EquipmentInventory" index="1" instance=ExtResource("3_5cxmi")]
+
+[node name="WeaponWoodenMagicStaff2" parent="EquipmentInventory" index="2" instance=ExtResource("3_5cxmi")]
+
+[node name="WeaponWoodenMagicStaff3" parent="EquipmentInventory" index="3" instance=ExtResource("3_5cxmi")]
+
+[node name="WeaponWoodenMagicStaff4" parent="EquipmentInventory" index="4" instance=ExtResource("3_5cxmi")]
 
 [node name="InnateActiveAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityFlameBreath")
@@ -41,6 +51,9 @@ position = Vector2(20, 0)
 position = Vector2(20, 10)
 scale = Vector2(0.999999, 0.999999)
 
+[node name="ItemMagic" parent="ItemInventory" index="0" instance=ExtResource("7_3v4ps")]
+stack = 5
+
 [node name="Focus" parent="Stats" index="4"]
 stat_value = 20.0
 
@@ -56,4 +69,4 @@ stat_value = 240.0
 [node name="AnimatedSprite2D" parent="." index="29"]
 material = SubResource("ShaderMaterial_rpc63")
 
-[editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]
+[editable path="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/HealthBarPanel/HealthBar"]

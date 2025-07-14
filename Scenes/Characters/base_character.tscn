@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://bwbyc8vywa6vd"]
+[gd_scene load_steps=64 format=3 uid="uid://bwbyc8vywa6vd"]
 
 [ext_resource type="Script" uid="uid://bl5aki5ii4r6t" path="res://Scripts/PlayerCharacter.gd" id="1_4r8nq"]
 [ext_resource type="Script" uid="uid://bsn1idamyre35" path="res://Scripts/EquipmentInventory/EquipmentInventory.gd" id="2_52ran"]
@@ -81,6 +81,13 @@ texture_margin_right = 9.0
 texture_margin_bottom = 9.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_umb11"]
+texture = ExtResource("36_o0d6e")
+texture_margin_left = 9.0
+texture_margin_top = 9.0
+texture_margin_right = 9.0
+texture_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ebi1i"]
 texture = ExtResource("36_o0d6e")
 texture_margin_left = 9.0
 texture_margin_top = 9.0
@@ -643,13 +650,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 mana_manager = NodePath("../../../../../../../../ManaManager")
 
-[node name="LevelBarContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="LevelBarContainer" type="PanelContainer" parent="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ebi1i")
 
 [node name="LevelPanel" parent="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/LevelBarContainer" instance=ExtResource("30_v20lc")]
 layout_mode = 2

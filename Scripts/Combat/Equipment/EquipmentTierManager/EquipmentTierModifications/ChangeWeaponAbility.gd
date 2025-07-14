@@ -1,4 +1,4 @@
-class_name ModifyWeaponAbility
+class_name ChangeWeaponAbility
 extends EquipmentTierModification
 
 @export var new_ability_scene : PackedScene

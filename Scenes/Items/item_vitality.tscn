@@ -12,7 +12,8 @@ script = ExtResource("1_k5y84")
 item_name = "Giant's Heart"
 item_icon = ExtResource("2_wqhia")
 string_id = "gain_vitality"
-item_detail = "Gain [color=green]5[/color] [color=spring_green]max health[/color](+1 for each stack)"
+item_detail = "[color=spring_green]+5 Vitality[/color] (+5/stack)
+[color=red]-2 max Agility[/color] (-2/stack)"
 buy_cost = 50.0
 sell_value = 10.0
 

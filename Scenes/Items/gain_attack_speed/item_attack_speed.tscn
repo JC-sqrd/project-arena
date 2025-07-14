@@ -12,7 +12,8 @@ script = ExtResource("1_vf1rm")
 item_name = "Quickstrike Dagger"
 item_icon = ExtResource("2_qyihj")
 string_id = "gain_agility"
-item_detail = "Gain 10%(+10% each stack) attack speed"
+item_detail = "[color=spring_green]+5 Agility [/color]
+[color=red]-2 Magic[/color]"
 buy_cost = 45.0
 sell_value = 8.0
 

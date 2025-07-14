@@ -12,7 +12,8 @@ script = ExtResource("1_sy2j0")
 item_name = "Lightning in a Bottle"
 item_icon = ExtResource("2_1fxcn")
 string_id = "gain_magic"
-item_detail = "Gain [color=green]1[/color] [color=cyan]magic damage[/color](+1 for each stack)"
+item_detail = "[color=spring_green]+5 Magic[/color]
+[color=red]-2 Strength [/color]"
 buy_cost = 50.0
 sell_value = 10.0
 
