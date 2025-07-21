@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c0pgoq0h82gka"]
+[gd_scene load_steps=17 format=3 uid="uid://c0pgoq0h82gka"]
 
 [ext_resource type="Script" uid="uid://dnjhdyhsrd60y" path="res://Scripts/Combat/Equipment/HeadGear/HeadGear.gd" id="1_5adsq"]
 [ext_resource type="Script" uid="uid://bjpxplndvkee" path="res://Scripts/StatSystem/Stats/EquipmentBonusStat.gd" id="2_gx2i5"]
@@ -12,18 +12,26 @@
 [ext_resource type="Script" uid="uid://bvj2nh3d8upjg" path="res://Scripts/Ability System/AbilityContainer/EquipmentPassiveAbilityContainer.gd" id="5_qoeel"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="6_1keai"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="7_ktfuy"]
+[ext_resource type="Script" uid="uid://b2flto0wr2pnt" path="res://Scripts/StatSystem/UI/StatFormatter.gd" id="8_b7uuh"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="8_qoeel"]
+
+[sub_resource type="Resource" id="Resource_2cyeb"]
+script = ExtResource("8_b7uuh")
+format_mode = 1
+prefix = 1
+metadata/_custom_type_script = "uid://b2flto0wr2pnt"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ktfuy"]
 radius = 500.0
 
-[node name="HeadgearLightningHat" type="Node2D" node_paths=PackedStringArray("tier_manager")]
+[node name="HeadgearLightningHat" type="Node2D" node_paths=PackedStringArray("tier_manager", "tooltip_stats")]
 script = ExtResource("1_5adsq")
 equipment_name = "Lightning Hat"
 type = 1
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "lightning_hat"
 equipment_icon = ExtResource("2_ktfuy")
+tooltip_stats = [NodePath("EquipmentBonusStat/Magic")]
 metadata/_custom_type_script = "uid://dnjhdyhsrd60y"
 
 [node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
@@ -81,12 +89,13 @@ metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 script = ExtResource("2_gx2i5")
 equipment = NodePath("..")
 stat_name = "magic"
-bonus_value = NodePath("BonusValue")
+bonus_value = NodePath("Magic")
 metadata/_custom_type_script = "uid://bjpxplndvkee"
 
-[node name="BonusValue" type="Node" parent="EquipmentBonusStat"]
+[node name="Magic" type="Node" parent="EquipmentBonusStat"]
 script = ExtResource("3_0c4e3")
 stat_value = 10.0
+formatter = SubResource("Resource_2cyeb")
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="EquipmentPassiveAbilityContainer" type="Node" parent="." node_paths=PackedStringArray("passive_ability")]

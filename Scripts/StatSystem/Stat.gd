@@ -5,6 +5,7 @@ extends Node
 
 @export var stat_value : float = 0 : set = _set_stat_value , get = _get_stat_value
 @export var can_be_negative : bool = true
+@export var formatter : StatFormatter = StatFormatter.new()
 
 var stat_derived_value : float : set = _set_stat_derived_value
 var bonus_value : float = 0 
@@ -21,7 +22,6 @@ signal stat_derived_value_changed_data (old_value : float, new_value : float)
 signal stat_changed_data (old_value : float, new_value : float)
 signal stat_updated ()
 signal stat_updated_data(new_value : float)
-
 
 
 func _ready():

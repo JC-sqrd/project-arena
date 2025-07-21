@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cggb2x36mslpl"]
+[gd_scene load_steps=20 format=3 uid="uid://cggb2x36mslpl"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_g348i"]
 [ext_resource type="Script" uid="uid://b74u7eflax8b2" path="res://Scripts/Ability System/PassiveAbility/GainDecayingStatOnHit.gd" id="2_3yh4f"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://br6km26u30bs6" path="res://Scenes/Weapons/Chakram/weapon_chakram.tscn" id="7_ub57k"]
 [ext_resource type="PackedScene" uid="uid://c0pgoq0h82gka" path="res://Scenes/Equipments/Head Gears/Lightning Hat/headgear_lightning_hat.tscn" id="8_mtotw"]
 [ext_resource type="PackedScene" uid="uid://dscnrnivus7jc" path="res://Scenes/Equipments/Armgear/armgear_lightning_gauntlets.tscn" id="9_cxhod"]
+[ext_resource type="PackedScene" uid="uid://b7874mt2gee5e" path="res://Scenes/Equipments/Armgear/armgear_speed_gloves.tscn" id="10_pjqyg"]
 [ext_resource type="Script" uid="uid://ci6lj2tooi02" path="res://Scripts/Ability System/PassiveAbility/GainStatOnAbilityCast.gd" id="11_paabx"]
 [ext_resource type="Texture2D" uid="uid://kw55mscj116h" path="res://Placeholders/Icons/Icon.7_59.png" id="12_1n4dn"]
 [ext_resource type="PackedScene" uid="uid://4m3bpkty0d23" path="res://Scenes/Items/flying_dagger/item_flying_dagger.tscn" id="12_1t5iw"]
@@ -40,6 +41,8 @@ tier = 4
 
 [node name="ArmgearLightningGauntlets" parent="EquipmentInventory" index="6" instance=ExtResource("9_cxhod")]
 tier = 4
+
+[node name="ArmwearSpeedGloves" parent="EquipmentInventory" index="7" instance=ExtResource("10_pjqyg")]
 
 [node name="PassiveAbilityContainer" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("GainStatOnAbilityCast")
@@ -79,7 +82,6 @@ ability = NodePath("SwordSlashEmit")
 
 [node name="SwordSlashEmit" parent="InnateActiveAbility" index="1" instance=ExtResource("6_mtotw")]
 start_cooldown_on = 1
-ability_name = "Sword Slash"
 
 [node name="UtilityAbilityContainer" parent="." index="5" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityLungeStrike")
@@ -118,4 +120,4 @@ stat_value = 40.0
 [node name="EntityHitParticle" parent="." index="33" node_paths=PackedStringArray("hit_particle")]
 hit_particle = NodePath("../EnemyHitParticle")
 
-[editable path="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HealthBarContainer/TextureProgressBar"]
+[editable path="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/HealthBarPanel/HealthBar"]

@@ -25,6 +25,7 @@ func apply_added_value():
 		stat_value = a_stat.stat_value + b_stat.stat_value
 	else:
 		stat_value = a_stat.stat_derived_value + b_stat.stat_derived_value
+	update_stat()
 	#if scale_base_value:
 		#stat.stat_value -= _old_scaled_value
 		#var new_added_value = scale_with_stat.stat_derived_value 

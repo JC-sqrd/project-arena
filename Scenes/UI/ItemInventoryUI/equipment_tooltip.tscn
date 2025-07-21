@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddxjohaxomtho"]
+[gd_scene load_steps=8 format=3 uid="uid://ddxjohaxomtho"]
 
 [ext_resource type="Script" uid="uid://d3dvln6nlc1u2" path="res://Scripts/UI/EquipmentInfoUI/EquipmentTooltipUI.gd" id="1_63qov"]
 [ext_resource type="PackedScene" uid="uid://dxrqct3t27trg" path="res://Scenes/UI/EquipmentInventory/equipment_inventory_slot_icon.tscn" id="2_mfxe4"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://rrus7qi7k6t4" path="res://Scripts/UI/EquipmentInventory/EquipmentTierUI.gd" id="5_qg4ig"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qg4ig"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wrtmd"]
 texture = ExtResource("2_tggqc")
 texture_margin_left = 24.0
 texture_margin_top = 24.0
@@ -20,10 +22,19 @@ offset_bottom = 408.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_qg4ig")
 script = ExtResource("1_63qov")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TooltipContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="EquipmentTierUI" type="HBoxContainer" parent="VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="TooltipContainer"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wrtmd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TooltipContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="EquipmentTierUI" type="HBoxContainer" parent="TooltipContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
@@ -31,42 +42,38 @@ alignment = 1
 script = ExtResource("5_qg4ig")
 metadata/_custom_type_script = "uid://rrus7qi7k6t4"
 
-[node name="EquipmentDetailsVBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="EquipmentDetailsVBoxContainer" type="VBoxContainer" parent="TooltipContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 2
 
-[node name="EquipmentInventorySlotIcon" parent="VBoxContainer/EquipmentDetailsVBoxContainer" instance=ExtResource("2_mfxe4")]
+[node name="EquipmentInventorySlotIcon" parent="TooltipContainer/PanelContainer/VBoxContainer/EquipmentDetailsVBoxContainer" instance=ExtResource("2_mfxe4")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("3_mfxe4")
 
-[node name="EquipmentTierUI" parent="VBoxContainer/EquipmentDetailsVBoxContainer/EquipmentInventorySlotIcon" index="0"]
+[node name="EquipmentTierUI" parent="TooltipContainer/PanelContainer/VBoxContainer/EquipmentDetailsVBoxContainer/EquipmentInventorySlotIcon" index="0"]
 visible = false
 
-[node name="EquipmentNameLabel" type="Label" parent="VBoxContainer/EquipmentDetailsVBoxContainer"]
+[node name="EquipmentNameLabel" type="Label" parent="TooltipContainer/PanelContainer/VBoxContainer/EquipmentDetailsVBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "EQUIPMENT NAME"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TooltipContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="StatNameContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="StatNameContainer" type="VBoxContainer" parent="TooltipContainer/PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="StatValueContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="StatValueContainer" type="VBoxContainer" parent="TooltipContainer/PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="EquipmentTooltip" type="Control" parent="."]
-layout_mode = 2
-script = ExtResource("1_63qov")
-
-[editable path="VBoxContainer/EquipmentDetailsVBoxContainer/EquipmentInventorySlotIcon"]
+[editable path="TooltipContainer/PanelContainer/VBoxContainer/EquipmentDetailsVBoxContainer/EquipmentInventorySlotIcon"]

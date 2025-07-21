@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://4m3bpkty0d23"]
 
 [ext_resource type="Script" uid="uid://dqsm34bpqqb52" path="res://Scripts/Item/Items/Item.gd" id="1_m05mf"]
-[ext_resource type="Texture2D" uid="uid://c0c83dsj80tb4" path="res://Placeholders/Icons/Icon.2_77.png" id="2_m6u15"]
+[ext_resource type="Texture2D" uid="uid://dhgafe5lvkyoy" path="res://Sprites/Items/Flying Dagger/Flying Dagger.png" id="2_qf1o6"]
 [ext_resource type="Script" uid="uid://bs0pm5q2q1apw" path="res://Scripts/Item/ItemEffects/OnCritIPE.gd" id="2_u3a4q"]
 [ext_resource type="Script" uid="uid://6ygen6bqklti" path="res://Scripts/Combat/CombatEffects/SpawnEffect.gd" id="3_auwjr"]
 [ext_resource type="PackedScene" uid="uid://cflclux4cvlsi" path="res://Scenes/Items/flying_dagger/Spawnable/flying_dagger_spawnable.tscn" id="4_6ardr"]
@@ -17,7 +17,7 @@
 [node name="ItemFlyingDagger" type="Node"]
 script = ExtResource("1_m05mf")
 item_name = "Flying Dagger"
-item_icon = ExtResource("2_m6u15")
+item_icon = ExtResource("2_qf1o6")
 string_id = "flying_dagger"
 item_detail = "Every 3rd basic attack hit, fire a dagger that deals 10 + (+20% attack damage each stack) physical damage that can pierce 1(+1 each stack) times.
 +20% Critical Strike Chance"

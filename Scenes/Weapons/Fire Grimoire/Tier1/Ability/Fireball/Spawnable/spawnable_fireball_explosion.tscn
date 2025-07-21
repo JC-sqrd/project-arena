@@ -1,7 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://bkxscpm8t76o2"]
+[gd_scene load_steps=30 format=3 uid="uid://bkxscpm8t76o2"]
 
 [ext_resource type="Script" uid="uid://c2nhbp4pxbtij" path="res://Scripts/Ability System/Spawnables/AreaHit.gd" id="1_onmp5"]
 [ext_resource type="Texture2D" uid="uid://duxlunvkvntd7" path="res://Sprites/AbilitySprites/Fireball/Fireball Explosion.png" id="2_n41sr"]
+[ext_resource type="Texture2D" uid="uid://d2v4eqepl2n5f" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/circle_01.png" id="4_ybfu0"]
+[ext_resource type="Texture2D" uid="uid://df06hak5aecgy" path="res://Sprites/AbilitySprites/Fireball/Fireball Trail 2.png" id="5_8r63c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eryme"]
 radius = 150.0
@@ -103,6 +105,104 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_ntsog"]
+offsets = PackedFloat32Array(0, 0.210702, 0.327759, 0.64214, 0.779264, 1)
+colors = PackedColorArray(0.935765, 0.883269, 0.809669, 1, 0.935765, 0.883269, 0.809669, 1, 0.952941, 0.792157, 0.435294, 1, 0.95, 0.4978, 0.152, 1, 0.84, 0.5152, 0.3528, 1, 0.28, 0.160907, 0.1568, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1ojs8"]
+gradient = SubResource("Gradient_ntsog")
+
+[sub_resource type="Curve" id="Curve_dvqgw"]
+_limits = [0.0, 4.0, 0.0, 1.0]
+_data = [Vector2(0, 1.98772), 0.0, 13.6248, 0, 1, Vector2(0.147692, 4), 0.0, 0.0, 0, 0, Vector2(0.449231, 1.89189), -7.07784, -7.07784, 0, 0, Vector2(0.744615, 1.02948), -5.19042, -5.19042, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_id7pn"]
+curve = SubResource("Curve_dvqgw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oog5d"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 360.0
+spread = 180.0
+initial_velocity_min = 350.0
+initial_velocity_max = 400.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_id7pn")
+color_ramp = SubResource("GradientTexture1D_1ojs8")
+
+[sub_resource type="Animation" id="Animation_1ojs8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D3:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ntsog"]
+resource_name = "emit_explosion_particle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D3:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8r63c"]
+_data = {
+&"RESET": SubResource("Animation_1ojs8"),
+&"emit_explosion_particle": SubResource("Animation_ntsog")
+}
+
+[sub_resource type="Curve" id="Curve_ntsog"]
+_data = [Vector2(0, 0.137592), 0.0, 0.0, 0, 0, Vector2(1, 0.768428), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1ojs8"]
+curve = SubResource("Curve_ntsog")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8r63c"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_1ojs8")
+
 [node name="SpawnableFireballExplosion" type="Area2D"]
 collision_layer = 0
 collision_mask = 3
@@ -119,6 +219,29 @@ texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ry8ew")
 animation = &"explode"
-autoplay = "explode"
 frame = 11
 frame_progress = 1.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 24
+texture = ExtResource("5_8r63c")
+lifetime = 0.35
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_oog5d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8r63c")
+}
+autoplay = "emit_explosion_particle"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+texture = ExtResource("4_ybfu0")
+lifetime = 0.38
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_8r63c")

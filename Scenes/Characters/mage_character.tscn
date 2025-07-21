@@ -1,13 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgy7pdawvoiwa"]
+[gd_scene load_steps=15 format=3 uid="uid://bgy7pdawvoiwa"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_mooh8"]
 [ext_resource type="PackedScene" uid="uid://ckkbe1bgata60" path="res://Scenes/Equipments/Shoes/shoes_lightning_boots.tscn" id="2_1ymtx"]
-[ext_resource type="PackedScene" uid="uid://bsb66ckahw7x" path="res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn" id="3_5cxmi"]
+[ext_resource type="Script" uid="uid://2bt8y5x1hibm" path="res://Scripts/Ability System/PassiveAbility/SpawnOnXStatusEffectArea.gd" id="3_5cxmi"]
 [ext_resource type="PackedScene" uid="uid://df35xeepp7qfx" path="res://Scenes/Weapons/Fire Grimoire/Tier1/weapon_fire_grimoire.tscn" id="3_a5sja"]
-[ext_resource type="PackedScene" uid="uid://dcnhw5on07snr" path="res://Scenes/Items/item_magic.tscn" id="7_3v4ps"]
+[ext_resource type="PackedScene" uid="uid://bsb66ckahw7x" path="res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn" id="3_rpc63"]
+[ext_resource type="PackedScene" uid="uid://dndkgxqahawqw" path="res://Scenes/Spawnables/AreaDamage/spawnable_area_damage.tscn" id="4_3v4ps"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="5_judwm"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="6_rpc63"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="7_du287"]
 [ext_resource type="PackedScene" uid="uid://bkjwb31l88d7n" path="res://Scenes/Abilities/Spawn Abilities/FlamePillar/flame_pillar.tscn" id="10_w6ej0"]
 [ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="11_judwm"]
 [ext_resource type="PackedScene" uid="uid://cx8tgb7k8cwbk" path="res://Scenes/Abilities/Emit Abilities/FlameBreath/ability_flame_breath.tscn" id="12_rpc63"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3v4ps"]
+radius = 500.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rpc63"]
 shader = ExtResource("11_judwm")
@@ -19,13 +26,43 @@ shader_parameter/modulate = Color(0.164706, 0.756863, 1, 1)
 [node name="ShoesLightningBoots" parent="EquipmentInventory" index="0" instance=ExtResource("2_1ymtx")]
 tier = 4
 
-[node name="WeaponWoodenMagicStaff" parent="EquipmentInventory" index="1" instance=ExtResource("3_5cxmi")]
+[node name="WeaponWoodenMagicStaff" parent="EquipmentInventory" index="1" instance=ExtResource("3_rpc63")]
+tier = 4
 
-[node name="WeaponWoodenMagicStaff2" parent="EquipmentInventory" index="2" instance=ExtResource("3_5cxmi")]
+[node name="PassiveAbilityContainer" parent="." index="2" node_paths=PackedStringArray("ability")]
+ability = NodePath("SpawnOnXStatusEffectArea")
 
-[node name="WeaponWoodenMagicStaff3" parent="EquipmentInventory" index="3" instance=ExtResource("3_5cxmi")]
+[node name="SpawnOnXStatusEffectArea" type="Node2D" parent="PassiveAbilityContainer" index="0" node_paths=PackedStringArray("area", "hit_listener")]
+script = ExtResource("3_5cxmi")
+area = NodePath("Area2D")
+spawn_scene = ExtResource("4_3v4ps")
+hit_listener = NodePath("HitListener")
+status_effect_id = "burn"
+metadata/_custom_type_script = "uid://2bt8y5x1hibm"
 
-[node name="WeaponWoodenMagicStaff4" parent="EquipmentInventory" index="4" instance=ExtResource("3_5cxmi")]
+[node name="Area2D" type="Area2D" parent="PassiveAbilityContainer/SpawnOnXStatusEffectArea" index="0"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PassiveAbilityContainer/SpawnOnXStatusEffectArea/Area2D" index="0"]
+shape = SubResource("CircleShape2D_3v4ps")
+debug_color = Color(0.309784, 0.616554, 0.329133, 0.42)
+
+[node name="HitListener" type="Node" parent="PassiveAbilityContainer/SpawnOnXStatusEffectArea" index="1"]
+script = ExtResource("5_judwm")
+metadata/_custom_type_script = "uid://dm3uuggj1g47y"
+
+[node name="DamageEffect" type="Node" parent="PassiveAbilityContainer/SpawnOnXStatusEffectArea/HitListener" index="0" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("6_rpc63")
+damage_stat = NodePath("Stat")
+damage_type = 1
+metadata/_custom_type_script = "uid://c8sj8b1npavnd"
+
+[node name="Stat" type="Node" parent="PassiveAbilityContainer/SpawnOnXStatusEffectArea/HitListener/DamageEffect" index="0"]
+script = ExtResource("7_du287")
+stat_value = 10.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="InnateActiveAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityFlameBreath")
@@ -50,9 +87,6 @@ position = Vector2(20, 0)
 [node name="FireGrimoire" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("3_a5sja")]
 position = Vector2(20, 10)
 scale = Vector2(0.999999, 0.999999)
-
-[node name="ItemMagic" parent="ItemInventory" index="0" instance=ExtResource("7_3v4ps")]
-stack = 5
 
 [node name="Focus" parent="Stats" index="4"]
 stat_value = 20.0

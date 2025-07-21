@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_eg6d3"]
 
 [sub_resource type="Curve" id="Curve_gpy44"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 2.31634, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="MagicMissileSpawnable" type="Area2D"]
@@ -32,5 +32,5 @@ texture = ExtResource("2_0jqvg")
 [node name="Trail2D" type="Line2D" parent="."]
 width_curve = SubResource("Curve_gpy44")
 script = ExtResource("3_gpy44")
-max_points = 15
+max_points = 25
 metadata/_custom_type_script = "uid://ctvag6dleiceg"

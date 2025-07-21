@@ -5,11 +5,12 @@ extends Control
 const STATE_INDICATOR = preload("res://Scenes/UI/StateIndicator/state_indicator.tscn")
 
 
-static func create_state_indicator(lifetime : float, icon : Texture, description : String) -> StateIndicator:
+static func create_state_indicator(lifetime : float, icon : Texture, description : String, is_permanent : bool = false) -> StateIndicator:
 	var state_indicator_ui : StateIndicator = STATE_INDICATOR.instantiate() as StateIndicator
 	state_indicator_ui.lifetime = lifetime
 	state_indicator_ui.icon = icon
 	state_indicator_ui.description = description
+	state_indicator_ui.is_permanent = is_permanent
 	return state_indicator_ui
 	pass
 

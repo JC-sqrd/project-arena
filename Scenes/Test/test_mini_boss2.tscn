@@ -17,7 +17,7 @@
 [ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="15_okku3"]
 [ext_resource type="Texture2D" uid="uid://c5d42fo30i1ux" path="res://Sprites/Enemy/Tank Enemy/Enemy_Front.png" id="16_shms8"]
 [ext_resource type="Script" uid="uid://dkp8llu1e5ymh" path="res://Scripts/Item/ItemInventory.gd" id="17_etud4"]
-[ext_resource type="PackedScene" uid="uid://3tleitsb6xke" path="res://Scenes/Items/block_damage/item_chance_block_damage.tscn" id="18_f0wxi"]
+[ext_resource type="PackedScene" uid="uid://3tleitsb6xke" path="res://Scenes/Items/dodge_damage/item_chance_dodge_damage.tscn" id="18_f0wxi"]
 [ext_resource type="Script" uid="uid://b7ufh45hbdc8e" path="res://Scripts/EntitySprite.gd" id="19_firgm"]
 [ext_resource type="Texture2D" uid="uid://cpg7kaa2t85md" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Attack hit marker.png" id="21_v55fj"]
 [ext_resource type="Texture2D" uid="uid://c7iewtsox23sg" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0000.png" id="22_r0caf"]

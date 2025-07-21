@@ -30,6 +30,7 @@ enum CastMode {
 @onready var actor : Entity = await get_ability_actor()
 @onready var current_state : AbilityState = AbilityState.DORMANT
 @onready var actor_stats : StatManager = get_actor_stat_manager() 
+var cooldown_time : float = 1
 var active : bool = false
 var can_cast : bool = true
 var cooling_down : bool = false
@@ -158,10 +159,13 @@ func on_cooldown_timer_timeout():
 	pass
 
 func start_cooldown():
-	var cooldown_time : float = cooldown * (1 - (_cdr.stat_derived_value / 100))
+	cooldown_time = cooldown * (1 - (_cdr.stat_derived_value / 100))
 	cooldown_timer.start(cooldown_time)
 	cooling_down = true
 	can_cast = false
 	cooldown_start.emit(cooldown_time)
 	print(ability_name + " Start cooldown")
 	pass
+
+func get_cooldown_time() -> float:
+	return cooldown * (1 - (_cdr.stat_derived_value / 100)) if _cdr != null else cooldown

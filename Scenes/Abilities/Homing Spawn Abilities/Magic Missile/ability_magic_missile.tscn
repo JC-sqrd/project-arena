@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjfrn2ki8dsdr"]
+[gd_scene load_steps=12 format=3 uid="uid://cjfrn2ki8dsdr"]
 
 [ext_resource type="Script" uid="uid://rbf4cq4pfun4" path="res://Scripts/Ability System/HomingSpawnAbility.gd" id="1_a670v"]
 [ext_resource type="PackedScene" uid="uid://66htkuagc713" path="res://Scenes/Abilities/Homing Spawn Abilities/Magic Missile/magic_missile_spawnable.tscn" id="2_eej7l"]
 [ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_8magy"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="4_pyyvb"]
+[ext_resource type="Texture2D" uid="uid://dglbrsp4l02fg" path="res://Sprites/Ability Icons/Magic Missile/Magic Missile.png" id="4_t2p3c"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="5_sjcy0"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="6_0ykt5"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="7_0ykt5"]
@@ -27,6 +28,7 @@ spawn = ExtResource("2_eej7l")
 hit_listener = NodePath("HitListener")
 required_stat = SubResource("Resource_n40f3")
 cast_time = 0.2
+ability_icon_texture = ExtResource("4_t2p3c")
 metadata/_custom_type_script = "uid://rbf4cq4pfun4"
 
 [node name="Area2D" type="Area2D" parent="."]

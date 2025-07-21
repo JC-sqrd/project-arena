@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dpxeo3vfdhsen" path="res://Scenes/Items/burst_damage/item_burst_damage.tscn" id="5_eg0o0"]
 [ext_resource type="PackedScene" uid="uid://dhn271q16a0kf" path="res://Scenes/Abilities/Emit Abilities/RayBurst/ability_ray_burst.tscn" id="5_pymqp"]
 [ext_resource type="PackedScene" uid="uid://c11kdiu2c6vx" path="res://Scenes/Items/item_vitality.tscn" id="5_vg65g"]
-[ext_resource type="PackedScene" uid="uid://3tleitsb6xke" path="res://Scenes/Items/block_damage/item_chance_block_damage.tscn" id="6_3y6cv"]
+[ext_resource type="PackedScene" uid="uid://3tleitsb6xke" path="res://Scenes/Items/dodge_damage/item_chance_dodge_damage.tscn" id="6_3y6cv"]
 [ext_resource type="PackedScene" uid="uid://dusnluek410g4" path="res://Scenes/Items/gain_attack_speed/item_attack_speed.tscn" id="7_vg65g"]
 [ext_resource type="PackedScene" uid="uid://cegtgo0ykur7n" path="res://Scenes/Items/mana_on_kill/item_mana_on_kill.tscn" id="8_3y6cv"]
 [ext_resource type="PackedScene" uid="uid://7evpmhu4mrpd" path="res://Scenes/Items/chain_lightning/item_chain_lightning.tscn" id="9_fnpk0"]

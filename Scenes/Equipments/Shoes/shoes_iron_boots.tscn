@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cnefmjw46bhom"]
+[gd_scene load_steps=11 format=3 uid="uid://cnefmjw46bhom"]
 
 [ext_resource type="Script" uid="uid://5ojl8wjpptpv" path="res://Scripts/Combat/Equipment/Shoes/Shoes.gd" id="1_5qwhd"]
 [ext_resource type="Script" uid="uid://bjpxplndvkee" path="res://Scripts/StatSystem/Stats/EquipmentBonusStat.gd" id="2_lpoep"]
@@ -7,14 +7,28 @@
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="3_q64b6"]
 [ext_resource type="Script" uid="uid://boi71j6dy2kn6" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierNode.gd" id="4_n03gu"]
 [ext_resource type="Script" uid="uid://dkb4p6s36rwxr" path="res://Scripts/Combat/Equipment/EquipmentTierManager/EquipmentTierModifications/ModifyEquipmentStat.gd" id="5_b6cj6"]
+[ext_resource type="Script" uid="uid://b2flto0wr2pnt" path="res://Scripts/StatSystem/UI/StatFormatter.gd" id="8_qgrsr"]
 
-[node name="ShoesIronBoots" type="Node2D" node_paths=PackedStringArray("tier_manager")]
+[sub_resource type="Resource" id="Resource_0cj5f"]
+script = ExtResource("8_qgrsr")
+format_mode = 1
+prefix = 1
+metadata/_custom_type_script = "uid://b2flto0wr2pnt"
+
+[sub_resource type="Resource" id="Resource_swfeb"]
+script = ExtResource("8_qgrsr")
+format_mode = 1
+prefix = 2
+metadata/_custom_type_script = "uid://b2flto0wr2pnt"
+
+[node name="ShoesIronBoots" type="Node2D" node_paths=PackedStringArray("tier_manager", "tooltip_stats")]
 script = ExtResource("1_5qwhd")
 equipment_name = "Iron Boots"
 type = 4
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "iron_boots"
 equipment_icon = ExtResource("2_q64b6")
+tooltip_stats = [NodePath("EquipmentBonusStat/Armor"), NodePath("EquipmentBonusStat2/Move Speed")]
 metadata/_custom_type_script = "uid://5ojl8wjpptpv"
 
 [node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
@@ -29,7 +43,7 @@ metadata/_custom_type_script = "uid://boi71j6dy2kn6"
 
 [node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode2" node_paths=PackedStringArray("stat")]
 script = ExtResource("5_b6cj6")
-stat = NodePath("../../../EquipmentBonusStat/Stat")
+stat = NodePath("../../../EquipmentBonusStat/Armor")
 new_stat_value = 15.0
 metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
@@ -41,7 +55,7 @@ metadata/_custom_type_script = "uid://boi71j6dy2kn6"
 
 [node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode3" node_paths=PackedStringArray("stat")]
 script = ExtResource("5_b6cj6")
-stat = NodePath("../../../EquipmentBonusStat/Stat")
+stat = NodePath("../../../EquipmentBonusStat/Armor")
 new_stat_value = 20.0
 metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
@@ -53,7 +67,7 @@ metadata/_custom_type_script = "uid://boi71j6dy2kn6"
 
 [node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode4" node_paths=PackedStringArray("stat")]
 script = ExtResource("5_b6cj6")
-stat = NodePath("../../../EquipmentBonusStat/Stat")
+stat = NodePath("../../../EquipmentBonusStat/Armor")
 new_stat_value = 25.0
 metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
@@ -64,7 +78,7 @@ metadata/_custom_type_script = "uid://boi71j6dy2kn6"
 
 [node name="ModifyEquipmentStat" type="Node" parent="EquipmentTierManager/EquipmentTierNode5" node_paths=PackedStringArray("stat")]
 script = ExtResource("5_b6cj6")
-stat = NodePath("../../../EquipmentBonusStat2/Stat")
+stat = NodePath("../../../EquipmentBonusStat2/Move Speed")
 new_stat_value = 30.0
 metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
@@ -72,22 +86,24 @@ metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 script = ExtResource("2_lpoep")
 equipment = NodePath("..")
 stat_name = "armor"
-bonus_value = NodePath("Stat")
+bonus_value = NodePath("Armor")
 metadata/_custom_type_script = "uid://bjpxplndvkee"
 
-[node name="Stat" type="Node" parent="EquipmentBonusStat"]
+[node name="Armor" type="Node" parent="EquipmentBonusStat"]
 script = ExtResource("3_q64b6")
 stat_value = 10.0
+formatter = SubResource("Resource_0cj5f")
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="EquipmentBonusStat2" type="Node" parent="." node_paths=PackedStringArray("equipment", "bonus_value")]
 script = ExtResource("2_lpoep")
 equipment = NodePath("..")
 stat_name = "move_speed"
-bonus_value = NodePath("Stat")
+bonus_value = NodePath("Move Speed")
 metadata/_custom_type_script = "uid://bjpxplndvkee"
 
-[node name="Stat" type="Node" parent="EquipmentBonusStat2"]
+[node name="Move Speed" type="Node" parent="EquipmentBonusStat2"]
 script = ExtResource("3_q64b6")
 stat_value = -10.0
+formatter = SubResource("Resource_swfeb")
 metadata/_custom_type_script = "uid://bgka26pbphks7"

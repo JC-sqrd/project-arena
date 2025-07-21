@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dscnrnivus7jc"]
+[gd_scene load_steps=17 format=3 uid="uid://dscnrnivus7jc"]
 
 [ext_resource type="Script" uid="uid://cfgh4nylljfr5" path="res://Scripts/Combat/Equipment/Armgear/Armgear.gd" id="1_hnurb"]
 [ext_resource type="Texture2D" uid="uid://kjerslv0ofrq" path="res://Sprites/Armgear/Lightning Gauntlets/fc2170.png" id="2_8ace4"]
@@ -11,19 +11,27 @@
 [ext_resource type="Script" uid="uid://dhox24fwv011e" path="res://Scripts/Ability System/PassiveAbility/SpawnOnAbilityCastArea.gd" id="5_8ag46"]
 [ext_resource type="PackedScene" uid="uid://dp5ulm7wnucna" path="res://Scenes/Equipments/Shoes/spawnable_lightning_strike.tscn" id="6_8ace4"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="7_mcbip"]
+[ext_resource type="Script" uid="uid://b2flto0wr2pnt" path="res://Scripts/StatSystem/UI/StatFormatter.gd" id="8_mcbip"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="8_yvgq3"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="9_utr78"]
+
+[sub_resource type="Resource" id="Resource_yvgq3"]
+script = ExtResource("8_mcbip")
+format_mode = 1
+prefix = 1
+metadata/_custom_type_script = "uid://b2flto0wr2pnt"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jxo60"]
 radius = 500.0
 
-[node name="ArmgearLightningGauntlets" type="Node2D" node_paths=PackedStringArray("tier_manager")]
+[node name="ArmgearLightningGauntlets" type="Node2D" node_paths=PackedStringArray("tier_manager", "tooltip_stats")]
 script = ExtResource("1_hnurb")
 equipment_name = "Lightning Gauntlets"
 type = 3
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "lightning_gauntlets"
 equipment_icon = ExtResource("2_8ace4")
+tooltip_stats = [NodePath("EquipmentBonusStat/Magic")]
 metadata/_custom_type_script = "uid://cfgh4nylljfr5"
 
 [node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
@@ -81,12 +89,13 @@ metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 script = ExtResource("2_hufy7")
 equipment = NodePath("..")
 stat_name = "magic"
-bonus_value = NodePath("BonusValue")
+bonus_value = NodePath("Magic")
 metadata/_custom_type_script = "uid://bjpxplndvkee"
 
-[node name="BonusValue" type="Node" parent="EquipmentBonusStat"]
+[node name="Magic" type="Node" parent="EquipmentBonusStat"]
 script = ExtResource("3_jmjp6")
 stat_value = 10.0
+formatter = SubResource("Resource_yvgq3")
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="EquipmentPassiveAbilityContainer" type="Node" parent="." node_paths=PackedStringArray("passive_ability")]
@@ -98,12 +107,12 @@ metadata/_custom_type_script = "uid://bvj2nh3d8upjg"
 script = ExtResource("5_8ag46")
 spawn_on = 2
 spawn_scene = ExtResource("6_8ace4")
-look_at_mouse = false
-spawn_on_nearest = false
-cooldown = 5.0
 max_targets = NodePath("MaxTargets")
 area = NodePath("Area2D")
 hit_listener = NodePath("HitListener")
+look_at_mouse = false
+spawn_on_nearest = false
+cooldown = 5.0
 metadata/_custom_type_script = "uid://dhox24fwv011e"
 
 [node name="Area2D" type="Area2D" parent="SpawnOnAbilityCastArea"]

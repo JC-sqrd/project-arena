@@ -49,9 +49,11 @@ func disable_ability():
 		(self.actor as PlayerCharacter).weapon_manager.main_weapon_slot.equipment_unslotted.disconnect(_on_main_weapon_unslotted)
 	elif spawn_on == SpawnOnAbility.OFFHAND_WEAPON:
 		(self.actor as PlayerCharacter).weapon_manager.offhand_weapon_slot.weapon.weapon_ability.ability_casted.disconnect(_on_ability_casted)
-		(self.actor as PlayerCharacter).weapon_manager.offhand_weapon_slot.equipment_slotted.connect(_on_offhand_weapon_slotted)
-		(self.actor as PlayerCharacter).weapon_manager.offhand_weapon_slot.equipment_unslotted.connect(_on_offhand_weapon_unslotted)
+		(self.actor as PlayerCharacter).weapon_manager.offhand_weapon_slot.equipment_slotted.disconnect(_on_offhand_weapon_slotted)
+		(self.actor as PlayerCharacter).weapon_manager.offhand_weapon_slot.equipment_unslotted.disconnect(_on_offhand_weapon_unslotted)
 	super()
+	area.body_entered.disconnect(_on_body_entered)
+	area.body_exited.disconnect(_on_body_exited)
 	hittable_entities.clear()
 	pass
 

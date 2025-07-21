@@ -44,6 +44,18 @@ func _ready():
 	pass
 
 
+func _process(delta: float) -> void:
+	if current_mana.stat_derived_value >= max_mana.stat_derived_value and mana_regen_timer.is_stopped():
+		return
+	elif current_mana.stat_derived_value < max_mana.stat_derived_value and mana_regen_timer.is_stopped():
+		print("Start mana regen timer")
+		mana_regen_timer.start()
+	elif current_mana.stat_derived_value >= max_mana.stat_derived_value and !mana_regen_timer.is_stopped():
+		print("Stop mana regen timer")
+		mana_regen_timer.stop()
+		
+	pass
+
 func _on_max_mana_changed_data(old_value : float, new_value : float):
 	#current_mana.stat_derived_value = max_mana.stat_derived_value
 	var mana_difference : float = current_mana.stat_derived_value - old_value 
@@ -109,11 +121,6 @@ func _evaluate_mana():
 	
 	if !allow_greater and current_mana.stat_derived_value > max_mana.stat_derived_value:
 		current_mana.stat_derived_value = max_mana.stat_derived_value
-	
-	if current_mana.stat_derived_value < max_mana.stat_derived_value:
-		mana_regen_timer.start()
-	else:
-		mana_regen_timer.stop()
 	pass
 
 func _on_mana_depleted():

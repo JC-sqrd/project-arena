@@ -5,6 +5,9 @@ extends Node
 
 var status_effects : Array[StatusEffect]
 
+signal status_effect_added(status_effect : StatusEffect)
+signal status_effect_removed(status_effect : StatusEffect)
+
 func _ready():
 	for child in get_children():
 		if child is StatusEffect:
@@ -33,12 +36,14 @@ func add_status_effect(status_effect : StatusEffect, stack : int):
 		status_effects.append(status_effect)
 		status_effect.add_stack(stack)
 		status_effect.activate_status_effect(entity)
+		status_effect_added.emit(status_effect)
 	else:
 		var duplicate = get_duplicate(status_effect)
 		#Check if duplicate and if it is stackable
 		if duplicate != null and duplicate.stackable:
 			duplicate.add_stack(stack)
 			status_effect.queue_free()
+			status_effect_added.emit(duplicate)
 			duplicate = null
 			pass
 		#Check if duplicate and if it is not stackable
@@ -46,6 +51,7 @@ func add_status_effect(status_effect : StatusEffect, stack : int):
 			duplicate.restart_duration()
 			status_effect.queue_free()
 			duplicate = null
+			status_effect_added.emit(duplicate)
 			pass
 		#New status effect
 		else:
@@ -53,12 +59,14 @@ func add_status_effect(status_effect : StatusEffect, stack : int):
 			status_effects.append(status_effect)
 			status_effect.add_stack(stack)
 			status_effect.activate_status_effect(entity)
+			status_effect_added.emit(status_effect)
 			#duplicate.queue_free()
 	pass
 
 func remove_status_effect_by_id(id : String):
 	for status_effect in status_effects:
 		if status_effect.id == id:
+			status_effect_removed.emit(status_effect)
 			status_effects.erase(status_effect)
 			status_effect.queue_free()
 	pass

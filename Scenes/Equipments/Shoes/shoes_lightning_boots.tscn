@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ckkbe1bgata60"]
+[gd_scene load_steps=17 format=3 uid="uid://ckkbe1bgata60"]
 
 [ext_resource type="Script" uid="uid://bviaakymd1gy8" path="res://Scripts/Combat/Equipment/Torso/Torso.gd" id="1_mhtjb"]
 [ext_resource type="Texture2D" uid="uid://b1xkpvr4tkxc7" path="res://Sprites/Shoes/Lightning Shoes/lightning_shoes_placeholder.png" id="2_kcu81"]
@@ -12,17 +12,26 @@
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="6_1t711"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="7_7124w"]
 [ext_resource type="Script" uid="uid://bjpxplndvkee" path="res://Scripts/StatSystem/Stats/EquipmentBonusStat.gd" id="7_dfm6u"]
+[ext_resource type="Script" uid="uid://b2flto0wr2pnt" path="res://Scripts/StatSystem/UI/StatFormatter.gd" id="9_loutn"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="10_hsy0h"]
+
+[sub_resource type="Resource" id="Resource_i2c2b"]
+script = ExtResource("9_loutn")
+format_mode = 1
+prefix = 1
+metadata/_custom_type_script = "uid://b2flto0wr2pnt"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_orxxb"]
 radius = 500.0
 
-[node name="ShoesLightningBoots" type="Node2D" node_paths=PackedStringArray("tier_manager")]
+[node name="ShoesLightningBoots" type="Node2D" node_paths=PackedStringArray("tier_manager", "tooltip_stats")]
 script = ExtResource("1_mhtjb")
+equipment_name = "Lightning Boots"
 type = 4
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "lightning_boots"
 equipment_icon = ExtResource("2_kcu81")
+tooltip_stats = [NodePath("EquipmentBonusStat/Magic")]
 metadata/_custom_type_script = "uid://bviaakymd1gy8"
 
 [node name="EquipmentTierManager" type="Node" parent="." node_paths=PackedStringArray("next_tier_node")]
@@ -85,21 +94,22 @@ metadata/_custom_type_script = "uid://bvj2nh3d8upjg"
 script = ExtResource("7_dfm6u")
 equipment = NodePath("..")
 stat_name = "magic"
-bonus_value = NodePath("BonusValue")
+bonus_value = NodePath("Magic")
 metadata/_custom_type_script = "uid://bjpxplndvkee"
 
-[node name="BonusValue" type="Node" parent="EquipmentBonusStat"]
+[node name="Magic" type="Node" parent="EquipmentBonusStat"]
 script = ExtResource("7_7124w")
 stat_value = 10.0
+formatter = SubResource("Resource_i2c2b")
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="SpawnOnUtilCastArea" type="Node2D" parent="." node_paths=PackedStringArray("max_targets", "area", "hit_listener")]
 script = ExtResource("3_4rvsl")
 spawn_scene = ExtResource("5_1t711")
-look_at_mouse = false
 max_targets = NodePath("MaxTargets")
 area = NodePath("Area2D")
 hit_listener = NodePath("HitListener")
+look_at_mouse = false
 metadata/_custom_type_script = "uid://k87nq4771qol"
 
 [node name="Area2D" type="Area2D" parent="SpawnOnUtilCastArea"]

@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://c5d42fo30i1ux" path="res://Sprites/Enemy/Tank Enemy/Enemy_Front.png" id="12_v70tl"]
 [ext_resource type="Script" uid="uid://b7ufh45hbdc8e" path="res://Scripts/EntitySprite.gd" id="13_3xioa"]
 [ext_resource type="Script" uid="uid://csugnbipwc8rl" path="res://Scripts/Combat/DamageListener/Mitigation/BlockMultiplier.gd" id="14_4vtsd"]
-[ext_resource type="PackedScene" uid="uid://3tleitsb6xke" path="res://Scenes/Items/block_damage/item_chance_block_damage.tscn" id="14_siadl"]
+[ext_resource type="PackedScene" uid="uid://3tleitsb6xke" path="res://Scenes/Items/dodge_damage/item_chance_dodge_damage.tscn" id="14_siadl"]
 [ext_resource type="Texture2D" uid="uid://cpg7kaa2t85md" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Attack hit marker.png" id="16_pw36h"]
 [ext_resource type="Texture2D" uid="uid://c7iewtsox23sg" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0000.png" id="17_qqxrq"]
 [ext_resource type="Texture2D" uid="uid://bvt0giighv5ax" path="res://Placeholders/Sprites/Animation/Attack/HitAnimation/Hit Marker/frame0001.png" id="18_5auxn"]

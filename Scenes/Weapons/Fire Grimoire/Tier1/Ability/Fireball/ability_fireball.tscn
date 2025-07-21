@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="3_871q2"]
 [ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_rxpk5"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="4_ft4p5"]
-[ext_resource type="Texture2D" uid="uid://c0jkehu8oyamg" path="res://Ability Icons/Fireball/FireballIcon.png" id="4_i632a"]
+[ext_resource type="Texture2D" uid="uid://p36khbsyyna0" path="res://Sprites/Ability Icons/Fireball/Fireball.png" id="5_7kxbx"]
 [ext_resource type="Script" uid="uid://88st3pdi1hky" path="res://Scripts/Combat/CombatEffects/ApplyStatusEffect.gd" id="5_elnet"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_yw3j4"]
 [ext_resource type="PackedScene" uid="uid://d2mjy2iqk7hmw" path="res://Scenes/StatusEffects/Burn.tscn" id="6_sixx5"]
@@ -98,7 +98,7 @@ hit_listener = NodePath("HitListener")
 required_stat = SubResource("Resource_xknc8")
 cast_time = 0.35
 cooldown = 1.5
-ability_icon_texture = ExtResource("4_i632a")
+ability_icon_texture = ExtResource("5_7kxbx")
 sockets = [NodePath("AbilitySocket")]
 
 [node name="SpawnHitListener" type="Node" parent="."]
@@ -148,5 +148,5 @@ script = ExtResource("17_xyeuh")
 [node name="SlowOnCast" type="Node" parent="."]
 script = ExtResource("18_xrvdm")
 slow_time = 0.35
-slow_multiplier = 0.7
+slow_multiplier = 0.85
 metadata/_custom_type_script = "uid://wxlytnemh2wh"

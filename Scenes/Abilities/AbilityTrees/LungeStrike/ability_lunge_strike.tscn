@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cacqqobo0qx73"]
+[gd_scene load_steps=18 format=3 uid="uid://cacqqobo0qx73"]
 
 [ext_resource type="Script" uid="uid://d3nv4w5x5iplh" path="res://Scripts/Ability System/AbilityTree.gd" id="1_r2qjf"]
 [ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="2_37thu"]
 [ext_resource type="Script" uid="uid://dt5ekno3nrmcr" path="res://Scripts/Ability System/AbilityBranch.gd" id="2_qakm5"]
+[ext_resource type="Texture2D" uid="uid://dy5wpea8fkylu" path="res://Sprites/Ability Icons/Lunge Strike/Lunge Strike.png" id="3_wp3vh"]
 [ext_resource type="Script" uid="uid://46rajp5yxkq6" path="res://Scripts/Ability System/DashAbility.gd" id="3_xvkg1"]
 [ext_resource type="Script" uid="uid://42qvy4m6xprb" path="res://Scripts/Ability System/EmitAbility.gd" id="4_g7opt"]
 [ext_resource type="PackedScene" uid="uid://1trselx1s851" path="res://Scenes/Abilities/AbilityTrees/LungeStrike/Spawnable/strike_spawnable/spawnable_lunge.tscn" id="5_qwgi4"]
@@ -12,6 +13,7 @@
 [ext_resource type="Script" uid="uid://clr8tbibqclow" path="res://Scripts/StatSystem/Stats/StatScaler.gd" id="9_37ywq"]
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="9_eg4fx"]
 [ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="10_t04h0"]
+[ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="12_e0o8v"]
 
 [sub_resource type="Resource" id="Resource_wp3vh"]
 script = ExtResource("2_37thu")
@@ -35,7 +37,13 @@ metadata/_custom_type_script = "uid://tuvjl40jf0pm"
 script = ExtResource("1_r2qjf")
 head_branch = NodePath("AbilityBranch")
 required_stat = SubResource("Resource_wp3vh")
+ability_name = "Lunge Strike"
 cooldown = 5.0
+ability_description = "Lunges forward quickly and strike forward dealing 10 damage (+200% LEVEL)
+
+
+This ability has 15% chance to critically strike"
+ability_icon_texture = ExtResource("3_wp3vh")
 
 [node name="AbilityBranch" type="Node" parent="." node_paths=PackedStringArray("ability", "next_ability")]
 script = ExtResource("2_qakm5")
@@ -53,8 +61,8 @@ metadata/_custom_type_script = "uid://46rajp5yxkq6"
 [node name="EmitAbility" type="Node2D" parent="AbilityBranch" node_paths=PackedStringArray("hit_listener")]
 script = ExtResource("4_g7opt")
 emited_object = ExtResource("5_qwgi4")
-required_stat = SubResource("Resource_e0o8v")
 hit_listener = NodePath("HitListener")
+required_stat = SubResource("Resource_e0o8v")
 metadata/_custom_type_script = "uid://42qvy4m6xprb"
 
 [node name="HitListener" type="Node" parent="AbilityBranch/EmitAbility"]
@@ -75,6 +83,13 @@ script = ExtResource("9_37ywq")
 stat = NodePath("..")
 scale_with_stat = NodePath("../../../../../../ActorAttackDamage")
 scale_ratio = 0.05
+
+[node name="GetActorStatAdder" type="Node" parent="AbilityBranch/EmitAbility/HitListener/DamageEffect/Damage" node_paths=PackedStringArray("stat")]
+script = ExtResource("12_e0o8v")
+stat = NodePath("..")
+scale_with_stat_id = "level"
+ratio = 2.0
+metadata/_custom_type_script = "uid://cbdnn38awoh2q"
 
 [node name="Knockback" type="Node" parent="AbilityBranch/EmitAbility/HitListener"]
 script = ExtResource("10_t04h0")

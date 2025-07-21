@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://b5hfq6plbpvim"]
 
 [ext_resource type="Script" uid="uid://cionhn23akyj3" path="res://Scripts/Resources/ItemData/ItemData.gd" id="1_d0jfd"]
-[ext_resource type="Texture2D" uid="uid://1q5ujwmbpc77" path="res://Placeholders/Icons/Icon.3_14.png" id="1_kb113"]
+[ext_resource type="Texture2D" uid="uid://ddbe2mitilc2l" path="res://Sprites/Items/Grimoire/Ancient Grimoire.png" id="1_kb113"]
 [ext_resource type="PackedScene" uid="uid://dcnhw5on07snr" path="res://Scenes/Items/item_magic.tscn" id="2_hk30l"]
 
 [resource]
 script = ExtResource("1_d0jfd")
 item_scene = ExtResource("2_hk30l")
-item_name = "Lightning in a Bottle"
+item_name = "Ancient Tome"
 item_icon = ExtResource("1_kb113")
 string_id = "gain_magic"
 item_description = ""

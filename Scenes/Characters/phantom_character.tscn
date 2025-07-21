@@ -1,15 +1,44 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqtqghdwyycf3"]
+[gd_scene load_steps=14 format=3 uid="uid://dqtqghdwyycf3"]
 
 [ext_resource type="PackedScene" uid="uid://bwbyc8vywa6vd" path="res://Scenes/Characters/base_character.tscn" id="1_2ijky"]
 [ext_resource type="PackedScene" uid="uid://ds562unpt0f2c" path="res://Scenes/Abilities/Emit Abilities/Blade Dance/ability_blade_dance.tscn" id="2_3u1iy"]
+[ext_resource type="Script" uid="uid://dolc5uuvlv1gk" path="res://Scripts/Ability System/PassiveAbility/SpawnOnAbilityCastActor.gd" id="2_g7vqs"]
 [ext_resource type="Script" uid="uid://d3nv4w5x5iplh" path="res://Scripts/Ability System/AbilityTree.gd" id="2_h4hyn"]
 [ext_resource type="Script" uid="uid://dt5ekno3nrmcr" path="res://Scripts/Ability System/AbilityBranch.gd" id="3_iqjn1"]
 [ext_resource type="Script" uid="uid://dqj32qeba6flj" path="res://Scripts/Ability System/BlinkAbility.gd" id="3_pqm36"]
+[ext_resource type="PackedScene" uid="uid://dndkgxqahawqw" path="res://Scenes/Spawnables/AreaDamage/spawnable_area_damage.tscn" id="3_qbcm5"]
 [ext_resource type="PackedScene" uid="uid://dp288eneestlt" path="res://Scenes/Weapons/Swift Sword/Level1/weapon_swift_sword.tscn" id="3_ys4ku"]
+[ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="4_jhyhy"]
 [ext_resource type="PackedScene" uid="uid://cimp4a7eu73ym" path="res://Scenes/Abilities/SelfTarget Abilities/ability_dodge_chance_buff.tscn" id="5_dokha"]
+[ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="5_q8dos"]
 [ext_resource type="PackedScene" uid="uid://bqmrcuovcr6dr" path="res://Scenes/Abilities/Blink Abilities/ability_phantom_step.tscn" id="6_8amkt"]
+[ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="6_68iut"]
 
 [node name="PhantomCharacter" instance=ExtResource("1_2ijky")]
+
+[node name="PassiveAbilityContainer" parent="." index="2" node_paths=PackedStringArray("ability")]
+ability = NodePath("SpawnOnAbilityCastActor")
+
+[node name="SpawnOnAbilityCastActor" type="Node2D" parent="PassiveAbilityContainer" index="0" node_paths=PackedStringArray("hit_listener")]
+script = ExtResource("2_g7vqs")
+spawn_on = 1
+spawn_scene = ExtResource("3_qbcm5")
+hit_listener = NodePath("HitListener")
+metadata/_custom_type_script = "uid://dolc5uuvlv1gk"
+
+[node name="HitListener" type="Node" parent="PassiveAbilityContainer/SpawnOnAbilityCastActor" index="0"]
+script = ExtResource("4_jhyhy")
+metadata/_custom_type_script = "uid://dm3uuggj1g47y"
+
+[node name="DamageEffect" type="Node" parent="PassiveAbilityContainer/SpawnOnAbilityCastActor/HitListener" index="0" node_paths=PackedStringArray("damage_stat")]
+script = ExtResource("5_q8dos")
+damage_stat = NodePath("Stat")
+metadata/_custom_type_script = "uid://c8sj8b1npavnd"
+
+[node name="Stat" type="Node" parent="PassiveAbilityContainer/SpawnOnAbilityCastActor/HitListener/DamageEffect" index="0"]
+script = ExtResource("6_68iut")
+stat_value = 10.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="InnateActiveAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("AbilityTree/AbilityBranch/AbilityBladeDance")
@@ -54,4 +83,4 @@ position = Vector2(11, 6.00002)
 [node name="MoveSpeed" parent="Stats" index="23"]
 can_be_negative = true
 
-[editable path="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HealthBarContainer/TextureProgressBar"]
+[editable path="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/HealthBarPanel/HealthBar"]

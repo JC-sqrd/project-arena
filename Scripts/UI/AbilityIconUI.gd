@@ -101,4 +101,5 @@ func _on_ability_cooldown_end():
 
 func _make_custom_tooltip(for_text: String) -> Object:
 	var ability_tooltip : AbilityTooltip = ABILITY_TOOLTIP.instantiate() as AbilityTooltip
+	ability_tooltip.initialize_ability_tooltip(ability)
 	return ability_tooltip

@@ -18,7 +18,7 @@ var common_item_pool : Array[PackedScene] = [
 	preload("res://Scenes/Items/item_magic.tscn"),
 	preload("res://Scenes/Items/item_strength.tscn"),
 	preload("res://Scenes/Items/item_vitality.tscn"),
-	preload("res://Scenes/Items/block_damage/item_chance_block_damage.tscn")
+	preload("res://Scenes/Items/dodge_damage/item_chance_dodge_damage.tscn")
 ]
 
 var common_item_data_pool : Array[ItemData] = [
@@ -27,7 +27,7 @@ var common_item_data_pool : Array[ItemData] = [
 	preload("res://Scripts/Resources/ItemData/item_data_magic.tres"),
 	preload("res://Scripts/Resources/ItemData/item_data_strength.tres"),
 	preload("res://Scripts/Resources/ItemData/item_data_vitality.tres"),
-	preload("res://Scripts/Resources/ItemData/item_data_chance_block_damage.tres"),
+	preload("res://Scripts/Resources/ItemData/item_data_chance_dodge_damage.tres"),
 	preload("res://Scripts/Resources/ItemData/item_data_focus.tres")
 ]
 
