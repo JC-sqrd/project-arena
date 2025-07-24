@@ -26,7 +26,7 @@ direction_input = 1
 
 [node name="AbilityAttackSpeedBuff" parent="UtilityAbilityContainer" index="2" instance=ExtResource("5_67f1g")]
 
-[node name="WeaponSlot" parent="." index="6" node_paths=PackedStringArray("equipment")]
+[node name="WeaponSlot" parent="." index="9" node_paths=PackedStringArray("equipment")]
 equipment = NodePath("WeaponPosition/WeaponWoodenMagicStaff")
 
 [node name="WeaponPosition" parent="WeaponSlot" index="1"]
@@ -40,4 +40,4 @@ position = Vector2(15, 7.00002)
 [node name="MoveSpeed" parent="Stats" index="23"]
 can_be_negative = true
 
-[editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]
+[editable path="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/HealthBarPanel/HealthBar"]

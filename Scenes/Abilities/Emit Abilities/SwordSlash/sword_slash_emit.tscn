@@ -25,7 +25,7 @@ script = ExtResource("3_d1onx")
 stat_name = "current_mana"
 required_value = 15.0
 
-[node name="SwordSlashEmit" type="Node2D" node_paths=PackedStringArray("hit_listener")]
+[node name="SwordSlashEmit" type="Node2D" node_paths=PackedStringArray("hit_listener", "tooltip_stats")]
 script = ExtResource("1_ellgo")
 emited_object = ExtResource("2_224we")
 input_mode = SubResource("Resource_ngo03")
@@ -36,6 +36,7 @@ ability_name = "Energy Blast"
 cooldown = 5.0
 ability_description = "Emit a wave of energy dealing 15 (+25% AGILITY) TRUE damage."
 ability_icon_texture = ExtResource("3_qlkjh")
+tooltip_stats = [NodePath("HitListener/DamageEffect/Damage")]
 
 [node name="HitListener" type="Node" parent="."]
 script = ExtResource("5_quxq8")

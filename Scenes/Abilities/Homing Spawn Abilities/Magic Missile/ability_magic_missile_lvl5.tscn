@@ -19,16 +19,19 @@ metadata/_custom_type_script = "uid://tuvjl40jf0pm"
 [sub_resource type="CircleShape2D" id="CircleShape2D_a670v"]
 radius = 500.0
 
-[node name="AbilityMagicMissile" type="Node2D" node_paths=PackedStringArray("homing_area", "hit_listener")]
+[node name="AbilityMagicMissile" type="Node2D" node_paths=PackedStringArray("max_targets_stat", "homing_area", "hit_listener", "tooltip_stats")]
 script = ExtResource("1_fkuv7")
-max_targets = 12
+max_targets_stat = NodePath("Max Target")
 homing_area = NodePath("Area2D")
 max_range = 5.0
 spawn = ExtResource("2_h1unx")
 hit_listener = NodePath("HitListener")
 required_stat = SubResource("Resource_n40f3")
 cast_time = 0.2
+ability_name = "Magic Missile"
+ability_description = "Shoots out homing missiles that deals 10 (+75% MAGIC) DAMAGE."
 ability_icon_texture = ExtResource("4_h1unx")
+tooltip_stats = [NodePath("HitListener/DamageEffect/Damage"), NodePath("Max Target")]
 metadata/_custom_type_script = "uid://rbf4cq4pfun4"
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -69,3 +72,8 @@ script = ExtResource("8_vveqs")
 stat = NodePath("..")
 scale_with_stat_id = "magic_damage_mult"
 metadata/_custom_type_script = "uid://c4n03mihb0axg"
+
+[node name="Max Target" type="Node" parent="."]
+script = ExtResource("6_63hag")
+stat_value = 16.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"

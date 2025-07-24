@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bkjwb31l88d7n"]
+[gd_scene load_steps=16 format=3 uid="uid://bkjwb31l88d7n"]
 
 [ext_resource type="Script" uid="uid://df7s4oatxu4hr" path="res://Scripts/Ability System/SpawnAbility.gd" id="1_4wuys"]
 [ext_resource type="PackedScene" uid="uid://ctnpun8q0arbq" path="res://Scenes/Abilities/Spawn Abilities/FlamePillar/Spawnable/spawnable_flame_pillar.tscn" id="2_8o0h4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://yd87aj2hybru" path="res://Scripts/Ability System/SpawnAbilitySpawnBehavior/PointSpawn.gd" id="3_73dnj"]
 [ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_pyqdg"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="4_rbl2w"]
+[ext_resource type="Texture2D" uid="uid://bbvenyvuxpad0" path="res://Sprites/Ability Icons/Flame Pillar/Flame Pillar.png" id="5_d1mt1"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_jekm4"]
 [ext_resource type="Script" uid="uid://88st3pdi1hky" path="res://Scripts/Combat/CombatEffects/ApplyStatusEffect.gd" id="6_bjqqw"]
 [ext_resource type="PackedScene" uid="uid://d2mjy2iqk7hmw" path="res://Scenes/StatusEffects/Burn.tscn" id="8_2ion8"]
@@ -31,6 +32,7 @@ spawn_behavior = SubResource("Resource_d1mt1")
 hit_listener = NodePath("HitListener")
 required_stat = SubResource("Resource_73dnj")
 cooldown = 5.0
+ability_icon_texture = ExtResource("5_d1mt1")
 
 [node name="HitListener" type="Node" parent="."]
 script = ExtResource("3_23gar")

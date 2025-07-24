@@ -3,7 +3,6 @@ extends Node2D
 
 var player : PlayerCharacter
 @export var player_spawn_point : Node2D
-
 signal game_over(stage : Stage)
 
 func _ready() -> void:

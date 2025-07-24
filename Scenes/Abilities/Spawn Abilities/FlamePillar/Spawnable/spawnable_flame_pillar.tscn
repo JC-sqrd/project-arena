@@ -1,10 +1,75 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctnpun8q0arbq"]
+[gd_scene load_steps=9 format=3 uid="uid://ctnpun8q0arbq"]
 
 [ext_resource type="Script" uid="uid://c2nhbp4pxbtij" path="res://Scripts/Ability System/Spawnables/AreaHit.gd" id="1_qoulq"]
 [ext_resource type="Texture2D" uid="uid://c35vvralpy2oe" path="res://Placeholders/Sprites/Skill Circle Visual.png" id="2_qb3l4"]
+[ext_resource type="Texture2D" uid="uid://bop4pblqlh382" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/muzzle_01.png" id="3_kftwa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w3ror"]
 radius = 150.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ys2pq"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_ys2pq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SkillCircleVisual:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_kftwa"]
+resource_name = "flame_pillar_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SkillCircleVisual:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_57gbh"]
+_data = {
+&"RESET": SubResource("Animation_ys2pq"),
+&"flame_pillar_anim": SubResource("Animation_kftwa")
+}
 
 [node name="SpawnableFlamePillar" type="Area2D"]
 collision_layer = 0
@@ -22,3 +87,17 @@ modulate = Color(1, 0, 0, 1)
 texture_filter = 1
 scale = Vector2(3, 3)
 texture = ExtResource("2_qb3l4")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-3, -42)
+amount = 1
+texture = ExtResource("3_kftwa")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ys2pq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_57gbh")
+}
+autoplay = "flame_pillar_anim"

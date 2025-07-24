@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://ddebycj73nrys"]
+[gd_scene load_steps=13 format=3 uid="uid://ddebycj73nrys"]
 
 [ext_resource type="Script" uid="uid://42qvy4m6xprb" path="res://Scripts/Ability System/EmitAbility.gd" id="1_dw0yd"]
 [ext_resource type="PackedScene" uid="uid://cyptbbn8d0pqd" path="res://Scenes/Abilities/Emit Abilities/Toxic Cloud/spawnable_toxic_cloud.tscn" id="2_ktv1a"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="2_laxn6"]
 [ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_j4xaq"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="3_rfp2m"]
+[ext_resource type="Texture2D" uid="uid://dnty5hf1dgrp0" path="res://Sprites/Ability Icons/Fumigate/Fumigate.png" id="4_4duoe"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="4_lbkg1"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="6_ncag5"]
 [ext_resource type="Script" uid="uid://88st3pdi1hky" path="res://Scripts/Combat/CombatEffects/ApplyStatusEffect.gd" id="6_v26fl"]
@@ -17,13 +18,19 @@ stat_name = "current_mana"
 required_value = 10.0
 metadata/_custom_type_script = "uid://tuvjl40jf0pm"
 
-[node name="ToxicCloudEmitAbility" type="Node2D" node_paths=PackedStringArray("hit_listener")]
+[node name="ToxicCloudEmitAbility" type="Node2D" node_paths=PackedStringArray("hit_listener", "tooltip_stats")]
 script = ExtResource("1_dw0yd")
 emited_object = ExtResource("2_ktv1a")
+hit_listener = NodePath("HitListener")
 required_stat = SubResource("Resource_4duoe")
 cast_time = 0.1
-hit_listener = NodePath("HitListener")
+ability_name = "Fumigate"
 cooldown = 5.0
+ability_description = "Emit a toxic cloud that deals 2 (+50% MAGIC) DAMAGE.
+
+The cloud emits for 3.5 seconds."
+ability_icon_texture = ExtResource("4_4duoe")
+tooltip_stats = [NodePath("HitListener/DamageEffect/Damage")]
 metadata/_custom_type_script = "uid://42qvy4m6xprb"
 
 [node name="HitListener" type="Node" parent="."]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqmrcuovcr6dr"]
+[gd_scene load_steps=11 format=3 uid="uid://bqmrcuovcr6dr"]
 
 [ext_resource type="Script" uid="uid://d3nv4w5x5iplh" path="res://Scripts/Ability System/AbilityTree.gd" id="1_j0778"]
 [ext_resource type="Script" uid="uid://dt5ekno3nrmcr" path="res://Scripts/Ability System/AbilityBranch.gd" id="2_gkg86"]
 [ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="2_q34bc"]
+[ext_resource type="Texture2D" uid="uid://6of7odugrfl" path="res://Sprites/Ability Icons/Phantom Step/Phantom Step.png" id="3_7aue4"]
 [ext_resource type="Script" uid="uid://dqj32qeba6flj" path="res://Scripts/Ability System/BlinkAbility.gd" id="3_q34bc"]
 [ext_resource type="PackedScene" uid="uid://c7rjno18idwr6" path="res://Scenes/Abilities/Emit Abilities/Phantom Strike/ability_phantom_strike.tscn" id="4_oeqxl"]
 [ext_resource type="Script" uid="uid://10mik3j8w4cp" path="res://Scripts/Ability System/AbilityBehavior/AllowAttackWhileActive.gd" id="6_oeqxl"]
@@ -29,6 +30,9 @@ metadata/_custom_type_script = "uid://tuvjl40jf0pm"
 script = ExtResource("1_j0778")
 head_branch = NodePath("AbilityBranch")
 required_stat = SubResource("Resource_oeqxl")
+ability_name = "Phantom Step"
+ability_description = "Blink to the mouse position dealing 10 DAMAGE around the landing area."
+ability_icon_texture = ExtResource("3_7aue4")
 metadata/_custom_type_script = "uid://d3nv4w5x5iplh"
 
 [node name="AbilityBranch" type="Node" parent="." node_paths=PackedStringArray("ability", "next_ability")]

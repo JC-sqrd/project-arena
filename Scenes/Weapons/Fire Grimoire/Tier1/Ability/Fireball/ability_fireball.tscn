@@ -89,7 +89,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="AbilityFireball" type="Node2D" node_paths=PackedStringArray("hit_listener", "sockets")]
+[node name="AbilityFireball" type="Node2D" node_paths=PackedStringArray("hit_listener", "sockets", "tooltip_stats")]
 script = ExtResource("1_0hkgi")
 max_range = 0.0
 spawn = ExtResource("2_xc2w6")
@@ -97,9 +97,12 @@ spawn_behavior = SubResource("Resource_3sgpq")
 hit_listener = NodePath("HitListener")
 required_stat = SubResource("Resource_xknc8")
 cast_time = 0.35
+ability_name = "Fireball"
 cooldown = 1.5
+ability_description = "Throw out a fireball that explodes on contact dealing 20 (+80% MAGIC) DAMAGE on nearby enemies. "
 ability_icon_texture = ExtResource("5_7kxbx")
 sockets = [NodePath("AbilitySocket")]
+tooltip_stats = [NodePath("SpawnHitListener/DamageEffect/ExplosionDamage")]
 
 [node name="SpawnHitListener" type="Node" parent="."]
 script = ExtResource("3_871q2")

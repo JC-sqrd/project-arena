@@ -1,13 +1,15 @@
 class_name HomingSpawnAbility
 extends SpawnAbility
 
-@export var max_targets : int = 5
+@export var max_targets_stat : Stat
 @export var homing_area : Area2D
 
+var max_targets : int = 3
 var targets : Array[Entity]
 
 func _ready():
 	super()
+	max_targets = max_targets if max_targets_stat == null else int(max_targets_stat.stat_derived_value) 
 	homing_area.body_entered.connect(_on_target_enter)
 	homing_area.body_exited.connect(_on_target_exit)
 
@@ -68,4 +70,8 @@ func _on_target_enter(body : Node2D):
 func _on_target_exit(body : Node2D):
 	if targets.has(body):
 		targets.erase(body)
+	pass
+
+func _on_max_targets_stat_changed():
+	max_targets = int(max_targets_stat.stat_derived_value)
 	pass

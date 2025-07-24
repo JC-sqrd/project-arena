@@ -24,6 +24,7 @@ enum CastMode {
 @export_multiline var ability_details : String
 @export var ability_icon_texture : Texture2D
 @export var sockets : Array[AbilitySocket]
+@export var tooltip_stats : Array[Stat]
 
 @onready var cooldown_timer : Timer = initialize_cooldown_timer()
 
