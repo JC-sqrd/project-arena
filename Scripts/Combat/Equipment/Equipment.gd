@@ -15,7 +15,8 @@ enum EquipmentTier {ONE, TWO, THREE, FOUR, FIVE}
 @export var equipment_icon : Texture2D
 @export var buy_cost : float
 @export var sell_value : float
- 
+@export var passive_ability : PassiveAbility
+
 @export_category("Tooltip Stats")
 @export var tooltip_stats : Array[Stat]
 

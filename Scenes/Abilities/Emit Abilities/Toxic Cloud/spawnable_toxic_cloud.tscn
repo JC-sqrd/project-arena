@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyptbbn8d0pqd"]
+[gd_scene load_steps=7 format=3 uid="uid://cyptbbn8d0pqd"]
 
 [ext_resource type="Script" uid="uid://blbwnmv676w3j" path="res://Scripts/Ability System/Spawnables/AreaHitOverTime.gd" id="1_mtr84"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="2_nqne8"]
@@ -8,7 +8,22 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ppd0"]
 radius = 250.0
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_23ape"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = -1.60933e-05
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = 50.0
+scale_min = 0.1
+scale_max = 0.3
+
 [node name="ToxicCloudSpawnable" type="Area2D" node_paths=PackedStringArray("hit_speed")]
+z_as_relative = false
 collision_layer = 0
 collision_mask = 3
 monitorable = false
@@ -36,3 +51,9 @@ texture = ExtResource("3_nqne8")
 modulate = Color(0.720299, 0.333452, 0.782577, 1)
 scale = Vector2(1.03053, 1.03053)
 texture = ExtResource("4_23ape")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 32
+texture = ExtResource("4_23ape")
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_23ape")

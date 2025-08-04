@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cayxhy3f8vjp7" path="res://Scenes/Items/burst_damage/Scripts/BurstDamage.gd" id="1_mdj71"]
 [ext_resource type="PackedScene" uid="uid://dndkgxqahawqw" path="res://Scenes/Spawnables/AreaDamage/spawnable_area_damage.tscn" id="2_n6ngu"]
-[ext_resource type="Texture2D" uid="uid://t4wxqhtd5qyl" path="res://Placeholders/Icons/Icon.4_29.png" id="3_g315g"]
+[ext_resource type="Texture2D" uid="uid://dku1q6i2uote3" path="res://Sprites/Items/Shockwave Shard/Shockwave Shard.png" id="3_nr2wy"]
 [ext_resource type="Script" uid="uid://dqjgy52bq0foh" path="res://Scripts/StatSystem/Stats/StatAdder.gd" id="4_cct32"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="5_5o1nc"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="6_2csxl"]
@@ -18,7 +18,7 @@ cooldown_time = 5.0
 spawnable_scene = ExtResource("2_n6ngu")
 hit_listener = NodePath("HitListener")
 item_name = "Shockwave Shard"
-item_icon = ExtResource("3_g315g")
+item_icon = ExtResource("3_nr2wy")
 string_id = "burst_damage"
 item_detail = "On Damage: Create an explosion that deals 60%(+5 each stack) of the damage dealt as magic damage.
 (10 sec. cooldown)"

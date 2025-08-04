@@ -3,7 +3,7 @@ extends Control
 
 @onready var tooltip_container: HBoxContainer = %TooltipContainer
 @onready var equipment_inventory_slot_icon: EquipmentInventorySlotIcon = %EquipmentInventorySlotIcon
-@onready var equipment_name_label: Label = %EquipmentNameLabel
+@onready var equipment_name_label: RichTextLabel = %EquipmentNameLabel
 @onready var v_box_container: VBoxContainer = $Panel/VBoxContainer
 #@onready var stat_v_box_container: VBoxContainer = %StatVBoxContainer
 @onready var equipment_tier_ui: EquipmentTierUI = %EquipmentTierUI

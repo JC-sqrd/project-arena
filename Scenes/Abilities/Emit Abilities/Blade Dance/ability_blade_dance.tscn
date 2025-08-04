@@ -12,7 +12,7 @@
 
 [node name="AbilityBladeDance" type="Node2D" node_paths=PackedStringArray("hit_listener", "tooltip_stats")]
 script = ExtResource("1_dxij0")
-emited_object = ExtResource("2_aijs5")
+spawnable_scene = ExtResource("2_aijs5")
 hit_listener = NodePath("HitListener")
 cast_time = 0.1
 ability_name = "Phantom Dance"

@@ -135,6 +135,7 @@ animations = [{
 radius = 150.0
 
 [node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("gold_manager", "weapon_manager", "passive_ability_container", "innate_active_ability", "utility_ability", "main_weapon_ability_container", "off_weapon_ability_container", "hit_receiver", "stat_manager", "level_manager", "health_manager", "mana_manager", "status_effect_manager", "stat_mods_manager", "damage_listener", "item_iventory", "equipment_inventory", "state_indicator_container") groups=["Hittable", "player"]]
+z_index = 1
 y_sort_enabled = true
 motion_mode = 1
 platform_floor_layers = 4294901760

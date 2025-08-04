@@ -53,4 +53,4 @@ stat_value = 65.0
 [node name="MoveSpeed" parent="Stats" index="23"]
 stat_value = 240.0
 
-[editable path="CanvasLayer/Control/VBoxContainer/HealthBarContainer/TextureProgressBar"]
+[editable path="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/HealthBarPanel/HealthBar"]

@@ -12,7 +12,7 @@ func apply_effect(hit_data : Dictionary):
 	actor.heal(_create_heal_data(hit_data))
 	
 func _create_heal_data(hit_data : Dictionary) -> HealEffectData:
-	var heal_data : HealEffectData
-	heal_data.heal_amount = heal_amount
+	var heal_data : HealEffectData = HealEffectData.new(heal_amount)
+	#heal_data.heal_amount = heal_amount
 	heal_data.source = hit_data["source"]
 	return heal_data

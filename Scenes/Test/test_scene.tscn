@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://cu8fhpggbxh6d"]
+[gd_scene load_steps=87 format=4 uid="uid://cu8fhpggbxh6d"]
 
 [ext_resource type="Script" uid="uid://bj6bpkhscp2un" path="res://Scripts/Stage/Stage.gd" id="1_4g24u"]
 [ext_resource type="Script" uid="uid://bgc72bvmdqnok" path="res://Scripts/Audio/StageAudioPlayer.gd" id="1_aliv6"]
@@ -16,10 +16,14 @@
 [ext_resource type="PackedScene" uid="uid://7dmxfiismoas" path="res://Scenes/UI/GameOverUI/game_over_ui.tscn" id="4_050cx"]
 [ext_resource type="AudioStream" uid="uid://cn58gfvdnfpqs" path="res://Placeholders/Audio/You're Gonna Need a Bigger Ukulele.mp3" id="4_b707s"]
 [ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="4_d3glx"]
+[ext_resource type="Texture2D" uid="uid://clesry2a13f5v" path="res://Sprites/UI/Button Texture/ButtonFocusedTexture.png" id="5_7bmvy"]
 [ext_resource type="Script" uid="uid://c00l8xisrxclc" path="res://Scripts/Enemy/EnemySpawner/EnemySpawner.gd" id="5_a4ok0"]
+[ext_resource type="Texture2D" uid="uid://cwvkaypbduj61" path="res://Sprites/UI/Button Texture/ButtonDisabledTexture.png" id="6_dcwql"]
 [ext_resource type="PackedScene" uid="uid://dqm4fbhm3ik7d" path="res://Scenes/Enemies/SpawnSprite/spawn_sprite.tscn" id="6_hej2c"]
+[ext_resource type="Texture2D" uid="uid://cn1kw2i5sbe18" path="res://Sprites/UI/Button Texture/ButtonPressedTexture.png" id="6_w24wr"]
 [ext_resource type="Script" uid="uid://cvoh1qyqwtosh" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveEnemySpawn.gd" id="7_7wka2"]
-[ext_resource type="Texture2D" uid="uid://c35vvralpy2oe" path="res://Placeholders/Sprites/Skill Circle Visual.png" id="7_mwf75"]
+[ext_resource type="Texture2D" uid="uid://yfmo756kyspi" path="res://Sprites/UI/Button Texture/ButtonHoveredTexture.png" id="7_dcwql"]
+[ext_resource type="Texture2D" uid="uid://rnh213sjtfff" path="res://Sprites/UI/Button Texture/ButtonTexture.png" id="8_2d4qq"]
 [ext_resource type="Script" uid="uid://bm6en5pumq560" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WeightedEnemySpawn.gd" id="8_edhef"]
 [ext_resource type="Script" uid="uid://b3fq26t52vw2o" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnTiming.gd" id="8_yy25j"]
 [ext_resource type="Script" uid="uid://dqunvl8tgfqvj" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveSpawnTiming/SpawnEverySecond.gd" id="9_0lwa2"]
@@ -45,6 +49,48 @@ texture = ExtResource("3_dcwql")
 [sub_resource type="TileSet" id="TileSet_kq1h7"]
 sources/0 = SubResource("TileSetAtlasSource_2d4qq")
 sources/1 = SubResource("TileSetAtlasSource_2j236")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2j236"]
+texture = ExtResource("5_7bmvy")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2d4qq"]
+texture = ExtResource("6_dcwql")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kq1h7"]
+texture = ExtResource("6_w24wr")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n2ri5"]
+texture = ExtResource("7_dcwql")
+expand_margin_left = 12.0
+expand_margin_top = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_seqji"]
+texture = ExtResource("6_w24wr")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g28ox"]
+texture = ExtResource("8_2d4qq")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_f5ccp"]
 
@@ -265,6 +311,12 @@ text = "WAVE 0"
 
 [node name="Button" type="Button" parent="CanvasLayer/Control/WaveSpawnerUI/HBoxContainer"]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_2j236")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_2d4qq")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_kq1h7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_n2ri5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_seqji")
+theme_override_styles/normal = SubResource("StyleBoxTexture_g28ox")
 text = "START WAVE"
 
 [node name="WaveDuration" type="Label" parent="CanvasLayer/Control/WaveSpawnerUI/HBoxContainer"]
@@ -323,10 +375,6 @@ offset_bottom = 500.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.0392157, 0, 0.156863)
-
-[node name="SkillCircleVisual" type="Sprite2D" parent="WaveSpawner"]
-visible = false
-texture = ExtResource("7_mwf75")
 
 [node name="DebugWave" type="Node" parent="WaveSpawner"]
 script = ExtResource("3_l3e4g")

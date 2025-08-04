@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dkvq0onbgy5no"]
+[gd_scene load_steps=20 format=3 uid="uid://dkvq0onbgy5no"]
 
 [ext_resource type="Script" uid="uid://c2nhbp4pxbtij" path="res://Scripts/Ability System/Spawnables/AreaHit.gd" id="1_jdej1"]
 [ext_resource type="Texture2D" uid="uid://oamy5q3i38wd" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/light_02.png" id="2_au741"]
@@ -59,10 +59,6 @@ scale_min = 0.5
 scale_curve = SubResource("CurveTexture_80yip")
 color_ramp = SubResource("GradientTexture1D_r5u67")
 
-[sub_resource type="Curve" id="Curve_7gsaw"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
-point_count = 1
-
 [node name="DashSlashDamage" type="Area2D"]
 collision_mask = 3
 monitorable = false
@@ -103,7 +99,6 @@ force = 1100.0
 [node name="DistanceCheck" type="Node" parent="HitListener/Knockback" node_paths=PackedStringArray("stat")]
 script = ExtResource("7_qp80p")
 stat = NodePath("../../../BonusKnockback")
-damage_curve = SubResource("Curve_7gsaw")
 distance = 150.0
 
 [node name="OnHitEffect" type="Node" parent="HitListener"]

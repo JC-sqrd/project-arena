@@ -20,71 +20,76 @@ offset_bottom = 62.0
 script = ExtResource("1_bb46h")
 ability_icon_ui_scene = ExtResource("2_ii2nx")
 
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 221.0
+offset_bottom = 59.0
+
+[node name="InnateActivePanel" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="InnateActiveBar" type="MarginContainer" parent="HBoxContainer/InnateActivePanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="InnateActiveActionBar" type="HBoxContainer" parent="HBoxContainer/InnateActivePanel/InnateActiveBar"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="InnateUtilityPanel" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="InnateUtilityBar" type="MarginContainer" parent="HBoxContainer/InnateUtilityPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="InnateUtilityActionBar" type="HBoxContainer" parent="HBoxContainer/InnateUtilityPanel/InnateUtilityBar"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="WeaponAbilityPanel" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="WeaponAbilityBar" type="MarginContainer" parent="HBoxContainer/WeaponAbilityPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="WeaponAbilityActionBar" type="HBoxContainer" parent="HBoxContainer/WeaponAbilityPanel/WeaponAbilityBar"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="OffhandWeaponAbilityPanel" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="OffhandWeaponAbilityBar" type="MarginContainer" parent="HBoxContainer/OffhandWeaponAbilityPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="OffhandWeaponAbilityActionBar" type="HBoxContainer" parent="HBoxContainer/OffhandWeaponAbilityPanel/OffhandWeaponAbilityBar"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
 [node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_vlwde")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
-layout_mode = 2
-
-[node name="InnateActivePanel" type="PanelContainer" parent="PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="InnateActiveBar" type="MarginContainer" parent="PanelContainer/HBoxContainer/InnateActivePanel"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="InnateActiveActionBar" type="HBoxContainer" parent="PanelContainer/HBoxContainer/InnateActivePanel/InnateActiveBar"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="InnateUtilityPanel" type="PanelContainer" parent="PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="InnateUtilityBar" type="MarginContainer" parent="PanelContainer/HBoxContainer/InnateUtilityPanel"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="InnateUtilityActionBar" type="HBoxContainer" parent="PanelContainer/HBoxContainer/InnateUtilityPanel/InnateUtilityBar"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="WeaponAbilityPanel" type="PanelContainer" parent="PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="WeaponAbilityBar" type="MarginContainer" parent="PanelContainer/HBoxContainer/WeaponAbilityPanel"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="WeaponAbilityActionBar" type="HBoxContainer" parent="PanelContainer/HBoxContainer/WeaponAbilityPanel/WeaponAbilityBar"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="OffhandWeaponAbilityPanel" type="PanelContainer" parent="PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="OffhandWeaponAbilityBar" type="MarginContainer" parent="PanelContainer/HBoxContainer/OffhandWeaponAbilityPanel"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="OffhandWeaponAbilityActionBar" type="HBoxContainer" parent="PanelContainer/HBoxContainer/OffhandWeaponAbilityPanel/OffhandWeaponAbilityBar"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4

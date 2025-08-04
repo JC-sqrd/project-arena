@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://dq2ilob20a4t5"]
+[gd_scene load_steps=13 format=3 uid="uid://dq2ilob20a4t5"]
 
-[ext_resource type="Script" uid="uid://dnnl681s4yejk" path="res://Scripts/Combat/ProjectileWeapons/Bow.gd" id="1_dscfw"]
+[ext_resource type="Script" uid="uid://d3fin4411ww46" path="res://Scripts/Combat/ProjectileWeapons/ProjectileWeapon.gd" id="1_1500e"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="2_7hck8"]
 [ext_resource type="PackedScene" uid="uid://cr6ajbl5x5egu" path="res://Scenes/Weapons/Bow/arrow_projectile.tscn" id="2_1500e"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="3_esbd8"]
@@ -11,24 +11,25 @@
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="5_ibmun"]
 [ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="6_ibmun"]
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="8_p5e7d"]
+[ext_resource type="PackedScene" uid="uid://bpieoyox086h0" path="res://Scenes/Abilities/Skillshot Abilities/Piercing Shot/ability_piercing_shot.tscn" id="12_ibmun"]
 
-[node name="WeaponBow" type="Node2D" node_paths=PackedStringArray("charge_time_stat", "max_charge_multiplier_stat", "min_charge_multiplier_stat", "speed_stat", "max_distance_stat", "spread_degrees_stat", "pierce_count_stat", "hit_listener", "attack_damage", "attack_speed_stat")]
-script = ExtResource("1_dscfw")
-charge_time_stat = NodePath("ChargeTime")
-max_charge_multiplier_stat = NodePath("MaxChargeMultiplier")
-min_charge_multiplier_stat = NodePath("MinChargeMultiplier")
+[node name="WeaponBow" type="Node2D" node_paths=PackedStringArray("spawn_node", "speed_stat", "max_distance_stat", "spread_degrees_stat", "pierce_count_stat", "weapon_ability", "hit_listener", "attack_damage", "attack_speed_stat", "tooltip_stats")]
+script = ExtResource("1_1500e")
 projectile = ExtResource("2_1500e")
+spawn_node = NodePath("Marker2D")
 speed_stat = NodePath("ProjectileSpeed")
 max_distance_stat = NodePath("MaxDistance")
 spread_degrees_stat = NodePath("SpreadDegrees")
 pierce_count_stat = NodePath("PierceCount")
 attack_windup_time = 0.1
+weapon_ability = NodePath("AbilityPiercingShot")
 hit_listener = NodePath("HitListener")
 attack_damage = NodePath("Damage")
 attack_speed_stat = NodePath("AttackSpeed")
 equipment_name = "Wooden Bow"
 string_id = "wooden_bow"
 equipment_icon = ExtResource("4_ibmun")
+tooltip_stats = [NodePath("Damage"), NodePath("AttackSpeed"), NodePath("ProjectileSpeed"), NodePath("MaxDistance"), NodePath("PierceCount"), NodePath("SpreadDegrees")]
 metadata/_custom_type_script = "uid://d3fin4411ww46"
 
 [node name="Bow" type="Sprite2D" parent="."]
@@ -151,3 +152,5 @@ script = ExtResource("8_p5e7d")
 stat = NodePath("..")
 scale_with_stat_id = "crit_chance"
 metadata/_custom_type_script = "uid://2vlwp08ancca"
+
+[node name="AbilityPiercingShot" parent="." instance=ExtResource("12_ibmun")]

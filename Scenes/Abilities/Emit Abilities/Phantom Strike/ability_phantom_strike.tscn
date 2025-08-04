@@ -10,7 +10,7 @@
 
 [node name="AbilityPhantomStrike" type="Node2D" node_paths=PackedStringArray("hit_listener")]
 script = ExtResource("1_0kgu2")
-emited_object = ExtResource("2_l6iy3")
+spawnable_scene = ExtResource("2_l6iy3")
 hit_listener = NodePath("HitListener")
 cast_time = 0.05
 metadata/_custom_type_script = "uid://42qvy4m6xprb"

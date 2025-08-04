@@ -56,8 +56,8 @@ func _ready() -> void:
 	restock_item_button.text = "Restock Item - " + str(restock_item_price)
 	stock_items(max_item_stock)
 	stock_equipment(max_equipment_stock)
-	restock_item_button.pressed.connect(restock_items)
-	restock_equipment_button.pressed.connect(restock_equipment)
+	restock_item_button.pressed.connect(attempt_restock_items)
+	restock_equipment_button.pressed.connect(attempt_restock_equipment)
 	restock_shop_button.pressed.connect(restock_shop)
 	pass
 
@@ -67,8 +67,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		pass
 
 func restock_shop():
-	restock_items()
-	restock_equipment()
+	restock_items(restock_item_price)
+	restock_equipment(restock_equipment_price)
 	pass
 
 func stock_items(stock_amount : int):
@@ -146,8 +146,12 @@ func stock_equipment(stock_amount : int):
 		#equipment_buy_container.add_child(equipment_card)
 	pass
 
-func restock_items():
-	if player.stat_manager.stats.get("gold").stat_value >= restock_item_price: 
+func attempt_restock_items():
+	restock_items(restock_item_price)
+	pass
+
+func restock_items(restock_price : float):
+	if player.stat_manager.stats.get("gold").stat_value >= restock_price: 
 		var stock_count : int = max_item_stock
 		for item_buy in item_buy_container.get_children():
 			if (item_buy as BuyInstanceUI).is_locked:
@@ -155,15 +159,19 @@ func restock_items():
 			else:
 				item_buy.queue_free()
 		stock_items(stock_count)
-		player.stat_manager.stats.get("gold").stat_value -= restock_item_price
-		restock_item_price += restock_item_price
+		player.stat_manager.stats.get("gold").stat_value -= restock_price
+		restock_item_price += restock_price
 		restock_item_button.text = "Restock Item - " + str(restock_item_price)
 	else:
 		return
 	pass
 
-func restock_equipment():
-	if player.stat_manager.stats.get("gold").stat_value >= restock_equipment_price:
+func attempt_restock_equipment():
+	restock_equipment(restock_equipment_price)
+	pass
+
+func restock_equipment(restock_price : float):
+	if player.stat_manager.stats.get("gold").stat_value >= restock_price:
 		var stock_count : int = max_equipment_stock
 		for equipment_buy in equipment_buy_container.get_children():
 			if (equipment_buy as BuyInstanceUI).is_locked:
@@ -172,8 +180,8 @@ func restock_equipment():
 				(equipment_buy as EquipmentBuyInstanceUI).equipment.queue_free()
 				equipment_buy.queue_free()
 		stock_equipment(stock_count)
-		player.stat_manager.stats.get("gold").stat_value -= restock_equipment_price
-		restock_equipment_price += restock_equipment_price
+		player.stat_manager.stats.get("gold").stat_value -= restock_price
+		restock_equipment_price += restock_price
 		restock_equipment_button.text = "Restock Equipment - " + str(restock_equipment_price)
 	pass
 
@@ -187,5 +195,6 @@ func _on_current_wave_end(wave : Wave):
 	restock_item_button.text = "Restock Item - " + str(restock_item_price)
 	restock_equipment_price = wave_spawner.wave_count * base_restock_equipment_price
 	restock_equipment_button.text = "Restock Equipment - " + str(restock_equipment_price)
-	restock_shop()
+	restock_items(0)
+	restock_equipment(0)
 	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://du2r3qg36q32c"]
+[gd_scene load_steps=12 format=3 uid="uid://du2r3qg36q32c"]
 
 [ext_resource type="Script" uid="uid://df7s4oatxu4hr" path="res://Scripts/Ability System/SpawnAbility.gd" id="1_nlbdn"]
 [ext_resource type="PackedScene" uid="uid://is31srwsdfbx" path="res://Scenes/Spawnables/AreaEnterDamage/ground_bursts_spawnable.tscn" id="2_2m7rr"]
@@ -17,17 +17,13 @@ stat_name = "current_mana"
 required_value = 10.0
 metadata/_custom_type_script = "uid://tuvjl40jf0pm"
 
-[sub_resource type="Curve" id="Curve_ofirl"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
-point_count = 1
-
 [node name="GroundBurstAbility" type="Node2D" node_paths=PackedStringArray("hit_listener")]
 script = ExtResource("1_nlbdn")
 max_range = 0.0
 spawn = ExtResource("2_2m7rr")
+hit_listener = NodePath("HitListener")
 required_stat = SubResource("Resource_6sxas")
 cast_time = 0.35
-hit_listener = NodePath("HitListener")
 cooldown = 5.0
 
 [node name="HitListener" type="Node" parent="."]
@@ -40,7 +36,6 @@ damage_stat = NodePath("../../Damage")
 [node name="DistanceCheck" type="Node" parent="HitListener/DamageEffect" node_paths=PackedStringArray("stat")]
 script = ExtResource("6_6sxas")
 stat = NodePath("BonusDamage")
-damage_curve = SubResource("Curve_ofirl")
 distance = 60.0
 relative_to_actor = false
 metadata/_custom_type_script = "uid://b41oadkxkerfk"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cacqqobo0qx73"]
+[gd_scene load_steps=20 format=3 uid="uid://cacqqobo0qx73"]
 
 [ext_resource type="Script" uid="uid://d3nv4w5x5iplh" path="res://Scripts/Ability System/AbilityTree.gd" id="1_r2qjf"]
 [ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="2_37thu"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="9_eg4fx"]
 [ext_resource type="Script" uid="uid://dmjo067f80ntw" path="res://Scripts/Combat/CombatEffects/KnockbackEffect.gd" id="10_t04h0"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="12_e0o8v"]
+[ext_resource type="Script" uid="uid://b2xxgvr2u0l16" path="res://Scripts/StatSystem/UI/PercentageStatFormatter.gd" id="15_ujtva"]
 
 [sub_resource type="Resource" id="Resource_wp3vh"]
 script = ExtResource("2_37thu")
@@ -33,17 +34,24 @@ stat_name = "current_mana"
 required_value = 0.0
 metadata/_custom_type_script = "uid://tuvjl40jf0pm"
 
-[node name="AbilityLungeStrike" type="Node2D" node_paths=PackedStringArray("head_branch")]
+[sub_resource type="Resource" id="Resource_slf8i"]
+script = ExtResource("15_ujtva")
+format_mode = 1
+prefix = 0
+metadata/_custom_type_script = "uid://b2xxgvr2u0l16"
+
+[node name="AbilityLungeStrike" type="Node2D" node_paths=PackedStringArray("head_branch", "tooltip_stats")]
 script = ExtResource("1_r2qjf")
 head_branch = NodePath("AbilityBranch")
 required_stat = SubResource("Resource_wp3vh")
 ability_name = "Lunge Strike"
 cooldown = 5.0
-ability_description = "Lunges forward quickly and strike forward dealing 10 damage (+200% LEVEL)
+ability_description = "Lunges forward quickly and strike towards the direction of the mouse dealing 10 damage (+200% LEVEL)
 
 
 This ability has 15% chance to critically strike"
 ability_icon_texture = ExtResource("3_wp3vh")
+tooltip_stats = [NodePath("AbilityBranch/EmitAbility/HitListener/DamageEffect/Damage"), NodePath("CritChance")]
 
 [node name="AbilityBranch" type="Node" parent="." node_paths=PackedStringArray("ability", "next_ability")]
 script = ExtResource("2_qakm5")
@@ -60,7 +68,7 @@ metadata/_custom_type_script = "uid://46rajp5yxkq6"
 
 [node name="EmitAbility" type="Node2D" parent="AbilityBranch" node_paths=PackedStringArray("hit_listener")]
 script = ExtResource("4_g7opt")
-emited_object = ExtResource("5_qwgi4")
+spawnable_scene = ExtResource("5_qwgi4")
 hit_listener = NodePath("HitListener")
 required_stat = SubResource("Resource_e0o8v")
 metadata/_custom_type_script = "uid://42qvy4m6xprb"
@@ -106,3 +114,4 @@ scale_with_stat_id = "attack_damage"
 [node name="CritChance" type="Node" parent="."]
 script = ExtResource("8_cxeq3")
 stat_value = 0.15
+formatter = SubResource("Resource_slf8i")

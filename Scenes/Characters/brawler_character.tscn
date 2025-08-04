@@ -111,9 +111,6 @@ position = Vector2(17, 0)
 [node name="Agility" parent="Stats" index="3"]
 stat_value = 20.0
 
-[node name="Focus" parent="Stats" index="4"]
-stat_value = 100.0
-
 [node name="MaxHealth" parent="Stats" index="12"]
 stat_value = 40.0
 

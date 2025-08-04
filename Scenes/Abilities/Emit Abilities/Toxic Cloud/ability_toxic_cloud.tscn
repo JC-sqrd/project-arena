@@ -20,7 +20,8 @@ metadata/_custom_type_script = "uid://tuvjl40jf0pm"
 
 [node name="ToxicCloudEmitAbility" type="Node2D" node_paths=PackedStringArray("hit_listener", "tooltip_stats")]
 script = ExtResource("1_dw0yd")
-emited_object = ExtResource("2_ktv1a")
+spawnable_scene = ExtResource("2_ktv1a")
+show_object_behind_parent = true
 hit_listener = NodePath("HitListener")
 required_stat = SubResource("Resource_4duoe")
 cast_time = 0.1

@@ -1,8 +1,8 @@
 class_name EmitAbility
 extends ActiveAbility
 
-@export var emited_object : PackedScene
-
+@export var spawnable_scene : PackedScene
+@export var show_object_behind_parent : bool = false
  
 func _ready():
 	super()
@@ -23,7 +23,7 @@ func _process(delta):
 
 func _start_emit():
 	listen_for_cast = false
-	var object = emited_object.instantiate() as Spawnable
+	var object = spawnable_scene.instantiate() as Spawnable
 	object.source = self
 	object.actor = actor
 	object.on_hit.connect(_on_ability_hit)
@@ -33,6 +33,7 @@ func _start_emit():
 		object.hit_data = hit_listener.generate_effect_data()
 	#object.on_destroy.connect(_end_emit)
 	actor.add_child(object)
+	object.show_behind_parent = show_object_behind_parent
 	object.rotation = actor.global_position.direction_to(actor.get_global_mouse_position()).angle()
 	pass
 

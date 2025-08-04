@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://mmnb7fa8obqh"]
+
+[ext_resource type="Script" uid="uid://csk81q2x4j06s" path="res://Scripts/Combat/ProjectileWeapons/Projectile/Projectile.gd" id="1_r8xpe"]
+[ext_resource type="Texture2D" uid="uid://bjejgkunngclk" path="res://Sprites/Weapons/Bow/Arrow.png" id="2_r8xpe"]
+[ext_resource type="Script" uid="uid://ctvag6dleiceg" path="res://Scripts/Trail2D.gd" id="3_4casv"]
+
+[sub_resource type="Curve" id="Curve_r8xpe"]
+_limits = [0.0, 1.5, 0.0, 1.0]
+_data = [Vector2(0, 1.24538), 0.0, 0.0, 0, 0, Vector2(0.5, 1.00136), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4casv"]
+size = Vector2(250, 100)
+
+[sub_resource type="Curve" id="Curve_egcse"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="SpawnablePiercingArrow" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_r8xpe")
+speed = 900.0
+speed_curve = SubResource("Curve_r8xpe")
+piercing = true
+lifetime = 10.0
+time_active = 10.0
+metadata/_custom_type_script = "uid://csk81q2x4j06s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4casv")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-14, -6)
+scale = Vector2(3.97865, 3.97865)
+texture = ExtResource("2_r8xpe")
+
+[node name="Trail2D" type="Line2D" parent="."]
+width = 25.0
+width_curve = SubResource("Curve_egcse")
+script = ExtResource("3_4casv")
+max_points = 50
+metadata/_custom_type_script = "uid://ctvag6dleiceg"

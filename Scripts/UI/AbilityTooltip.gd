@@ -9,6 +9,7 @@ extends Control
 @onready var ability_description: RichTextLabel = %AbilityDescription
 @onready var stat_name_container: VBoxContainer = %StatNameContainer
 @onready var stat_value_container: VBoxContainer = %StatValueContainer
+@onready var ability_type_label: RichTextLabel = %AbilityTypeLabel
 
 
 
@@ -30,6 +31,11 @@ func initialize_ability_tooltip(ability : Ability):
 		stat_name_container.add_child(stat_label)
 		stat_value_container.add_child(stat_value_label)
 		print("Added tooltip stats")
+	
+	if ability is ActiveAbility:
+		ability_type_label.text = "Active Ability"
+	elif ability is PassiveAbility:
+		ability_type_label.text = "Passive Ability"
 	
 	ability_icon.texture = ability.ability_icon_texture
 	ability_name.text = ability.ability_name

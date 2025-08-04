@@ -27,7 +27,7 @@ required_value = 15.0
 
 [node name="SwordSlashEmit" type="Node2D" node_paths=PackedStringArray("hit_listener", "tooltip_stats")]
 script = ExtResource("1_ellgo")
-emited_object = ExtResource("2_224we")
+spawnable_scene = ExtResource("2_224we")
 input_mode = SubResource("Resource_ngo03")
 hit_listener = NodePath("HitListener")
 required_stat = SubResource("Resource_nt1cn")

@@ -2,8 +2,7 @@ class_name RateStatFormatter
 extends StatFormatter
 
 
-
-func get_formatted_stat_text(stat : Stat) -> String:
+func _format_stat(stat : Stat) -> String:
 	match format_mode:
 		FormatMode.BASE:
 			return str(stat.stat_value) + "/s"
@@ -14,3 +13,4 @@ func get_formatted_stat_text(stat : Stat) -> String:
 			pass
 		_:
 			return str(stat.stat_derived_value) + "/s"
+	pass
