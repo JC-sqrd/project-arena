@@ -2,6 +2,7 @@ class_name ItemBuyInstanceUI
 extends BuyInstanceUI
 
 @export var item_data : ItemData
+var item_scene : PackedScene
 var item : Item
 
 @onready var cost_button: Button = %CostButton
@@ -20,22 +21,21 @@ func _ready():
 	cost_button.pressed.connect(_on_buy_button_pressed)
 	lock_button.pressed.connect(_on_lock_button_pressed)
 	locked_icon.visible = false
-	if item_data != null:
-		#item = item_scene.instantiate() as Item
-		print("EQUIPMENT ICON: " + str(cost_label))
-		item_icon.texture = item_data.item_icon
-		cost_label.text = str(item_data.buy_cost)
-		cost_button.text = str(item_data.buy_cost)
-		item_name_label.text = item_data.item_name
-		item_detail_label.text = item_data.item_detail
+	if item_scene != null:
+		item = item_scene.instantiate() as Item
+		item_icon.texture = item.item_icon
+		cost_label.text = str(item.buy_cost)
+		cost_button.text = str(item.buy_cost)
+		item_name_label.text = item.item_name
+		item_detail_label.text = item.item_detail
 		pass
 	pass
 
 func buy(buyer : Entity):
 	var buyer_gold : Stat = buyer.stat_manager.get_stat("gold") as Stat
-	if buyer_gold.stat_value >= item_data.buy_cost:
-		buyer.item_iventory.add_item(item_data.item_scene.instantiate() as Item)
-		buyer_gold.stat_value -= item_data.buy_cost
+	if buyer_gold.stat_value >= item.buy_cost:
+		buyer.item_iventory.add_item(item)
+		buyer_gold.stat_value -= item.buy_cost
 		queue_free()
 	else:
 		slot_border.modulate = Color.RED

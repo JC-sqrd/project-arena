@@ -24,13 +24,14 @@ metadata/_custom_type_script = "uid://b2flto0wr2pnt"
 [sub_resource type="CircleShape2D" id="CircleShape2D_ktfuy"]
 radius = 500.0
 
-[node name="HeadgearLightningHat" type="Node2D" node_paths=PackedStringArray("tier_manager", "tooltip_stats")]
+[node name="HeadgearLightningHat" type="Node2D" node_paths=PackedStringArray("tier_manager", "passive_ability", "tooltip_stats")]
 script = ExtResource("1_5adsq")
 equipment_name = "Lightning Hat"
 type = 1
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "lightning_hat"
 equipment_icon = ExtResource("2_ktfuy")
+passive_ability = NodePath("SpawnOnAbilityCastArea")
 tooltip_stats = [NodePath("EquipmentBonusStat/Magic")]
 metadata/_custom_type_script = "uid://dnjhdyhsrd60y"
 
@@ -111,6 +112,7 @@ area = NodePath("Area2D")
 hit_listener = NodePath("HitListener")
 look_at_mouse = false
 spawn_on_nearest = false
+ability_name = "Lightning Strike"
 metadata/_custom_type_script = "uid://dhox24fwv011e"
 
 [node name="Area2D" type="Area2D" parent="SpawnOnAbilityCastArea"]

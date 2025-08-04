@@ -24,13 +24,14 @@ metadata/_custom_type_script = "uid://b2flto0wr2pnt"
 [sub_resource type="CircleShape2D" id="CircleShape2D_orxxb"]
 radius = 500.0
 
-[node name="ShoesLightningBoots" type="Node2D" node_paths=PackedStringArray("tier_manager", "tooltip_stats")]
+[node name="ShoesLightningBoots" type="Node2D" node_paths=PackedStringArray("tier_manager", "passive_ability", "tooltip_stats")]
 script = ExtResource("1_mhtjb")
 equipment_name = "Lightning Boots"
 type = 4
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "lightning_boots"
 equipment_icon = ExtResource("2_kcu81")
+passive_ability = NodePath("SpawnOnUtilCastArea")
 tooltip_stats = [NodePath("EquipmentBonusStat/Magic")]
 metadata/_custom_type_script = "uid://bviaakymd1gy8"
 
@@ -110,6 +111,7 @@ max_targets = NodePath("MaxTargets")
 area = NodePath("Area2D")
 hit_listener = NodePath("HitListener")
 look_at_mouse = false
+ability_name = "Lightning Strike"
 metadata/_custom_type_script = "uid://k87nq4771qol"
 
 [node name="Area2D" type="Area2D" parent="SpawnOnUtilCastArea"]

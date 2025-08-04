@@ -37,6 +37,8 @@ func _spawn_start():
 	
 	print(str(targets))
 	
+	var hit_data : Dictionary = hit_listener.generate_effect_data()
+	
 	for i in targets.size():
 		if i >= max_targets:
 			break
@@ -46,7 +48,7 @@ func _spawn_start():
 		homing_spawn.on_hit.connect(_on_ability_hit)
 		homing_spawn.collision_mask = (homing_spawn.collision_mask - actor.collision_layer)
 		if hit_listener != null:
-			homing_spawn.hit_data = hit_listener.generate_effect_data()
+			homing_spawn.hit_data = hit_data
 		homing_spawn.target = targets[i]
 		homing_spawn.global_position = cast_position
 		homing_spawn.rotation = homing_spawn.global_position.direction_to(targets[i].global_position).angle()

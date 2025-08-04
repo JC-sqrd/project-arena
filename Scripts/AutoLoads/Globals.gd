@@ -77,6 +77,8 @@ var common_equipment_pool : Array[PackedScene] = [
 	preload("res://Scenes/Weapons/Magic Gun/weapon_magic_gun.tscn"),
 	preload("res://Scenes/Weapons/Shuriken/weapon_shuriken.tscn"),
 	preload("res://Scenes/Weapons/Swift Sword/Level1/weapon_swift_sword.tscn"),
+	preload("res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn"),
+	preload("res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn")
 ]
 
 var player_modifiers : Dictionary = {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dp288eneestlt"]
+[gd_scene load_steps=46 format=3 uid="uid://dp288eneestlt"]
 
 [ext_resource type="Script" uid="uid://df3mwd5sdgedk" path="res://Scripts/Combat/MeleeWeapons/MeleeWeapon.gd" id="1_5d1jb"]
 [ext_resource type="Texture2D" uid="uid://065wghtxeh6j" path="res://Sprites/Weapons/Swift Sword/SwiftSwordAttack.png" id="2_15j33"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://cp6un5w7sjul2" path="res://Scripts/Ability System/AbilityAnimation/WeaponAbilityAnimatedSprite2D.gd" id="19_5d1jb"]
 [ext_resource type="Script" uid="uid://2vlwp08ancca" path="res://Scripts/StatSystem/Stats/GetActorStatScaler.gd" id="19_yd84k"]
 [ext_resource type="PackedScene" uid="uid://c322tkntieeqb" path="res://Scenes/Abilities/Spawn Abilities/wind_slash_ability.tscn" id="21_15j33"]
+[ext_resource type="Texture2D" uid="uid://kbd0tg28o1sm" path="res://Placeholders/Sprites/WindProjectileIcon.png" id="23_ovpvs"]
 
 [sub_resource type="Resource" id="Resource_15j33"]
 script = ExtResource("2_fmc6s")
@@ -394,6 +395,7 @@ position = Vector2(44, -31)
 max_range = 1.0
 start_cooldown_on = 0
 cast_time = 0.75
+ability_icon_texture = ExtResource("23_ovpvs")
 
 [node name="WeaponSocket" type="Node" parent="."]
 script = ExtResource("17_wogjl")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://c42ua48l5bb27"]
 
 [ext_resource type="Script" uid="uid://42qvy4m6xprb" path="res://Scripts/Ability System/EmitAbility.gd" id="1_qid3k"]
-[ext_resource type="PackedScene" uid="uid://c3cvt2uhjhjhq" path="res://Scenes/Abilities/Emit Abilities/Whirling Chakram/spawnable_chakram_cyclone.tscn" id="2_f1ea2"]
+[ext_resource type="PackedScene" uid="uid://cbcumdencdqr7" path="res://Scenes/Abilities/Emit Abilities/Whirling Chakram/spawnable_whirling_chakram.tscn" id="2_1vthi"]
 [ext_resource type="Script" uid="uid://tuvjl40jf0pm" path="res://Scripts/Ability System/AbilityRequiredStat/AbilityRequiredStat.gd" id="3_ikpuj"]
 [ext_resource type="Script" uid="uid://dm3uuggj1g47y" path="res://Scripts/Combat/HitListener.gd" id="4_f1ea2"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="5_cq37r"]
@@ -17,7 +17,7 @@ metadata/_custom_type_script = "uid://tuvjl40jf0pm"
 
 [node name="AbilityWhirlingChakram" type="Node2D" node_paths=PackedStringArray("hit_listener")]
 script = ExtResource("1_qid3k")
-emited_object = ExtResource("2_f1ea2")
+spawnable_scene = ExtResource("2_1vthi")
 hit_listener = NodePath("HitListener")
 required_stat = SubResource("Resource_4xetk")
 cast_time = 0.1

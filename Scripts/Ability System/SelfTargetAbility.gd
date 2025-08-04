@@ -1,8 +1,6 @@
 class_name SelfTargetAbility
-extends Ability
+extends ActiveAbility
 
-@export var hit_listener : HitListener
-var ability_count : int = 1
 
 func _ready() -> void:
 	super()

@@ -88,7 +88,7 @@ animations = [{
 
 [node name="AbilityFlameBreath" type="Node2D" node_paths=PackedStringArray("hit_listener")]
 script = ExtResource("1_ooi45")
-emited_object = ExtResource("2_cgcej")
+spawnable_scene = ExtResource("2_cgcej")
 hit_listener = NodePath("HitListener")
 required_stat = SubResource("Resource_vq3b8")
 start_cooldown_on = 2

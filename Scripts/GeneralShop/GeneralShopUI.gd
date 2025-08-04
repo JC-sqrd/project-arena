@@ -74,11 +74,11 @@ func restock_shop():
 func stock_items(stock_amount : int):
 	var item_pools : Dictionary = {
 		"common": {
-			"items": Globals.common_item_data_pool,
+			"items": Globals.common_item_pool,
 			"weight": 70
 		},
 		"rare": {
-			"items": Globals.rare_item_data_pool,
+			"items": Globals.rare_item_pool,
 			"weight": 25
 		}
 	}
@@ -88,7 +88,7 @@ func stock_items(stock_amount : int):
 	
 	for i in stock_amount:
 		var roll := randi_range(1, total_weight)
-		var selected_pool : Array[ItemData] 
+		var selected_pool : Array[PackedScene] 
 		var cumulative_weight : float = 0
 		
 		for pool_name in item_pools:
@@ -100,7 +100,7 @@ func stock_items(stock_amount : int):
 		if selected_pool.size() > 0:
 			var random_item = selected_pool[randi_range(0, selected_pool.size() - 1)]
 			var item_card : ItemBuyInstanceUI = item_card_scene.instantiate() as ItemBuyInstanceUI
-			item_card.item_data = random_item
+			item_card.item_scene = random_item
 			item_card.attempt_to_buy.connect(on_item_attempt_to_buy)
 			item_buy_container.add_child(item_card)
 		
@@ -113,7 +113,7 @@ func stock_items(stock_amount : int):
 func stock_equipment(stock_amount : int):
 	var equipment_pools : Dictionary = {
 		"common": {
-			"equipment": Globals.common_equipment_data_pool,
+			"equipment": Globals.common_equipment_pool,
 			"weight": 70
 		}
 	}
@@ -123,7 +123,7 @@ func stock_equipment(stock_amount : int):
 	
 	for i in stock_amount:
 		var roll := randi_range(1, total_weight)
-		var selected_pool : Array[EquipmentData] 
+		var selected_pool : Array[PackedScene] 
 		var cumulative_weight : float = 0
 		
 		for pool_name in equipment_pools:
@@ -135,7 +135,7 @@ func stock_equipment(stock_amount : int):
 		if selected_pool.size() > 0:
 			var random_equipment = selected_pool[randi_range(0, selected_pool.size() - 1)]
 			var equipment_card : EquipmentBuyInstanceUI = equipment_card_scene.instantiate() as EquipmentBuyInstanceUI
-			equipment_card.equipment_data = random_equipment
+			equipment_card.equipment_scene = random_equipment
 			equipment_card.attempt_to_buy.connect(on_item_attempt_to_buy)
 			equipment_buy_container.add_child(equipment_card)
 	
@@ -157,7 +157,7 @@ func restock_items(restock_price : float):
 			if (item_buy as BuyInstanceUI).is_locked:
 				stock_count -= 1
 			else:
-				item_buy.queue_free()
+				(item_buy as BuyInstanceUI).delete_buy_instance()
 		stock_items(stock_count)
 		player.stat_manager.stats.get("gold").stat_value -= restock_price
 		restock_item_price += restock_price
@@ -177,8 +177,7 @@ func restock_equipment(restock_price : float):
 			if (equipment_buy as BuyInstanceUI).is_locked:
 				stock_count -= 1
 			else:
-				(equipment_buy as EquipmentBuyInstanceUI).equipment.queue_free()
-				equipment_buy.queue_free()
+				(equipment_buy as EquipmentBuyInstanceUI).delete_buy_instance()
 		stock_equipment(stock_count)
 		player.stat_manager.stats.get("gold").stat_value -= restock_price
 		restock_equipment_price += restock_price

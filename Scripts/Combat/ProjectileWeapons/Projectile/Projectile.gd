@@ -5,6 +5,7 @@ extends Spawnable
 @onready var sprite_2d = $Sprite2D
 
 @export var speed : float = 600 : set = _set_speed
+@export var pierce_count_stat : Stat 
 @export var speed_curve : Curve = Curve.new()
 @export var max_distance : float = 1000
 @export var piercing : bool = false
@@ -29,6 +30,9 @@ func _ready():
 	set_collision_mask_value(1, true)
 	set_collision_mask_value(2, true)
 	initial_pos = global_position
+	pierce_count = int(pierce_count_stat.stat_derived_value) if pierce_count_stat != null else pierce_count
+	if pierce_count_stat != null:
+		pierce_count_stat.stat_derived_value_changed.connect(_on_pierce_count_stat_changed)
 	pass
 
 func _process(delta):
@@ -88,3 +92,7 @@ func _create_hit_data(entity_hit : Entity) -> Dictionary:
 	hit_data["source"] = self
 	hit_data["actor"] = actor
 	return hit_data
+
+func _on_pierce_count_stat_changed():
+	pierce_count = int(pierce_count_stat.stat_derived_value)
+	pass

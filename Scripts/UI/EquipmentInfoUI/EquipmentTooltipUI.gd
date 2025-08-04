@@ -23,6 +23,11 @@ func initialize_equipment_tooltip(equipment : Equipment):
 		weapon_ability_tooltip.initialize_ability_tooltip(equipment.weapon_ability)
 		tooltip_container.add_child(weapon_ability_tooltip)
 	
+	if equipment.passive_ability != null:
+		var passive_ability_tooltip : AbilityTooltip = ABILITY_TOOLTIP.instantiate() as AbilityTooltip
+		passive_ability_tooltip.initialize_ability_tooltip(equipment.passive_ability)
+		tooltip_container.add_child(passive_ability_tooltip)
+	
 	for stat in equipment.tooltip_stats:
 		var stat_label : Label = Label.new()
 		var stat_value_label : Label = Label.new()

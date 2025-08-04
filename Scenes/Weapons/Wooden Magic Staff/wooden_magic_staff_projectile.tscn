@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://coi8i25buuakq"]
+[gd_scene load_steps=14 format=3 uid="uid://coi8i25buuakq"]
 
 [ext_resource type="Script" uid="uid://csk81q2x4j06s" path="res://Scripts/Combat/ProjectileWeapons/Projectile/Projectile.gd" id="1_es2ou"]
 [ext_resource type="Texture2D" uid="uid://cwj7w1jwnhq7t" path="res://Sprites/Weapons/Wooden Magic Staff/Wooden Magic Staff Projectile.png" id="2_cr2n1"]
 [ext_resource type="Script" uid="uid://y1c1hiwxwmkf" path="res://Scripts/Ability System/Spawnables/SpawnableBehavior/SpawnableHitCounterBehavior.gd" id="3_tvr7o"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="4_tbh4q"]
 [ext_resource type="Script" uid="uid://ctvag6dleiceg" path="res://Scripts/Trail2D.gd" id="5_tbh4q"]
+[ext_resource type="Texture2D" uid="uid://ndwodddhqhm5" path="res://Placeholders/kenney_particle-pack/PNG (Transparent)/light_01.png" id="6_i1d5g"]
 
 [sub_resource type="Curve" id="Curve_tvr7o"]
 _data = [Vector2(0, 0.0435714), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0]
@@ -16,6 +17,30 @@ radius = 25.0
 [sub_resource type="Curve" id="Curve_tbh4q"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_i1d5g"]
+colors = PackedColorArray(0.527627, 0.756209, 0.68279, 1, 6.93083e-06, 0.841908, 0.842454, 1)
+
+[sub_resource type="Curve" id="Curve_i1d5g"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.247145), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7rqcs"]
+curve = SubResource("Curve_i1d5g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7rqcs"]
+particle_flag_disable_z = true
+spread = 180.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 150.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = 100.0
+scale_min = 0.05
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_7rqcs")
 
 [node name="WoodenMagicStaffProjectile" type="Area2D"]
 collision_layer = 0
@@ -47,6 +72,14 @@ metadata/_custom_type_script = "uid://bgka26pbphks7"
 [node name="Trail2D" type="Line2D" parent="."]
 width = 20.0
 width_curve = SubResource("Curve_tbh4q")
+gradient = SubResource("Gradient_i1d5g")
+texture_mode = 1
 script = ExtResource("5_tbh4q")
 max_points = 15
 metadata/_custom_type_script = "uid://ctvag6dleiceg"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 10
+texture = ExtResource("6_i1d5g")
+lifetime = 0.25
+process_material = SubResource("ParticleProcessMaterial_7rqcs")

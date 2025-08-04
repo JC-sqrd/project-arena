@@ -3,6 +3,7 @@ extends BuyInstanceUI
 
 @export var equipment_data : EquipmentData
 var equipment : Equipment
+var equipment_scene : PackedScene
 
 @onready var equipment_name_label: RichTextLabel = %EquipmentNameLabel
 @onready var cost_button: Button = %CostButton
@@ -17,27 +18,27 @@ func _ready():
 	cost_button.pressed.connect(_on_buy_button_pressed)
 	lock_button.pressed.connect(_on_lock_button_pressed)
 	lock_icon.visible = false
-	if equipment_data != null:
+	if equipment_scene != null:
 		#equipment = equipment_data.instantiate() as Equipment
-		equipment_icon.texture = equipment_data.equipment_icon
-		equipment = equipment_data.instantiate_equipment() #equipment_data.equipment_scene.instantiate() as Equipment
+		equipment = equipment_scene.instantiate() as Equipment
+		equipment_icon.texture = equipment.equipment_icon
 		equipment_icon.set_equipment(equipment)
 		#equipment_icon.set_equipment_icon(equipment_data.equipment_icon)
 		#equipment_icon.set_equipment_tier(equipment_data.tier)
-		cost_label.text = str(equipment_data.buy_cost)
-		cost_button.text = str(equipment_data.buy_cost)
-		equipment_name_label.text = equipment_data.equipment_name
+		cost_label.text = str(equipment.buy_cost)
+		cost_button.text = str(equipment.buy_cost)
+		equipment_name_label.text = equipment.equipment_name
 		pass
 	pass
 
 func buy(buyer : Entity):
 	var buyer_gold : Stat = buyer.stat_manager.get_stat("gold") as Stat
-	if buyer_gold.stat_value >= equipment_data.buy_cost:
+	if buyer_gold.stat_value >= equipment.buy_cost:
 		#equipment = equipment_data.equipment_scene.instantiate() as Equipment
 		equipment.actor = buyer
-		equipment.tier = equipment_data.tier
+		equipment.tier = equipment.tier
 		if buyer.equipment_inventory.add_equipment(equipment):
-			buyer_gold.stat_value -= equipment_data.buy_cost
+			buyer_gold.stat_value -= equipment.buy_cost
 			print("Equipment bought!")
 			queue_free()
 		else:

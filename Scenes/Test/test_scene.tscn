@@ -344,7 +344,6 @@ offset_right = 0.5
 grow_horizontal = 2
 
 [node name="GameOverUI" parent="CanvasLayer/Control2" instance=ExtResource("4_050cx")]
-process_mode = 3
 layout_mode = 1
 offset_left = -77.5
 offset_top = -60.5

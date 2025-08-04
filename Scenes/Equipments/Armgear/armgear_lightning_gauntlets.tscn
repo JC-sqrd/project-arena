@@ -24,13 +24,14 @@ metadata/_custom_type_script = "uid://b2flto0wr2pnt"
 [sub_resource type="CircleShape2D" id="CircleShape2D_jxo60"]
 radius = 500.0
 
-[node name="ArmgearLightningGauntlets" type="Node2D" node_paths=PackedStringArray("tier_manager", "tooltip_stats")]
+[node name="ArmgearLightningGauntlets" type="Node2D" node_paths=PackedStringArray("tier_manager", "passive_ability", "tooltip_stats")]
 script = ExtResource("1_hnurb")
 equipment_name = "Lightning Gauntlets"
 type = 3
 tier_manager = NodePath("EquipmentTierManager")
 string_id = "lightning_gauntlets"
 equipment_icon = ExtResource("2_8ace4")
+passive_ability = NodePath("SpawnOnAbilityCastArea")
 tooltip_stats = [NodePath("EquipmentBonusStat/Magic")]
 metadata/_custom_type_script = "uid://cfgh4nylljfr5"
 
@@ -112,6 +113,7 @@ area = NodePath("Area2D")
 hit_listener = NodePath("HitListener")
 look_at_mouse = false
 spawn_on_nearest = false
+ability_name = "Lightning Strike"
 cooldown = 5.0
 metadata/_custom_type_script = "uid://dhox24fwv011e"
 

@@ -3,7 +3,7 @@ extends Control
 
 @export var try_again_button : Button
 @onready var character_select_button: Button = $MarginContainer/VBoxContainer/CharacterSelectButtonContainer/CharacterSelectButton
-const CHARACTER_SELECT_SCENE = preload("res://Scenes/Character Selection Scene/character_select_scene.tscn")
+#const CHARACTER_SELECT_SCENE = preload("res://Scenes/Character Selection Scene/character_select_scene.tscn")
 
 func _ready() -> void:
 	try_again_button.pressed.connect(on_try_again_pressed)
@@ -23,6 +23,7 @@ func on_try_again_pressed():
 	Globals.restart_current_stage()
 	PauseManager.resume_scene_tree()
 	GameState.reset_game_timer()
+	print("Restaring current stage...")
 	pass
 
 func _on_character_select_button_pressed():

@@ -26,5 +26,9 @@ func on_gui_input(event : InputEvent):
 		pass
 	pass
 
+func delete_buy_instance():
+	queue_free()
+	pass
+
 func buy(buyer : Entity):
 	pass

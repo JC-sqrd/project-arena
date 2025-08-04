@@ -67,7 +67,7 @@ func _spawn_start():
 	
 	#######################
 	
-	var spawnable : Spawnable= spawn.instantiate() as Projectile
+	var spawnable : Spawnable = spawn.instantiate() as Projectile
 	
 	
 	spawnable.source = self
