@@ -5,6 +5,8 @@ extends Control
 @export var level_scene : PackedScene
 @onready var character_grid_container: GridContainer = %CharacterGridContainer
 @onready var start_game_button: Button = %StartGameButton
+@onready var character_ability_preview: CharacterAbilityPreviewUI = %CharacterAbilityPreview
+
 
 var current_selected_icon : CharacterSelectIconUI
 var current_stage : Stage
@@ -25,10 +27,14 @@ func _ready():
 
 
 func _on_icon_selected(character_icon : CharacterSelectIconUI):
+	if current_character != null:
+		current_character.queue_free()
 	current_selected_icon = character_icon
+	current_character = current_selected_icon.character_data.character_scene.instantiate() as PlayerCharacter
 	if character_icon.character_data != null:
 		print(character_icon.character_data.character_name)
 	start_game_button.disabled = false
+	character_ability_preview.set_chracter_ability_preview(current_character)
 	print("CHARACTER SELECT SCREEN ICON SELECTED")
 	pass
 
@@ -37,7 +43,7 @@ func _on_start_button_pressed():
 	Globals.current_player_character_data = current_selected_icon.character_data
 	Globals.current_stage = current_stage
 	Globals.current_stage_scene = level_scene
-	current_character = current_selected_icon.character_data.character_scene.instantiate() as PlayerCharacter
+	#current_character = current_selected_icon.character_data.character_scene.instantiate() as PlayerCharacter
 	Globals.player = current_character
 	get_tree().root.add_child(current_stage)
 	current_stage.add_child(current_character)

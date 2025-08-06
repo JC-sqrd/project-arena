@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://y3l4wyvfguee"]
+
+[ext_resource type="Script" uid="uid://7mbnodby0b8r" path="res://Scripts/CharacterSelect/CharacterAbilityPreviewPanel.gd" id="1_oiuon"]
+[ext_resource type="Texture2D" uid="uid://dsgcy2jeaik3y" path="res://Sprites/UI/Slot Border/SlotBorder.png" id="1_wrt5f"]
+
+[node name="PanelContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(500, 600)
+size_flags_horizontal = 3
+script = ExtResource("1_oiuon")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AbilityIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("1_wrt5f")
+expand_mode = 3
+
+[node name="AbilityNameLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "ABILITY NAME"
+
+[node name="AbilityTypeLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "ABILITY NAME"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AbilityDescriptionLabel" type="RichTextLabel" parent="VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "ABILITY DETAIL"

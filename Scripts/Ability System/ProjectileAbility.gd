@@ -8,8 +8,9 @@ extends ActiveAbility
 @export var direction : Vector2
 var cast_position : Vector2
 
+var _projectile_rotation : float = 0
+
 func _ready():
-	#actor = owner
 	super()
 	ability_start.connect(_spawn_start)
 	ability_canceled.connect(_cancel_spawn)
@@ -25,17 +26,19 @@ func _process(delta):
 			actor.can_attack = false
 			actor.can_cast = false
 		actor.queue_redraw()
+		_projectile_rotation = actor.global_position.direction_to(get_global_mouse_position()).angle()
 		cast_data = await get_cast_data()
 	pass
+
 
 func _spawn_start():
 	listen_for_cast = false
 	if actor is PlayerCharacter:
 		get_tree().create_timer(0.1, false, false, false).timeout.connect(func (): actor.can_attack = true)
-		if (actor.get_global_mouse_position() - actor.position).length() >= (max_range):
-			cast_position = actor.position + (actor.get_global_mouse_position() - actor.global_position).normalized() * max_range
-		else:
-			cast_position = actor.get_global_mouse_position()
+		#if (actor.get_global_mouse_position() - actor.position).length() >= (max_range):
+			#cast_position = actor.position + (actor.get_global_mouse_position() - actor.global_position).normalized() * max_range
+		#else:
+			#cast_position = actor.get_global_mouse_position()
 	else:
 		cast_position = actor.global_position
 	
@@ -85,7 +88,7 @@ func _spawn_start():
 	#spawn_rotation = ability.global_position.direction_to(spawn_direction).angle()
 	
 	spawnable.global_position = actor.global_position
-	spawnable.rotation = actor.global_position.direction_to(get_global_mouse_position()).angle()#spawn_rotation
+	spawnable.rotation = _projectile_rotation#actor.global_position.direction_to(cast_position).angle()#spawn_rotation
 	actor.get_tree().root.add_child(spawnable)
 	spawnable.collision_mask = (spawnable.collision_mask - actor.collision_layer)
 	actor.can_cast = true

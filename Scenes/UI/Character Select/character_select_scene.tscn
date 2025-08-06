@@ -1,8 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://cbnrx2xpmgtqk"]
+[gd_scene load_steps=18 format=3 uid="uid://cbnrx2xpmgtqk"]
 
 [ext_resource type="Script" uid="uid://43sjvgqjgyu8" path="res://Scripts/CharacterSelect/CharacterSelectUI.gd" id="1_cwxw3"]
-[ext_resource type="PackedScene" uid="uid://cf13rcs6hgstl" path="res://Scenes/Character Selection Scene/character_select_icon.tscn" id="2_4wiya"]
+[ext_resource type="PackedScene" uid="uid://cf13rcs6hgstl" path="res://Scenes/UI/Character Select/character_select_icon.tscn" id="2_4wiya"]
 [ext_resource type="PackedScene" uid="uid://cu8fhpggbxh6d" path="res://Scenes/Test/test_scene.tscn" id="2_xxipc"]
+[ext_resource type="Script" uid="uid://cl6083xybgfk0" path="res://Scripts/CharacterSelect/CharacterAbilityPreviewUI.gd" id="3_26quq"]
+[ext_resource type="PackedScene" uid="uid://y3l4wyvfguee" path="res://Scenes/UI/Character Select/character_select_character_ability_panel.tscn" id="3_grihp"]
 [ext_resource type="PackedScene" uid="uid://cggb2x36mslpl" path="res://Scenes/Characters/brawler_character.tscn" id="3_rr48u"]
 [ext_resource type="Script" uid="uid://bc6vf4w4ekv4w" path="res://Scripts/Resources/CharacterSelectData/CharacterSelectData.gd" id="4_b8ars"]
 [ext_resource type="Texture2D" uid="uid://bmexg36or4ejj" path="res://Sprites/UI/Character Icons/MaskIcon.png" id="4_xxipc"]
@@ -43,6 +45,7 @@ character_name = "Sentinel"
 metadata/_custom_type_script = "uid://bc6vf4w4ekv4w"
 
 [node name="Control" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,52 +63,77 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -188.0
-offset_top = -42.5
-offset_right = 188.0
-offset_bottom = 42.5
+offset_left = -450.0
+offset_top = -344.5
+offset_right = 450.0
+offset_bottom = 344.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CharacterGridContainer" type="GridContainer" parent="Panel/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Panel/VBoxContainer2"]
+custom_minimum_size = Vector2(1800, 600)
+layout_mode = 2
+
+[node name="CharacterAbilityPreview" type="HBoxContainer" parent="Panel/VBoxContainer2/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_26quq")
+
+[node name="PassiveAbilityPreviewPanel" parent="Panel/VBoxContainer2/PanelContainer/CharacterAbilityPreview" instance=ExtResource("3_grihp")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PrimaryAbilityPreviewPanel" parent="Panel/VBoxContainer2/PanelContainer/CharacterAbilityPreview" instance=ExtResource("3_grihp")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="UtilityAbilityPreviewPanel" parent="Panel/VBoxContainer2/PanelContainer/CharacterAbilityPreview" instance=ExtResource("3_grihp")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CharacterGridContainer" type="GridContainer" parent="Panel/VBoxContainer2/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 columns = 10
 
-[node name="CharacterSelectIcon" parent="Panel/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
+[node name="CharacterSelectIcon" parent="Panel/VBoxContainer2/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
 layout_mode = 2
 character_data = SubResource("Resource_b8ars")
 
-[node name="CharacterIcon" parent="Panel/VBoxContainer/CharacterGridContainer/CharacterSelectIcon/PanelContainer" index="0"]
+[node name="CharacterIcon" parent="Panel/VBoxContainer2/VBoxContainer/CharacterGridContainer/CharacterSelectIcon/PanelContainer" index="0"]
 texture = ExtResource("4_xxipc")
 
-[node name="CharacterSelectIcon2" parent="Panel/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
+[node name="CharacterSelectIcon2" parent="Panel/VBoxContainer2/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
 layout_mode = 2
 character_data = SubResource("Resource_x3cli")
 
-[node name="CharacterSelectIcon3" parent="Panel/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
+[node name="CharacterSelectIcon3" parent="Panel/VBoxContainer2/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
 layout_mode = 2
 character_data = SubResource("Resource_flssm")
 
-[node name="CharacterSelectIcon4" parent="Panel/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
+[node name="CharacterSelectIcon4" parent="Panel/VBoxContainer2/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
 layout_mode = 2
 character_data = SubResource("Resource_tkc3w")
 
-[node name="CharacterSelectIcon5" parent="Panel/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
+[node name="CharacterSelectIcon5" parent="Panel/VBoxContainer2/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
 layout_mode = 2
 character_data = SubResource("Resource_xxipc")
 
-[node name="StartGameButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="StartGameButton" type="Button" parent="Panel/VBoxContainer2/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "START GAME"
 
-[editable path="Panel/VBoxContainer/CharacterGridContainer/CharacterSelectIcon"]
+[editable path="Panel/VBoxContainer2/VBoxContainer/CharacterGridContainer/CharacterSelectIcon"]

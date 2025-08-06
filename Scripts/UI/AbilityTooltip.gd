@@ -25,6 +25,8 @@ func initialize_ability_tooltip(ability : Ability):
 		stat_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 		stat_value_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 		
+		stat_label.modulate = Color.GRAY
+		
 		stat_label.text = stat.name 
 		stat_value_label.text = stat.formatter.get_formatted_stat_text(stat)#str(stat.stat_derived_value)
 		

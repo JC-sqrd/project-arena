@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ckkbe1bgata60"]
+[gd_scene load_steps=18 format=3 uid="uid://ckkbe1bgata60"]
 
 [ext_resource type="Script" uid="uid://bviaakymd1gy8" path="res://Scripts/Combat/Equipment/Torso/Torso.gd" id="1_mhtjb"]
 [ext_resource type="Texture2D" uid="uid://b1xkpvr4tkxc7" path="res://Sprites/Shoes/Lightning Shoes/lightning_shoes_placeholder.png" id="2_kcu81"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://bjpxplndvkee" path="res://Scripts/StatSystem/Stats/EquipmentBonusStat.gd" id="7_dfm6u"]
 [ext_resource type="Script" uid="uid://b2flto0wr2pnt" path="res://Scripts/StatSystem/UI/StatFormatter.gd" id="9_loutn"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="10_hsy0h"]
+[ext_resource type="Texture2D" uid="uid://b8ejtr0bbdpox" path="res://Sprites/Ability Icons/Lightning Strike/Lightning Strike.png" id="12_i2c2b"]
 
 [sub_resource type="Resource" id="Resource_i2c2b"]
 script = ExtResource("9_loutn")
@@ -104,7 +105,7 @@ stat_value = 10.0
 formatter = SubResource("Resource_i2c2b")
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
-[node name="SpawnOnUtilCastArea" type="Node2D" parent="." node_paths=PackedStringArray("max_targets", "area", "hit_listener")]
+[node name="SpawnOnUtilCastArea" type="Node2D" parent="." node_paths=PackedStringArray("max_targets", "area", "hit_listener", "tooltip_stats")]
 script = ExtResource("3_4rvsl")
 spawn_scene = ExtResource("5_1t711")
 max_targets = NodePath("MaxTargets")
@@ -112,6 +113,8 @@ area = NodePath("Area2D")
 hit_listener = NodePath("HitListener")
 look_at_mouse = false
 ability_name = "Lightning Strike"
+ability_icon_texture = ExtResource("12_i2c2b")
+tooltip_stats = [NodePath("MaxTargets")]
 metadata/_custom_type_script = "uid://k87nq4771qol"
 
 [node name="Area2D" type="Area2D" parent="SpawnOnUtilCastArea"]

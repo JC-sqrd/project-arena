@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dscnrnivus7jc"]
+[gd_scene load_steps=18 format=3 uid="uid://dscnrnivus7jc"]
 
 [ext_resource type="Script" uid="uid://cfgh4nylljfr5" path="res://Scripts/Combat/Equipment/Armgear/Armgear.gd" id="1_hnurb"]
 [ext_resource type="Texture2D" uid="uid://kjerslv0ofrq" path="res://Sprites/Armgear/Lightning Gauntlets/fc2170.png" id="2_8ace4"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://b2flto0wr2pnt" path="res://Scripts/StatSystem/UI/StatFormatter.gd" id="8_mcbip"]
 [ext_resource type="Script" uid="uid://c8sj8b1npavnd" path="res://Scripts/Combat/CombatEffects/DamageEffect.gd" id="8_yvgq3"]
 [ext_resource type="Script" uid="uid://cbdnn38awoh2q" path="res://Scripts/StatSystem/Stats/GetActorStatAdder.gd" id="9_utr78"]
+[ext_resource type="Texture2D" uid="uid://b8ejtr0bbdpox" path="res://Sprites/Ability Icons/Lightning Strike/Lightning Strike.png" id="12_yvgq3"]
 
 [sub_resource type="Resource" id="Resource_yvgq3"]
 script = ExtResource("8_mcbip")
@@ -104,7 +105,7 @@ script = ExtResource("4_0i7bn")
 passive_ability = NodePath("../SpawnOnAbilityCastArea")
 metadata/_custom_type_script = "uid://bvj2nh3d8upjg"
 
-[node name="SpawnOnAbilityCastArea" type="Node2D" parent="." node_paths=PackedStringArray("max_targets", "area", "hit_listener")]
+[node name="SpawnOnAbilityCastArea" type="Node2D" parent="." node_paths=PackedStringArray("max_targets", "area", "hit_listener", "tooltip_stats")]
 script = ExtResource("5_8ag46")
 spawn_on = 2
 spawn_scene = ExtResource("6_8ace4")
@@ -115,6 +116,8 @@ look_at_mouse = false
 spawn_on_nearest = false
 ability_name = "Lightning Strike"
 cooldown = 5.0
+ability_icon_texture = ExtResource("12_yvgq3")
+tooltip_stats = [NodePath("MaxTargets")]
 metadata/_custom_type_script = "uid://dhox24fwv011e"
 
 [node name="Area2D" type="Area2D" parent="SpawnOnAbilityCastArea"]

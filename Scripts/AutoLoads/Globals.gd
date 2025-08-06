@@ -81,6 +81,12 @@ var common_equipment_pool : Array[PackedScene] = [
 	preload("res://Scenes/Weapons/Wooden Magic Staff/weapon_wooden_magic_staff.tscn")
 ]
 
+var rare_equipment_pool : Array[PackedScene] = [
+	preload("res://Scenes/Equipments/Shoes/shoes_lightning_boots.tscn"),
+	preload("res://Scenes/Equipments/Head Gears/Lightning Hat/headgear_lightning_hat.tscn"),
+	preload("res://Scenes/Equipments/Armgear/armgear_lightning_gauntlets.tscn")
+]
+
 var player_modifiers : Dictionary = {
 	
 }

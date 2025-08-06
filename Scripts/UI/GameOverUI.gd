@@ -1,8 +1,10 @@
 class_name GameOverUI
 extends Control
 
-@export var try_again_button : Button
-@onready var character_select_button: Button = $MarginContainer/VBoxContainer/CharacterSelectButtonContainer/CharacterSelectButton
+@onready var try_again_button: Button = %TryAgainButton
+@onready var character_select_button: Button = %CharacterSelectButton
+@onready var quit_button: Button = %QuitButton
+
 #const CHARACTER_SELECT_SCENE = preload("res://Scenes/Character Selection Scene/character_select_scene.tscn")
 
 func _ready() -> void:
@@ -31,7 +33,9 @@ func _on_character_select_button_pressed():
 	#Globals.character_select_screen.visible = true
 	#Globals.character_select_screen._ready()
 	#get_tree().change_scene_to_packed(character_select_scene)
+	print("Go to character select scene")
 	Globals.clear_2D_nodes()
-	get_tree().change_scene_to_file("res://Scenes/Character Selection Scene/character_select_scene.tscn")
+	get_tree().change_scene_to_file("res://Scenes/UI/Character Select/character_select_scene.tscn")
+	PauseManager.resume_scene_tree()
 	#get_tree().change_scene_to_packed(CHARACTER_SELECT_SCENE)
 	pass

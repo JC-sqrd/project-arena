@@ -115,6 +115,10 @@ func stock_equipment(stock_amount : int):
 		"common": {
 			"equipment": Globals.common_equipment_pool,
 			"weight": 70
+		},
+		"rare": {
+			"equipment": Globals.rare_equipment_pool,
+			"weight": 25
 		}
 	}
 	var total_weight : float = 0

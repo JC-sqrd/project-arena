@@ -29,7 +29,7 @@ func _format_prefix(stat : Stat) -> String:
 		FormatPrefix.ADDITIVE:
 			return "+"
 		FormatPrefix.SUBTRACTIVE:
-			return "-"
+			return ""
 		_:
 			return ""
 
