@@ -53,6 +53,7 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 
 [node name="EquipmentIcon" type="TextureRect" parent="SlotBorder/MarginContainer"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 expand_mode = 3

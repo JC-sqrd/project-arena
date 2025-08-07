@@ -49,10 +49,15 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="EquipmentInventorySlotIcon" parent="SlotBorder/MarginContainer" instance=ExtResource("3_5yp35")]
-layout_mode = 2
-
-[node name="EquipmentIcon" type="TextureRect" parent="SlotBorder/MarginContainer"]
-visible = false
+[node name="BackgroundIcon" type="TextureRect" parent="SlotBorder/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 expand_mode = 3
+
+[node name="EquipmentIcon" type="TextureRect" parent="SlotBorder/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+expand_mode = 3
+
+[node name="EquipmentInventorySlotIcon" parent="SlotBorder/MarginContainer" instance=ExtResource("3_5yp35")]
+layout_mode = 2

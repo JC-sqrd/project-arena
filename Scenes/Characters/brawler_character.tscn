@@ -35,6 +35,7 @@ tier = 4
 [node name="FireGrimoire2" parent="EquipmentInventory" index="3" instance=ExtResource("6_3yh4f")]
 
 [node name="WeaponChakram" parent="EquipmentInventory" index="4" instance=ExtResource("7_ub57k")]
+tier = 4
 
 [node name="HeadgearLightningHat" parent="EquipmentInventory" index="5" instance=ExtResource("8_mtotw")]
 tier = 4
@@ -64,6 +65,7 @@ bonus_stat = NodePath("BonusAgility")
 bonus_stat_time = NodePath("StatTime")
 stat_id = "agility"
 is_percentage = true
+ability_description = "On Primary Ability Cast: gain 50% of your AGILITY as BONUS AGILITY that decays over 5 seconds."
 ability_icon_texture = ExtResource("12_1n4dn")
 metadata/_custom_type_script = "uid://ci6lj2tooi02"
 
@@ -111,7 +113,7 @@ position = Vector2(17, 0)
 [node name="Agility" parent="Stats" index="3"]
 stat_value = 20.0
 
-[node name="MaxHealth" parent="Stats" index="12"]
+[node name="MaxHealth" parent="Stats" index="14"]
 stat_value = 40.0
 
 [node name="EntityHitParticle" parent="." index="33" node_paths=PackedStringArray("hit_particle")]

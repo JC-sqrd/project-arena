@@ -13,6 +13,9 @@ func _ready():
 		if child is EffectCheck:
 			bonus_value_checks.append(child)
 			condition_checks.append(child.generate_bonus_value_condition())
+	force = force if force_stat == null else force_stat.stat_derived_value 
+	if force_stat != null:
+		force_stat.stat_derived_value_changed.connect(_on_force_stat_changed)
 	pass
 
 func get_effect_key() -> Variant:
@@ -31,4 +34,8 @@ func get_effect_value() -> KnockbackEffectData:
 		#pass
 
 func get_force_value() -> float:
-	return force_stat.stat_derived_value if force_stat != null else 0
+	return force_stat.stat_derived_value if force_stat != null else force
+
+func _on_force_stat_changed():
+	force = force_stat.stat_derived_value
+	pass

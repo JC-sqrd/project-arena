@@ -5,7 +5,7 @@ enum SlotType {INVENTORY, EQUIP, DISMANTLE}
 
 var equipment : Equipment : set = set_equipment
 @export var slot_type : SlotType
-@onready var equipment_icon: TextureRect = $SlotBorder/MarginContainer/EquipmentIcon
+@onready var equipment_icon: TextureRect = %EquipmentIcon
 @onready var equipment_inventory_slot_icon: EquipmentInventorySlotIcon = $SlotBorder/MarginContainer/EquipmentInventorySlotIcon
 @onready var slot_border: TextureRect = $SlotBorder
 

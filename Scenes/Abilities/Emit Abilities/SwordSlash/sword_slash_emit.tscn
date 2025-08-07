@@ -65,9 +65,15 @@ scaling_ratio = -0.25
 distance = 400.0
 greater_than = true
 
-[node name="Knockback" type="Node" parent="HitListener"]
+[node name="Knockback" type="Node" parent="HitListener" node_paths=PackedStringArray("force_stat")]
 script = ExtResource("8_jbedx")
 force = 800.0
+force_stat = NodePath("KnockbackForce")
+
+[node name="KnockbackForce" type="Node" parent="HitListener/Knockback"]
+script = ExtResource("3_ry3wr")
+stat_value = 800.0
+metadata/_custom_type_script = "uid://bgka26pbphks7"
 
 [node name="OnHitEffect" type="Node" parent="HitListener"]
 script = ExtResource("9_1s2pk")

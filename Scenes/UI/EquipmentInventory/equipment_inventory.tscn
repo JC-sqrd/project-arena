@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bba116t3m1ua7"]
+[gd_scene load_steps=16 format=3 uid="uid://bba116t3m1ua7"]
 
 [ext_resource type="Script" uid="uid://w55biq6u1q0c" path="res://Scripts/UI/EquipmentInventory/EquipmentInventoryManager.gd" id="1_ondaa"]
 [ext_resource type="Texture2D" uid="uid://b28wwbume1cgm" path="res://Sprites/UI/Panel Container Texture/PanelTexture.png" id="2_eqg4x"]
@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dk5djorkaau4" path="res://Sprites/UI/Panel Container Texture/UI Panel Body.png" id="2_orwl2"]
 [ext_resource type="Texture2D" uid="uid://cdgcflcxvv4w" path="res://Sprites/UI/Panel Container Texture/UI Tooltip Header Pane.png" id="2_uxrbx"]
 [ext_resource type="PackedScene" uid="uid://cp0ris0vgjbam" path="res://Scenes/UI/EquipmentInventory/equipment_inventory_dismantle_slot.tscn" id="3_kmrtb"]
+[ext_resource type="Texture2D" uid="uid://in405260nqyt" path="res://Sprites/Equipment Equip Icons/Main Weapon Equipment Icon.png" id="7_jblag"]
+[ext_resource type="Texture2D" uid="uid://fr4nqk4g84cy" path="res://Sprites/Equipment Equip Icons/Headgear Equipment Icon.png" id="8_dqdde"]
+[ext_resource type="Texture2D" uid="uid://6k3wq6pe4a73" path="res://Sprites/Equipment Equip Icons/Torso Equipment Icon.png" id="9_6pdym"]
+[ext_resource type="Texture2D" uid="uid://olsw0s5oj5ab" path="res://Sprites/Equipment Equip Icons/Armgear Equipment Icon.png" id="10_ubga3"]
+[ext_resource type="Texture2D" uid="uid://dm8wcy0ciluha" path="res://Sprites/Equipment Equip Icons/Shoes Equipment Icon.png" id="11_p4m58"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3cdy4"]
 texture = ExtResource("2_uxrbx")
@@ -125,30 +130,36 @@ layout_mode = 2
 [node name="WeaponEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
 unique_name_in_owner = true
 layout_mode = 2
+background_icon_texture = ExtResource("7_jblag")
 
 [node name="HeadgearEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
 unique_name_in_owner = true
 layout_mode = 2
 equip_type = 1
+background_icon_texture = ExtResource("8_dqdde")
 
 [node name="TorsoEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
 unique_name_in_owner = true
 layout_mode = 2
 equip_type = 2
+background_icon_texture = ExtResource("9_6pdym")
 
 [node name="ArmgearEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
 unique_name_in_owner = true
 layout_mode = 2
 equip_type = 3
+background_icon_texture = ExtResource("10_ubga3")
 
 [node name="ShoesEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
 unique_name_in_owner = true
 layout_mode = 2
 equip_type = 4
+background_icon_texture = ExtResource("11_p4m58")
 
 [node name="OffhandEquipSlot" parent="EquippedSlots/MarginContainer/VBoxContainer" instance=ExtResource("2_ondaa")]
 unique_name_in_owner = true
 layout_mode = 2
+background_icon_texture = ExtResource("7_jblag")
 
 [node name="_FloatingIcon" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(100, 100)

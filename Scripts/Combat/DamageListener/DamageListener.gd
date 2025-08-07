@@ -35,16 +35,6 @@ func _ready():
 			modifiers.append(child)
 	pass
 
-#func apply_mitigation_effects(damage_data : Dictionary) -> float:
-	#var post_mitigated_damage : float = calculate_post_mitigated_damage(damage_data) * calculate_damage_multiplier()
-	#apply_modifiers(damage_data)
-	#reset_damage_multiplier()
-	#if damage_data["damage_type"] as Enums.DamageType != Enums.DamageType.TRUE and (damage_data.has("blocked") and damage_data["blocked"] as bool):
-		#damage_blocked.emit()
-		#return 0
-	#damage_data["blocked"] = false
-	#damage_data["damage"] = floorf(post_mitigated_damage)
-	#return _apply_damage(damage_data)
 
 func apply_mitigation_effects(damage_data : DamageEffectData) -> float:
 	incoming_damage.emit(damage_data)
@@ -58,23 +48,6 @@ func apply_mitigation_effects(damage_data : DamageEffectData) -> float:
 	damage_data["blocked"] = false
 	damage_data["damage"] = floorf(post_mitigated_damage)
 	return _apply_damage(damage_data)
-
-#func calculate_post_mitigated_damage(damage_data : Dictionary) -> float:
-	#var post_mitigated_damage = damage_data["damage"]
-	#var source : Node = damage_data["source"]
-	#var type : Enums.DamageType = damage_data["damage_type"]
-	#var mitigation_percentage : float = 0
-	#var mitigation : float = 0
-	#for mitigation_effect in mitigation_effects:
-		#mitigation_percentage = mitigation_effect.calculate_mitigation_percentage(damage_data)
-		## ** for debug purposes
-		#mitigation += mitigation_effect.calculate_mitigation_percentage(damage_data)
-		#post_mitigated_damage *= mitigation_percentage
-	#if damage_data.has("critical"):
-		#if damage_data["critical"] == true:
-			#return post_mitigated_damage * 2
-	#return post_mitigated_damage
-	#pass
 
 func calculate_post_mitigated_damage(damage_data : DamageEffectData) -> float:
 	var post_mitigated_damage = damage_data.damage
@@ -136,6 +109,7 @@ func _apply_damage(damage_data : DamageEffectData) -> float:
 	if (health_manager.current_health.stat_derived_value - damage) <= 0:
 		var leftover_health = health_manager.current_health.stat_derived_value
 		health_manager.remove_current_health(leftover_health)
+		damage_data.damage = leftover_health
 		damage = leftover_health
 	else:
 		health_manager.remove_current_health(damage)
@@ -148,21 +122,3 @@ func _apply_damage(damage_data : DamageEffectData) -> float:
 	damage_applied.emit()
 	return damage
 	pass
-
-#func _apply_damage(damage_data : Dictionary) -> float:
-	#var damage = damage_data.get("damage")
-	#if (health.stat_derived_value - damage) <= 0:
-		#var leftover_health = health.stat_derived_value
-		#health.stat_derived_value -= leftover_health
-		#damage = leftover_health
-	#else:
-		#health.stat_derived_value -= damage
-	#
-	#if health.stat_derived_value <= 0:
-		#(damage_data["target"] as Entity).slain.emit(damage_data["actor"])
-		#if damage_data["actor"] != null:
-			#(damage_data["actor"] as Entity).slayed.emit(damage_data["target"])
-		#(damage_data["target"] as Entity).die()
-	#damage_applied.emit()
-	#return damage
-	#pass

@@ -9,7 +9,14 @@ extends Projectile
 var return_hit_data : Dictionary
 var returning : bool = false
 
+var return_distance_threshold : float = 10
+
 signal returned_to_actor()
+
+func _ready() -> void:
+	super()
+	return_distance_threshold = 10 * (return_speed / 1000)
+	return_distance_threshold = maxf(return_distance_threshold, 50)
 
 func _physics_process(delta):
 	if actor != null:
@@ -28,7 +35,7 @@ func _physics_process(delta):
 			motion = global_position.direction_to(actor.global_position) * delta * (return_speed * return_curve.sample(current_distance/max_distance))
 			position += motion
 		
-		if global_position.distance_to(actor.global_position) <= 10 and returning:
+		if global_position.distance_to(actor.global_position) <= return_distance_threshold and returning:
 			returned_to_actor.emit()
 			queue_free()
 			pass

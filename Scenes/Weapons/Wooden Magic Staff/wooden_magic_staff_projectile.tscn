@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://coi8i25buuakq"]
+[gd_scene load_steps=16 format=3 uid="uid://coi8i25buuakq"]
 
 [ext_resource type="Script" uid="uid://csk81q2x4j06s" path="res://Scripts/Combat/ProjectileWeapons/Projectile/Projectile.gd" id="1_es2ou"]
 [ext_resource type="Texture2D" uid="uid://cwj7w1jwnhq7t" path="res://Sprites/Weapons/Wooden Magic Staff/Wooden Magic Staff Projectile.png" id="2_cr2n1"]
@@ -21,6 +21,13 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_i1d5g"]
 colors = PackedColorArray(0.527627, 0.756209, 0.68279, 1, 6.93083e-06, 0.841908, 0.842454, 1)
 
+[sub_resource type="Gradient" id="Gradient_7rqcs"]
+offsets = PackedFloat32Array(0, 0.538793, 1)
+colors = PackedColorArray(0.521569, 0.968627, 0.968627, 1, 0.521569, 0.968627, 0.968627, 1, 1, 1, 1, 0.266667)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_iwuum"]
+gradient = SubResource("Gradient_7rqcs")
+
 [sub_resource type="Curve" id="Curve_i1d5g"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.247145), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -41,6 +48,7 @@ radial_accel_max = 100.0
 scale_min = 0.05
 scale_max = 0.05
 scale_curve = SubResource("CurveTexture_7rqcs")
+color_ramp = SubResource("GradientTexture1D_iwuum")
 
 [node name="WoodenMagicStaffProjectile" type="Area2D"]
 collision_layer = 0

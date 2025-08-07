@@ -350,6 +350,29 @@ script = ExtResource("23_gbr3h")
 stat_name = "focus"
 metadata/_custom_type_script = "uid://bgka26pbphks7"
 
+[node name="MeleeDamage" type="Node" parent="Stats" node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("24_raiax")
+a_stat = NodePath("../BaseMeleeDamage")
+b_stat = NodePath("50PercentxStrength")
+stat_name = "melee_damage"
+metadata/_custom_type_script = "uid://dqjgy52bq0foh"
+
+[node name="50PercentxStrength" type="Node" parent="Stats/MeleeDamage" node_paths=PackedStringArray("a_stat", "b_stat")]
+script = ExtResource("24_52ran")
+a_stat = NodePath("../../Focus")
+b_stat = NodePath("../50Percent")
+metadata/_custom_type_script = "uid://d35h5o2rfotvj"
+
+[node name="50Percent" type="Node" parent="Stats/MeleeDamage"]
+script = ExtResource("23_gbr3h")
+stat_value = 0.5
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
+[node name="BaseMeleeDamage" type="Node" parent="Stats"]
+script = ExtResource("23_gbr3h")
+stat_name = "base_melee_damage"
+metadata/_custom_type_script = "uid://bgka26pbphks7"
+
 [node name="CooldownReduction" type="Node" parent="Stats" node_paths=PackedStringArray("a_stat", "b_stat")]
 script = ExtResource("24_raiax")
 a_stat = NodePath("../BaseCooldownReduction")
@@ -453,6 +476,7 @@ metadata/_custom_type_script = "uid://bgka26pbphks7"
 [node name="Health" type="Node" parent="Stats"]
 script = ExtResource("23_gbr3h")
 stat_name = "current_health"
+can_be_negative = false
 
 [node name="Shield" type="Node" parent="Stats"]
 script = ExtResource("23_gbr3h")
@@ -638,7 +662,7 @@ size_flags_horizontal = 3
 tint_progress = Color(0.66, 0.1056, 0.1056, 1)
 health_manager = NodePath("../../../../../../../../HealthManager")
 
-[node name="UnderHealthBar" parent="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/HealthBarPanel/HealthBar" index="2"]
+[node name="UnderHealthBar" parent="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/HealthBarPanel/HealthBar" index="3"]
 tint_progress = Color(1, 0.672, 0.18, 1)
 
 [node name="ManaBarPanel" type="PanelContainer" parent="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]

@@ -25,6 +25,8 @@ func enable_ability(actor : Entity):
 
 func disable_ability():
 	(self.actor as PlayerCharacter).utility_ability.ability.ability_casted.disconnect(_on_util_casted)
+	area.body_entered.disconnect(_on_body_entered)
+	area.body_exited.disconnect(_on_body_exited)
 	super()
 	hittable_entities.clear()
 	pass

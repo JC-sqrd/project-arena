@@ -8,17 +8,19 @@ var ability_container : AbilityContainer
 var ability : Ability
 var ability_icon_texture : Texture2D
 
-@onready var icon_texture_rect: TextureRect = $IconTextureRect
-@onready var ability_count_label: Label = $TextureRect/AbilityCountLabel
-@onready var key_label: Label = $IconTextureRect/KeyLabel
-@onready var cooldown_progress_bar: TextureProgressBar = $IconTextureRect/CooldownProgressBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+@onready var icon_texture_rect: TextureRect = %IconTextureRect
+@onready var ability_count_label: Label = %AbilityCountLabel
+@onready var key_label: Label = %KeyLabel
+@onready var cooldown_progress_bar: TextureProgressBar = %CooldownProgressBar
+@onready var cooldown_label: Label = %CooldownLabel
 
 const ABILITY_TOOLTIP = preload("res://Scenes/UI/AbilityIcons/ability_tooltip.tscn")
 
 
 var cooldown_time : float = 0
-var cooldown_time_counter : float = 0
+var cooldown_time_counter : float = 0 : set = set_cooldown_time_counter
 
 
 func _ready():
@@ -32,6 +34,7 @@ func _ready():
 		#if key_action is InputEventKey:
 			#var key_string = OS.get_keycode_string(key_action.physical_keycode)
 			#ability_key_label.text = str(key_string)
+	cooldown_label.visible = false
 	pass
 
 
@@ -85,21 +88,40 @@ func connect_signals():
 
 
 func _on_ability_cooldown_start(cooldown : float):
+	cooldown_time_counter = cooldown
+	cooldown_label.visible = true
+	cooldown_label.text = str(ceilf(cooldown))
 	var tween : Tween = create_tween()
+	var label_tween : Tween = create_tween()
 	animation_player.stop()
 	animation_player.play("ability_casted_anim")
 	cooldown_progress_bar.value = cooldown_progress_bar.max_value
+	label_tween.step_finished.connect(_on_cooldown_tween_step_finished)
+	label_tween.tween_property(self, "cooldown_time_counter", 0, cooldown)
 	tween.tween_property(cooldown_progress_bar, "value", 0, cooldown)
 	pass
 
 func _on_ability_cooldown_end():
+	cooldown_label.visible = false
 	cooldown_progress_bar.value = 0
 	animation_player.stop()
 	animation_player.play("border_highlight_anim")
 	pass
 
+func _on_cooldown_tween_step_finished(index : int):
+	print("TWEEN STEP FINISHED")
+	cooldown_label.text = str(ceilf(cooldown_time_counter))
+	pass
 
 func _make_custom_tooltip(for_text: String) -> Object:
 	var ability_tooltip : AbilityTooltip = ABILITY_TOOLTIP.instantiate() as AbilityTooltip
 	ability_tooltip.initialize_ability_tooltip(ability)
 	return ability_tooltip
+
+func set_cooldown_time_counter(new_value : float):
+	cooldown_time_counter = new_value
+	if new_value < 0.5:
+		cooldown_label.text = "%.2f" % new_value 
+	else:
+		cooldown_label.text = str(ceilf(new_value))
+	pass

@@ -49,7 +49,7 @@ func _ready():
 			max_health.stat_derived_value_changed.connect(_on_max_health_changed)
 			current_health_value_changed.emit(max_health.stat_derived_value, max_health.stat_derived_value)
 			current_shield.stat_value = max_shield.stat_derived_value
-			current_shield.stat_derived_value_changed.connect(_on_current_shiled_changed)
+			current_shield.stat_derived_value_changed.connect(_on_current_shield_changed)
 			pass
 	)
 
@@ -79,11 +79,13 @@ func add_current_health(health : float):
 	pass
 
 func remove_current_health(health : float):
-	var leftover_damage : float = 0
+	#var leftover_damage : float = 0
 	if current_shield.stat_derived_value > 0:
 		current_shield.stat_derived_value -= health
+		current_shield.stat_value -= health
 	else:
 		current_health.stat_derived_value -= health
+		current_health.stat_value -= health
 	_evaluate_health()
 	pass
 
@@ -125,7 +127,7 @@ func _on_max_health_changed():
 	_evaluate_health()
 	pass
 
-func _on_current_shiled_changed():
+func _on_current_shield_changed():
 	current_shield_value_changed.emit(current_shield.stat_derived_value, max_shield.stat_derived_value)
 	pass
 

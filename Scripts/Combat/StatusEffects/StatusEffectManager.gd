@@ -79,7 +79,9 @@ func has_status_effect_id(id : String) -> bool:
 
 func get_status_effect_by_id(id : String) -> StatusEffect:
 	for status_effect in status_effects:
-		if status_effect.id == id:
+		if status_effect == null:
+			return null
+		elif status_effect.id == id:
 			return status_effect
 	return null
 

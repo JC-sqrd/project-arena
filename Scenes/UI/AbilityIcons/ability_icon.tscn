@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c011dofai72u5"]
+[gd_scene load_steps=19 format=3 uid="uid://c011dofai72u5"]
 
 [ext_resource type="Script" uid="uid://q46jnq6uw7yj" path="res://Scripts/UI/AbilityIconUI.gd" id="1_bksv6"]
 [ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="2_ef6yj"]
@@ -14,6 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://dk5q48o3q1khx" path="res://Sprites/UI/Slot Border/SlotBorderHighlightAnimation/SlotBorder9.png" id="12_j3q6t"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_520bh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6je5m"]
+font_size = 26
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_3d3i7"]
 length = 0.001
@@ -162,6 +167,7 @@ script = ExtResource("1_bksv6")
 default_icon = ExtResource("2_ef6yj")
 
 [node name="IconTextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
 offset_right = 50.0
@@ -171,6 +177,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="AbilityCountLabel" type="Label" parent="IconTextureRect"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -182,6 +189,7 @@ text = "1"
 horizontal_alignment = 2
 
 [node name="KeyLabel" type="Label" parent="IconTextureRect"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -195,6 +203,7 @@ grow_vertical = 0
 text = "Shift"
 
 [node name="CooldownProgressBar" type="TextureProgressBar" parent="IconTextureRect"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -204,7 +213,25 @@ grow_vertical = 2
 fill_mode = 5
 nine_patch_stretch = true
 texture_progress = SubResource("CanvasTexture_520bh")
-tint_progress = Color(0.203922, 0.356863, 0.831373, 0.709804)
+tint_progress = Color(0.145098, 0.2, 0.72549, 0.705882)
+
+[node name="CooldownLabel" type="Label" parent="IconTextureRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "10"
+label_settings = SubResource("LabelSettings_6je5m")
+horizontal_alignment = 1
 
 [node name="IconHighlight" type="ColorRect" parent="IconTextureRect"]
 visible = false

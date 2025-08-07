@@ -109,6 +109,18 @@ stat = NodePath("../../../ThrowAmount")
 new_stat_value = 4.0
 metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
 
+[node name="ModifyEquipmentStat4" type="Node" parent="EquipmentTierManager/EquipmentTierNode5" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_gha1v")
+stat = NodePath("../../../ProjectileSpeed")
+new_stat_value = 1000.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
+[node name="ModifyEquipmentStat3" type="Node" parent="EquipmentTierManager/EquipmentTierNode5" node_paths=PackedStringArray("stat")]
+script = ExtResource("6_gha1v")
+stat = NodePath("../../../ReturnSpeed")
+new_stat_value = 1200.0
+metadata/_custom_type_script = "uid://dkb4p6s36rwxr"
+
 [node name="Chakram" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-4, -2)

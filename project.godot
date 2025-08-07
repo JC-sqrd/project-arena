@@ -25,6 +25,7 @@ GameState="*res://Scripts/AutoLoads/GameState.gd"
 PauseManager="*res://Scripts/AutoLoads/PauseManager.gd"
 InteractionManager="*res://Scripts/Interaction/InteractionManager.gd"
 GlobalLootDropper="*res://Scripts/AutoLoads/GlobalLootDropper.gd"
+GlobalCanvasLayer="*res://Scenes/UI/GlobalCanvasLayer/global_canvas_layer.tscn"
 
 [display]
 
