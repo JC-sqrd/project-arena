@@ -3,6 +3,7 @@ extends Node
 var current_player_character_data : CharacterSelectData
 var current_stage_scene : PackedScene
 var current_stage : Stage
+var general_shop : GeneralShopUI
 var character_select_screen : CharacterSelectUI
 var player : PlayerCharacter
 

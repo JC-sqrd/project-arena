@@ -1,3 +1,4 @@
+class_name ItemInventoryUI
 extends Control
 
 
@@ -16,10 +17,7 @@ func _ready():
 
 func _on_new_item_added(item : Item):
 	var item_icon : InventoryItemIcon = item_icon_scene.instantiate() as InventoryItemIcon
-	item_icon.item_id = item.string_id
-	item_icon.item_name = item.item_name
-	item_icon.item_texture_rect.texture = item.item_icon
-	item_icon.item_detail = item.item_detail
+	item_icon.configure_item_icon(item)
 	if item.stack != 1:
 		item_icon.item_stack_label.text = str(item.stack)
 	else:

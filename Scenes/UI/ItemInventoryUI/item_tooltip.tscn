@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://lijbb2yj8172"]
+
+[ext_resource type="Texture2D" uid="uid://cdgcflcxvv4w" path="res://Sprites/UI/Panel Container Texture/UI Tooltip Header Pane.png" id="1_2i611"]
+[ext_resource type="Script" uid="uid://1v4i6bi4sluo" path="res://Scripts/UI/ItemInfoUI/ItemTooltipUI.gd" id="1_80pq7"]
+[ext_resource type="Texture2D" uid="uid://bvt8lj7q11lbn" path="res://Sprites/UI/Panel Container Texture/UI Tooltip Body Pane.png" id="2_80pq7"]
+[ext_resource type="PackedScene" uid="uid://dhl6epbqlpy2d" path="res://Scenes/UI/ItemInventoryIcons/tooltip_item_icon.tscn" id="4_xw3l1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xw3l1"]
+texture = ExtResource("1_2i611")
+texture_margin_left = 21.0
+texture_margin_top = 9.0
+texture_margin_right = 21.0
+texture_margin_bottom = 2.96423
+region_rect = Rect2(0, 0, 288, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_435o2"]
+texture = ExtResource("2_80pq7")
+texture_margin_left = 36.0
+texture_margin_top = 27.0
+texture_margin_right = 36.0
+texture_margin_bottom = 36.0
+
+[node name="TooltipContainer" type="HBoxContainer" node_paths=PackedStringArray("item_tooltip_icon", "item_name_label", "item_details_label")]
+custom_minimum_size = Vector2(300, 250)
+offset_right = 300.0
+offset_bottom = 250.0
+size_flags_horizontal = 3
+script = ExtResource("1_80pq7")
+item_tooltip_icon = NodePath("VBoxContainer/BodyPanelContainer/VBoxContainer/ItemDetailsVBoxContainer/TooltipItemIcon")
+item_name_label = NodePath("VBoxContainer/HeaderPanelContainer/ItemNameLabel")
+item_details_label = NodePath("VBoxContainer/BodyPanelContainer/VBoxContainer/ItemDetailsVBoxContainer/ItemDetailsLabel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="HeaderPanelContainer" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_xw3l1")
+
+[node name="ItemNameLabel" type="RichTextLabel" parent="VBoxContainer/HeaderPanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "ITEM NAME"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BodyPanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_435o2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/BodyPanelContainer"]
+layout_mode = 2
+
+[node name="ItemDetailsVBoxContainer" type="VBoxContainer" parent="VBoxContainer/BodyPanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TooltipItemIcon" parent="VBoxContainer/BodyPanelContainer/VBoxContainer/ItemDetailsVBoxContainer" instance=ExtResource("4_xw3l1")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ItemDetailsLabel" type="RichTextLabel" parent="VBoxContainer/BodyPanelContainer/VBoxContainer/ItemDetailsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "Item Detail"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BodyPanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatNameContainer" type="VBoxContainer" parent="VBoxContainer/BodyPanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatValueContainer" type="VBoxContainer" parent="VBoxContainer/BodyPanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3

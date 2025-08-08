@@ -11,7 +11,7 @@ var equipment_scene : PackedScene
 @onready var lock_icon: TextureRect = %LockIcon
 @onready var equipment_icon: EquipmentInventorySlotIcon = %EquipmentIcon
 @onready var cost_label: Label = %CostLabel
-const EQUIPMENT_TOOLTIP = preload("res://Scenes/UI/ItemInventoryUI/equipment_tooltip.tscn")
+const EQUIPMENT_TOOLTIP = preload("res://Scenes/UI/EquipmentInventory/equipment_tooltip.tscn")
 
 func _ready():
 	super()
@@ -62,6 +62,12 @@ func _on_lock_button_pressed():
 	else:
 		lock_icon.visible = false
 		lock_button.text = "LOCK"
+	pass
+
+func delete_buy_instance():
+	if equipment != null:
+		equipment.queue_free()
+	queue_free()
 	pass
 
 func _make_custom_tooltip(for_text: String) -> Object:

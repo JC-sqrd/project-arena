@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="6_68iut"]
 
 [node name="PhantomCharacter" instance=ExtResource("1_2ijky")]
+character_name = "Jade"
 
 [node name="PassiveAbilityContainer" parent="." index="2" node_paths=PackedStringArray("ability")]
 ability = NodePath("SpawnOnAbilityCastActor")
@@ -80,7 +81,7 @@ position = Vector2(11, 6.00002)
 
 [node name="SwiftSword" parent="WeaponSlot/WeaponPosition" index="0" instance=ExtResource("3_ys4ku")]
 
-[node name="MoveSpeed" parent="Stats" index="23"]
+[node name="MoveSpeed" parent="Stats" index="25"]
 can_be_negative = true
 
 [editable path="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/HealthBarPanel/HealthBar"]

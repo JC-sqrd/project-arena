@@ -34,31 +34,32 @@ func disable_ability():
 
 func _on_util_casted():
 	for i in min(hittable_entities.size(), int(max_targets.stat_derived_value)):
-		if !cooling_down:
-			print("PASSIVE UTIL CAST")
-			var spawn = spawn_scene.instantiate() as Spawnable
-			
-			var spawn_rotation : float = 0
-			
-			spawn.source = self
-			spawn.actor = actor
-			spawn.on_hit.connect(_on_spawn_hit)
-			spawn.inactive.connect(_on_spawn_inactive)
-			spawn.collision_mask = (spawn.collision_mask - actor.collision_layer)
-			if hit_listener != null:
-				spawn.hit_data = hit_listener.generate_effect_data()
-			
-			#if !aim_at_mouse:
-				#spawn_rotation = spawn_direction.angle()
-			#else:
-				#spawn_rotation = actor.global_position.direction_to(actor.get_global_mouse_position()).angle()
-			#spawn_rotation = ability.global_position.direction_to(spawn_direction).angle()
-			
-			spawn.global_position = hittable_entities[i].global_position
-			if look_at_mouse:
-				spawn.rotation = actor.global_position.direction_to(actor.get_global_mouse_position()).angle()
-			#actor.get_tree().root.add_child(spawn)
-			get_tree().root.add_child(spawn)
+		if cooling_down:
+			return
+		print("PASSIVE UTIL CAST")
+		var spawn = spawn_scene.instantiate() as Spawnable
+		
+		var spawn_rotation : float = 0
+		
+		spawn.source = self
+		spawn.actor = actor
+		spawn.on_hit.connect(_on_spawn_hit)
+		spawn.inactive.connect(_on_spawn_inactive)
+		spawn.collision_mask = (spawn.collision_mask - actor.collision_layer)
+		if hit_listener != null:
+			spawn.hit_data = hit_listener.generate_effect_data()
+		
+		#if !aim_at_mouse:
+			#spawn_rotation = spawn_direction.angle()
+		#else:
+			#spawn_rotation = actor.global_position.direction_to(actor.get_global_mouse_position()).angle()
+		#spawn_rotation = ability.global_position.direction_to(spawn_direction).angle()
+		
+		spawn.global_position = hittable_entities[i].global_position
+		if look_at_mouse:
+			spawn.rotation = actor.global_position.direction_to(actor.get_global_mouse_position()).angle()
+		#actor.get_tree().root.add_child(spawn)
+		get_tree().root.add_child(spawn)
 	start_cooldown()
 	pass
 

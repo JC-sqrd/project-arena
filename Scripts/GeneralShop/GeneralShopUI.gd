@@ -32,6 +32,7 @@ var player : Entity
 
 
 func _ready() -> void:
+	Globals.general_shop = self
 	player = Globals.player
 	owner.ready.connect(
 		func():
@@ -65,6 +66,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("open_shop"):
 		visible = !visible
 		pass
+
+func show_general_shop():
+	visible = true
+	pass
+
+func hide_general_shop():
+	visible = false
+	pass
 
 func restock_shop():
 	restock_items(restock_item_price)

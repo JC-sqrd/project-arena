@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://dpxeo3vfdhsen" path="res://Scenes/Items/burst_damage/item_burst_damage.tscn" id="17_lcvkm"]
 
 [node name="BrawlerCharacter" instance=ExtResource("1_g348i")]
+character_name = "Emerald"
 
 [node name="EnemyHitParticle" parent="." index="0" instance=ExtResource("2_g61ps")]
 

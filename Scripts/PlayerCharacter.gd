@@ -3,6 +3,7 @@ extends Entity
 
 var total_damage_applied : float = 0
 var damage_effects : Array[Node]
+@export var character_name : String
 @export var gold_manager : GoldManager
 @export var weapon_manager : WeaponManager
 @export var passive_ability_container : PassiveAbilityContainer

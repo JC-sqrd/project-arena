@@ -19,8 +19,7 @@ script = ExtResource("1_m05mf")
 item_name = "Flying Dagger"
 item_icon = ExtResource("2_qf1o6")
 string_id = "flying_dagger"
-item_detail = "Every 3rd basic attack hit, fire a dagger that deals 10 + (+20% attack damage each stack) physical damage that can pierce 1(+1 each stack) times.
-+20% Critical Strike Chance"
+item_detail = "Every 3rd basic attack hit, fire a dagger that deals 10 + (+20% attack damage each stack) physical damage that can pierce 1(+1 each stack) times."
 buy_cost = 300.0
 sell_value = 15.0
 

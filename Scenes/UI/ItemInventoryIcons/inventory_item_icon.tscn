@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://6t0s1g2khnti"]
+[gd_scene load_steps=6 format=3 uid="uid://6t0s1g2khnti"]
 
-[ext_resource type="Script" uid="uid://o11umasw1lq8" path="res://Scripts/UI/InventoryItemIcon.gd" id="1_n1hlv"]
+[ext_resource type="Script" uid="uid://o11umasw1lq8" path="res://Scripts/UI/ItemInventory/InventoryItemIcon.gd" id="1_n1hlv"]
 [ext_resource type="Texture2D" uid="uid://d6jxmu5xbyf7" path="res://Placeholders/Icons/Icon.1_32.png" id="2_u4yfk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u1kq5"]
+
+[sub_resource type="Theme" id="Theme_mpf2b"]
+PopupPanel/styles/panel = SubResource("StyleBoxEmpty_u1kq5")
 
 [sub_resource type="LabelSettings" id="LabelSettings_7xtom"]
 outline_size = 10
@@ -11,11 +16,12 @@ outline_color = Color(0, 0, 0, 1)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 tooltip_text = "Item"
+theme = SubResource("Theme_mpf2b")
 script = ExtResource("1_n1hlv")
-item_texture_rect = NodePath("TextureRect")
-item_stack_label = NodePath("TextureRect/MarginContainer/Label")
+item_texture_rect = NodePath("ItemIcon")
+item_stack_label = NodePath("ItemIcon/MarginContainer/ItemStackLabel")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="ItemIcon" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -23,14 +29,15 @@ size_flags_vertical = 4
 texture = ExtResource("2_u4yfk")
 expand_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+[node name="MarginContainer" type="MarginContainer" parent="ItemIcon"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 5
 
-[node name="Label" type="Label" parent="TextureRect/MarginContainer"]
+[node name="ItemStackLabel" type="Label" parent="ItemIcon/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "1"
 label_settings = SubResource("LabelSettings_7xtom")

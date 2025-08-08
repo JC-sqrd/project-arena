@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://udltrhgkwg0i"]
+
+[ext_resource type="Script" uid="uid://cl6083xybgfk0" path="res://Scripts/CharacterSelect/CharacterSelectPreviewUI.gd" id="1_4nxux"]
+[ext_resource type="PackedScene" uid="uid://y3l4wyvfguee" path="res://Scenes/UI/Character Select/character_select_character_ability_panel.tscn" id="2_0nfkj"]
+
+[node name="CharacterSelectPreview" type="Control"]
+custom_minimum_size = Vector2(1000, 300)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_4nxux")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(1000, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -566.5
+offset_top = -202.0
+offset_right = 566.5
+offset_bottom = 202.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="CharacterNameLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/bold_italics_font_size = 55
+theme_override_font_sizes/italics_font_size = 55
+theme_override_font_sizes/mono_font_size = 55
+theme_override_font_sizes/normal_font_size = 55
+theme_override_font_sizes/bold_font_size = 55
+text = "CHARACTER NAME"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PassiveAbilityPreviewPanel" parent="PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_0nfkj")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PrimaryAbilityPreviewPanel" parent="PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_0nfkj")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="UtilityAbilityPreviewPanel" parent="PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_0nfkj")]
+unique_name_in_owner = true
+layout_mode = 2

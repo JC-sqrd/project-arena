@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhl6epbqlpy2d"]
+
+[ext_resource type="Script" uid="uid://bksnkib0ivrpg" path="res://Scripts/UI/ItemInventory/TooltipItemIcon.gd" id="1_fltax"]
+[ext_resource type="Texture2D" uid="uid://btmalk60r8n8m" path="res://icon.svg" id="2_fltax"]
+[ext_resource type="Texture2D" uid="uid://dsgcy2jeaik3y" path="res://Sprites/UI/Slot Border/SlotBorder.png" id="3_7syym"]
+
+[node name="TooltipItemIcon" type="PanelContainer" node_paths=PackedStringArray("item_icon")]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 30.0
+offset_bottom = 30.0
+script = ExtResource("1_fltax")
+item_icon = NodePath("ItemIcon")
+
+[node name="ItemIcon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_fltax")
+expand_mode = 3
+
+[node name="ItemIconBorder" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_7syym")
+expand_mode = 3

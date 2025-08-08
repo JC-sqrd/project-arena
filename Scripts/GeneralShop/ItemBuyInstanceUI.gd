@@ -48,6 +48,11 @@ func is_buyable(gold_amount : float) -> bool:
 		return true
 	return false
 
+func delete_buy_instance():
+	if item != null:
+		item.queue_free()
+	queue_free()
+	pass
 
 func _on_buy_button_pressed():
 	attempt_to_buy.emit(self)

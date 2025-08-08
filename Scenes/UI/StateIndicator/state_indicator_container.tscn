@@ -3,26 +3,32 @@
 [ext_resource type="Script" uid="uid://bldc5n5plkp8x" path="res://Scripts/UI/StateIndicator/StateIndicatorContainer.gd" id="1_ryoe0"]
 
 [node name="StateIndicatorContainer" type="Control"]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(300, 40)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 script = ExtResource("1_ryoe0")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="GridContainer" type="GridContainer" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(600, 40)
+custom_minimum_size = Vector2(300, 40)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = -30.0
-offset_right = 300.0
+offset_left = -150.0
+offset_top = -40.0
+offset_right = 150.0
 grow_horizontal = 2
 grow_vertical = 0
+columns = 8

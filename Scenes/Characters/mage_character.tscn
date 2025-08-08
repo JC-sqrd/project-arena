@@ -22,6 +22,7 @@ shader_parameter/hit_opacity = 0.0
 shader_parameter/modulate = Color(0.164706, 0.756863, 1, 1)
 
 [node name="MageCharacter" instance=ExtResource("1_mooh8")]
+character_name = "Blue"
 
 [node name="ShoesLightningBoots" parent="EquipmentInventory" index="0" instance=ExtResource("2_1ymtx")]
 tier = 4
@@ -91,13 +92,13 @@ scale = Vector2(0.999999, 0.999999)
 [node name="Focus" parent="Stats" index="4"]
 stat_value = 20.0
 
-[node name="MaxMana" parent="Stats" index="19"]
+[node name="MaxMana" parent="Stats" index="21"]
 stat_value = 150.0
 
-[node name="ManaRegen" parent="Stats" index="20"]
+[node name="ManaRegen" parent="Stats" index="22"]
 stat_value = 5.0
 
-[node name="MoveSpeed" parent="Stats" index="23"]
+[node name="MoveSpeed" parent="Stats" index="25"]
 stat_value = 240.0
 
 [node name="AnimatedSprite2D" parent="." index="29"]

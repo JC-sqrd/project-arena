@@ -10,7 +10,7 @@ var equipment : Equipment : set = set_equipment
 @onready var slot_border: TextureRect = $SlotBorder
 
 const EQUIPMENT_CONTEXT_MENU = preload("res://Scenes/UI/EquipmentInventory/equipment_context_menu.tscn")
-const EQUIPMENT_TOOLTIP = preload("res://Scenes/UI/ItemInventoryUI/equipment_tooltip.tscn")
+const EQUIPMENT_TOOLTIP = preload("res://Scenes/UI/EquipmentInventory/equipment_tooltip.tscn")
 
 var context_menu : EquipmentContextMenu
 var is_selected : bool = false

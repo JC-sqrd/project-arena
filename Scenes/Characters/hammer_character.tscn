@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cnefmjw46bhom" path="res://Scenes/Equipments/Shoes/shoes_iron_boots.tscn" id="11_7raj0"]
 
 [node name="HammerCharacter" instance=ExtResource("1_5hmdl")]
+character_name = "Cobalt"
 
 [node name="InnateActiveAbility" parent="." index="3" node_paths=PackedStringArray("ability")]
 ability = NodePath("GroundBurstAbility")
@@ -47,10 +48,10 @@ equipment = NodePath("ShoesIronBoots")
 
 [node name="ShoesIronBoots" parent="ShoesSlot" index="0" instance=ExtResource("11_7raj0")]
 
-[node name="MaxHealth" parent="Stats" index="12"]
+[node name="MaxHealth" parent="Stats" index="14"]
 stat_value = 65.0
 
-[node name="MoveSpeed" parent="Stats" index="23"]
+[node name="MoveSpeed" parent="Stats" index="25"]
 stat_value = 240.0
 
 [editable path="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/HealthBarPanel/HealthBar"]

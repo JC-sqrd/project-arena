@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://5j01qerayncq"]
 
-[ext_resource type="Script" uid="uid://2j2kt2xf0uxh" path="res://Scripts/UI/ItemInventoryUI.gd" id="1_1d4pu"]
+[ext_resource type="Script" uid="uid://2j2kt2xf0uxh" path="res://Scripts/UI/ItemInventory/ItemInventoryUI.gd" id="1_1d4pu"]
 
 [node name="ItemInventoryUI" type="Control"]
 layout_mode = 3
@@ -15,9 +15,9 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 100.0
 grow_horizontal = 2
-theme_override_constants/margin_left = 60
+theme_override_constants/margin_left = 400
 theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 60
+theme_override_constants/margin_right = 400
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(0, 100)

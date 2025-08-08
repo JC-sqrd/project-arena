@@ -11,45 +11,31 @@ texture_margin_top = 24.0
 texture_margin_right = 24.0
 texture_margin_bottom = 24.0
 
-[node name="AbilityTooltip" type="PanelContainer"]
+[node name="AbilityTooltipContainer" type="VBoxContainer"]
 custom_minimum_size = Vector2(600, 300)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -186.0
-offset_right = 300.0
-offset_bottom = 186.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 600.0
+offset_bottom = 372.0
 script = ExtResource("1_s80h0")
 
-[node name="AbilityTooltipContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(600, 300)
-layout_mode = 2
-
-[node name="AbilityTooltipBodyContainer" type="PanelContainer" parent="AbilityTooltipContainer"]
+[node name="AbilityTooltipBodyContainer" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_gqdvg")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AbilityTooltipContainer/AbilityTooltipBodyContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AbilityTooltipBodyContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="AbilityTooltipContainer/AbilityTooltipBodyContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="AbilityTooltipBodyContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="AbilityIconBorder" type="TextureRect" parent="AbilityTooltipContainer/AbilityTooltipBodyContainer/VBoxContainer/HBoxContainer"]
+[node name="AbilityIconBorder" type="TextureRect" parent="AbilityTooltipBodyContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture = ExtResource("3_rdsqw")
 expand_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="AbilityTooltipContainer/AbilityTooltipBodyContainer/VBoxContainer/HBoxContainer/AbilityIconBorder"]
+[node name="MarginContainer" type="MarginContainer" parent="AbilityTooltipBodyContainer/VBoxContainer/HBoxContainer/AbilityIconBorder"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,15 +47,15 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="AbilityIcon" type="TextureRect" parent="AbilityTooltipContainer/AbilityTooltipBodyContainer/VBoxContainer/HBoxContainer/AbilityIconBorder/MarginContainer"]
+[node name="AbilityIcon" type="TextureRect" parent="AbilityTooltipBodyContainer/VBoxContainer/HBoxContainer/AbilityIconBorder/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 expand_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AbilityTooltipContainer/AbilityTooltipBodyContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AbilityTooltipBodyContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="AbilityName" type="RichTextLabel" parent="AbilityTooltipContainer/AbilityTooltipBodyContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="AbilityName" type="RichTextLabel" parent="AbilityTooltipBodyContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -77,14 +63,14 @@ size_flags_vertical = 3
 text = "Ability Name"
 vertical_alignment = 1
 
-[node name="AbilityTypeLabel" type="RichTextLabel" parent="AbilityTooltipContainer/AbilityTooltipBodyContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="AbilityTypeLabel" type="RichTextLabel" parent="AbilityTooltipBodyContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "ABILITY TYPE"
 vertical_alignment = 1
 
-[node name="ResourceCost" type="RichTextLabel" parent="AbilityTooltipContainer/AbilityTooltipBodyContainer/VBoxContainer/HBoxContainer"]
+[node name="ResourceCost" type="RichTextLabel" parent="AbilityTooltipBodyContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -92,7 +78,7 @@ size_flags_horizontal = 8
 text = "Resource Cost"
 vertical_alignment = 1
 
-[node name="CooldownTime" type="RichTextLabel" parent="AbilityTooltipContainer/AbilityTooltipBodyContainer/VBoxContainer/HBoxContainer"]
+[node name="CooldownTime" type="RichTextLabel" parent="AbilityTooltipBodyContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
@@ -100,7 +86,7 @@ size_flags_horizontal = 8
 text = "Cooldown"
 vertical_alignment = 1
 
-[node name="AbilityDescription" type="RichTextLabel" parent="AbilityTooltipContainer/AbilityTooltipBodyContainer/VBoxContainer"]
+[node name="AbilityDescription" type="RichTextLabel" parent="AbilityTooltipBodyContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
@@ -108,17 +94,17 @@ text = "Ability Description
 "
 fit_content = true
 
-[node name="AbilityStatsContainer" type="HBoxContainer" parent="AbilityTooltipContainer/AbilityTooltipBodyContainer/VBoxContainer"]
+[node name="AbilityStatsContainer" type="HBoxContainer" parent="AbilityTooltipBodyContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
 
-[node name="StatNameContainer" type="VBoxContainer" parent="AbilityTooltipContainer/AbilityTooltipBodyContainer/VBoxContainer/AbilityStatsContainer"]
+[node name="StatNameContainer" type="VBoxContainer" parent="AbilityTooltipBodyContainer/VBoxContainer/AbilityStatsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="StatValueContainer" type="VBoxContainer" parent="AbilityTooltipContainer/AbilityTooltipBodyContainer/VBoxContainer/AbilityStatsContainer"]
+[node name="StatValueContainer" type="VBoxContainer" parent="AbilityTooltipBodyContainer/VBoxContainer/AbilityStatsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

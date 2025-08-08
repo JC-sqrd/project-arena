@@ -5,7 +5,7 @@ extends Control
 @export var level_scene : PackedScene
 @onready var character_grid_container: GridContainer = %CharacterGridContainer
 @onready var start_game_button: Button = %StartGameButton
-@onready var character_ability_preview: CharacterAbilityPreviewUI = %CharacterAbilityPreview
+@onready var character_select_preview: CharacterSelectPreviewUI = %CharacterSelectPreview
 
 
 var current_selected_icon : CharacterSelectIconUI
@@ -34,7 +34,7 @@ func _on_icon_selected(character_icon : CharacterSelectIconUI):
 	if character_icon.character_data != null:
 		print(character_icon.character_data.character_name)
 	start_game_button.disabled = false
-	character_ability_preview.set_chracter_ability_preview(current_character)
+	character_select_preview.set_character_preview(current_character)
 	print("CHARACTER SELECT SCREEN ICON SELECTED")
 	pass
 

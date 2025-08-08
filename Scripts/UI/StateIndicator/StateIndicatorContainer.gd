@@ -1,7 +1,8 @@
 class_name StateIndicatorContainer
 extends Control
 
-@onready var h_box_container: HBoxContainer = %HBoxContainer
+@onready var grid_container: GridContainer = %GridContainer
+
 const STATE_INDICATOR = preload("res://Scenes/UI/StateIndicator/state_indicator.tscn")
 
 
@@ -15,7 +16,7 @@ static func create_state_indicator(lifetime : float, icon : Texture, description
 	pass
 
 func add_state_indicator(state_indicator : StateIndicator):
-	h_box_container.add_child(state_indicator)
+	grid_container.add_child(state_indicator)
 	if state_indicator.icon != null:
 		state_indicator.state_indicator_icon.texture = state_indicator.icon
 	state_indicator.start_indicator_lifetime(state_indicator.lifetime)
