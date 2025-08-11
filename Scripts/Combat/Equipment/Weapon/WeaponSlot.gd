@@ -67,6 +67,12 @@ func set_equipment(new_equipment : Equipment):
 	if new_equipment != null:
 		equipment = new_equipment
 		weapon = equipment as Weapon
+		equipment.reparent(weapon_position)
+		equipment.global_position = Vector2.ZERO
+		equipment.rotation = 0
+		equipment.position = Vector2.ZERO
+		equipment.action_trigger = action_trigger
+		equipment.visible = false
 		equipment_slotted.emit(equipment)
 	else:
 		equipment = new_equipment

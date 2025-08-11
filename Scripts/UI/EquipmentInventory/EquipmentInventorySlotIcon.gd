@@ -21,6 +21,7 @@ func _ready() -> void:
 
 func set_equipment(equipment : Equipment):
 	self.equipment = equipment
+	equipment.visible = false
 	texture = equipment.equipment_icon
 	equipment_tier_ui.set_tier(equipment.tier)
 	pass

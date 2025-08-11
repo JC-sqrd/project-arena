@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://bwbyc8vywa6vd"]
+[gd_scene load_steps=74 format=3 uid="uid://bwbyc8vywa6vd"]
 
 [ext_resource type="Script" uid="uid://bl5aki5ii4r6t" path="res://Scripts/PlayerCharacter.gd" id="1_4r8nq"]
 [ext_resource type="Script" uid="uid://bsn1idamyre35" path="res://Scripts/EquipmentInventory/EquipmentInventory.gd" id="2_52ran"]
@@ -54,6 +54,14 @@
 [ext_resource type="Script" uid="uid://botqhhrbfbmcw" path="res://Scripts/Enemy/EntityHitParticle.gd" id="44_eqfpn"]
 [ext_resource type="PackedScene" uid="uid://ull35nal2yub" path="res://Scenes/Particles/enemy_hit_particle.tscn" id="45_n0876"]
 [ext_resource type="Script" uid="uid://b6vsymr001rn1" path="res://Scripts/Label Popups/GoldPopup.gd" id="46_4soj8"]
+[ext_resource type="Animation" uid="uid://btrsnr8b3mfs0" path="res://Animations/CharacterAnimations/Base Character/Idle/base_character_down_idle_anim.tres" id="55_s6fgp"]
+[ext_resource type="Animation" uid="uid://ckjbk3a8a8y0" path="res://Animations/CharacterAnimations/Base Character/Idle/base_character_left_idle_anim.tres" id="56_yktjw"]
+[ext_resource type="Animation" uid="uid://7xn3hlemboh2" path="res://Animations/CharacterAnimations/Base Character/Idle/base_character_right_idle_anim.tres" id="57_vn4xv"]
+[ext_resource type="Animation" uid="uid://wkocdeqgfn24" path="res://Animations/CharacterAnimations/Base Character/Idle/base_character_up_idle_anim.tres" id="58_vlal2"]
+[ext_resource type="Animation" uid="uid://b7lji1qmdqj7x" path="res://Animations/CharacterAnimations/Base Character/Run/base_character_down_run_anim.tres" id="59_pqgby"]
+[ext_resource type="Animation" uid="uid://bvngwx58ip5hf" path="res://Animations/CharacterAnimations/Base Character/Run/base_character_left_run_anim.tres" id="60_xk2vc"]
+[ext_resource type="Animation" uid="uid://dgewv05tv7tih" path="res://Animations/CharacterAnimations/Base Character/Run/base_character_right_run_anim.tres" id="61_gbr3h"]
+[ext_resource type="Animation" uid="uid://dacnnkkw83foi" path="res://Animations/CharacterAnimations/Base Character/Run/base_character_up_run_anim.tres" id="62_qngxt"]
 
 [sub_resource type="Resource" id="Resource_s7g6f"]
 script = ExtResource("6_wvybv")
@@ -134,6 +142,18 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4yy27"]
 radius = 150.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_034ap"]
+_data = {
+&"base_character_down_idle_anim": ExtResource("55_s6fgp"),
+&"base_character_down_run_anim": ExtResource("59_pqgby"),
+&"base_character_left_idle_anim": ExtResource("56_yktjw"),
+&"base_character_left_run_anim": ExtResource("60_xk2vc"),
+&"base_character_right_idle_anim": ExtResource("57_vn4xv"),
+&"base_character_right_run_anim": ExtResource("61_gbr3h"),
+&"base_character_up_idle_anim": ExtResource("58_vlal2"),
+&"base_character_up_run_anim": ExtResource("62_qngxt")
+}
 
 [node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("gold_manager", "weapon_manager", "passive_ability_container", "innate_active_ability", "utility_ability", "main_weapon_ability_container", "off_weapon_ability_container", "hit_receiver", "stat_manager", "level_manager", "health_manager", "mana_manager", "status_effect_manager", "stat_mods_manager", "damage_listener", "item_iventory", "equipment_inventory", "state_indicator_container") groups=["Hittable", "player"]]
 z_index = 1
@@ -753,5 +773,10 @@ particle_scene = ExtResource("45_n0876")
 [node name="GoldPopup" type="Node" parent="."]
 script = ExtResource("46_4soj8")
 metadata/_custom_type_script = "uid://b6vsymr001rn1"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_034ap")
+}
 
 [editable path="CanvasLayer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/HealthBarPanel/HealthBar"]

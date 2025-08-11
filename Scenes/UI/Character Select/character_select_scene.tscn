@@ -56,53 +56,60 @@ level_scene = ExtResource("2_xxipc")
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 200
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="CharacterSelectPreview" parent="VBoxContainer2" instance=ExtResource("3_grihp")]
+[node name="CharacterSelectPreview" parent="MarginContainer/VBoxContainer2" instance=ExtResource("3_grihp")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="CharacterGridContainer" type="GridContainer" parent="VBoxContainer2/VBoxContainer"]
+[node name="CharacterGridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 columns = 10
 
-[node name="CharacterSelectIcon" parent="VBoxContainer2/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
+[node name="CharacterSelectIcon" parent="MarginContainer/VBoxContainer2/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
 layout_mode = 2
 character_data = SubResource("Resource_b8ars")
 
-[node name="CharacterIcon" parent="VBoxContainer2/VBoxContainer/CharacterGridContainer/CharacterSelectIcon/PanelContainer" index="0"]
+[node name="CharacterIcon" parent="MarginContainer/VBoxContainer2/VBoxContainer/CharacterGridContainer/CharacterSelectIcon/PanelContainer" index="0"]
 texture = ExtResource("4_xxipc")
 
-[node name="CharacterSelectIcon2" parent="VBoxContainer2/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
+[node name="CharacterSelectIcon2" parent="MarginContainer/VBoxContainer2/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
 layout_mode = 2
 character_data = SubResource("Resource_x3cli")
 
-[node name="CharacterSelectIcon3" parent="VBoxContainer2/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
+[node name="CharacterSelectIcon3" parent="MarginContainer/VBoxContainer2/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
 layout_mode = 2
 character_data = SubResource("Resource_flssm")
 
-[node name="CharacterSelectIcon4" parent="VBoxContainer2/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
+[node name="CharacterSelectIcon4" parent="MarginContainer/VBoxContainer2/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
 layout_mode = 2
 character_data = SubResource("Resource_tkc3w")
 
-[node name="CharacterSelectIcon5" parent="VBoxContainer2/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
+[node name="CharacterSelectIcon5" parent="MarginContainer/VBoxContainer2/VBoxContainer/CharacterGridContainer" instance=ExtResource("2_4wiya")]
 layout_mode = 2
 character_data = SubResource("Resource_xxipc")
 
-[node name="StartGameButton" type="Button" parent="VBoxContainer2/VBoxContainer"]
+[node name="StartGameButton" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "START GAME"
 
-[editable path="VBoxContainer2/VBoxContainer/CharacterGridContainer/CharacterSelectIcon"]
+[editable path="MarginContainer/VBoxContainer2/VBoxContainer/CharacterGridContainer/CharacterSelectIcon"]

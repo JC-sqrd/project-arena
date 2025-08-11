@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyptbbn8d0pqd"]
+[gd_scene load_steps=10 format=3 uid="uid://cyptbbn8d0pqd"]
 
 [ext_resource type="Script" uid="uid://blbwnmv676w3j" path="res://Scripts/Ability System/Spawnables/AreaHitOverTime.gd" id="1_mtr84"]
 [ext_resource type="Script" uid="uid://bgka26pbphks7" path="res://Scripts/StatSystem/Stat.gd" id="2_nqne8"]
@@ -22,6 +22,67 @@ radial_accel_max = 50.0
 scale_min = 0.1
 scale_max = 0.3
 
+[sub_resource type="Animation" id="Animation_xu78s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Circle05:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.03053, 1.03053)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Circle03:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.03845, 1.03845)]
+}
+
+[sub_resource type="Animation" id="Animation_23ape"]
+resource_name = "toxic_cloud_start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Circle05:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1.03053, 1.03053)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Circle03:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.0666667, 0.233333),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1.03845, 1.03845)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4q6me"]
+_data = {
+&"RESET": SubResource("Animation_xu78s"),
+&"toxic_cloud_start": SubResource("Animation_23ape")
+}
+
 [node name="ToxicCloudSpawnable" type="Area2D" node_paths=PackedStringArray("hit_speed")]
 z_as_relative = false
 collision_layer = 0
@@ -29,7 +90,7 @@ collision_mask = 3
 monitorable = false
 script = ExtResource("1_mtr84")
 hit_speed = NodePath("HitSpeed")
-windup_time = 0.25
+windup_time = 0.3
 lifetime = 3.5
 time_active = 3.0
 metadata/_custom_type_script = "uid://blbwnmv676w3j"
@@ -57,3 +118,9 @@ amount = 32
 texture = ExtResource("4_23ape")
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_23ape")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4q6me")
+}
+autoplay = "toxic_cloud_start"

@@ -132,6 +132,7 @@ func add_equipment(equipment : Equipment) -> bool:
 			inventory[i] = equipment
 			equipment_added.emit(equipment, i)
 			add_child(equipment)
+			equipment.visible = false
 			print("Added equipment to inventory")
 			return true
 		pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=4 uid="uid://cu8fhpggbxh6d"]
+[gd_scene load_steps=87 format=4 uid="uid://cu8fhpggbxh6d"]
 
 [ext_resource type="Script" uid="uid://bj6bpkhscp2un" path="res://Scripts/Stage/Stage.gd" id="1_4g24u"]
 [ext_resource type="Script" uid="uid://bgc72bvmdqnok" path="res://Scripts/Audio/StageAudioPlayer.gd" id="1_aliv6"]
@@ -37,7 +37,6 @@
 [ext_resource type="Script" uid="uid://cvhqdknyb5yni" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveDebugSpawn.gd" id="22_jjq5d"]
 [ext_resource type="PackedScene" uid="uid://bdc1qoow3anrr" path="res://Scenes/Test/test_mini_boss2.tscn" id="26_lqybr"]
 [ext_resource type="PackedScene" uid="uid://k8xc7t7x4e6j" path="res://Scenes/Enemies/dummy_enemy.tscn" id="33_awsut"]
-[ext_resource type="PackedScene" uid="uid://e1v3gxd3patv" path="res://Scenes/Pickupables/heal_pickupable.tscn" id="38_w24wr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2d4qq"]
 texture = ExtResource("2_w24wr")
@@ -945,6 +944,3 @@ texture = ExtResource("4_d3glx")
 
 [node name="Enemy" parent="." instance=ExtResource("33_awsut")]
 position = Vector2(1345, 730)
-
-[node name="HealPickupable" parent="." instance=ExtResource("38_w24wr")]
-position = Vector2(966, 870)

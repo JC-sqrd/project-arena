@@ -22,7 +22,7 @@ shader_parameter/hit_opacity = 0.0
 shader_parameter/modulate = Color(0.164706, 0.756863, 1, 1)
 
 [node name="MageCharacter" instance=ExtResource("1_mooh8")]
-character_name = "Blue"
+character_name = "Orange"
 
 [node name="ShoesLightningBoots" parent="EquipmentInventory" index="0" instance=ExtResource("2_1ymtx")]
 tier = 4
