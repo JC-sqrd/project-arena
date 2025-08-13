@@ -17,70 +17,76 @@ script = ExtResource("1_7d2p3")
 item_card_scene = ExtResource("2_kle2u")
 equipment_card_scene = ExtResource("5_s0db2")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Items"
 
-[node name="RestockItemButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="RestockItemButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Restock Items"
 
-[node name="ItemBuyContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="ItemBuyContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 320)
 layout_mode = 2
 alignment = 1
 
-[node name="ItemShopCard" parent="Panel/VBoxContainer/VBoxContainer/ItemBuyContainer" instance=ExtResource("2_kle2u")]
+[node name="ItemShopCard" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer/ItemBuyContainer" instance=ExtResource("2_kle2u")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 item_data = ExtResource("4_ip65n")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 text = "Equipment"
 
-[node name="RestockEquipmentButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="RestockEquipmentButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Restock Equipment"
 
-[node name="EquipmentBuyContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2"]
+[node name="EquipmentBuyContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 320)
 layout_mode = 2
 alignment = 1
 
-[node name="EquipmentShopCard" parent="Panel/VBoxContainer/VBoxContainer2/EquipmentBuyContainer" instance=ExtResource("5_s0db2")]
+[node name="EquipmentShopCard" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer2/EquipmentBuyContainer" instance=ExtResource("5_s0db2")]
 layout_mode = 2
 equipment_data = ExtResource("5_1stx0")
 
-[node name="RestockShopButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="RestockShopButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Restock Shop"

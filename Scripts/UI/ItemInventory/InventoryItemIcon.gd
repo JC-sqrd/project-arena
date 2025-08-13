@@ -23,7 +23,5 @@ func _ready():
 
 func _make_custom_tooltip(for_text: String) -> Object:
 	var item_tooltip : ItemTooltipUI = ITEM_TOOLTIP.instantiate()
-	item_tooltip.size = item_tooltip.get_combined_minimum_size()
 	item_tooltip.initialize_item_tooltip(item)
-	
 	return item_tooltip

@@ -1,11 +1,13 @@
 class_name GeneralShopUI
 extends Control
 
-@onready var item_buy_container: HBoxContainer = $Panel/VBoxContainer/VBoxContainer/ItemBuyContainer
-@onready var equipment_buy_container: HBoxContainer = $Panel/VBoxContainer/VBoxContainer2/EquipmentBuyContainer
-@onready var restock_item_button: Button = $Panel/VBoxContainer/VBoxContainer/HBoxContainer/RestockItemButton
-@onready var restock_equipment_button: Button = $Panel/VBoxContainer/VBoxContainer2/HBoxContainer/RestockEquipmentButton
-@onready var restock_shop_button: Button = $Panel/VBoxContainer/RestockShopButton
+
+@onready var item_buy_container: HBoxContainer = %ItemBuyContainer
+@onready var equipment_buy_container: HBoxContainer = %EquipmentBuyContainer
+@onready var restock_item_button: Button = %RestockItemButton
+@onready var restock_equipment_button: Button = %RestockEquipmentButton
+@onready var restock_shop_button: Button = %RestockShopButton
+
 
 
 @export_category("Item and Equipment Card Scene")

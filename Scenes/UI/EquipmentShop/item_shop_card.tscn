@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://babmiqnjapjdm"]
+[gd_scene load_steps=22 format=3 uid="uid://babmiqnjapjdm"]
 
 [ext_resource type="Script" uid="uid://48q00aqa71db" path="res://Scripts/GeneralShop/ItemBuyInstanceUI.gd" id="1_eck24"]
 [ext_resource type="Texture2D" uid="uid://b28wwbume1cgm" path="res://Sprites/UI/Panel Container Texture/PanelTexture.png" id="2_7q144"]
 [ext_resource type="Texture2D" uid="uid://dsgcy2jeaik3y" path="res://Sprites/UI/Slot Border/SlotBorder.png" id="2_783m2"]
 [ext_resource type="Texture2D" uid="uid://dron2hx2pqbpv" path="res://Sprites/UI/Lock Icon/Lock Icon.png" id="3_783m2"]
 [ext_resource type="Texture2D" uid="uid://clesry2a13f5v" path="res://Sprites/UI/Button Texture/ButtonFocusedTexture.png" id="4_egyti"]
+[ext_resource type="PackedScene" uid="uid://6t0s1g2khnti" path="res://Scenes/UI/ItemInventoryIcons/inventory_item_icon.tscn" id="4_v7frh"]
 [ext_resource type="Texture2D" uid="uid://rnh213sjtfff" path="res://Sprites/UI/Button Texture/ButtonTexture.png" id="4_vs7ac"]
 [ext_resource type="Texture2D" uid="uid://yfmo756kyspi" path="res://Sprites/UI/Button Texture/ButtonHoveredTexture.png" id="5_nxf2o"]
 [ext_resource type="Texture2D" uid="uid://cn1kw2i5sbe18" path="res://Sprites/UI/Button Texture/ButtonPressedTexture.png" id="6_v7frh"]
@@ -138,8 +139,14 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
+[node name="InventoryItemIcon" parent="VBoxContainer/MarginContainer/SlotBorder/MarginContainer" instance=ExtResource("4_v7frh")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
 [node name="ItemIcon" type="TextureRect" parent="VBoxContainer/MarginContainer/SlotBorder/MarginContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 expand_mode = 3
 

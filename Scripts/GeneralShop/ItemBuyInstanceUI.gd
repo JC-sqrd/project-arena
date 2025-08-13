@@ -12,9 +12,10 @@ var item : Item
 @onready var item_detail_label: RichTextLabel = %ItemDetailLabel
 @onready var item_icon: TextureRect = %ItemIcon
 @onready var cost_label: Label = %CostLabel
+@onready var inventory_item_icon: InventoryItemIcon = $VBoxContainer/MarginContainer/SlotBorder/MarginContainer/InventoryItemIcon
 
 
-
+const ITEM_TOOLTIP = preload("res://Scenes/UI/ItemInventoryUI/item_tooltip.tscn")
 
 func _ready():
 	super()
@@ -23,6 +24,7 @@ func _ready():
 	locked_icon.visible = false
 	if item_scene != null:
 		item = item_scene.instantiate() as Item
+		inventory_item_icon.configure_item_icon(item)
 		item_icon.texture = item.item_icon
 		cost_label.text = str(item.buy_cost)
 		cost_button.text = str(item.buy_cost)
@@ -67,3 +69,8 @@ func _on_lock_button_pressed():
 		locked_icon.visible = false
 		lock_button.text = "LOCK"
 	pass
+
+func _make_custom_tooltip(for_text: String) -> Object:
+	var item_tooltip : ItemTooltipUI = ITEM_TOOLTIP.instantiate()
+	item_tooltip.initialize_item_tooltip(item)
+	return item_tooltip
