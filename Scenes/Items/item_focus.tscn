@@ -12,7 +12,7 @@ script = ExtResource("1_k10o3")
 item_name = "#gain_focus"
 item_icon = ExtResource("2_4n8bk")
 string_id = "gain_focus"
-item_detail = "+5 Focusaaaaaaaaaaa"
+item_detail = "+5 Focus"
 buy_cost = 40.0
 metadata/_custom_type_script = "uid://dqsm34bpqqb52"
 

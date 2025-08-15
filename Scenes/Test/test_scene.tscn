@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=4 uid="uid://cu8fhpggbxh6d"]
+[gd_scene load_steps=90 format=4 uid="uid://cu8fhpggbxh6d"]
 
 [ext_resource type="Script" uid="uid://bj6bpkhscp2un" path="res://Scripts/Stage/Stage.gd" id="1_4g24u"]
 [ext_resource type="Script" uid="uid://bgc72bvmdqnok" path="res://Scripts/Audio/StageAudioPlayer.gd" id="1_aliv6"]
@@ -37,6 +37,7 @@
 [ext_resource type="Script" uid="uid://cvhqdknyb5yni" path="res://Scripts/Enemy/EnemySpawner/EnemySpawns/WaveDebugSpawn.gd" id="22_jjq5d"]
 [ext_resource type="PackedScene" uid="uid://bdc1qoow3anrr" path="res://Scenes/Test/test_mini_boss2.tscn" id="26_lqybr"]
 [ext_resource type="PackedScene" uid="uid://k8xc7t7x4e6j" path="res://Scenes/Enemies/dummy_enemy.tscn" id="33_awsut"]
+[ext_resource type="Shader" uid="uid://dg3gx1shjub03" path="res://Shaders/hit_flash.gdshader" id="38_w24wr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2d4qq"]
 texture = ExtResource("2_w24wr")
@@ -98,6 +99,11 @@ texture_margin_bottom = 12.0
 script = ExtResource("9_x1f3b")
 spawn_at_x_second = 59.0
 metadata/_custom_type_script = "uid://cmhw0pu66me2e"
+
+[sub_resource type="Resource" id="Resource_w24wr"]
+script = ExtResource("14_nf4wj")
+spawn_chance = 0.5
+metadata/_custom_type_script = "uid://d4jcbfrhfsuyc"
 
 [sub_resource type="Resource" id="Resource_bdr8d"]
 script = ExtResource("9_0lwa2")
@@ -256,6 +262,12 @@ metadata/_custom_type_script = "uid://cmhw0pu66me2e"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70841"]
 size = Vector2(141, 1308)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dcwql"]
+resource_local_to_scene = true
+shader = ExtResource("38_w24wr")
+shader_parameter/hit_opacity = 0.0
+shader_parameter/modulate = Color(1, 1, 1, 1)
+
 [node name="test_scene" type="Node2D" node_paths=PackedStringArray("player_spawn_point")]
 process_mode = 1
 script = ExtResource("1_4g24u")
@@ -386,6 +398,15 @@ spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_jjq5d")])
 enemy_scene = ExtResource("3_g57ev")
 spawn_sprite = ExtResource("6_hej2c")
 enemy_level = 20
+metadata/_custom_type_script = "uid://cvhqdknyb5yni"
+
+[node name="WaveDebugSpawn2" type="Node" parent="WaveSpawner/DebugWave"]
+script = ExtResource("22_jjq5d")
+spawn_count = 5
+spawn_timings = Array[ExtResource("8_yy25j")]([SubResource("Resource_w24wr")])
+enemy_scene = ExtResource("10_wiifm")
+spawn_sprite = ExtResource("6_hej2c")
+enemy_level = 6
 metadata/_custom_type_script = "uid://cvhqdknyb5yni"
 
 [node name="Wave1" type="Node" parent="WaveSpawner" node_paths=PackedStringArray("next_wave")]
@@ -944,3 +965,15 @@ texture = ExtResource("4_d3glx")
 
 [node name="Enemy" parent="." instance=ExtResource("33_awsut")]
 position = Vector2(1345, 730)
+
+[node name="Enemy2" parent="." instance=ExtResource("10_wiifm")]
+position = Vector2(2068, 620)
+
+[node name="AnimatedSprite2D" parent="Enemy2" index="10"]
+material = SubResource("ShaderMaterial_dcwql")
+
+[node name="Level" parent="Enemy2/Stats" index="6"]
+stat_value = 10.0
+
+[editable path="Enemy2"]
+[editable path="Enemy2/Panel/MarginContainer/TextureProgressBar"]

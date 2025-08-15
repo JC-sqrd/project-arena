@@ -7,6 +7,7 @@ extends Control
 @onready var restock_item_button: Button = %RestockItemButton
 @onready var restock_equipment_button: Button = %RestockEquipmentButton
 @onready var restock_shop_button: Button = %RestockShopButton
+@onready var close_shop_button: Button = %CloseShopButton
 
 
 
@@ -62,6 +63,7 @@ func _ready() -> void:
 	restock_item_button.pressed.connect(attempt_restock_items)
 	restock_equipment_button.pressed.connect(attempt_restock_equipment)
 	restock_shop_button.pressed.connect(restock_shop)
+	close_shop_button.pressed.connect(hide_general_shop)
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:

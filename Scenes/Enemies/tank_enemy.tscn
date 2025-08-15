@@ -605,7 +605,6 @@ grow_vertical = 2
 [node name="TextureProgressBar" parent="Panel/MarginContainer" node_paths=PackedStringArray("health_manager") instance=ExtResource("32_e00np")]
 layout_mode = 2
 health_manager = NodePath("../../../HealthManager")
-show_health_text = false
 
 [node name="DamageNumber" type="Node" parent="."]
 script = ExtResource("11_8h80h")

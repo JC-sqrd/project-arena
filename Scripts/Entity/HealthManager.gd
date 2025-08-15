@@ -82,10 +82,10 @@ func remove_current_health(health : float):
 	#var leftover_damage : float = 0
 	if current_shield.stat_derived_value > 0:
 		current_shield.stat_derived_value -= health
-		current_shield.stat_value -= health
+		#current_shield.stat_value -= health
 	else:
 		current_health.stat_derived_value -= health
-		current_health.stat_value -= health
+		#current_health.stat_value -= health
 	_evaluate_health()
 	pass
 

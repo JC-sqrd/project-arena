@@ -748,7 +748,7 @@ material = SubResource("ShaderMaterial_6bkod")
 position = Vector2(-1, -16)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_yymfs")
-animation = &"front_idle"
+animation = &"back_idle"
 script = ExtResource("41_aycmd")
 
 [node name="PickupArea" type="Area2D" parent="."]

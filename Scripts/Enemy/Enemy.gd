@@ -17,6 +17,7 @@ signal enemy_died (enemy : Enemy)
 
 
 func _ready():
+	player = Globals.player
 	super()
 
 

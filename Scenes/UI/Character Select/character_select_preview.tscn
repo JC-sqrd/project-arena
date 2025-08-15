@@ -1,9 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://udltrhgkwg0i"]
+[gd_scene load_steps=7 format=3 uid="uid://udltrhgkwg0i"]
 
 [ext_resource type="Script" uid="uid://cl6083xybgfk0" path="res://Scripts/CharacterSelect/CharacterSelectPreviewUI.gd" id="1_4nxux"]
 [ext_resource type="PackedScene" uid="uid://y3l4wyvfguee" path="res://Scenes/UI/Character Select/character_select_character_ability_panel.tscn" id="2_0nfkj"]
+[ext_resource type="Texture2D" uid="uid://cdgcflcxvv4w" path="res://Sprites/UI/Panel Container Texture/UI Tooltip Header Pane.png" id="2_tetbp"]
+[ext_resource type="Texture2D" uid="uid://bvt8lj7q11lbn" path="res://Sprites/UI/Panel Container Texture/UI Tooltip Body Pane.png" id="3_aj4ng"]
 
-[node name="PanelContainer" type="PanelContainer"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4v1a0"]
+texture = ExtResource("2_tetbp")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(0, 0, 288, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gn5d2"]
+texture = ExtResource("3_aj4ng")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[node name="CharacterSelectPreview" type="PanelContainer"]
 custom_minimum_size = Vector2(1000, 300)
 anchors_preset = 8
 anchor_left = 0.5
@@ -20,8 +37,13 @@ script = ExtResource("1_4nxux")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="CharacterNameLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_4v1a0")
+
+[node name="CharacterNameLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
@@ -32,18 +54,22 @@ theme_override_font_sizes/normal_font_size = 55
 theme_override_font_sizes/bold_font_size = 55
 text = "CHARACTER NAME"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gn5d2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer2"]
 layout_mode = 2
 
-[node name="PassiveAbilityPreviewPanel" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_0nfkj")]
+[node name="PassiveAbilityPreviewPanel" parent="VBoxContainer/PanelContainer2/HBoxContainer" instance=ExtResource("2_0nfkj")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="PrimaryAbilityPreviewPanel" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_0nfkj")]
+[node name="PrimaryAbilityPreviewPanel" parent="VBoxContainer/PanelContainer2/HBoxContainer" instance=ExtResource("2_0nfkj")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="UtilityAbilityPreviewPanel" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_0nfkj")]
+[node name="UtilityAbilityPreviewPanel" parent="VBoxContainer/PanelContainer2/HBoxContainer" instance=ExtResource("2_0nfkj")]
 unique_name_in_owner = true
 layout_mode = 2
 
